@@ -1,0 +1,16 @@
+﻿<Window x:Class="Native.UI.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Native.UI.Views"
+		xmlns:vm="clr-namespace:Native.UI.ViewModels"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle, StringFormat={}{0} -- 控制台}" Height="450" Width="800">
+	<Window.DataContext>
+		<vm:MainViewModel/>
+	</Window.DataContext>
+    <Grid>
+        
+    </Grid>
+</Window>

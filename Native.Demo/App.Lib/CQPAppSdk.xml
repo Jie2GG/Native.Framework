@@ -1,0 +1,1356 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Native.Sdk</name>
+    </assembly>
+    <members>
+        <member name="T:Native.Sdk.Cqp.Api.EnApi">
+            <summary>
+            酷Q英文版API
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_At(System.Int64,System.Boolean)">
+            <summary>
+            获取酷Q "At某人" 代码
+            </summary>
+            <param name="qqId">QQ号, 填写 -1 为At全体成员</param>
+            <param name="addSpacing">默认为True, At后添加空格, 可使At更规范美观. 如果不需要添加空格, 请置本参数为False</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Emoji(System.Int32)">
+            <summary>
+            获取酷Q "emoji表情" 代码
+            </summary>
+            <param name="id">表情Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Face(Native.Sdk.Cqp.Enum.Face)">
+            <summary>
+            获取酷Q "表情" 代码
+            </summary>
+            <param name="face">表情枚举</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Shake">
+            <summary>
+            获取酷Q "窗口抖动" 代码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Trope(System.String,System.Boolean)">
+            <summary>
+            获取字符串的转义形式
+            </summary>
+            <param name="str">欲转义字符串</param>
+            <param name="commaTrope">逗号转义, 默认: False</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_UnTrope(System.String)">
+            <summary>
+            获取字符串的非转义形式
+            </summary>
+            <param name="str">欲反转义字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_ShareLink(System.String,System.String,System.String,System.String)">
+            <summary>
+            获取酷Q "链接分享" 代码
+            </summary>
+            <param name="url">分享链接</param>
+            <param name="title">分享的标题, 建议12字以内</param>
+            <param name="content">分享的简介, 建议30字以内</param>
+            <param name="imgUrl">分享的图片链接, 留空则为默认图片</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_ShareCard(System.String,System.Int64)">
+            <summary>
+            获取酷Q "名片分享" 代码
+            </summary>
+            <param name="cardType">名片类型, qq: 好友分享, group: 群分享</param>
+            <param name="id">类型为qq，则为qqId；类型为group，则为groupId</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_ShareGPS(System.String,System.String,System.Double,System.Double,System.Int32)">
+            <summary>
+            获取酷Q "位置分享" 代码
+            </summary>
+            <param name="site">地点名称, 建议12字以内</param>
+            <param name="detail">详细地址, 建议20字以内</param>
+            <param name="lat">维度</param>
+            <param name="lon">经度</param>
+            <param name="zoom">放大倍数, 默认: 15</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Anonymous(System.Boolean)">
+            <summary>
+            获取酷Q "匿名" 代码
+            </summary>
+            <param name="forced">强制发送
+            <para>默认为False 如果希望匿名失败时，将消息转为普通消息发送(而不是取消发送)，请置本参数为True。</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Image(System.String)">
+            <summary>
+            获取酷Q "图片" 代码
+            </summary>
+            <param name="filePath">图片路径
+            <para>将图片放在 data\image 下，并填写相对路径。如 data\image\1.jpg 则填写 1.jpg</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Music(System.Int64,System.String,System.Boolean)">
+            <summary>
+            获取酷Q "音乐" 代码
+            </summary>
+            <param name="id">歌曲ID</param>
+            <param name="type">歌曲来源, 目前支持 qq/QQ音乐 163/网易云音乐 xiami/虾米音乐，默认为qq</param>
+            <param name="newStyle">启用新样式, 目前仅支持 QQ音乐 </param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_MusciDIY(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            获取酷Q "音乐自定义" 代码
+            </summary>
+            <param name="url">分享链接, 点击分享后进入的音乐页面（如歌曲介绍页）</param>
+            <param name="musicUrl">歌曲链接, 音乐的音频链接（如mp3链接）</param>
+            <param name="title">音乐的标题，建议12字以内</param>
+            <param name="content">音乐的简介，建议30字以内</param>
+            <param name="imgUrl">音乐的封面图片链接，留空则为默认图片</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.CqCode_Record(System.String)">
+            <summary>
+            获取酷Q "语音" 代码
+            </summary>
+            <param name="filePath">语音路径
+            <para>将语音放在 data\record 下，并填写相对路径。如 data\record\1.amr 则填写 1.amr</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SendGroupMessage(System.Int64,System.String)">
+            <summary>
+            发送群消息
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="message">消息内容</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SendPrivateMessage(System.Int64,System.String)">
+            <summary>
+            发送私聊消息
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SendDiscussMessage(System.Int64,System.String)">
+            <summary>
+            发送讨论组消息
+            </summary>
+            <param name="discussId">目标讨论组</param>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SendPraise(System.Int64,System.Int32)">
+            <summary>
+            发送赞
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="count">赞的次数，最多10次（留空为1次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.ReceiveRecord(System.String,Native.Sdk.Cqp.Enum.AudioOutFormat)">
+            <summary>
+             接收消息中的语音(record),返回保存在 \data\record\ 目录下的文件名
+            </summary>
+            <param name="fileName">文件名, 收到消息中的语音文件名(file)</param>
+            <param name="formatType">应用所需的语音文件格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.RepealMessage(System.Int64)">
+            <summary>
+            撤回消息
+            </summary>
+            <param name="id">消息ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetLoginQQ">
+            <summary>
+            取登录QQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetLgoinNick">
+            <summary>
+            获取当前登录QQ的昵称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetAppDirectory">
+            <summary>
+            取应用目录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetCookies">
+            <summary>
+            获取Cookies 慎用,此接口需要严格授权
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetCsrfToken">
+            <summary>
+            即QQ网页用到的bkn/g_tk等 慎用,此接口需要严格授权
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetQQInfo(System.Int64,Native.Sdk.Cqp.Model.QQ@,System.Boolean)">
+            <summary>
+            获取QQ信息
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="qqInfo">返回QQ信息, 若获取失败, 返回null</param>
+            <param name="notCache">不使用缓存, 默认为"False"，通常忽略本参数，仅在必要时使用</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetMemberInfo(System.Int64,System.Int64,Native.Sdk.Cqp.Model.GroupMember@,System.Boolean)">
+            <summary>
+            获取群成员信息
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="member">如果成功, 返回群成员信息</param>
+            <param name="notCache">默认为 "Flase", 通常忽略本参数, 仅在必要的是否使用</param>
+            <returns>成功返回 0, 失败返回 负数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetMemberList(System.Int64,System.Collections.Generic.List{Native.Sdk.Cqp.Model.GroupMember}@)">
+            <summary>
+            获取群成员列表
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="memberInfos">如果成功，返回群成员列表</param>
+            <returns>成功返回 0, 失败返回 负数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetGroupList(System.Collections.Generic.List{Native.Sdk.Cqp.Model.Group}@)">
+            <summary>
+            获取群列表
+            </summary>
+            <param name="groups"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.AddLoger(Native.Sdk.Cqp.Enum.LogerLevel,System.String,System.String)">
+            <summary>
+            添加日志
+            </summary>
+            <param name="level">级别</param>
+            <param name="type">类型</param>
+            <param name="content">内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.AddFatalError(System.String)">
+            <summary>
+            添加致命错误提示
+            </summary>
+            <param name="message">错误信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetFriendAddRequest(System.String,Native.Sdk.Cqp.Enum.ResponseType,System.String)">
+            <summary>
+            置好友添加请求
+            </summary>
+            <param name="tag">请求反馈标识</param>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupAddRequest(System.String,Native.Sdk.Cqp.Enum.RequestType,Native.Sdk.Cqp.Enum.ResponseType,System.String)">
+            <summary>
+            置群添加请求
+            </summary>
+            <param name="tag">请求反馈标识</param>
+            <param name="request">请求类型</param>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupAnonymousBanSpeak(System.Int64,System.String,System.TimeSpan)">
+            <summary>
+            置匿名群员禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="anonymous">匿名参数</param>
+            <param name="time">禁言时间, 单位: 秒, 不支持解禁</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupBanSpeak(System.Int64,System.Int64,System.TimeSpan)">
+            <summary>
+            置群员禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="time">禁言的时间，单位为秒。如果要解禁，请给TimeSpan.Zero</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupWholeBanSpeak(System.Int64,System.Boolean)">
+            <summary>
+            置全群禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="isOpen">是否开启</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupMemberNewCard(System.Int64,System.Int64,System.String)">
+            <summary>
+            置群成员名片
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="newNick">新昵称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupSpecialTitle(System.Int64,System.Int64,System.String,System.TimeSpan)">
+            <summary>
+            置群成员专属头衔
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="specialTitle">如果要删除，这里填空</param>
+            <param name="time">专属头衔有效期，单位为秒。如果永久有效，time填写负数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupManager(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            置群管理员
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="isCalcel">True: 设置管理员, False: 取消管理员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetAnonymousStatus(System.Int64,System.Boolean)">
+            <summary>
+            置群匿名设置
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="isOpen">是否打开</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupExit(System.Int64,System.Boolean)">
+            <summary>
+            置群退出 慎用,此接口需要严格授权
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="dissolve">默认为False, True: 解散本群(群主) False: 退出本群(管理、群成员)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetGroupMemberRemove(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            置群员移除
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="notAccept">如果为True，则“不再接收此人加群申请”，请慎用。留空为False</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetDiscussExit(System.Int64)">
+            <summary>
+            置讨论组退出
+            </summary>
+            <param name="discussId">目标讨论组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.SetAuthCode(System.Int32)">
+            <summary>
+            设置App验证码
+            </summary>
+            <param name="authCode"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetAuthCode">
+            <summary>
+            获取App验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetAnonymous(System.String)">
+            <summary>
+            获取匿名信息
+            </summary>
+            <param name="source">匿名参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetFile(System.String)">
+            <summary>
+            获取群文件
+            </summary>
+            <param name="source">群文件参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.GetMsgFont(System.Int32)">
+            <summary>
+            获取消息字体
+            </summary>
+            <exception cref="T:System.Exception">当前功能正在开发, 当前将始终抛出此异常</exception>
+            <param name="font"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Api.EnApi.FormatStringFloatWindow(Native.Sdk.Cqp.Model.FloatWindow)">
+            <summary>
+            编码悬浮窗数据置文本
+            </summary>
+            <param name="floatWindow"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.AudioOutFormat">
+            <summary>
+            输出音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.MPEG_Layer3">
+            <summary>
+            mp3音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.AMR_NB">
+            <summary>
+            arm音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.Windows_Media_Audio">
+            <summary>
+            wma音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.MPEG4">
+            <summary>
+            m4a音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.Speex">
+            <summary>
+            spx音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.OggVorbis">
+            <summary>
+            ogg音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.WAVE">
+            <summary>
+            wav音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.AudioOutFormat.FLAC">
+            <summary>
+            flac音频格式
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.Face">
+            <summary>
+            QQ表情枚举
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.FloatWindowColors">
+            <summary>
+            悬浮窗颜色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Green">
+            <summary>
+            绿色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Orange">
+            <summary>
+            橙色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Red">
+            <summary>
+            红色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Crimson">
+            <summary>
+            深红色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Black">
+            <summary>
+            黑色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.FloatWindowColors.Gray">
+            <summary>
+            灰色
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.LogerLevel">
+            <summary>
+            日志等级
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Debug">
+            <summary>
+            调试
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Info">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Info_Success">
+            <summary>
+            信息_成功
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Info_Receive">
+            <summary>
+            信息_接收
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Info_Send">
+            <summary>
+            信息_发送
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Warning">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Error">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.LogerLevel.Fatal">
+            <summary>
+            严重错误
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.MessageHanding">
+            <summary>
+            消息的处理方式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.MessageHanding.Ignored">
+            <summary>
+            忽略消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.MessageHanding.Intercept">
+            <summary>
+            拦截消息
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.PermitType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.PermitType.None">
+            <summary>
+            成员
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.PermitType.Manage">
+            <summary>
+            管理
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.PermitType.Holder">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.RequestType">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.RequestType.GroupAdd">
+            <summary>
+            请求_群添加
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.RequestType.GroupInvitation">
+            <summary>
+            请求_群邀请
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.ResponseType">
+            <summary>
+            请求反馈类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.ResponseType.PASS">
+            <summary>
+            通过
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.ResponseType.FAIL">
+            <summary>
+            不通过
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.Sex">
+            <summary>
+            表示性别的枚举
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.Sex.Man">
+            <summary>
+            男性
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.Sex.Woman">
+            <summary>
+            女性 
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.FloatWindow">
+            <summary>
+            浮悬窗
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FloatWindow.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FloatWindow.Unit">
+            <summary>
+            单位
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FloatWindow.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.Group">
+            <summary>
+            群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.Group.Id">
+            <summary>
+            群号码
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.Group.Name">
+            <summary>
+            群名字
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupAnonymous">
+            <summary>
+            群匿名
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupAnonymous.Id">
+            <summary>
+            匿名用户标识
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupAnonymous.CodeName">
+            <summary>
+            代号
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupAnonymous.Token">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupFile">
+            <summary>
+            群文件
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFile.Name">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFile.Id">
+            <summary>
+            文件Id
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFile.Busid">
+            <summary>
+            Busid
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFile.Size">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupMember">
+            <summary>
+            群成员信息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.GroupId">
+            <summary>
+            获取或设置一个值, 指示成员所在群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.QQId">
+            <summary>
+            获取或设置一个值, 指示成员QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Nick">
+            <summary>
+            获取或设置一个值, 指示成员昵称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Card">
+            <summary>
+            获取或设置一个值, 指示成员群名片
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Sex">
+            <summary>
+            获取或设置一个值, 指示成员性别
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Age">
+            <summary>
+            获取或设置一个值, 指示成员年龄
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Area">
+            <summary>
+            获取或设置一个值, 指示成员所在地区
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.JoiningTime">
+            <summary>
+            获取或设置一个值, 指示成员入群的时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.LastDateTime">
+            <summary>
+            获取或设置一个值, 指示成员最后发言时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.Level">
+            <summary>
+            获取或设置一个值, 指示成员等级的名称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.PermitType">
+            <summary>
+            获取或设置一个值, 指示成员在此群的权限
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.SpecialTitle">
+            <summary>
+            获取或设置一个值, 指示成员在此群获得的专属头衔
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.SpecialTitleDurationTime">
+            <summary>
+            获取或设置一个值, 指示成员在此群的专属头衔过期时间, 若过期时间换算的秒数为 "-1" 则为无期限
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.BadRecord">
+            <summary>
+            获取或设置一个值, 指示成员是否为不良记录成员
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMember.CanModifiedCard">
+            <summary>
+            获取或设置一个值, 指示成员是否被允许修改群名片
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.MsgFont">
+            <summary>
+            消息字体
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.MsgFont.Name">
+            <summary>
+            字体名称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.MsgFont.Size">
+            <summary>
+            字体大小
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.MsgFont.Color">
+            <summary>
+            字体颜色
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.MsgFont.Style">
+            <summary>
+            字体风格
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.MsgFont.Bubble">
+            <summary>
+            气泡样式
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.QQ">
+            <summary>
+            QQ信息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.Id">
+            <summary>
+            QQ号
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.Nick">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Tool.HttpHelper">
+            Http访问的操作类来自 Flexlive.CQP.Framework 框架. 若有侵权请联系我删除重写
+            <summary>
+            Http访问的操作类
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.String,System.String,System.Int32,System.Net.WebHeaderCollection,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="userAgent">User-Agent HTTP标头</param>
+            <param name="accept">Accept HTTP标头</param>
+            <param name="timeout">超时时间</param>
+            <param name="header">HTTP 标头</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.Net.WebHeaderCollection,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="header">HTTP 标头</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.Net.CookieCollection,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="cookies">Cookies</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.String,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="referer">参照页</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Get(System.String,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Get请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.Int32,System.Net.WebHeaderCollection,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="userAgent">User-Agent HTTP标头</param>
+            <param name="accept">Accept HTTP标头</param>
+            <param name="timeout">超时时间</param>
+            <param name="header">HTTP 标头</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Net.WebHeaderCollection,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="header">HTTP 标头</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Net.CookieCollection,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="cookies">Cookies</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Net.CookieCollection,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="cookies">Cookies</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Text.Encoding,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="encoding">文本编码</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="referer">参照页</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Net.DecompressionMethods)">
+            <summary>
+            向HTTP服务器发送Post请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="parameters">请求参数</param>
+            <param name="decompression">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.GetData(System.String)">
+            <summary>
+            向HTTP服务器发送请求, 获取 byte[]
+            </summary>
+            <param name="url">Url地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.UrlEncode(System.String)">
+            <summary>
+            Url编码数据
+            </summary>
+            <param name="data">要编码的数据</param>
+            <returns>编码后的数据</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.UrlDecode(System.String)">
+            <summary>
+            Url解码
+            </summary>
+            <param name="data">要解码的数据</param>
+            <returns>解码后的数据</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.GetResponseString(System.Net.HttpWebResponse,System.Text.Encoding)">
+            <summary>
+            获取请求的数据
+            </summary>
+            <param name="webResponse"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.HttpHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            验证证书
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Tool.IniFile">
+            <summary>
+            Ini配置文件操作类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Tool.IniFile.FileName">
+            <summary>
+            获取当前Ini文件的绝对路径
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Tool.IniFile.IsExists">
+            <summary>
+            获取文件是否存在
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.#ctor(System.String)">
+            <summary>
+            初始化 Native.Sdk.Cqp.Tool.IniFile 实例对象
+            </summary>
+            <param name="filePath">文件路径</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Write(System.String,System.String,System.Object)">
+            <summary>
+            写入一个keyValuePair, 若 key 已存在, 则替换Value
+            </summary>
+            <param name="section">该键所在的节名称</param>
+            <param name="key">该键的名称</param>
+            <param name="Value">该键的值</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.String)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Int32)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Int64)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Byte)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Single)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Double)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.Boolean)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.DateTime)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Read(System.String,System.String,System.TimeSpan)">
+            <summary>
+            读取Ini文件指定节, 指定键中的值
+            </summary>
+            <param name="section">节</param>
+            <param name="key">键</param>
+            <param name="value">值, 当读取失败时, 返回该值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.ReadSections">
+            <summary>
+            读取Ini文件的所有节集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.SectionExists(System.String)">
+             <summary>
+             判断指定的节是否存在
+             </summary>
+             <param name="section">节名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.ValueExits(System.String,System.String)">
+            <summary>
+            判断指定的节中指定的键是否存在
+            </summary>
+            <param name="section">节名称</param>
+            <param name="key">键名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.DeleteKey(System.String,System.String)">
+            <summary>
+            删除指定的节中的指定键
+            </summary>
+            <param name="section">该键所在的节的名称</param>
+            <param name="key">该键的名称</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.DeleteSection(System.String)">
+            <summary>
+            删除指定的节的所有内容
+            </summary>
+            <param name="section">要删除的节的名字</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.AddSection(System.String)">
+            <summary>
+            添加一个节
+            </summary>
+            <param name="section">要添加的节名称</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.IniFile.Clear">
+            <summary>
+            清空Ini配置文件
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Tool.Time">
+            <summary>
+            时间操作类
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Time.FormatUnixTime(System.String)">
+            <summary>
+            将Unix时间戳转换为 System.DateTime 类型
+            </summary>
+            <param name="timeStamp">10 or 13 位时间戳</param>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Tool.Pack">
+            <summary>
+            装包类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Tool.Pack.Length">
+            <summary>
+            获取当前字节集长度
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.GetAll">
+            <summary>
+            取全部数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetBin(System.Byte[])">
+            <summary>
+            置byte[] 
+            </summary>
+            <param name="arr"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetByte(System.Byte)">
+            <summary>
+            置字节
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetData(System.Byte[])">
+            <summary>
+            置类数据
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetInt16(System.Int16)">
+            <summary>
+            置Int16值
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetInt32(System.Int32)">
+            <summary>
+            置Int32值
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetInt64(System.Int64)">
+            <summary>
+            置Int64值
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetString(System.String,System.Text.Encoding)">
+            <summary>
+            置字符串
+            </summary>
+            <param name="str">欲设置字符串</param>
+            <param name="decode">解码格式</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetLenString(System.String,System.Text.Encoding)">
+            <summary>
+            置令牌字符串
+            </summary>
+            <param name="str"></param>
+            <param name="decode"></param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.Pack.SetToken(System.Byte[])">
+            <summary>
+            置令牌
+            </summary>
+            <param name="buf"></param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Tool.UnPack">
+            <summary>
+            拆包类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Tool.UnPack.OverLength">
+            <summary>
+            获取当前解包数据的剩余长度
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.#ctor(System.Byte[])">
+            <summary>
+            初始化 Native.Sdk.Cqp.Tool.Unpack 实例对象
+            </summary>
+            <param name="data">预处理的 byte[] </param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetAll">
+            <summary>
+            获取剩余所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetBin(System.Int32)">
+            <summary>
+            获取指定长度 byte[] 
+            </summary>
+            <param name="len">欲获取数据的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetByte">
+            <summary>
+            获取一个 byte
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetInt16">
+            <summary>
+            获取一个 Int16 数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetInt32">
+            <summary>
+            获取一个 Int32 数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetInt64">
+            <summary>
+            获取一个 Int64 数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetString(System.Text.Encoding)">
+            <summary>
+            获取一个 String 数据
+            </summary>
+            <param name="code">编码格式, 默认: Default</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetToken">
+            <summary>
+            获取令牌
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Tool.UnPack.GetData(System.Int32,System.Boolean)">
+            <summary>
+            获取指定位数的 byte[], 并把游标向后移动指定长度
+            </summary>
+            <param name="len">长度</param>
+            <param name="isReverse">是否反转, 默认: False</param>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Common">
+            <summary>
+            存放Sdk公共数据的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Common.AuthCode">
+            <summary>
+            应用验证码
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Common.AppDirCache">
+            <summary>
+            应用数据目录缓存
+            </summary>
+        </member>
+    </members>
+</doc>
