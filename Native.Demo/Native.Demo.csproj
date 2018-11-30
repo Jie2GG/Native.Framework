@@ -104,11 +104,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.Lib\CQPAppDemo.Ui.exe" />
-    <Content Include="App.Lib\CQPAppSdk.dll" />
-    <Content Include="App.Lib\CQPAppSdk.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Native.UI\Native.UI.csproj">
       <Project>{050e699b-048f-48bd-a451-aa007d3b8d4c}</Project>
       <Name>Native.UI</Name>
