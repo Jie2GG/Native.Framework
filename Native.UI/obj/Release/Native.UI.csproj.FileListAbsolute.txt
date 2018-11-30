@@ -1,0 +1,15 @@
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Views\MainView.g.cs
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\App.g.cs
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI_MarkupCompile.cache
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI_MarkupCompile.lref
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\bin\Release\Native.UI.exe
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\bin\Release\Native.UI.pdb
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Views\MainView.baml
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.g.resources
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.Properties.Resources.resources
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.csproj.GenerateResource.cache
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.csproj.CoreCompileInputs.cache
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.exe
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.pdb
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppDemo.UI\obj\Release\Native.UI.csprojAssemblyReference.cache

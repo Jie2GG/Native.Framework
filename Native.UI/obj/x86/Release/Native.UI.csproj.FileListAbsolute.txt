@@ -1,0 +1,15 @@
+E:\源码\GitHub\Jie2GG\Native\Native.UI\bin\x86\Release\Native.UI.exe
+E:\源码\GitHub\Jie2GG\Native\Native.UI\bin\x86\Release\Native.UI.pdb
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.csprojAssemblyReference.cache
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Views\MainView.g.cs
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\App.g.cs
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\GeneratedInternalTypeHelper.g.cs
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI_MarkupCompile.cache
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI_MarkupCompile.lref
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Views\MainView.baml
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.g.resources
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.Properties.Resources.resources
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.csproj.GenerateResource.cache
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.csproj.CoreCompileInputs.cache
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.exe
+E:\源码\GitHub\Jie2GG\Native\Native.UI\obj\x86\Release\Native.UI.pdb

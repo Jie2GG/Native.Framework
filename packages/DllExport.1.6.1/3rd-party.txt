@@ -1,0 +1,41 @@
+DllExport  [ github.com/3F/DllExport ]
+- - - - - - - - - - - - - - - - - - - 
+
+# Third-party software components
+
+    ## DllExport project includes:
+
+        ### CoreCLR ILAsm & ILDasm
+
+            * https://github.com/3F/coreclr
+            
+        ### Mono.Cecil
+
+            * https://github.com/jbevain/cecil
+
+        ### MvSln 
+
+            * https://github.com/3F/MvsSln
+            
+        ### Conari
+        
+            * https://github.com/3F/Conari
+
+        ### GetNuTool core & hMSBuild logic 
+
+              As an main core for new manager.
+              
+            * https://github.com/3F/GetNuTool
+            * https://github.com/3F/hMSBuild
+
+        ### SDK reference assemblies for PowerShell version 5
+
+              For previous Configurator (obsolete today).
+            * https://github.com/PowerShell/
+        
+    ## Maintaining of this project also includes the following tools:
+
+        * vsSolutionBuildEvent /+ CI.MSBuild [ github.com/3F/vsSolutionBuildEvent ]
+        * GetNuTool [ github.com/3F/GetNuTool ]
+        * hMSBuild [ github.com/3F/hMSBuild ]
+

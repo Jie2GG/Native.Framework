@@ -1,0 +1,6 @@
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\Native.SDK.csproj.CoreCompileInputs.cache
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\bin\x86\Release\Native.SDK.dll
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\bin\x86\Release\Native.SDK.pdb
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\Native.SDK.dll
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\Native.SDK.pdb
+E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\Native.SDK.csprojAssemblyReference.cache
