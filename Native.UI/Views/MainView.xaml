@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Native.UI.Views"
 		xmlns:vm="clr-namespace:Native.UI.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle, StringFormat={}{0} -- 控制台}" Height="450" Width="800">
+        Title="{Binding WindowTitle, StringFormat={}{0} -- 控制台}" Height="500" Width="800">
 	<Window.DataContext>
 		<vm:MainViewModel/>
 	</Window.DataContext>
