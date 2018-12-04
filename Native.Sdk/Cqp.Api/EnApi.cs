@@ -704,14 +704,15 @@ namespace Native.Sdk.Cqp.Api
 			return file;
 		}
 		/// <summary>
-		/// 获取消息字体
+		/// 获取消息字体, 该方法将始终抛出异常
 		/// </summary>
-		/// <exception cref="Exception">当前功能正在开发, 当前将始终抛出此异常</exception>
+		/// <exception cref="ArgumentException">由于酷Q不再处理Font指针, 方法弃用</exception>
 		/// <param name="font"></param>
 		/// <returns></returns>
+		[Obsolete("由于酷Q不再处理Font指针, 该方法弃用")]
 		public MsgFont GetMsgFont(int font)
 		{
-			throw new Exception("目前无法处理字体转换指针, 请等待开发");
+			throw new ArgumentException("由于酷Q不再处理Font指针, 该方法弃用");
 		}
 		/// <summary>
 		/// 编码悬浮窗数据置文本
