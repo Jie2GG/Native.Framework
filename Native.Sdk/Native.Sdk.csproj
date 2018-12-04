@@ -84,7 +84,9 @@
     <Compile Include="Cqp.Model\MsgFont.cs" />
     <Compile Include="Cqp.Model\QQ.cs" />
     <Compile Include="Cqp.Tool\HttpHelper.cs" />
-    <Compile Include="Cqp.Tool\HttpWebClient.cs" />
+    <Compile Include="Cqp.Tool\HttpWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Cqp.Tool\IniFile.cs" />
     <Compile Include="Cqp.Tool\Pack.cs" />
     <Compile Include="Cqp.Tool\Time.cs" />
