@@ -19,10 +19,11 @@ namespace Native.Demo.App.Model
 		/// 消息内容
 		/// </summary>
 		public string Msg { get; set; }
-		/// <summary>
-		/// 字体指针
-		/// </summary>
-		public int Font { get; set; }
+		///// <summary>
+		///// 字体指针
+		///// </summary>
+		//[Obsolete("此属性酷Q框架已不回传")]
+		//public int Font { get; set; }
 
 		/// <summary>
 		/// 获取或设置一个值，该值指示是否处理过此事件

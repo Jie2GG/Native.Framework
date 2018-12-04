@@ -239,7 +239,7 @@ namespace Native.Demo.App.Core
 			args.MsgId = msgId;
 			args.FromQQ = fromQQ;
 			args.Msg = msg;
-			args.Font = font;
+			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
 			{
@@ -270,7 +270,7 @@ namespace Native.Demo.App.Core
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.Msg = msg;
-			args.Font = font;
+			//args.Font = font;
 			args.Handled = false;
 
 			if (fromQQ == 80000000 && !string.IsNullOrEmpty(fromAnonymous))
@@ -302,7 +302,7 @@ namespace Native.Demo.App.Core
 			args.FromDiscuss = fromDiscuss;
 			args.FromQQ = fromQQ;
 			args.Msg = msg;
-			args.Font = font;
+			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
 			{
