@@ -10,14 +10,14 @@ namespace Native.Demo.App.Event
 	public class Event_PrivateMessage
 	{
 		#region --字段--
-		private static Event_PrivateMessage _instance = new Event_PrivateMessage();
+		private static readonly Lazy<Event_PrivateMessage> _instance = new Lazy<Event_PrivateMessage>(() => new Event_PrivateMessage());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 Event_ReceiveMessage 实例对象
 		/// </summary>
-		public static Event_PrivateMessage Instance { get => _instance; }
+		public static Event_PrivateMessage Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--

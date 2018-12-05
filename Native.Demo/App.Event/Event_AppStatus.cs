@@ -9,14 +9,14 @@ namespace Native.Demo.App.Event
 	public class Event_AppStatus
 	{
 		#region --字段--
-		private static Event_AppStatus _instance = new Event_AppStatus();
+		private static readonly Lazy<Event_AppStatus> _instance = new Lazy<Event_AppStatus>(() => new Event_AppStatus());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 Event_AppStatus 实例对象
 		/// </summary>
-		public static Event_AppStatus Instance { get => _instance; }
+		public static Event_AppStatus Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--
@@ -41,7 +41,7 @@ namespace Native.Demo.App.Event
 			//无论本应用是否被启用，本函数都会在酷Q启动后执行一次，请在这里执行插件初始化代码。
 			//请务必尽快返回本子程序，否则会卡住其他插件以及主程序的加载。
 
-			Common.AppDirectory = EnApi.Instance.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
+			Common.Instance.AppDirectory = EnApi.Instance.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
 
 
 			//返回如：D:\CoolQ\app\com.example.demo\
@@ -71,7 +71,7 @@ namespace Native.Demo.App.Event
 			//当应用被启用后，将收到此事件。
 			//如果酷Q载入时应用已被启用，则在_eventStartup(Type=1001,酷Q启动)被调用后，本函数也将被调用一次。
 			//如非必要，不建议在这里加载窗口。（可以添加菜单，让用户手动打开窗口）
-			Common.IsRunning = true;
+			Common.Instance.IsRunning = true;
 
 
 		}
@@ -86,7 +86,7 @@ namespace Native.Demo.App.Event
 			//当应用被停用前，将收到此事件。
 			//如果酷Q载入时应用已被停用，则本函数【不会】被调用。
 			//无论本应用是否被启用，酷Q关闭前本函数都【不会】被调用。
-			Common.IsRunning = false;
+			Common.Instance.IsRunning = false;
 
 
 		}

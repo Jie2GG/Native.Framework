@@ -9,14 +9,14 @@ namespace Native.Demo.App.Event
 	public class Event_FriendMessage
 	{
 		#region --字段--
-		private static Event_FriendMessage _instance = new Event_FriendMessage();
+		private static readonly Lazy<Event_FriendMessage> _instance = new Lazy<Event_FriendMessage>(() => new Event_FriendMessage());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 Event_FriendMessage 实例对象
 		/// </summary>
-		public static Event_FriendMessage Instance { get => _instance; }
+		public static Event_FriendMessage Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--

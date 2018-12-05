@@ -9,14 +9,14 @@ namespace Native.Demo.App.Event
 	public class Event_UserExpand
 	{
 		#region --字段--
-		private static readonly Event_UserExpand _instance = new Event_UserExpand();
+		private static readonly Lazy<Event_UserExpand> _instance = new Lazy<Event_UserExpand>(() => new Event_UserExpand());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 Event_UserExpand 实例对象
 		/// </summary>
-		public static Event_UserExpand Instance { get => _instance; }
+		public static Event_UserExpand Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--

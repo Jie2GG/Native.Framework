@@ -11,14 +11,14 @@ namespace Native.Demo.App.Event
 	public class Event_AppInitialize
 	{
 		#region --字段--
-		private static Event_AppInitialize _instance = new Event_AppInitialize();
+		private static readonly Lazy<Event_AppInitialize> _instance = new Lazy<Event_AppInitialize>(() => new Event_AppInitialize());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 AppIntitalizeEventHandler 实例对象
 		/// </summary>
-		public static Event_AppInitialize Instance { get => _instance; }
+		public static Event_AppInitialize Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--

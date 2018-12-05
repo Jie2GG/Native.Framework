@@ -15,14 +15,14 @@ namespace Native.Sdk.Cqp.Api
 	public class EnApi
 	{
 		#region --字段--
-		private static readonly EnApi _instance = new EnApi();
+		private static readonly Lazy<EnApi> _instance = new Lazy<EnApi>(() => new EnApi());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 EnApi 实例对象
 		/// </summary>
-		public static EnApi Instance { get => _instance; }
+		public static EnApi Instance { get => _instance.Value; }
 		#endregion
 
 		#region --构造函数--
@@ -236,7 +236,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <param name="message">消息内容</param>
 		public int SendGroupMessage(long groupId, string message)
 		{
-			return LibImport.CQ_sendGroupMsg(Common.AuthCode, groupId, message);
+			return LibImport.CQ_sendGroupMsg(Common.Instance.AuthCode, groupId, message);
 		}
 		/// <summary>
 		/// 发送私聊消息
@@ -246,7 +246,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendPrivateMessage(long qqId, string message)
 		{
-			return LibImport.CQ_sendPrivateMsg(Common.AuthCode, qqId, message);
+			return LibImport.CQ_sendPrivateMsg(Common.Instance.AuthCode, qqId, message);
 		}
 		/// <summary>
 		/// 发送讨论组消息
@@ -256,7 +256,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendDiscussMessage(long discussId, string message)
 		{
-			return LibImport.CQ_sendDiscussMsg(Common.AuthCode, discussId, message);
+			return LibImport.CQ_sendDiscussMsg(Common.Instance.AuthCode, discussId, message);
 		}
 		/// <summary>
 		/// 发送赞
@@ -266,7 +266,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendPraise(long qqId, int count = 1)
 		{
-			return LibImport.CQ_sendLikeV2(Common.AuthCode, qqId, (count <= 0 || count > 10) ? 1 : count);
+			return LibImport.CQ_sendLikeV2(Common.Instance.AuthCode, qqId, (count <= 0 || count > 10) ? 1 : count);
 		}
 		/// <summary>
 		/// 接收消息中的语音(record),返回保存在 \data\record\ 目录下的文件名
@@ -276,7 +276,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string ReceiveRecord(string fileName, AudioOutFormat formatType)
 		{
-			return LibImport.CQ_getRecord(Common.AuthCode, fileName, formatType.ToString());
+			return LibImport.CQ_getRecord(Common.Instance.AuthCode, fileName, formatType.ToString());
 		}
 		/// <summary>
 		/// 撤回消息
@@ -285,7 +285,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int RepealMessage(long id)
 		{
-			return LibImport.CQ_deleteMsg(Common.AuthCode, id);
+			return LibImport.CQ_deleteMsg(Common.Instance.AuthCode, id);
 		}
 		#endregion
 
@@ -296,7 +296,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public long GetLoginQQ()
 		{
-			return LibImport.CQ_getLoginQQ(Common.AuthCode);
+			return LibImport.CQ_getLoginQQ(Common.Instance.AuthCode);
 		}
 		/// <summary>
 		/// 获取当前登录QQ的昵称
@@ -304,7 +304,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetLgoinNick()
 		{
-			return LibImport.CQ_getLoginNick(Common.AuthCode);
+			return LibImport.CQ_getLoginNick(Common.Instance.AuthCode);
 		}
 		/// <summary>
 		/// 取应用目录
@@ -312,11 +312,11 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetAppDirectory()
 		{
-			if (Common.AppDirCache == null)
+			if (Common.Instance.AppDirCache == null)
 			{
-				Common.AppDirCache = LibImport.CQ_getAppDirectory(Common.AuthCode);
+				Common.Instance.AppDirCache = LibImport.CQ_getAppDirectory(Common.Instance.AuthCode);
 			}
-			return Common.AppDirCache;
+			return Common.Instance.AppDirCache;
 		}
 		/// <summary>
 		/// 获取Cookies 慎用,此接口需要严格授权
@@ -324,7 +324,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetCookies()
 		{
-			return LibImport.CQ_getCookies(Common.AuthCode);
+			return LibImport.CQ_getCookies(Common.Instance.AuthCode);
 		}
 		/// <summary>
 		/// 即QQ网页用到的bkn/g_tk等 慎用,此接口需要严格授权
@@ -332,7 +332,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetCsrfToken()
 		{
-			return LibImport.CQ_getCsrfToken(Common.AuthCode);
+			return LibImport.CQ_getCsrfToken(Common.Instance.AuthCode);
 		}
 		/// <summary>
 		/// 获取QQ信息
@@ -343,7 +343,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetQQInfo(long qqId, out QQ qqInfo, bool notCache = false)
 		{
-			string result = LibImport.CQ_getStrangerInfo(Common.AuthCode, qqId, notCache);
+			string result = LibImport.CQ_getStrangerInfo(Common.Instance.AuthCode, qqId, notCache);
 			if (string.IsNullOrEmpty(result))
 			{
 				qqInfo = null;
@@ -367,7 +367,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns>成功返回 0, 失败返回 负数</returns>
 		public int GetMemberInfo(long groupId, long qqId, out GroupMember member, bool notCache = false)
 		{
-			string result = LibImport.CQ_getGroupMemberInfoV2(Common.AuthCode, groupId, qqId, notCache);
+			string result = LibImport.CQ_getGroupMemberInfoV2(Common.Instance.AuthCode, groupId, qqId, notCache);
 			if (string.IsNullOrEmpty(result))
 			{
 				member = null;
@@ -403,7 +403,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns>成功返回 0, 失败返回 负数</returns>
 		public int GetMemberList(long groupId, out List<GroupMember> memberInfos)
 		{
-			string result = LibImport.CQ_getGroupMemberList(Common.AuthCode, groupId);
+			string result = LibImport.CQ_getGroupMemberList(Common.Instance.AuthCode, groupId);
 			if (string.IsNullOrEmpty(result))
 			{
 				memberInfos = null;
@@ -450,7 +450,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetGroupList(out List<Group> groups)
 		{
-			string result = LibImport.CQ_getGroupList(Common.AuthCode);
+			string result = LibImport.CQ_getGroupList(Common.Instance.AuthCode);
 			if (string.IsNullOrEmpty(result))
 			{
 				groups = null;
@@ -488,7 +488,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddLoger(LogerLevel level, string type, string content)
 		{
-			return LibImport.CQ_addLog(Common.AuthCode, (int)level, type, content);
+			return LibImport.CQ_addLog(Common.Instance.AuthCode, (int)level, type, content);
 		}
 		/// <summary>
 		/// 添加致命错误提示
@@ -497,7 +497,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddFatalError(string message)
 		{
-			return LibImport.CQ_setFatal(Common.AuthCode, message);
+			return LibImport.CQ_setFatal(Common.Instance.AuthCode, message);
 		}
 		#endregion
 
@@ -515,7 +515,7 @@ namespace Native.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return LibImport.CQ_setFriendAddRequest(Common.AuthCode, tag, (int)response, appendMsg);
+			return LibImport.CQ_setFriendAddRequest(Common.Instance.AuthCode, tag, (int)response, appendMsg);
 		}
 		/// <summary>
 		/// 置群添加请求
@@ -531,7 +531,7 @@ namespace Native.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return LibImport.CQ_setGroupAddRequestV2(Common.AuthCode, tag, (int)request, (int)response, appendMsg);
+			return LibImport.CQ_setGroupAddRequestV2(Common.Instance.AuthCode, tag, (int)request, (int)response, appendMsg);
 		}
 		#endregion
 
@@ -549,7 +549,7 @@ namespace Native.Sdk.Cqp.Api
 			{
 				time = new TimeSpan(0);
 			}
-			return LibImport.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous, time.Seconds);
+			return LibImport.CQ_setGroupAnonymousBan(Common.Instance.AuthCode, groupId, anonymous, time.Seconds);
 
 		}
 		/// <summary>
@@ -565,7 +565,7 @@ namespace Native.Sdk.Cqp.Api
 			{
 				time = TimeSpan.Zero;
 			}
-			return LibImport.CQ_setGroupBan(Common.AuthCode, groupId, qqId, time.Seconds);
+			return LibImport.CQ_setGroupBan(Common.Instance.AuthCode, groupId, qqId, time.Seconds);
 		}
 		/// <summary>
 		/// 置全群禁言
@@ -575,7 +575,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupWholeBanSpeak(long groupId, bool isOpen)
 		{
-			return LibImport.CQ_setGroupWholeBan(Common.AuthCode, groupId, isOpen);
+			return LibImport.CQ_setGroupWholeBan(Common.Instance.AuthCode, groupId, isOpen);
 		}
 		/// <summary>
 		/// 置群成员名片
@@ -586,7 +586,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupMemberNewCard(long groupId, long qqId, string newNick)
 		{
-			return LibImport.CQ_setGroupCard(Common.AuthCode, groupId, qqId, newNick);
+			return LibImport.CQ_setGroupCard(Common.Instance.AuthCode, groupId, qqId, newNick);
 		}
 		/// <summary>
 		/// 置群成员专属头衔
@@ -602,7 +602,7 @@ namespace Native.Sdk.Cqp.Api
 			{
 				time = new TimeSpan(-10000000);
 			}
-			return LibImport.CQ_setGroupSpecialTitle(Common.AuthCode, groupId, qqId, specialTitle, time.Seconds);
+			return LibImport.CQ_setGroupSpecialTitle(Common.Instance.AuthCode, groupId, qqId, specialTitle, time.Seconds);
 		}
 		/// <summary>
 		/// 置群管理员
@@ -613,7 +613,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupManager(long groupId, long qqId, bool isCalcel)
 		{
-			return LibImport.CQ_setGroupAdmin(Common.AuthCode, groupId, qqId, isCalcel);
+			return LibImport.CQ_setGroupAdmin(Common.Instance.AuthCode, groupId, qqId, isCalcel);
 		}
 		/// <summary>
 		/// 置群匿名设置
@@ -623,7 +623,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetAnonymousStatus(long groupId, bool isOpen)
 		{
-			return LibImport.CQ_setGroupAnonymous(Common.AuthCode, groupId, isOpen);
+			return LibImport.CQ_setGroupAnonymous(Common.Instance.AuthCode, groupId, isOpen);
 		}
 		/// <summary>
 		/// 置群退出 慎用,此接口需要严格授权
@@ -633,7 +633,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupExit(long groupId, bool dissolve = false)
 		{
-			return LibImport.CQ_setGroupLeave(Common.AuthCode, groupId, dissolve);
+			return LibImport.CQ_setGroupLeave(Common.Instance.AuthCode, groupId, dissolve);
 		}
 		/// <summary>
 		/// 置群员移除
@@ -644,7 +644,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupMemberRemove(long groupId, long qqId, bool notAccept = false)
 		{
-			return LibImport.CQ_setGroupKick(Common.AuthCode, groupId, qqId, notAccept);
+			return LibImport.CQ_setGroupKick(Common.Instance.AuthCode, groupId, qqId, notAccept);
 		}
 		/// <summary>
 		/// 置讨论组退出
@@ -653,7 +653,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetDiscussExit(long discussId)
 		{
-			return LibImport.CQ_setDiscussLeave(Common.AuthCode, discussId);
+			return LibImport.CQ_setDiscussLeave(Common.Instance.AuthCode, discussId);
 		}
 		#endregion
 
@@ -664,7 +664,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <param name="authCode"></param>
 		public void SetAuthCode(int authCode)
 		{
-			Common.AuthCode = authCode;
+			Common.Instance.AuthCode = authCode;
 		}
 		/// <summary>
 		/// 获取App验证码
@@ -672,7 +672,7 @@ namespace Native.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetAuthCode()
 		{
-			return Common.AuthCode;
+			return Common.Instance.AuthCode;
 		}
 		/// <summary>
 		/// 获取匿名信息

@@ -17,14 +17,14 @@ namespace Native.Demo.App.Core
 	public class LibExport
 	{
 		#region --字段--
-		private static LibExport _instance = new LibExport();
+		private static Lazy<LibExport> _instance = new Lazy<LibExport>(() => new LibExport());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 LibExport 实例对象
 		/// </summary>
-		public static LibExport Instance { get => _instance; }
+		public static LibExport Instance { get { return _instance.Value; } }
 		#endregion
 
 		#region --构造函数--
@@ -471,8 +471,7 @@ namespace Native.Demo.App.Core
 		 *		1. 所有拓展方法需要需要使用 "DllExport" 进行标记公开
 		 *		2. 所有拓展方法请遵循规划写相应的触发事件, 并将事件实现在 Event_UserExpand 中, 以便将面向过程转化为面向对象
 		 *		3. 传递的参数请在 "App.Model" 下创建对应的模型, 并继承 EventArgs 
-		 *		4. 所有引用到的第三方 "程序集" 请将其 "库文件名" 命名为其程序集的命名空间, 方便CLR加载
-		 *		5. 第三方程序集请统一放在 "App.Lib" 文件夹下
+		 *		4. 所有引用到的第三方 "程序集" 请将其 "库文件名" 命名为其程序集的命名空间, 方便加载
 		 *	
 		 *	至此! 
 		 */
@@ -488,6 +487,9 @@ namespace Native.Demo.App.Core
 		[DllExport(ExportName = "_eventOpenConsole", CallingConvention = CallingConvention.StdCall)]
 		private static int EventOpenConsole()
 		{
+			/*
+			 * 返回值的问题, 请使用面向对象的方式处理
+			 */
 			UserOpenConsole(Instance, new EventArgs());
 			return 0;
 		}

@@ -9,14 +9,14 @@ namespace Native.Demo.App.Event
 	public class Event_DiscussMessage
 	{
 		#region --字段--
-		private static Event_DiscussMessage _instance = new Event_DiscussMessage();
+		private static Lazy<Event_DiscussMessage> _instance = new Lazy<Event_DiscussMessage>(() => new Event_DiscussMessage());
 		#endregion
 
 		#region --属性--
 		/// <summary>
 		/// 获取 Event_DiscussMessage 实例对象
 		/// </summary>
-		public static Event_DiscussMessage Instance { get => _instance; }
+		public static Event_DiscussMessage Instance { get { return _instance.Value; } }
 		#endregion
 
 		#region --构造函数--
