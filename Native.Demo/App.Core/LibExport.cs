@@ -192,7 +192,7 @@ namespace Native.Demo.App.Core
 		{
 			AppInfoEventArgs args = new AppInfoEventArgs();
 			AppInfoEventHandler(Instance, args);
-			return string.Format("{0},{1}", 9, "top.jiegg.demo");
+			return string.Format("{0},{1}", args.ApiVer, args.AppId);
 		}
 
 		[DllExport(ExportName = "Initialize", CallingConvention = CallingConvention.StdCall)]

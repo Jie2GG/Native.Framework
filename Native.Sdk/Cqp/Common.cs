@@ -8,14 +8,14 @@ namespace Native.Sdk.Cqp
 	/// <summary>
 	/// 存放Sdk公共数据的类
 	/// </summary>
-	public static class Common
+	public class Common
 	{
 		#region --常量--
 		internal const string DllName = "CQP.dll";
 		#endregion
 
 		#region --字段--
-		private static string appDirCache = null;
+		private static string _appDirCache = null;
 		private static int _authCode;
 		#endregion
 
@@ -33,8 +33,8 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		internal static string AppDirCache
 		{
-			get { return appDirCache; }
-			set { appDirCache = value; }
+			get { return _appDirCache; }
+			set { _appDirCache = value; }
 		}
 		#endregion
 	}
