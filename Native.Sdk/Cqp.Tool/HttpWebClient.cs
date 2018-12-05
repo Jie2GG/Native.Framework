@@ -366,7 +366,7 @@ namespace Native.Sdk.Cqp.Tool
 		/// <returns></returns>
 		public static byte[] Post(string url, byte[] data, string contentType, string referer, ref CookieCollection cookies, ref WebHeaderCollection headers, WebProxy proxy, Encoding encoding, bool allowAutoRedirect = true, bool autoCookieMerge = true)
 		{
-			return Post(url, data, contentType, referer, ref cookies, ref headers, proxy, encoding, allowAutoRedirect, autoCookieMerge);
+			return Post(url, data, contentType, referer, string.Empty, string.Empty, 0, ref cookies, ref headers, proxy, encoding, allowAutoRedirect, autoCookieMerge);
 		}
 		/// <summary>
 		/// 向服务器发送 HTTP POST 请求
