@@ -13,15 +13,23 @@
 
 ## Native.SDK 开发流程
 
-	1. 下载 Native.SDK
-	2. 打开 解决方案 -> Native.Demo -> App.Event -> Event_AppInitialize.cs
-	3. 修改 "AppInfo" 方法中的 e.AppId 为你自己的应用ID
-	4. 找到 解决方案 -> Native.Demo -> Native.Demo.json
+	1. 下载 Native.Sdk
+	2. 打开 Native.Csharp 项目属性
+	3. 修改 程序集名称中的 "Native.Csharp" 为你自己的 AppId (如: top.jiegg.demo.json)
+	4. 修改 生成 -> 输出路径 为你的酷Q app 路径
+	4. 找到 解决方案 -> Native.Csharp -> Native.Csharp.json
 	5. 修改 文件名为你自己的应用ID (如: top.jiegg.demo.json)
-	6. 开始编写你的应用
-	7. 生成 Native.Demo 项目, 成功后找到该项目的 bin -> x86 -> Release -> Native.Demo.dll
-	8. 将dll文件名修改为你自己的应用ID (如: top.jiegg.demo.dll)
-	9. 复制到 酷Q app 目录
+	6. 开始编写酷Q插件 (默认: Release x86 编译方式)
+
+## Native.SDK 调试流程
+
+	1. 打开 Native.Csharp 项目属性
+	2. 选择 调试 -> 启动操作
+	3. 修改 "启动外部程序" 为你的 酷Q 主程序, 之后保存
+	4. 打开 工具 -> 选项 -> 调试
+	5. 关闭 "要求源文件与原始版本完全匹配" 项
+	6. 修改 Native.Csharp 的生成选项为 Debug x86
+	7. 开始调试你的 酷Q 程序
 
 ## Native.SDK 已知问题
 	
