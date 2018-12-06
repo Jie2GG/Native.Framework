@@ -1,5 +1,0 @@
-E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\bin\x86\Release\CQPAppSdk.dll
-E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\bin\x86\Release\CQPAppSdk.pdb
-E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\CQPAppSdk.csproj.CoreCompileInputs.cache
-E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\CQPAppSdk.dll
-E:\源码\项目\CoolQ_for_C#\工作区\酷Q应用\CQPAppSdk\obj\x86\Release\CQPAppSdk.pdb
