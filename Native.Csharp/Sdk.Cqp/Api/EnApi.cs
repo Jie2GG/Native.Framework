@@ -470,8 +470,8 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				groups.Add(group);
 				#endregion
 			}
-            #endregion
-            return 0;
+			#endregion
+			return 0;
 		}
 		#endregion
 
