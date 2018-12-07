@@ -37,6 +37,11 @@
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2018年12月07日 版本: V2.0.1
+
+  	1. 修复 获取群列表永远为 null 感谢 @kotoneme[https://github.com/kotoneme]
+	2. 修复 非简体中文系统下获取的字符串为乱码问题 感谢 @kotoneme[https://github.com/kotoneme]
+
 > 2018年12月06日 版本: V2.0.0
 	
 	1. 重构 插件框架代码
