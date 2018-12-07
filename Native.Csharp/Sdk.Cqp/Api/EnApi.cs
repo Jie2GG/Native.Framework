@@ -348,7 +348,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			UnPack unpack = new UnPack(Convert.FromBase64String(result));
 			qqInfo = new QQ();
 			qqInfo.Id = unpack.GetInt64();
-			qqInfo.Nick = unpack.GetString(Encoding.Default);
+			qqInfo.Nick = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			qqInfo.Sex = (Sex)unpack.GetInt32();
 			qqInfo.Age = unpack.GetInt32();
 			return 0;
@@ -374,17 +374,17 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			UnPack unpack = new UnPack(Convert.FromBase64String(result));
 			member.GroupId = unpack.GetInt64();
 			member.QQId = unpack.GetInt64();
-			member.Nick = unpack.GetString(Encoding.Default);
-			member.Card = unpack.GetString(Encoding.Default);
+			member.Nick = unpack.GetString(Encoding.GetEncoding("GB18030"));
+			member.Card = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			member.Sex = (Sex)unpack.GetInt32();
 			member.Age = unpack.GetInt32();
-			member.Area = unpack.GetString(Encoding.Default);
+			member.Area = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			member.JoiningTime = Converter.FotmatUnixTime(unpack.GetInt32().ToString());
 			member.LastDateTime = Converter.FotmatUnixTime(unpack.GetInt32().ToString());
-			member.Level = unpack.GetString(Encoding.Default);
+			member.Level = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			member.PermitType = (PermitType)unpack.GetInt32();
 			member.BadRecord = unpack.GetInt32() == 1;
-			member.SpecialTitle = unpack.GetString(Encoding.Default);
+			member.SpecialTitle = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			member.SpecialTitleDurationTime = Converter.FotmatUnixTime(unpack.GetInt32().ToString());
 			member.CanModifiedCard = unpack.GetInt32() == 1;
 			#endregion
@@ -420,17 +420,17 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				GroupMember member = new GroupMember();
 				member.GroupId = temp.GetInt64();
 				member.QQId = temp.GetInt64();
-				member.Nick = temp.GetString(Encoding.Default);
-				member.Card = temp.GetString(Encoding.Default);
+				member.Nick = temp.GetString(Encoding.GetEncoding("GB18030"));
+				member.Card = temp.GetString(Encoding.GetEncoding("GB18030"));
 				member.Sex = (Sex)temp.GetInt32();
 				member.Age = temp.GetInt32();
-				member.Area = temp.GetString(Encoding.Default);
+				member.Area = temp.GetString(Encoding.GetEncoding("GB18030"));
 				member.JoiningTime = Converter.FotmatUnixTime(temp.GetInt32().ToString());
 				member.LastDateTime = Converter.FotmatUnixTime(temp.GetInt32().ToString());
-				member.Level = temp.GetString(Encoding.Default);
+				member.Level = temp.GetString(Encoding.GetEncoding("GB18030"));
 				member.PermitType = (PermitType)temp.GetInt32();
 				member.BadRecord = temp.GetInt32() == 1;
-				member.SpecialTitle = temp.GetString(Encoding.Default);
+				member.SpecialTitle = temp.GetString(Encoding.GetEncoding("GB18030"));
 				member.SpecialTitleDurationTime = Converter.FotmatUnixTime(temp.GetInt32().ToString());
 				member.CanModifiedCard = temp.GetInt32() == 1;
 				#endregion
@@ -466,7 +466,8 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				UnPack temp = new UnPack(unpack.GetToken());
 				Group group = new Group();
 				group.Id = temp.GetInt64();
-				group.Name = temp.GetString(Encoding.Default);
+				group.Name = temp.GetString(Encoding.GetEncoding("GB18030"));
+				groups.Add(group);
 				#endregion
 			}
 			#endregion
@@ -680,7 +681,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			UnPack unPack = new UnPack(Convert.FromBase64String(source));
 			GroupAnonymous anonymous = new GroupAnonymous();
 			anonymous.Id = unPack.GetInt64();
-			anonymous.CodeName = unPack.GetString(Encoding.Default);
+			anonymous.CodeName = unPack.GetString(Encoding.GetEncoding("GB18030"));
 			anonymous.Token = unPack.GetToken();
 			return anonymous;
 		}
@@ -693,8 +694,8 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		{
 			UnPack unPack = new UnPack(Convert.FromBase64String(source));
 			GroupFile file = new GroupFile();
-			file.Id = unPack.GetString(Encoding.Default);
-			file.Name = unPack.GetString(Encoding.Default);
+			file.Id = unPack.GetString(Encoding.GetEncoding("GB18030"));
+			file.Name = unPack.GetString(Encoding.GetEncoding("GB18030"));
 			file.Size = unPack.GetInt64();
 			file.Busid = Convert.ToInt32(unPack.GetInt64());
 			return file;
