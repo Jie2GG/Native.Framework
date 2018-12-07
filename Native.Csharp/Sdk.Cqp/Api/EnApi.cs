@@ -467,8 +467,9 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				Group group = new Group();
 				group.Id = temp.GetInt64();
 				group.Name = temp.GetString(Encoding.Default);
-				#endregion
-			}
+                groups.Add(group);
+                #endregion
+            }
 			#endregion
 			return 0;
 		}
