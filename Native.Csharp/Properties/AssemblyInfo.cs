@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Native.Csharp.Sdk")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © Jie2GG 2018 . GitHub: https://github.com/Jie2GG/Native")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
