@@ -30,6 +30,15 @@
 	5. 修改 Native.Csharp 的生成选项为 Debug x86
 	6. 开始调试你的 酷Q 程序
 
+## Native.SDK 常见问题
+
+  > 1. Native.Csharp 中的引用 DllExport 出现警告 <br />![警告](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png "警告") <br/>
+
+  * 打开解决方案根目录 <br /> ![Native根目录](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Nativc%E6%A0%B9%E7%9B%AE%E5%BD%95.png "解决方案根路径")
+  * 打开脚本文件 "DllExport_Configure.bat" <br /> ![打开脚本](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Nativc%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC.png "打开脚本")
+  * 查看是否选中 Native.Csharp 项目, 并选择应用 <br /> ![应用项目](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E5%BA%94%E7%94%A8DllExport.png "应用项目")
+  * 选择 "全部重新加载" <br /> ![重写加载](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.png "重新加载")
+
 ## Native.SDK 已知问题
 	
 > 1. ~~对于 "EnApi.GetMsgFont" 方法, 暂时无法根据酷Q回传的指针获取字体信息, 暂时无法使用~~ <font color=#FF0000>(由于酷Q不解析此参数, 弃用)</font>
