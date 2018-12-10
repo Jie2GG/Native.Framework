@@ -411,7 +411,7 @@ namespace Native.Csharp.App.Core
 		private static int EventRequestAddGroup(int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag)
 		{
 			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs();
-			args.SednTime = Converter.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = Converter.FotmatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.AppendMsg = msg;
