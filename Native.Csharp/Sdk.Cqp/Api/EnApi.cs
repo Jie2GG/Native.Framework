@@ -542,11 +542,11 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupAnonymousBanSpeak(long groupId, string anonymous, TimeSpan time)
 		{
-			if (time.Seconds <= 0)
+			if (time.TotalSeconds <= 0)
 			{
-				time = new TimeSpan(0);
+				time = TimeSpan.Zero;
 			}
-			return LibImport.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous,  (long)time.TotalSeconds);
+			return LibImport.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous, (long)time.TotalSeconds);
 
 		}
 		/// <summary>

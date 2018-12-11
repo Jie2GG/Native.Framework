@@ -19,7 +19,8 @@
 	4. 修改 生成 -> 输出路径 为你的酷Q app 路径
 	4. 找到 解决方案 -> Native.Csharp -> Native.Csharp.json
 	5. 修改 文件名为你自己的应用ID (如: top.jiegg.demo.json)
-	6. 开始编写酷Q插件 (默认: Release x86 编译方式)
+	6. 修改 Native.Sharp -> App -> Event -> Event_AppInitialize.cs 中的 "AppInfo" 方法中的 e.AppId 为你自己的 AppId
+	7. 开始编写酷Q插件 (默认: Release x86 编译方式)
 
 ## Native.SDK 调试流程
 
