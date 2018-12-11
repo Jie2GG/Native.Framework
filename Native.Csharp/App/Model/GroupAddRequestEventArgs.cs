@@ -10,7 +10,7 @@ namespace Native.Csharp.App.Model
 		/// <summary>
 		/// 发送时间
 		/// </summary>
-		public DateTime SednTime { get; set; }
+		public DateTime SendTime { get; set; }
 		/// <summary>
 		/// 来源群号
 		/// </summary>
