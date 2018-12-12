@@ -1,0 +1,630 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension="//" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#@include file="MultipleOutputHelper.ttinclude"#>
+<#
+    this.isEnable = true;
+    this.rewriteAssemblyInfo = true;
+    this.rewriteJson = true;
+
+    if(isEnable)
+    {
+        if(rewriteJson){
+            EnvDTE.Project templateProject;
+            EnvDTE.ProjectItem templateProjectItem;
+            EnvDTE.DTE dte;
+            dte = (EnvDTE.DTE) ((IServiceProvider)this.Host).GetService(typeof(EnvDTE.DTE));
+            templateProjectItem = dte.Solution.FindProjectItem(this.Host.TemplateFile);
+            templateProject = templateProjectItem.ContainingProject as EnvDTE.Project;
+
+            this.files = new List<string>(Directory.GetFiles(Path.GetFullPath(Path.Combine(this.Host.TemplateFile,@"../../../../")), "*.cs", SearchOption.AllDirectories));
+            foreach(string file in files)
+            {
+                string tmp = File.ReadAllText(file);
+                if(tmp.Contains("EnApi.Instance.GetCookies") || tmp.Contains("EnApi.Instance.GetCsrfToken"))
+                {
+                    this.isEnable20 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.ReceiveRecord"))
+                {
+                    this.isEnable30 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SendGroupMessage"))
+                {
+                    this.isEnable101 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SendDiscussMessage"))
+                {
+                    this.isEnable103 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SendPrivateMessage"))
+                {
+                    this.isEnable106 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SendPraise"))
+                {
+                    this.isEnable110 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupMemberRemove"))
+                {
+                    this.isEnable120 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupBanSpeak"))
+                {
+                    this.isEnable121 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupManager"))
+                {
+                    this.isEnable122 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupWholeBanSpeak"))
+                {
+                    this.isEnable123 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupAnonymousBanSpeak"))
+                {
+                    this.isEnable124 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetAnonymousStatus"))
+                {
+                    this.isEnable125 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupMemberNewCard"))
+                {
+                    this.isEnable126 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupExit"))
+                {
+                    this.isEnable127 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupSpecialTitle"))
+                {
+                    this.isEnable128 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.GetMemberInfo"))
+                {
+                    this.isEnable130 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.GetQQInfo"))
+                {
+                    this.isEnable131 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetDiscussExit"))
+                {
+                    this.isEnable140 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetFriendAddRequest"))
+                {
+                    this.isEnable150 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.SetGroupAddRequest"))
+                {
+                    this.isEnable151 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.GetMemberList"))
+                {
+                    this.isEnable160 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.GetGroupList"))
+                {
+                    this.isEnable161 = true;
+                }
+                if(tmp.Contains("EnApi.Instance.RepealMessage"))
+                {
+                    this.isEnable180 = true;
+                }
+            }
+
+            string userExport = File.ReadAllText(this.Host.ResolvePath("../../../App/Core/UserExport.cs"));
+
+            Regex regex_coolqmenu = new Regex(regex_pattern_coolqmenu);
+            MatchCollection matches_coolqmenu = regex_coolqmenu.Matches(userExport);
+
+            if(matches_coolqmenu.Count > 0 )
+            {
+                foreach(Match m in matches_coolqmenu)
+                {
+                    dict_menu.Add(m.Groups["fun"].Value,m.Groups["name"].Value );
+                }
+            }
+        }
+
+        string raw = File.ReadAllText(this.Host.ResolvePath("../../../Properties/AssemblyInfo.cs"));
+
+        Regex regex_version = new Regex(regex_pattern_version);
+        Regex regex_product = new Regex(regex_pattern_product);
+        Regex regex_title = new Regex(regex_pattern_title);
+        Regex regex_company = new Regex(regex_pattern_company);
+        Regex regex_description  = new Regex(regex_pattern_description);
+        MatchCollection matches_version = regex_version.Matches(raw);
+        MatchCollection matches_product = regex_product.Matches(raw);
+        MatchCollection matches_title = regex_title.Matches(raw);
+        MatchCollection matches_company = regex_company.Matches(raw);
+        MatchCollection matches_description = regex_description.Matches(raw);
+
+        Regex regex_coolqevent_PrivateMsg   = new Regex(regex_pattern_coolqevent_PrivateMsg);
+        Regex regex_coolqevent_GroupMsg   = new Regex(regex_pattern_coolqevent_GroupMsg);
+        Regex regex_coolqevent_DiscussMsg   = new Regex(regex_pattern_coolqevent_DiscussMsg);
+        Regex regex_coolqevent_GroupUpload   = new Regex(regex_pattern_coolqevent_GroupUpload);
+        Regex regex_coolqevent_GroupAdmin   = new Regex(regex_pattern_coolqevent_GroupAdmin);
+        Regex regex_coolqevent_GroupMemberDecrease   = new Regex(regex_pattern_coolqevent_GroupMemberDecrease);
+        Regex regex_coolqevent_GroupMemberIncrease   = new Regex(regex_pattern_coolqevent_GroupMemberIncrease);
+        Regex regex_coolqevent_FriendAdded   = new Regex(regex_pattern_coolqevent_FriendAdded);
+        Regex regex_coolqevent_FriendRequest   = new Regex(regex_pattern_coolqevent_FriendRequest);
+        Regex regex_coolqevent_GroupRequest   = new Regex(regex_pattern_coolqevent_GroupRequest);
+        Regex regex_coolqevent_Startup   = new Regex(regex_pattern_coolqevent_Startup);
+        Regex regex_coolqevent_Exit   = new Regex(regex_pattern_coolqevent_Exit);
+        Regex regex_coolqevent_Enable   = new Regex(regex_pattern_coolqevent_Enable);
+        Regex regex_coolqevent_Disable   = new Regex(regex_pattern_coolqevent_Disable);
+        MatchCollection matches_coolqevent_PrivateMsg = regex_coolqevent_PrivateMsg.Matches(raw);
+        MatchCollection matches_coolqevent_GroupMsg = regex_coolqevent_GroupMsg.Matches(raw);
+        MatchCollection matches_coolqevent_DiscussMsg = regex_coolqevent_DiscussMsg.Matches(raw);
+        MatchCollection matches_coolqevent_GroupUpload = regex_coolqevent_GroupUpload.Matches(raw);
+        MatchCollection matches_coolqevent_GroupAdmin = regex_coolqevent_GroupAdmin.Matches(raw);
+        MatchCollection matches_coolqevent_GroupMemberDecrease = regex_coolqevent_GroupMemberDecrease.Matches(raw);
+        MatchCollection matches_coolqevent_GroupMemberIncrease = regex_coolqevent_GroupMemberIncrease.Matches(raw);
+        MatchCollection matches_coolqevent_FriendAdded = regex_coolqevent_FriendAdded.Matches(raw);
+        MatchCollection matches_coolqevent_FriendRequest = regex_coolqevent_FriendRequest.Matches(raw);
+        MatchCollection matches_coolqevent_GroupRequest = regex_coolqevent_GroupRequest.Matches(raw);
+        MatchCollection matches_coolqevent_Startup = regex_coolqevent_Startup.Matches(raw);
+        MatchCollection matches_coolqevent_Exit = regex_coolqevent_Exit.Matches(raw);
+        MatchCollection matches_coolqevent_Enable = regex_coolqevent_Enable.Matches(raw);
+        MatchCollection matches_coolqevent_Disable = regex_coolqevent_Disable.Matches(raw);
+#>
+<#
+        if(matches_coolqevent_PrivateMsg.Count > 0 )
+        {
+            name_CoolQEventPrivateMsg = matches_coolqevent_PrivateMsg[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventPrivateMsg = Convert.ToInt32(matches_coolqevent_PrivateMsg[0].Groups["priority"].Value);
+            if(priority_CoolQEventPrivateMsg < 10000){priority_CoolQEventPrivateMsg = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventPrivateMsg(\""+ name_CoolQEventPrivateMsg +"\", "+ priority_CoolQEventPrivateMsg +")]";
+        }
+
+        if(matches_coolqevent_GroupMsg.Count > 0 )
+        {
+            name_CoolQEventGroupMsg = matches_coolqevent_GroupMsg[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupMsg = Convert.ToInt32(matches_coolqevent_GroupMsg[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupMsg < 10000){priority_CoolQEventGroupMsg = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupMsg(\""+ name_CoolQEventGroupMsg +"\", "+ priority_CoolQEventGroupMsg +")]";
+        }
+
+        if(matches_coolqevent_DiscussMsg.Count > 0 )
+        {
+            name_CoolQEventDiscussMsg = matches_coolqevent_DiscussMsg[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventDiscussMsg = Convert.ToInt32(matches_coolqevent_DiscussMsg[0].Groups["priority"].Value);
+            if(priority_CoolQEventDiscussMsg < 10000){priority_CoolQEventDiscussMsg = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventDiscussMsg(\""+ name_CoolQEventDiscussMsg +"\", "+ priority_CoolQEventDiscussMsg +")]";
+        }
+
+        if(matches_coolqevent_GroupUpload.Count > 0 )
+        {
+            name_CoolQEventGroupUpload = matches_coolqevent_GroupUpload[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupUpload = Convert.ToInt32(matches_coolqevent_GroupUpload[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupUpload < 10000){priority_CoolQEventGroupUpload = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupUpload(\""+ name_CoolQEventGroupUpload +"\", "+ priority_CoolQEventGroupUpload +")]";
+        }
+
+        if(matches_coolqevent_GroupAdmin.Count > 0 )
+        {
+            name_CoolQEventGroupAdmin = matches_coolqevent_GroupAdmin[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupAdmin = Convert.ToInt32(matches_coolqevent_GroupAdmin[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupAdmin < 10000){priority_CoolQEventGroupAdmin = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupAdmin(\""+ name_CoolQEventGroupAdmin +"\", "+ priority_CoolQEventGroupAdmin +")]";
+        }
+
+        if(matches_coolqevent_GroupMemberDecrease.Count > 0 )
+        {
+            name_CoolQEventGroupMemberDecrease = matches_coolqevent_GroupMemberDecrease[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupMemberDecrease = Convert.ToInt32(matches_coolqevent_GroupMemberDecrease[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupMemberDecrease < 10000){priority_CoolQEventGroupMemberDecrease = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupMemberDecrease(\""+ name_CoolQEventGroupMemberDecrease +"\", "+ priority_CoolQEventGroupMemberDecrease +")]";
+        }
+
+        if(matches_coolqevent_GroupMemberIncrease.Count > 0 )
+        {
+            name_CoolQEventGroupMemberIncrease = matches_coolqevent_GroupMemberIncrease[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupMemberIncrease = Convert.ToInt32(matches_coolqevent_GroupMemberIncrease[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupMemberIncrease < 10000){priority_CoolQEventGroupMemberIncrease = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupMemberIncrease(\""+ name_CoolQEventGroupMemberIncrease +"\", "+ priority_CoolQEventGroupMemberIncrease +")]";
+        }
+
+        if(matches_coolqevent_FriendAdded.Count > 0 )
+        {
+            name_CoolQEventFriendAdded = matches_coolqevent_FriendAdded[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventFriendAdded = Convert.ToInt32(matches_coolqevent_FriendAdded[0].Groups["priority"].Value);
+            if(priority_CoolQEventFriendAdded < 10000){priority_CoolQEventFriendAdded = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventFriendAdded(\""+ name_CoolQEventFriendAdded +"\", "+ priority_CoolQEventFriendAdded +")]";
+        }
+
+        if(matches_coolqevent_FriendRequest.Count > 0 )
+        {
+            name_CoolQEventFriendRequest = matches_coolqevent_FriendRequest[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventFriendRequest = Convert.ToInt32(matches_coolqevent_FriendRequest[0].Groups["priority"].Value);
+            if(priority_CoolQEventFriendRequest < 10000){priority_CoolQEventFriendRequest = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventFriendRequest(\""+ name_CoolQEventFriendRequest +"\", "+ priority_CoolQEventFriendRequest +")]";
+        }
+
+        if(matches_coolqevent_GroupRequest.Count > 0 )
+        {
+            name_CoolQEventGroupRequest = matches_coolqevent_GroupRequest[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventGroupRequest = Convert.ToInt32(matches_coolqevent_GroupRequest[0].Groups["priority"].Value);
+            if(priority_CoolQEventGroupRequest < 10000){priority_CoolQEventGroupRequest = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventGroupRequest(\""+ name_CoolQEventGroupRequest +"\", "+ priority_CoolQEventGroupRequest +")]";
+        }
+
+        if(matches_coolqevent_Startup.Count > 0 )
+        {
+            name_CoolQEventStartup = matches_coolqevent_Startup[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventStartup = Convert.ToInt32(matches_coolqevent_Startup[0].Groups["priority"].Value);
+            if(priority_CoolQEventStartup < 10000){priority_CoolQEventStartup = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventStartup(\""+ name_CoolQEventStartup +"\", "+ priority_CoolQEventStartup +")]";
+        }
+
+        if(matches_coolqevent_Exit.Count > 0 )
+        {
+            name_CoolQEventExit = matches_coolqevent_Exit[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventExit = Convert.ToInt32(matches_coolqevent_Exit[0].Groups["priority"].Value);
+            if(priority_CoolQEventExit < 10000){priority_CoolQEventExit = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventExit(\""+ name_CoolQEventExit +"\", "+ priority_CoolQEventExit +")]";
+        }
+
+        if(matches_coolqevent_Enable.Count > 0 )
+        {
+            name_CoolQEventEnable = matches_coolqevent_Enable[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventEnable = Convert.ToInt32(matches_coolqevent_Enable[0].Groups["priority"].Value);
+            if(priority_CoolQEventEnable < 10000){priority_CoolQEventEnable = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventEnable(\""+ name_CoolQEventEnable +"\", "+ priority_CoolQEventEnable +")]";
+        }
+
+        if(matches_coolqevent_Disable.Count > 0 )
+        {
+            name_CoolQEventDisable = matches_coolqevent_Disable[0].Groups["name"].Value.ToLower();
+            priority_CoolQEventDisable = Convert.ToInt32(matches_coolqevent_Disable[0].Groups["priority"].Value);
+            if(priority_CoolQEventDisable < 10000){priority_CoolQEventDisable = 30000;}
+        }
+        else
+        {
+            raw += "\r\n[assembly: CoolQEventDisable(\""+ name_CoolQEventDisable +"\", "+ priority_CoolQEventDisable +")]";
+        }
+
+        if( matches_description.Count > 0 )
+        {
+            prdDesc = matches_description[0].Groups["desc"].Value.ToLower();
+        }
+
+        if( matches_company.Count > 0 )
+        {
+            prdCompany = matches_company[0].Groups["company"].Value.ToLower();
+        }
+
+        if( matches_title.Count > 0 )
+        {
+            prdTitle = matches_title[0].Groups["title"].Value.ToLower();
+        }
+
+        if( matches_product.Count > 0 )
+        {
+            prdName = matches_product[0].Groups["product"].Value.ToLower();
+        }
+
+        if( matches_version.Count > 0 )
+        {
+            major = Convert.ToInt32(matches_version[0].Groups["major"].Value);
+            minor = Convert.ToInt32(matches_version[0].Groups["minor"].Value);
+            revision = Convert.ToInt32(matches_version[0].Groups["revision"].Value);
+            build = Convert.ToInt32(matches_version[0].Groups["build"].Value) + 1;
+            if( this.Host.ResolveParameterValue("-","-","BuildConfiguration") == "Release" )
+            {
+                revision++;
+            }
+            WriteLine(this.Host.ResolveParameterValue("-","-","BuildConfiguration"));
+            raw = raw.Replace(matches_version[0].Value,"AssemblyVersion(\"" + major + "." + minor + "." + revision + "." + build + "\")");
+        }
+#>
+<#
+        Directory.CreateDirectory("../../../bin/Release/");
+        var manager = Manager.Create(Host, GenerationEnvironment);
+
+        if(rewriteJson)
+        {
+            manager.StartNewFile( "../../../bin/Release/" + prdName + ".json");//"../bin/Release/"
+#>
+{
+	"ret": 1,
+	"apiver": 9,
+	"name": "<#=                this.prdTitle #>",
+	"version": "<#=                this.major #>.<#=                this.minor #>.<#=                this.revision #>.<#=                this.build #>",
+	"version_id": <#=                this.major #><#=                this.minor #><#=                this.revision #><#=                this.build #>,
+	"author": "<#=                this.prdCompany #>",
+	"description": "<#=                this.prdDesc #>",
+	"event": [
+		{
+			"id": 1,
+			"type": 21,
+			"name": "<#=                this.name_CoolQEventPrivateMsg #>",
+			"function": "_eventPrivateMsg",
+			"priority": <#=                this.priority_CoolQEventPrivateMsg #>
+		},
+		{
+			"id": 2,
+			"type": 2,
+			"name": "<#=                this.name_CoolQEventGroupMsg #>",
+			"function": "_eventGroupMsg",
+			"priority": <#=                this.priority_CoolQEventGroupMsg #>
+		},
+		{
+			"id": 3,
+			"type": 4,
+			"name": "<#=                this.name_CoolQEventDiscussMsg #>",
+			"function": "_eventDiscussMsg",
+			"priority": <#=                this.priority_CoolQEventDiscussMsg #>
+		},
+		{
+			"id": 4,
+			"type": 11,
+			"name": "<#=                this.name_CoolQEventGroupUpload #>",
+			"function": "_eventGroupUpload",
+			"priority": <#=                this.priority_CoolQEventGroupUpload #>
+		},
+		{
+			"id": 5,
+			"type": 101,
+			"name": "<#=                this.name_CoolQEventGroupAdmin #>",
+			"function": "_eventSystem_GroupAdmin",
+			"priority": <#=                this.priority_CoolQEventGroupAdmin #>
+		},
+		{
+			"id": 6,
+			"type": 102,
+			"name": "<#=                this.name_CoolQEventGroupMemberDecrease #>",
+			"function": "_eventSystem_GroupMemberDecrease",
+			"priority": <#=                this.priority_CoolQEventGroupMemberDecrease #>
+		},
+		{
+			"id": 7,
+			"type": 103,
+			"name": "<#=                this.name_CoolQEventGroupMemberIncrease #>",
+			"function": "_eventSystem_GroupMemberIncrease",
+			"priority": <#=                this.priority_CoolQEventGroupMemberIncrease #>
+		},
+		{
+			"id": 10,
+			"type": 201,
+			"name": "<#=                this.name_CoolQEventFriendAdded #>",
+			"function": "_eventFriend_Add",
+			"priority": <#=                this.priority_CoolQEventFriendAdded #>
+		},
+		{
+			"id": 8,
+			"type": 301,
+			"name": "<#=                this.name_CoolQEventFriendRequest #>",
+			"function": "_eventRequest_AddFriend",
+			"priority": <#=                this.priority_CoolQEventFriendRequest #>
+		},
+		{
+			"id": 9,
+			"type": 302,
+			"name": "<#=                this.name_CoolQEventGroupRequest #>",
+			"function": "_eventRequest_AddGroup",
+			"priority": <#=                this.priority_CoolQEventGroupRequest #>
+		},
+		{
+			"id": 1001,
+			"type": 1001,
+			"name": "<#=                this.name_CoolQEventStartup #>",
+			"function": "_eventStartup"
+			"priority": <#=                this.priority_CoolQEventStartup #>,
+		},
+		{
+			"id": 1002,
+			"type": 1002,
+			"name": "<#=                this.name_CoolQEventExit #>",
+			"function": "_eventExit"
+			"priority": <#=                this.priority_CoolQEventExit #>,
+		},
+		{
+			"id": 1003,
+			"type": 1003,
+			"name": "<#=                this.name_CoolQEventEnable #>",
+			"function": "_eventEnable"
+			"priority": <#=                this.priority_CoolQEventEnable #>,
+		},
+		{
+			"id": 1004,
+			"type": 1004,
+			"name": "<#=                this.name_CoolQEventDisable #>",
+			"function": "_eventDisable"
+			"priority": <#=                this.priority_CoolQEventDisable #>,
+		}
+	],
+	"menu": [
+        <# 
+            if (dict_menu.Count > 0)
+            {
+                WriteLine(string.Join(",", dict_menu.Select(s => "{\r\n\t\t\t\"name\": \"" + s.Value + "\"\r\n\t\t\t\"function\": " + s.Key + "\r\n\t\t}").ToArray()));
+            }
+#>
+	],
+	"status": [
+	],
+	"auth": [ // 应用权限
+		<#            if(!this.isEnable20){Write("//");}#>20,  //[敏感]取Cookies	getCookies / getCsrfToken
+		<#            if(!this.isEnable30){Write("//");}#>30,  //接收语音			getRecord
+		<#            if(!this.isEnable101){Write("//");}#>101, //发送群消息			sendGroupMsg
+		<#            if(!this.isEnable103){Write("//");}#>103, //发送讨论组消息		sendDiscussMsg
+		<#            if(!this.isEnable106){Write("//");}#>106, //发送私聊消息		sendPrivateMsg
+		<#            if(!this.isEnable110){Write("//");}#>110, //发送赞				sendLike
+		<#            if(!this.isEnable120){Write("//");}#>120, //置群员移除			setGroupKick
+		<#            if(!this.isEnable121){Write("//");}#>121, //置群员禁言			setGroupBan
+		<#            if(!this.isEnable122){Write("//");}#>122, //置群管理员			setGroupAdmin
+		<#            if(!this.isEnable123){Write("//");}#>123, //置全群禁言			setGroupWholeBan
+		<#            if(!this.isEnable124){Write("//");}#>124, //置匿名群员禁言		setGroupAnonymousBan
+		<#            if(!this.isEnable125){Write("//");}#>125, //置群匿名设置		setGroupAnonymous
+		<#            if(!this.isEnable126){Write("//");}#>126, //置群成员名片		setGroupCard
+		<#            if(!this.isEnable127){Write("//");}#>127, //[敏感]置群退出		setGroupLeave
+		<#            if(!this.isEnable128){Write("//");}#>128, //置群成员专属头衔	setGroupSpecialTitle
+		<#            if(!this.isEnable130){Write("//");}#>130, //取群成员信息		getGroupMemberInfoV2 / getGroupMemberInfo
+		<#            if(!this.isEnable131){Write("//");}#>131, //取陌生人信息		getStrangerInfo
+		<#            if(!this.isEnable140){Write("//");}#>140, //置讨论组退出		setDiscussLeave
+		<#            if(!this.isEnable150){Write("//");}#>150, //置好友添加请求		setFriendAddRequest
+		<#            if(!this.isEnable151){Write("//");}#>151, //置群添加请求		setGroupAddRequest
+		<#            if(!this.isEnable160){Write("//");}#>160, //取群成员列表		getGroupMemberList
+		<#            if(!this.isEnable161){Write("//");}#>161, //取群列表			getGroupList
+		<#            if(!this.isEnable180){Write("//");}#>180 //撤回消息			deleteMsg
+	]
+}
+<#
+            //WriteLine(String.Join(",",this.files.ToArray()));
+            manager.EndBlock();
+            manager.Process(true,false);
+        }
+        if(rewriteAssemblyInfo)
+        {
+            manager.StartNewFile( "../../../Properties/AssemblyInfo.cs");
+            WriteLine(raw.Trim());
+            manager.EndBlock();
+            manager.Process(true,false);
+        }
+    }
+#>
+<#+
+    bool isEnable= true;
+    bool rewriteAssemblyInfo = true;
+    bool rewriteJson = true;
+    string filesss="";
+
+    int major = 1;
+    int minor = 0;
+    int revision = 0;
+    int build = 0;
+
+	string prdName ="";
+	string prdTitle ="";
+	string prdCompany ="";
+	string prdDesc ="";
+	string prdConfig ="";
+    List<string> files = new List<string>();
+	string regex_pattern_version = "AssemblyVersion\\(\"(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<revision>\\d+)\\.(?<build>\\d+)\"\\)";
+	string regex_pattern_product = "AssemblyProduct\\(\"(?<product>.*)\"\\)";
+	string regex_pattern_title = "AssemblyTitle\\(\"(?<title>.*)\"\\)";
+	string regex_pattern_company = "AssemblyCompany\\(\"(?<company>.*)\"\\)";
+	string regex_pattern_description = "AssemblyDescription\\(\"(?<desc>.*)\"\\)";
+
+    string name_CoolQEventPrivateMsg ="私聊消息处理";
+    int priority_CoolQEventPrivateMsg =30000;
+    string name_CoolQEventGroupMsg ="群消息处理";
+    int priority_CoolQEventGroupMsg =30000;
+    string name_CoolQEventDiscussMsg ="讨论组消息处理";
+    int priority_CoolQEventDiscussMsg =30000;
+    string name_CoolQEventGroupUpload ="群文件上传事件处理";
+    int priority_CoolQEventGroupUpload =30000;
+    string name_CoolQEventGroupAdmin ="群管理变动事件处理";
+    int priority_CoolQEventGroupAdmin =30000;
+    string name_CoolQEventGroupMemberDecrease ="群成员减少事件处理";
+    int priority_CoolQEventGroupMemberDecrease =30000;
+    string name_CoolQEventGroupMemberIncrease ="群成员增加事件处理";
+    int priority_CoolQEventGroupMemberIncrease =30000;
+    string name_CoolQEventFriendAdded ="好友已添加事件处理";
+    int priority_CoolQEventFriendAdded =30000;
+    string name_CoolQEventFriendRequest ="好友添加请求处理";
+    int priority_CoolQEventFriendRequest =30000;
+    string name_CoolQEventGroupRequest ="群添加请求处理";
+    int priority_CoolQEventGroupRequest =30000;
+    string name_CoolQEventStartup ="酷Q启动事件";
+    int priority_CoolQEventStartup =30000;
+    string name_CoolQEventExit ="酷Q关闭事件";
+    int priority_CoolQEventExit =30000;
+    string name_CoolQEventEnable ="应用已被启用";
+    int priority_CoolQEventEnable =30000;
+    string name_CoolQEventDisable ="应用将被停用";
+    int priority_CoolQEventDisable =30000;
+
+	string regex_pattern_coolqevent_PrivateMsg = "CoolQEventPrivateMsg\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupMsg = "CoolQEventGroupMsg\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_DiscussMsg = "CoolQEventDiscussMsg\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupUpload = "CoolQEventGroupUpload\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupAdmin = "CoolQEventGroupAdmin\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupMemberDecrease = "CoolQEventGroupMemberDecrease\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupMemberIncrease = "CoolQEventGroupMemberIncrease\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_FriendAdded = "CoolQEventFriendAdded\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_FriendRequest = "CoolQEventFriendRequest\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_GroupRequest = "CoolQEventGroupRequest\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_Startup = "CoolQEventStartup\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_Exit = "CoolQEventExit\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_Enable = "CoolQEventEnable\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+	string regex_pattern_coolqevent_Disable = "CoolQEventDisable\\(\"(?<name>.*)\", (?<priority>\\d+)\\)";
+
+	string regex_pattern_coolqmenu = "CoolQMenu\\(\"(?<name>.*)\", (?<fun>.*)\\)";
+    Dictionary<string,string> dict_menu = new Dictionary<string,string>();
+
+    bool isEnable20 = false;
+    bool isEnable30 = false;
+    bool isEnable101 = false;
+    bool isEnable103 = false;
+    bool isEnable106 = false;
+    bool isEnable110 = false;
+    bool isEnable120 = false;
+    bool isEnable121 = false;
+    bool isEnable122 = false;
+    bool isEnable123 = false;
+    bool isEnable124 = false;
+    bool isEnable125 = false;
+    bool isEnable126 = false;
+    bool isEnable127 = false;
+    bool isEnable128 = false;
+    bool isEnable130 = false;
+    bool isEnable131 = false;
+    bool isEnable140 = false;
+    bool isEnable150 = false;
+    bool isEnable151 = false;
+    bool isEnable160 = false;
+    bool isEnable161 = false;
+    bool isEnable180 = false;
+#>
