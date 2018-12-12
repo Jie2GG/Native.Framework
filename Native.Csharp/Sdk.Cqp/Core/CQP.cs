@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Core
 {
-	public static class LibImport
+	public static class CQP
 	{
 		#region --CqpApi--
 		[DllImport(Common.DllName, EntryPoint = "CQ_sendPrivateMsg")]
@@ -20,10 +20,6 @@ namespace Native.Csharp.Sdk.Cqp.Core
 
 		[DllImport(Common.DllName, EntryPoint = "CQ_deleteMsg")]
 		public static extern int CQ_deleteMsg(int authCode, long msgId);
-
-		[Obsolete("请调用 CQ_sendLikeV2")]
-		[DllImport(Common.DllName, EntryPoint = "CQ_sendLike")]
-		public static extern int CQ_sendLike(int authCode, long qqId);
 
 		[DllImport(Common.DllName, EntryPoint = "CQ_sendLikeV2")]
 		public static extern int CQ_sendLikeV2(int authCode, long qqId, int times);
@@ -103,32 +99,6 @@ namespace Native.Csharp.Sdk.Cqp.Core
 
 		[DllImport(Common.DllName, EntryPoint = "CQ_getStrangerInfo")]
 		public static extern string CQ_getStrangerInfo(int authCode, long qqId, bool notCache);
-		#endregion
-
-		#region --SysApi--
-		[DllImport("kernel32.dll", EntryPoint = "RtlMoveMemory")]
-		public static extern void RtlMoveMemory(IntPtr lpDestination, IntPtr lpSource, int length);
-
-		[DllImport("kernel32.dll", EntryPoint = "GlobalSize")]
-		public static extern int GlobalSize(int hMem);
-
-		//[DllImport("kernel32.dll")]
-		//private extern static int GetPrivateProfileIntA(string segName, string keyName, int iDefault, string fileName);
-
-		[DllImport("kernel32.dll")]
-		public extern static int GetPrivateProfileStringA(string segName, string keyName, string sDefault, StringBuilder buffer, int nSize, string fileName);
-
-		[DllImport("kernel32.dll")]
-		public extern static int GetPrivateProfileSectionA(string segName, StringBuilder buffer, int nSize, string fileName);
-
-		[DllImport("kernel32.dll")]
-		public extern static int GetPrivateProfileSectionNamesA(byte[] buffer, int iLen, string fileName);
-
-		[DllImport("kernel32.dll")]
-		public extern static int WritePrivateProfileSectionA(string segName, string sValue, string fileName);
-
-		[DllImport("kernel32.dll")]
-		public extern static int WritePrivateProfileStringA(string segName, string keyName, string sValue, string fileName);
 		#endregion
 	}
 }

@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Native.Csharp.UI.Views"
-		xmlns:vm ="clr-namespace:Native.Csharp.UI.ViewModels"
+		xmlns:vm="clr-namespace:Native.Csharp.UI.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle, StringFormat={}{0} -- WPF版}" Height="450" Width="800">
+        Title="{Binding WindowTitle, StringFormat={}{0} --WPF版}" Height="450" Width="800">
 	<Window.DataContext>
 		<vm:MainViewModel/>
 	</Window.DataContext>
 	<Grid>
-		<Button Content="ButtonDemo" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="105" Height="52" Command="{Binding ButtonCommandDemo}"/>
+
 	</Grid>
 </Window>

@@ -1,11 +1,11 @@
-﻿using Native.Csharp.Sdk.Cqp.Core;
+﻿using Navite.Csharp.Tool.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Native.Csharp.Sdk.Cqp.Tool
+namespace Navite.Csharp.Tool
 {
 	/// <summary>
 	/// Ini配置文件
@@ -49,7 +49,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		#endregion
 
 		#region --公开方法--
-		
+
 		#region --Write--
 		/// <summary>
 		/// 写入一个keyValuePair, 若 key 已存在, 则替换Value
@@ -59,7 +59,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		/// <param name="Value">该键的值</param>
 		public void Write(string section, string key, object Value)
 		{
-			LibImport.WritePrivateProfileStringA(section, key, Value.ToString(), this.FileName);
+			Kernel32.WritePrivateProfileStringA(section, key, Value.ToString(), this.FileName);
 		}
 		#endregion
 
@@ -74,7 +74,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		public string Read(string section, string key, string value = null)
 		{
 			StringBuilder buffer = new StringBuilder(65535);
-			LibImport.GetPrivateProfileSectionA(section, buffer, buffer.Capacity, this.FileName);
+			Kernel32.GetPrivateProfileSectionA(section, buffer, buffer.Capacity, this.FileName);
 			string str = buffer.ToString();
 			if (string.IsNullOrEmpty(str))
 			{
@@ -251,7 +251,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		public List<string> ReadSections()
 		{
 			byte[] buffer = new byte[65535];
-			int rel = LibImport.GetPrivateProfileSectionNamesA(buffer, buffer.GetUpperBound(0), this.FileName);
+			int rel = Kernel32.GetPrivateProfileSectionNamesA(buffer, buffer.GetUpperBound(0), this.FileName);
 			int iCnt, iPos;
 			List<string> arrayList = new List<string>();
 			string tmp;
@@ -279,7 +279,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		public bool SectionExists(string section)
 		{
 			StringBuilder buffer = new StringBuilder(65535);
-			LibImport.GetPrivateProfileSectionA(section, buffer, buffer.Capacity, this.FileName);
+			Kernel32.GetPrivateProfileSectionA(section, buffer, buffer.Capacity, this.FileName);
 			return buffer.ToString().Trim() == "";
 		}
 		/// <summary>
@@ -307,7 +307,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		/// <param name="section">要删除的节的名字</param>
 		public void DeleteSection(string section)
 		{
-			LibImport.WritePrivateProfileSectionA(section, null, this.FileName);
+			Kernel32.WritePrivateProfileSectionA(section, null, this.FileName);
 		}
 		/// <summary>
 		/// 添加一个节
@@ -315,7 +315,7 @@ namespace Native.Csharp.Sdk.Cqp.Tool
 		/// <param name="section">要添加的节名称</param>
 		public void AddSection(string section)
 		{
-			LibImport.WritePrivateProfileSectionA(section, "", this.FileName);
+			Kernel32.WritePrivateProfileSectionA(section, "", this.FileName);
 		}
 		/// <summary>
 		/// 清空Ini配置文件

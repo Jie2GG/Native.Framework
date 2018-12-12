@@ -1,10 +1,8 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
+using Microsoft.Practices.Prism.ViewModel;
 
 namespace Native.Csharp.UI.ViewModels
 {
@@ -14,36 +12,19 @@ namespace Native.Csharp.UI.ViewModels
 		private string _windowTitle = "酷Q样例应用控制台";
 		#endregion
 
-		#region --数据属性--
-		public string WindowTitle
-		{
-			get { return _windowTitle; }
-			set
-			{
-				_windowTitle = value;
-				RaisePropertyChanged(nameof(WindowTitle));  //触发更新
-			}
-		}
+		#region --属性--
+		/// <summary>
+		/// 获取 MainView 窗口标题
+		/// </summary>
+		public string WindowTitle { get { return _windowTitle; } }
 		#endregion
 
-		#region --命令属性--
-		public ICommand ButtonCommandDemo
-		{
-			get
-			{
-				return new DelegateCommand(() =>
-				{
-					System.Windows.MessageBox.Show("按钮被按下了");
-				});
-			}
-		}
-		#endregion
-
-		#region --构造函数--
+		/// <summary>
+		/// 初始化 MainViewModel 实例对象
+		/// </summary>
 		public MainViewModel()
 		{
 
 		}
-		#endregion
 	}
 }

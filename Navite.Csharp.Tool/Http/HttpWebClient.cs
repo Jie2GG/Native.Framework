@@ -7,10 +7,10 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 
-namespace Native.Csharp.Sdk.Cqp.Tool
+namespace Navite.Csharp.Tool.Http
 {
 	/// <summary>
-	/// HttpWebClient
+	/// HttpWebClient 操作类
 	/// </summary>
 	public class HttpWebClient : WebClient
 	{

@@ -12,10 +12,5 @@ namespace Native.Csharp.UI
 	/// </summary>
 	public partial class App : Application
 	{
-		[STAThread]
-		 public static void Main()
-		{
-			new App().Run(new Views.MainView());
-		}
 	}
 }
