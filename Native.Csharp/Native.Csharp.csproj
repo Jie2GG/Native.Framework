@@ -136,7 +136,12 @@
   <ItemGroup>
     <Content Include="Sdk.Cqp\Other\T4\AssemblyHelper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyInfoHelper.//</LastGenOutput>
+      <LastGenOutput>AssemblyHelper.txt</LastGenOutput>
+    </Content>
+    <Content Include="Sdk.Cqp\Other\T4\AssemblyHelper.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyHelper.tt</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -167,4 +172,8 @@
   <Target Name="DllExportRPkgDynamicImport" BeforeTargets="PostBuildEvent" DependsOnTargets="GetFrameworkPaths" Condition="'$(DllExportModImported)' != 'true' And '$(DllExportRPkgDyn)' != 'false'">
     <MSBuild BuildInParallel="true" UseResultsCache="true" Projects="$(MSBuildProjectFullPath)" Properties="DllExportRPkgDyn=true" Targets="Build" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 //AppId
 [assembly: AssemblyProduct("native.csharp.app")]
 //Version
-[assembly: AssemblyVersion("1.0.0.12")]
+[assembly: AssemblyVersion("1.0.0.0")]
 //CoolQEvent
 [assembly: CoolQEventPrivateMsg("私聊消息处理", 30000)]
 [assembly: CoolQEventGroupMsg("群消息处理", 30000)]
