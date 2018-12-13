@@ -110,14 +110,15 @@
     <Compile Include="Sdk.Cqp\Model\GroupMember.cs" />
     <Compile Include="Sdk.Cqp\Model\QQ.cs" />
     <Compile Include="Sdk.Cqp\Other\Pack.cs" />
+    <Compile Include="Sdk.Cqp\Other\ExternalAttribute\ExternalAssemblyAttribute.cs" />
+    <Compile Include="Sdk.Cqp\Other\ExternalAttribute\ExternalUserExportAttribute.cs" />
     <Compile Include="Sdk.Cqp\Other\UnPack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Native.Csharp.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Native.Csharp.json" />
     <None Include="FodyWeavers.xml" />
+    <None Include="Sdk.Cqp\Other\T4\MultipleOutputHelper.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -132,6 +133,15 @@
       <Name>Navite.Csharp.Tool</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sdk.Cqp\Other\T4\AssemblyHelper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfoHelper.//</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
@@ -143,10 +153,12 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.0.0\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Clarius.TransformOnBuild.1.21.0\build\Clarius.TransformOnBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Clarius.TransformOnBuild.1.21.0\build\Clarius.TransformOnBuild.targets'))" />
   </Target>
   <ImportGroup Label=".NET DllExport" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="$(SolutionDir)packages\DllExport.1.6.1\tools\net.r_eg.DllExport.targets" Condition="Exists('$(SolutionDir)packages\DllExport.1.6.1\tools\net.r_eg.DllExport.targets')" Label="8337224c9ad9e356" />
+    <Import Project="..\packages\Clarius.TransformOnBuild.1.21.0\build\Clarius.TransformOnBuild.targets" Condition="Exists('..\packages\Clarius.TransformOnBuild.1.21.0\build\Clarius.TransformOnBuild.targets')" />
   </ImportGroup>
   <Target Name="DllExportRestorePkg" BeforeTargets="PrepareForBuild">
     <Warning Condition="!Exists('$(SolutionDir)DllExport.bat')" Text="We can't find 'DllExport.bat' in '$(SolutionDir)' - https://github.com/3F/DllExport" />

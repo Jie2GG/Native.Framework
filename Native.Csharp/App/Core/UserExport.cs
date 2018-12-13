@@ -45,6 +45,7 @@ namespace Native.Csharp.App.Core
 
 		#region --导出方法--
 		[DllExport(ExportName = "_eventOpenConsole", CallingConvention = CallingConvention.StdCall)]
+		[CoolQMenu("打开控制台", "_eventOpenConsole")]
 		private static int EventOpenConsole()
 		{
 			/*
