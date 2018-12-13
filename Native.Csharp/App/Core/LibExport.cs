@@ -287,7 +287,7 @@ namespace Native.Csharp.App.Core
 		private static int EventGroupUpload(int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
 			FileUploadMessageEventArgs args = new FileUploadMessageEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.File = EnApi.Instance.GetFile(file);
@@ -299,7 +299,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupAdmin(int subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
 			GroupManageAlterEventArgs args = new GroupManageAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.BeingOperateQQ = beingOperateQQ;
 			args.Handled = false;
@@ -322,7 +322,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -347,7 +347,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -371,7 +371,7 @@ namespace Native.Csharp.App.Core
 		private static int EventFriendAdd(int subType, int sendTime, long fromQQ)
 		{
 			FriendIncreaseEventArgs args = new FriendIncreaseEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromQQ = fromQQ;
 			args.Handled = false;
 			switch (subType)
@@ -390,7 +390,7 @@ namespace Native.Csharp.App.Core
 		private static int EventRequestAddFriend(int subType, int sendTime, long fromQQ, string msg, string responseFlag)
 		{
 			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromQQ = fromQQ;
 			args.AppendMsg = msg;
 			args.Tag = responseFlag;
@@ -411,7 +411,7 @@ namespace Native.Csharp.App.Core
 		private static int EventRequestAddGroup(int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag)
 		{
 			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			args.SendTime = NativeConvert.FormatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.AppendMsg = msg;

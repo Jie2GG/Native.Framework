@@ -379,13 +379,13 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			member.Sex = (Sex)unpack.GetInt32();
 			member.Age = unpack.GetInt32();
 			member.Area = unpack.GetString(Encoding.GetEncoding("GB18030"));
-			member.JoiningTime = NativeConvert.FotmatUnixTime(unpack.GetInt32().ToString());
-			member.LastDateTime = NativeConvert.FotmatUnixTime(unpack.GetInt32().ToString());
+			member.JoiningTime = NativeConvert.FormatUnixTime(unpack.GetInt32().ToString());
+			member.LastDateTime = NativeConvert.FormatUnixTime(unpack.GetInt32().ToString());
 			member.Level = unpack.GetString(Encoding.GetEncoding("GB18030"));
 			member.PermitType = (PermitType)unpack.GetInt32();
 			member.BadRecord = unpack.GetInt32() == 1;
 			member.SpecialTitle = unpack.GetString(Encoding.GetEncoding("GB18030"));
-			member.SpecialTitleDurationTime = NativeConvert.FotmatUnixTime(unpack.GetInt32().ToString());
+			member.SpecialTitleDurationTime = NativeConvert.FormatUnixTime(unpack.GetInt32().ToString());
 			member.CanModifiedCard = unpack.GetInt32() == 1;
 			#endregion
 			return 0;
@@ -425,13 +425,13 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				member.Sex = (Sex)temp.GetInt32();
 				member.Age = temp.GetInt32();
 				member.Area = temp.GetString(Encoding.GetEncoding("GB18030"));
-				member.JoiningTime = NativeConvert.FotmatUnixTime(temp.GetInt32().ToString());
-				member.LastDateTime = NativeConvert.FotmatUnixTime(temp.GetInt32().ToString());
+				member.JoiningTime = NativeConvert.FormatUnixTime(temp.GetInt32().ToString());
+				member.LastDateTime = NativeConvert.FormatUnixTime(temp.GetInt32().ToString());
 				member.Level = temp.GetString(Encoding.GetEncoding("GB18030"));
 				member.PermitType = (PermitType)temp.GetInt32();
 				member.BadRecord = temp.GetInt32() == 1;
 				member.SpecialTitle = temp.GetString(Encoding.GetEncoding("GB18030"));
-				member.SpecialTitleDurationTime = NativeConvert.FotmatUnixTime(temp.GetInt32().ToString());
+				member.SpecialTitleDurationTime = NativeConvert.FormatUnixTime(temp.GetInt32().ToString());
 				member.CanModifiedCard = temp.GetInt32() == 1;
 				#endregion
 				memberInfos.Add(member);
