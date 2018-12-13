@@ -18,7 +18,7 @@ namespace Native.Csharp.App.Event
 		/// <summary>
 		/// 获取 AppIntitalizeEventHandler 实例对象
 		/// </summary>
-		public static Event_AppInitialize Instance { get => _instance.Value; }
+		public static Event_AppInitialize Instance { get { return _instance.Value; } }
 		#endregion
 
 		#region --构造函数--
@@ -40,8 +40,9 @@ namespace Native.Csharp.App.Event
 		public void AppInfo(object sender, AppInfoEventArgs e)
 		{
 			e.ApiVer = 9;                   //Api版本
-			e.AppId = "top.jiegg.demo";     //AppId
-											//本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type = 1001）。
+			e.AppId = "Native.Csharp";      //AppId,  规则见 http://d.cqp.me/Pro/开发/基础信息
+
+			//本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type = 1001）。
 		}
 
 		/// <summary>
@@ -54,25 +55,28 @@ namespace Native.Csharp.App.Event
 			//酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
 			EnApi.Instance.SetAuthCode(e.AuthCode);
 
-			AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。
 		}
 		#endregion
 
 		#region --私有方法--
 		/// <summary>
-		/// 异常捕获机制
+		/// 全局异常捕获, 用于捕获开发者未处理的异常, 此异常将回弹至酷Q进行处理
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+		private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
-			StringBuilder expStr = new StringBuilder();
-			//expStr.AppendFormat("[异常]: {1}\n", e.Exception.Message);
-			expStr.AppendFormat("[异常类型]: {0}\n", e.Exception.Source.ToString());
-			expStr.AppendFormat("[异常名称]: {0}\n", e.Exception.Message);
-			expStr.AppendFormat("[异常堆栈]: {0}\n", e.Exception.StackTrace);
-			EnApi.Instance.AddFatalError(expStr.ToString()); //将异常弹回酷Q处理
+			Exception ex = e.ExceptionObject as Exception;
+			if (ex != null)
+			{
+				StringBuilder innerLog = new StringBuilder();
+				innerLog.AppendFormat("[异常类型]: {0}{1}", ex.Source.ToString(), Environment.NewLine);
+				innerLog.AppendFormat("[异常消息]: {0}{1}", ex.Message, Environment.NewLine);
+				innerLog.AppendFormat("[异常堆栈]: {0}{1}", ex.StackTrace);
+				EnApi.Instance.AddFatalError(innerLog.ToString());      //将未经处理的异常弹回酷Q做处理
+			}
 		}
 		#endregion
 	}

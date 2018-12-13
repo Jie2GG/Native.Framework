@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Native.Csharp.Sdk.Cqp.Tool
+namespace Navite.Csharp.Tool
 {
-	public static class Converter
+	/// <summary>
+	/// Native 用于数据转换的工具类
+	/// </summary>
+	public static class NativeConvert
 	{
 		/// <summary>
 		/// 获取10或13位时间戳的 System.DateTime 表示形式

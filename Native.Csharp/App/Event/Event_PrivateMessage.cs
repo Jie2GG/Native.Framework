@@ -17,7 +17,7 @@ namespace Native.Csharp.App.Event
 		/// <summary>
 		/// 获取 Event_ReceiveMessage 实例对象
 		/// </summary>
-		public static Event_PrivateMessage Instance { get => _instance.Value; }
+		public static Event_PrivateMessage Instance { get { return _instance.Value; } }
 		#endregion
 
 		#region --构造函数--

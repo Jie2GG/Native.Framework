@@ -17,7 +17,7 @@ namespace Native.Csharp.App.Event
 		/// <summary>
 		/// 获取 Event_UserExpand 实例对象
 		/// </summary>
-		public static Event_UserExpand Instance { get => _instance.Value; }
+		public static Event_UserExpand Instance { get { return _instance.Value; } }
 		#endregion
 
 		#region --构造函数--
@@ -40,7 +40,7 @@ namespace Native.Csharp.App.Event
 		{
 			//本事件将会在酷Q【主线程】中被触发, 请注意线程以免卡住酷Q
 
-			UI.App.Main();
+			new MainView().Show();	//直接加载控制台项目的窗口, WinForm窗口也是如此.
 		}
 		#endregion
 	}

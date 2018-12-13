@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 
-namespace Native.Csharp.Sdk.Cqp.Tool
+namespace Navite.Csharp.Tool.Http
 {
 	/**
 	 *	Http访问的操作类来自 Flexlive.CQP.Framework 框架. 若有侵权请联系我删除重写
