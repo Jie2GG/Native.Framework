@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -46,7 +45,6 @@ namespace Native.Csharp.App.Core
 
 		#region --导出方法--
 		[DllExport(ExportName = "_eventOpenConsole", CallingConvention = CallingConvention.StdCall)]
-		[CoolQMenu("打开控制台", "_eventOpenConsole")]
 		private static int EventOpenConsole()
 		{
 			/*
