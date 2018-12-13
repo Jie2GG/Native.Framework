@@ -15,7 +15,7 @@ namespace Navite.Csharp.Tool
 		/// </summary>
 		/// <param name="timeStamp">10 or 13 位时间戳</param>
 		/// <returns></returns>
-		public static DateTime FotmatUnixTime(string timeStamp)
+		public static DateTime FormatUnixTime(string timeStamp)
 		{
 			DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
 			long lTime;
