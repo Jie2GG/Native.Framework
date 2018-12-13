@@ -4,7 +4,7 @@
 > 2. 原生c#开发体验
 > 3. 完美翻译酷QApi
 > 4. 支持酷Q应用打包
-> 5. 支持代码直接调试
+> 5. 支持代码实时调试
 
 ## Native.SDK 开发环境
 
@@ -13,23 +13,21 @@
 
 ## Native.SDK 开发流程
 
-	1. 下载 Native.Sdk
-	2. 打开 Native.Csharp 项目属性
-	3. 修改 程序集名称中的 "Native.Csharp" 为你自己的 AppId (如: top.jiegg.demo.json)
-	4. 修改 生成 -> 输出路径 为你的酷Q app 路径
-	4. 找到 解决方案 -> Native.Csharp -> Native.Csharp.json
-	5. 修改 文件名为你自己的应用ID (如: top.jiegg.demo.json)
-	6. 修改 Native.Sharp -> App -> Event -> Event_AppInitialize.cs 中的 "AppInfo" 方法中的 e.AppId 为你自己的 AppId
-	7. 开始编写酷Q插件 (默认: Release x86 编译方式)
+	1. 下载并打开 Native.SDK
+	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId (具体参见 http://d.cqp.me/Pro/开发/基础信息)
+	3. 展开 Native.Csharp 项目, 修改 "Native.Csharp.json" 文件名为你的AppId
+	4. 打开 Native.Csharp -> Event 文件夹, 修改 "Event_AppInitialize.cs" 中 "AppInfo" 方法的 "e.AppId" 的值为你的AppId
+	
+	此时 Native.SDK 的开发环境已经配置成功!
 
 ## Native.SDK 调试流程
 
-	1. 打开 Native.Csharp 项目属性
-	2. 修改 生成 中的 "输出路径" 为你的 酷Q app 目录
-	3. 修改 调试 -> 启动操作 中的 "启动外部程序"  为你的 酷Q 主程序, 之后保存
-	4. 打开 工具 -> 选项 -> 调试, 关闭 "要求源文件与原始版本完全匹配" 项
-	5. 修改 Native.Csharp 的生成选项为 Debug x86
-	6. 开始调试你的 酷Q 程序
+	1. 打开菜单 生成 -> 配置管理器, 修改 "Native.Csharp" 项目的生成方式为 "Debug x86" 生成方式
+	2. 打开项目 Native.Csharp 项目属性, 修改 "生成" 中的 "输出路径" 至酷Q的 "app" 目录
+	3. 修改 "调试" 中的 "启动操作" 为 "启动外部程序", 并且定位到酷Q主程序
+	4. 打开菜单 工具 -> 选项 -> 调试, 关闭 "要求源文件与原始版本匹配" 选项
+	
+	此时 Native.SDK 已经可以进行实时调试!
 
 ## Native.SDK 常见问题
 
@@ -47,6 +45,15 @@
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2018年12月13日 版本: V2.1.0
+
+	1. 修复 DllExport 可能编译出失效的问题
+  	2. 修复 异常处理 在try后依旧会向酷Q报告当前代码错误的问题
+	3. 修复 异常处理 返回消息格式错误
+	4. 修复 WPF窗体 多次加载会导致酷Q奔溃的问题
+	5. 修复 "有效时间" 转换不正确 感谢 @
+	5. 分离 Sdk.Cqp.Tool -> Native.Csharp.Tool 提升代码可移植性
+
 > 2018年12月07日 版本: V2.0.1
 
   	1. 修复 获取群列表永远为 null 感谢 @kotoneme[https://github.com/kotoneme]
