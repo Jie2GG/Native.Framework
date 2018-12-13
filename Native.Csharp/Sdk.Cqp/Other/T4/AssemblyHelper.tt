@@ -11,7 +11,7 @@
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <#@include file="MultipleOutputHelper.ttinclude"#>
 <#
-    this.isEnable = true;
+    this.isEnable = false;
     this.rewriteAssemblyInfo = true;
     this.rewriteJson = true;
 
@@ -369,12 +369,12 @@
         }
 #>
 <#
-        Directory.CreateDirectory("../../../bin/Release/");
+        Directory.CreateDirectory("../../../bin/x86/Release/");
         var manager = Manager.Create(Host, GenerationEnvironment);
 
         if(rewriteJson)
         {
-            manager.StartNewFile( "../../../bin/Release/" + prdName + ".json");//"../bin/Release/"
+            manager.StartNewFile( "../../../bin/x86/Release/" + prdName + ".json");//"../bin/Release/"
 #>
 {
 	"ret": 1,

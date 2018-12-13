@@ -138,11 +138,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyHelper.txt</LastGenOutput>
     </Content>
-    <Content Include="Sdk.Cqp\Other\T4\AssemblyHelper.txt">
+    <None Include="Sdk.Cqp\Other\T4\AssemblyHelper.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyHelper.tt</DependentUpon>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
