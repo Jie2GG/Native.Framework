@@ -56,5 +56,8 @@
     <Compile Include="SQLite\SQLite.cs" />
     <Compile Include="SQLite\SQLiteAsync.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SQLite\License.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
