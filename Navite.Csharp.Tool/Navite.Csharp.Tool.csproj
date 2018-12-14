@@ -50,6 +50,11 @@
     <Compile Include="IniFile.cs" />
     <Compile Include="NativeConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataBase\Cache.cs" />
+    <Compile Include="DataBase\eventv2.cs" />
+    <Compile Include="DataBase\logv1.cs" />
+    <Compile Include="SQLite\SQLite.cs" />
+    <Compile Include="SQLite\SQLiteAsync.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
