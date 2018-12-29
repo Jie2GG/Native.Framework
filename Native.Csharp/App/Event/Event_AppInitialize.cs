@@ -53,7 +53,7 @@ namespace Native.Csharp.App.Event
 		public void Initialize(object sender, AppInitializeEventArgs e)
 		{
 			//酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
-			EnApi.Instance.SetAuthCode(e.AuthCode);
+			Common.CqApi = new CqApi(e.AuthCode);
 
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。
@@ -75,7 +75,7 @@ namespace Native.Csharp.App.Event
 				innerLog.AppendFormat("[异常类型]: {0}{1}", ex.Source.ToString(), Environment.NewLine);
 				innerLog.AppendFormat("[异常消息]: {0}{1}", ex.Message, Environment.NewLine);
 				innerLog.AppendFormat("[异常堆栈]: {0}{1}", ex.StackTrace);
-				EnApi.Instance.AddFatalError(innerLog.ToString());      //将未经处理的异常弹回酷Q做处理
+				Common.CqApi.AddFatalError(innerLog.ToString());      //将未经处理的异常弹回酷Q做处理
 			}
 		}
 		#endregion

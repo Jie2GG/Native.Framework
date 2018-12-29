@@ -45,6 +45,16 @@
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2018年12月29日 版本: V2.3.0
+	
+	说明: 此次更新改动较大, 请开发者在升级时备份好之前的代码!!!
+	
+	1. 分离了 Sdk.Cqp 为单独一个项目, 提升可移植性
+	2. 修改 Native.Csharp.Sdk.Cqp.Api 中的 "EnApi" 的类名称为 "CqApi"
+	3. 修改 "CqApi" 对象的构造方式, 由 "单例对象" 换为 "实例对象"
+	4. 新增 "IniObject", "IniSection", "IniValue" , 位于 Native.Csharp.Tool.IniConfig.Linq (专门用于 Ini 配置项的类, 此类已完全面向对象)
+	5. 弃用 Native.Csharp.Tool 中的 "IniFile" 类, (该类还能使用但是不再提供后续更新)
+
 > 2018年12月13日 版本: V2.1.0
 
 	1. 修复 DllExport 可能编译出失效的问题
