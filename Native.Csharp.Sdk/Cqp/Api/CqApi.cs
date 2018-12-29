@@ -10,25 +10,29 @@ using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Api
 {
-	public class EnApi
+	public class CqApi
 	{
 		#region --字段--
-		private static readonly Lazy<EnApi> _instance = new Lazy<EnApi>(() => new EnApi());
+		private int _authCode = 0;
+		private string _appDirCache = null;
 		#endregion
 
 		#region --属性--
 		/// <summary>
-		/// 获取 Native.Csharp.Sdk.Api.EnApi 实例对象
+		/// 获取或设置该实例的验证码
 		/// </summary>
-		public static EnApi Instance { get { return _instance.Value; } }
+		public int AuthCode { get { return _authCode; } set { _authCode = value; } }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
-		/// 隐藏构造函数
+		/// 初始化一个 CqApi 类的新实例, 该实例将由酷Q授权
 		/// </summary>
-		private EnApi()
-		{ }
+		/// <param name="authCode">插件验证码</param>
+		public CqApi(int authCode)
+		{
+			this._authCode = authCode;
+		}
 		#endregion
 
 		#region --CQ码--
@@ -232,7 +236,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <param name="message">消息内容</param>
 		public int SendGroupMessage(long groupId, string message)
 		{
-			return CQP.CQ_sendGroupMsg(Common.AuthCode, groupId, message);
+			return CQP.CQ_sendGroupMsg(_authCode, groupId, message);
 		}
 		/// <summary>
 		/// 发送私聊消息
@@ -242,7 +246,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendPrivateMessage(long qqId, string message)
 		{
-			return CQP.CQ_sendPrivateMsg(Common.AuthCode, qqId, message);
+			return CQP.CQ_sendPrivateMsg(_authCode, qqId, message);
 		}
 		/// <summary>
 		/// 发送讨论组消息
@@ -252,7 +256,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendDiscussMessage(long discussId, string message)
 		{
-			return CQP.CQ_sendDiscussMsg(Common.AuthCode, discussId, message);
+			return CQP.CQ_sendDiscussMsg(_authCode, discussId, message);
 		}
 		/// <summary>
 		/// 发送赞
@@ -262,7 +266,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendPraise(long qqId, int count = 1)
 		{
-			return CQP.CQ_sendLikeV2(Common.AuthCode, qqId, (count <= 0 || count > 10) ? 1 : count);
+			return CQP.CQ_sendLikeV2(_authCode, qqId, (count <= 0 || count > 10) ? 1 : count);
 		}
 		/// <summary>
 		/// 接收消息中的语音(record),返回保存在 \data\record\ 目录下的文件名
@@ -272,7 +276,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string ReceiveRecord(string fileName, AudioOutFormat formatType)
 		{
-			return CQP.CQ_getRecord(Common.AuthCode, fileName, formatType.ToString());
+			return CQP.CQ_getRecord(_authCode, fileName, formatType.ToString());
 		}
 		/// <summary>
 		/// 撤回消息
@@ -281,7 +285,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int RepealMessage(long id)
 		{
-			return CQP.CQ_deleteMsg(Common.AuthCode, id);
+			return CQP.CQ_deleteMsg(_authCode, id);
 		}
 		#endregion
 
@@ -292,7 +296,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public long GetLoginQQ()
 		{
-			return CQP.CQ_getLoginQQ(Common.AuthCode);
+			return CQP.CQ_getLoginQQ(_authCode);
 		}
 		/// <summary>
 		/// 获取当前登录QQ的昵称
@@ -300,7 +304,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetLgoinNick()
 		{
-			return CQP.CQ_getLoginNick(Common.AuthCode);
+			return CQP.CQ_getLoginNick(_authCode);
 		}
 		/// <summary>
 		/// 取应用目录
@@ -308,11 +312,11 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetAppDirectory()
 		{
-			if (Common.AppDirCache == null)
+			if (_appDirCache == null)
 			{
-				Common.AppDirCache = CQP.CQ_getAppDirectory(Common.AuthCode);
+				_appDirCache = CQP.CQ_getAppDirectory(_authCode);
 			}
-			return Common.AppDirCache;
+			return _appDirCache;
 		}
 		/// <summary>
 		/// 获取Cookies 慎用,此接口需要严格授权
@@ -320,7 +324,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetCookies()
 		{
-			return CQP.CQ_getCookies(Common.AuthCode);
+			return CQP.CQ_getCookies(_authCode);
 		}
 		/// <summary>
 		/// 即QQ网页用到的bkn/g_tk等 慎用,此接口需要严格授权
@@ -328,7 +332,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetCsrfToken()
 		{
-			return CQP.CQ_getCsrfToken(Common.AuthCode);
+			return CQP.CQ_getCsrfToken(_authCode);
 		}
 		/// <summary>
 		/// 获取QQ信息
@@ -339,7 +343,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetQQInfo(long qqId, out QQ qqInfo, bool notCache = false)
 		{
-			string result = CQP.CQ_getStrangerInfo(Common.AuthCode, qqId, notCache);
+			string result = CQP.CQ_getStrangerInfo(_authCode, qqId, notCache);
 			if (string.IsNullOrEmpty(result))
 			{
 				qqInfo = null;
@@ -363,7 +367,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns>成功返回 0, 失败返回 负数</returns>
 		public int GetMemberInfo(long groupId, long qqId, out GroupMember member, bool notCache = false)
 		{
-			string result = CQP.CQ_getGroupMemberInfoV2(Common.AuthCode, groupId, qqId, notCache);
+			string result = CQP.CQ_getGroupMemberInfoV2(_authCode, groupId, qqId, notCache);
 			if (string.IsNullOrEmpty(result))
 			{
 				member = null;
@@ -399,7 +403,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns>成功返回 0, 失败返回 负数</returns>
 		public int GetMemberList(long groupId, out List<GroupMember> memberInfos)
 		{
-			string result = CQP.CQ_getGroupMemberList(Common.AuthCode, groupId);
+			string result = CQP.CQ_getGroupMemberList(_authCode, groupId);
 			if (string.IsNullOrEmpty(result))
 			{
 				memberInfos = null;
@@ -446,7 +450,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int GetGroupList(out List<Group> groups)
 		{
-			string result = CQP.CQ_getGroupList(Common.AuthCode);
+			string result = CQP.CQ_getGroupList(_authCode);
 			if (string.IsNullOrEmpty(result))
 			{
 				groups = null;
@@ -485,7 +489,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddLoger(LogerLevel level, string type, string content)
 		{
-			return CQP.CQ_addLog(Common.AuthCode, (int)level, type, content);
+			return CQP.CQ_addLog(_authCode, (int)level, type, content);
 		}
 		/// <summary>
 		/// 添加致命错误提示
@@ -494,7 +498,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddFatalError(string message)
 		{
-			return CQP.CQ_setFatal(Common.AuthCode, message);
+			return CQP.CQ_setFatal(_authCode, message);
 		}
 		#endregion
 
@@ -512,7 +516,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setFriendAddRequest(Common.AuthCode, tag, (int)response, appendMsg);
+			return CQP.CQ_setFriendAddRequest(_authCode, tag, (int)response, appendMsg);
 		}
 		/// <summary>
 		/// 置群添加请求
@@ -528,7 +532,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setGroupAddRequestV2(Common.AuthCode, tag, (int)request, (int)response, appendMsg);
+			return CQP.CQ_setGroupAddRequestV2(_authCode, tag, (int)request, (int)response, appendMsg);
 		}
 		#endregion
 
@@ -547,7 +551,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				time = TimeSpan.Zero;
 			}
 
-			return CQP.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous, (long)time.TotalSeconds);
+			return CQP.CQ_setGroupAnonymousBan(_authCode, groupId, anonymous, (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置群员禁言
@@ -562,7 +566,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				time = TimeSpan.Zero;
 			}
-			return CQP.CQ_setGroupBan(Common.AuthCode, groupId, qqId, (long)time.TotalSeconds);
+			return CQP.CQ_setGroupBan(_authCode, groupId, qqId, (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置全群禁言
@@ -572,7 +576,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupWholeBanSpeak(long groupId, bool isOpen)
 		{
-			return CQP.CQ_setGroupWholeBan(Common.AuthCode, groupId, isOpen);
+			return CQP.CQ_setGroupWholeBan(_authCode, groupId, isOpen);
 		}
 		/// <summary>
 		/// 置群成员名片
@@ -583,7 +587,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupMemberNewCard(long groupId, long qqId, string newNick)
 		{
-			return CQP.CQ_setGroupCard(Common.AuthCode, groupId, qqId, newNick);
+			return CQP.CQ_setGroupCard(_authCode, groupId, qqId, newNick);
 		}
 		/// <summary>
 		/// 置群成员专属头衔
@@ -597,9 +601,9 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		{
 			if (time.Ticks < 0)
 			{
-				time = new TimeSpan(-10000000);		//-1秒
+				time = new TimeSpan(-10000000);     //-1秒
 			}
-			return CQP.CQ_setGroupSpecialTitle(Common.AuthCode, groupId, qqId, specialTitle, (long)time.TotalSeconds);
+			return CQP.CQ_setGroupSpecialTitle(_authCode, groupId, qqId, specialTitle, (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置群管理员
@@ -610,7 +614,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupManager(long groupId, long qqId, bool isCalcel)
 		{
-			return CQP.CQ_setGroupAdmin(Common.AuthCode, groupId, qqId, isCalcel);
+			return CQP.CQ_setGroupAdmin(_authCode, groupId, qqId, isCalcel);
 		}
 		/// <summary>
 		/// 置群匿名设置
@@ -620,7 +624,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetAnonymousStatus(long groupId, bool isOpen)
 		{
-			return CQP.CQ_setGroupAnonymous(Common.AuthCode, groupId, isOpen);
+			return CQP.CQ_setGroupAnonymous(_authCode, groupId, isOpen);
 		}
 		/// <summary>
 		/// 置群退出 慎用,此接口需要严格授权
@@ -630,7 +634,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupExit(long groupId, bool dissolve = false)
 		{
-			return CQP.CQ_setGroupLeave(Common.AuthCode, groupId, dissolve);
+			return CQP.CQ_setGroupLeave(_authCode, groupId, dissolve);
 		}
 		/// <summary>
 		/// 置群员移除
@@ -641,7 +645,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupMemberRemove(long groupId, long qqId, bool notAccept = false)
 		{
-			return CQP.CQ_setGroupKick(Common.AuthCode, groupId, qqId, notAccept);
+			return CQP.CQ_setGroupKick(_authCode, groupId, qqId, notAccept);
 		}
 		/// <summary>
 		/// 置讨论组退出
@@ -650,7 +654,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetDiscussExit(long discussId)
 		{
-			return CQP.CQ_setDiscussLeave(Common.AuthCode, discussId);
+			return CQP.CQ_setDiscussLeave(_authCode, discussId);
 		}
 		#endregion
 
@@ -659,17 +663,19 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// 设置App验证码
 		/// </summary>
 		/// <param name="authCode"></param>
+		[Obsolete("更改了该类的构造方式, 此方法不建议再使用")]
 		public void SetAuthCode(int authCode)
 		{
-			Common.AuthCode = authCode;
+			_authCode = authCode;
 		}
 		/// <summary>
 		/// 获取App验证码
 		/// </summary>
 		/// <returns></returns>
+		[Obsolete("更改了该类的构造方式, 此方法不建议再使用")]
 		public int GetAuthCode()
 		{
-			return Common.AuthCode;
+			return _authCode;
 		}
 		/// <summary>
 		/// 获取匿名信息

@@ -41,7 +41,7 @@ namespace Native.Csharp.App.Event
 			//本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
 			//这里处理消息
 
-			EnApi.Instance.SendPrivateMessage(e.FromQQ, EnApi.Instance.CqCode_At(e.FromQQ) + "你发送了这样的消息:" + e.Msg);
+			Common.CqApi.SendPrivateMessage(e.FromQQ, Common.CqApi.CqCode_At(e.FromQQ) + "你发送了这样的消息:" + e.Msg);
 
 			e.Handled = true;
 			// e.Handled 相当于 原酷Q事件的返回值

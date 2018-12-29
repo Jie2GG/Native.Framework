@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navite.Csharp.Tool", "Navit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.UI", "Native.Csharp.UI\Native.Csharp.UI.csproj", "{85216E2E-ECBB-466C-9F26-B55E8F78BC7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.Sdk", "Native.Csharp.Sdk\Native.Csharp.Sdk.csproj", "{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +29,10 @@ Global
 		{85216E2E-ECBB-466C-9F26-B55E8F78BC7A}.Debug|x86.Build.0 = Debug|x86
 		{85216E2E-ECBB-466C-9F26-B55E8F78BC7A}.Release|x86.ActiveCfg = Release|x86
 		{85216E2E-ECBB-466C-9F26-B55E8F78BC7A}.Release|x86.Build.0 = Release|x86
+		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Debug|x86.ActiveCfg = Debug|x86
+		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Debug|x86.Build.0 = Debug|x86
+		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Release|x86.ActiveCfg = Release|x86
+		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

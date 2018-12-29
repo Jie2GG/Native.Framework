@@ -223,7 +223,7 @@ namespace Native.Csharp.App.Core
 					ReceiveDiscussPrivateMessage(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新私聊类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新私聊类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -242,7 +242,7 @@ namespace Native.Csharp.App.Core
 
 			if (fromQQ == 80000000 && !string.IsNullOrEmpty(fromAnonymous))
 			{
-				args.FromAnonymous = EnApi.Instance.GetAnonymous(fromAnonymous); //获取匿名成员信息
+				args.FromAnonymous = Common.CqApi.GetAnonymous(fromAnonymous); //获取匿名成员信息
 			}
 			else
 			{
@@ -255,7 +255,7 @@ namespace Native.Csharp.App.Core
 					ReceiveGroupMessage(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新群消息类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群消息类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -277,7 +277,7 @@ namespace Native.Csharp.App.Core
 					ReceiveDiscussMessage(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新讨论组消息类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新讨论组消息类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -290,7 +290,7 @@ namespace Native.Csharp.App.Core
 			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.File = EnApi.Instance.GetFile(file);
+			args.File = Common.CqApi.GetFile(file);
 			ReceiveFileUploadMessage(Instance, args);
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
@@ -312,7 +312,7 @@ namespace Native.Csharp.App.Core
 					ReceiveManageIncrease(Instance, args);
 					break;
 				default:
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新管理事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新管理事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -337,7 +337,7 @@ namespace Native.Csharp.App.Core
 					ReceiveMemberRemove(Instance, args);
 					break;
 				default:
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新群成员减少事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群成员减少事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -361,7 +361,7 @@ namespace Native.Csharp.App.Core
 					ReceiveMemberInvitee(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新群成员增加事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群成员增加事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -380,7 +380,7 @@ namespace Native.Csharp.App.Core
 					ReceiveFriendIncrease(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新好友事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新好友事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -401,7 +401,7 @@ namespace Native.Csharp.App.Core
 					ReceiveFriendAdd(Instance, args);
 					break;
 				default:    //其它类型
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新好友添加请求事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新好友添加请求事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
@@ -426,7 +426,7 @@ namespace Native.Csharp.App.Core
 					ReceiveGroupAddInvitee(Instance, args);
 					break;
 				default:
-					EnApi.Instance.AddLoger(LogerLevel.Info, "提示", "新群添加请求事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群添加请求事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return 0;

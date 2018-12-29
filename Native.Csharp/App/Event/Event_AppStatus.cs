@@ -41,7 +41,7 @@ namespace Native.Csharp.App.Event
 			//无论本应用是否被启用，本函数都会在酷Q启动后执行一次，请在这里执行插件初始化代码。
 			//请务必尽快返回本子程序，否则会卡住其他插件以及主程序的加载。
 
-			Common.AppDirectory = EnApi.Instance.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
+			Common.AppDirectory = Common.CqApi.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
 
 
 			//返回如：D:\CoolQ\app\com.example.demo\

@@ -10,6 +10,7 @@ namespace Navite.Csharp.Tool
 	/// <summary>
 	/// Ini配置文件
 	/// </summary>
+	[Obsolete("请改用 IniConfig ")]
 	public class IniFile
 	{
 		#region --字段--
