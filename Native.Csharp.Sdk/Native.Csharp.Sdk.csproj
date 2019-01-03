@@ -61,11 +61,5 @@
     <Compile Include="Cqp\Other\UnPack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Navite.Csharp.Tool\Native.Csharp.Tool.csproj">
-      <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>
-      <Name>Native.Csharp.Tool</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
