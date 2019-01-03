@@ -106,6 +106,10 @@
       <Project>{797eaebc-4d5b-4eef-87f4-a508fda2cb6a}</Project>
       <Name>Native.Csharp.Sdk</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Native.Csharp.Tool\Native.Csharp.Tool.csproj">
+      <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>
+      <Name>Native.Csharp.Tool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Native.Csharp.UI\Native.Csharp.UI.csproj">
       <Project>{85216e2e-ecbb-466c-9f26-b55e8f78bc7a}</Project>
       <Name>Native.Csharp.UI</Name>
