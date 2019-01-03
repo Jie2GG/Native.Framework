@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 
-namespace Navite.Csharp.Tool.Http
+namespace Native.Csharp.Tool.Http
 {
 	/// <summary>
 	/// HttpWebClient 操作类

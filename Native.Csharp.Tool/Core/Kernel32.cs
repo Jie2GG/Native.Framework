@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Navite.Csharp.Tool.Core
+namespace Native.Csharp.Tool.Core
 {
 	internal static class Kernel32
 	{

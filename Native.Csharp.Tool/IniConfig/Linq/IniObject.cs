@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Navite.Csharp.Tool.IniConfig.Linq
+namespace Native.Csharp.Tool.IniConfig.Linq
 {
 	/// <summary>
 	/// 用于描述 Ini 配置项的类

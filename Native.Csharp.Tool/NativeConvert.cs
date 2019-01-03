@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Navite.Csharp.Tool
+namespace Native.Csharp.Tool
 {
 	/// <summary>
 	/// Native 用于数据转换的工具类
