@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp", "Native.Csharp\Native.Csharp.csproj", "{8BC2C861-D30C-425B-98A7-812792D2017D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navite.Csharp.Tool", "Navite.Csharp.Tool\Navite.Csharp.Tool.csproj", "{9DB94CBF-6843-4EA3-9241-769124416FE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.Tool", "Navite.Csharp.Tool\Native.Csharp.Tool.csproj", "{9DB94CBF-6843-4EA3-9241-769124416FE9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.UI", "Native.Csharp.UI\Native.Csharp.UI.csproj", "{85216E2E-ECBB-466C-9F26-B55E8F78BC7A}"
 EndProject

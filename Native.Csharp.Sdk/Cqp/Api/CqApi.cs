@@ -2,7 +2,7 @@
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Model;
 using Native.Csharp.Sdk.Cqp.Other;
-using Navite.Csharp.Tool;
+using Native.Csharp.Tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;

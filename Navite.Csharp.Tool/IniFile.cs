@@ -1,11 +1,11 @@
-﻿using Navite.Csharp.Tool.Core;
+﻿using Native.Csharp.Tool.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Navite.Csharp.Tool
+namespace Native.Csharp.Tool
 {
 	/// <summary>
 	/// Ini配置文件
