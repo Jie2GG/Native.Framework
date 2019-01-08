@@ -567,11 +567,11 @@ namespace Native.Csharp.Tool.Http
 		{
 			if (oldCookies == null)
 			{
-				throw new ArgumentNullException(nameof(oldCookies));
+				throw new ArgumentNullException("oldCookies");
 			}
 			if (newCookies == null)
 			{
-				throw new ArgumentNullException(nameof(newCookies));
+				throw new ArgumentNullException("newCookies");
 			}
 
 			for (int i = 0; i < newCookies.Count; i++)
