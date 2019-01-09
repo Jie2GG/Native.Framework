@@ -6,6 +6,10 @@
 > 4. 支持酷Q应用打包
 > 5. 支持代码实时调试
 
+## Native.SDK 项目结构
+
+![SDK结构](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Sdk结构.png "SDK结构") <br/>
+
 ## Native.SDK 开发环境
 
 >1. Visual Studio 2012 或更高版本
