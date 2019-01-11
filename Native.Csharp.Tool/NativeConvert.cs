@@ -34,23 +34,6 @@ namespace Native.Csharp.Tool
 		}
 
 		/// <summary>
-		/// 获取字符串的 IntPtr 实例对象
-		/// </summary>
-		/// <param name="value">将转换的字符串</param>
-		/// <param name="encoding">目标编码格式</param>
-		/// <returns></returns>
-		public static IntPtr ToStringPtr (string value, Encoding encoding = null)
-		{
-			if (encoding == null)
-			{
-				encoding = Encoding.Default;
-			}
-			byte[] buffer = encoding.GetBytes (value);
-			GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
-			return hobj.AddrOfPinnedObject ();
-		}
-
-		/// <summary>
 		/// 获取指定 IntPtr 实例中的字符串
 		/// </summary>
 		/// <param name="strPtr">字符串的 IntPtr 对象</param>
@@ -67,5 +50,24 @@ namespace Native.Csharp.Tool
 			Marshal.FreeHGlobal (strPtr);
 			return encoding.GetString (buffer);
 		}
+
+		#region --暂时弃用--
+		///// <summary>
+		///// 获取字符串的 IntPtr 实例对象
+		///// </summary>
+		///// <param name="value">将转换的字符串</param>
+		///// <param name="encoding">目标编码格式</param>
+		///// <returns></returns>
+		//private static IntPtr ToStringPtr (string value, Encoding encoding = null)
+		//{
+		//	if (encoding == null)
+		//	{
+		//		encoding = Encoding.Default;
+		//	}
+		//	byte[] buffer = encoding.GetBytes (value);
+		//	GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
+		//	return hobj.AddrOfPinnedObject ();
+		//} 
+		#endregion
 	}
 }
