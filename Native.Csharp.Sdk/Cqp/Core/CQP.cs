@@ -14,13 +14,13 @@ namespace Native.Csharp.Sdk.Cqp.Core
 
 		#region --CqpApi--
 		[DllImport(DllName, EntryPoint = "CQ_sendPrivateMsg")]
-		public static extern int CQ_sendPrivateMsg(int authCode, long qqId, IntPtr msg);
+		public static extern int CQ_sendPrivateMsg(int authCode, long qqId, byte[] msg);
 
 		[DllImport(DllName, EntryPoint = "CQ_sendGroupMsg")]
-		public static extern int CQ_sendGroupMsg(int authCode, long groupId, IntPtr msg);
+		public static extern int CQ_sendGroupMsg(int authCode, long groupId, byte[] msg);
 
 		[DllImport(DllName, EntryPoint = "CQ_sendDiscussMsg")]
-		public static extern int CQ_sendDiscussMsg(int authCode, long discussId, IntPtr msg);
+		public static extern int CQ_sendDiscussMsg(int authCode, long discussId, byte[] msg);
 
 		[DllImport(DllName, EntryPoint = "CQ_deleteMsg")]
 		public static extern int CQ_deleteMsg(int authCode, long msgId);
@@ -56,19 +56,19 @@ namespace Native.Csharp.Sdk.Cqp.Core
 		public static extern int CQ_setGroupAdmin(int authCode, long groupId, long qqId, bool isSet);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupSpecialTitle")]
-		public static extern int CQ_setGroupSpecialTitle(int authCode, long groupId, long qqId, IntPtr title, long durationTime);
+		public static extern int CQ_setGroupSpecialTitle(int authCode, long groupId, long qqId, byte[] title, long durationTime);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupWholeBan")]
 		public static extern int CQ_setGroupWholeBan(int authCode, long groupId, bool isOpen);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupAnonymousBan")]
-		public static extern int CQ_setGroupAnonymousBan(int authCode, long groupId, IntPtr anonymous, long banTime);
+		public static extern int CQ_setGroupAnonymousBan(int authCode, long groupId, byte[] anonymous, long banTime);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupAnonymous")]
 		public static extern int CQ_setGroupAnonymous(int authCode, long groupId, bool isOpen);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupCard")]
-		public static extern int CQ_setGroupCard(int authCode, long groupId, long qqId, IntPtr newCard);
+		public static extern int CQ_setGroupCard(int authCode, long groupId, long qqId, byte[] newCard);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupLeave")]
 		public static extern int CQ_setGroupLeave(int authCode, long groupId, bool isDisband);
@@ -77,16 +77,16 @@ namespace Native.Csharp.Sdk.Cqp.Core
 		public static extern int CQ_setDiscussLeave(int authCode, long disscussId);
 
 		[DllImport(DllName, EntryPoint = "CQ_setFriendAddRequest")]
-		public static extern int CQ_setFriendAddRequest(int authCode, string identifying, int requestType, IntPtr appendMsg);
+		public static extern int CQ_setFriendAddRequest(int authCode, string identifying, int requestType, byte[] appendMsg);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupAddRequestV2")]
-		public static extern int CQ_setGroupAddRequestV2(int authCode, string identifying, int requestType, int responseType, IntPtr appendMsg);
+		public static extern int CQ_setGroupAddRequestV2(int authCode, string identifying, int requestType, int responseType, byte[] appendMsg);
 
 		[DllImport(DllName, EntryPoint = "CQ_addLog")]
-		public static extern int CQ_addLog(int authCode, int priority, IntPtr type, IntPtr Msg);
+		public static extern int CQ_addLog(int authCode, int priority, string type, byte[] Msg);
 
 		[DllImport(DllName, EntryPoint = "CQ_setFatal")]
-		public static extern int CQ_setFatal(int authCode, IntPtr errorMsg);
+		public static extern int CQ_setFatal(int authCode, byte[] errorMsg);
 
 		[DllImport(DllName, EntryPoint = "CQ_getGroupMemberInfoV2")]
 		public static extern string CQ_getGroupMemberInfoV2(int authCode, long groudId, long qqId, bool isCache);

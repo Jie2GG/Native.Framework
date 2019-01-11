@@ -237,7 +237,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <param name="message">消息内容</param>
 		public int SendGroupMessage (long groupId, string message)
 		{
-			return CQP.CQ_sendGroupMsg (_authCode, groupId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendGroupMsg (_authCode, groupId, Encoding.GetEncoding ("GB18030").GetBytes (message));
 		}
 		/// <summary>
 		/// 发送私聊消息
@@ -247,7 +247,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendPrivateMessage (long qqId, string message)
 		{
-			return CQP.CQ_sendPrivateMsg (_authCode, qqId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendPrivateMsg (_authCode, qqId, Encoding.GetEncoding ("GB18030").GetBytes (message));
 		}
 		/// <summary>
 		/// 发送讨论组消息
@@ -257,7 +257,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SendDiscussMessage (long discussId, string message)
 		{
-			return CQP.CQ_sendDiscussMsg (_authCode, discussId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendDiscussMsg (_authCode, discussId, Encoding.GetEncoding ("GB18030").GetBytes (message));
 		}
 		/// <summary>
 		/// 发送赞
@@ -490,7 +490,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddLoger (LogerLevel level, string type, string content)
 		{
-			return CQP.CQ_addLog (_authCode, (int)level, NativeConvert.ToStringPtr (type, Encoding.GetEncoding ("GB18030")), NativeConvert.ToStringPtr (content, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_addLog (_authCode, (int)level, type, Encoding.GetEncoding ("GB18030").GetBytes (content));
 		}
 		/// <summary>
 		/// 添加致命错误提示
@@ -499,7 +499,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int AddFatalError (string message)
 		{
-			return CQP.CQ_setFatal (_authCode, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setFatal (_authCode, Encoding.GetEncoding ("GB18030").GetBytes (message));
 		}
 		#endregion
 
@@ -517,7 +517,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, NativeConvert.ToStringPtr (appendMsg, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, Encoding.GetEncoding ("GB18030").GetBytes (appendMsg));
 		}
 		/// <summary>
 		/// 置群添加请求
@@ -533,7 +533,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, NativeConvert.ToStringPtr (appendMsg, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, Encoding.GetEncoding ("GB18030").GetBytes (appendMsg));
 		}
 		#endregion
 
@@ -552,7 +552,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 				time = TimeSpan.Zero;
 			}
 
-			return CQP.CQ_setGroupAnonymousBan (_authCode, groupId, NativeConvert.ToStringPtr (anonymous, Encoding.GetEncoding ("GB18030")), (long)time.TotalSeconds);
+			return CQP.CQ_setGroupAnonymousBan (_authCode, groupId, Encoding.GetEncoding ("GB18030").GetBytes (anonymous), (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置群员禁言
@@ -588,7 +588,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public int SetGroupMemberNewCard (long groupId, long qqId, string newNick)
 		{
-			return CQP.CQ_setGroupCard (_authCode, groupId, qqId, NativeConvert.ToStringPtr (newNick, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setGroupCard (_authCode, groupId, qqId, Encoding.GetEncoding ("GB18030").GetBytes (newNick));
 		}
 		/// <summary>
 		/// 置群成员专属头衔
@@ -604,7 +604,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				time = new TimeSpan (-10000000);     //-1秒
 			}
-			return CQP.CQ_setGroupSpecialTitle (_authCode, groupId, qqId, NativeConvert.ToStringPtr (specialTitle, Encoding.GetEncoding ("GB18030")), (long)time.TotalSeconds);
+			return CQP.CQ_setGroupSpecialTitle (_authCode, groupId, qqId, Encoding.GetEncoding ("GB18030").GetBytes (specialTitle), (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置群管理员
