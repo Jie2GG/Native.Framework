@@ -51,8 +51,8 @@
 ## Native.SDK 更新日志
 > 2019年01月11日 版本: V2.3.2
 
-	1. 修复 传递给 酷Q 的消息编码不正确导致的许多文字在 QQ 无法正常显示的问题
-	2. 修复 酷Q 传递给 SDK 的消息由于编码不正确可能导致的开发问题
+	1. 修复 传递给 酷Q 的消息编码不正确导致的许多文字在 QQ 无法正常显示的问题 感谢 @kotoneme[https://github.com/kotoneme], @gif8512 酷Q论坛[https://cqp.cc/home.php?mod=space&uid=454408&do=profile&from=space]
+	2. 修复 酷Q 传递给 SDK 的消息由于编码不正确可能导致的开发问题 感谢 @kotoneme[https://github.com/kotoneme], @gif8512 酷Q论坛[https://cqp.cc/home.php?mod=space&uid=454408&do=profile&from=space]
 
 > 2019年01月08日 版本: V2.3.1
 
