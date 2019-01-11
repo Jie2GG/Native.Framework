@@ -16,7 +16,7 @@ namespace Native.Csharp.App.Core
 	public class LibExport
 	{
 		#region --字段--
-		private static Lazy<LibExport> _instance = new Lazy<LibExport>(() => new LibExport());
+		private static Lazy<LibExport> _instance = new Lazy<LibExport> (() => new LibExport ());
 		#endregion
 
 		#region --属性--
@@ -30,7 +30,7 @@ namespace Native.Csharp.App.Core
 		/// <summary>
 		/// 隐藏构造函数
 		/// </summary>
-		private LibExport()
+		private LibExport ()
 		{ }
 		#endregion
 
@@ -154,95 +154,95 @@ namespace Native.Csharp.App.Core
 		#endregion
 
 		#region --导出方法--
-		[DllExport(ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]
-		private static string AppInfo()
+		[DllExport (ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]
+		private static string AppInfo ()
 		{
-			AppInfoEventArgs args = new AppInfoEventArgs();
-			AppInfoEventHandler(Instance, args);
-			return string.Format("{0},{1}", args.ApiVer, args.AppId);
+			AppInfoEventArgs args = new AppInfoEventArgs ();
+			AppInfoEventHandler (Instance, args);
+			return string.Format ("{0},{1}", args.ApiVer, args.AppId);
 		}
 
-		[DllExport(ExportName = "Initialize", CallingConvention = CallingConvention.StdCall)]
-		private static int Initialize(int authCode)
+		[DllExport (ExportName = "Initialize", CallingConvention = CallingConvention.StdCall)]
+		private static int Initialize (int authCode)
 		{
-			AppInitializeEventArgs args = new AppInitializeEventArgs();
+			AppInitializeEventArgs args = new AppInitializeEventArgs ();
 			args.AuthCode = authCode;
-			AppInitializeEventHandler(Instance, args);
+			AppInitializeEventHandler (Instance, args);
 			return 0;
 		}
 
-		[DllExport(ExportName = "_eventStartup", CallingConvention = CallingConvention.StdCall)]
-		private static int EventStartUp()
+		[DllExport (ExportName = "_eventStartup", CallingConvention = CallingConvention.StdCall)]
+		private static int EventStartUp ()
 		{
-			CqStartup(Instance, new EventArgs());
+			CqStartup (Instance, new EventArgs ());
 			return 0;
 		}
 
-		[DllExport(ExportName = "_eventExit", CallingConvention = CallingConvention.StdCall)]
-		private static int EventExit()
+		[DllExport (ExportName = "_eventExit", CallingConvention = CallingConvention.StdCall)]
+		private static int EventExit ()
 		{
-			CqExit(Instance, new EventArgs());
+			CqExit (Instance, new EventArgs ());
 			return 0;
 		}
 
-		[DllExport(ExportName = "_eventEnable", CallingConvention = CallingConvention.StdCall)]
-		private static int EventEnable()
+		[DllExport (ExportName = "_eventEnable", CallingConvention = CallingConvention.StdCall)]
+		private static int EventEnable ()
 		{
-			AppEnable(Instance, new EventArgs());
+			AppEnable (Instance, new EventArgs ());
 			return 0;
 		}
 
-		[DllExport(ExportName = "_eventDisable", CallingConvention = CallingConvention.StdCall)]
-		private static int EventDisable()
+		[DllExport (ExportName = "_eventDisable", CallingConvention = CallingConvention.StdCall)]
+		private static int EventDisable ()
 		{
-			AppDisable(Instance, new EventArgs());
+			AppDisable (Instance, new EventArgs ());
 			return 0;
 		}
 
-		[DllExport(ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventPrivateMsg(int subType, int msgId, long fromQQ, string msg, int font)
+		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
+		private static int EventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
-			PrivateMessageEventArgs args = new PrivateMessageEventArgs();
+			PrivateMessageEventArgs args = new PrivateMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 11:    //来自好友
-					ReceiveFriendMessage(Instance, args);
+					ReceiveFriendMessage (Instance, args);
 					break;
 				case 1:     //来自在线状态
-					ReceiveQnlineStatusMessage(Instance, args);
+					ReceiveQnlineStatusMessage (Instance, args);
 					break;
 				case 2:     //来自群
-					ReceiveGroupPrivateMessage(Instance, args);
+					ReceiveGroupPrivateMessage (Instance, args);
 					break;
 				case 3:     //来自讨论组
-					ReceiveDiscussPrivateMessage(Instance, args);
+					ReceiveDiscussPrivateMessage (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新私聊类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新私聊类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventGroupMsg(int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, int font)
+		[DllExport (ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]
+		private static int EventGroupMsg (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)
 		{
-			GroupMessageEventArgs args = new GroupMessageEventArgs();
+			GroupMessageEventArgs args = new GroupMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 
-			if (fromQQ == 80000000 && !string.IsNullOrEmpty(fromAnonymous))
+			if (fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous))
 			{
-				args.FromAnonymous = Common.CqApi.GetAnonymous(fromAnonymous); //获取匿名成员信息
+				args.FromAnonymous = Common.CqApi.GetAnonymous (fromAnonymous); //获取匿名成员信息
 			}
 			else
 			{
@@ -252,77 +252,77 @@ namespace Native.Csharp.App.Core
 			switch (subType)
 			{
 				case 1:     //群消息
-					ReceiveGroupMessage(Instance, args);
+					ReceiveGroupMessage (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群消息类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新群消息类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventDiscussMsg(int subType, int msgId, long fromDiscuss, long fromQQ, string msg, int font)
+		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]
+		private static int EventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)
 		{
-			DiscussMessageEventArgs args = new DiscussMessageEventArgs();
+			DiscussMessageEventArgs args = new DiscussMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromDiscuss = fromDiscuss;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 1:     //群消息
-					ReceiveDiscussMessage(Instance, args);
+					ReceiveDiscussMessage (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新讨论组消息类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新讨论组消息类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]
-		private static int EventGroupUpload(int subType, int sendTime, long fromGroup, long fromQQ, string file)
+		[DllExport (ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]
+		private static int EventGroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
-			FileUploadMessageEventArgs args = new FileUploadMessageEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			FileUploadMessageEventArgs args = new FileUploadMessageEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.File = Common.CqApi.GetFile(file);
-			ReceiveFileUploadMessage(Instance, args);
+			args.File = Common.CqApi.GetFile (file);
+			ReceiveFileUploadMessage (Instance, args);
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]
-		private static int EventSystemGroupAdmin(int subType, int sendTime, long fromGroup, long beingOperateQQ)
+		[DllExport (ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]
+		private static int EventSystemGroupAdmin (int subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
-			GroupManageAlterEventArgs args = new GroupManageAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			GroupManageAlterEventArgs args = new GroupManageAlterEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.BeingOperateQQ = beingOperateQQ;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 1:     //被取消管理员
-					ReceiveManageDecrease(Instance, args);
+					ReceiveManageDecrease (Instance, args);
 					break;
 				case 2:     //被设置管理员
-					ReceiveManageIncrease(Instance, args);
+					ReceiveManageIncrease (Instance, args);
 					break;
 				default:
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新管理事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新管理事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]
-		private static int EventSystemGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
+		[DllExport (ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]
+		private static int EventSystemGroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -331,23 +331,23 @@ namespace Native.Csharp.App.Core
 			{
 				case 1:     //群员离开
 					fromQQ = beingOperateQQ;    //操作者QQ此时为离开者
-					ReceiveMemberLeave(Instance, args);
+					ReceiveMemberLeave (Instance, args);
 					break;
 				case 2:     //群员被踢
-					ReceiveMemberRemove(Instance, args);
+					ReceiveMemberRemove (Instance, args);
 					break;
 				default:
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群成员减少事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新群成员减少事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]
-		private static int EventSystemGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
+		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]
+		private static int EventSystemGroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -355,78 +355,78 @@ namespace Native.Csharp.App.Core
 			switch (subType)
 			{
 				case 1:     //管理员已同意
-					ReceiveMemberJoin(Instance, args);
+					ReceiveMemberJoin (Instance, args);
 					break;
 				case 2:     //管理员邀请
-					ReceiveMemberInvitee(Instance, args);
+					ReceiveMemberInvitee (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群成员增加事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新群成员增加事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]
-		private static int EventFriendAdd(int subType, int sendTime, long fromQQ)
+		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]
+		private static int EventFriendAdd (int subType, int sendTime, long fromQQ)
 		{
-			FriendIncreaseEventArgs args = new FriendIncreaseEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			FriendIncreaseEventArgs args = new FriendIncreaseEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromQQ = fromQQ;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 1:     //好友已添加
-					ReceiveFriendIncrease(Instance, args);
+					ReceiveFriendIncrease (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新好友事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新好友事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
-		private static int EventRequestAddFriend(int subType, int sendTime, long fromQQ, string msg, string responseFlag)
+		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
+		private static int EventRequestAddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromQQ = fromQQ;
-			args.AppendMsg = msg;
+			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			args.Tag = responseFlag;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 1:     //好友添加请求
-					ReceiveFriendAdd(Instance, args);
+					ReceiveFriendAdd (Instance, args);
 					break;
 				default:    //其它类型
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新好友添加请求事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新好友添加请求事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return (int)(args.Handled ? MessageHanding.Intercept : MessageHanding.Ignored); //如果处理过就截断消息
 		}
 
-		[DllExport(ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
-		private static int EventRequestAddGroup(int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag)
+		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
+		private static int EventRequestAddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs();
-			args.SendTime = NativeConvert.FotmatUnixTime(sendTime.ToString());
+			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs ();
+			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.AppendMsg = msg;
+			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			args.Tag = responseFlag;
 			args.Handled = false;
 			switch (subType)
 			{
 				case 1:     //他人申请加群
-					ReceiveGroupAddApply(Instance, args);
+					ReceiveGroupAddApply (Instance, args);
 					break;
 				case 2:     //登录号受邀入群
-					ReceiveGroupAddInvitee(Instance, args);
+					ReceiveGroupAddInvitee (Instance, args);
 					break;
 				default:
-					Common.CqApi.AddLoger(LogerLevel.Info, "提示", "新群添加请求事件类型, 请反馈给开发者或自行添加!");
+					Common.CqApi.AddLoger (LogerLevel.Info, "提示", "新群添加请求事件类型, 请反馈给开发者或自行添加!");
 					break;
 			}
 			return 0;
