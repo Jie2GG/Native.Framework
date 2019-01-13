@@ -47,8 +47,13 @@
 > 1. ~~对于 "EnApi.GetMsgFont" 方法, 暂时无法根据酷Q回传的指针获取字体信息, 暂时无法使用~~ <font color=#FF0000>(由于酷Q不解析此参数, 弃用)</font>
 > 2. ~~对于 "HttpHelper.GetData" 方法, 抛出异常, 暂时无法使用~~ <font color=#FF0000>(已经修复, 但是封装了新的HTTP类, 弃用)</font>
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
+> 4. 对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式 <font color=#FF0000>(待修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月14日 版本: V2.3.3
+	
+	1. 还原 酷Q消息回调部分的导出函数的字符串指针 IntPtr -> String 类型, 修复此问题导致 酷Q 直接闪退
+	
 > 2019年01月11日 版本: V2.3.2
 
 	1. 修复 传递给 酷Q 的消息编码不正确导致的许多文字在 QQ 无法正常显示的问题 感谢 @kotoneme[https://github.com/kotoneme], @gif8512 酷Q论坛[https://cqp.cc/home.php?mod=space&uid=454408&do=profile&from=space]
