@@ -24,10 +24,24 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		#endregion
 
 		#region --属性--
+
+		//public IniSection this[string sectionName]
+		//{
+		//	get
+		//	{
+		//		IEnumerable<IniSection> sections = this.Where (x => x.Name == sectionName);
+		//		if (sections.Count () == 0)
+		//		{
+		//			throw new KeyNotFoundException (string.Format ("找不到名为 \"{0}\" 的项!", sectionName));
+		//		}
+		//	}
+		//}
+
 		/// <summary>
 		/// 获取或设置用于读取或保存 Ini 配置项的 <see cref="System.Text.Encoding"/> 实例, 默认: ANSI
 		/// </summary>
 		public Encoding Encoding { get { return this._encoding; } set { this._encoding = value; } }
+
 		/// <summary>
 		/// 获取用于解析 Ini 配置项的 Regex 对象数组
 		/// </summary>

@@ -39,35 +39,36 @@ namespace Native.Csharp.Tool
 		/// <param name="strPtr">字符串的 IntPtr 对象</param>
 		/// <param name="encoding">目标编码格式</param>
 		/// <returns></returns>
+		[Obsolete("转换不正常, 待修复")]
 		public static string ToPtrString (IntPtr strPtr, Encoding encoding = null)
 		{
 			if (encoding == null)
 			{
 				encoding = Encoding.Default;
 			}
-			string uniStr = Marshal.PtrToStringUni (strPtr);
-			byte[] buffer = Encoding.Unicode.GetBytes (uniStr);
+
+			string tempStr = Marshal.PtrToStringUni (strPtr);
+			byte[] buffer = Encoding.Unicode.GetBytes (tempStr);
+			tempStr = encoding.GetString (buffer);
 			Marshal.FreeHGlobal (strPtr);
-			return encoding.GetString (buffer);
+			return tempStr;
 		}
 
-		#region --暂时弃用--
-		///// <summary>
-		///// 获取字符串的 IntPtr 实例对象
-		///// </summary>
-		///// <param name="value">将转换的字符串</param>
-		///// <param name="encoding">目标编码格式</param>
-		///// <returns></returns>
-		//private static IntPtr ToStringPtr (string value, Encoding encoding = null)
-		//{
-		//	if (encoding == null)
-		//	{
-		//		encoding = Encoding.Default;
-		//	}
-		//	byte[] buffer = encoding.GetBytes (value);
-		//	GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
-		//	return hobj.AddrOfPinnedObject ();
-		//} 
-		#endregion
+		/// <summary>
+		/// 获取字符串的 IntPtr 实例对象
+		/// </summary>
+		/// <param name="value">将转换的字符串</param>
+		/// <param name="encoding">目标编码格式</param>
+		/// <returns></returns>
+		public static IntPtr ToStringPtr (string value, Encoding encoding = null)
+		{
+			if (encoding == null)
+			{
+				encoding = Encoding.Default;
+			}
+			byte[] buffer = encoding.GetBytes (value);
+			GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
+			return hobj.AddrOfPinnedObject ();
+		}
 	}
 }
