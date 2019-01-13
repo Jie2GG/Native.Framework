@@ -13,9 +13,9 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 	/// <summary>
 	/// 用于描述 Ini 配置项节的类
 	/// </summary>
-	[ComVisible(false)]
-	[DebuggerDisplay("Count = {Count}")]
-	[DefaultMember("Item")]
+	[ComVisible (false)]
+	[DebuggerDisplay ("Count = {Count}")]
+	[DefaultMember ("Item")]
 	public class IniSection : Dictionary<string, IniValue>
 	{
 		#region --字段--
@@ -34,7 +34,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// 初始化 IniSection 类的新实例，该实例为空，具有默认的初始容量并为键类型使用默认的相等比较器。
 		/// </summary>
 		/// <param name="name">IniSection 关联的名称</param>
-		public IniSection(string name) : base()
+		public IniSection (string name) : base ()
 		{
 			this._name = name;
 		}
@@ -43,7 +43,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// </summary>
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="capacity">IniSection 可包含的初始元素数。</param>
-		public IniSection(string name, int capacity) : base(capacity)
+		public IniSection (string name, int capacity) : base (capacity)
 		{
 			this._name = name;
 		}
@@ -52,7 +52,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// </summary>
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="comparer">比较键时要使用的 IEqualityComparer 实现，或者为 null，以便为键类型使用默认的 IEqualityComparer。</param>
-		public IniSection(string name, IEqualityComparer<string> comparer) : base(comparer)
+		public IniSection (string name, IEqualityComparer<string> comparer) : base (comparer)
 		{
 			this._name = name;
 		}
@@ -61,7 +61,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// </summary>
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="dictionary">IDictionary&lt;string, IniValue&gt;，它的元素被复制到新 IniSection。</param>
-		public IniSection(string name, IDictionary<string, IniValue> dictionary) : base(dictionary)
+		public IniSection (string name, IDictionary<string, IniValue> dictionary) : base (dictionary)
 		{
 			this._name = name;
 		}
@@ -71,7 +71,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="capacity">IniSection 可包含的初始元素数。</param>
 		/// <param name="comparer">比较键时要使用的 IEqualityComparer&lt;in string&gt;实现，或者为 null，以便为键类型使用默认的 EqualityComparer。</param>
-		public IniSection(string name, int capacity, IEqualityComparer<string> comparer) : base(capacity, comparer)
+		public IniSection (string name, int capacity, IEqualityComparer<string> comparer) : base (capacity, comparer)
 		{
 			this._name = name;
 		}
@@ -81,7 +81,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="dictionary">IDictionary&lt;string, IniValue&gt;，它的元素被复制到新 IniSection。</param>
 		/// <param name="comparer">比较键时要使用的 IEqualityComparer&lt;in string&gt;实现，或者为 null，以便为键类型使用默认的 EqualityComparer。</param>
-		public IniSection(string name, IDictionary<string, IniValue> dictionary, IEqualityComparer<string> comparer) : base(dictionary, comparer)
+		public IniSection (string name, IDictionary<string, IniValue> dictionary, IEqualityComparer<string> comparer) : base (dictionary, comparer)
 		{
 			this._name = name;
 		}
@@ -91,7 +91,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <param name="name">IniSection 关联的名称</param>
 		/// <param name="info">一个 System.Runtime.Serialization.SerializationInfo 对象包含序列化 IniSection 所需的信息。</param>
 		/// <param name="context">一个 System.Runtime.Serialization.StreamingContext 结构包含与 IniSection 关联的序列化流的源和目标。</param>
-		protected IniSection(string name, SerializationInfo info, StreamingContext context) : base(info, context)
+		protected IniSection (string name, SerializationInfo info, StreamingContext context) : base (info, context)
 		{
 			this._name = name;
 		}
@@ -103,135 +103,135 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, bool value)
+		public void Add (string key, bool value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, byte value)
+		public void Add (string key, byte value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, char value)
+		public void Add (string key, char value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, DateTime value)
+		public void Add (string key, DateTime value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, decimal value)
+		public void Add (string key, decimal value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, double value)
+		public void Add (string key, double value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, short value)
+		public void Add (string key, short value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, int value)
+		public void Add (string key, int value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, long value)
+		public void Add (string key, long value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, sbyte value)
+		public void Add (string key, sbyte value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, float value)
+		public void Add (string key, float value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将建和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value, 若此参数为 null, 将用 IniSection.Empty 代替</param>
-		public void Add(string key, string value)
+		public void Add (string key, string value)
 		{
-			this.Add(key, new IniValue(value));
+			this.Add (key, new IniValue (value));
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, ushort value)
+		public void Add (string key, ushort value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, uint value)
+		public void Add (string key, uint value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
 		/// <param name="key">要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</param>
 		/// <param name="value">要添加到 IniSection 结尾处的对象的 Value</param>
-		public void Add(string key, ulong value)
+		public void Add (string key, ulong value)
 		{
-			this.Add(key, value.ToString());
+			this.Add (key, value.ToString ());
 		}
 		#endregion
 	}
