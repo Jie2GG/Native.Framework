@@ -55,7 +55,6 @@ namespace Native.Csharp.Tool
 
 			byte[] buffer = new byte[len];
 			Marshal.Copy (strPtr, buffer, 0, len);
-			Marshal.FreeHGlobal (strPtr);
 			return encoding.GetString (buffer);
 		}
 
