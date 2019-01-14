@@ -10,11 +10,11 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 	/// <summary>
 	/// 用于描述 Ini 配置项的类
 	/// </summary>
-	public class IniObject : List<IniSection>
+	public class IniObject : Dictionary<string, IniSection>
 	{
 		#region --字段--
 		private string _filePath = string.Empty;
-		private Encoding _encoding = Encoding.ASCII;
+		private Encoding _encoding = Encoding.Default;
 		private static readonly Lazy<Regex[]> regices = new Lazy<Regex[]> (() => new Regex[]
 		 {
 			new Regex(@"^\[(.+)\]", RegexOptions.Compiled),					//匹配 节
@@ -24,18 +24,30 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		#endregion
 
 		#region --属性--
-
-		//public IniSection this[string sectionName]
-		//{
-		//	get
-		//	{
-		//		IEnumerable<IniSection> sections = this.Where (x => x.Name == sectionName);
-		//		if (sections.Count () == 0)
-		//		{
-		//			throw new KeyNotFoundException (string.Format ("找不到名为 \"{0}\" 的项!", sectionName));
-		//		}
-		//	}
-		//}
+		/// <summary>
+		/// 根据索引查找读取或设置与指定键关联的值
+		/// </summary>
+		/// <param name="index">键索引</param>
+		/// <returns></returns>
+		public IniSection this[int index]
+		{
+			get
+			{
+				try
+				{
+					return this[this.Keys.ElementAt (index)];
+				}
+				catch { throw; }
+			}
+			set
+			{
+				try
+				{
+					this[this.Keys.ElementAt (index)] = value;
+				}
+				catch { throw; }
+			}
+		}
 
 		/// <summary>
 		/// 获取或设置用于读取或保存 Ini 配置项的 <see cref="System.Text.Encoding"/> 实例, 默认: ANSI
@@ -50,27 +62,46 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 IniObject 类的新实例，该实例为空并且具有默认初始容量。
+		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例为空, 具有默认的初始容量并为键类型使用默认的相等比较器
 		/// </summary>
-		public IniObject () : base ()
+		public IniObject ()
+			: base ()
 		{ }
 		/// <summary>
-		/// 初始化 IniObject 类的新实例，该实例为空并且具有指定的初始容量。
+		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例为空, 具有指定的初始容量并未键类型提供默认的相等比较器
 		/// </summary>
-		/// <param name="capacity">新配置项最初可以存储的元素数。</param>
-		/// <exception cref="ArgumentOutOfRangeException">capacity 小于 0。</exception>
-		public IniObject (int capacity) : base (capacity)
+		/// <param name="capacity"></param>
+		public IniObject (int capacity)
+			: base (capacity)
 		{ }
 		/// <summary>
-		/// 初始化 IniObject 类的新实例，该实例包含从指定集合复制的元素并且具有足够的容量来容纳所复制的元素。
+		/// 初始化 <see cref="IniSection"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{string, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
 		/// </summary>
-		/// <param name="collection">一个集合，其元素被复制到新列表中。</param>
-		/// <exception cref="ArgumentNullException">collection 为 null。</exception>
-		public IniObject (IEnumerable<IniSection> collection) : base (collection)
+		/// <param name="dictionary"><see cref="IDictionary{string, IniSection}"/>, 它的元素被复制到新 <see cref="IniObject"/> </param>
+		public IniObject (IDictionary<string, IniSection> dictionary)
+			: base (dictionary)
 		{ }
 		#endregion
 
 		#region --公开方法--
+		/// <summary>
+		/// 将指定的 <see cref="IniSection"/> 添加到当前 <see cref="IniObject"/> 实例, 并以 <see cref="IniSection.Name"/> 作为键
+		/// </summary>
+		/// <param name="section">要添加到结尾的 <see cref="IniSection"/> 实例</param>
+		public void Add (IniSection section)
+		{
+			base.Add (section.Name, section);
+		}
+
+		/// <summary>
+		/// 创建一个数组, 从 <see cref="IniObject"/>
+		/// </summary>
+		/// <returns>返回当前实例内所有 <see cref="IniSection"/> 的集合</returns>
+		public IniSection[] ToArray ()
+		{
+			return this.Values.ToArray ();
+		}
+
 		/// <summary>
 		/// 将 Ini 配置项保存到指定的文件。 如果存在指定文件，则此方法会覆盖它。
 		/// </summary>
@@ -88,7 +119,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			using (TextWriter textWriter = new StreamWriter (CheckinUri (fileUri), false, this.Encoding))
 			{
-				foreach (IniSection section in this)
+				foreach (IniSection section in this.Values)
 				{
 					textWriter.WriteLine ("[{0}]", section.Name);
 					foreach (KeyValuePair<string, IniValue> pair in section)
@@ -117,7 +148,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <returns>转换成功返回 IniObject 实例对象</returns>
 		public static IniObject Load (Uri fileUri)
 		{
-			return Load (fileUri, Encoding.ASCII);
+			return Load (fileUri, Encoding.Default);
 		}
 
 		/// <summary>
@@ -208,6 +239,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		private static IniObject ParseIni (TextReader textReader)
 		{
 			IniObject iniObj = new IniObject ();
+			string key = string.Empty;
 			while (textReader.Peek () != -1)
 			{
 				string line = textReader.ReadLine ();
@@ -220,18 +252,31 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 						{
 							if (i == 0)
 							{
-								iniObj.Add (new IniSection (match.Groups[1].Value));
+								key = match.Groups[1].Value;
+								iniObj.Add (new IniSection (key));
 								break;
 							}
 							else if (i == 1)
 							{
-								iniObj[iniObj.Count - 1].Add (match.Groups[1].Value.Trim (), match.Groups[2].Value);
+								iniObj[key].Add (match.Groups[1].Value.Trim (), match.Groups[2].Value);
 							}
 						}
 					}
 				}
 			}
 			return iniObj;
+		}
+		#endregion
+
+		#region --重载方法--
+		/// <summary>
+		/// 将指定的键和值添加到 <see cref="IniObject"/> 的结尾处
+		/// </summary>
+		/// <param name="key">此变量无需使用</param>
+		/// <param name="value"></param>
+		public new void Add (string key, IniSection value)
+		{
+			base.Add (value.Name, value);
 		}
 		#endregion
 
@@ -245,7 +290,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			StringBuilder iniString = new StringBuilder ();
 			using (TextWriter textWriter = new StringWriter (iniString))
 			{
-				foreach (IniSection section in this)
+				foreach (IniSection section in this.Values)
 				{
 					textWriter.WriteLine ("[{0}]", section.Name);
 					foreach (KeyValuePair<string, IniValue> pair in section)

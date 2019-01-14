@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Native.Csharp.Tool.Core;
 
 namespace Native.Csharp.Tool
 {
@@ -39,7 +40,6 @@ namespace Native.Csharp.Tool
 		/// <param name="strPtr">字符串的 IntPtr 对象</param>
 		/// <param name="encoding">目标编码格式</param>
 		/// <returns></returns>
-		[Obsolete("转换不正常, 待修复")]
 		public static string ToPtrString (IntPtr strPtr, Encoding encoding = null)
 		{
 			if (encoding == null)
@@ -47,11 +47,16 @@ namespace Native.Csharp.Tool
 				encoding = Encoding.Default;
 			}
 
-			string tempStr = Marshal.PtrToStringUni (strPtr);
-			byte[] buffer = Encoding.Unicode.GetBytes (tempStr);
-			tempStr = encoding.GetString (buffer);
+			int len = Kernel32.LstrlenA (strPtr);   //获取指针中数据的长度
+			if (len == 0)
+			{
+				return string.Empty;
+			}
+
+			byte[] buffer = new byte[len];
+			Marshal.Copy (strPtr, buffer, 0, len);
 			Marshal.FreeHGlobal (strPtr);
-			return tempStr;
+			return encoding.GetString (buffer);
 		}
 
 		/// <summary>

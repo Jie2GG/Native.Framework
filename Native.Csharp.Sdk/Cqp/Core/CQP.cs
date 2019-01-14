@@ -44,7 +44,7 @@ namespace Native.Csharp.Sdk.Cqp.Core
 		public static extern long CQ_getLoginQQ(int authCode);
 
 		[DllImport(DllName, EntryPoint = "CQ_getLoginNick")]
-		public static extern string CQ_getLoginNick(int authCode);
+		public static extern IntPtr CQ_getLoginNick(int authCode);
 
 		[DllImport(DllName, EntryPoint = "CQ_setGroupKick")]
 		public static extern int CQ_setGroupKick(int authCode, long groupId, long qqId, bool refuses);
