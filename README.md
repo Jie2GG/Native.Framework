@@ -50,6 +50,14 @@
 > 4. 对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式 <font color=#FF0000>(待修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月14日 版本: V2.3.4
+
+	1. 修改 导出给酷Q的回调函数, 消息参数类型为 IntPtr 
+	2. 修复 获取 酷Q GB18030 字符串, 转码异常的问题
+	3. 修改 IniObject 类的继承类由 List<T> 转换为 Dictionary<TKey, TValue>
+	4. 新增 IniObject 类的 string 类型索引器
+	5. 新增 IniObject 类的 ToArray() 方法, 将返回一个 IniSection[]
+
 > 2019年01月14日 版本: V2.3.3
 	
 	1. 还原 酷Q消息回调部分的导出函数的字符串指针 IntPtr -> String 类型, 修复此问题导致 酷Q 直接闪退
