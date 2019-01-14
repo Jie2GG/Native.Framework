@@ -200,12 +200,12 @@ namespace Native.Csharp.App.Core
 		}
 
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventPrivateMsg (int subType, int msgId, long fromQQ, string msg, int font)
+		private static int EventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
 			PrivateMessageEventArgs args = new PrivateMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
@@ -230,13 +230,13 @@ namespace Native.Csharp.App.Core
 		}
 
 		[DllExport (ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventGroupMsg (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, int font)
+		private static int EventGroupMsg (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)
 		{
 			GroupMessageEventArgs args = new GroupMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 
@@ -262,13 +262,13 @@ namespace Native.Csharp.App.Core
 		}
 
 		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]
-		private static int EventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, string msg, int font)
+		private static int EventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)
 		{
 			DiscussMessageEventArgs args = new DiscussMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromDiscuss = fromDiscuss;
 			args.FromQQ = fromQQ;
-			args.Msg = msg;
+			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			//args.Font = font;
 			args.Handled = false;
 			switch (subType)
@@ -387,12 +387,12 @@ namespace Native.Csharp.App.Core
 		}
 
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
-		private static int EventRequestAddFriend (int subType, int sendTime, long fromQQ, string msg, string responseFlag)
+		private static int EventRequestAddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
 			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromQQ = fromQQ;
-			args.AppendMsg = msg;
+			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			args.Tag = responseFlag;
 			args.Handled = false;
 			switch (subType)
@@ -408,13 +408,13 @@ namespace Native.Csharp.App.Core
 		}
 
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
-		private static int EventRequestAddGroup (int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag)
+		private static int EventRequestAddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
 			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs ();
 			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.AppendMsg = msg;
+			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
 			args.Tag = responseFlag;
 			args.Handled = false;
 			switch (subType)

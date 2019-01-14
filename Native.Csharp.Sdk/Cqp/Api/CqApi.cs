@@ -305,7 +305,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// <returns></returns>
 		public string GetLgoinNick ()
 		{
-			return CQP.CQ_getLoginNick (_authCode);
+			return NativeConvert.ToPtrString (CQP.CQ_getLoginNick (_authCode));
 		}
 		/// <summary>
 		/// 取应用目录
