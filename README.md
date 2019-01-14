@@ -56,7 +56,9 @@
 	2. 修复 获取 酷Q GB18030 字符串, 转码异常的问题
 	3. 修改 IniObject 类的继承类由 List<T> 转换为 Dictionary<TKey, TValue>
 	4. 新增 IniObject 类的 string 类型索引器
-	5. 新增 IniObject 类的 ToArray() 方法, 将返回一个 IniSection[]
+	5. 新增 IniObject 类的 Add(IniSection) 方法, 默认以 IniSection.Name 作为键
+	6. 新增 IniObject 类的 ToArray() 方法, 将返回一个 IniSection[]
+	7. 重载 IniObject 类的 Add(string, IniSection) 方法, 无效化 string 参数, 默认以 IniSection.Name 作为键
 
 > 2019年01月14日 版本: V2.3.3
 	
