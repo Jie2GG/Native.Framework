@@ -52,7 +52,7 @@
 ## Native.SDK 更新日志
 > 2019年01月19日 版本: V2.3.5
 
-	1. 新增 HttpWebClient 类针对 .Net Framework 4.0 的 https 的完整验证协议
+	1. 新增 HttpWebClient 类针对 .Net Framework 4.0 的 https 的完整验证协议 感谢 @ycxYI[https://github.com/ycxYI]
 
 > 2019年01月14日 版本: V2.3.4
 
@@ -66,7 +66,7 @@
 
 > 2019年01月14日 版本: V2.3.3
 	
-	1. 还原 酷Q消息回调部分的导出函数的字符串指针 IntPtr -> String 类型, 修复此问题导致 酷Q 直接闪退 感谢 @ycxYI[https://github.com/ycxYI]
+	1. 还原 酷Q消息回调部分的导出函数的字符串指针 IntPtr -> String 类型, 修复此问题导致 酷Q 直接闪退
 	
 > 2019年01月11日 版本: V2.3.2
 
