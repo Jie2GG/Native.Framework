@@ -36,7 +36,8 @@
 ## Native.SDK 常见问题
 
 > 1. 关于 "Fody.WeavingTask" 任务意外失败.
-	1. 由于不知道为啥, 下载后的文件 "FodyIsolated.dll" (位于: packages\Fody2.0.0) 文件处于锁定状态, 请解锁该文件即可正常编译
+
+	由于不知道为啥, 下载后的文件 "FodyIsolated.dll" (位于: packages\Fody2.0.0) 文件处于锁定状态, 请解锁该文件即可正常编译
 
 ## Native.SDK 已知问题
 	
