@@ -50,6 +50,10 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月19日 版本: V2.3.6
+
+	1. 修复 IniObject 类针对解析过程中, 遇到 Value 中包含 "=", 从而导致匹配到的 Key 和 Value 不正确的问题 
+
 > 2019年01月19日 版本: V2.3.5
 
 	1. 新增 HttpWebClient 类针对 .Net Framework 4.0 的 https 的完整验证协议 感谢 @ycxYI[https://github.com/ycxYI]
