@@ -35,12 +35,8 @@
 
 ## Native.SDK 常见问题
 
-  > 1. Native.Csharp 中的引用 DllExport 出现警告 <br />![警告](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E9%97%AE%E9%A2%98%E6%88%AA%E5%9B%BE.png "警告") <br/>
-
-  * 打开解决方案根目录 <br /> ![Native根目录](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Nativc%E6%A0%B9%E7%9B%AE%E5%BD%95.png "解决方案根路径")
-  * 打开脚本文件 "DllExport_Configure.bat" <br /> ![打开脚本](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Nativc%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC.png "打开脚本")
-  * 查看是否选中 Native.Csharp 项目, 并选择应用 <br /> ![应用项目](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E5%BA%94%E7%94%A8DllExport.png "应用项目")
-  * 选择 "全部重新加载" <br /> ![重写加载](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.png "重新加载")
+> 1. 关于 "Fody.WeavingTask" 任务意外失败.
+	1. 由于不知道为啥, 下载后的文件 "FodyIsolated.dll" (位于: packages\Fody2.0.0) 文件处于锁定状态, 请解锁该文件即可正常编译
 
 ## Native.SDK 已知问题
 	
@@ -50,7 +46,7 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
-> 2019年01月19日 版本: V2.3.6
+> 2019年01月20日 版本: V2.3.6
 
 	1. 修复 IniObject 类针对解析过程中, 遇到 Value 中包含 "=", 从而导致匹配到的 Key 和 Value 不正确的问题 
 
