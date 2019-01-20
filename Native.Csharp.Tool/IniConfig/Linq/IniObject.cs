@@ -17,9 +17,10 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		private Encoding _encoding = Encoding.Default;
 		private static readonly Lazy<Regex[]> regices = new Lazy<Regex[]> (() => new Regex[]
 		 {
-			new Regex(@"^\[(.+)\]", RegexOptions.Compiled),					//匹配 节
-			new Regex(@"^(.+)=((?:[^\r\n]+)?)",RegexOptions.Compiled)       //匹配 键值对
-																			//new Regex(@"^;(?:[\s\S]*)", RegexOptions.Compiled)				//匹配 注释
+			new Regex(@"^\[(.+)\]", RegexOptions.Compiled),						//匹配 节
+			new Regex(@"^([^\r\n=]+)=((?:[^\r\n]+)?)",RegexOptions.Compiled)    //匹配 键值对
+																				
+			 //new Regex(@"^;(?:[\s\S]*)", RegexOptions.Compiled)				//匹配 注释
 		 });
 		#endregion
 
@@ -231,6 +232,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 				catch { throw; }
 			}
 		}
+		
 		/// <summary>
 		/// 逐行解析 Ini 配置文件字符串
 		/// </summary>
