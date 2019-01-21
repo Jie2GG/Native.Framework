@@ -4,19 +4,11 @@
 	该工具能快速的将 Ini 配置文件的 "节点", "键", "值", "注释" 分开, 在轻松实现对
 	Ini 配置文件的增删改查的同时, 可直接移植到其它平台使用.
 
-## IniConfig 类
-
-|	名称		|				命名空间				|		说明		|
-|:-------------------------------------------------------------------------:|
-|	IniObject	|	Native.Csharp.Tool.IniConfig.Linq	|	Ini 文件的对象	|
-|	IniSection	|	Native.Csharp.Tool.IniConfig.Linq	|	Ini 节点的对象	|
-|	IniValue	|	Native.Csharp.Tool.IniConfig.Linq	|	Ini 内容的对象	|
-
 ## IniConfig 示例
 
 > 1. 创建一个新的 Ini 配置项
 
-```
+```C#
 // 适用于 VS2012 ~ VS2017 的通用方式
 
 IniSection iSection = new IniSection ("节点");    // 创建一个新的 "节点" 对象, 并且名称叫做 "节点", 相当于 [节点]
@@ -50,7 +42,7 @@ iObject.Save ("1.ini");
 
 >2. 从文件中读取 Ini 配置项
 
-```
+```C#
 // 适用于 VS2012 ~ VS2017 的通用方式
 
 IniObject iObject = IniObject.Load ("1.ini", Encoding.Default);     // 从指定的文件中读取 Ini 配置项, 参数1: 文件路径, 参数2: 编码格式 [默认: ANSI]
@@ -59,7 +51,7 @@ iObject = IniObject.Parse ("[节点]\n键1=值1");	                    // 当然
 
 >3. 查询 Ini 配置文件
 
-```
+```C#
 // 适用于 VS2012 ~ VS2017 的通用方式
 
 // 对节点进行查询, 通过 "索引" 或 "名称" 的方式快速获取
@@ -82,7 +74,7 @@ IniValue value2 = section2["节点"]["键1"];
 
 >4. 修改 Ini 配置文件
 
-```
+```C#
 //适用于 VS2012 ~ VS2017 的通用方式
 
 IniObject iObject = IniObject.Load ("1.ini");
