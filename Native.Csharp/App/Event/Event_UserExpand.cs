@@ -1,5 +1,4 @@
 ﻿using Native.Csharp.Sdk.Cqp.Api;
-using Native.Csharp.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +38,9 @@ namespace Native.Csharp.App.Event
 		public void OpenConsoleWindow(object sender, EventArgs e)
 		{
 			//本事件将会在酷Q【主线程】中被触发, 请注意线程以免卡住酷Q
-
-			new MainView().Show();	//直接加载控制台项目的窗口, WinForm窗口也是如此.
+			
+			//SDK支持载入 WinForm 或 WPF 类型的窗体, 建议您新建一个窗体项目, 引用到本项目中, 
+			//然后 new 窗口进行载入.
 		}
 		#endregion
 	}
