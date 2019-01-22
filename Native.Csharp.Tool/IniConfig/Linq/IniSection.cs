@@ -13,9 +13,6 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 	/// <summary>
 	/// 用于描述 Ini 配置项节的类
 	/// </summary>
-	[ComVisible (false)]
-	[DebuggerDisplay ("Count = {Count}")]
-	[DefaultMember ("Item")]
 	public class IniSection : Dictionary<string, IniValue>
 	{
 		#region --字段--
@@ -23,6 +20,36 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		#endregion
 
 		#region --属性--
+		/// <summary>
+		/// 获取或设置与指定键关联的值 (此索引器允许直接对不存在的键进行设置)
+		/// </summary>
+		/// <param name="name">要获取或设置的值的键</param>
+		/// <returns></returns>
+		public new IniValue this[string name]
+		{
+			get
+			{
+				if (base.ContainsKey (name))
+				{
+					return base[name];
+				}
+				else
+				{
+					return IniValue.Empty;
+				}
+			}
+			set
+			{
+				if (base.ContainsKey (name))
+				{
+					base[name] = value;
+				}
+				else
+				{
+					base.Add (name, value);
+				}
+			}
+		}
 		/// <summary>
 		/// 获取或设置当前节名称
 		/// </summary>
@@ -107,6 +134,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -116,6 +144,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -125,6 +154,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -134,6 +164,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -143,6 +174,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -152,6 +184,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -161,6 +194,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -170,6 +204,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -179,6 +214,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -188,6 +224,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -197,6 +234,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
+
 		/// <summary>
 		/// 将建和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -216,7 +254,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
-		
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
@@ -226,7 +264,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			this.Add (key, value.ToString ());
 		}
-		
+
 		/// <summary>
 		/// 将键和值添加到 IniSection 的结尾处
 		/// </summary>
