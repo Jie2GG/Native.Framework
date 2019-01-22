@@ -51,6 +51,30 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		}
 
 		/// <summary>
+		/// 根据指定的 "节" 名称读取或设置与指定键关联的值 (此索引器允许直接对不存在的键进行设置)
+		/// </summary>
+		/// <param name="name">要获取或设置的值的 "节" 名称</param>
+		/// <returns></returns>
+		public new IniSection this[string name]
+		{
+			get
+			{
+				return base[name];
+			}
+			set
+			{
+				if (this.ContainsKey (name))
+				{
+					base[name] = value;
+				}
+				else
+				{
+					this.Add (value);
+				}
+			}
+		}
+
+		/// <summary>
 		/// 获取或设置用于读取或保存 Ini 配置项的 <see cref="System.Text.Encoding"/> 实例, 默认: ANSI
 		/// </summary>
 		public Encoding Encoding { get { return this._encoding; } set { this._encoding = value; } }
@@ -232,7 +256,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 				catch { throw; }
 			}
 		}
-		
+
 		/// <summary>
 		/// 逐行解析 Ini 配置文件字符串
 		/// </summary>
