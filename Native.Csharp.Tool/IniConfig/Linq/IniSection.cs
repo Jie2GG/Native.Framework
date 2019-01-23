@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -284,10 +285,13 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		public override string ToString ()
 		{
 			StringBuilder iniStr = new StringBuilder ();
-			iniStr.AppendLine (string.Format ("[{0}]", this.Name.Trim ()));     //添加 "节"
-			foreach (KeyValuePair<string, IniValue> item in this)
+			using (TextWriter textWriter = new StringWriter (iniStr))
 			{
-				iniStr.AppendLine (string.Format ("{0}={1}", item.Key.Trim (), item.Value.Value.Trim ()));
+				textWriter.WriteLine ("[{0}]", this.Name.Trim ());	//添加 "节"
+				foreach (KeyValuePair<string, IniValue> item in this)
+				{
+					textWriter.WriteLine ("{0}={1}", item.Key.Trim (), item.Value.Value.Trim ());
+				}
 			}
 			return iniStr.ToString ();
 		}

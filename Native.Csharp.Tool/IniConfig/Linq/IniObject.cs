@@ -337,10 +337,10 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			{
 				foreach (IniSection section in this.Values)
 				{
-					textWriter.WriteLine ("[{0}]", section.Name);
+					textWriter.WriteLine ("[{0}]", section.Name.Trim ());
 					foreach (KeyValuePair<string, IniValue> pair in section)
 					{
-						textWriter.WriteLine ("{0}={1}", pair.Key, pair.Value);
+						textWriter.WriteLine ("{0}={1}", pair.Key.Trim (), pair.Value.Value.Trim ());
 					}
 					textWriter.WriteLine ();
 				}
