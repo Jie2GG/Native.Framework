@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -273,6 +274,26 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		public void Add (string key, ulong value)
 		{
 			this.Add (key, value.ToString ());
+		}
+		#endregion
+
+		#region --重写方法--
+		/// <summary>
+		/// 将当前实例转换为其等效的字符串
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString ()
+		{
+			StringBuilder iniStr = new StringBuilder ();
+			using (TextWriter textWriter = new StringWriter (iniStr))
+			{
+				textWriter.WriteLine ("[{0}]", this.Name.Trim ());	//添加 "节"
+				foreach (KeyValuePair<string, IniValue> item in this)
+				{
+					textWriter.WriteLine ("{0}={1}", item.Key.Trim (), item.Value.Value.Trim ());
+				}
+			}
+			return iniStr.ToString ();
 		}
 		#endregion
 	}

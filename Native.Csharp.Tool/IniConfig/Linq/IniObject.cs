@@ -80,6 +80,11 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		public Encoding Encoding { get { return this._encoding; } set { this._encoding = value; } }
 
 		/// <summary>
+		/// 获取或设置用于保存 Ini 配置项的 <see cref="Uri"/> 实例
+		/// </summary>
+		public Uri Path { get; set; }
+
+		/// <summary>
 		/// 获取用于解析 Ini 配置项的 Regex 对象数组
 		/// </summary>
 		private static Regex[] Regices { get { return regices.Value; } }
@@ -125,6 +130,18 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		public IniSection[] ToArray ()
 		{
 			return this.Values.ToArray ();
+		}
+
+		/// <summary>
+		/// 将 Ini 配置项保存到指定的文件。如果存在指定文件，则此方法会覆盖它
+		/// </summary>
+		public void Save ()
+		{
+			if (this.Path == null)
+			{
+				throw new UriFormatException (string.Format ("Uri: {0}, 是无效的 Uri 对象", "IniObject.Path"));
+			}
+			this.Save (this.Path);
 		}
 
 		/// <summary>
@@ -200,7 +217,9 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			//解释 Ini 文件
 			using (TextReader textReader = new StreamReader (tempPath, encoding))
 			{
-				return ParseIni (textReader);
+				IniObject iObj = ParseIni (textReader);
+				iObj.Path = fileUri;
+				return iObj;
 			}
 		}
 
@@ -238,7 +257,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 				{
 					tempStr = fileUri.OriginalString;
 				}
-				return Path.Combine (AppDomain.CurrentDomain.BaseDirectory, tempStr);
+				return System.IO.Path.Combine (AppDomain.CurrentDomain.BaseDirectory, tempStr);
 			}
 			else
 			{
@@ -318,10 +337,10 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			{
 				foreach (IniSection section in this.Values)
 				{
-					textWriter.WriteLine ("[{0}]", section.Name);
+					textWriter.WriteLine ("[{0}]", section.Name.Trim ());
 					foreach (KeyValuePair<string, IniValue> pair in section)
 					{
-						textWriter.WriteLine ("{0}={1}", pair.Key, pair.Value);
+						textWriter.WriteLine ("{0}={1}", pair.Key.Trim (), pair.Value.Value.Trim ());
 					}
 					textWriter.WriteLine ();
 				}
