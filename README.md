@@ -47,6 +47,13 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月23日 版本: V2.4.2
+
+	1. 新增 IniObject.Load() 方法在加载了文件之后保持文件路径, 修改结束后可直接 Save() 不传路径参数保存
+	2. 修复 IniObject.ToString() 方法的在转换 IniValue 时可能出错
+	3. 补充 IniSection.ToString() 方法, 可以直接把当前实例转换为字符串, 可以直接被 IniObject.Parse() 解析
+	4. 针对之后要推出的 Ini 配置项 序列化与反序列化问题做出优化
+
 > 2019年01月22日 版本: V2.4.1
 
 	1. 重载 IniSection 类的索引器, 现在获取值时 key 不存在不会抛异常, 而是返回 IniValue.Empty, 设置值时 key 不存在会直接调用 Add 方法将 key 加入到内部集合
