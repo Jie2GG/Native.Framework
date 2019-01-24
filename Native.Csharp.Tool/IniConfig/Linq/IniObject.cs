@@ -29,24 +29,17 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// 根据索引查找读取或设置与指定键关联的值
 		/// </summary>
 		/// <param name="index">键索引</param>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0 或大于或等于的中的元素数 source。</exception>
 		/// <returns></returns>
 		public IniSection this[int index]
 		{
 			get
 			{
-				try
-				{
-					return this[this.Keys.ElementAt (index)];
-				}
-				catch { throw; }
+				return this[this.Keys.ElementAt (index)];
 			}
 			set
 			{
-				try
-				{
-					this[this.Keys.ElementAt (index)] = value;
-				}
-				catch { throw; }
+				this[this.Keys.ElementAt (index)] = value;
 			}
 		}
 
@@ -232,7 +225,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 				catch { throw; }
 			}
 		}
-		
+
 		/// <summary>
 		/// 逐行解析 Ini 配置文件字符串
 		/// </summary>
