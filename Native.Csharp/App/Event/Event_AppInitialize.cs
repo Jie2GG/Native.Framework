@@ -83,7 +83,7 @@ namespace Native.Csharp.App.Event
 				}
 				else
 				{
-					Common.CqApi.AddLoger (Sdk.Cqp.Enum.LogerLevel.Error, "Native 异常", innerLog.ToString ());
+					Common.CqApi.AddLoger (Sdk.Cqp.Enum.LogerLevel.Error, "Native 异常捕捉", innerLog.ToString ());
 				}
 			}
 		}
