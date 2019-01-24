@@ -71,11 +71,20 @@ namespace Native.Csharp.App.Event
 			Exception ex = e.ExceptionObject as Exception;
 			if (ex != null)
 			{
-				StringBuilder innerLog = new StringBuilder();
-				innerLog.AppendFormat("[异常类型]: {0}{1}", ex.Source.ToString(), Environment.NewLine);
-				innerLog.AppendFormat("[异常消息]: {0}{1}", ex.Message, Environment.NewLine);
-				innerLog.AppendFormat("[异常堆栈]: {0}{1}", ex.StackTrace);
-				Common.CqApi.AddFatalError(innerLog.ToString());      //将未经处理的异常弹回酷Q做处理
+				StringBuilder innerLog = new StringBuilder ();
+				innerLog.AppendLine ("NativeSDK 异常");
+				innerLog.AppendFormat ("[异常名称]: {0}{1}", ex.Source.ToString (), Environment.NewLine);
+				innerLog.AppendFormat ("[异常消息]: {0}{1}", ex.Message, Environment.NewLine);
+				innerLog.AppendFormat ("[异常堆栈]: {0}{1}", ex.StackTrace);
+
+				if (e.IsTerminating)
+				{
+					Common.CqApi.AddFatalError (innerLog.ToString ());      //将未经处理的异常弹回酷Q做处理
+				}
+				else
+				{
+					Common.CqApi.AddLoger (Sdk.Cqp.Enum.LogerLevel.Error, "Native 异常捕捉", innerLog.ToString ());
+				}
 			}
 		}
 		#endregion
