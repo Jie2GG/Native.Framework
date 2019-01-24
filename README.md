@@ -47,6 +47,26 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月23日 版本: V2.4.2
+
+	1. 新增 IniObject.Load() 方法在加载了文件之后保持文件路径, 修改结束后可直接 Save() 不传路径参数保存
+	2. 修复 IniObject.ToString() 方法的在转换 IniValue 时可能出错
+	3. 补充 IniSection.ToString() 方法, 可以直接把当前实例转换为字符串, 可以直接被 IniObject.Parse() 解析
+	4. 针对之后要推出的 Ini 配置项 序列化与反序列化问题做出优化
+
+> 2019年01月22日 版本: V2.4.1
+
+	1. 重载 IniSection 类的索引器, 现在获取值时 key 不存在不会抛异常, 而是返回 IniValue.Empty, 设置值时 key 不存在会直接调用 Add 方法将 key 加入到内部集合
+	2. 重载 IniObject 类的 string 索引器, 现在设置 "节" 时, 不存在节会直接调用 Add 方法将节加入到内部集合
+
+> 2019年01月21日 版本: V2.4.0
+	
+	说明: 本次更新主要解决 Native.Csharp.UI 项目不会被载入的问题, 描述为:当有多个 Native 开发的插件项目同时被酷
+	      Q载入时, 会导致所有的插件项目只载入第一个 Native.Csharp.UI ! 所以请已经使用的 Native.Csharp.UI 项目
+	      的开发者, 将现有的 Native.Charp.UI 项目的命名空间修改为其它命名空间(包括项目内的所有 xaml, cs)
+	
+	1. 移除 Native.Csharp.UI 项目, 保证后续被开发的项目窗体不会有冲突.
+	
 > 2019年01月21日 版本: V2.3.7
 
 	1. 新增 IniValue 类针对基础数据类型转换时返回指定默认值的方法.

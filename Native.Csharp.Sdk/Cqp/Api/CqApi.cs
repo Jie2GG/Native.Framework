@@ -303,7 +303,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 		/// 获取当前登录QQ的昵称
 		/// </summary>
 		/// <returns></returns>
-		public string GetLgoinNick ()
+		public string GetLoginNick ()
 		{
 			return NativeConvert.ToPtrString (CQP.CQ_getLoginNick (_authCode));
 		}
