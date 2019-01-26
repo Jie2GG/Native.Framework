@@ -38,6 +38,7 @@ namespace Native.Csharp.App.Event
 
 			// 当需要新注册回调类型时
 			// 在此写上需要注册的回调类型, 以 <接口, 实现类> 的方式进行注册
+			container.RegisterType<IEvent_UserExpand, Event_UserExpand> ();
 		}
 
 		/// <summary>
@@ -104,7 +105,8 @@ namespace Native.Csharp.App.Event
 
 			// 当已经注入了新的回调类型时
 			// 在此分发已经注册的回调类型, 解析完毕后分发到导出的事件进行注册
-
+			IEvent_UserExpand userExpand = container.Resolve<IEvent_UserExpand> ();
+			UserExport.UserOpenConsole += userExpand.OpenConsoleWindow;
 		}
 	}
 }
