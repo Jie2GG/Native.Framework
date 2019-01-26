@@ -48,7 +48,7 @@ namespace Native.Csharp.App.Core
 		{
 			// 请勿随意修改
 			//
-			// 当前项目名称: Native.Csharp
+			// 当前项目名称: $(Native.Csharp)
 			// Api版本: 9
 
 			return string.Format ("{0},{1}", 9, "Native.Csharp");
