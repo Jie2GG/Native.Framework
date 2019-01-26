@@ -18,7 +18,7 @@
 ## Native.SDK 开发流程
 
 	1. 下载并打开 Native.SDK
-	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId (规则参见 http://d.cqp.me/Pro/开发/基础信息)
+	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见 http://d.cqp.me/Pro/开发/基础信息)
 	3. 展开 Native.Csharp 项目, 修改 "Native.Csharp.json" 文件名为你的AppId
 	4. 展开 Native.Csharp 项目, 找到 App -> Core -> LibExport.tt 文件, 右击点击 "运行自定义工具"
 	
