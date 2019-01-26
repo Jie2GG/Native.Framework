@@ -7,7 +7,7 @@ using Native.Csharp.App.Model;
 namespace Native.Csharp.App.Interface
 {
 	/// <summary>
-	/// 酷Q 私聊消息接口
+	/// 酷Q 讨论组消息接口
 	/// </summary>
 	public interface IEvent_DiscussMessage
 	{
