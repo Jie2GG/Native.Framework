@@ -44,6 +44,26 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年01月26日 版本: V2.6.0
+
+	说明: 此次更新重构了 Native.Csharp 项目, 全面采用依赖注入框架, 提升 SDK 可扩展性、可移植性
+	注意: 此次更新核心代码重构, 开发者若要升级请备份好代码后升级.
+	
+	1. 新增 Unity 依赖注入框架, 提升 SDK 可扩展性,、可移植性
+	2. 新增 LibExport 文件模板, 使用方式: 右击 "LibExport.tt" -> 运行自定义工具
+	3. 新增 AppID 半自动填写 (运行 LibExport 模板即可生成)
+	4. 新增 Event_AppMain 类, 改类主要用于注册回调和分发事件
+	5. 新增 IEvent_AppStatus 接口, 用于实现 "酷Q事件"
+	6. 新增 IEvent_DiscussMessage 接口, 用于实现 "讨论组事件"
+	7. 新增 IEvent_FriendMessage 接口, 用于实现 "好友事件"
+	8. 新增 IEvent_GroupMessage 接口, 用于实现 "群事件"
+	9. 新增 IEvent_OtherMessage 接口, 用于实现 "其它事件"
+	10. 新增 Ievent_UserExpand 接口, 用于事件开发者自定义的事件
+	11. 修复 LibExport 中 "EventSystemGroupMemberDecrease" 事件传递的 FormQQ 不正确的问题 
+	12. 优化 Model.GroupMessageEventArgs, 在其中添加 IsAnonymousMsg 的变量用于判断消息是否属于匿名消息
+	13. 优化 对公共语言的支持
+	14. 优化 对于原有不合理的事件分类进行重新整合.
+
 > 2019年01月24日 版本: V2.5.0
 
 	1. 新增 Fody 从 1.6.2 -> 3.2.1, 支持整体框架从 .Net Framework 4.0 到 .Net Framework 4.6.1, 开发者可以自行升级.
