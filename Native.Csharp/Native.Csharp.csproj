@@ -47,6 +47,9 @@
     <DllExportPeCheck>2</DllExportPeCheck>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.6\lib\net40\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Costura, Version=3.2.1.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.2.1\lib\net40\Costura.dll</HintPath>
     </Reference>
@@ -63,18 +66,40 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.6\lib\net40\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.6\lib\net40\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.6\lib\net40\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.6\lib\net40\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Common.cs" />
-    <Compile Include="App\Core\LibExport.cs" />
+    <Compile Include="App\Core\LibExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibExport.tt</DependentUpon>
+    </Compile>
     <Compile Include="App\Core\UserExport.cs" />
-    <Compile Include="App\Event\Event_AppInitialize.cs" />
+    <Compile Include="App\Event\Event_AppMain.cs" />
     <Compile Include="App\Event\Event_AppStatus.cs" />
     <Compile Include="App\Event\Event_DiscussMessage.cs" />
     <Compile Include="App\Event\Event_FriendMessage.cs" />
     <Compile Include="App\Event\Event_GroupMessage.cs" />
-    <Compile Include="App\Event\Event_PrivateMessage.cs" />
+    <Compile Include="App\Event\Event_OtherMessage.cs" />
     <Compile Include="App\Event\Event_UserExpand.cs" />
+    <Compile Include="App\Interface\IEvent_AppStatus.cs" />
+    <Compile Include="App\Interface\IEvent_DiscussMessage.cs" />
+    <Compile Include="App\Interface\IEvent_FriendMessage.cs" />
+    <Compile Include="App\Interface\IEvent_GroupMessage.cs" />
+    <Compile Include="App\Interface\IEvent_OtherMessage.cs" />
+    <Compile Include="App\Interface\IEvent_UserExpand.cs" />
     <Compile Include="App\Model\AppInfoEventArgs.cs" />
     <Compile Include="App\Model\AppInitializeEventArgs.cs" />
     <Compile Include="App\Model\DiscussMessageEventArgs.cs" />
@@ -108,6 +133,13 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App\Core\LibExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LibExport.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport" />
   <ImportGroup Label=".NET DllExport" />
