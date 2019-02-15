@@ -505,7 +505,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			return Convert.ToSByte (this._value, provider);
 		}
-	
+
 		/// <summary>
 		/// 使用指定的区域性特定格式设置信息，将数字的指定字符串表示形式转换为等效的单精度浮点数。
 		/// </summary>
@@ -554,7 +554,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			return this._value;
 		}
-		
+
 		/// <summary>
 		/// 返回指定类型的对象，其值等效于指定对象。 参数提供区域性特定的格式设置信息。
 		/// </summary>
@@ -562,9 +562,9 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <returns>一个对象，其类型为 conversionType，并且其值等效于实例。 - 或 - 实例，前提是 System.Type 的实例和 conversionType 相等。 - 或 - 如果 Nothing 为实例，并且 null 不是值类型，则为空引用（在 Visual Basic中为 conversionType）。</returns>
 		public object ToType (Type conversionType)
 		{
-			return this.ToType (conversionType);
+			return ToType (conversionType, null);
 		}
-		
+
 		/// <summary>
 		/// 返回指定类型的对象，其值等效于指定对象。 参数提供区域性特定的格式设置信息。
 		/// </summary>
@@ -575,7 +575,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			return Convert.ChangeType (this._value, conversionType, provider);
 		}
-		
+
 		/// <summary>
 		/// 使用指定的区域性特定格式设置信息，将数字的指定字符串表示形式转换为等效的 16 位无符号整数。
 		/// </summary>
@@ -605,7 +605,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			return Convert.ToUInt16 (this._value, provider);
 		}
-		
+
 		/// <summary>
 		/// 使用指定的区域性特定格式设置信息，将数字的指定字符串表示形式转换为等效的 32 位无符号整数。
 		/// </summary>
@@ -635,7 +635,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		{
 			return Convert.ToUInt32 (this._value, provider);
 		}
-		
+
 		/// <summary>
 		/// 使用指定的区域性特定格式设置信息，将数字的指定字符串表示形式转换为等效的 64 位无符号整数。
 		/// </summary>
