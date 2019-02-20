@@ -23,7 +23,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;   // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>

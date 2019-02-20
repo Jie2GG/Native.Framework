@@ -32,7 +32,7 @@ namespace Native.Csharp.App.Event
 
 			Common.CqApi.SendGroupMessage (e.FromGroup, Common.CqApi.CqCode_At (e.FromQQ) + "你发送了这样的消息: " + e.Msg);
 
-			e.Handled = true;   // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = true;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace Native.Csharp.App.Event
 			// 这里处理消息
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;   // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -80,7 +80,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -112,7 +112,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -128,7 +128,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -144,7 +144,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -160,7 +160,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -192,7 +192,7 @@ namespace Native.Csharp.App.Event
 
 
 
-			e.Handled = false;  // 关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;  // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 		#endregion
 	}

@@ -35,6 +35,9 @@ namespace Native.Csharp.App.Core
 
 			// 注册完毕调用方法进行分发
 			Event_AppMain.Resolvebackcall (Common.UnityContainer);
+
+			// 完成操作调用初始化函数
+			Event_AppMain.Initialize ();
 		}
 		#endregion
 
