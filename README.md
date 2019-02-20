@@ -45,6 +45,12 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年02月20日 版本: V2.6.2
+
+	1. 更新 Native.Chsarp 项目的部分注释
+	2. 新增 Event_AppMain.Initialize 方法, 位于 "Native.Csharp.App.Event" 下, 用于当作本项目的初始化方法
+	3. 优化 Event_AppMain.Resolvebackcall 方法的执行, 默认将依据接口注入的类型全部实例化并取出分发到事件上 
+
 > 2019年02月16日 版本: V2.6.1
 
 	1. 优化 FodyWeavers.xml 配置, 为其加上注释. 方便开发者使用
