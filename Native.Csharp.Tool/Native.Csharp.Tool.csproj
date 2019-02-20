@@ -7,8 +7,8 @@
     <ProjectGuid>{9DB94CBF-6843-4EA3-9241-769124416FE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Navite.Csharp.Tool</RootNamespace>
-    <AssemblyName>Navite.Csharp.Tool</AssemblyName>
+    <RootNamespace>Native.Csharp.Tool</RootNamespace>
+    <AssemblyName>Native.Csharp.Tool</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
