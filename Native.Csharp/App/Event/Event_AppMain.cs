@@ -49,73 +49,58 @@ namespace Native.Csharp.App.Event
 		{
 			#region --IEvent_AppStatus--
 			// 解析 IEvent_AppStatus 接口
-			IEnumerable<IEvent_AppStatus> appStatuses = container.ResolveAll<IEvent_AppStatus> ();
+			IEvent_AppStatus appStatus = container.Resolve<IEvent_AppStatus> ();
 
-			foreach (IEvent_AppStatus appStatus in appStatuses)
-			{
-				// 分发 IEvent_AppStatus 接口到事件
-				LibExport.CqStartup += appStatus.CqStartup;
-				LibExport.CqExit += appStatus.CqExit;
-				LibExport.AppEnable += appStatus.AppEnable;
-				LibExport.AppDisable += appStatus.AppDisable;
-			}
+			// 分发 IEvent_AppStatus 接口到事件
+			LibExport.CqStartup += appStatus.CqStartup;
+			LibExport.CqExit += appStatus.CqExit;
+			LibExport.AppEnable += appStatus.AppEnable;
+			LibExport.AppDisable += appStatus.AppDisable;
 			#endregion
 
 			#region --IEvent_DiscussMessage--
 			// 解析 IEvent_DiscussMessage 接口
-			IEnumerable<IEvent_DiscussMessage> discussMessages = container.ResolveAll<IEvent_DiscussMessage> ();
+			IEvent_DiscussMessage discussMessage = container.Resolve<IEvent_DiscussMessage> ();
 
-			foreach (IEvent_DiscussMessage discussMessage in discussMessages)
-			{
-				// 分发 IEvent_DiscussMessage 接口到事件
-				LibExport.ReceiveDiscussMessage += discussMessage.ReceiveDiscussMessage;
-				LibExport.ReceiveDiscussPrivateMessage += discussMessage.ReceiveDiscussPrivateMessage;
-			}
+			// 分发 IEvent_DiscussMessage 接口到事件
+			LibExport.ReceiveDiscussMessage += discussMessage.ReceiveDiscussMessage;
+			LibExport.ReceiveDiscussPrivateMessage += discussMessage.ReceiveDiscussPrivateMessage;
 			#endregion
 
 			#region --IEvent_FriendMessage--
 			// 解析 IEvent_FriendMessage 接口
-			IEnumerable<IEvent_FriendMessage> friendMessages = container.ResolveAll<IEvent_FriendMessage> ();
+			IEvent_FriendMessage friendMessage = container.Resolve<IEvent_FriendMessage> ();
 
-			foreach (IEvent_FriendMessage friendMessage in friendMessages)
-			{
-				// 分发 IEvent_FriendMessage 接口到事件
-				LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriednAddRequest;
-				LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
-				LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
-			}
+			// 分发 IEvent_FriendMessage 接口到事件
+			LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriednAddRequest;
+			LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
+			LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
 			#endregion
 
 			#region --IEvent_GroupMessage--
 			// 解析 IEvent_GroupMessage 接口
-			IEnumerable<IEvent_GroupMessage> groupMessages = container.ResolveAll<IEvent_GroupMessage> ();
+			IEvent_GroupMessage groupMessage = container.Resolve<IEvent_GroupMessage> ();
 
-			foreach (IEvent_GroupMessage groupMessage in groupMessages)
-			{
-				// 分发 IEvent_GroupMessage 接口到事件
-				LibExport.ReceiveGroupMessage += groupMessage.ReceiveGroupMessage;
-				LibExport.ReceiveGroupPrivateMessage += groupMessage.ReceiveGroupPrivateMessage;
-				LibExport.ReceiveFileUploadMessage += groupMessage.ReceiveGroupFileUpload;
-				LibExport.ReceiveManageIncrease += groupMessage.ReceiveGroupManageIncrease;
-				LibExport.ReceiveManageDecrease += groupMessage.ReceiveGroupManageDecrease;
-				LibExport.ReceiveMemberJoin += groupMessage.ReceiveGroupMemberJoin;
-				LibExport.ReceiveMemberInvitee += groupMessage.ReceiveGroupMemberInvitee;
-				LibExport.ReceiveMemberLeave += groupMessage.ReceiveGroupMemberLeave;
-				LibExport.ReceiveMemberRemove += groupMessage.ReceiveGroupMemberRemove;
-				LibExport.ReceiveGroupAddApply += groupMessage.ReceiveGroupAddApply;
-				LibExport.ReceiveGroupAddInvitee += groupMessage.ReceiveGroupAddInvitee;
-			}
+			// 分发 IEvent_GroupMessage 接口到事件
+			LibExport.ReceiveGroupMessage += groupMessage.ReceiveGroupMessage;
+			LibExport.ReceiveGroupPrivateMessage += groupMessage.ReceiveGroupPrivateMessage;
+			LibExport.ReceiveFileUploadMessage += groupMessage.ReceiveGroupFileUpload;
+			LibExport.ReceiveManageIncrease += groupMessage.ReceiveGroupManageIncrease;
+			LibExport.ReceiveManageDecrease += groupMessage.ReceiveGroupManageDecrease;
+			LibExport.ReceiveMemberJoin += groupMessage.ReceiveGroupMemberJoin;
+			LibExport.ReceiveMemberInvitee += groupMessage.ReceiveGroupMemberInvitee;
+			LibExport.ReceiveMemberLeave += groupMessage.ReceiveGroupMemberLeave;
+			LibExport.ReceiveMemberRemove += groupMessage.ReceiveGroupMemberRemove;
+			LibExport.ReceiveGroupAddApply += groupMessage.ReceiveGroupAddApply;
+			LibExport.ReceiveGroupAddInvitee += groupMessage.ReceiveGroupAddInvitee;
 			#endregion
 
 			#region --IEvent_OtherMessage--
 			// 解析 IEvent_OtherMessage 接口
-			IEnumerable<IEvent_OtherMessage> otherMessages = container.ResolveAll<IEvent_OtherMessage> ();
+			IEvent_OtherMessage otherMessage = container.Resolve<IEvent_OtherMessage> ();
 
-			foreach (IEvent_OtherMessage otherMessage in otherMessages)
-			{
-				// 分发 IEvent_OtherMessage 接口到事件
-				LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
-			}
+			// 分发 IEvent_OtherMessage 接口到事件
+			LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
 			#endregion
 
 			// 当已经注入了新的回调类型时
