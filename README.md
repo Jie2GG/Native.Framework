@@ -45,6 +45,10 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年02月26日 版本: V2.6.4
+
+	1. 默认注释 Event_GroupMessage 中 ReceiveGroupMessage 方法的部分代码, 防止因为机器人复读群消息而禁言
+
 > 2019年02月20日 版本: V2.6.3
 
 	1. 还原 Event_AppMain.Resolvebackcall 方法的执行, 防止偶尔获取不到注入的类
