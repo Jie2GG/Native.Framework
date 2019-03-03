@@ -8,25 +8,29 @@ namespace Native.Csharp.Tool.Core
 {
 	internal static class Kernel32
 	{
-		[DllImport ("kernel32.dll")]
+		#region --常量--
+		private const string DllName = "kernel32.dll";
+		#endregion
+
+		[DllImport (DllName)]
 		internal extern static int GetPrivateProfileIntA (string segName, string keyName, int iDefault, string fileName);
 
-		[DllImport ("kernel32.dll")]
+		[DllImport (DllName)]
 		internal extern static int GetPrivateProfileStringA (string segName, string keyName, string sDefault, StringBuilder buffer, int nSize, string fileName);
 
-		[DllImport ("kernel32.dll")]
+		[DllImport (DllName)]
 		internal extern static int GetPrivateProfileSectionA (string segName, StringBuilder buffer, int nSize, string fileName);
 
-		[DllImport ("kernel32.dll")]
+		[DllImport (DllName)]
 		internal extern static int GetPrivateProfileSectionNamesA (byte[] buffer, int iLen, string fileName);
 
-		[DllImport ("kernel32.dll")]
+		[DllImport (DllName)]
 		internal extern static int WritePrivateProfileSectionA (string segName, string sValue, string fileName);
 
-		[DllImport ("kernel32.dll")]
+		[DllImport (DllName)]
 		internal extern static int WritePrivateProfileStringA (string segName, string keyName, string sValue, string fileName);
 
-		[DllImport ("kernel32.dll", EntryPoint = "lstrlenA", CharSet = CharSet.Ansi)]
+		[DllImport (DllName, EntryPoint = "lstrlenA", CharSet = CharSet.Ansi)]
 		internal extern static int LstrlenA (IntPtr ptr);
 	}
 }
