@@ -45,6 +45,15 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年03月03日 版本: V2.7.0
+
+	本次更新于相应 "酷Q" 官方 "易语言 SDK" 的迭代更新
+	
+	1. 新增 CqApi.ReceiveImage (用于获取消息中 "图片" 的绝对路径)
+	2. 新增 CqApi.GetSendRecordSupport (用于获取 "是否支持发送语音", 即用于区别 Air 和 Pro 版本之间的区别)
+	3. 新增 CqApi.GetSendImageSupport (用于获取 "是否支持发送图片", 即用于区别 Air 和 Pro 版本指间的区别)
+	4. 优化 CqApi.ReceiveRecord 方法, 使其获取到的语音路径为绝对路径, 而非相对路径
+
 > 2019年02月26日 版本: V2.6.4
 
 	1. 默认注释 Event_GroupMessage 中 ReceiveGroupMessage 方法的部分代码, 防止因为机器人复读群消息而禁言
