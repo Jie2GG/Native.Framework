@@ -47,7 +47,7 @@
 ## Native.SDK 更新日志
 > 2019年03月03日 版本: V2.7.0
 
-	本次更新于相应 "酷Q" 官方 "易语言 SDK" 的迭代更新
+	本次更新于响应 "酷Q" 官方 "易语言 SDK" 的迭代更新
 	
 	1. 新增 CqApi.ReceiveImage (用于获取消息中 "图片" 的绝对路径)
 	2. 新增 CqApi.GetSendRecordSupport (用于获取 "是否支持发送语音", 即用于区别 Air 和 Pro 版本之间的区别)
