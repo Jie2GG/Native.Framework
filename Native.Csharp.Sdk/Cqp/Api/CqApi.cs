@@ -270,14 +270,24 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			return CQP.CQ_sendLikeV2 (_authCode, qqId, (count <= 0 || count > 10) ? 1 : count);
 		}
 		/// <summary>
-		/// 接收消息中的语音(record),返回保存在 \data\record\ 目录下的文件名
+		/// 接收消息中的语音(record),返回语音文件绝对路径
 		/// </summary>
 		/// <param name="fileName">文件名, 收到消息中的语音文件名(file)</param>
 		/// <param name="formatType">应用所需的语音文件格式</param>
 		/// <returns></returns>
 		public string ReceiveRecord (string fileName, AudioOutFormat formatType)
 		{
-			return CQP.CQ_getRecord (_authCode, fileName, formatType.ToString ());
+			//return CQP.CQ_getRecord (_authCode, fileName, formatType.ToString ());
+			return CQP.CQ_getRecordV2 (_authCode, fileName, formatType.ToString ());
+		}
+		/// <summary>
+		/// 接收消息中的图片(image),返回图片文件绝对路径
+		/// </summary>
+		/// <param name="fileName"></param>
+		/// <returns></returns>
+		public string ReceiveImage (string fileName)
+		{
+			return CQP.CQ_getImage (_authCode, fileName);
 		}
 		/// <summary>
 		/// 撤回消息
@@ -477,6 +487,22 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			}
 			#endregion
 			return 0;
+		}
+		/// <summary>
+		/// 获取发送语音支持
+		/// </summary>
+		/// <returns></returns>
+		public bool GetSendRecordSupport ()
+		{
+			return CQP.CQ_canSendRecord (_authCode) > 0;
+		}
+		/// <summary>
+		/// 获取发送图片支持
+		/// </summary>
+		/// <returns></returns>
+		public bool GetSendImageSupport ()
+		{
+			return CQP.CQ_canSendImage (_authCode) > 0;
 		}
 		#endregion
 
