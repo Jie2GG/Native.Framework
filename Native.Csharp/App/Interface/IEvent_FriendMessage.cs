@@ -25,7 +25,7 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveFriednAddRequest (object sender, FriendAddRequestEventArgs e);
+		void ReceiveFriendAddRequest (object sender, FriendAddRequestEventArgs e);
 
 		/// <summary>
 		/// Type=21 好友消息<para/>
