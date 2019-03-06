@@ -32,7 +32,7 @@ namespace Native.Csharp.App.Event
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		public void ReceiveFriednAddRequest (object sender, FriendAddRequestEventArgs e)
+		public void ReceiveFriendAddRequest (object sender, FriendAddRequestEventArgs e)
 		{
 			// 本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
 			// 这里处理消息
