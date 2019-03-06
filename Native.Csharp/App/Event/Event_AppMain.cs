@@ -72,7 +72,7 @@ namespace Native.Csharp.App.Event
 			IEvent_FriendMessage friendMessage = container.Resolve<IEvent_FriendMessage> ();
 
 			// 分发 IEvent_FriendMessage 接口到事件
-			LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriednAddRequest;
+			LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriendAddRequest;
 			LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
 			LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
 			#endregion
