@@ -19,25 +19,35 @@ namespace Native.Csharp.App.Event
 		/// <param name="builder"></param>
 		public static void Registbackcall (IUnityContainer container)
 		{
+			// 当需要注册自己的回调类型时
+			// 在此写上需要注册的回调类型, 以 <接口, 实现类> 的方式进行注册, 同时需要给所有注入的类进行命名
+			// 
+			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
+			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
+			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
+			// 重要的事情说三遍!!!
+			// 
+			// 下列代码演示的是如何将 SDK 预置的实现类注入到容器中
 			#region --回调注入
 			// 注册 Event_AppStatus 类, 继承于 IEvent_AppStatus
-			container.RegisterType<IEvent_AppStatus, Event_AppStatus> ();
+			container.RegisterType<IEvent_AppStatus, Event_AppStatus> ("Default_AppStatus");
 
 			// 注册 Event_DiscussMessage 类, 继承于 IEvent_DiscussMessage
-			container.RegisterType<IEvent_DiscussMessage, Event_DiscussMessage> ();
+			container.RegisterType<IEvent_DiscussMessage, Event_DiscussMessage> ("Default_DiscussMessage");
 
 			// 注册 IEvent_FriendMessage 类, 继承于 Event_FriendMessage
-			container.RegisterType<IEvent_FriendMessage, Event_FriendMessage> ();
+			container.RegisterType<IEvent_FriendMessage, Event_FriendMessage> ("Default_FriendMessage");
 
 			// 注册 IEvent_GroupMessage 类, 继承于 Event_GroupMessage
-			container.RegisterType<IEvent_GroupMessage, Event_GroupMessage> ();
+			container.RegisterType<IEvent_GroupMessage, Event_GroupMessage> ("Default_GroupMessage");
 
 			// 注册 IEvent_OtherMessage 类, 继承于 Event_OtherMessage
-			container.RegisterType<IEvent_OtherMessage, Event_OtherMessage> ();
+			container.RegisterType<IEvent_OtherMessage, Event_OtherMessage> ("Default_OtherMessage");
 			#endregion
 
 			// 当需要新注册回调类型时
 			// 在此写上需要注册的回调类型, 以 <接口, 实现类> 的方式进行注册
+			// 下列代码演示的是如何将 IEvent_UserExpand 的实现类 Event_UserExpand 类注入到容器中
 			container.RegisterType<IEvent_UserExpand, Event_UserExpand> ();
 		}
 
@@ -47,73 +57,22 @@ namespace Native.Csharp.App.Event
 		/// <param name="container"></param>
 		public static void Resolvebackcall (IUnityContainer container)
 		{
-			#region --IEvent_AppStatus--
-			// 解析 IEvent_AppStatus 接口
-			IEvent_AppStatus appStatus = container.Resolve<IEvent_AppStatus> ();
-
-			// 分发 IEvent_AppStatus 接口到事件
-			LibExport.CqStartup += appStatus.CqStartup;
-			LibExport.CqExit += appStatus.CqExit;
-			LibExport.AppEnable += appStatus.AppEnable;
-			LibExport.AppDisable += appStatus.AppDisable;
-			#endregion
-
-			#region --IEvent_DiscussMessage--
-			// 解析 IEvent_DiscussMessage 接口
-			IEvent_DiscussMessage discussMessage = container.Resolve<IEvent_DiscussMessage> ();
-
-			// 分发 IEvent_DiscussMessage 接口到事件
-			LibExport.ReceiveDiscussMessage += discussMessage.ReceiveDiscussMessage;
-			LibExport.ReceiveDiscussPrivateMessage += discussMessage.ReceiveDiscussPrivateMessage;
-			#endregion
-
-			#region --IEvent_FriendMessage--
-			// 解析 IEvent_FriendMessage 接口
-			IEvent_FriendMessage friendMessage = container.Resolve<IEvent_FriendMessage> ();
-
-			// 分发 IEvent_FriendMessage 接口到事件
-			LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriendAddRequest;
-			LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
-			LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
-			#endregion
-
-			#region --IEvent_GroupMessage--
-			// 解析 IEvent_GroupMessage 接口
-			IEvent_GroupMessage groupMessage = container.Resolve<IEvent_GroupMessage> ();
-
-			// 分发 IEvent_GroupMessage 接口到事件
-			LibExport.ReceiveGroupMessage += groupMessage.ReceiveGroupMessage;
-			LibExport.ReceiveGroupPrivateMessage += groupMessage.ReceiveGroupPrivateMessage;
-			LibExport.ReceiveFileUploadMessage += groupMessage.ReceiveGroupFileUpload;
-			LibExport.ReceiveManageIncrease += groupMessage.ReceiveGroupManageIncrease;
-			LibExport.ReceiveManageDecrease += groupMessage.ReceiveGroupManageDecrease;
-			LibExport.ReceiveMemberJoin += groupMessage.ReceiveGroupMemberJoin;
-			LibExport.ReceiveMemberInvitee += groupMessage.ReceiveGroupMemberInvitee;
-			LibExport.ReceiveMemberLeave += groupMessage.ReceiveGroupMemberLeave;
-			LibExport.ReceiveMemberRemove += groupMessage.ReceiveGroupMemberRemove;
-			LibExport.ReceiveGroupAddApply += groupMessage.ReceiveGroupAddApply;
-			LibExport.ReceiveGroupAddInvitee += groupMessage.ReceiveGroupAddInvitee;
-			#endregion
-
-			#region --IEvent_OtherMessage--
-			// 解析 IEvent_OtherMessage 接口
-			IEvent_OtherMessage otherMessage = container.Resolve<IEvent_OtherMessage> ();
-
-			// 分发 IEvent_OtherMessage 接口到事件
-			LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
-			#endregion
-
 			// 当已经注入了新的回调类型时
 			// 在此分发已经注册的回调类型, 解析完毕后分发到导出的事件进行注册
+			// 下列代码演示如何将 IEvent_UserExpand 接口实例化并拿到对应的实例
 			IEvent_UserExpand userExpand = container.Resolve<IEvent_UserExpand> ();
 			UserExport.UserOpenConsole += userExpand.OpenConsoleWindow;
 		}
 
 		/// <summary>
-		/// 当前回调事件的注册和分发完成之后将调用此方法
+		/// 初始化完毕
 		/// </summary>
 		public static void Initialize ()
 		{
+			// 当上述的 "注册" "分发" 完成之后, 将调用此方法进行最后的初始化
+			// 此方法执行的时间不宜过长, 过长的执行时间将会卡住 酷Q 加载应用, 可能会失败, 请开发者谨慎使用!!!
+			// 
+			// 注意: 当此方法执行完毕后, 应用并没有开始初始化, 仅仅只是加载到内存中而已, 切记!!!
 
 		}
 	}
