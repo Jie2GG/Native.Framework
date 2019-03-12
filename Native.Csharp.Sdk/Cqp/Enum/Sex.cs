@@ -17,6 +17,10 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 		/// <summary>
 		/// 女性 
 		/// </summary>
-		Woman = 1
+		Woman = 1,
+		/// <summary>
+		/// 未知
+		/// </summary>
+		Unknown = 255,
 	}
 }
