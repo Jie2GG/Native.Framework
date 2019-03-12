@@ -18,6 +18,7 @@ using System.Text;
 using Unity;
 using Native.Csharp.App.Event;
 using Native.Csharp.App.Model;
+using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp.Api;
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Tool;
@@ -38,6 +39,67 @@ namespace Native.Csharp.App.Core
 
 			// 程序开始调用方法进行注册
 			Event_AppMain.Registbackcall (Common.UnityContainer);
+
+			#region --IEvent_AppStatus--
+			// 解析 IEvent_AppStatus 接口
+			foreach (var appStatus in Common.UnityContainer.ResolveAll<IEvent_AppStatus> ())
+			{
+				// 分发 IEvent_AppStatus 接口到事件
+				LibExport.CqStartup += appStatus.CqStartup;
+				LibExport.CqExit += appStatus.CqExit;
+				LibExport.AppEnable += appStatus.AppEnable;
+				LibExport.AppDisable += appStatus.AppDisable;
+			}
+			#endregion
+
+			#region --IEvent_DiscussMessage--
+			// 解析 IEvent_DiscussMessage 接口
+			foreach (var discussMessage in Common.UnityContainer.ResolveAll<IEvent_DiscussMessage> ())
+			{
+				// 分发 IEvent_DiscussMessage 接口到事件
+				LibExport.ReceiveDiscussMessage += discussMessage.ReceiveDiscussMessage;
+				LibExport.ReceiveDiscussPrivateMessage += discussMessage.ReceiveDiscussPrivateMessage;
+			}
+			#endregion
+
+			#region --IEvent_FriendMessage--
+			// 解析 IEvent_FriendMessage 接口
+			foreach (var friendMessage in Common.UnityContainer.ResolveAll<IEvent_FriendMessage> ())
+			{
+				// 分发 IEvent_FriendMessage 接口到事件
+				LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriendAddRequest;
+				LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
+				LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
+			}
+			#endregion
+
+			#region --IEvent_GroupMessage--
+			// 解析 IEvent_GroupMessage 接口
+			foreach (var groupMessage in Common.UnityContainer.ResolveAll<IEvent_GroupMessage> ())
+			{
+				// 分发 IEvent_GroupMessage 接口到事件
+				LibExport.ReceiveGroupMessage += groupMessage.ReceiveGroupMessage;
+				LibExport.ReceiveGroupPrivateMessage += groupMessage.ReceiveGroupPrivateMessage;
+				LibExport.ReceiveFileUploadMessage += groupMessage.ReceiveGroupFileUpload;
+				LibExport.ReceiveManageIncrease += groupMessage.ReceiveGroupManageIncrease;
+				LibExport.ReceiveManageDecrease += groupMessage.ReceiveGroupManageDecrease;
+				LibExport.ReceiveMemberJoin += groupMessage.ReceiveGroupMemberJoin;
+				LibExport.ReceiveMemberInvitee += groupMessage.ReceiveGroupMemberInvitee;
+				LibExport.ReceiveMemberLeave += groupMessage.ReceiveGroupMemberLeave;
+				LibExport.ReceiveMemberRemove += groupMessage.ReceiveGroupMemberRemove;
+				LibExport.ReceiveGroupAddApply += groupMessage.ReceiveGroupAddApply;
+				LibExport.ReceiveGroupAddInvitee += groupMessage.ReceiveGroupAddInvitee;
+			}
+			#endregion
+
+			#region --IEvent_OtherMessage--
+			// 解析 IEvent_OtherMessage 接口
+			foreach (var otherMessage in Common.UnityContainer.ResolveAll<IEvent_OtherMessage> ())
+			{
+				// 分发 IEvent_OtherMessage 接口到事件
+				LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
+			}
+			#endregion
 
 			// 注册完毕调用方法进行分发
 			Event_AppMain.Resolvebackcall (Common.UnityContainer);
@@ -73,6 +135,9 @@ namespace Native.Csharp.App.Core
 		{
 			// 酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
 			Common.CqApi = new CqApi (authCode);
+
+			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
+			Common.UnityContainer.RegisterInstance<CqApi> (Common.CqApi);
 
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
