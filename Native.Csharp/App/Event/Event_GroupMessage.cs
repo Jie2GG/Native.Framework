@@ -31,6 +31,19 @@ namespace Native.Csharp.App.Event
 
 			// 与2019年02月26日, 默认注释此行代码.
 			// Common.CqApi.SendGroupMessage (e.FromGroup, Common.CqApi.CqCode_At (e.FromQQ) + "你发送了这样的消息: " + e.Msg);
+			
+			// 消息解析样例
+			IEnumerable<MessageContent> contents = Common.CqApi.ToMessageContent(e.Msg,true);
+			if (contents.Count() > 1)
+			{
+				StringBuilder sb = new StringBuilder();
+				foreach(MessageContent mc in contents)
+				{
+					sb.AppendFormat("{0},{1},{2},{3},{4},{5}", mc.Type, mc.TypeId, mc.TargetId, mc.TargetTitle, mc.TargetUrl, mc.Content);
+					sb.AppendLine();
+				}
+				Common.CqApi.AddLoger(Sdk.Cqp.Enum.LogerLevel.Debug, "消息解析", sb.ToString());
+			}
 
 			e.Handled = true;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}

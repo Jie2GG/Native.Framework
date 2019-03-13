@@ -43,6 +43,7 @@
     <Compile Include="Cqp\Api\CqApi.cs" />
     <Compile Include="Cqp\Core\CQP.cs" />
     <Compile Include="Cqp\Enum\AudioOutFormat.cs" />
+    <Compile Include="Cqp\Enum\ContentType.cs" />
     <Compile Include="Cqp\Enum\Face.cs" />
     <Compile Include="Cqp\Enum\FloatWindowColors.cs" />
     <Compile Include="Cqp\Enum\LogerLevel.cs" />
@@ -56,7 +57,9 @@
     <Compile Include="Cqp\Model\GroupAnonymous.cs" />
     <Compile Include="Cqp\Model\GroupFile.cs" />
     <Compile Include="Cqp\Model\GroupMember.cs" />
+    <Compile Include="Cqp\Model\MessageContent.cs" />
     <Compile Include="Cqp\Model\QQ.cs" />
+    <Compile Include="Cqp\Other\Emoji.cs" />
     <Compile Include="Cqp\Other\Pack.cs" />
     <Compile Include="Cqp\Other\UnPack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
