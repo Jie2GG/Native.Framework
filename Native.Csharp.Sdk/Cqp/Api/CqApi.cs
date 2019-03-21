@@ -213,7 +213,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			}
 			if (!string.IsNullOrEmpty (imgUrl))
 			{
-				@string.AppendFormat (",iamge={0}", CqCode_Trope (imgUrl, true));
+				@string.AppendFormat (",image={0}", CqCode_Trope (imgUrl, true));
 			}
 			return string.Format ("[CQ:music,type=custom{0}]", @string.ToString ());
 		}
