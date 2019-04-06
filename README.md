@@ -45,6 +45,22 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年04月06日 版本: V2.7.2
+
+	1. 优化 Native.Csharp.Sdk 项目的结构, 修改类: CqApi 的命名空间
+	2. 新增 消息解析类: CqMsg
+	
+``` C#
+// 使用方法如下, 例如在群消息接受方法中
+public void ReceiveGroupMessage (object sender, GroupMessageEventArgs e)
+{
+	var parseResult = CqMsg.Parse (e.Msg);		// 使用消息解析
+	List<CqCode> cqCodes =  parseResult.Contents;	// 获取消息中所有的 CQ码
+	
+	// 此时, 获取到的 cqCodes 中就包含此条消息所有的 CQ码
+}
+```
+
 > 2019年03月12日 版本: V2.7.1
 
 	1. 新增 Sex 枚举中未知性别, 值为 255
