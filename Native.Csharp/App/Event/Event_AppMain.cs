@@ -7,7 +7,7 @@ using Unity;
 using Native.Csharp.App.Core;
 using Native.Csharp.App.Interface;
 using Native.Csharp.App.Model;
-using Native.Csharp.Sdk.Cqp.Api;
+using Native.Csharp.Sdk.Cqp;
 
 namespace Native.Csharp.App.Event
 {

@@ -21,6 +21,6 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 		/// <summary>
 		/// 未知
 		/// </summary>
-		Unknown = 255,
+		Unknown = 255
 	}
 }
