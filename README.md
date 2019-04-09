@@ -45,6 +45,12 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年04月09日 版本: V2.7.3
+
+	1. 修复 CqMsg 类针对 VS2012 的兼容问题
+	2. 修复 HttpWebClient 类在增加 Cookies 时, 参数 "{0}" 为空字符串的异常
+	3. 新增 HttpWebClient 类属性 "KeepAlive", 允许指定 HttpWebClient 在做请求时是否建立持续型的 Internal 连接
+
 > 2019年04月06日 版本: V2.7.2
 
 	1. 优化 Native.Csharp.Sdk 项目的结构, 修改类: CqApi 的命名空间
