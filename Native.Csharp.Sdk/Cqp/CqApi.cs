@@ -156,7 +156,7 @@ namespace Native.Csharp.Sdk.Cqp
 			@string.AppendFormat (",lat={0},lon={1}", lat, lon);
 			@string.AppendFormat (",zoom={0}", zoom);
 			@string.AppendFormat (",title={0},content={1}", CqCode_Trope (site, true), CqCode_Trope (detail, true));
-			return @string.ToString ();
+			return string.Format ("[CQ:location{0}]", @string.ToString ());
 		}
 		/// <summary>
 		/// 获取酷Q "匿名" 代码
@@ -213,7 +213,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			if (!string.IsNullOrEmpty (imgUrl))
 			{
-				@string.AppendFormat (",iamge={0}", CqCode_Trope (imgUrl, true));
+				@string.AppendFormat (",image={0}", CqCode_Trope (imgUrl, true));
 			}
 			return string.Format ("[CQ:music,type=custom{0}]", @string.ToString ());
 		}
