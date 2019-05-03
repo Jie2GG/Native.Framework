@@ -5,15 +5,16 @@ using System.Text;
 
 namespace Native.Csharp.App.Model
 {
-	public class PrivateMessageEventArgs : EventArgsBase
+	public class EventArgsBase : EventArgs
 	{
 		/// <summary>
-		/// 消息ID
+		/// 来源QQ
 		/// </summary>
-		public int MsgId { get; set; }
+		public long FromQQ { get; set; }
+
 		/// <summary>
-		/// 消息内容
+		/// 获取或设置一个值，该值指示是否处理过此事件
 		/// </summary>
-		public string Msg { get; set; }
+		public bool Handled { get; set; }
 	}
 }

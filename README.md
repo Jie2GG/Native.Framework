@@ -8,7 +8,7 @@
 
 ## Native.SDK 项目结构
 
-![SDK结构](https://raw.githubusercontent.com/Jie2GG/Image_Folder/master/Sdk结构.png "SDK结构") <br/>
+![SDK结构](https://github.com/Jie2GG/Image/blob/master/NativeSDK(0).png "SDK结构") <br/>
 
 ## Native.SDK 开发环境
 
@@ -18,11 +18,12 @@
 ## Native.SDK 开发流程
 
 	1. 下载并打开 Native.SDK
-	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId (具体参见 http://d.cqp.me/Pro/开发/基础信息)
+	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见http://d.cqp.me/Pro/开发/基础信息)
 	3. 展开 Native.Csharp 项目, 修改 "Native.Csharp.json" 文件名为你的AppId
-	4. 打开 Native.Csharp -> Event 文件夹, 修改 "Event_AppInitialize.cs" 中 "AppInfo" 方法的 "e.AppId" 的值为你的AppId
+	4. 展开 Native.Csharp 项目, 找到 App -> Core -> LibExport.tt 文件, 右击选择 "运行自定义工具"
 	
 	此时 Native.SDK 的开发环境已经配置成功!
+	要找到生成的 程序集, 请找 Native.Csharp -> bin -> x86 -> (Debug\Release) 
 
 ## Native.SDK 调试流程
 
@@ -31,13 +32,10 @@
 	3. 修改 "调试" 中的 "启动操作" 为 "启动外部程序", 并且定位到酷Q主程序
 	4. 打开菜单 工具 -> 选项 -> 调试, 关闭 "要求源文件与原始版本匹配" 选项
 	
+	若还是不行调试?
+	5. 打开项目 Native.Csharp 项目属性, 打开 "调试" 中的 "启用本地代码调试" 选项, 保存即可
+	
 	此时 Native.SDK 已经可以进行实时调试!
-
-## Native.SDK 常见问题
-
-> 1. 关于 "Fody.WeavingTask" 任务意外失败.
-
-	由于不知道为啥, 下载后的文件 "FodyIsolated.dll" (位于: packages\Fody2.0.0) 文件处于锁定状态, 请解锁该文件即可正常编译
 
 ## Native.SDK 已知问题
 	
@@ -47,6 +45,102 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年05月04日 版本: V3.0.0.0504
+
+	说明: 由于酷Q改动了应用机制, 因此升级时请务必保存代码, 进行代码迁移升级!
+	注意: 本次升级相对于之前的版本应用间不兼容做出了修改, 但是其机制导致了与旧版不兼容, 请酌情升级!
+
+    1. 修复 CqApi.AddFatalError 方法传递错误时可能引发酷Q堆栈错误
+    2. 修复 AppDomain.UnhandledException 全局异常捕获失效, 现在支持定位到方法
+    3. 优化 AppDemain.UnhandledException 全局异常捕获解析方式
+    4. 优化 项目版本号, 统一为项目新增当前版本号以区分
+    5. 优化 项目事件模型, 抽象 EventArgsBase 类作为公共抽象类
+    6. 优化 CqMsg 类, 完善 CqCodeType 枚举
+    7. 优化 CqMsg 类, 更改 CqCode.Content 为字典, 而非键值对集合
+    8. 优化 调试机制, 根据 酷Q 应用机制变动而转变为附加调试
+    9. 优化 IOC容器的注册方式
+    10.新增 Native.Csharp.Repair 组件, 改组件为原 (@成音S) 大佬的 .Net 兼容组件
+    11.移除 Event_AppMain.Initialize 方法, 保证应用加载效率
+
+> 2019年04月09日 版本: V2.7.3
+
+	1. 修复 CqMsg 类针对 VS2012 的兼容问题
+	2. 修复 HttpWebClient 类在增加 Cookies 时, 参数 "{0}" 为空字符串的异常
+	3. 新增 HttpWebClient 类属性 "KeepAlive", 允许指定 HttpWebClient 在做请求时是否建立持续型的 Internal 连接
+
+> 2019年04月06日 版本: V2.7.2
+
+	1. 优化 Native.Csharp.Sdk 项目的结构, 修改类: CqApi 的命名空间
+	2. 新增 消息解析类: CqMsg
+	
+``` C#
+// 使用方法如下, 例如在群消息接受方法中
+public void ReceiveGroupMessage (object sender, GroupMessageEventArgs e)
+{
+	var parseResult = CqMsg.Parse (e.Msg);		// 使用消息解析
+	List<CqCode> cqCodes =  parseResult.Contents;	// 获取消息中所有的 CQ码
+	
+	// 此时, 获取到的 cqCodes 中就包含此条消息所有的 CQ码
+}
+```
+
+> 2019年03月12日 版本: V2.7.1
+
+	1. 新增 Sex 枚举中未知性别, 值为 255
+	2. 优化 IOC 容器在获取对象时, 默认拉取所有注入的对象, 简化消息类接口的注入流程.
+
+> 2019年03月03日 版本: V2.7.0
+
+	本次更新于响应 "酷Q" 官方 "易语言 SDK" 的迭代更新
+	
+	1. 新增 CqApi.ReceiveImage (用于获取消息中 "图片" 的绝对路径)
+	2. 新增 CqApi.GetSendRecordSupport (用于获取 "是否支持发送语音", 即用于区别 Air 和 Pro 版本之间的区别)
+	3. 新增 CqApi.GetSendImageSupport (用于获取 "是否支持发送图片", 即用于区别 Air 和 Pro 版本指间的区别)
+	4. 优化 CqApi.ReceiveRecord 方法, 使其获取到的语音路径为绝对路径, 而非相对路径
+
+> 2019年02月26日 版本: V2.6.4
+
+	1. 默认注释 Event_GroupMessage 中 ReceiveGroupMessage 方法的部分代码, 防止因为机器人复读群消息而禁言
+
+> 2019年02月20日 版本: V2.6.3
+
+	1. 还原 Event_AppMain.Resolvebackcall 方法的执行, 防止偶尔获取不到注入的类
+
+> 2019年02月20日 版本: V2.6.2
+
+	1. 更新 Native.Chsarp 项目的部分注释
+	2. 新增 Event_AppMain.Initialize 方法, 位于 "Native.Csharp.App.Event" 下, 用于当作本项目的初始化方法
+	3. 优化 Event_AppMain.Resolvebackcall 方法的执行, 默认将依据接口注入的类型全部实例化并取出分发到事件上 
+
+> 2019年02月16日 版本: V2.6.1
+
+	1. 优化 FodyWeavers.xml 配置, 为其加上注释. 方便开发者使用
+	2. 修复 IniValue 中 ToType 方法导致栈溢出的
+
+> 2019年01月26日 版本: V2.6.0
+
+	说明: 此次更新重构了 Native.Csharp 项目, 全面采用依赖注入框架, 提升 SDK 可扩展性、可移植性
+	注意: 此次更新核心代码重构, 开发者若要升级请备份好代码后升级.
+	
+	1. 新增 Unity 依赖注入框架, 提升 SDK 可扩展性,、可移植性
+	2. 新增 LibExport 文件模板, 使用方式: 右击 "LibExport.tt" -> 运行自定义工具
+	3. 新增 AppID 半自动填写 (运行 LibExport 模板即可生成)
+	4. 新增 Event_AppMain 类, 改类主要用于注册回调和分发事件
+	5. 新增 IEvent_AppStatus 接口, 用于实现 "酷Q事件"
+	6. 新增 IEvent_DiscussMessage 接口, 用于实现 "讨论组事件"
+	7. 新增 IEvent_FriendMessage 接口, 用于实现 "好友事件"
+	8. 新增 IEvent_GroupMessage 接口, 用于实现 "群事件"
+	9. 新增 IEvent_OtherMessage 接口, 用于实现 "其它事件"
+	10. 新增 Ievent_UserExpand 接口, 用于事件开发者自定义的事件
+	11. 修复 LibExport 中 "EventSystemGroupMemberDecrease" 事件传递的 FormQQ 不正确的问题 
+	12. 优化 Model.GroupMessageEventArgs, 在其中添加 IsAnonymousMsg 的变量用于判断消息是否属于匿名消息
+	13. 优化 对公共语言的支持
+	14. 优化 对于原有不合理的事件分类进行重新整合.
+
+> 2019年01月24日 版本: V2.5.0
+
+	1. 新增 Fody 从 1.6.2 -> 3.2.1, 支持整体框架从 .Net Framework 4.0 到 .Net Framework 4.6.1, 开发者可以自行升级.
+
 > 2019年01月23日 版本: V2.4.2
 
 	1. 新增 IniObject.Load() 方法在加载了文件之后保持文件路径, 修改结束后可直接 Save() 不传路径参数保存

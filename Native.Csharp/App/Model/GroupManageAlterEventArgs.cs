@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Native.Csharp.App.Model
 {
-	public class GroupManageAlterEventArgs : EventArgs
+	public class GroupManageAlterEventArgs : EventArgsBase
 	{
 		/// <summary>
 		/// 发送时间
@@ -19,10 +19,5 @@ namespace Native.Csharp.App.Model
 		/// 被操作QQ
 		/// </summary>
 		public long BeingOperateQQ { get; set; }
-
-		/// <summary>
-		/// 获取或设置一个值，该值指示是否处理过此事件
-		/// </summary>
-		public bool Handled { get; set; }
 	}
 }

@@ -16,6 +16,7 @@ using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Tool;
+using Native.Csharp.Repair;
 
 namespace Native.Csharp.App.Core
 {
@@ -28,12 +29,176 @@ namespace Native.Csharp.App.Core
 		/// <returns></returns>
 		static LibExport ()
 		{
+			// 注册程序集加载失败事件, 用于 Fody 库重定向的补充
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
 			// 初始化依赖注入容器
 			Common.UnityContainer = new UnityContainer ();
 
 			// 程序开始调用方法进行注册
 			Event_AppMain.Registbackcall (Common.UnityContainer);
 
+			// 注册完毕调用方法进行分发
+			Event_AppMain.Resolvebackcall (Common.UnityContainer);
+
+			// 分发应用内注册事件
+			ResolveAppbackcall ();
+		}
+		#endregion
+
+		#region --核心方法--
+		/// <summary>
+		/// 返回 AppID 与 ApiVer, 本方法在模板运行后会根据项目名称自动填写 AppID 与 ApiVer
+		/// </summary>
+		/// <returns></returns>
+		[DllExport (ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]
+		private static string AppInfo ()
+		{
+			// 请勿随意修改
+			//
+			// 当前项目名称: Native.Csharp
+			// Api版本: 9
+
+			return string.Format ("{0},{1}", 9, "Native.Csharp");
+		}
+
+		/// <summary>
+		/// 接收插件 AutoCode, 注册异常
+		/// </summary>
+		/// <param name="authCode"></param>
+		/// <returns></returns>
+		[DllExport (ExportName = "Initialize", CallingConvention = CallingConvention.StdCall)]
+		private static int Initialize (int authCode)
+		{
+			// 酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
+			Common.CqApi = new CqApi (authCode);
+
+			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
+			Common.UnityContainer.RegisterInstance<CqApi> (Common.CqApi);
+
+			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。
+			return 0;
+		}
+		#endregion
+
+		#region --私有方法--
+		/// <summary>
+		/// 依赖库加载失败事件, 用于重定向到本项目下加载
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		private static Assembly CurrentDomain_AssemblyResolve (object sender, ResolveEventArgs args)
+		{
+			if (args.Name.Contains (".resources"))
+			{
+				return null;
+			}
+
+			Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
+			Assembly assembly = loadAssembly.Where (w => w.FullName.CompareTo (args.Name) == 0).LastOrDefault ();
+
+			if (assembly != null)   // 不为 null 说明载入的库版本号相同, 则直接使用已载入的资源
+			{
+				return assembly;
+			}
+
+			if (string.IsNullOrEmpty (assembly.Location))
+			{
+				Uri uri = new Uri (assembly.CodeBase);
+				if (uri.IsFile)
+				{
+					// 此实例为 酷Q data\tmp 目录下的组件
+					if (File.Exists (uri.LocalPath))
+					{
+						assembly = Assembly.LoadFile (uri.LocalPath);
+					}
+				}
+			}
+
+			// 解析托管资源
+			if (args.RequestingAssembly != null)
+			{
+				Assembly tmp = AssemblyHelper.AssemblyLoad (args.Name, assembly);
+				if (tmp != null)
+				{
+					return tmp;
+				}
+			}
+
+			// 解析非内嵌组件, 非托管, 可执行文件
+			Uri uriOuter = new Uri (assembly.Location == null ? assembly.CodeBase : assembly.Location);
+			if (!string.IsNullOrEmpty (uriOuter.LocalPath) && uriOuter.IsFile)
+			{
+				Queue<string> paths = new Queue<string> ();
+				string path = Path.GetDirectoryName (uriOuter.LocalPath);
+				if (Directory.Exists (path))
+				{
+					//存取本组件目录下的文件
+					///coolq/data/tmp/cqpp/{guid}/...
+					foreach (var f in Directory.GetFiles (path))
+					{
+						if (AssemblyHelper.IsDotNetAssembly (f))
+						{
+							paths.Enqueue (f);
+						}
+					}
+				}
+				//存取 酷Q /bin目录下的文件
+				string bin = Path.Combine (Directory.GetCurrentDirectory (), "bin");
+				if (Directory.Exists (bin))
+				{
+					foreach (var f in Directory.GetFiles (bin, "*.dll"))
+					{
+						if (AssemblyHelper.IsDotNetAssembly (f))
+						{
+							paths.Enqueue (f);
+						}
+					}
+				}
+
+				foreach (var file in paths)
+				{
+					if (File.Exists (file))
+					{
+						//托管组件
+						try
+						{
+							AssemblyName assemblyName = AssemblyName.GetAssemblyName (file);
+							Assembly tmp = Assembly.LoadFile (file);
+							tmp = AssemblyHelper.AssemblyLoad (args.Name, tmp);
+							if (tmp != null)
+							{
+								return tmp;
+							}
+						}
+						catch { }
+						//因为无法正确判定非托管组件，交回原请求者的重定向处理。
+					}
+				}
+			}
+
+			if (assembly.FullName == args.Name)
+			{
+				return assembly;
+			}
+			//若为内嵌文件(如:WPF .xaml, .resources)，尝试返回其请求者，自会进行解析。
+			//若请求者为null，返回null交由下一AssemblyResolve处理，即最终交由原请求者的重定向处理。
+			if (args.RequestingAssembly == Assembly.GetExecutingAssembly ())
+			{
+				return null;
+			}
+			return args.RequestingAssembly;
+		}
+
+		/// <summary>
+		/// 获取所有的注入项, 分发到对应的事件
+		/// </summary>
+		private static void ResolveAppbackcall ()
+		{
 			#region --IEvent_AppStatus--
 			// 解析 IEvent_AppStatus 接口
 			foreach (var appStatus in Common.UnityContainer.ResolveAll<IEvent_AppStatus> ())
@@ -94,54 +259,8 @@ namespace Native.Csharp.App.Core
 				LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
 			}
 			#endregion
-
-			// 注册完毕调用方法进行分发
-			Event_AppMain.Resolvebackcall (Common.UnityContainer);
-
-			// 完成操作调用初始化函数
-			Event_AppMain.Initialize ();
-		}
-		#endregion
-
-		#region --核心方法--
-		/// <summary>
-		/// 返回 AppID 与 ApiVer, 本方法在模板运行后会根据项目名称自动填写 AppID 与 ApiVer
-		/// </summary>
-		/// <returns></returns>
-		[DllExport (ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]
-		private static string AppInfo ()
-		{
-			// 请勿随意修改
-			//
-			// 当前项目名称: Native.Csharp
-			// Api版本: 9
-
-			return string.Format ("{0},{1}", 9, "Native.Csharp");
 		}
 
-		/// <summary>
-		/// 接收插件 AutoCode, 注册异常
-		/// </summary>
-		/// <param name="authCode"></param>
-		/// <returns></returns>
-		[DllExport (ExportName = "Initialize", CallingConvention = CallingConvention.StdCall)]
-		private static int Initialize (int authCode)
-		{
-			// 酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
-			Common.CqApi = new CqApi (authCode);
-
-			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
-			Common.UnityContainer.RegisterInstance<CqApi> (Common.CqApi);
-
-			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
-			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
-			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。
-			return 0;
-		}
-		#endregion
-
-		#region --私有方法--
 		/// <summary>
 		/// 全局异常捕获, 用于捕获开发者未处理的异常, 此异常将回弹至酷Q进行处理
 		/// </summary>
@@ -153,19 +272,10 @@ namespace Native.Csharp.App.Core
 			if (ex != null)
 			{
 				StringBuilder innerLog = new StringBuilder ();
-				innerLog.AppendLine ("NativeSDK 异常");
-				innerLog.AppendFormat ("[异常名称]: {0}{1}", ex.Source.ToString (), Environment.NewLine);
-				innerLog.AppendFormat ("[异常消息]: {0}{1}", ex.Message, Environment.NewLine);
-				innerLog.AppendFormat ("[异常堆栈]: {0}{1}", ex.StackTrace);
-
-				if (e.IsTerminating)
-				{
-					Common.CqApi.AddFatalError (innerLog.ToString ());      //将未经处理的异常弹回酷Q做处理
-				}
-				else
-				{
-					Common.CqApi.AddLoger (Sdk.Cqp.Enum.LogerLevel.Error, "Native 异常捕捉", innerLog.ToString ());
-				}
+				innerLog.AppendLine ("发现未处理的异常!");
+				innerLog.AppendLine ("异常堆栈：");
+				innerLog.AppendLine (ex.ToString ());
+				Common.CqApi.AddFatalError (innerLog.ToString ());      //将未经处理的异常弹回酷Q做处理
 			}
 		}
 		#endregion

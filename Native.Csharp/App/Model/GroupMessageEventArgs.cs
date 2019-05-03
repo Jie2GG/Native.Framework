@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Native.Csharp.App.Model
 {
-	public class GroupMessageEventArgs : EventArgs
+	public class GroupMessageEventArgs : EventArgsBase
 	{
 		/// <summary>
 		/// 消息Id
@@ -17,11 +17,6 @@ namespace Native.Csharp.App.Model
 		/// 来源群号
 		/// </summary>
 		public long FromGroup { get; set; }
-		
-		/// <summary>
-		/// 来源QQ
-		/// </summary>
-		public long FromQQ { get; set; }
 		
 		/// <summary>
 		/// 是否是匿名消息
@@ -37,10 +32,5 @@ namespace Native.Csharp.App.Model
 		/// 消息内容
 		/// </summary>
 		public string Msg { get; set; }
-
-		/// <summary>
-		/// 获取或设置一个值，该值指示是否处理过此事件
-		/// </summary>
-		public bool Handled { get; set; }
 	}
 }
