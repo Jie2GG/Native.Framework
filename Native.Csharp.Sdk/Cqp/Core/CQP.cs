@@ -108,7 +108,7 @@ namespace Native.Csharp.Sdk.Cqp.Core
 		public static extern int CQ_addLog (int authCode, int priority, string type, IntPtr Msg);
 
 		[DllImport (DllName, EntryPoint = "CQ_setFatal")]
-		public static extern int CQ_setFatal (int authCode, IntPtr errorMsg);
+		public static extern int CQ_setFatal (int authCode, string errorMsg);
 
 		[DllImport (DllName, EntryPoint = "CQ_getGroupMemberInfoV2")]
 		public static extern string CQ_getGroupMemberInfoV2 (int authCode, long groudId, long qqId, bool isCache);

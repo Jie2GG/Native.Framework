@@ -525,7 +525,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int AddFatalError (string message)
 		{
-			return CQP.CQ_setFatal (_authCode, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setFatal (_authCode, message);
 		}
 		#endregion
 
