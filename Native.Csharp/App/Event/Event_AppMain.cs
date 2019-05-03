@@ -63,17 +63,5 @@ namespace Native.Csharp.App.Event
 			IEvent_UserExpand userExpand = container.Resolve<IEvent_UserExpand> ();
 			UserExport.UserOpenConsole += userExpand.OpenConsoleWindow;
 		}
-
-		/// <summary>
-		/// 初始化完毕
-		/// </summary>
-		public static void Initialize ()
-		{
-			// 当上述的 "注册" "分发" 完成之后, 将调用此方法进行最后的初始化
-			// 此方法执行的时间不宜过长, 过长的执行时间将会卡住 酷Q 加载应用, 可能会失败, 请开发者谨慎使用!!!
-			// 
-			// 注意: 当此方法执行完毕后, 应用并没有开始初始化, 仅仅只是加载到内存中而已, 切记!!!
-
-		}
 	}
 }

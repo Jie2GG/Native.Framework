@@ -29,10 +29,10 @@ namespace Native.Csharp.App.Event
 				return;     // 因为 e.Handled = true 只是起到标识作用, 因此还需要手动返回
 			}
 
-			// 与2019年02月26日, 默认注释此行代码.
+			// 于2019年02月26日, 默认注释此行代码.
 			// Common.CqApi.SendGroupMessage (e.FromGroup, Common.CqApi.CqCode_At (e.FromQQ) + "你发送了这样的消息: " + e.Msg);
 
-			e.Handled = true;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
+			e.Handled = false;   // 关于返回说明, 请参见 "Event_FriendMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>

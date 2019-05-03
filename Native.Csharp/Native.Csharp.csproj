@@ -102,6 +102,7 @@
     <Compile Include="App\Interface\IEvent_OtherMessage.cs" />
     <Compile Include="App\Interface\IEvent_UserExpand.cs" />
     <Compile Include="App\Model\DiscussMessageEventArgs.cs" />
+    <Compile Include="App\Model\EventArgsBase.cs" />
     <Compile Include="App\Model\FileUploadMessageEventArgs.cs" />
     <Compile Include="App\Model\FriendAddRequestEventArgs.cs" />
     <Compile Include="App\Model\FriendIncreaseEventArgs.cs" />
@@ -111,6 +112,10 @@
     <Compile Include="App\Model\GroupMessageEventArgs.cs" />
     <Compile Include="App\Model\PrivateMessageEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repair\AssemblyHelper.cs" />
+    <Compile Include="Repair\Kernel32.cs" />
+    <Compile Include="Repair\LoadLibraryFlags.cs" />
+    <Compile Include="Repair\ReflectionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Native.Csharp.json">

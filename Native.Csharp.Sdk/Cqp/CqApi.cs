@@ -294,7 +294,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="id">消息ID</param>
 		/// <returns></returns>
-		public int RepealMessage (long id)
+		public int RepealMessage (int id)
 		{
 			return CQP.CQ_deleteMsg (_authCode, id);
 		}
