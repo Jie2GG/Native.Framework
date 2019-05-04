@@ -10,79 +10,78 @@ using System.Text.RegularExpressions;
 
 namespace Native.Csharp.Sdk.Cqp
 {
-    /// <summary>
-    /// 消息解析
-    /// </summary>
-    public class CqMsg
-    {
-        #region --字段--
-        private static Regex[] _regex = new Regex[]
-        {
-            new Regex(@"\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled),	// 匹配CQ码
+	/// <summary>
+	/// 消息解析
+	/// </summary>
+	public class CqMsg
+	{
+		#region --字段--
+		private static Regex[] _regex = new Regex[]
+		{
+			new Regex(@"\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled),	// 匹配CQ码
 			new Regex(@",([A-Za-z]+)=([^,\[\]]+)", RegexOptions.Compiled)				// 匹配键值对
 		};
-        #endregion
+		#endregion
 
-        #region --属性--
-        /// <summary>
-        /// 获取一个值, 该值是构造函数传入的原始值
-        /// </summary>
-        public string OriginalString { get; private set; }
+		#region --属性--
+		/// <summary>
+		/// 获取一个值, 该值是构造函数传入的原始值
+		/// </summary>
+		public string OriginalString { get; private set; }
 
-        /// <summary>
-        /// 获取本条消息中所有解析出的特殊内容
-        /// </summary>
-        public List<CqCode> Contents { get; private set; }
-        #endregion
+		/// <summary>
+		/// 获取本条消息中所有解析出的特殊内容
+		/// </summary>
+		public List<CqCode> Contents { get; private set; }
+		#endregion
 
-        #region --构造函数--
-        private CqMsg (string message)
-        {
-            OriginalString = message;
-            Contents = new List<CqCode> ();
+		#region --构造函数--
+		private CqMsg (string message)
+		{
+			OriginalString = message;
+			Contents = new List<CqCode> ();
 
-            // 搜索消息中的 CQ码
-            MatchCollection matches = _regex[0].Matches (message);
-            if (matches.Count > 0)
-            {
-                foreach (Match match in matches)
-                {
-                    CqCode tempCode = new CqCode ();
+			// 搜索消息中的 CQ码
+			MatchCollection matches = _regex[0].Matches (message);
+			if (matches.Count > 0)
+			{
+				foreach (Match match in matches)
+				{
+					CqCode tempCode = new CqCode ();
 
-                    #region --解析 CQ码 类型--
-                    CqCodeType type = CqCodeType.Unknown;
-                    if (System.Enum.TryParse<CqCodeType> (match.Groups[1].Value, true, out type))
-                    {
-                        tempCode.Type = type;
-                    }
-                    #endregion
+					#region --解析 CQ码 类型--
+					CqCodeType type = CqCodeType.Unknown;
+					if (System.Enum.TryParse<CqCodeType> (match.Groups[1].Value, true, out type))
+					{
+						tempCode.Type = type;
+					}
+					#endregion
 
-                    #region --键值对解析--
-                    List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>> ();
-                    MatchCollection kvResult = _regex[1].Matches (match.Groups[2].Value);
-                    foreach (Match kvMatch in kvResult)
-                    {
-                        pairs.Add (new KeyValuePair<string, string> (kvMatch.Groups[1].Value, kvMatch.Groups[2].Value));
-                    }
-                    tempCode.Dictionary = pairs.ToArray ();
-                    #endregion
+					#region --键值对解析--
+					tempCode.Dictionary = new Dictionary<string, string> ();
+					MatchCollection kvResult = _regex[1].Matches (match.Groups[2].Value);
+					foreach (Match kvMatch in kvResult)
+					{
+						tempCode.Dictionary.Add (kvMatch.Groups[1].Value, kvMatch.Groups[2].Value);
+					}
+					#endregion
 
-                    Contents.Add (tempCode);
-                }
-            }
-        }
-        #endregion
+					Contents.Add (tempCode);
+				}
+			}
+		}
+		#endregion
 
-        #region --公开方法--
-        /// <summary>
-        /// 将所获取的消息内容序列化为 <see cref="CqMsg"/> 对象
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        public static CqMsg Parse (string message)
-        {
-            return new CqMsg (message);
-        }
-        #endregion
-    }
+		#region --公开方法--
+		/// <summary>
+		/// 将所获取的消息内容序列化为 <see cref="CqMsg"/> 对象
+		/// </summary>
+		/// <param name="message"></param>
+		/// <returns></returns>
+		public static CqMsg Parse (string message)
+		{
+			return new CqMsg (message);
+		}
+		#endregion
+	}
 }
