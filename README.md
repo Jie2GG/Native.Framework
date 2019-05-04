@@ -34,7 +34,6 @@
     5. 选择 CQA.exe/CQP.exe 的托管进程, 选择附加
     6. 附加成功后进入调试模式, 即可进行断点 (注: 仅在只加载一个 .Net 应用的酷Q可以进行调试)
 
-
 ## Native.SDK 已知问题
 	
 > 1. ~~对于 "EnApi.GetMsgFont" 方法, 暂时无法根据酷Q回传的指针获取字体信息, 暂时无法使用~~ <span style="color:red">(由于酷Q不解析此参数, 弃用)</span>
