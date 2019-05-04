@@ -15,7 +15,7 @@
 >1. Visual Studio 2012 或更高版本
 >2. Microsoft .Net Framework 4.0 **(XP系统支持的最后一个版本)**
 
-## Native.SDK 开发流程
+## Native.SDK 部署流程
 
 	1. 下载并打开 Native.SDK
 	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见http://d.cqp.me/Pro/开发/基础信息)
