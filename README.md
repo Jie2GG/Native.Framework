@@ -10,13 +10,12 @@
 
 ![SDK结构](https://github.com/Jie2GG/Image/blob/master/NativeSDK(0).png "SDK结构") <br/>
 
-## Native.SDK 环境要求
+## Native.SDK 开发环境
 
->1. 酷Q Air/Pro
->2. Visual Studio 2012 或更高版本
->3. Microsoft .Net Framework 4.0 **(XP系统支持的最后一个版本)**
+>1. Visual Studio 2012 或更高版本
+>2. Microsoft .Net Framework 4.0 **(XP系统支持的最后一个版本)**
 
-## Native.SDK 部署流程
+## Native.SDK 开发流程
 
 	1. 下载并打开 Native.SDK
 	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见http://d.cqp.me/Pro/开发/基础信息)
@@ -34,6 +33,7 @@
     4. 依次选择VS的菜单项: "调试" -> "附加到进程"
     5. 选择 CQA.exe/CQP.exe 的托管进程, 选择附加
     6. 附加成功后进入调试模式, 即可进行断点 (注: 仅在只加载一个 .Net 应用的酷Q可以进行调试)
+
 
 ## Native.SDK 已知问题
 	
