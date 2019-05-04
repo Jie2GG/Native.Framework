@@ -60,5 +60,25 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 		/// 卡片消息
 		/// </summary>
 		Rich,
+		/// <summary>
+		/// 签到
+		/// </summary>
+		Sign,
+		/// <summary>
+		/// 红包
+		/// </summary>
+		Hb,
+		/// <summary>
+		/// 推荐
+		/// </summary>
+		Contact,
+		/// <summary>
+		/// 厘米秀
+		/// </summary>
+		Show,
+		/// <summary>
+		/// 位置分享
+		/// </summary>
+		Location
 	}
 }

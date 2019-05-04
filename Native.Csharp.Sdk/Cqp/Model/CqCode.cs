@@ -17,7 +17,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取一个值, 指示该 CQ码 中所有的键值对
 		/// </summary>
-		public KeyValuePair<string, string>[] Dictionary { get; set; }
+		public Dictionary<string, string> Dictionary { get; set; }
 		#endregion
 	}
 }

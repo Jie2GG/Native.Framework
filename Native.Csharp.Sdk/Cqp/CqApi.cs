@@ -294,7 +294,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="id">消息ID</param>
 		/// <returns></returns>
-		public int RepealMessage (long id)
+		public int RepealMessage (int id)
 		{
 			return CQP.CQ_deleteMsg (_authCode, id);
 		}
@@ -525,7 +525,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int AddFatalError (string message)
 		{
-			return CQP.CQ_setFatal (_authCode, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setFatal (_authCode, message);
 		}
 		#endregion
 
