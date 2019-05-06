@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cqp\Api\CqApi.cs" />
     <Compile Include="Cqp\Core\CQP.cs" />
+    <Compile Include="Cqp\CqApi.cs" />
+    <Compile Include="Cqp\CqMsg.cs" />
     <Compile Include="Cqp\Enum\AudioOutFormat.cs" />
+    <Compile Include="Cqp\Enum\CqCodeType.cs" />
     <Compile Include="Cqp\Enum\Face.cs" />
     <Compile Include="Cqp\Enum\FloatWindowColors.cs" />
     <Compile Include="Cqp\Enum\LogerLevel.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="Cqp\Enum\RequestType.cs" />
     <Compile Include="Cqp\Enum\ResponseType.cs" />
     <Compile Include="Cqp\Enum\Sex.cs" />
+    <Compile Include="Cqp\Model\CqCode.cs" />
     <Compile Include="Cqp\Model\FloatWindow.cs" />
     <Compile Include="Cqp\Model\Group.cs" />
     <Compile Include="Cqp\Model\GroupAnonymous.cs" />

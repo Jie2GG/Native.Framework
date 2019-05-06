@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Native.Csharp.App.Model
 {
-	public class GroupAddRequestEventArgs : EventArgs
+	public class GroupAddRequestEventArgs : EventArgsBase
 	{
 		/// <summary>
 		/// 发送时间
@@ -16,10 +16,6 @@ namespace Native.Csharp.App.Model
 		/// </summary>
 		public long FromGroup { get; set; }
 		/// <summary>
-		/// 来源QQ 
-		/// </summary>
-		public long FromQQ { get; set; }
-		/// <summary>
 		/// 附加消息
 		/// </summary>
 		public string AppendMsg { get; set; }
@@ -27,10 +23,5 @@ namespace Native.Csharp.App.Model
 		/// 反馈标识 (处理请求用)
 		/// </summary>
 		public string Tag { get; set; }
-
-		/// <summary>
-		/// 获取或设置一个值，该值指示是否处理过此事件
-		/// </summary>
-		public bool Handled { get; set; }
 	}
 }

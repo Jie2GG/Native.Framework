@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Native.Csharp.App.Interface;
-using Native.Csharp.Sdk.Cqp.Api;
+
 
 namespace Native.Csharp.App.Event
 {
