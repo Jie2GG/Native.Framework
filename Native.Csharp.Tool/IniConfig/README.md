@@ -79,4 +79,6 @@ IniValue value2 = section2["节点"]["键1"];
 
 IniObject iObject = IniObject.Load ("1.ini");
 iObject["节点1"]["键1"] = new IniValue ("更新值");    // 因为无法重载 = 运算符, 所以没办法只能 new 对象
+iObject["节点1"]["键1"] = new IniValue (10);
+iObject["节点1"]["键1"].Value = "更新值";		// 适用于字符串的时候
 ```
