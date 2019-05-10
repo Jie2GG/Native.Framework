@@ -10,8 +10,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Native.Csharp.Repair.Core;
+using Native.Csharp.Repair.Enum;
 
-namespace Native.Csharp.Repair
+namespace Native.Csharp.Repair.Helper
 {
 	/*
 	 *	移植自: 00.00.dotnetRedirect 插件, 原作者: 成音S. 引用请带上此注释
@@ -20,7 +22,7 @@ namespace Native.Csharp.Repair
 	public static class AssemblyHelper
 	{
 		#region --字段--
-		private static List<string> preloaded = new List<string> (); 
+		private static List<string> preloaded = new List<string> ();
 		#endregion
 
 		#region --公开方法--
@@ -29,7 +31,7 @@ namespace Native.Csharp.Repair
 			string text = requestedAssemblyName.Name.ToLowerInvariant ();
 			if (requestedAssemblyName.CultureInfo != null && !string.IsNullOrEmpty (requestedAssemblyName.CultureInfo.Name))
 			{
-				text = requestedAssemblyName.CultureInfo.Name + "." + text;
+				text = string.Format ("{0}.{1}", requestedAssemblyName.CultureInfo.Name, text);
 			}
 			byte[] rawAssembly;
 			using (Stream stream = LoadStream (assemblyNames, text, executingAssembly))
@@ -53,7 +55,7 @@ namespace Native.Csharp.Repair
 
 		public static Assembly ReadFromEmbeddedResources (string name, Assembly executingAssembly)
 		{
-			String[] assemblys = executingAssembly.GetManifestResourceNames ();
+			string[] assemblys = executingAssembly.GetManifestResourceNames ();
 
 			byte[] rawAssembly;
 			foreach (var file in assemblys)
@@ -94,7 +96,7 @@ namespace Native.Csharp.Repair
 			Type typeLoader = executingAssembly.GetType ("Costura.AssemblyLoader");
 			if (typeLoader != null)
 			{
-				if (System.Environment.OSVersion.Version.Major > 5 && System.Environment.OSVersion.Version.Minor > 2)
+				if (Environment.OSVersion.Version.Major > 5 && Environment.OSVersion.Version.Minor > 2)
 				{
 					if (preloaded.Any () && !preloaded.Contains (executingAssembly.FullName))
 					{
@@ -107,16 +109,24 @@ namespace Native.Csharp.Repair
 				Dictionary<string, string> symbolNames = ReflectionHelper.GetInstanceField<Dictionary<string, string>> (typeLoader, null, "symbolNames");
 
 				AssemblyName assemblyName = new AssemblyName (args.Name);
-				Assembly embeddedAssembly = AssemblyHelper.ReadFromEmbeddedResources (assemblyNames, symbolNames, assemblyName, executingAssembly);
-				if (embeddedAssembly?.FullName == args.Name)
+				Assembly embeddedAssembly = ReadFromEmbeddedResources (assemblyNames, symbolNames, assemblyName, executingAssembly);
+
+				if (embeddedAssembly != null)
 				{
-					return embeddedAssembly;
+					if (embeddedAssembly.FullName.CompareTo (args.Name) == 0)
+					{
+						return embeddedAssembly;
+					}
 				}
+
 				//若非内嵌组件(即非托管或可执行文件)，尝试以原有重定向方法解析。
 				embeddedAssembly = ReflectionHelper.InvokeMethod<Assembly> (typeLoader, null, "ResolveAssembly", new object[] { sender, args });
-				if (embeddedAssembly?.FullName == args.Name)
+				if (embeddedAssembly != null)
 				{
-					return embeddedAssembly;
+					if (embeddedAssembly.FullName.CompareTo (args.Name) == 0)
+					{
+						return embeddedAssembly;
+					}
 				}
 			}
 			return executingAssembly;
@@ -124,14 +134,15 @@ namespace Native.Csharp.Repair
 
 		public static Assembly AssemblyLoad (string name, Assembly executingAssembly)
 		{
-			if (executingAssembly.FullName == name)
+			if (executingAssembly.FullName.CompareTo (name) == 0)
 			{
 				return executingAssembly;
 			}
+
 			//若组件为使用Native SDK，理应存在Fody.Costura 打包及重定向。
 			//尝试解析其重定向类。
 			executingAssembly = CosturaAssemblyLoader (null, new ResolveEventArgs (name), executingAssembly);
-			if (executingAssembly.FullName == name)
+			if (executingAssembly.FullName.CompareTo (name) == 0)
 			{
 				return executingAssembly;
 			}
@@ -174,11 +185,12 @@ namespace Native.Csharp.Repair
 		public static void PreloadUnmanagedLibraries (Assembly executingAssembly, string hash, string tempBasePath, List<string> libs, Dictionary<string, string> checksums)
 		{
 			// since tempBasePath is per user, the mutex can be per user
-			var mutexId = $"Costura{hash}";
+			var mutexId = string.Format ("Costura{0}", hash);
 
 			using (var mutex = new Mutex (false, mutexId))
 			{
 				var hasHandle = false;
+
 				try
 				{
 					try
@@ -186,7 +198,7 @@ namespace Native.Csharp.Repair
 						hasHandle = mutex.WaitOne (60000, false);
 						if (hasHandle == false)
 						{
-							throw new TimeoutException ("Timeout waiting for exclusive access");
+							throw new TimeoutException ("等待独占访问的超时");
 						}
 					}
 					catch (AbandonedMutexException)
@@ -211,16 +223,20 @@ namespace Native.Csharp.Repair
 		public static string CalculateChecksum (string filename)
 		{
 			using (var fs = new FileStream (filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
-			using (var bs = new BufferedStream (fs))
-			using (var sha1 = new SHA1CryptoServiceProvider ())
 			{
-				var hash = sha1.ComputeHash (bs);
-				var formatted = new StringBuilder (2 * hash.Length);
-				foreach (var b in hash)
+				using (var bs = new BufferedStream (fs))
 				{
-					formatted.AppendFormat ("{0:X2}", b);
+					using (var sha1 = new SHA1CryptoServiceProvider ())
+					{
+						var hash = sha1.ComputeHash (bs);
+						var formatted = new StringBuilder (2 * hash.Length);
+						foreach (var b in hash)
+						{
+							formatted.AppendFormat ("{0:X2}", b);
+						}
+						return formatted.ToString ();
+					}
 				}
-				return formatted.ToString ();
 			}
 		}
 
@@ -267,7 +283,7 @@ namespace Native.Csharp.Repair
 				return LoadStream (fullName, executingAssembly);
 			}
 			return null;
-		} 
+		}
 		#endregion
 
 		#region --私有方法--
@@ -276,20 +292,21 @@ namespace Native.Csharp.Repair
 			//读取其打包后生成的preload组件目录并尝试载入。
 			List<string> preloadList = new List<string> ();
 			List<string> preload32List = new List<string> ();
-			//List<string> preload64List = new List<string>();
+			List<string> preload64List = new List<string> ();   // 预兼容 64位 组件, 当酷Q支持 64时则生效
 			Dictionary<string, string> checksums = new Dictionary<string, string> ();
 
 			try
 			{
 				checksums = ReflectionHelper.GetInstanceField<Dictionary<string, string>> (typeLoader, null, "checksums");
 				preload32List = ReflectionHelper.GetInstanceField<List<string>> (typeLoader, null, "preload32List");
-				//preload64List = ReflectionHelper.GetInstanceField<List<string>>(typeLoader, null, "preload64List");
+				preload64List = ReflectionHelper.GetInstanceField<List<string>> (typeLoader, null, "preload64List");
 				preloadList = ReflectionHelper.GetInstanceField<List<string>> (typeLoader, null, "preloadList");
 			}
 			catch { }
 			if (checksums.Any ())
 			{
-				var hash = $"{Process.GetCurrentProcess ().Id}_{executingAssembly.GetHashCode ()}";
+				//var hash = $"{Process.GetCurrentProcess ().Id}_{executingAssembly.GetHashCode ()}";
+				var hash = string.Format ("{0}_{1}", Process.GetCurrentProcess ().Id, executingAssembly.GetHashCode ());
 				var prefixPath = Path.Combine (Path.GetTempPath (), "Costura");
 				var tempBasePath = Path.Combine (prefixPath, hash);
 				PreloadUnmanagedLibraries (executingAssembly, hash, tempBasePath, preloadList.Concat (preload32List).ToList (), checksums);
@@ -349,9 +366,11 @@ namespace Native.Csharp.Repair
 				if (!File.Exists (assemblyTempFilePath))
 				{
 					using (var copyStream = LoadStream (lib, executingAssembly))
-					using (var assemblyTempFile = File.OpenWrite (assemblyTempFilePath))
 					{
-						CopyTo (copyStream, assemblyTempFile);
+						using (var assemblyTempFile = File.OpenWrite (assemblyTempFilePath))
+						{
+							CopyTo (copyStream, assemblyTempFile);
+						}
 					}
 				}
 			}
@@ -377,7 +396,7 @@ namespace Native.Csharp.Repair
 
 			// restore to previous state
 			Kernel32.SetErrorMode (originalErrorMode);
-		} 
+		}
 		#endregion
 	}
 }
