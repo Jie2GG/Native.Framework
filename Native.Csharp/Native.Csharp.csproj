@@ -172,19 +172,23 @@
     <Error Condition="!Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if exist "$(TargetDir)$(TargetName)" (
-copy "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)\app.dll" 
-copy "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)\app.json" 
-copy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)\$(TargetName).pdb" 
-echo 清理目录中 
-del /F /A /Q "$(TargetDir)$(TargetName).dll" 
-del /F /A /Q "$(TargetDir)$(TargetName).json" 
-del /F /A /Q "$(TargetDir)$(TargetName).pdb" 
+    <PostBuildEvent>if exist "$(TargetDir)$(TargetName).dll" (
+move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).dll" "app.dll" 
+) 
+if exist "$(TargetDir)$(TargetName).json" (
+move "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).json" "app.json" 
+) 
+if exist "$(TargetDir)$(TargetName).pdb" (
+move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).pdb" "app.pdb" 
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)") 
 if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll") 
-if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")</PreBuildEvent>
+if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")
+if exist "$(TargetDir)$(TargetName)\app.pdb" (del /F /A /Q "$(TargetDir)$(TargetName)\app.pdb")</PreBuildEvent>
   </PropertyGroup>
 </Project>
