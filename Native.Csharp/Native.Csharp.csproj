@@ -173,18 +173,18 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>if exist "$(TargetDir)$(TargetName)" (
-copy "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)\app.dll"
-copy "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)\app.json"
-copy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)\$(TargetName).pdb"
-echo 清理目录中
-del /F /A /Q "$(TargetDir)$(TargetName).dll"
-del /F /A /Q "$(TargetDir)$(TargetName).json"
-del /F /A /Q "$(TargetDir)$(TargetName).pdb"
+copy "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)\app.dll" 
+copy "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)\app.json" 
+copy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)\$(TargetName).pdb" 
+echo 清理目录中 
+del /F /A /Q "$(TargetDir)$(TargetName).dll" 
+del /F /A /Q "$(TargetDir)$(TargetName).json" 
+del /F /A /Q "$(TargetDir)$(TargetName).pdb" 
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)")
-if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll")
+    <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)") 
+if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll") 
 if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")</PreBuildEvent>
   </PropertyGroup>
 </Project>
