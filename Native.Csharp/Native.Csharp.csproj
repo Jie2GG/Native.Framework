@@ -71,9 +71,6 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -175,6 +172,26 @@
   <Target Name="DllExportRPkgDynamicImport" BeforeTargets="PostBuildEvent" DependsOnTargets="GetFrameworkPaths" Condition="'$(DllExportModImported)' != 'true' And '$(DllExportRPkgDyn)' != 'false'">
     <MSBuild BuildInParallel="true" UseResultsCache="true" Projects="$(MSBuildProjectFullPath)" Properties="DllExportRPkgDyn=true" Targets="Build" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)") 
+if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll") 
+if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")
+if exist "$(TargetDir)$(TargetName)\app.pdb" (del /F /A /Q "$(TargetDir)$(TargetName)\app.pdb")</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)$(TargetName).dll" (
+move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).dll" "app.dll" 
+) 
+if exist "$(TargetDir)$(TargetName).json" (
+move "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).json" "app.json" 
+) 
+if exist "$(TargetDir)$(TargetName).pdb" (
+move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)" 
+rename "$(TargetDir)$(TargetName)\$(TargetName).pdb" "app.pdb" 
+)</PostBuildEvent>
+  </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
@@ -183,20 +200,4 @@
     <Error Condition="!Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('..\packages\ModuleInit.Fody.2.0.0\build\ModuleInit.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ModuleInit.Fody.2.0.0\build\ModuleInit.Fody.props'))" />
   </Target>
-  <PropertyGroup>
-    <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)")
-if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll")
-if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")</PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if exist "$(TargetDir)$(TargetName)" (
-copy "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName)\app.dll"
-copy "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)\app.json"
-copy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)\$(TargetName).pdb"
-echo 清理目录中
-del /F /A /Q "$(TargetDir)$(TargetName).dll"
-del /F /A /Q "$(TargetDir)$(TargetName).json"
-del /F /A /Q "$(TargetDir)$(TargetName).pdb"
-)</PostBuildEvent>
-  </PropertyGroup>
 </Project>
