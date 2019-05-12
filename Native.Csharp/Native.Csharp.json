@@ -1,146 +1,146 @@
-// ¿áQ µÄJsonÎÄ¼şÖ§³ÖÒÔ // ¿ªÍ·µÄ×¢ÊÍ¡£
-// ´ò°üÇ°£¬Ó¦ÓÃµÄ .dll, .json µÄÎÄ¼şÃûĞëÒÔappidÃüÃû£¬Ó¦ÓÃAppInfo·µ»ØµÄÄÚÈİĞë¸ÄÎªappid
-// Èç appid=com.example.demo, Ôòdll¼°jsonÎÄ¼şĞè·Ö±ğÃüÃûÎª com.example.demo.dll¡¢com.example.demo.json
+// é…·Q çš„Jsonæ–‡ä»¶æ”¯æŒä»¥ // å¼€å¤´çš„æ³¨é‡Šã€‚
+// æ‰“åŒ…å‰ï¼Œåº”ç”¨çš„ .dll, .json çš„æ–‡ä»¶åé¡»ä»¥appidå‘½åï¼Œåº”ç”¨AppInfoè¿”å›çš„å†…å®¹é¡»æ”¹ä¸ºappid
+// å¦‚ appid=com.example.demo, åˆ™dllåŠjsonæ–‡ä»¶éœ€åˆ†åˆ«å‘½åä¸º com.example.demo.dllã€com.example.demo.json
 {
-	"ret": 1, // ·µ»ØÂë£¬¹Ì¶¨Îª1
-	"apiver": 9, // Api°æ±¾£¬±¾SDKÎª9
-	"name": "¿áQÑùÀıÓ¦ÓÃ for C#", // Ó¦ÓÃÃû³Æ
-	"version": "1.0.0", // Ó¦ÓÃ°æ±¾
-	"version_id": 1, // Ó¦ÓÃË³Ğò°æ±¾£¨Ã¿´Î·¢²¼Ê±ÖÁÉÙ+1£©
-	"author": "JieGG", // Ó¦ÓÃ×÷Õß
-	"description": "¿áQÑùÀıÓ¦ÓÃ for C# (V9Ó¦ÓÃ»úÖÆ)",
-	"event": [ // ÊÂ¼şÁĞ±í£¬Í¬Ò»ÊÂ¼şÀàĞÍ¿ÉÖØ¸´¶¨Òå£¨·¢²¼Ç°ÇëÉ¾³ıÎŞÓÃÊÂ¼ş£©
+	"ret": 1, // è¿”å›ç ï¼Œå›ºå®šä¸º1
+	"apiver": 9, // Apiç‰ˆæœ¬ï¼Œæœ¬SDKä¸º9
+	"name": "é…·Qæ ·ä¾‹åº”ç”¨ for C#", // åº”ç”¨åç§°
+	"version": "1.0.0", // åº”ç”¨ç‰ˆæœ¬
+	"version_id": 1, // åº”ç”¨é¡ºåºç‰ˆæœ¬ï¼ˆæ¯æ¬¡å‘å¸ƒæ—¶è‡³å°‘+1ï¼‰
+	"author": "JieGG", // åº”ç”¨ä½œè€…
+	"description": "é…·Qæ ·ä¾‹åº”ç”¨ for C# (V9åº”ç”¨æœºåˆ¶)",
+	"event": [ // äº‹ä»¶åˆ—è¡¨ï¼ŒåŒä¸€äº‹ä»¶ç±»å‹å¯é‡å¤å®šä¹‰ï¼ˆå‘å¸ƒå‰è¯·åˆ é™¤æ— ç”¨äº‹ä»¶ï¼‰
 		{
-			"id": 1, // ÊÂ¼şID
-			"type": 21, // ÊÂ¼şÀàĞÍ
-			"name": "Ë½ÁÄÏûÏ¢´¦Àí", // ÊÂ¼şÃû³Æ
-			"function": "_eventPrivateMsg", // ÊÂ¼ş¶ÔÓ¦º¯Êı
-			"priority": 30000 // ÊÂ¼şÓÅÏÈ¼¶(²Î¼û cq.im/deveventpriority)
+			"id": 1, // äº‹ä»¶ID
+			"type": 21, // äº‹ä»¶ç±»å‹
+			"name": "ç§èŠæ¶ˆæ¯å¤„ç†", // äº‹ä»¶åç§°
+			"function": "_eventPrivateMsg", // äº‹ä»¶å¯¹åº”å‡½æ•°
+			"priority": 30000 // äº‹ä»¶ä¼˜å…ˆçº§(å‚è§ cq.im/deveventpriority)
 		},
 		{
 			"id": 2,
 			"type": 2,
-			"name": "ÈºÏûÏ¢´¦Àí",
+			"name": "ç¾¤æ¶ˆæ¯å¤„ç†",
 			"function": "_eventGroupMsg",
 			"priority": 30000
 		},
 		{
 			"id": 3,
 			"type": 4,
-			"name": "ÌÖÂÛ×éÏûÏ¢´¦Àí",
+			"name": "è®¨è®ºç»„æ¶ˆæ¯å¤„ç†",
 			"function": "_eventDiscussMsg",
 			"priority": 30000
 		},
 		{
 			"id": 4,
 			"type": 11,
-			"name": "ÈºÎÄ¼şÉÏ´«ÊÂ¼ş´¦Àí",
+			"name": "ç¾¤æ–‡ä»¶ä¸Šä¼ äº‹ä»¶å¤„ç†",
 			"function": "_eventGroupUpload",
 			"priority": 30000
 		},
 		{
 			"id": 5,
 			"type": 101,
-			"name": "Èº¹ÜÀí±ä¶¯ÊÂ¼ş´¦Àí",
+			"name": "ç¾¤ç®¡ç†å˜åŠ¨äº‹ä»¶å¤„ç†",
 			"function": "_eventSystem_GroupAdmin",
 			"priority": 30000
 		},
 		{
 			"id": 6,
 			"type": 102,
-			"name": "Èº³ÉÔ±¼õÉÙÊÂ¼ş´¦Àí",
+			"name": "ç¾¤æˆå‘˜å‡å°‘äº‹ä»¶å¤„ç†",
 			"function": "_eventSystem_GroupMemberDecrease",
 			"priority": 30000
 		},
 		{
 			"id": 7,
 			"type": 103,
-			"name": "Èº³ÉÔ±Ôö¼ÓÊÂ¼ş´¦Àí",
+			"name": "ç¾¤æˆå‘˜å¢åŠ äº‹ä»¶å¤„ç†",
 			"function": "_eventSystem_GroupMemberIncrease",
 			"priority": 30000
 		},
 		{
 			"id": 10,
 			"type": 201,
-			"name": "ºÃÓÑÒÑÌí¼ÓÊÂ¼ş´¦Àí",
+			"name": "å¥½å‹å·²æ·»åŠ äº‹ä»¶å¤„ç†",
 			"function": "_eventFriend_Add",
 			"priority": 30000
 		},
 		{
 			"id": 8,
 			"type": 301,
-			"name": "ºÃÓÑÌí¼ÓÇëÇó´¦Àí",
+			"name": "å¥½å‹æ·»åŠ è¯·æ±‚å¤„ç†",
 			"function": "_eventRequest_AddFriend",
 			"priority": 30000
 		},
 		{
 			"id": 9,
 			"type": 302,
-			"name": "ÈºÌí¼ÓÇëÇó´¦Àí",
+			"name": "ç¾¤æ·»åŠ è¯·æ±‚å¤„ç†",
 			"function": "_eventRequest_AddGroup",
 			"priority": 30000
 		},
 		{
 			"id": 1001,
 			"type": 1001,
-			"name": "¿áQÆô¶¯ÊÂ¼ş",
+			"name": "é…·Qå¯åŠ¨äº‹ä»¶",
 			"priority": 30000,
 			"function": "_eventStartup"
 		},
 		{
 			"id": 1002,
 			"type": 1002,
-			"name": "¿áQ¹Ø±ÕÊÂ¼ş",
+			"name": "é…·Qå…³é—­äº‹ä»¶",
 			"priority": 30000,
 			"function": "_eventExit"
 		},
 		{
 			"id": 1003,
 			"type": 1003,
-			"name": "Ó¦ÓÃÒÑ±»ÆôÓÃ",
+			"name": "åº”ç”¨å·²è¢«å¯ç”¨",
 			"priority": 30000,
 			"function": "_eventEnable"
 		},
 		{
 			"id": 1004,
 			"type": 1004,
-			"name": "Ó¦ÓÃ½«±»Í£ÓÃ",
+			"name": "åº”ç”¨å°†è¢«åœç”¨",
 			"priority": 30000,
 			"function": "_eventDisable"
 		}
 	],
-	"menu": [ // ÉèÖÃ²Ëµ¥£¨·¢²¼Ç°ÇëÉ¾³ıÎŞÓÃ²Ëµ¥£¬Èç¹ûÎŞĞèÉèÖÃ²Ëµ¥ÇëÈ«²¿É¾³ı£©
+	"menu": [ // è®¾ç½®èœå•ï¼ˆå‘å¸ƒå‰è¯·åˆ é™¤æ— ç”¨èœå•ï¼Œå¦‚æœæ— éœ€è®¾ç½®èœå•è¯·å…¨éƒ¨åˆ é™¤ï¼‰
 		{
-			"name": "´ò¿ª¿ØÖÆÌ¨", //²Ëµ¥Ãû³Æ
-			"function": "_eventOpenConsole" //²Ëµ¥¶ÔÓ¦º¯Êı
+			"name": "æ‰“å¼€æ§åˆ¶å°", //èœå•åç§°
+			"function": "_eventOpenConsole" //èœå•å¯¹åº”å‡½æ•°
 		}
 	],
-	"status": [ // Ğü¸¡´°×´Ì¬£¨¼û com.example.status ÑùÀı£©
+	"status": [ // æ‚¬æµ®çª—çŠ¶æ€ï¼ˆè§ com.example.status æ ·ä¾‹ï¼‰
 
 	],
-	"auth": [ // Ó¦ÓÃÈ¨ÏŞ£¨·¢²¼Ç°ÇëÉ¾³ıÎŞÓÃÈ¨ÏŞ£©
-		//20,  //[Ãô¸Ğ]È¡Cookies	getCookies / getCsrfToken
-		//30,  //½ÓÊÕÓïÒô			getRecord
-		101, //·¢ËÍÈºÏûÏ¢			sendGroupMsg
-		103, //·¢ËÍÌÖÂÛ×éÏûÏ¢		sendDiscussMsg
-		106, //·¢ËÍË½ÁÄÏûÏ¢		sendPrivateMsg
-		110, //·¢ËÍÔŞ				sendLike
-		120, //ÖÃÈºÔ±ÒÆ³ı			setGroupKick
-		121, //ÖÃÈºÔ±½ûÑÔ			setGroupBan
-		122, //ÖÃÈº¹ÜÀíÔ±			setGroupAdmin
-		123, //ÖÃÈ«Èº½ûÑÔ			setGroupWholeBan
-		124, //ÖÃÄäÃûÈºÔ±½ûÑÔ		setGroupAnonymousBan
-		125, //ÖÃÈºÄäÃûÉèÖÃ		setGroupAnonymous
-		126, //ÖÃÈº³ÉÔ±ÃûÆ¬		setGroupCard
-		//127, //[Ãô¸Ğ]ÖÃÈºÍË³ö		setGroupLeave
-		128, //ÖÃÈº³ÉÔ±×¨ÊôÍ·ÏÎ	setGroupSpecialTitle
-		130, //È¡Èº³ÉÔ±ĞÅÏ¢		getGroupMemberInfoV2 / getGroupMemberInfo
-		131, //È¡Ä°ÉúÈËĞÅÏ¢		getStrangerInfo
-		140, //ÖÃÌÖÂÛ×éÍË³ö		setDiscussLeave
-		150, //ÖÃºÃÓÑÌí¼ÓÇëÇó		setFriendAddRequest
-		151, //ÖÃÈºÌí¼ÓÇëÇó		setGroupAddRequest
-		160, //È¡Èº³ÉÔ±ÁĞ±í		getGroupMemberList
-		161, //È¡ÈºÁĞ±í			getGroupList
-		180 //³·»ØÏûÏ¢			deleteMsg
+	"auth": [ // åº”ç”¨æƒé™ï¼ˆå‘å¸ƒå‰è¯·åˆ é™¤æ— ç”¨æƒé™ï¼‰
+		//20,  //[æ•æ„Ÿ]å–Cookies	getCookies / getCsrfToken
+		//30,  //æ¥æ”¶è¯­éŸ³			getRecord
+		101, //å‘é€ç¾¤æ¶ˆæ¯			sendGroupMsg
+		103, //å‘é€è®¨è®ºç»„æ¶ˆæ¯		sendDiscussMsg
+		106, //å‘é€ç§èŠæ¶ˆæ¯		sendPrivateMsg
+		110, //å‘é€èµ				sendLike
+		120, //ç½®ç¾¤å‘˜ç§»é™¤			setGroupKick
+		121, //ç½®ç¾¤å‘˜ç¦è¨€			setGroupBan
+		122, //ç½®ç¾¤ç®¡ç†å‘˜			setGroupAdmin
+		123, //ç½®å…¨ç¾¤ç¦è¨€			setGroupWholeBan
+		124, //ç½®åŒ¿åç¾¤å‘˜ç¦è¨€		setGroupAnonymousBan
+		125, //ç½®ç¾¤åŒ¿åè®¾ç½®		setGroupAnonymous
+		126, //ç½®ç¾¤æˆå‘˜åç‰‡		setGroupCard
+		//127, //[æ•æ„Ÿ]ç½®ç¾¤é€€å‡º		setGroupLeave
+		128, //ç½®ç¾¤æˆå‘˜ä¸“å±å¤´è¡”	setGroupSpecialTitle
+		130, //å–ç¾¤æˆå‘˜ä¿¡æ¯		getGroupMemberInfoV2 / getGroupMemberInfo
+		131, //å–é™Œç”Ÿäººä¿¡æ¯		getStrangerInfo
+		140, //ç½®è®¨è®ºç»„é€€å‡º		setDiscussLeave
+		150, //ç½®å¥½å‹æ·»åŠ è¯·æ±‚		setFriendAddRequest
+		151, //ç½®ç¾¤æ·»åŠ è¯·æ±‚		setGroupAddRequest
+		160, //å–ç¾¤æˆå‘˜åˆ—è¡¨		getGroupMemberList
+		161, //å–ç¾¤åˆ—è¡¨			getGroupList
+		180 //æ’¤å›æ¶ˆæ¯			deleteMsg
 	]
 }
