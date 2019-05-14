@@ -38,6 +38,8 @@ namespace Native.Csharp.Repair
 				return assembly;
 			}
 
+			assembly = args.RequestingAssembly != null ? args.RequestingAssembly : Assembly.GetExecutingAssembly ();
+
 			if (string.IsNullOrEmpty (assembly.Location))
 			{
 				Uri uri = new Uri (assembly.CodeBase);
