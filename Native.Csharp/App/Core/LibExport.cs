@@ -29,6 +29,9 @@ namespace Native.Csharp.App.Core
 		/// <returns></returns>
 		static LibExport ()
 		{
+			// 初始化 Costura
+			CosturaUtility.Initialize ();
+
 			// 初始化依赖注入容器
 			Common.UnityContainer = new UnityContainer ();
 
