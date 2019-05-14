@@ -11,7 +11,7 @@ namespace Native.Csharp.Repair
 {
 	public static class ModuleInitializer
 	{
-		public static void Initialize()
+		public static void Initialize ()
 		{
 			// 注册程序集加载失败事件, 用于 Fody 库重定向的补充
 			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
@@ -37,6 +37,8 @@ namespace Native.Csharp.Repair
 			{
 				return assembly;
 			}
+
+			assembly = args.RequestingAssembly != null ? args.RequestingAssembly : Assembly.GetExecutingAssembly ();
 
 			if (string.IsNullOrEmpty (assembly.Location))
 			{
