@@ -168,17 +168,12 @@ rename "$(TargetDir)$(TargetName)\$(TargetName).dll" "app.dll"
 if exist "$(TargetDir)$(TargetName).json" (
 move "$(TargetDir)$(TargetName).json" "$(TargetDir)$(TargetName)" 
 rename "$(TargetDir)$(TargetName)\$(TargetName).json" "app.json" 
-) 
-if exist "$(TargetDir)$(TargetName).pdb" (
-move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName)" 
-rename "$(TargetDir)$(TargetName)\$(TargetName).pdb" "app.pdb" 
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>if exist "$(TargetDir)$(TargetName)" (echo 文件夹已存在) else (md "$(TargetDir)$(TargetName)") 
 if exist "$(TargetDir)$(TargetName)\app.dll" (del /F /A /Q "$(TargetDir)$(TargetName)\app.dll") 
-if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")
-if exist "$(TargetDir)$(TargetName)\app.pdb" (del /F /A /Q "$(TargetDir)$(TargetName)\app.pdb")</PreBuildEvent>
+if exist "$(TargetDir)$(TargetName)\app.json" (del /F /A /Q "$(TargetDir)$(TargetName)\app.json")</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
