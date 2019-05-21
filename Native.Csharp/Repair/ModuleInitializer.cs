@@ -25,10 +25,10 @@ namespace Native.Csharp.Repair
 		/// <returns></returns>
 		private static Assembly CurrentDomain_AssemblyResolve (object sender, ResolveEventArgs args)
 		{
-			if (args.Name.EndsWith (".resources"))
-			{
-				return null;
-			}
+            if (args.Name.Split(',')[0].EndsWith(".resources"))
+            {
+                return null;
+            }
 
 			Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
 			Assembly assembly = loadAssembly.Where (w => w.FullName.CompareTo (args.Name) == 0).LastOrDefault ();
