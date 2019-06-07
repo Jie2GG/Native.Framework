@@ -324,7 +324,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public string GetLoginNick ()
 		{
-			return CQP.CQ_getLoginNick (_authCode).GetString (_defaultEncoding);
+			return CQP.CQ_getLoginNick (_authCode).ToString (_defaultEncoding);
 		}
 
 		/// <summary>

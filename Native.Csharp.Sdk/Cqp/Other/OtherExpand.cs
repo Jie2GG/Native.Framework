@@ -65,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.Other
 		/// <param name="strPtr">字符串的 <see cref="IntPtr"/> 对象</param>
 		/// <param name="encoding">目标编码格式</param>
 		/// <returns></returns>
-		public static string GetString (this IntPtr strPtr, Encoding encoding = null)
+		public static string ToString (this IntPtr strPtr, Encoding encoding = null)
 		{
 			if (encoding == null)
 			{

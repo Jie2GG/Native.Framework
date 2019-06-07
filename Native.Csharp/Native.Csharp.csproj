@@ -135,10 +135,6 @@
       <Project>{797eaebc-4d5b-4eef-87f4-a508fda2cb6a}</Project>
       <Name>Native.Csharp.Sdk</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Native.Csharp.Tool\Native.Csharp.Tool.csproj">
-      <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>
-      <Name>Native.Csharp.Tool</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

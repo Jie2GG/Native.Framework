@@ -44,9 +44,14 @@
 
 ## Native.SDK 更新日志
 > 2019年06月07日 版本: V3.0.7.0607
+	
+	由于 酷Q 停止对 Windows XP/Vista 系统的支持, 所以 Native.SDK 将停止继续使用 .Net 4.0 并将此版本作为最终发布版归档处理, 下个版本开始仅对 .Net 4.5+ 更新
 
 	1. 修复 悬浮窗数据转换错误 (由 Pack -> BinaryWriter)
 	2. 优化 部分 Api 接口的数据处理效率 (由 UnPack -> BinaryReader)
+	3. 优化 分离 Native.Csharp.Tool 项目, 使 SDK 更轻量
+	4. 优化 调整 Native.Csharp.Tool 项目结构, 每个模块为一个根文件夹. 排除即可在编译时移除功能
+	5. 优化 新增 HttpTool (位于 Native.Csharp.Tool.Http)
 
 > 2019年05月25日 版本: V3.0.6.0525
 

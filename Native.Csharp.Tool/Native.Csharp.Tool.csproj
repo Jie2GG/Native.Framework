@@ -42,15 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Kernel32.cs" />
-    <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\HttpTool.cs" />
     <Compile Include="Http\HttpWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IniConfig\Linq\IniObject.cs" />
     <Compile Include="IniConfig\Linq\IniSection.cs" />
     <Compile Include="IniConfig\Linq\IniValue.cs" />
-    <Compile Include="IniFile.cs" />
     <Compile Include="NativeConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
