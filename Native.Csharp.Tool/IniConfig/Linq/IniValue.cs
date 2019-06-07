@@ -195,7 +195,6 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <summary>
 		/// 指示当前对象是否等于另一个对象。
 		/// </summary>
-		/// <param name="other">与此实例比较的另一个对象</param>
 		/// <returns>如果当前对象等于 obj 参数，则为 true；否则为 false。</returns>
 		public TypeCode GetTypeCode ()
 		{

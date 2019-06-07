@@ -35,7 +35,7 @@ namespace Native.Csharp.Tool.Http
 		/// <summary>
 		/// 使用默认编码对 URL 进行解码
 		/// </summary>
-		/// <param name="data">要解码的地址</param>
+		/// <param name="url">要解码的地址</param>
 		/// <returns>编码后的地址</returns>
 		public static string UrlDecode (string url)
 		{

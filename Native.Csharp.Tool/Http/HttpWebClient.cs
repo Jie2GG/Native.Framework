@@ -197,9 +197,6 @@ namespace Native.Csharp.Tool.Http
         /// <param name="cookies">请求附带的 Cookies
         ///		<para>此参数支持自动更新 <see cref="CookieContainer"/>, 若 <see cref="AutoCookieMerge"/> 参数为 True, 将合并新旧 Cookie</para>
         /// </param>
-        /// <param name="headers">请求附带的 Headers
-        ///		<para>此参数支持自动更新 <see cref="WebHeaderCollection"/></para>
-        /// </param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <param name="autoCookieMerge">指定自动 <see cref="CookieContainer"/> 合并</param>
         /// <returns>返回从 Internal 读取的 <see cref="byte"/> 数组</returns>
@@ -251,9 +248,6 @@ namespace Native.Csharp.Tool.Http
         ///	</param>
         /// <param name="cookies">请求附带的 Cookies
         ///		<para>此参数支持自动更新 <see cref="CookieContainer"/>, 若 <see cref="AutoCookieMerge"/> 参数为 True, 将合并新旧 Cookie</para>
-        /// </param>
-        /// <param name="headers">请求附带的 Headers
-        ///		<para>此参数支持自动更新 <see cref="WebHeaderCollection"/></para>
         /// </param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <param name="autoCookieMerge">指定自动 <see cref="CookieContainer"/> 合并</param>
@@ -529,7 +523,6 @@ namespace Native.Csharp.Tool.Http
         ///		<para>必须包含 "http://" 或 "https://"</para>
         ///	</param>
         /// <param name="data">请求所需的上传数据</param>
-        /// <param name="contentType">Content-Type HTTP 标头</param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <returns>返回从 Internal 读取的 <see cref="byte"/> 数组</returns>
         public static byte[] Post(string url, byte[] data, bool allowAutoRedirect = true)
