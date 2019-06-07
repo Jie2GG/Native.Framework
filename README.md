@@ -43,6 +43,11 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月07日 版本: V3.0.7.0607
+
+	1. 修复 悬浮窗数据转换错误 (由 Pack -> BinaryWriter)
+	2. 优化 部分 Api 接口的数据处理效率 (由 UnPack -> BinaryReader)
+
 > 2019年05月25日 版本: V3.0.6.0525
 
 	1. 修复 HttpWebClient 类在请求 Internet 资源时响应重定向的部分代码错误
