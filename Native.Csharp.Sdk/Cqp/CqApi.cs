@@ -534,7 +534,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int AddLoger (LogerLevel level, string type, string content)
 		{
-			return CQP.CQ_addLog (_authCode, (int)level, type, content.ToIntPtr ());
+			return CQP.CQ_addLog (_authCode, (int)level, type, content.ToIntPtr (_defaultEncoding));
 		}
 
 		/// <summary>

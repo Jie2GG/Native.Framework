@@ -53,6 +53,7 @@
 	3. 优化 分离 Native.Csharp.Tool 项目, 使 SDK 更轻量
 	4. 优化 调整 Native.Csharp.Tool 项目结构, 每个模块为一个根文件夹. 排除即可在编译时移除功能
 	5. 优化 新增 HttpTool (位于 Native.Csharp.Tool.Http)
+	6. 新增 SQLite 操作类 (不包含EF, 需要可自行添加), 完全移植自 System.Data.SQLite (.Net 4.0)
 
 > 2019年05月25日 版本: V3.0.6.0525
 
