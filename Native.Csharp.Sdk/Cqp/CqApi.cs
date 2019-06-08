@@ -1,13 +1,13 @@
-﻿using Native.Csharp.Sdk.Cqp.Core;
-using Native.Csharp.Sdk.Cqp.Enum;
-using Native.Csharp.Sdk.Cqp.Model;
-using Native.Csharp.Sdk.Cqp.Other;
-using Native.Csharp.Tool;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Native.Csharp.Sdk.Cqp.Core;
+using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Model;
+using Native.Csharp.Sdk.Cqp.Other;
 
 namespace Native.Csharp.Sdk.Cqp
 {
@@ -16,6 +16,7 @@ namespace Native.Csharp.Sdk.Cqp
 		#region --字段--
 		private int _authCode = 0;
 		private string _appDirCache = null;
+		private Encoding _defaultEncoding = null;
 		#endregion
 
 		#region --属性--
@@ -27,12 +28,13 @@ namespace Native.Csharp.Sdk.Cqp
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化一个 CqApi 类的新实例, 该实例将由酷Q授权
+		/// 初始化一个 <see cref="CqApi"/> 类的新实例, 该实例将由 <code>Initialize ()</code> 函数授权
 		/// </summary>
 		/// <param name="authCode">插件验证码</param>
 		public CqApi (int authCode)
 		{
 			this._authCode = authCode;
+			this._defaultEncoding = Encoding.GetEncoding ("GB18030");
 		}
 		#endregion
 
@@ -237,8 +239,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="message">消息内容</param>
 		public int SendGroupMessage (long groupId, string message)
 		{
-			return CQP.CQ_sendGroupMsg (_authCode, groupId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendGroupMsg (_authCode, groupId, message.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 发送私聊消息
 		/// </summary>
@@ -247,8 +250,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int SendPrivateMessage (long qqId, string message)
 		{
-			return CQP.CQ_sendPrivateMsg (_authCode, qqId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendPrivateMsg (_authCode, qqId, message.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 发送讨论组消息
 		/// </summary>
@@ -257,8 +261,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int SendDiscussMessage (long discussId, string message)
 		{
-			return CQP.CQ_sendDiscussMsg (_authCode, discussId, NativeConvert.ToStringPtr (message, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_sendDiscussMsg (_authCode, discussId, message.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 发送赞
 		/// </summary>
@@ -269,6 +274,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_sendLikeV2 (_authCode, qqId, (count <= 0 || count > 10) ? 1 : count);
 		}
+
 		/// <summary>
 		/// 接收消息中的语音(record),返回语音文件绝对路径
 		/// </summary>
@@ -280,6 +286,7 @@ namespace Native.Csharp.Sdk.Cqp
 			//return CQP.CQ_getRecord (_authCode, fileName, formatType.ToString ());
 			return CQP.CQ_getRecordV2 (_authCode, fileName, formatType.ToString ());
 		}
+
 		/// <summary>
 		/// 接收消息中的图片(image),返回图片文件绝对路径
 		/// </summary>
@@ -289,6 +296,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_getImage (_authCode, fileName);
 		}
+
 		/// <summary>
 		/// 撤回消息
 		/// </summary>
@@ -309,14 +317,16 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_getLoginQQ (_authCode);
 		}
+
 		/// <summary>
 		/// 获取当前登录QQ的昵称
 		/// </summary>
 		/// <returns></returns>
 		public string GetLoginNick ()
 		{
-			return NativeConvert.ToPtrString (CQP.CQ_getLoginNick (_authCode));
+			return CQP.CQ_getLoginNick (_authCode).ToString (_defaultEncoding);
 		}
+
 		/// <summary>
 		/// 取应用目录
 		/// </summary>
@@ -329,6 +339,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			return _appDirCache;
 		}
+
 		/// <summary>
 		/// 获取Cookies 慎用,此接口需要严格授权
 		/// </summary>
@@ -337,6 +348,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_getCookies (_authCode);
 		}
+
 		/// <summary>
 		/// 即QQ网页用到的bkn/g_tk等 慎用,此接口需要严格授权
 		/// </summary>
@@ -345,6 +357,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_getCsrfToken (_authCode);
 		}
+
 		/// <summary>
 		/// 获取QQ信息
 		/// </summary>
@@ -360,14 +373,15 @@ namespace Native.Csharp.Sdk.Cqp
 				qqInfo = null;
 				return -1000;
 			}
-			UnPack unpack = new UnPack (Convert.FromBase64String (result));
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
 			qqInfo = new QQ ();
-			qqInfo.Id = unpack.GetInt64 ();
-			qqInfo.Nick = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			qqInfo.Sex = (Sex)unpack.GetInt32 ();
-			qqInfo.Age = unpack.GetInt32 ();
+			qqInfo.Id = binary.ReadInt64_Ex ();
+			qqInfo.Nick = binary.ReadString_Ex (_defaultEncoding);
+			qqInfo.Sex = (Sex)binary.ReadInt32_Ex ();
+			qqInfo.Age = binary.ReadInt32_Ex ();
 			return 0;
 		}
+
 		/// <summary>
 		/// 获取群成员信息
 		/// </summary>
@@ -385,27 +399,28 @@ namespace Native.Csharp.Sdk.Cqp
 				return -1000;
 			}
 			#region --其它_转换_文本到群成员信息--
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
 			member = new GroupMember ();
-			UnPack unpack = new UnPack (Convert.FromBase64String (result));
-			member.GroupId = unpack.GetInt64 ();
-			member.QQId = unpack.GetInt64 ();
-			member.Nick = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			member.Card = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			member.Sex = (Sex)unpack.GetInt32 ();
-			member.Age = unpack.GetInt32 ();
-			member.Area = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			member.JoiningTime = NativeConvert.FotmatUnixTime (unpack.GetInt32 ().ToString ());
-			member.LastDateTime = NativeConvert.FotmatUnixTime (unpack.GetInt32 ().ToString ());
-			member.Level = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			member.PermitType = (PermitType)unpack.GetInt32 ();
-			member.BadRecord = unpack.GetInt32 () == 1;
-			member.SpecialTitle = unpack.GetString (Encoding.GetEncoding ("GB18030"));
-			member.SpecialTitleDurationTime = NativeConvert.FotmatUnixTime (unpack.GetInt32 ().ToString ());
-			member.CanModifiedCard = unpack.GetInt32 () == 1;
+			member.GroupId = binary.ReadInt64_Ex ();
+			member.QQId = binary.ReadInt64_Ex ();
+			member.Nick = binary.ReadString_Ex (_defaultEncoding);
+			member.Card = binary.ReadString_Ex (_defaultEncoding);
+			member.Sex = (Sex)binary.ReadInt32_Ex ();
+			member.Age = binary.ReadInt32_Ex ();
+			member.Area = binary.ReadString_Ex (_defaultEncoding);
+			member.JoiningTime = binary.ReadInt32_Ex ().ToDateTime ();
+			member.LastDateTime = binary.ReadInt32_Ex ().ToDateTime ();
+			member.Level = binary.ReadString_Ex (_defaultEncoding);
+			member.PermitType = (PermitType)binary.ReadInt32_Ex ();
+			member.BadRecord = binary.ReadInt32_Ex () == 1;
+			member.SpecialTitle = binary.ReadString_Ex (_defaultEncoding);
+			member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
+			member.CanModifiedCard = binary.ReadInt32_Ex () == 1;
 			#endregion
 			return 0;
 
 		}
+
 		/// <summary>
 		/// 获取群成员列表
 		/// </summary>
@@ -421,43 +436,44 @@ namespace Native.Csharp.Sdk.Cqp
 				return -1000;
 			}
 			#region --其他_转换_文本到群成员列表信息a--
-			UnPack unpack = new UnPack (Convert.FromBase64String (result));
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
 			memberInfos = new List<GroupMember> ();
-			for (int i = 0, len = unpack.GetInt32 (); i < len; i++)
+			for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
 			{
-				if (unpack.OverLength <= 0)
+				if (binary.Length () <= 0)
 				{
 					memberInfos = null;
 					return -1000;
 				}
 				#region --其它_转换_ansihex到群成员信息--
-				UnPack temp = new UnPack (unpack.GetToken ()); //解析群成员信息
+				BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())); //解析群成员信息
 				GroupMember member = new GroupMember ();
-				member.GroupId = temp.GetInt64 ();
-				member.QQId = temp.GetInt64 ();
-				member.Nick = temp.GetString (Encoding.GetEncoding ("GB18030"));
-				member.Card = temp.GetString (Encoding.GetEncoding ("GB18030"));
-				member.Sex = (Sex)temp.GetInt32 ();
-				member.Age = temp.GetInt32 ();
-				member.Area = temp.GetString (Encoding.GetEncoding ("GB18030"));
-				member.JoiningTime = NativeConvert.FotmatUnixTime (temp.GetInt32 ().ToString ());
-				member.LastDateTime = NativeConvert.FotmatUnixTime (temp.GetInt32 ().ToString ());
-				member.Level = temp.GetString (Encoding.GetEncoding ("GB18030"));
-				member.PermitType = (PermitType)temp.GetInt32 ();
-				member.BadRecord = temp.GetInt32 () == 1;
-				member.SpecialTitle = temp.GetString (Encoding.GetEncoding ("GB18030"));
-				member.SpecialTitleDurationTime = NativeConvert.FotmatUnixTime (temp.GetInt32 ().ToString ());
-				member.CanModifiedCard = temp.GetInt32 () == 1;
+				member.GroupId = tempBinary.ReadInt64_Ex ();
+				member.QQId = tempBinary.ReadInt64_Ex ();
+				member.Nick = tempBinary.ReadString_Ex (_defaultEncoding);
+				member.Card = tempBinary.ReadString_Ex (_defaultEncoding);
+				member.Sex = (Sex)tempBinary.ReadInt32_Ex ();
+				member.Age = tempBinary.ReadInt32_Ex ();
+				member.Area = tempBinary.ReadString_Ex (_defaultEncoding);
+				member.JoiningTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+				member.LastDateTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+				member.Level = tempBinary.ReadString_Ex (_defaultEncoding);
+				member.PermitType = (PermitType)tempBinary.ReadInt32_Ex ();
+				member.BadRecord = tempBinary.ReadInt32_Ex () == 1;
+				member.SpecialTitle = tempBinary.ReadString_Ex (_defaultEncoding);
+				member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
+				member.CanModifiedCard = tempBinary.ReadInt32_Ex () == 1;
 				#endregion
 				memberInfos.Add (member);
 			}
 			#endregion
 			return 0;
 		}
+
 		/// <summary>
 		/// 获取群列表
 		/// </summary>
-		/// <param name="groups"></param>
+		/// <param name="groups">返回的群列表</param>
 		/// <returns></returns>
 		public int GetGroupList (out List<Group> groups)
 		{
@@ -469,25 +485,26 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			groups = new List<Group> ();
 			#region --其他_转换_文本到群列表信息a--
-			UnPack unpack = new UnPack (Convert.FromBase64String (result));
-			for (int i = 0, len = unpack.GetInt32 (); i < len; i++)
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
+			for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
 			{
-				if (unpack.OverLength <= 0)
+				if (binary.Length () <= 0)
 				{
 					groups = null;
 					return -1000;
 				}
 				#region --其他_转换_ansihex到群信息--
-				UnPack temp = new UnPack (unpack.GetToken ());
+				BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ()));
 				Group group = new Group ();
-				group.Id = temp.GetInt64 ();
-				group.Name = temp.GetString (Encoding.GetEncoding ("GB18030"));
+				group.Id = tempBinary.ReadInt64_Ex ();
+				group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
 				groups.Add (group);
 				#endregion
 			}
 			#endregion
 			return 0;
 		}
+
 		/// <summary>
 		/// 获取发送语音支持
 		/// </summary>
@@ -496,6 +513,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_canSendRecord (_authCode) > 0;
 		}
+
 		/// <summary>
 		/// 获取发送图片支持
 		/// </summary>
@@ -516,8 +534,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int AddLoger (LogerLevel level, string type, string content)
 		{
-			return CQP.CQ_addLog (_authCode, (int)level, type, NativeConvert.ToStringPtr (content, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_addLog (_authCode, (int)level, type, content.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 添加致命错误提示
 		/// </summary>
@@ -543,8 +562,9 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, NativeConvert.ToStringPtr (appendMsg, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, appendMsg.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 置群添加请求
 		/// </summary>
@@ -559,7 +579,7 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				appendMsg = string.Empty;
 			}
-			return CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, NativeConvert.ToStringPtr (appendMsg, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, appendMsg.ToIntPtr (_defaultEncoding));
 		}
 		#endregion
 
@@ -578,8 +598,9 @@ namespace Native.Csharp.Sdk.Cqp
 				time = TimeSpan.Zero;
 			}
 
-			return CQP.CQ_setGroupAnonymousBan (_authCode, groupId, NativeConvert.ToStringPtr (anonymous, Encoding.GetEncoding ("GB18030")), (long)time.TotalSeconds);
+			return CQP.CQ_setGroupAnonymousBan (_authCode, groupId, anonymous.ToIntPtr (_defaultEncoding), (long)time.TotalSeconds);
 		}
+
 		/// <summary>
 		/// 置群员禁言
 		/// </summary>
@@ -595,6 +616,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			return CQP.CQ_setGroupBan (_authCode, groupId, qqId, (long)time.TotalSeconds);
 		}
+
 		/// <summary>
 		/// 置全群禁言
 		/// </summary>
@@ -605,6 +627,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_setGroupWholeBan (_authCode, groupId, isOpen);
 		}
+
 		/// <summary>
 		/// 置群成员名片
 		/// </summary>
@@ -614,8 +637,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public int SetGroupMemberNewCard (long groupId, long qqId, string newNick)
 		{
-			return CQP.CQ_setGroupCard (_authCode, groupId, qqId, NativeConvert.ToStringPtr (newNick, Encoding.GetEncoding ("GB18030")));
+			return CQP.CQ_setGroupCard (_authCode, groupId, qqId, newNick.ToIntPtr (_defaultEncoding));
 		}
+
 		/// <summary>
 		/// 置群成员专属头衔
 		/// </summary>
@@ -630,8 +654,9 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				time = new TimeSpan (-10000000);     //-1秒
 			}
-			return CQP.CQ_setGroupSpecialTitle (_authCode, groupId, qqId, NativeConvert.ToStringPtr (specialTitle, Encoding.GetEncoding ("GB18030")), (long)time.TotalSeconds);
+			return CQP.CQ_setGroupSpecialTitle (_authCode, groupId, qqId, specialTitle.ToIntPtr (_defaultEncoding), (long)time.TotalSeconds);
 		}
+
 		/// <summary>
 		/// 置群管理员
 		/// </summary>
@@ -643,6 +668,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_setGroupAdmin (_authCode, groupId, qqId, isCalcel);
 		}
+
 		/// <summary>
 		/// 置群匿名设置
 		/// </summary>
@@ -653,6 +679,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_setGroupAnonymous (_authCode, groupId, isOpen);
 		}
+
 		/// <summary>
 		/// 置群退出 慎用,此接口需要严格授权
 		/// </summary>
@@ -663,6 +690,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_setGroupLeave (_authCode, groupId, dissolve);
 		}
+
 		/// <summary>
 		/// 置群员移除
 		/// </summary>
@@ -674,6 +702,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return CQP.CQ_setGroupKick (_authCode, groupId, qqId, notAccept);
 		}
+
 		/// <summary>
 		/// 置讨论组退出
 		/// </summary>
@@ -695,6 +724,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			_authCode = authCode;
 		}
+
 		/// <summary>
 		/// 获取App验证码
 		/// </summary>
@@ -704,6 +734,7 @@ namespace Native.Csharp.Sdk.Cqp
 		{
 			return _authCode;
 		}
+
 		/// <summary>
 		/// 获取匿名信息
 		/// </summary>
@@ -711,13 +742,14 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public GroupAnonymous GetAnonymous (string source)
 		{
-			UnPack unPack = new UnPack (Convert.FromBase64String (source));
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
 			GroupAnonymous anonymous = new GroupAnonymous ();
-			anonymous.Id = unPack.GetInt64 ();
-			anonymous.CodeName = unPack.GetString (Encoding.GetEncoding ("GB18030"));
-			anonymous.Token = unPack.GetToken ();
+			anonymous.Id = binary.ReadInt64_Ex ();
+			anonymous.CodeName = binary.ReadString_Ex ();
+			anonymous.Token = binary.ReadToken_Ex ();
 			return anonymous;
 		}
+
 		/// <summary>
 		/// 获取群文件
 		/// </summary>
@@ -725,14 +757,15 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public GroupFile GetFile (string source)
 		{
-			UnPack unPack = new UnPack (Convert.FromBase64String (source));
+			BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
 			GroupFile file = new GroupFile ();
-			file.Id = unPack.GetString (Encoding.GetEncoding ("GB18030"));
-			file.Name = unPack.GetString (Encoding.GetEncoding ("GB18030"));
-			file.Size = unPack.GetInt64 ();
-			file.Busid = Convert.ToInt32 (unPack.GetInt64 ());
+			file.Id = binary.ReadString_Ex ();      // 参照官方SDK, 编码为 ASCII
+			file.Name = binary.ReadString_Ex ();    // 参照官方SDK, 编码为 ASCII
+			file.Size = binary.ReadInt64_Ex ();
+			file.Busid = Convert.ToInt32 (binary.ReadInt64_Ex ());
 			return file;
 		}
+
 		/// <summary>
 		/// 编码悬浮窗数据置文本
 		/// </summary>
@@ -740,11 +773,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public string FormatStringFloatWindow (FloatWindow floatWindow)
 		{
-			Pack pack = new Pack ();
-			pack.SetLenString (floatWindow.Data);
-			pack.SetLenString (floatWindow.Unit);
-			pack.SetInt32 ((int)floatWindow.Color);
-			return Convert.ToBase64String (pack.GetAll ());
+			BinaryWriter binary = new BinaryWriter (new MemoryStream ());
+			binary.Write_Ex (floatWindow.Data);
+			binary.Write_Ex (floatWindow.Unit);
+			binary.Write_Ex ((int)floatWindow.Color);
+
+			return Convert.ToBase64String (binary.ToArray ());
 		}
 		#endregion
 	}

@@ -197,9 +197,6 @@ namespace Native.Csharp.Tool.Http
         /// <param name="cookies">请求附带的 Cookies
         ///		<para>此参数支持自动更新 <see cref="CookieContainer"/>, 若 <see cref="AutoCookieMerge"/> 参数为 True, 将合并新旧 Cookie</para>
         /// </param>
-        /// <param name="headers">请求附带的 Headers
-        ///		<para>此参数支持自动更新 <see cref="WebHeaderCollection"/></para>
-        /// </param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <param name="autoCookieMerge">指定自动 <see cref="CookieContainer"/> 合并</param>
         /// <returns>返回从 Internal 读取的 <see cref="byte"/> 数组</returns>
@@ -251,9 +248,6 @@ namespace Native.Csharp.Tool.Http
         ///	</param>
         /// <param name="cookies">请求附带的 Cookies
         ///		<para>此参数支持自动更新 <see cref="CookieContainer"/>, 若 <see cref="AutoCookieMerge"/> 参数为 True, 将合并新旧 Cookie</para>
-        /// </param>
-        /// <param name="headers">请求附带的 Headers
-        ///		<para>此参数支持自动更新 <see cref="WebHeaderCollection"/></para>
         /// </param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <param name="autoCookieMerge">指定自动 <see cref="CookieContainer"/> 合并</param>
@@ -529,7 +523,6 @@ namespace Native.Csharp.Tool.Http
         ///		<para>必须包含 "http://" 或 "https://"</para>
         ///	</param>
         /// <param name="data">请求所需的上传数据</param>
-        /// <param name="contentType">Content-Type HTTP 标头</param>
         /// <param name="allowAutoRedirect">跟随重定向响应</param>
         /// <returns>返回从 Internal 读取的 <see cref="byte"/> 数组</returns>
         public static byte[] Post(string url, byte[] data, bool allowAutoRedirect = true)
@@ -569,47 +562,6 @@ namespace Native.Csharp.Tool.Http
                 }
             }
             return oldCookies;
-        }
-        #endregion
-
-        #region --URL--
-        /// <summary>
-        /// 使用默认编码对 URL 进行编码
-        /// </summary>
-        /// <param name="url">要编码的地址</param>
-        /// <returns>编码后的地址</returns>
-        public static string UrlEncode(string url)
-        {
-            return HttpUtility.UrlEncode(url);
-        }
-        /// <summary>
-        /// 使用指定的编码 <see cref="Encoding"/> 对 URL 进行编码
-        /// </summary>
-        /// <param name="url">要编码的地址</param>
-        /// <param name="encoding">编码类型</param>
-        /// <returns>编码后的地址</returns>
-        public static string UrlEncode(string url, Encoding encoding)
-        {
-            return HttpUtility.UrlEncode(url, encoding);
-        }
-        /// <summary>
-        /// 使用默认编码对 URL 进行解码
-        /// </summary>
-        /// <param name="data">要解码的地址</param>
-        /// <returns>编码后的地址</returns>
-        public static string UrlDecode(string url)
-        {
-            return HttpUtility.UrlDecode(url);
-        }
-        /// <summary>
-        /// 使用指定的编码 <see cref="Encoding"/> 对 URL 进行解码
-        /// </summary>
-        /// <param name="url">要解码的地址</param>
-        /// <param name="encoding">编码类型</param>
-        /// <returns>编码后的地址</returns>
-        public static string UrlDecode(string url, Encoding encoding)
-        {
-            return HttpUtility.UrlDecode(url, encoding);
         }
         #endregion
 
