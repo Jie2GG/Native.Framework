@@ -60,15 +60,10 @@
     <Compile Include="Cqp\Model\GroupFile.cs" />
     <Compile Include="Cqp\Model\GroupMember.cs" />
     <Compile Include="Cqp\Model\QQ.cs" />
-    <Compile Include="Cqp\Other\Pack.cs" />
-    <Compile Include="Cqp\Other\UnPack.cs" />
+    <Compile Include="Cqp\Other\BinaryReaderExpand.cs" />
+    <Compile Include="Cqp\Other\BinaryWriterExpand.cs" />
+    <Compile Include="Cqp\Other\OtherExpand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Native.Csharp.Tool\Native.Csharp.Tool.csproj">
-      <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>
-      <Name>Native.Csharp.Tool</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
