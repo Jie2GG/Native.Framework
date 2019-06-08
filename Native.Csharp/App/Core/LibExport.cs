@@ -15,13 +15,15 @@ using Native.Csharp.App.Model;
 using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.Enum;
-using Native.Csharp.Tool;
+using Native.Csharp.Sdk.Cqp.Other;
 using Native.Csharp.Repair;
 
 namespace Native.Csharp.App.Core
 {
 	public class LibExport
 	{
+		private static Encoding _defaultEncoding = null;
+		
 		#region --构造函数--
 		/// <summary>
 		/// 静态构造函数, 注册依赖注入回调
@@ -29,6 +31,8 @@ namespace Native.Csharp.App.Core
 		/// <returns></returns>
 		static LibExport ()
 		{
+			_defaultEncoding = Encoding.GetEncoding ("GB18030");
+			
 			// 初始化 Costura
 			CosturaUtility.Initialize ();
 
@@ -334,7 +338,7 @@ namespace Native.Csharp.App.Core
 			PrivateMessageEventArgs args = new PrivateMessageEventArgs ();
 			args.MsgId = msgId;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Msg = msg.ToString (_defaultEncoding);
 			args.Handled = false;
 
 			if (subType == 11)      // 来自好友
@@ -368,7 +372,7 @@ namespace Native.Csharp.App.Core
 			args.MsgId = msgId;
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Msg = msg.ToString (_defaultEncoding);
 			args.FromAnonymous = null;
 			args.IsAnonymousMsg = false;
 			args.Handled = false;
@@ -398,7 +402,7 @@ namespace Native.Csharp.App.Core
 			args.MsgId = msgId;
 			args.FromDiscuss = fromDiscuss;
 			args.FromQQ = fromQQ;
-			args.Msg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.Msg = msg.ToString (_defaultEncoding);
 			args.Handled = false;
 
 			if (subType == 1)   // 讨论组消息
@@ -417,7 +421,7 @@ namespace Native.Csharp.App.Core
 		private static int EventGroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
 			FileUploadMessageEventArgs args = new FileUploadMessageEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.File = Common.CqApi.GetFile (file);
@@ -429,7 +433,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupAdmin (int subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
 			GroupManageAlterEventArgs args = new GroupManageAlterEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromGroup = fromGroup;
 			args.BeingOperateQQ = beingOperateQQ;
 			args.Handled = false;
@@ -454,7 +458,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -481,7 +485,7 @@ namespace Native.Csharp.App.Core
 		private static int EventSystemGroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			GroupMemberAlterEventArgs args = new GroupMemberAlterEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
 			args.BeingOperateQQ = beingOperateQQ;
@@ -507,7 +511,7 @@ namespace Native.Csharp.App.Core
 		private static int EventFriendAdd (int subType, int sendTime, long fromQQ)
 		{
 			FriendIncreaseEventArgs args = new FriendIncreaseEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromQQ = fromQQ;
 			args.Handled = false;
 
@@ -527,9 +531,9 @@ namespace Native.Csharp.App.Core
 		private static int EventRequestAddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
 			FriendAddRequestEventArgs args = new FriendAddRequestEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromQQ = fromQQ;
-			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.AppendMsg = msg.ToString (_defaultEncoding);
 			args.Tag = responseFlag;
 			args.Handled = false;
 
@@ -549,10 +553,10 @@ namespace Native.Csharp.App.Core
 		private static int EventRequestAddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
 			GroupAddRequestEventArgs args = new GroupAddRequestEventArgs ();
-			args.SendTime = NativeConvert.FotmatUnixTime (sendTime.ToString ());
+			args.SendTime = sendTime.ToDateTime ();
 			args.FromGroup = fromGroup;
 			args.FromQQ = fromQQ;
-			args.AppendMsg = NativeConvert.ToPtrString (msg, Encoding.GetEncoding ("GB18030"));
+			args.AppendMsg = msg.ToString (_defaultEncoding);
 			args.Tag = responseFlag;
 			args.Handled = false;
 
