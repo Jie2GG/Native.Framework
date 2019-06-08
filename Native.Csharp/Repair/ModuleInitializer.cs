@@ -11,7 +11,7 @@ namespace Native.Csharp.Repair
 {
 	public static class ModuleInitializer
 	{
-		public static void Initialize ()
+		public static void Initialize()
 		{
 			// 注册程序集加载失败事件, 用于 Fody 库重定向的补充
 			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
@@ -30,7 +30,7 @@ namespace Native.Csharp.Repair
                 return null;
             }
 
-			Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
+            Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
 			Assembly assembly = loadAssembly.Where (w => w.FullName.CompareTo (args.Name) == 0).LastOrDefault ();
 
 			if (assembly != null)   // 不为 null 说明载入的库版本号相同, 则直接使用已载入的资源

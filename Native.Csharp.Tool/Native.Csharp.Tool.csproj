@@ -110,6 +110,7 @@
     <None Include="IniConfig\README.md" />
     <None Include="SQLite\Configurations\System.Data.SQLite.dll.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="SQLite\Generated\SR.resources" />
     <EmbeddedResource Include="SQLite\Resources\SR.resx" />
