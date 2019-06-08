@@ -25,7 +25,7 @@ namespace Native.Csharp.App.Core
 		#region --字段--
 		private static Encoding _defaultEncoding = null;
 		#endregion
-
+      
 		#region --构造函数--
 		/// <summary>
 		/// 静态构造函数, 注册依赖注入回调

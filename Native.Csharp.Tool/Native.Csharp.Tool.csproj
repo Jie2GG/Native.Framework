@@ -105,6 +105,7 @@
     <Compile Include="SQLite\SQLiteTransactionBase.cs" />
     <Compile Include="SQLite\UnsafeNativeMethods.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="IniConfig\README.md" />
     <None Include="SQLite\Configurations\System.Data.SQLite.dll.config" />
