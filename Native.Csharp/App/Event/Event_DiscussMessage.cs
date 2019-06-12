@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Native.Csharp.App.Event
 {
-	public class Event_DiscussMessage : IEvent_DiscussMessage
+	public class Event_DiscussMessage : IReceiveDiscussMessage, IReceiveDiscussPrivateMessage
 	{
 		#region --公开方法--
 		/// <summary>

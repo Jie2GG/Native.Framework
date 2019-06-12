@@ -6,7 +6,7 @@ using Native.Csharp.App.Interface;
 
 namespace Native.Csharp.App.Event
 {
-	public class Event_AppStatus : IEvent_AppStatus
+	public class Event_AppStatus : ICqStartup, ICqExit, IAppEnable, IAppDisable
 	{
 		#region --公开方法--
 		/// <summary>

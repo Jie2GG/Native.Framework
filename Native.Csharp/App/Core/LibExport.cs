@@ -25,7 +25,7 @@ namespace Native.Csharp.App.Core
 		#region --字段--
 		private static Encoding _defaultEncoding = null;
 		#endregion
-      
+
 		#region --构造函数--
 		/// <summary>
 		/// 静态构造函数, 注册依赖注入回调
@@ -97,63 +97,117 @@ namespace Native.Csharp.App.Core
 		private static void ResolveAppbackcall ()
 		{
 			#region --IEvent_AppStatus--
-			// 解析 IEvent_AppStatus 接口
-			foreach (var appStatus in Common.UnityContainer.ResolveAll<IEvent_AppStatus> ())
+			foreach (var instance in Common.UnityContainer.ResolveAll<ICqStartup> ())
 			{
-				// 分发 IEvent_AppStatus 接口到事件
-				LibExport.CqStartup += appStatus.CqStartup;
-				LibExport.CqExit += appStatus.CqExit;
-				LibExport.AppEnable += appStatus.AppEnable;
-				LibExport.AppDisable += appStatus.AppDisable;
+				LibExport.CqStartup += instance.CqStartup;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<ICqExit> ())
+			{
+				LibExport.CqExit += instance.CqExit;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IAppEnable> ())
+			{
+				LibExport.AppEnable += instance.AppEnable;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IAppDisable> ())
+			{
+				LibExport.AppDisable += instance.AppDisable;
 			}
 			#endregion
 
 			#region --IEvent_DiscussMessage--
-			// 解析 IEvent_DiscussMessage 接口
-			foreach (var discussMessage in Common.UnityContainer.ResolveAll<IEvent_DiscussMessage> ())
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveDiscussMessage> ())
 			{
-				// 分发 IEvent_DiscussMessage 接口到事件
-				LibExport.ReceiveDiscussMessage += discussMessage.ReceiveDiscussMessage;
-				LibExport.ReceiveDiscussPrivateMessage += discussMessage.ReceiveDiscussPrivateMessage;
+				LibExport.ReceiveDiscussMessage += instance.ReceiveDiscussMessage;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveDiscussPrivateMessage> ())
+			{
+				LibExport.ReceiveDiscussPrivateMessage += instance.ReceiveDiscussPrivateMessage;
 			}
 			#endregion
 
 			#region --IEvent_FriendMessage--
-			// 解析 IEvent_FriendMessage 接口
-			foreach (var friendMessage in Common.UnityContainer.ResolveAll<IEvent_FriendMessage> ())
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveFriendAddRequest> ())
 			{
-				// 分发 IEvent_FriendMessage 接口到事件
-				LibExport.ReceiveFriendAdd += friendMessage.ReceiveFriendAddRequest;
-				LibExport.ReceiveFriendIncrease += friendMessage.ReceiveFriendIncrease;
-				LibExport.ReceiveFriendMessage += friendMessage.ReceiveFriendMessage;
+				LibExport.ReceiveFriendAdd += instance.ReceiveFriendAddRequest;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveFriendIncrease> ())
+			{
+				LibExport.ReceiveFriendIncrease += instance.ReceiveFriendIncrease;
+			}
+
+			foreach (var instace in Common.UnityContainer.ResolveAll<IReceiveFriendMessage> ())
+			{
+				LibExport.ReceiveFriendMessage += instace.ReceiveFriendMessage;
 			}
 			#endregion
 
 			#region --IEvent_GroupMessage--
-			// 解析 IEvent_GroupMessage 接口
-			foreach (var groupMessage in Common.UnityContainer.ResolveAll<IEvent_GroupMessage> ())
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupMessage> ())
 			{
-				// 分发 IEvent_GroupMessage 接口到事件
-				LibExport.ReceiveGroupMessage += groupMessage.ReceiveGroupMessage;
-				LibExport.ReceiveGroupPrivateMessage += groupMessage.ReceiveGroupPrivateMessage;
-				LibExport.ReceiveFileUploadMessage += groupMessage.ReceiveGroupFileUpload;
-				LibExport.ReceiveManageIncrease += groupMessage.ReceiveGroupManageIncrease;
-				LibExport.ReceiveManageDecrease += groupMessage.ReceiveGroupManageDecrease;
-				LibExport.ReceiveMemberJoin += groupMessage.ReceiveGroupMemberJoin;
-				LibExport.ReceiveMemberInvitee += groupMessage.ReceiveGroupMemberInvitee;
-				LibExport.ReceiveMemberLeave += groupMessage.ReceiveGroupMemberLeave;
-				LibExport.ReceiveMemberRemove += groupMessage.ReceiveGroupMemberRemove;
-				LibExport.ReceiveGroupAddApply += groupMessage.ReceiveGroupAddApply;
-				LibExport.ReceiveGroupAddInvitee += groupMessage.ReceiveGroupAddInvitee;
+				LibExport.ReceiveGroupMessage += instance.ReceiveGroupMessage;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupPrivateMessage> ())
+			{
+				LibExport.ReceiveGroupPrivateMessage += instance.ReceiveGroupPrivateMessage;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupFileUpload> ())
+			{
+				LibExport.ReceiveFileUploadMessage += instance.ReceiveGroupFileUpload;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupManageIncrease> ())
+			{
+				LibExport.ReceiveManageIncrease += instance.ReceiveGroupManageIncrease;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupManageDecrease> ())
+			{
+				LibExport.ReceiveManageDecrease += instance.ReceiveGroupManageDecrease;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupMemberPass> ())
+			{
+				LibExport.ReceiveMemberJoin += instance.ReceiveGroupMemberJoin;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupMemberIncrease> ())
+			{
+				LibExport.ReceiveMemberInvitee += instance.ReceiveGroupMemberInvitee;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupMemberLeave> ())
+			{
+				LibExport.ReceiveMemberLeave += instance.ReceiveGroupMemberLeave;
+			}
+
+			foreach (var instance in Common.UnityContainer.ResolveAll<IReceiveGroupMemberRemove> ())
+			{
+				LibExport.ReceiveMemberRemove += instance.ReceiveGroupMemberRemove;
+			}
+
+			foreach (var instaice in Common.UnityContainer.ResolveAll<IReceiveAddGroupRequest> ())
+			{
+				LibExport.ReceiveGroupAddApply += instaice.ReceiveGroupAddApply;
+			}
+
+			foreach (var instaice in Common.UnityContainer.ResolveAll<IReceiveAddGroupBeInvitee> ())
+			{
+				LibExport.ReceiveGroupAddInvitee += instaice.ReceiveGroupAddInvitee;
 			}
 			#endregion
 
 			#region --IEvent_OtherMessage--
-			// 解析 IEvent_OtherMessage 接口
-			foreach (var otherMessage in Common.UnityContainer.ResolveAll<IEvent_OtherMessage> ())
+			foreach (var otherMessage in Common.UnityContainer.ResolveAll<IReceiveOnlineStatusMessage> ())
 			{
-				// 分发 IEvent_OtherMessage 接口到事件
-				LibExport.ReceiveQnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
+				LibExport.ReceiveOnlineStatusMessage += otherMessage.ReceiveOnlineStatusMessage;
 			}
 			#endregion
 		}
@@ -212,7 +266,7 @@ namespace Native.Csharp.App.Core
 		/// 酷Q事件: _eventPrivateMsg
 		/// <para>Type=21 私聊消息 - 在线状态</para>
 		/// </summary>
-		public static event EventHandler<PrivateMessageEventArgs> ReceiveQnlineStatusMessage = (sender, e) => { };
+		public static event EventHandler<PrivateMessageEventArgs> ReceiveOnlineStatusMessage = (sender, e) => { };
 
 		/// <summary>
 		/// 酷Q事件: _eventPrivateMsg
@@ -349,7 +403,7 @@ namespace Native.Csharp.App.Core
 			}
 			else if (subType == 1)  // 来自在线状态
 			{
-				ReceiveQnlineStatusMessage (null, args);
+				ReceiveOnlineStatusMessage (null, args);
 			}
 			else if (subType == 2)  // 来自群
 			{
