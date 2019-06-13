@@ -69,7 +69,7 @@ value1.ToByte ();
 Convert.ToDateTime (value1);	// 当然也可以使用 Convert
 
 // 快速拿取 Value 
-IniValue value2 = section2["节点"]["键1"];
+IniValue value2 = iObject["节点"]["键1"];
 ```
 
 >4. 修改 Ini 配置文件
@@ -81,4 +81,5 @@ IniObject iObject = IniObject.Load ("1.ini");
 iObject["节点1"]["键1"] = new IniValue ("更新值");    // 因为无法重载 = 运算符, 所以没办法只能 new 对象
 iObject["节点1"]["键1"] = new IniValue (10);
 iObject["节点1"]["键1"].Value = "更新值";		// 适用于字符串的时候
+iObject.Save ();
 ```

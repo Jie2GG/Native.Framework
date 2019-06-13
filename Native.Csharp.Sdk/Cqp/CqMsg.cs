@@ -42,14 +42,38 @@ namespace Native.Csharp.Sdk.Cqp
 			Contents = new List<CqCode> ();
 
 			// 搜索消息中的 CQ码
-			MatchCollection matches = _regex[0].Matches (message);
+			Parse ();
+		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 将所获取的消息内容序列化为 <see cref="CqMsg"/> 对象
+		/// </summary>
+		/// <param name="message"></param>
+		/// <returns></returns>
+		public static CqMsg Parse (string message)
+		{
+			return new CqMsg (message);
+		}
+		#endregion
+
+		#region --私有方法--
+		private void Parse ()
+		{
+			MatchCollection matches = _regex[0].Matches (this.OriginalString);
 			if (matches.Count > 0)
 			{
 				foreach (Match match in matches)
 				{
 					CqCode tempCode = new CqCode ();
 
-					#region --解析 CQ码 类型--
+					#region --初始化CqCode--
+					tempCode.OriginalString = match.Groups[0].Value;
+					tempCode.Index = match.Index;
+					#endregion
+
+					#region --解析CQ码类型--
 					CqCodeType type = CqCodeType.Unknown;
 					if (System.Enum.TryParse<CqCodeType> (match.Groups[1].Value, true, out type))
 					{
@@ -69,18 +93,6 @@ namespace Native.Csharp.Sdk.Cqp
 					Contents.Add (tempCode);
 				}
 			}
-		}
-		#endregion
-
-		#region --公开方法--
-		/// <summary>
-		/// 将所获取的消息内容序列化为 <see cref="CqMsg"/> 对象
-		/// </summary>
-		/// <param name="message"></param>
-		/// <returns></returns>
-		public static CqMsg Parse (string message)
-		{
-			return new CqMsg (message);
 		}
 		#endregion
 	}

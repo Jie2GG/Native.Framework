@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Native.Csharp.App.Interface;
 
-
 namespace Native.Csharp.App.Event
 {
 	public class Event_AppStatus : IEvent_AppStatus

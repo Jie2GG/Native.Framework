@@ -25,18 +25,20 @@ namespace Native.Csharp.Repair
 		/// <returns></returns>
 		private static Assembly CurrentDomain_AssemblyResolve (object sender, ResolveEventArgs args)
 		{
-			if (args.Name.EndsWith (".resources"))
-			{
-				return null;
-			}
+            if (args.Name.Split(',')[0].EndsWith(".resources"))
+            {
+                return null;
+            }
 
-			Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
+            Assembly[] loadAssembly = AppDomain.CurrentDomain.GetAssemblies ();
 			Assembly assembly = loadAssembly.Where (w => w.FullName.CompareTo (args.Name) == 0).LastOrDefault ();
 
 			if (assembly != null)   // 不为 null 说明载入的库版本号相同, 则直接使用已载入的资源
 			{
 				return assembly;
 			}
+
+			assembly = args.RequestingAssembly != null ? args.RequestingAssembly : Assembly.GetExecutingAssembly ();
 
 			if (string.IsNullOrEmpty (assembly.Location))
 			{

@@ -43,6 +43,39 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月07日 版本: V3.0.7.0607
+
+	由于 酷Q 停止对 Windows XP/Vista 系统的支持, 所以 Native.SDK 将停止继续使用 .Net 4.0 
+	并将此版本作为最终发布版归档处理, 下个版本开始仅对 .Net 4.5+ 更新
+
+	1. 修复 悬浮窗数据转换错误 (由 Pack -> BinaryWriter)
+	2. 优化 部分 Api 接口的数据处理效率 (由 UnPack -> BinaryReader)
+	3. 优化 分离 Native.Csharp.Tool 项目, 使 SDK 更轻量
+	4. 优化 调整 Native.Csharp.Tool 项目结构, 每个模块为一个根文件夹. 排除即可在编译时移除功能
+	5. 优化 新增 HttpTool (位于 Native.Csharp.Tool.Http)
+	6. 新增 SQLite 操作类 (不包含EF, 需要可自行添加), 完全移植自 System.Data.SQLite (.Net 4.0)
+
+> 2019年05月25日 版本: V3.0.6.0525
+
+	1. 修复 HttpWebClient 类在请求 Internet 资源时响应重定向的部分代码错误
+	2. 优化 HttpWebClient 类可指定自动合并更新 Cookies 功能
+	3. 优化 CqMsg 类代码运行流程, 更符合规范
+	4. 优化 CqCode 类, 支持获取当前实例在原文中的位置
+	5. 优化 CqCode 类, 支持获取当前实例的原始字符串
+
+> 2019年05月21日 版本: V3.0.5.0521
+
+	1. 修复 兼容组件导致WFP窗体加载会出现资源无法找到
+
+> 2019年05月17日 版本: V3.0.4.0517
+
+	1. 修复 附加进程调试加载符号库出错
+
+> 2019年05月14日 版本: V3.0.3.0514
+
+	1. 修复 Repair 兼容组件不能正确重定向 (但是旧版本要兼容必须先关闭 Costura 的重定向, LoadAtModuleInit="False")
+	2. 关闭 Costura 的重定向功能, 且在 SDK 加载时自动初始化
+
 > 2019年05月12日 版本: V3.0.2.0512
 
 	1. 修复 Fody 不兼容 Visual Studio 导致编译不通过的问题

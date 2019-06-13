@@ -98,9 +98,9 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			: base (capacity)
 		{ }
 		/// <summary>
-		/// 初始化 <see cref="IniSection"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{string, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
+		/// 初始化 <see cref="IniSection"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{String, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
 		/// </summary>
-		/// <param name="dictionary"><see cref="IDictionary{string, IniSection}"/>, 它的元素被复制到新 <see cref="IniObject"/> </param>
+		/// <param name="dictionary"><see cref="IDictionary{String, IniSection}"/>, 它的元素被复制到新 <see cref="IniObject"/> </param>
 		public IniObject (IDictionary<string, IniSection> dictionary)
 			: base (dictionary)
 		{ }
@@ -140,7 +140,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		/// <summary>
 		/// 将 Ini 配置项保存到指定的文件。 如果存在指定文件，则此方法会覆盖它。
 		/// </summary>
-		/// <param name="fileUri">要将文档保存到其中的文件的位置。</param>
+		/// <param name="filePath">要将文档保存到其中的文件的位置。</param>
 		public void Save (string filePath)
 		{
 			Save (new Uri (filePath));

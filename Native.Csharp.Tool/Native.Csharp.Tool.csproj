@@ -16,11 +16,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET_40;SQLITE_STANDARD;INTEROP_VIRTUAL_TABLE;INTEROP_SESSION_EXTENSION;TRACE_SHARED</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>618,1591;3001</NoWarn>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
+    <DocumentationFile>bin\x86\Debug\Native.Csharp.Tool.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -34,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,23 +46,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Kernel32.cs" />
-    <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\HttpTool.cs" />
     <Compile Include="Http\HttpWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IniConfig\Linq\IniObject.cs" />
     <Compile Include="IniConfig\Linq\IniSection.cs" />
     <Compile Include="IniConfig\Linq\IniValue.cs" />
-    <Compile Include="IniFile.cs" />
     <Compile Include="NativeConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblySourceIdAttribute.cs" />
+    <Compile Include="Properties\AssemblySourceTimeStampAttribute.cs" />
+    <Compile Include="SQLite\ISQLiteNativeModule.cs" />
+    <Compile Include="SQLite\LINQ\SQLiteConnection_Linq.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\LINQ\SQLiteFactory_Linq.cs" />
+    <Compile Include="SQLite\Resources\SR.Designer.cs" />
+    <Compile Include="SQLite\SQLite3.cs" />
+    <Compile Include="SQLite\SQLite3_UTF16.cs" />
+    <Compile Include="SQLite\SQLiteBackup.cs" />
+    <Compile Include="SQLite\SQLiteBase.cs" />
+    <Compile Include="SQLite\SQLiteBlob.cs" />
+    <Compile Include="SQLite\SQLiteCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteCommandBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteConnection.cs" />
+    <Compile Include="SQLite\SQLiteConnectionPool.cs" />
+    <Compile Include="SQLite\SQLiteConnectionStringBuilder.cs" />
+    <Compile Include="SQLite\SQLiteConvert.cs" />
+    <Compile Include="SQLite\SQLiteDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteDataReader.cs" />
+    <Compile Include="SQLite\SQLiteDefineConstants.cs" />
+    <Compile Include="SQLite\SQLiteEnlistment.cs" />
+    <Compile Include="SQLite\SQLiteException.cs" />
+    <Compile Include="SQLite\SQLiteFactory.cs" />
+    <Compile Include="SQLite\SQLiteFunction.cs" />
+    <Compile Include="SQLite\SQLiteFunctionAttribute.cs" />
+    <Compile Include="SQLite\SQLiteKeyReader.cs" />
+    <Compile Include="SQLite\SQLiteLog.cs" />
+    <Compile Include="SQLite\SQLiteMetaDataCollectionNames.cs" />
+    <Compile Include="SQLite\SQLiteModule.cs" />
+    <Compile Include="SQLite\SQLiteModuleCommon.cs" />
+    <Compile Include="SQLite\SQLiteModuleEnumerable.cs" />
+    <Compile Include="SQLite\SQLiteModuleNoop.cs" />
+    <Compile Include="SQLite\SQLiteParameter.cs" />
+    <Compile Include="SQLite\SQLiteParameterCollection.cs" />
+    <Compile Include="SQLite\SQLitePatchLevel.cs" />
+    <Compile Include="SQLite\SQLiteSession.cs" />
+    <Compile Include="SQLite\SQLiteStatement.cs" />
+    <Compile Include="SQLite\SQLiteTransaction.cs" />
+    <Compile Include="SQLite\SQLiteTransaction2.cs" />
+    <Compile Include="SQLite\SQLiteTransactionBase.cs" />
+    <Compile Include="SQLite\UnsafeNativeMethods.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="IniConfig\README.md" />
+    <None Include="SQLite\Configurations\System.Data.SQLite.dll.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SQLite\Generated\SR.resources" />
+    <EmbeddedResource Include="SQLite\Resources\SR.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SQLite\" />
+    <Content Include="SQLite\Resources\DataTypes.xml" />
+    <Content Include="SQLite\Resources\MetaDataCollections.xml" />
+    <Content Include="SQLite\Resources\SQLiteCommand.bmp" />
+    <Content Include="SQLite\Resources\SQLiteConnection.bmp" />
+    <Content Include="SQLite\Resources\SQLiteDataAdapter.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
