@@ -41,15 +41,20 @@ namespace Native.Csharp.App.EventArgs
 		/// </summary>
 		public long BeingOperateQQ { get; private set; }
 
-		/// <summary>
-		/// 初始化 <see cref="CqGroupMemberDecreaseEventArgs"/> 类的一个新实例
-		/// </summary>
-		/// <param name="id">事件ID</param>
-		/// <param name="sendTime">发送时间</param>
-		/// <param name="fromGroup">来源群</param>
-		/// <param name="fromQQ">操作者QQ</param>
-		/// <param name="operateQQ">被操作QQ</param>
-		public CqGroupMemberDecreaseEventArgs (int id, DateTime sendTime, long fromGroup, long fromQQ, long operateQQ)
+        /// <summary>
+        /// 获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
+        /// </summary>
+        public bool Handler { get; set; }
+
+        /// <summary>
+        /// 初始化 <see cref="CqGroupMemberDecreaseEventArgs"/> 类的一个新实例
+        /// </summary>
+        /// <param name="id">事件ID</param>
+        /// <param name="sendTime">发送时间</param>
+        /// <param name="fromGroup">来源群</param>
+        /// <param name="fromQQ">操作者QQ</param>
+        /// <param name="operateQQ">被操作QQ</param>
+        public CqGroupMemberDecreaseEventArgs (int id, DateTime sendTime, long fromGroup, long fromQQ, long operateQQ)
 		{
 			this.Id = id;
 			this.SendTime = sendTime;

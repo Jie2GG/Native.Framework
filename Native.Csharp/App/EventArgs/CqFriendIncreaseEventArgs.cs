@@ -31,13 +31,18 @@ namespace Native.Csharp.App.EventArgs
 		/// </summary>
 		public long FromQQ { get; private set; }
 
-		/// <summary>
-		/// 初始化 <see cref="CqFriendIncreaseEventArgs"/> 类的一个新实例
-		/// </summary>
-		/// <param name="id">事件ID</param>
-		/// <param name="sendTime">触发时间</param>
-		/// <param name="fromQQ">来源QQ</param>
-		public CqFriendIncreaseEventArgs (int id, DateTime sendTime, long fromQQ)
+        /// <summary>
+        /// 获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
+        /// </summary>
+        public bool Handler { get; set; }
+
+        /// <summary>
+        /// 初始化 <see cref="CqFriendIncreaseEventArgs"/> 类的一个新实例
+        /// </summary>
+        /// <param name="id">事件ID</param>
+        /// <param name="sendTime">触发时间</param>
+        /// <param name="fromQQ">来源QQ</param>
+        public CqFriendIncreaseEventArgs (int id, DateTime sendTime, long fromQQ)
 		{
 			this.Id = id;
 			this.SendTime = sendTime;

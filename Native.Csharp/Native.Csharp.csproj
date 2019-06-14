@@ -61,6 +61,9 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -93,7 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\UserExport.cs" />
     <Compile Include="App\EventArgs\CqAddFriendRequestEventArgs.cs" />
     <Compile Include="App\EventArgs\CqAddGroupRequestEventArgs.cs" />
     <Compile Include="App\EventArgs\CqAppDisableEventArgs.cs" />

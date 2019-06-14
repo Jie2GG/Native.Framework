@@ -4,9 +4,8 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using Unity;
-using Native.Csharp.App.Core;
 using Native.Csharp.App.Interface;
-using Native.Csharp.App.Model;
+using Native.Csharp.App.EventArgs;
 using Native.Csharp.Sdk.Cqp;
 
 namespace Native.Csharp.App.Event

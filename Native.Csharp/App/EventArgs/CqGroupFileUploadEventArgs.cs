@@ -42,20 +42,26 @@ namespace Native.Csharp.App.EventArgs
 		/// </summary>
 		public GroupFile File { get; private set; }
 
-		/// <summary>
-		/// 初始化 <see cref="CqGroupFileUploadEventArgs"/> 类的一个新实例
-		/// </summary>
-		/// <param name="sendTime">发送时间</param>
-		/// <param name="fromGroup">来源群</param>
-		/// <param name="fromQQ">来源QQ</param>
-		/// <param name="file">文件信息</param>
-		public CqGroupFileUploadEventArgs (int id, DateTime sendTime, long fromGroup, long fromQQ, GroupFile file)
+        /// <summary>
+        /// 获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
+        /// </summary>
+        public bool Handler { get; set; }
+
+        /// <summary>
+        /// 初始化 <see cref="CqGroupFileUploadEventArgs"/> 类的一个新实例
+        /// </summary>
+        /// <param name="sendTime">发送时间</param>
+        /// <param name="fromGroup">来源群</param>
+        /// <param name="fromQQ">来源QQ</param>
+        /// <param name="file">文件信息</param>
+        public CqGroupFileUploadEventArgs (int id, DateTime sendTime, long fromGroup, long fromQQ, GroupFile file)
 		{
 			this.Id = id;
 			this.SendTime = sendTime;
 			this.FromGroup = fromGroup;
 			this.FromQQ = fromQQ;
 			this.File = file;
+            this.Handler = false;
 		}
 	}
 }
