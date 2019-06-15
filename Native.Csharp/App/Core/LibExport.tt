@@ -529,15 +529,15 @@ namespace Native.Csharp.App.Core
 						temp.AppendLine ("\t\t\t}");
 						break;
 					case 1003:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IAppEnable> (\"{0}\") == true)", token["name"].Value<string> ()));
+						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppEnable> (\"{0}\") == true)", token["name"].Value<string> ()));
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} = Common.UnityContainer.Resolve<IAppEnable> (\"{1}\").AppEnable;", token["id"].Value<int> (), token["name"].Value<string> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} = Common.UnityContainer.Resolve<ICqAppEnable> (\"{1}\").CqAppEnable;", token["id"].Value<int> (), token["name"].Value<string> ()));
 						temp.AppendLine ("\t\t\t}");
 						break;
 					case 1004:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IAppDisable> (\"{0}\") == true)", token["name"].Value<string> ()));
+						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppDisable> (\"{0}\") == true)", token["name"].Value<string> ()));
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} = Common.UnityContainer.Resolve<IAppDisable> (\"{1}\").AppDisable;", token["id"].Value<int> (), token["name"].Value<string> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} = Common.UnityContainer.Resolve<ICqAppDisable> (\"{1}\").CqAppDisable;", token["id"].Value<int> (), token["name"].Value<string> ()));
 						temp.AppendLine ("\t\t\t}");
 						break;
 					case 21:

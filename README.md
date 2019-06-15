@@ -43,6 +43,21 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月15日 版本: V3.1.0.0615
+
+	1. 新增 MenuExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	2. 新增 StatusExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	3. 重写 LibExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	4. 重写 Interface 中的接口, 分离所有事件为单独接口
+	5. 重写 Model 中的所有模型, 更改为 EventArgs , 并重写所有事件
+	6. 优化 为 Common.cs 增加 App名称 (酷Q应用列表显示的名称)
+	7. 优化 为 Common.cs 增加 App版本 (酷Q应用列表显示的版本)
+	8. 优化 为所有事件参数类增加 Json 文件对应的 Id, Name, Type 参数
+	9. 优化 预置 Json 解析 nuget 包 (tt 模板关键组件, 请勿删除)
+	10. 优化 调整了 IOC 容器的注册方式
+	11. 优化 调整了 IOC 容器的实例化方式
+	12. 修复 一些零碎的已知问题
+
 > 2019年06月07日 版本: V3.0.7.0607
 
 	由于 酷Q 停止对 Windows XP/Vista 系统的支持, 所以 Native.SDK 将停止继续使用 .Net 4.0 

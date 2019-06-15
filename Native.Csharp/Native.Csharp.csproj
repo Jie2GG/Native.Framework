@@ -123,9 +123,13 @@
     <Compile Include="App\EventArgs\CqGroupMessageEventArgs.cs" />
     <Compile Include="App\EventArgs\CqPrivateMessageEventArgs.cs" />
     <Compile Include="App\EventArgs\CqStartupEventArgs.cs" />
+    <Compile Include="App\Event\Event_CqAppDisable.cs" />
+    <Compile Include="App\Event\Event_CqAppEnable.cs" />
     <Compile Include="App\Event\Event_AppMain.cs" />
-    <Compile Include="App\Interface\IAppDisable.cs" />
-    <Compile Include="App\Interface\IAppEnable.cs" />
+    <Compile Include="App\Event\Event_CqExit.cs" />
+    <Compile Include="App\Event\Event_CqStartup.cs" />
+    <Compile Include="App\Interface\ICqAppDisable.cs" />
+    <Compile Include="App\Interface\ICqAppEnable.cs" />
     <Compile Include="App\Interface\ICallMenu.cs" />
     <Compile Include="App\Interface\ICqExit.cs" />
     <Compile Include="App\Interface\ICqStartup.cs" />

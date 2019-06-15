@@ -253,18 +253,18 @@ namespace Native.Csharp.App.Core
 			 * Id: 1003
 			 * Name: 应用已被启用
 			 */
-			if (Common.UnityContainer.IsRegistered<IAppEnable> ("应用已被启用") == true)
+			if (Common.UnityContainer.IsRegistered<ICqAppEnable> ("应用已被启用") == true)
 			{
-				AppEnable_1003 = Common.UnityContainer.Resolve<IAppEnable> ("应用已被启用").AppEnable;
+				AppEnable_1003 = Common.UnityContainer.Resolve<ICqAppEnable> ("应用已被启用").CqAppEnable;
 			}
 			
 			/*
 			 * Id: 1004
 			 * Name: 应用将被停用
 			 */
-			if (Common.UnityContainer.IsRegistered<IAppDisable> ("应用将被停用") == true)
+			if (Common.UnityContainer.IsRegistered<ICqAppDisable> ("应用将被停用") == true)
 			{
-				AppDisable_1004 = Common.UnityContainer.Resolve<IAppDisable> ("应用将被停用").AppDisable;
+				AppDisable_1004 = Common.UnityContainer.Resolve<ICqAppDisable> ("应用将被停用").CqAppDisable;
 			}
 			
 
