@@ -6,7 +6,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using Native.Csharp.App.Event;
 using Native.Csharp.App.EventArgs;
+using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.Model;
 using Native.Csharp.Sdk.Cqp.Other;
@@ -26,7 +28,22 @@ namespace Native.Csharp.App.Core
 		/// </summary>
 		static LibExport ()
 		{
-				_defaultEncoding = Encoding.GetEncoding ("GB18030");
+			_defaultEncoding = Encoding.GetEncoding ("GB18030");
+			
+			// 初始化 Costura.Fody
+			CosturaUtility.Initialize ();
+			
+			// 初始化依赖注入容器
+			Common.UnityContainer = new UnityContainer ();
+
+			// 程序开始调用方法进行注册
+			Event_AppMain.Registbackcall (Common.UnityContainer);
+
+			// 注册完毕调用方法进行分发
+			Event_AppMain.Resolvebackcall (Common.UnityContainer);
+
+			// 分发应用内事件
+			ResolveAppbackcall ();
 		}
 		#endregion
 		
@@ -89,6 +106,105 @@ namespace Native.Csharp.App.Core
 				innerLog.AppendLine (ex.ToString ());
 				Common.CqApi.AddFatalError (innerLog.ToString ());      //将未经处理的异常弹回酷Q做处理
 			}
+		}
+		
+		/// <summary>
+		/// 获取所有的注入项, 分发到对应的事件
+		/// </summary>
+		private static void ResolveAppbackcall ()
+		{
+			/*
+			 * Id: 1
+			 * Name: 私聊消息处理
+			 */
+			ReceiveFriendMessage_1 = Common.UnityContainer.Resolve<IReceiveFriendMessage> ("1").ReceiveFriendMessage;
+			ReceiveOnlineStatusMessage_1 = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> ("1").ReceiveOnlineStatusMessage;
+			ReceiveGroupPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> ("1").ReceiveGroupPrivateMessage;
+			ReceiveDiscussPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> ("1").ReceiveDiscussPrivateMessage;
+			
+			/*
+			 * Id: 2
+			 * Name: 群消息处理
+			 */
+			ReceiveGroupMessage_2 = Common.UnityContainer.Resolve<IReceiveGroupMessage> ("2").ReceiveGroupMessage;
+			
+			/*
+			 * Id: 3
+			 * Name: 讨论组消息处理
+			 */
+			ReceiveDiscussMessage_3 = Common.UnityContainer.Resolve<IReceiveDiscussMessage> ("3").ReceiveDiscussMessage;
+			
+			/*
+			 * Id: 4
+			 * Name: 群文件上传事件处理
+			 */
+			ReceiveFileUploadMessage_4 = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> ("4").ReceiveGroupFileUpload;
+			
+			/*
+			 * Id: 5
+			 * Name: 群管理变动事件处理
+			 */
+			ReceiveManageIncrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> ("5").ReceiveGroupManageIncrease;
+			ReceiveManageDecrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> ("5").ReceiveGroupManageDecrease;
+			
+			/*
+			 * Id: 6
+			 * Name: 群成员减少事件处理
+			 */
+			ReceiveMemberLeave_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> ("6").ReceiveGroupMemberLeave;
+			ReceiveMemberRemove_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> ("6").ReceiveGroupMemberRemove;
+			
+			/*
+			 * Id: 7
+			 * Name: 群成员增加事件处理
+			 */
+			ReceiveMemberPass_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> ("7").ReceiveGroupMemberPass;
+			ReceiveMemberBeInvitee_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> ("7").ReceiveGroupMemberBeInvitee;
+			
+			/*
+			 * Id: 10
+			 * Name: 好友已添加事件处理
+			 */
+			ReceiveFriendIncrease_10 = Common.UnityContainer.Resolve<IReceiveFriendIncrease> ("10").ReceiveFriendIncrease;
+			
+			/*
+			 * Id: 8
+			 * Name: 好友添加请求处理
+			 */
+			ReceiveFriendAdd_8 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("8").ReceiveFriendAddRequest;
+			
+			/*
+			 * Id: 9
+			 * Name: 群添加请求处理
+			 */
+			ReceiveAddGroupRequest_9 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("9").ReceiveAddGroupRequest;
+			ReceiveAddGroupBeInvitee_9 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("9").ReceiveAddGroupBeInvitee;
+			
+			/*
+			 * Id: 1001
+			 * Name: 酷Q启动事件
+			 */
+			CqStartup_1001 = Common.UnityContainer.Resolve<ICqStartup> ("1001").CqStartup;
+			
+			/*
+			 * Id: 1002
+			 * Name: 酷Q关闭事件
+			 */
+			CqExit_1002 = Common.UnityContainer.Resolve<ICqExit> ("1002").CqExit;
+			
+			/*
+			 * Id: 1003
+			 * Name: 应用已被启用
+			 */
+			AppEnable_1003 = Common.UnityContainer.Resolve<IAppEnable> ("1003").AppEnable;
+			
+			/*
+			 * Id: 1004
+			 * Name: 应用将被停用
+			 */
+			AppDisable_1004 = Common.UnityContainer.Resolve<IAppDisable> ("1004").AppDisable;
+			
+
 		}
 		#endregion
 		
@@ -274,24 +390,24 @@ namespace Native.Csharp.App.Core
 		 * Name: 群成员增加事件处理
 		 * Function: _eventSystem_GroupMemberIncrease
 		 */
-		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberJoin_7;
-		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberInvitee_7;
+		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberPass_7;
+		public static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberBeInvitee_7;
 		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventSystem_GroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			CqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs (7, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);
 			if (subType == 1)
 			{
-				if (ReceiveMemberJoin_7 != null)
+				if (ReceiveMemberPass_7 != null)
 				{
-					ReceiveMemberJoin_7 (null, args);
+					ReceiveMemberPass_7 (null, args);
 				}
 			}
 			else if (subType == 2)
 			{
-				if (ReceiveMemberInvitee_7 != null)
+				if (ReceiveMemberBeInvitee_7 != null)
 				{
-					ReceiveMemberInvitee_7 (null, args);
+					ReceiveMemberBeInvitee_7 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);
@@ -345,24 +461,24 @@ namespace Native.Csharp.App.Core
 		 * Name: 群添加请求处理
 		 * Function: _eventRequest_AddGroup
 		 */
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddApply_9;
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddInvitee_9;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_9;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_9;
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
 			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (9, sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
-				if (ReceiveGroupAddApply_9 != null)
+				if (ReceiveAddGroupRequest_9 != null)
 				{
-					ReceiveGroupAddApply_9 (null, args);
+					ReceiveAddGroupRequest_9 (null, args);
 				}
 			}
 			else if (subType == 2)
 			{
-				if (ReceiveGroupAddInvitee_9 != null)
+				if (ReceiveAddGroupBeInvitee_9 != null)
 				{
-					ReceiveGroupAddInvitee_9 (null, args);
+					ReceiveAddGroupBeInvitee_9 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);

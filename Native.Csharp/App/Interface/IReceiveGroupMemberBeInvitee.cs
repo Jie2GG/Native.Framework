@@ -17,6 +17,6 @@ namespace Native.Csharp.App.Interface
 		/// </summary>
 		/// <param name="sender">事件的触发对象</param>
 		/// <param name="e">事件的附加参数</param>
-		void ReceiveGroupMemberInvitee (object sender, CqGroupMemberIncreaseEventArgs e);
+		void ReceiveGroupMemberBeInvitee (object sender, CqGroupMemberIncreaseEventArgs e);
 	}
 }

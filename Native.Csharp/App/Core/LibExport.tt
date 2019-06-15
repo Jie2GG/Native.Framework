@@ -25,7 +25,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using Native.Csharp.App.Event;
 using Native.Csharp.App.EventArgs;
+using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.Model;
 using Native.Csharp.Sdk.Cqp.Other;
@@ -45,7 +47,22 @@ namespace Native.Csharp.App.Core
 		/// </summary>
 		static LibExport ()
 		{
-				_defaultEncoding = Encoding.GetEncoding ("GB18030");
+			_defaultEncoding = Encoding.GetEncoding ("GB18030");
+			
+			// 初始化 Costura.Fody
+			CosturaUtility.Initialize ();
+			
+			// 初始化依赖注入容器
+			Common.UnityContainer = new UnityContainer ();
+
+			// 程序开始调用方法进行注册
+			Event_AppMain.Registbackcall (Common.UnityContainer);
+
+			// 注册完毕调用方法进行分发
+			Event_AppMain.Resolvebackcall (Common.UnityContainer);
+
+			// 分发应用内事件
+			ResolveAppbackcall ();
 		}
 		#endregion
 		
@@ -108,6 +125,22 @@ namespace Native.Csharp.App.Core
 				innerLog.AppendLine (ex.ToString ());
 				Common.CqApi.AddFatalError (innerLog.ToString ());      //将未经处理的异常弹回酷Q做处理
 			}
+		}
+		
+		/// <summary>
+		/// 获取所有的注入项, 分发到对应的事件
+		/// </summary>
+		private static void ResolveAppbackcall ()
+		{
+<#
+	if (root != null && root.ContainsKey ("event"))
+	{
+		JArray events = root.Value<JArray> ("event");
+#>
+<#=			GetResolveList (events) #>
+<#
+	}
+#>
 		}
 		#endregion
 		
@@ -345,8 +378,8 @@ namespace Native.Csharp.App.Core
 						temp.AppendLine ("\t\t}");
 						break;
 					case 103:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberJoin_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberInvitee_{0};", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberPass_{0};", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberBeInvitee_{0};", token["id"].Value<int> ()));
 
 						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
 						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)", token["function"].Value<string> ()));
@@ -354,16 +387,16 @@ namespace Native.Csharp.App.Core
 						temp.AppendLine (string.Format ("\t\t\tCqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\tif (subType == 1)");
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberJoin_{0} != null)", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberPass_{0} != null)", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberJoin_{0} (null, args);", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberPass_{0} (null, args);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t}");
 						temp.AppendLine ("\t\t\t}");
 						temp.AppendLine ("\t\t\telse if (subType == 2)");
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberInvitee_{0} != null)", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberBeInvitee_{0} != null)", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberInvitee_{0} (null, args);", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t}");
 						temp.AppendLine ("\t\t\t}");
 						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
@@ -404,8 +437,8 @@ namespace Native.Csharp.App.Core
 						temp.AppendLine ("\t\t}");
 						break;
 					case 302:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddApply_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveGroupAddInvitee_{0};", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_{0};", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_{0};", token["id"].Value<int> ()));
 
 						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
 						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)", token["function"].Value<string> ()));
@@ -413,16 +446,16 @@ namespace Native.Csharp.App.Core
 						temp.AppendLine (string.Format ("\t\t\tCqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\tif (subType == 1)");
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupAddApply_{0} != null)", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupRequest_{0} != null)", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupAddApply_{0} (null, args);", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupRequest_{0} (null, args);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t}");
 						temp.AppendLine ("\t\t\t}");
 						temp.AppendLine ("\t\t\telse if (subType == 2)");
 						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupAddInvitee_{0} != null)", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupBeInvitee_{0} != null)", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupAddInvitee_{0} (null, args);", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
 						temp.AppendLine ("\t\t\t\t}");
 						temp.AppendLine ("\t\t\t}");
 						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
@@ -434,7 +467,81 @@ namespace Native.Csharp.App.Core
 		}
 		else 
 		{
-			temp.Append ("// 项目文件解析失败");
+			temp.Append ("\t\t// 项目文件解析失败");
+		}
+		return temp.ToString ();
+	}
+ #>
+<#+
+	public string GetResolveList (JArray events)
+	{
+		StringBuilder temp = new StringBuilder ();
+		if (events != null)
+		{
+			foreach (JToken token in events)
+			{
+				temp.AppendLine ("\t\t\t/*");
+				temp.AppendLine (string.Format ("\t\t\t * Id: {0}", token["id"].Value<int> ()));
+				temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
+				temp.AppendLine ("\t\t\t */");
+				switch (token["type"].Value<int> ())
+				{
+					case 1001:
+						temp.AppendLine (string.Format ("\t\t\tCqStartup_{0} = Common.UnityContainer.Resolve<ICqStartup> (\"{0}\").CqStartup;", token["id"].Value<int> ()));
+						break;
+					case 1002:
+						temp.AppendLine (string.Format ("\t\t\tCqExit_{0} = Common.UnityContainer.Resolve<ICqExit> (\"{0}\").CqExit;", token["id"].Value<int> ()));
+						break;
+					case 1003:
+						temp.AppendLine (string.Format ("\t\t\tAppEnable_{0} = Common.UnityContainer.Resolve<IAppEnable> (\"{0}\").AppEnable;", token["id"].Value<int> ()));
+						break;
+					case 1004:
+						temp.AppendLine (string.Format ("\t\t\tAppDisable_{0} = Common.UnityContainer.Resolve<IAppDisable> (\"{0}\").AppDisable;", token["id"].Value<int> ()));
+						break;
+					case 21:
+						temp.AppendLine (string.Format ("\t\t\tReceiveFriendMessage_{0} = Common.UnityContainer.Resolve<IReceiveFriendMessage> (\"{0}\").ReceiveFriendMessage;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveOnlineStatusMessage_{0} = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> (\"{0}\").ReceiveOnlineStatusMessage;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveGroupPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> (\"{0}\").ReceiveGroupPrivateMessage;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveDiscussPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> (\"{0}\").ReceiveDiscussPrivateMessage;", token["id"].Value<int> ()));
+						break;
+					case 2:
+						temp.AppendLine (string.Format ("\t\t\tReceiveGroupMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupMessage> (\"{0}\").ReceiveGroupMessage;", token["id"].Value<int> ()));
+						break;
+					case 4:
+						temp.AppendLine (string.Format ("\t\t\tReceiveDiscussMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussMessage> (\"{0}\").ReceiveDiscussMessage;", token["id"].Value<int> ()));
+						break;
+					case 11:
+						temp.AppendLine (string.Format ("\t\t\tReceiveFileUploadMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> (\"{0}\").ReceiveGroupFileUpload;", token["id"].Value<int> ()));
+						break;
+					case 101:
+						temp.AppendLine (string.Format ("\t\t\tReceiveManageIncrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> (\"{0}\").ReceiveGroupManageIncrease;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveManageDecrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> (\"{0}\").ReceiveGroupManageDecrease;", token["id"].Value<int> ()));
+						break;
+					case 102:
+						temp.AppendLine (string.Format ("\t\t\tReceiveMemberLeave_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> (\"{0}\").ReceiveGroupMemberLeave;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveMemberRemove_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> (\"{0}\").ReceiveGroupMemberRemove;", token["id"].Value<int> ()));
+						break;
+					case 103:
+						temp.AppendLine (string.Format ("\t\t\tReceiveMemberPass_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> (\"{0}\").ReceiveGroupMemberPass;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveMemberBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> (\"{0}\").ReceiveGroupMemberBeInvitee;", token["id"].Value<int> ()));
+						break;
+					case 201:
+						temp.AppendLine (string.Format ("\t\t\tReceiveFriendIncrease_{0} = Common.UnityContainer.Resolve<IReceiveFriendIncrease> (\"{0}\").ReceiveFriendIncrease;", token["id"].Value<int> ()));
+						break;
+					case 301:
+						temp.AppendLine (string.Format ("\t\t\tReceiveFriendAdd_{0} = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> (\"{0}\").ReceiveFriendAddRequest;", token["id"].Value<int> ()));
+						break;
+					case 302:
+						temp.AppendLine (string.Format ("\t\t\tReceiveAddGroupRequest_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> (\"{0}\").ReceiveAddGroupRequest;", token["id"].Value<int> ()));
+						temp.AppendLine (string.Format ("\t\t\tReceiveAddGroupBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> (\"{0}\").ReceiveAddGroupBeInvitee;", token["id"].Value<int> ()));
+						break;
+				}
+				temp.AppendLine ("\t\t\t");
+			}
+		}
+		else 
+		{
+			temp.Append ("\t\t\t// 项目文件解析失败");
 		}
 		return temp.ToString ();
 	}
