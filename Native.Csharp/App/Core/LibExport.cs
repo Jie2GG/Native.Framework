@@ -117,92 +117,155 @@ namespace Native.Csharp.App.Core
 			 * Id: 1
 			 * Name: 私聊消息处理
 			 */
-			ReceiveFriendMessage_1 = Common.UnityContainer.Resolve<IReceiveFriendMessage> ("1").ReceiveFriendMessage;
-			ReceiveOnlineStatusMessage_1 = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> ("1").ReceiveOnlineStatusMessage;
-			ReceiveGroupPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> ("1").ReceiveGroupPrivateMessage;
-			ReceiveDiscussPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> ("1").ReceiveDiscussPrivateMessage;
+			if (Common.UnityContainer.IsRegistered<IReceiveFriendMessage> ("1") == true)
+			{
+				ReceiveFriendMessage_1 = Common.UnityContainer.Resolve<IReceiveFriendMessage> ("1").ReceiveFriendMessage;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveOnlineStatusMessage> ("1") == true)
+			{
+				ReceiveOnlineStatusMessage_1 = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> ("1").ReceiveOnlineStatusMessage;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupPrivateMessage> ("1") == true)
+			{
+				ReceiveGroupPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> ("1").ReceiveGroupPrivateMessage;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveDiscussPrivateMessage> ("1") == true)
+			{
+				ReceiveDiscussPrivateMessage_1 = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> ("1").ReceiveDiscussPrivateMessage;
+			}
 			
 			/*
 			 * Id: 2
 			 * Name: 群消息处理
 			 */
-			ReceiveGroupMessage_2 = Common.UnityContainer.Resolve<IReceiveGroupMessage> ("2").ReceiveGroupMessage;
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupMessage> ("2") == true)
+			{
+				ReceiveGroupMessage_2 = Common.UnityContainer.Resolve<IReceiveGroupMessage> ("2").ReceiveGroupMessage;
+			}
 			
 			/*
 			 * Id: 3
 			 * Name: 讨论组消息处理
 			 */
-			ReceiveDiscussMessage_3 = Common.UnityContainer.Resolve<IReceiveDiscussMessage> ("3").ReceiveDiscussMessage;
+			if (Common.UnityContainer.IsRegistered<IReceiveDiscussMessage> ("3") == true)
+			{
+				ReceiveDiscussMessage_3 = Common.UnityContainer.Resolve<IReceiveDiscussMessage> ("3").ReceiveDiscussMessage;
+			}
 			
 			/*
 			 * Id: 4
 			 * Name: 群文件上传事件处理
 			 */
-			ReceiveFileUploadMessage_4 = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> ("4").ReceiveGroupFileUpload;
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupFileUpload> ("4") == true)
+			{
+				ReceiveFileUploadMessage_4 = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> ("4").ReceiveGroupFileUpload;
+			}
 			
 			/*
 			 * Id: 5
 			 * Name: 群管理变动事件处理
 			 */
-			ReceiveManageIncrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> ("5").ReceiveGroupManageIncrease;
-			ReceiveManageDecrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> ("5").ReceiveGroupManageDecrease;
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupManageIncrease> ("5") == true)
+			{
+				ReceiveManageIncrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> ("5").ReceiveGroupManageIncrease;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupManageDecrease> ("5") == true)
+			{
+				ReceiveManageDecrease_5 = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> ("5").ReceiveGroupManageDecrease;
+			}
 			
 			/*
 			 * Id: 6
 			 * Name: 群成员减少事件处理
 			 */
-			ReceiveMemberLeave_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> ("6").ReceiveGroupMemberLeave;
-			ReceiveMemberRemove_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> ("6").ReceiveGroupMemberRemove;
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupMemberLeave> ("6") == true)
+			{
+				ReceiveMemberLeave_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> ("6").ReceiveGroupMemberLeave;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupMemberRemove> ("6") == true)
+			{
+				ReceiveMemberRemove_6 = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> ("6").ReceiveGroupMemberRemove;
+			}
 			
 			/*
 			 * Id: 7
 			 * Name: 群成员增加事件处理
 			 */
-			ReceiveMemberPass_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> ("7").ReceiveGroupMemberPass;
-			ReceiveMemberBeInvitee_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> ("7").ReceiveGroupMemberBeInvitee;
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupMemberPass> ("7") == true)
+			{
+				ReceiveMemberPass_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> ("7").ReceiveGroupMemberPass;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveGroupMemberBeInvitee> ("7") == true)
+			{
+				ReceiveMemberBeInvitee_7 = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> ("7").ReceiveGroupMemberBeInvitee;
+			}
 			
 			/*
 			 * Id: 10
 			 * Name: 好友已添加事件处理
 			 */
-			ReceiveFriendIncrease_10 = Common.UnityContainer.Resolve<IReceiveFriendIncrease> ("10").ReceiveFriendIncrease;
+			if (Common.UnityContainer.IsRegistered<IReceiveFriendIncrease> ("10") == true)
+			{
+				ReceiveFriendIncrease_10 = Common.UnityContainer.Resolve<IReceiveFriendIncrease> ("10").ReceiveFriendIncrease;
+			}
 			
 			/*
 			 * Id: 8
 			 * Name: 好友添加请求处理
 			 */
-			ReceiveFriendAdd_8 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("8").ReceiveFriendAddRequest;
+			if (Common.UnityContainer.IsRegistered<IReceiveFriendAddRequest> ("8") == true)
+			{
+				ReceiveFriendAdd_8 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("8").ReceiveFriendAddRequest;
+			}
 			
 			/*
 			 * Id: 9
 			 * Name: 群添加请求处理
 			 */
-			ReceiveAddGroupRequest_9 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("9").ReceiveAddGroupRequest;
-			ReceiveAddGroupBeInvitee_9 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("9").ReceiveAddGroupBeInvitee;
+			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupRequest> ("9") == true)
+			{
+				ReceiveAddGroupRequest_9 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("9").ReceiveAddGroupRequest;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupBeInvitee> ("9") == true)
+			{
+				ReceiveAddGroupBeInvitee_9 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("9").ReceiveAddGroupBeInvitee;
+			}
 			
 			/*
 			 * Id: 1001
 			 * Name: 酷Q启动事件
 			 */
-			CqStartup_1001 = Common.UnityContainer.Resolve<ICqStartup> ("1001").CqStartup;
+			if (Common.UnityContainer.IsRegistered<ICqStartup> ("1001") == true)
+			{
+				CqStartup_1001 = Common.UnityContainer.Resolve<ICqStartup> ("1001").CqStartup;
+			}
 			
 			/*
 			 * Id: 1002
 			 * Name: 酷Q关闭事件
 			 */
-			CqExit_1002 = Common.UnityContainer.Resolve<ICqExit> ("1002").CqExit;
+			if (Common.UnityContainer.IsRegistered<ICqExit> ("1002") == true)
+			{
+				CqExit_1002 = Common.UnityContainer.Resolve<ICqExit> ("1002").CqExit;
+			}
 			
 			/*
 			 * Id: 1003
 			 * Name: 应用已被启用
 			 */
-			AppEnable_1003 = Common.UnityContainer.Resolve<IAppEnable> ("1003").AppEnable;
+			if (Common.UnityContainer.IsRegistered<IAppEnable> ("1003") == true)
+			{
+				AppEnable_1003 = Common.UnityContainer.Resolve<IAppEnable> ("1003").AppEnable;
+			}
 			
 			/*
 			 * Id: 1004
 			 * Name: 应用将被停用
 			 */
-			AppDisable_1004 = Common.UnityContainer.Resolve<IAppDisable> ("1004").AppDisable;
+			if (Common.UnityContainer.IsRegistered<IAppDisable> ("1004") == true)
+			{
+				AppDisable_1004 = Common.UnityContainer.Resolve<IAppDisable> ("1004").AppDisable;
+			}
 			
 
 		}
