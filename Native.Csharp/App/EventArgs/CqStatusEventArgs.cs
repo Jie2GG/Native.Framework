@@ -9,7 +9,7 @@ namespace Native.Csharp.App.EventArgs
 	/// <summary>
 	/// 表示酷Q悬浮窗回调事件参数的类
 	/// </summary>
-	public class CqFloatWindowEventArgs : System.EventArgs
+	public class CqStatusEventArgs : System.EventArgs
 	{
 		/// <summary>
 		/// 悬浮窗ID
@@ -31,14 +31,19 @@ namespace Native.Csharp.App.EventArgs
 		/// </summary>
 		public int Period { get; private set; }
 
-		/// <summary>
-		/// 初始化 <see cref="CqFloatWindowEventArgs"/> 类的一个新实例
-		/// </summary>
-		/// <param name="id">ID</param>
-		/// <param name="name">名称</param>
-		/// <param name="title">标题</param>
-		/// <param name="period">更新时间</param>
-		public CqFloatWindowEventArgs (int id, string name, string title, int period)
+        /// <summary>
+        /// 获取或设置当前悬浮窗显示的数据
+        /// </summary>
+        public string FloatWindowData { get; set; }
+
+        /// <summary>
+        /// 初始化 <see cref="CqStatusEventArgs"/> 类的一个新实例
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="name">名称</param>
+        /// <param name="title">标题</param>
+        /// <param name="period">更新时间</param>
+        public CqStatusEventArgs (int id, string name, string title, int period)
 		{
 			this.Id = id;
 			this.Name = name;

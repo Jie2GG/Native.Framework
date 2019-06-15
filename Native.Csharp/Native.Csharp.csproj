@@ -96,6 +96,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibExport.tt</DependentUpon>
     </Compile>
+    <Compile Include="App\Core\MenuExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuExport.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App\Core\StatusExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatusExport.tt</DependentUpon>
+    </Compile>
     <Compile Include="App\EventArgs\CqAddFriendRequestEventArgs.cs" />
     <Compile Include="App\EventArgs\CqAddGroupRequestEventArgs.cs" />
     <Compile Include="App\EventArgs\CqAppDisableEventArgs.cs" />
@@ -104,7 +114,7 @@
     <Compile Include="App\EventArgs\CqEventArgsBase.cs" />
     <Compile Include="App\EventArgs\CqExitEventArgs.cs" />
     <Compile Include="App\EventArgs\CqDiscussMessageEventArgs.cs" />
-    <Compile Include="App\EventArgs\CqFloatWindowEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqStatusEventArgs.cs" />
     <Compile Include="App\EventArgs\CqFriendIncreaseEventArgs.cs" />
     <Compile Include="App\EventArgs\CqGroupFileUploadEventArgs.cs" />
     <Compile Include="App\EventArgs\CqGroupManageChangeEventArgs.cs" />
@@ -116,8 +126,10 @@
     <Compile Include="App\Event\Event_AppMain.cs" />
     <Compile Include="App\Interface\IAppDisable.cs" />
     <Compile Include="App\Interface\IAppEnable.cs" />
+    <Compile Include="App\Interface\ICallMenu.cs" />
     <Compile Include="App\Interface\ICqExit.cs" />
     <Compile Include="App\Interface\ICqStartup.cs" />
+    <Compile Include="App\Interface\ICqStatus.cs" />
     <Compile Include="App\Interface\IReceiveDiscussMessage.cs" />
     <Compile Include="App\Interface\IReceiveDiscussPrivateMessage.cs" />
     <Compile Include="App\Interface\IReceiveFriendAddRequest.cs" />
@@ -158,9 +170,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Core\StatusExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StatusExport.cs</LastGenOutput>
+    </Content>
     <Content Include="App\Core\LibExport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LibExport.cs</LastGenOutput>
+    </Content>
+    <Content Include="App\Core\MenuExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MenuExport.cs</LastGenOutput>
     </Content>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>

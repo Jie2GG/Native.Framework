@@ -115,8 +115,14 @@
       "function": "_eventOpenConsole" //菜单对应函数
     }
   ],
-  "status": [ // 悬浮窗状态（见 com.example.status 样例）
-
+  "status": [ // 悬浮窗状态
+    {
+      "id": 1,
+      "name": "CPU使用率",
+      "title": "CPU",
+      "function": "_statusCPU",
+      "period": "1000"
+    }
   ],
   "auth": [ // 应用权限（发布前请删除无用权限）
     //20,  //[敏感]取Cookies	getCookies / getCsrfToken
