@@ -82,10 +82,10 @@ namespace Native.Csharp.App.Core
 			Common.AppVersion = Version.Parse ("<#=		GetVersion (root) #>");		
 
 			//
-			// 当前项目名称: <#=		this.Host.ResolveAssemblyReference ("$(TargetName)") #>
+			// 当前项目名称: <#=		Host.ResolveAssemblyReference ("$(TargetName)") #>
 			// Api版本: 9
 
-			return string.Format ("{0},{1}", 9, "<#=		this.Host.ResolveAssemblyReference ("$(TargetName)") #>");
+			return string.Format ("{0},{1}", 9, "<#=		Host.ResolveAssemblyReference ("$(TargetName)") #>");
 		}
 
 		/// <summary>
@@ -159,7 +159,6 @@ namespace Native.Csharp.App.Core
 		#endregion
     }
 }
-
 <#+
 	public string GetAppName (JObject root)
 	{
