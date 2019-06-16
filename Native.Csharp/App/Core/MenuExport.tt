@@ -1,0 +1,130 @@
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll" #>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Newtonsoft.Json"#>
+<#@ import namespace="Newtonsoft.Json.Linq"#>
+<#@ output extension=".cs" #>
+<# 
+	string jsonFile = string.Format ("{0}{1}.json", Host.ResolveAssemblyReference ("$(ProjectDir)"), Host.ResolveAssemblyReference ("$(TargetName)"));
+	JObject root = null;
+	if (File.Exists (jsonFile) == true)
+	{
+		using (JsonTextReader reader = new JsonTextReader (new StreamReader (File.OpenRead (jsonFile), Encoding.UTF8)))
+		{
+			root = JObject.Load (reader);
+		}
+	}
+#>
+/*
+ *	此代码由 T4 引擎根据 MenuExport.tt 模板生成, 若您不了解以下代码的用处, 请勿修改!
+ *	
+ *	此文件包含项目 Json 文件的菜单导出函数.
+ */
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using Native.Csharp.App.EventArgs;
+using Native.Csharp.App.Interface;
+using Unity;
+
+namespace Native.Csharp.App.Core
+{
+    public class MenuExport
+    {
+		#region --构造函数--
+		/// <summary>
+		/// 静态构造函数, 注册依赖注入回调
+		/// </summary>
+        static MenuExport ()
+        {
+			// 分发应用内事件
+			ResolveAppbackcall ();
+        }
+        #endregion
+
+		#region --私有方法--
+		/// <summary>
+		/// 获取所有的注入项, 分发到对应的事件
+		/// </summary>
+		private static void ResolveAppbackcall ()
+		{
+<#
+	if (root != null && root.ContainsKey ("menu"))
+	{
+		JArray menus = root.Value<JArray> ("menu");
+#>
+<#=			GetResolveList (menus) #>
+<#
+	}
+ #>
+		}
+        #endregion
+
+		#region --导出方法--
+<#
+	if (root != null && root.ContainsKey ("menu"))
+	{
+		JArray menus = root.Value<JArray> ("menu");
+#>
+<#=			GetMenuExportList (menus) #>
+<#
+	}
+ #>
+		#endregion
+    }
+}
+
+<#+
+	public string GetMenuExportList (JArray menus)
+	{
+		StringBuilder temp = new StringBuilder ();
+		if (menus != null)
+		{
+			foreach (JToken token in menus)
+			{
+				temp.AppendLine ("\t\t/*");
+				temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
+				temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
+				temp.AppendLine ("\t\t */");
+				temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqCallMenuEventArgs> Menu_{0};", token["function"].Value<string> ()));
+				temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+				temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+				temp.AppendLine ("\t\t{");
+				temp.AppendLine (string.Format ("\t\t\tif (Menu_{0} != null)", token["function"].Value<string> ()));
+				temp.AppendLine ("\t\t\t{");
+				temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} (null, new CqCallMenuEventArgs (\"{1}\"));", token["function"].Value<string> (), token["name"].Value<string> ()));
+				temp.AppendLine ("\t\t\t}");
+				temp.AppendLine ("\t\t\treturn 0;");
+				temp.AppendLine ("\t\t}");
+				temp.AppendLine ();
+			}
+		}
+		return temp.ToString();
+	}
+ #>
+<#+
+	public string GetResolveList (JArray menus)
+	{
+		StringBuilder temp = new StringBuilder ();
+		if (menus != null)
+		{
+			foreach (JToken token in menus)
+			{
+				temp.AppendLine ("\t\t\t/*");
+				temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
+				temp.AppendLine (string.Format ("\t\t\t * Function: {0}", token["function"].Value<string> ()));
+				temp.AppendLine ("\t\t\t */");
+				temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICallMenu> (\"{0}\") == true)", token["name"].Value<string> ()));
+				temp.AppendLine ("\t\t\t{");
+				temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} = Common.UnityContainer.Resolve<ICallMenu> (\"{1}\").CallMenu;", token["function"].Value<string> (), token["name"].Value<string> ()));
+				temp.AppendLine ("\t\t\t}");
+				temp.AppendLine ();
+			}
+		}
+		return temp.ToString ();
+	}
+ #>
