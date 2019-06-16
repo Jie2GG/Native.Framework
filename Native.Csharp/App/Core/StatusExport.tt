@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll" #>
 <#@ import namespace="System.IO"#>
