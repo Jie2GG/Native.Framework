@@ -619,3 +619,4 @@ namespace Native.Csharp.App.Core
 		#endregion
     }
 }
+

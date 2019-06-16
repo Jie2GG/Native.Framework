@@ -159,6 +159,7 @@ namespace Native.Csharp.App.Core
 		#endregion
     }
 }
+
 <#+
 	public string GetAppName (JObject root)
 	{

@@ -77,6 +77,7 @@ namespace Native.Csharp.App.Core
 		#endregion
     }
 }
+
 <#+
 	public string GetMenuExportList (JArray menus)
 	{
