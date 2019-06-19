@@ -15,15 +15,9 @@
 >1. Visual Studio 2012 或更高版本
 >2. Microsoft .Net Framework 4.0 **(XP系统支持的最后一个版本)**
 
-## Native.SDK 部署流程
+## Native.SDK 环境部署
 
-	1. 下载并打开 Native.SDK
-	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见http://d.cqp.me/Pro/开发/基础信息)
-	3. 展开 Native.Csharp 项目, 修改 "Native.Csharp.json" 文件名为你的AppId
-	4. 展开 Native.Csharp 项目, 找到 App -> Core -> LibExport.tt 文件, 右击选择 "运行自定义工具"
-	
-	此时 Native.SDK 的开发环境已经配置成功!
-	要找到生成的 程序集, 请找 Native.Csharp -> bin -> x86 -> (Debug\Release) 
+	详情请看 Wiki: https://github.com/Jie2GG/Native.Csharp.Frame/wiki
 
 ## Native.SDK 调试流程
 
@@ -43,6 +37,12 @@
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月19日 版本: V3.1.1.0619
+
+	1. 优化 Native.Csharp.Sdk 项目对 酷Q on Docker(Wine) 的兼容性
+	2. 优化 Native.Csharp.Tool 项目对 酷Q on Docker(Wine) 的兼容性
+	3. 优化 Native.Csharp.Repair 的兼容性 感谢 @kotoneme[https://github.com/kotoneme]
+
 > 2019年06月15日 版本: V3.1.0.0615
 
 	1. 新增 MenuExport.tt 模板, 用于解析项目 Json 文件中的回调函数
