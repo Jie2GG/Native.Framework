@@ -35,6 +35,7 @@
 > 2. ~~对于 "HttpHelper.GetData" 方法, 抛出异常, 暂时无法使用~~ <font color=#FF0000>(已经修复, 但是封装了新的HTTP类, 弃用)</font>
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
+> 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
 > 2019年06月19日 版本: V3.1.1.0619
