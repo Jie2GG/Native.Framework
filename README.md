@@ -43,6 +43,8 @@
 	1. 优化 Native.Csharp.Sdk 项目对 酷Q on Docker(Wine) 的兼容性
 	2. 优化 Native.Csharp.Tool 项目对 酷Q on Docker(Wine) 的兼容性
 	3. 优化 Native.Csharp.Repair 的兼容性 感谢 @kotoneme[https://github.com/kotoneme]
+	4. 修复 OtherExpand.ToDateTime 方法转换时间出错
+	5. 修复 CqApi.GetMemberList 方法获取数据时运算出错
 
 > 2019年06月15日 版本: V3.1.0.0615
 

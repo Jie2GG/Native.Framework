@@ -461,7 +461,7 @@ namespace Native.Csharp.Sdk.Cqp
 				member.PermitType = (PermitType)tempBinary.ReadInt32_Ex ();
 				member.BadRecord = tempBinary.ReadInt32_Ex () == 1;
 				member.SpecialTitle = tempBinary.ReadString_Ex (_defaultEncoding);
-				member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
+				member.SpecialTitleDurationTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
 				member.CanModifiedCard = tempBinary.ReadInt32_Ex () == 1;
 				#endregion
 				memberInfos.Add (member);
