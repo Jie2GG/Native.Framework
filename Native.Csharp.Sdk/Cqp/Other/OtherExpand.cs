@@ -14,41 +14,28 @@ namespace Native.Csharp.Sdk.Cqp.Other
 		#region --Kernel32--
 		[DllImport ("kernel32.dll", EntryPoint = "lstrlenA", CharSet = CharSet.Ansi)]
 		internal extern static int LstrlenA (IntPtr ptr);
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// 获取 Unix 时间戳的 <see cref="DateTime"/> 表示形式
-		/// </summary>
-		/// <param name="unixTime">unix 时间戳</param>
-		/// <returns></returns>
-		public static DateTime ToDateTime (this long unixTime)
-		{
-			DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime (new DateTime (1970, 1, 1));
-			TimeSpan toNow = new TimeSpan (unixTime);
-			DateTime daTime = dtStart.Add (toNow);
-			return daTime;
-		}
+        /// <summary>
+        /// 获取 Unix 时间戳的 <see cref="DateTime"/> 表示形式
+        /// </summary>
+        /// <param name="unixTime">unix 时间戳</param>
+        /// <returns></returns>
+        public static DateTime ToDateTime (this int unixTime)
+        {
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime (new DateTime (1970, 1, 1));
+            TimeSpan toNow = new TimeSpan (long.Parse (string.Format ("{0}0000000", unixTime)));
+            DateTime daTime = dtStart.Add (toNow);
+            return daTime;
+        }
 
-		/// <summary>
-		/// 获取 Unix 时间戳的 <see cref="DateTime"/> 表示形式
-		/// </summary>
-		/// <param name="unixTime">unix 时间戳</param>
-		/// <returns></returns>
-		public static DateTime ToDateTime (this int unixTime)
-		{
-			DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime (new DateTime (1970, 1, 1));
-			TimeSpan toNow = new TimeSpan (unixTime);
-			DateTime daTime = dtStart.Add (toNow);
-			return daTime;
-		}
-
-		/// <summary>
-		/// 转换字符串的 <see cref="IntPtr"/> 实例对象
-		/// </summary>
-		/// <param name="value">将转换的字符串</param>
-		/// <param name="encoding">目标编码格式</param>
-		/// <returns></returns>
-		public static IntPtr ToIntPtr (this string source, Encoding encoding = null)
+        /// <summary>
+        /// 转换字符串的 <see cref="IntPtr"/> 实例对象
+        /// </summary>
+        /// <param name="value">将转换的字符串</param>
+        /// <param name="encoding">目标编码格式</param>
+        /// <returns></returns>
+        public static IntPtr ToIntPtr (this string source, Encoding encoding = null)
 		{
 			if (encoding == null)
 			{

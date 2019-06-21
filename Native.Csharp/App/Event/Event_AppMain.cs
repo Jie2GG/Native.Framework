@@ -4,9 +4,8 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using Unity;
-using Native.Csharp.App.Core;
 using Native.Csharp.App.Interface;
-using Native.Csharp.App.Model;
+using Native.Csharp.App.EventArgs;
 using Native.Csharp.Sdk.Cqp;
 
 namespace Native.Csharp.App.Event
@@ -19,37 +18,25 @@ namespace Native.Csharp.App.Event
 		/// <param name="builder"></param>
 		public static void Registbackcall (IUnityContainer container)
 		{
-			// 当需要注册自己的回调类型时
-			// 在此写上需要注册的回调类型, 以 <接口, 实现类> 的方式进行注册, 同时需要给所有注入的类进行命名
-			// 
-			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
-			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
-			// 如果注入时没有提供名称, 则 SDK 在分发事件时将无法获取到对应的类型的实例!!!
-			// 重要的事情说三遍!!!
-			// 
-			// 下列代码演示的是如何将 SDK 预置的实现类注入到容器中
-			#region --回调注入
-			// 注册 Event_AppStatus 类, 继承于 IEvent_AppStatus
-			container.RegisterType<IEvent_AppStatus, Event_AppStatus> ("Default_AppStatus");
+            // 此方法的参数 container 是于插件加载时初始化好的反向注入容器 (IOC 容器)
+            // 在注入之前请先运行在 Core 文件夹下的所有 .tt 文件, 保证这里的注入能成功
+            // 
+            // 注入说明: 
+            //  1. 消息类 (Json 文件中的 event 节点): 使用 container.RegisterType<接口, 对应实现类> ("Json 文件对应事件的 name 字段的值") 的方式进行注入
+            //  2. 菜单类 (Json 文件中的 menu 节点):  使用 container.RegisterType<接口, 对应实现类> ("Json 文件对应事件的 name 字段的值") 的方式进行注入
+            //  3. 状态类 (Json 文件中的 status 节点):使用 container.RegisterType<接口, 对应实现类> ("Json 文件对应事件的 name 字段的值") 的方式进行注入
+            //
+            // 以下为 Json 文件中的 1001, 1002, 1003, 1004 事件的注入
 
-			// 注册 Event_DiscussMessage 类, 继承于 IEvent_DiscussMessage
-			container.RegisterType<IEvent_DiscussMessage, Event_DiscussMessage> ("Default_DiscussMessage");
-
-			// 注册 IEvent_FriendMessage 类, 继承于 Event_FriendMessage
-			container.RegisterType<IEvent_FriendMessage, Event_FriendMessage> ("Default_FriendMessage");
-
-			// 注册 IEvent_GroupMessage 类, 继承于 Event_GroupMessage
-			container.RegisterType<IEvent_GroupMessage, Event_GroupMessage> ("Default_GroupMessage");
-
-			// 注册 IEvent_OtherMessage 类, 继承于 Event_OtherMessage
-			container.RegisterType<IEvent_OtherMessage, Event_OtherMessage> ("Default_OtherMessage");
-			#endregion
-
-			// 当需要新注册回调类型时
-			// 在此写上需要注册的回调类型, 以 <接口, 实现类> 的方式进行注册
-			// 下列代码演示的是如何将 IEvent_UserExpand 的实现类 Event_UserExpand 类注入到容器中
-			container.RegisterType<IEvent_UserExpand, Event_UserExpand> ();
-		}
+            // 注入 Type=1001 的回调
+            container.RegisterType<ICqStartup, Event_CqStartup> ("酷Q启动事件");
+            // 注入 Type=1002 的回调
+            container.RegisterType<ICqExit, Event_CqExit> ("酷Q关闭事件");
+            // 注入 Type=1003 的回调
+            container.RegisterType<ICqAppEnable, Event_CqAppEnable> ("应用已被启用");
+            // 注入 Type=1004 的回调
+            container.RegisterType<ICqAppDisable, Event_CqAppDisable> ("应用将被停用");
+        }
 
 		/// <summary>
 		/// 回调分发
@@ -57,11 +44,12 @@ namespace Native.Csharp.App.Event
 		/// <param name="container"></param>
 		public static void Resolvebackcall (IUnityContainer container)
 		{
-			// 当已经注入了新的回调类型时
-			// 在此分发已经注册的回调类型, 解析完毕后分发到导出的事件进行注册
-			// 下列代码演示如何将 IEvent_UserExpand 接口实例化并拿到对应的实例
-			IEvent_UserExpand userExpand = container.Resolve<IEvent_UserExpand> ();
-			UserExport.UserOpenConsole += userExpand.OpenConsoleWindow;
+            // 此方法的参数 container 是于插件加载时初始化好的反向注入容器 (IOC 容器)
+            // 在此分发需要将指定的对象通过容器进行实例化然后发往对应的位置
+            //
+            // 说明: 
+            //      由于采用了新的容器解析机制, 所以此方法不需要写任何的分发过程
+            //      此方法的使用需要熟悉 Unity 框架 (IOC 框架)
 		}
 	}
 }

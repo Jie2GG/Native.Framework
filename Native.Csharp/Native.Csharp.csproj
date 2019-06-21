@@ -61,6 +61,9 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -93,30 +96,61 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\UserExport.cs" />
+    <Compile Include="App\Core\MenuExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuExport.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App\Core\StatusExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatusExport.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App\EventArgs\CqAddFriendRequestEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqAddGroupRequestEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqAppDisableEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqAppEnableEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqCallMenuEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqEventArgsBase.cs" />
+    <Compile Include="App\EventArgs\CqExitEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqDiscussMessageEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqStatusEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqFriendIncreaseEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqGroupFileUploadEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqGroupManageChangeEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqGroupMemberDecreaseEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqGroupMemberIncreaseEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqGroupMessageEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqPrivateMessageEventArgs.cs" />
+    <Compile Include="App\EventArgs\CqStartupEventArgs.cs" />
+    <Compile Include="App\Event\Event_CqAppDisable.cs" />
+    <Compile Include="App\Event\Event_CqAppEnable.cs" />
     <Compile Include="App\Event\Event_AppMain.cs" />
-    <Compile Include="App\Event\Event_AppStatus.cs" />
-    <Compile Include="App\Event\Event_DiscussMessage.cs" />
-    <Compile Include="App\Event\Event_FriendMessage.cs" />
-    <Compile Include="App\Event\Event_GroupMessage.cs" />
-    <Compile Include="App\Event\Event_OtherMessage.cs" />
-    <Compile Include="App\Event\Event_UserExpand.cs" />
-    <Compile Include="App\Interface\IEvent_AppStatus.cs" />
-    <Compile Include="App\Interface\IEvent_DiscussMessage.cs" />
-    <Compile Include="App\Interface\IEvent_FriendMessage.cs" />
-    <Compile Include="App\Interface\IEvent_GroupMessage.cs" />
-    <Compile Include="App\Interface\IEvent_OtherMessage.cs" />
-    <Compile Include="App\Interface\IEvent_UserExpand.cs" />
-    <Compile Include="App\Model\DiscussMessageEventArgs.cs" />
-    <Compile Include="App\Model\EventArgsBase.cs" />
-    <Compile Include="App\Model\FileUploadMessageEventArgs.cs" />
-    <Compile Include="App\Model\FriendAddRequestEventArgs.cs" />
-    <Compile Include="App\Model\FriendIncreaseEventArgs.cs" />
-    <Compile Include="App\Model\GroupAddRequestEventArgs.cs" />
-    <Compile Include="App\Model\GroupManageAlterEventArgs.cs" />
-    <Compile Include="App\Model\GroupMemberAlterEventArgs.cs" />
-    <Compile Include="App\Model\GroupMessageEventArgs.cs" />
-    <Compile Include="App\Model\PrivateMessageEventArgs.cs" />
+    <Compile Include="App\Event\Event_CqExit.cs" />
+    <Compile Include="App\Event\Event_CqStartup.cs" />
+    <Compile Include="App\Interface\ICqAppDisable.cs" />
+    <Compile Include="App\Interface\ICqAppEnable.cs" />
+    <Compile Include="App\Interface\ICallMenu.cs" />
+    <Compile Include="App\Interface\ICqExit.cs" />
+    <Compile Include="App\Interface\ICqStartup.cs" />
+    <Compile Include="App\Interface\ICqStatus.cs" />
+    <Compile Include="App\Interface\IReceiveDiscussMessage.cs" />
+    <Compile Include="App\Interface\IReceiveDiscussPrivateMessage.cs" />
+    <Compile Include="App\Interface\IReceiveFriendAddRequest.cs" />
+    <Compile Include="App\Interface\IReceiveFriendIncrease.cs" />
+    <Compile Include="App\Interface\IReceiveFriendMessage.cs" />
+    <Compile Include="App\Interface\IReceiveAddGroupRequest.cs" />
+    <Compile Include="App\Interface\IReceiveAddGroupBeInvitee.cs" />
+    <Compile Include="App\Interface\IReceiveGroupFileUpload.cs" />
+    <Compile Include="App\Interface\IReceiveGroupManageDecrease.cs" />
+    <Compile Include="App\Interface\IReceiveGroupManageIncrease.cs" />
+    <Compile Include="App\Interface\IReceiveGroupMemberBeInvitee.cs" />
+    <Compile Include="App\Interface\IReceiveGroupMemberPass.cs" />
+    <Compile Include="App\Interface\IReceiveGroupMemberLeave.cs" />
+    <Compile Include="App\Interface\IReceiveGroupMemberRemove.cs" />
+    <Compile Include="App\Interface\IReceiveGroupMessage.cs" />
+    <Compile Include="App\Interface\IReceiveGroupPrivateMessage.cs" />
+    <Compile Include="App\Interface\IReceiveOnlineStatusMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repair\Core\Kernel32.cs" />
     <Compile Include="Repair\Enum\LoadLibraryFlags.cs" />
@@ -140,9 +174,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Core\StatusExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StatusExport.cs</LastGenOutput>
+    </Content>
     <Content Include="App\Core\LibExport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LibExport.cs</LastGenOutput>
+    </Content>
+    <Content Include="App\Core\MenuExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MenuExport.cs</LastGenOutput>
     </Content>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>

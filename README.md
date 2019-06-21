@@ -15,15 +15,9 @@
 >1. Visual Studio 2012 或更高版本
 >2. Microsoft .Net Framework 4.0 **(XP系统支持的最后一个版本)**
 
-## Native.SDK 部署流程
+## Native.SDK 环境部署
 
-	1. 下载并打开 Native.SDK
-	2. 打开 Native.Csharp 项目属性, 修改 "应用程序" 中的 "程序集名称" 为你的AppId(规则参见http://d.cqp.me/Pro/开发/基础信息)
-	3. 展开 Native.Csharp 项目, 修改 "Native.Csharp.json" 文件名为你的AppId
-	4. 展开 Native.Csharp 项目, 找到 App -> Core -> LibExport.tt 文件, 右击选择 "运行自定义工具"
-	
-	此时 Native.SDK 的开发环境已经配置成功!
-	要找到生成的 程序集, 请找 Native.Csharp -> bin -> x86 -> (Debug\Release) 
+	详情请看 Wiki: https://github.com/Jie2GG/Native.Csharp.Frame/wiki
 
 ## Native.SDK 调试流程
 
@@ -41,8 +35,32 @@
 > 2. ~~对于 "HttpHelper.GetData" 方法, 抛出异常, 暂时无法使用~~ <font color=#FF0000>(已经修复, 但是封装了新的HTTP类, 弃用)</font>
 > 3. ~~对于 "AuthCode" 被多插件共用, 导致应用之间串数据~~ <font color=#FF0000>(已修复)</font>
 > 4. ~~对于接收消息时, 颜文字表情, 特殊符号乱码, 当前正在寻找转换方式~~ <font color=#FF0000>(已修复)</font>
+> 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月19日 版本: V3.1.1.0619
+
+	1. 优化 Native.Csharp.Sdk 项目对 酷Q on Docker(Wine) 的兼容性
+	2. 优化 Native.Csharp.Tool 项目对 酷Q on Docker(Wine) 的兼容性
+	3. 优化 Native.Csharp.Repair 的兼容性 感谢 @kotoneme[https://github.com/kotoneme]
+	4. 修复 OtherExpand.ToDateTime 方法转换时间出错
+	5. 修复 CqApi.GetMemberList 方法获取数据时运算出错
+
+> 2019年06月15日 版本: V3.1.0.0615
+
+	1. 新增 MenuExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	2. 新增 StatusExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	3. 重写 LibExport.tt 模板, 用于解析项目 Json 文件中的回调函数
+	4. 重写 Interface 中的接口, 分离所有事件为单独接口
+	5. 重写 Model 中的所有模型, 更改为 EventArgs , 并重写所有事件
+	6. 优化 为 Common.cs 增加 App名称 (酷Q应用列表显示的名称)
+	7. 优化 为 Common.cs 增加 App版本 (酷Q应用列表显示的版本)
+	8. 优化 为所有事件参数类增加 Json 文件对应的 Id, Name, Type 参数
+	9. 优化 预置 Json 解析 nuget 包 (tt 模板关键组件, 请勿删除)
+	10. 优化 调整了 IOC 容器的注册方式
+	11. 优化 调整了 IOC 容器的实例化方式
+	12. 修复 一些零碎的已知问题
+
 > 2019年06月07日 版本: V3.0.7.0607
 
 	由于 酷Q 停止对 Windows XP/Vista 系统的支持, 所以 Native.SDK 将停止继续使用 .Net 4.0 
