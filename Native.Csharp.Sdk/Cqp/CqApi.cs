@@ -283,7 +283,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns></returns>
 		public string ReceiveRecord (string fileName, AudioOutFormat formatType)
 		{
-			//return CQP.CQ_getRecord (_authCode, fileName, formatType.ToString ());
+			
 			return CQP.CQ_getRecordV2 (_authCode, fileName, formatType.ToString ());
 		}
 
