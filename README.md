@@ -38,6 +38,10 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月23日 版本: V3.1.2.0623
+
+	1. 修复 CqApi.ReceiveRecord 传递格式不正确的问题
+
 > 2019年06月19日 版本: V3.1.1.0619
 
 	1. 优化 Native.Csharp.Sdk 项目对 酷Q on Docker(Wine) 的兼容性

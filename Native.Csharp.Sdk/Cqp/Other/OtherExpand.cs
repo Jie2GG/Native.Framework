@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Other
 {
-	/// <summary>
-	/// 其它类扩展方法集
-	/// </summary>
-	public static class OtherExpand
-	{
-		#region --Kernel32--
-		[DllImport ("kernel32.dll", EntryPoint = "lstrlenA", CharSet = CharSet.Ansi)]
-		internal extern static int LstrlenA (IntPtr ptr);
+    /// <summary>
+    /// 其它类扩展方法集
+    /// </summary>
+    public static class OtherExpand
+    {
+        #region --Kernel32--
+        [DllImport ("kernel32.dll", EntryPoint = "lstrlenA", CharSet = CharSet.Ansi)]
+        internal extern static int LstrlenA (IntPtr ptr);
         #endregion
 
         /// <summary>
@@ -36,38 +38,55 @@ namespace Native.Csharp.Sdk.Cqp.Other
         /// <param name="encoding">目标编码格式</param>
         /// <returns></returns>
         public static IntPtr ToIntPtr (this string source, Encoding encoding = null)
-		{
-			if (encoding == null)
-			{
-				encoding = Encoding.ASCII;
-			}
-			byte[] buffer = encoding.GetBytes (source);
-			GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
-			return hobj.AddrOfPinnedObject ();
-		}
+        {
+            if (encoding == null)
+            {
+                encoding = Encoding.ASCII;
+            }
+            byte[] buffer = encoding.GetBytes (source);
+            GCHandle hobj = GCHandle.Alloc (buffer, GCHandleType.Pinned);
+            return hobj.AddrOfPinnedObject ();
+        }
 
-		/// <summary>
-		/// 读取指针内所有的字节数组并编码为指定字符串
-		/// </summary>
-		/// <param name="strPtr">字符串的 <see cref="IntPtr"/> 对象</param>
-		/// <param name="encoding">目标编码格式</param>
-		/// <returns></returns>
-		public static string ToString (this IntPtr strPtr, Encoding encoding = null)
-		{
-			if (encoding == null)
-			{
-				encoding = Encoding.Default;
-			}
+        /// <summary>
+        /// 读取指针内所有的字节数组并编码为指定字符串
+        /// </summary>
+        /// <param name="strPtr">字符串的 <see cref="IntPtr"/> 对象</param>
+        /// <param name="encoding">目标编码格式</param>
+        /// <returns></returns>
+        public static string ToString (this IntPtr strPtr, Encoding encoding = null)
+        {
+            if (encoding == null)
+            {
+                encoding = Encoding.Default;
+            }
 
-			int len = LstrlenA (strPtr);   //获取指针中数据的长度
-			if (len == 0)
-			{
-				return string.Empty;
-			}
+            int len = LstrlenA (strPtr);   //获取指针中数据的长度
+            if (len == 0)
+            {
+                return string.Empty;
+            }
 
-			byte[] buffer = new byte[len];
-			Marshal.Copy (strPtr, buffer, 0, len);
-			return encoding.GetString (buffer);
-		}
-	}
+            byte[] buffer = new byte[len];
+            Marshal.Copy (strPtr, buffer, 0, len);
+            return encoding.GetString (buffer);
+        }
+
+        /// <summary>
+        /// 读取 <see cref="System.Enum"/> 标记 <see cref="System.ComponentModel.DescriptionAttribute"/> 的值
+        /// </summary>
+        /// <param name="value">原始 <see cref="System.Enum"/> 值</param>
+        /// <returns></returns>
+        public static string GetDescription (this System.Enum value)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            FieldInfo fieldInfo = value.GetType ().GetField (value.ToString ());
+            DescriptionAttribute attribute = fieldInfo.GetCustomAttribute<DescriptionAttribute> (false);
+            return attribute.ToString ();
+        }
+    }
 }

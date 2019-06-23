@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -10,37 +11,45 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 	/// </summary>
 	public enum AudioOutFormat
 	{
-		/// <summary>
-		/// mp3音频格式
-		/// </summary>
-		MPEG_Layer3,
-		/// <summary>
-		/// arm音频格式
-		/// </summary>
-		AMR_NB,
-		/// <summary>
-		/// wma音频格式
-		/// </summary>
-		Windows_Media_Audio,
-		/// <summary>
-		/// m4a音频格式
-		/// </summary>
-		MPEG4,
-		/// <summary>
-		/// spx音频格式
-		/// </summary>
-		Speex,
-		/// <summary>
-		/// ogg音频格式
-		/// </summary>
-		OggVorbis,
-		/// <summary>
-		/// wav音频格式
-		/// </summary>
-		WAVE,
-		/// <summary>
-		/// flac音频格式
-		/// </summary>
-		FLAC
+        /// <summary>
+        /// mp3音频格式
+        /// </summary>
+        [Description("mp3")]
+        MPEG_Layer3,
+        /// <summary>
+        /// arm音频格式
+        /// </summary>
+        [Description ("arm")]
+        AMR_NB,
+        /// <summary>
+        /// wma音频格式
+        /// </summary>
+        [Description ("wma")]
+        Windows_Media_Audio,
+        /// <summary>
+        /// m4a音频格式
+        /// </summary>
+        [Description ("m4a")]
+        MPEG4,
+        /// <summary>
+        /// spx音频格式
+        /// </summary>
+        [Description ("spx")]
+        Speex,
+        /// <summary>
+        /// ogg音频格式
+        /// </summary>
+        [Description ("ogg")]
+        OggVorbis,
+        /// <summary>
+        /// wav音频格式
+        /// </summary>
+        [Description ("wav")]
+        WAVE,
+        /// <summary>
+        /// flac音频格式
+        /// </summary>
+        [Description ("flac")]
+        FLAC
 	}
 }
