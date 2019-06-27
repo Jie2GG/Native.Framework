@@ -684,7 +684,6 @@ namespace Native.Csharp.Tool.Http
             HttpWebResponse httpWebResponse = (HttpWebResponse)base.GetWebResponse(request);
             this.Method = httpWebResponse.Method;
             this.ContentType = httpWebResponse.ContentType;
-            this.Headers = httpWebResponse.Headers;
             if (this.AutoCookieMerge)
             {
                 UpdateCookie(this.CookieCollection, httpWebResponse.Cookies);

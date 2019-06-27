@@ -38,6 +38,12 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年06月27日 版本: V3.1.3.0627
+
+	1. 修复 HttpWebClient 重复 POST 请求引发 Headers 设置错误异常
+	2. 修正 Native.Csharp.Tool 项目版本号
+	3. 修正 Native.Csharp.Sdk 项目版本号
+
 > 2019年06月23日 版本: V3.1.2.0623
 
 	1. 修复 CqApi.ReceiveRecord 传递格式不正确的问题
