@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
+    /// <summary>
+    /// 描述 酷Q 消息中一串 [CQ:...] 的对象
+    /// </summary>
 	public class CqCode
 	{
 		#region --属性--

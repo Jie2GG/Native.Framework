@@ -34,7 +34,7 @@ namespace Native.Csharp.Sdk.Cqp.Other
         /// <summary>
         /// 转换字符串的 <see cref="IntPtr"/> 实例对象
         /// </summary>
-        /// <param name="value">将转换的字符串</param>
+        /// <param name="source">将转换的字符串</param>
         /// <param name="encoding">目标编码格式</param>
         /// <returns></returns>
         public static IntPtr ToIntPtr (this string source, Encoding encoding = null)

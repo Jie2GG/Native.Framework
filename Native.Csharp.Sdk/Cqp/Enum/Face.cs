@@ -10,7 +10,8 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 	/// </summary>
 	public enum Face
 	{
-		惊讶 = 0,
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
+        惊讶 = 0,
 		撇嘴 = 1,
 		色 = 2,
 		发呆 = 3,
@@ -148,6 +149,7 @@ namespace Native.Csharp.Sdk.Cqp.Enum
 		纸巾 = 167,
 		药 = 168,
 		手枪 = 169,
-		青蛙 = 170
-	}
+        青蛙 = 170
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
+    }
 }
