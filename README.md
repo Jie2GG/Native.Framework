@@ -38,6 +38,16 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年07月10日 版本: V3.1.5.0710
+
+	1. 修正 CqApi.SetFriendAddRequest 方法第三个参数的定义及注释
+	2. 修正 CqApi.SendPraise 方法的逻辑, 将第二个参数的范围限制在 1-10 之间
+	3. 优化 CqApi.GetQQInfo 方法的调用方式
+	4. 优化 CqApi.GetMemberInfo 方法的调用方式
+	5. 优化 CqApi.GetMemberList 方法的调用方式
+	6. 优化 CqApi.GetGroupList 方法的调用方式
+	7. 优化 Native.Csharp.Sdk 项目的注释内容
+
 > 2019年07月05日 版本: V3.1.4.0705
 
 	1. 修复 HttpWebClient.CookieCollection 为 null 时, 开启自动合并更新会报错

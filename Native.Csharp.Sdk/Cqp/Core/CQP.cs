@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Core
 {
-	public static class CQP
+	internal static class CQP
 	{
 		/* 
 		 * 官方SDK更新日志:
