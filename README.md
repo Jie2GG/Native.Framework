@@ -38,6 +38,14 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年07月16日 版本: V3.1.7.0716
+
+	1. 优化 HttpWebClient 对 HTTPS 的验证, 增加了 TLS 1.3
+
+> 2019年07月11日 版本: V3.1.6.0711
+
+	1. 修复 Native.Csharp.Tool 项目在 Release 方式下 SQLite 组件会报大量的错误
+
 > 2019年07月10日 版本: V3.1.5.0710
 
 	1. 修正 CqApi.SetFriendAddRequest 方法第三个参数的定义及注释
