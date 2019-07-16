@@ -609,8 +609,10 @@ namespace Native.Csharp.Tool.Http
         {
             if (address.OriginalString.StartsWith ("https", StringComparison.OrdinalIgnoreCase))
             {
-                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;        // 强行验证HTTPS通过
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)(48 | 192 | 768 | 3072);   // 通过验证的协议类型, 来源 .Net Framework 4.5
+                // 强行验证HTTPS通过
+                // 验证的协议类型: SSL3, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;               
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)(48 | 192 | 768 | 3072| 12288);
             }
             HttpWebRequest httpWebRequest = (HttpWebRequest)base.GetWebRequest (address);
             httpWebRequest.ProtocolVersion = HttpVersion.Version11;
