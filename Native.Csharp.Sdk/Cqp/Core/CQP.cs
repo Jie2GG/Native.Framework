@@ -32,13 +32,13 @@ namespace Native.Csharp.Sdk.Cqp.Core
 
 		#region --CqpApi--
 		[DllImport (DllName, EntryPoint = "CQ_sendPrivateMsg")]
-		public static extern int CQ_sendPrivateMsg (int authCode, long qqId, IntPtr msg);
+		public static extern int CQ_sendPrivateMsg (int authCode, long qqId, [In]IntPtr msg);
 
 		[DllImport (DllName, EntryPoint = "CQ_sendGroupMsg")]
-		public static extern int CQ_sendGroupMsg (int authCode, long groupId, IntPtr msg);
+		public static extern int CQ_sendGroupMsg (int authCode, long groupId, [In]IntPtr msg);
 
 		[DllImport (DllName, EntryPoint = "CQ_sendDiscussMsg")]
-		public static extern int CQ_sendDiscussMsg (int authCode, long discussId, IntPtr msg);
+		public static extern int CQ_sendDiscussMsg (int authCode, long discussId, [In]IntPtr msg);
 
 		[DllImport (DllName, EntryPoint = "CQ_deleteMsg")]
 		public static extern int CQ_deleteMsg (int authCode, long msgId);

@@ -62,6 +62,12 @@ namespace Native.Csharp.Tool.Http
         /// 获取或设置一个值, 该值指示是否获取 Internet 资源后自动合并关联的 <see cref="CookieContainer"/>
         /// </summary>
         public bool AutoCookieMerge { get; set; }
+        /// <summary>
+        /// 获取或设置一个值, 该值指示仅用 HTTPS 请求时客户端的安全验证类型
+        /// <para/>
+        /// 验证类型为: SSL3.0 (48), TLS1.0 (192), TLS1.1 (768), TLS1.2 (3072), TLS1.3 (12288)
+        /// </summary>
+        public SecurityProtocolType ServiceSecurityType { get; set; }
         #endregion
 
         #region --构造函数--
@@ -111,6 +117,7 @@ namespace Native.Csharp.Tool.Http
             httpWebClient.Proxy = proxy;
             httpWebClient.AllowAutoRedirect = allowAutoRedirect;
             httpWebClient.AutoCookieMerge = autoCookieMerge;
+            httpWebClient.ServiceSecurityType = GetSecurityAllValue ();
             byte[] result = httpWebClient.DownloadData (new Uri (url));
             headers = httpWebClient.ResponseHeaders;
             cookies = httpWebClient.CookieCollection;
@@ -326,6 +333,7 @@ namespace Native.Csharp.Tool.Http
             httpWebClient.Proxy = proxy;
             httpWebClient.AutoCookieMerge = autoCookieMerge;
             httpWebClient.AllowAutoRedirect = allowAutoRedirect;
+            httpWebClient.ServiceSecurityType = GetSecurityAllValue ();
             byte[] result = httpWebClient.UploadData (new Uri (url), data);
             headers = httpWebClient.ResponseHeaders;
             cookies = httpWebClient.CookieCollection;
@@ -597,6 +605,19 @@ namespace Native.Csharp.Tool.Http
             }
             return -1;
         }
+        /// <summary>
+        /// 获取 <see cref="SecurityProtocolType"/> 类型所有值的或
+        /// </summary>
+        /// <returns></returns>
+        private static SecurityProtocolType GetSecurityAllValue ()
+        {
+            SecurityProtocolType temp = (SecurityProtocolType)0;
+            foreach (SecurityProtocolType item in Enum.GetValues (typeof (SecurityProtocolType)))
+            {
+                temp |= item;
+            }
+            return temp;
+        }
         #endregion
 
         #region --重写方法--
@@ -610,9 +631,9 @@ namespace Native.Csharp.Tool.Http
             if (address.OriginalString.StartsWith ("https", StringComparison.OrdinalIgnoreCase))
             {
                 // 强行验证HTTPS通过
-                // 验证的协议类型: SSL3, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
-                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;               
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)(48 | 192 | 768 | 3072| 12288);
+                // 验证方式改为用户手动指定
+                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;
+                ServicePointManager.SecurityProtocol = this.ServiceSecurityType;
             }
             HttpWebRequest httpWebRequest = (HttpWebRequest)base.GetWebRequest (address);
             httpWebRequest.ProtocolVersion = HttpVersion.Version11;
