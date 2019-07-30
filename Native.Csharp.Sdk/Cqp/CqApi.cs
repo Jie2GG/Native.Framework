@@ -34,10 +34,10 @@ namespace Native.Csharp.Sdk.Cqp
         /// 初始化一个 <see cref="CqApi"/> 类的新实例, 该实例将由 <code>Initialize (int)</code> 函数授权
         /// </summary>
         /// <param name="authCode">插件验证码</param>
-        public CqApi(int authCode)
+        public CqApi (int authCode)
         {
             this._authCode = authCode;
-            this._defaultEncoding = Encoding.GetEncoding("GB18030");
+            this._defaultEncoding = Encoding.GetEncoding ("GB18030");
         }
         #endregion
 
@@ -48,33 +48,33 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">QQ号, 填写 -1 为At全体成员</param>
         /// <param name="addSpacing">默认为True, At后添加空格, 可使At更规范美观. 如果不需要添加空格, 请置本参数为False</param>
         /// <returns></returns>
-        public string CqCode_At(long qqId = -1, bool addSpacing = true)
+        public string CqCode_At (long qqId = -1, bool addSpacing = true)
         {
-            return string.Format("[CQ:at,qq={0}]{1}", (qqId == -1) ? "all" : qqId.ToString(), addSpacing ? " " : string.Empty);
+            return string.Format ("[CQ:at,qq={0}]{1}", (qqId == -1) ? "all" : qqId.ToString (), addSpacing ? " " : string.Empty);
         }
         /// <summary>
         /// 获取酷Q "emoji表情" 代码
         /// </summary>
         /// <param name="id">表情Id</param>
         /// <returns></returns>
-        public string CqCode_Emoji(int id)
+        public string CqCode_Emoji (int id)
         {
-            return string.Format("[CQ:emoji,id={0}]", id);
+            return string.Format ("[CQ:emoji,id={0}]", id);
         }
         /// <summary>
         /// 获取酷Q "表情" 代码
         /// </summary>
         /// <param name="face">表情枚举</param>
         /// <returns></returns>
-        public string CqCode_Face(Face face)
+        public string CqCode_Face (Face face)
         {
-            return string.Format("[CQ:face,id={0}]", (int)face);
+            return string.Format ("[CQ:face,id={0}]", (int)face);
         }
         /// <summary>
         /// 获取酷Q "窗口抖动" 代码
         /// </summary>
         /// <returns></returns>
-        public string CqCode_Shake()
+        public string CqCode_Shake ()
         {
             return "[CQ:shake]";
         }
@@ -84,31 +84,31 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="str">欲转义字符串</param>
         /// <param name="commaTrope">逗号转义, 默认: False</param>
         /// <returns></returns>
-        public string CqCode_Trope(string str, bool commaTrope = false)
+        public string CqCode_Trope (string str, bool commaTrope = false)
         {
-            StringBuilder @string = new StringBuilder(str);
-            @string = @string.Replace("&", "&amp;");
-            @string = @string.Replace("[", "&#91;");
-            @string = @string.Replace("]", "&#93;");
+            StringBuilder @string = new StringBuilder (str);
+            @string = @string.Replace ("&", "&amp;");
+            @string = @string.Replace ("[", "&#91;");
+            @string = @string.Replace ("]", "&#93;");
             if (commaTrope)
             {
-                @string = @string.Replace(",", "&#44;");
+                @string = @string.Replace (",", "&#44;");
             }
-            return @string.ToString();
+            return @string.ToString ();
         }
         /// <summary>
         /// 获取字符串的非转义形式
         /// </summary>
         /// <param name="str">欲反转义字符串</param>
         /// <returns></returns>
-        public string CqCode_UnTrope(string str)
+        public string CqCode_UnTrope (string str)
         {
-            StringBuilder @string = new StringBuilder(str);
-            @string = @string.Replace("&#91;", "[");
-            @string = @string.Replace("&#93;", "]");
-            @string = @string.Replace("&#44;", ",");
-            @string = @string.Replace("&amp;", "&");
-            return @string.ToString();
+            StringBuilder @string = new StringBuilder (str);
+            @string = @string.Replace ("&#91;", "[");
+            @string = @string.Replace ("&#93;", "]");
+            @string = @string.Replace ("&#44;", ",");
+            @string = @string.Replace ("&amp;", "&");
+            return @string.ToString ();
         }
         /// <summary>
         /// 获取酷Q "链接分享" 代码
@@ -118,23 +118,23 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="content">分享的简介, 建议30字以内</param>
         /// <param name="imgUrl">分享的图片链接, 留空则为默认图片</param>
         /// <returns></returns>
-        public string CqCode_ShareLink(string url, string title, string content, string imgUrl)
+        public string CqCode_ShareLink (string url, string title, string content, string imgUrl)
         {
-            StringBuilder @string = new StringBuilder();
-            @string.AppendFormat(",url={0}", CqCode_Trope(url, true));
-            if (!string.IsNullOrEmpty(title))
+            StringBuilder @string = new StringBuilder ();
+            @string.AppendFormat (",url={0}", CqCode_Trope (url, true));
+            if (!string.IsNullOrEmpty (title))
             {
-                @string.AppendFormat(",title={0}", CqCode_Trope(title, true));
+                @string.AppendFormat (",title={0}", CqCode_Trope (title, true));
             }
-            if (!string.IsNullOrEmpty(content))
+            if (!string.IsNullOrEmpty (content))
             {
-                @string.AppendFormat(",content={0}", CqCode_Trope(content, true));
+                @string.AppendFormat (",content={0}", CqCode_Trope (content, true));
             }
-            if (!string.IsNullOrEmpty(imgUrl))
+            if (!string.IsNullOrEmpty (imgUrl))
             {
-                @string.AppendFormat(",image={0}", CqCode_Trope(imgUrl, true));
+                @string.AppendFormat (",image={0}", CqCode_Trope (imgUrl, true));
             }
-            return string.Format("[CQ:share{0}]", @string.ToString());
+            return string.Format ("[CQ:share{0}]", @string.ToString ());
         }
         /// <summary>
         /// 获取酷Q "名片分享" 代码
@@ -142,9 +142,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="cardType">名片类型, qq: 好友分享, group: 群分享</param>
         /// <param name="id">类型为qq，则为qqId；类型为group，则为groupId</param>
         /// <returns></returns>
-        public string CqCode_ShareCard(string cardType, long id)
+        public string CqCode_ShareCard (string cardType, long id)
         {
-            return string.Format("[CQ:contact,type={0},id={1}]", CqCode_Trope(cardType, true), id);
+            return string.Format ("[CQ:contact,type={0},id={1}]", CqCode_Trope (cardType, true), id);
         }
         /// <summary>
         /// 获取酷Q "位置分享" 代码
@@ -155,13 +155,13 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="lon">经度</param>
         /// <param name="zoom">放大倍数, 默认: 15</param>
         /// <returns></returns>
-        public string CqCode_ShareGPS(string site, string detail, double lat, double lon, int zoom = 15)
+        public string CqCode_ShareGPS (string site, string detail, double lat, double lon, int zoom = 15)
         {
-            StringBuilder @string = new StringBuilder();
-            @string.AppendFormat(",lat={0},lon={1}", lat, lon);
-            @string.AppendFormat(",zoom={0}", zoom);
-            @string.AppendFormat(",title={0},content={1}", CqCode_Trope(site, true), CqCode_Trope(detail, true));
-            return string.Format("[CQ:location{0}]", @string.ToString());
+            StringBuilder @string = new StringBuilder ();
+            @string.AppendFormat (",lat={0},lon={1}", lat, lon);
+            @string.AppendFormat (",zoom={0}", zoom);
+            @string.AppendFormat (",title={0},content={1}", CqCode_Trope (site, true), CqCode_Trope (detail, true));
+            return string.Format ("[CQ:location{0}]", @string.ToString ());
         }
         /// <summary>
         /// 获取酷Q "匿名" 代码
@@ -169,9 +169,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="forced">强制发送
         /// <para>默认为False 如果希望匿名失败时，将消息转为普通消息发送(而不是取消发送)，请置本参数为True。</para></param>
         /// <returns></returns>
-        public string CqCode_Anonymous(bool forced = false)
+        public string CqCode_Anonymous (bool forced = false)
         {
-            return string.Format("[CQ:anonymous{0}]", forced ? ",ignore=true" : string.Empty);
+            return string.Format ("[CQ:anonymous{0}]", forced ? ",ignore=true" : string.Empty);
         }
         /// <summary>
         /// 获取酷Q "图片" 代码
@@ -179,9 +179,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="filePath">图片路径
         /// <para>将图片放在 data\image 下，并填写相对路径。如 data\image\1.jpg 则填写 1.jpg</para></param>
         /// <returns></returns>
-        public string CqCode_Image(string filePath)
+        public string CqCode_Image (string filePath)
         {
-            return string.Format("[CQ:image,file={0}]", CqCode_Trope(filePath, true));
+            return string.Format ("[CQ:image,file={0}]", CqCode_Trope (filePath, true));
         }
         /// <summary>
         /// 获取酷Q "音乐" 代码
@@ -190,9 +190,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="type">歌曲来源, 目前支持 qq/QQ音乐 163/网易云音乐 xiami/虾米音乐，默认为qq</param>
         /// <param name="newStyle">启用新样式, 目前仅支持 QQ音乐 </param>
         /// <returns></returns>
-        public string CqCode_Music(long id, string type = "qq", bool newStyle = false)
+        public string CqCode_Music (long id, string type = "qq", bool newStyle = false)
         {
-            return string.Format("[CQ:music,id={0},type={1}{2}]", id, CqCode_Trope(type, true), newStyle ? "style=1" : string.Empty);
+            return string.Format ("[CQ:music,id={0},type={1}{2}]", id, CqCode_Trope (type, true), newStyle ? "style=1" : string.Empty);
         }
         /// <summary>
         /// 获取酷Q "音乐自定义" 代码
@@ -203,24 +203,24 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="content">音乐的简介，建议30字以内</param>
         /// <param name="imgUrl">音乐的封面图片链接，留空则为默认图片</param>
         /// <returns></returns>
-        public string CqCode_MusciDIY(string url, string musicUrl, string title = null, string content = null, string imgUrl = null)
+        public string CqCode_MusciDIY (string url, string musicUrl, string title = null, string content = null, string imgUrl = null)
         {
-            StringBuilder @string = new StringBuilder();
-            @string.AppendFormat(",url={0}", CqCode_Trope(url, true));
-            @string.AppendFormat(",audio={0}", CqCode_Trope(musicUrl, true));
-            if (!string.IsNullOrEmpty(title))
+            StringBuilder @string = new StringBuilder ();
+            @string.AppendFormat (",url={0}", CqCode_Trope (url, true));
+            @string.AppendFormat (",audio={0}", CqCode_Trope (musicUrl, true));
+            if (!string.IsNullOrEmpty (title))
             {
-                @string.AppendFormat(",title={0}", CqCode_Trope(title, true));
+                @string.AppendFormat (",title={0}", CqCode_Trope (title, true));
             }
-            if (!string.IsNullOrEmpty(content))
+            if (!string.IsNullOrEmpty (content))
             {
-                @string.AppendFormat(",content={0}", CqCode_Trope(content, true));
+                @string.AppendFormat (",content={0}", CqCode_Trope (content, true));
             }
-            if (!string.IsNullOrEmpty(imgUrl))
+            if (!string.IsNullOrEmpty (imgUrl))
             {
-                @string.AppendFormat(",image={0}", CqCode_Trope(imgUrl, true));
+                @string.AppendFormat (",image={0}", CqCode_Trope (imgUrl, true));
             }
-            return string.Format("[CQ:music,type=custom{0}]", @string.ToString());
+            return string.Format ("[CQ:music,type=custom{0}]", @string.ToString ());
         }
         /// <summary>
         /// 获取酷Q "语音" 代码
@@ -228,9 +228,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="filePath">语音路径
         /// <para>将语音放在 data\record 下，并填写相对路径。如 data\record\1.amr 则填写 1.amr</para></param>
         /// <returns></returns>
-        public string CqCode_Record(string filePath)
+        public string CqCode_Record (string filePath)
         {
-            return string.Format("[CQ:record,file={0}]", CqCode_Trope(filePath, true));
+            return string.Format ("[CQ:record,file={0}]", CqCode_Trope (filePath, true));
         }
         #endregion
 
@@ -241,9 +241,12 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="groupId">目标群</param>
         /// <param name="message">消息内容</param>
         /// <returns>失败返回负值, 成功返回消息 Id</returns>
-        public int SendGroupMessage(long groupId, string message)
+        public int SendGroupMessage (long groupId, string message)
         {
-            return CQP.CQ_sendGroupMsg(_authCode, groupId, message.ToIntPtr(_defaultEncoding));
+            GCHandle handle = message.GetStringGCHandle (_defaultEncoding);
+            int msgId = CQP.CQ_sendGroupMsg (_authCode, groupId, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return msgId;
         }
 
         /// <summary>
@@ -252,9 +255,12 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="message">消息内容</param>
         /// <returns>失败返回负值, 成功返回消息 Id</returns>
-        public int SendPrivateMessage(long qqId, string message)
+        public int SendPrivateMessage (long qqId, string message)
         {
-            return CQP.CQ_sendPrivateMsg(_authCode, qqId, message.ToIntPtr(_defaultEncoding));
+            GCHandle handle = message.GetStringGCHandle (_defaultEncoding);
+            int msgId = CQP.CQ_sendPrivateMsg (_authCode, qqId, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return msgId;
         }
 
         /// <summary>
@@ -263,9 +269,12 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="discussId">目标讨论组</param>
         /// <param name="message">消息内容</param>
         /// <returns>失败返回负值, 成功返回消息 Id</returns>
-        public int SendDiscussMessage(long discussId, string message)
+        public int SendDiscussMessage (long discussId, string message)
         {
-            return CQP.CQ_sendDiscussMsg(_authCode, discussId, message.ToIntPtr(_defaultEncoding));
+            GCHandle handle = message.GetStringGCHandle (_defaultEncoding);
+            int msgid = CQP.CQ_sendDiscussMsg (_authCode, discussId, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return msgid;
         }
 
         /// <summary>
@@ -274,7 +283,7 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="count">赞的次数，最多10次（留空为1次）</param>
         /// <returns></returns>
-        public int SendPraise(long qqId, int count = 1)
+        public int SendPraise (long qqId, int count = 1)
         {
             if (count < 1)
             {
@@ -284,7 +293,7 @@ namespace Native.Csharp.Sdk.Cqp
             {
                 count = 10;
             }
-            return CQP.CQ_sendLikeV2(_authCode, qqId, count);
+            return CQP.CQ_sendLikeV2 (_authCode, qqId, count);
         }
 
         /// <summary>
@@ -293,9 +302,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="fileName">文件名, 收到消息中的语音文件名(file)</param>
         /// <param name="formatType">应用所需的语音文件格式</param>
         /// <returns>返回语音文件绝对路径</returns>
-        public string ReceiveRecord(string fileName, AudioOutFormat formatType)
+        public string ReceiveRecord (string fileName, AudioOutFormat formatType)
         {
-            return CQP.CQ_getRecordV2(_authCode, fileName, formatType.GetDescription());
+            return CQP.CQ_getRecordV2 (_authCode, fileName, formatType.GetDescription ());
         }
 
         /// <summary>
@@ -303,9 +312,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>返回图片文件绝对路径</returns>
-        public string ReceiveImage(string fileName)
+        public string ReceiveImage (string fileName)
         {
-            return CQP.CQ_getImage(_authCode, fileName);
+            return CQP.CQ_getImage (_authCode, fileName);
         }
 
         /// <summary>
@@ -313,9 +322,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="id">消息ID</param>
         /// <returns></returns>
-        public int RepealMessage(int id)
+        public int RepealMessage (int id)
         {
-            return CQP.CQ_deleteMsg(_authCode, id);
+            return CQP.CQ_deleteMsg (_authCode, id);
         }
         #endregion
 
@@ -324,29 +333,29 @@ namespace Native.Csharp.Sdk.Cqp
         /// 取登录QQ
         /// </summary>
         /// <returns>返回整数</returns>
-        public long GetLoginQQ()
+        public long GetLoginQQ ()
         {
-            return CQP.CQ_getLoginQQ(_authCode);
+            return CQP.CQ_getLoginQQ (_authCode);
         }
 
         /// <summary>
         /// 获取当前登录QQ的昵称
         /// </summary>
         /// <returns>返回 GB108030 编码的字符串</returns>
-        public string GetLoginNick()
+        public string GetLoginNick ()
         {
-            return CQP.CQ_getLoginNick(_authCode).ToString(_defaultEncoding);
+            return CQP.CQ_getLoginNick (_authCode).ToString (_defaultEncoding);
         }
 
         /// <summary>
         /// 取应用目录
         /// </summary>
         /// <returns>返回本地路径字符串</returns>
-        public string GetAppDirectory()
+        public string GetAppDirectory ()
         {
             if (_appDirCache == null)
             {
-                _appDirCache = CQP.CQ_getAppDirectory(_authCode);
+                _appDirCache = CQP.CQ_getAppDirectory (_authCode);
             }
             return _appDirCache;
         }
@@ -355,18 +364,18 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取 Cookies 慎用,此接口需要严格授权
         /// </summary>
         /// <returns>返回 Cookies 字符串</returns>
-        public string GetCookies()
+        public string GetCookies ()
         {
-            return CQP.CQ_getCookies(_authCode);
+            return CQP.CQ_getCookies (_authCode);
         }
 
         /// <summary>
         /// 即QQ网页用到的bkn/g_tk等 慎用,此接口需要严格授权
         /// </summary>
         /// <returns>返回 bkn/g_tk 字符串</returns>
-        public int GetCsrfToken()
+        public int GetCsrfToken ()
         {
-            return CQP.CQ_getCsrfToken(_authCode);
+            return CQP.CQ_getCsrfToken (_authCode);
         }
 
         /// <summary>
@@ -375,19 +384,19 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="notCache">不使用缓存, 默认为"False"，通常忽略本参数，仅在必要时使用</param>
         /// <returns>获取成功返回 <see cref="QQInfo"/>, 失败返回 null</returns>
-        public QQInfo GetQQInfo(long qqId, bool notCache = false)
+        public QQInfo GetQQInfo (long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getStrangerInfo(_authCode, qqId, notCache);
-            if (string.IsNullOrEmpty(result))
+            string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache);
+            if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(result)));
-            QQInfo qqInfo = new QQInfo();
-            qqInfo.Id = binary.ReadInt64_Ex();
-            qqInfo.Nick = binary.ReadString_Ex(_defaultEncoding);
-            qqInfo.Sex = (Sex)binary.ReadInt32_Ex();
-            qqInfo.Age = binary.ReadInt32_Ex();
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
+            QQInfo qqInfo = new QQInfo ();
+            qqInfo.Id = binary.ReadInt64_Ex ();
+            qqInfo.Nick = binary.ReadString_Ex (_defaultEncoding);
+            qqInfo.Sex = (Sex)binary.ReadInt32_Ex ();
+            qqInfo.Age = binary.ReadInt32_Ex ();
             return qqInfo;
         }
 
@@ -398,31 +407,31 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="notCache">默认为 "Flase", 通常忽略本参数, 仅在必要的是否使用</param>
         /// <returns>获取成功返回 <see cref="GroupMember"/>, 失败返回 null</returns>
-        public GroupMember GetMemberInfo(long groupId, long qqId, bool notCache = false)
+        public GroupMember GetMemberInfo (long groupId, long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getGroupMemberInfoV2(_authCode, groupId, qqId, notCache);
-            if (string.IsNullOrEmpty(result))
+            string result = CQP.CQ_getGroupMemberInfoV2 (_authCode, groupId, qqId, notCache);
+            if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
             #region --其它_转换_文本到群成员信息--
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(result)));
-            GroupMember member = new GroupMember();
-            member.GroupId = binary.ReadInt64_Ex();
-            member.QQId = binary.ReadInt64_Ex();
-            member.Nick = binary.ReadString_Ex(_defaultEncoding);
-            member.Card = binary.ReadString_Ex(_defaultEncoding);
-            member.Sex = (Sex)binary.ReadInt32_Ex();
-            member.Age = binary.ReadInt32_Ex();
-            member.Area = binary.ReadString_Ex(_defaultEncoding);
-            member.JoiningTime = binary.ReadInt32_Ex().ToDateTime();
-            member.LastDateTime = binary.ReadInt32_Ex().ToDateTime();
-            member.Level = binary.ReadString_Ex(_defaultEncoding);
-            member.PermitType = (PermitType)binary.ReadInt32_Ex();
-            member.BadRecord = binary.ReadInt32_Ex() == 1;
-            member.SpecialTitle = binary.ReadString_Ex(_defaultEncoding);
-            member.SpecialTitleDurationTime = binary.ReadInt32_Ex().ToDateTime();
-            member.CanModifiedCard = binary.ReadInt32_Ex() == 1;
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
+            GroupMember member = new GroupMember ();
+            member.GroupId = binary.ReadInt64_Ex ();
+            member.QQId = binary.ReadInt64_Ex ();
+            member.Nick = binary.ReadString_Ex (_defaultEncoding);
+            member.Card = binary.ReadString_Ex (_defaultEncoding);
+            member.Sex = (Sex)binary.ReadInt32_Ex ();
+            member.Age = binary.ReadInt32_Ex ();
+            member.Area = binary.ReadString_Ex (_defaultEncoding);
+            member.JoiningTime = binary.ReadInt32_Ex ().ToDateTime ();
+            member.LastDateTime = binary.ReadInt32_Ex ().ToDateTime ();
+            member.Level = binary.ReadString_Ex (_defaultEncoding);
+            member.PermitType = (PermitType)binary.ReadInt32_Ex ();
+            member.BadRecord = binary.ReadInt32_Ex () == 1;
+            member.SpecialTitle = binary.ReadString_Ex (_defaultEncoding);
+            member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
+            member.CanModifiedCard = binary.ReadInt32_Ex () == 1;
             #endregion
             return member;
 
@@ -433,42 +442,42 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="groupId">目标群</param>
         /// <returns>获取成功返回 <see cref="List{GroupMember}"/>, 失败返回 null</returns>
-        public List<GroupMember> GetMemberList(long groupId)
+        public List<GroupMember> GetMemberList (long groupId)
         {
-            string result = CQP.CQ_getGroupMemberList(_authCode, groupId);
-            if (string.IsNullOrEmpty(result))
+            string result = CQP.CQ_getGroupMemberList (_authCode, groupId);
+            if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
             #region --其他_转换_文本到群成员列表信息a--
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(result)));
-            List<GroupMember> memberInfos = new List<GroupMember>();
-            for (int i = 0, len = binary.ReadInt32_Ex(); i < len; i++)
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
+            List<GroupMember> memberInfos = new List<GroupMember> ();
+            for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
             {
-                if (binary.Length() <= 0)
+                if (binary.Length () <= 0)
                 {
                     return null;
                 }
                 #region --其它_转换_ansihex到群成员信息--
-                BinaryReader tempBinary = new BinaryReader(new MemoryStream(binary.ReadToken_Ex())); //解析群成员信息
-                GroupMember member = new GroupMember();
-                member.GroupId = tempBinary.ReadInt64_Ex();
-                member.QQId = tempBinary.ReadInt64_Ex();
-                member.Nick = tempBinary.ReadString_Ex(_defaultEncoding);
-                member.Card = tempBinary.ReadString_Ex(_defaultEncoding);
-                member.Sex = (Sex)tempBinary.ReadInt32_Ex();
-                member.Age = tempBinary.ReadInt32_Ex();
-                member.Area = tempBinary.ReadString_Ex(_defaultEncoding);
-                member.JoiningTime = tempBinary.ReadInt32_Ex().ToDateTime();
-                member.LastDateTime = tempBinary.ReadInt32_Ex().ToDateTime();
-                member.Level = tempBinary.ReadString_Ex(_defaultEncoding);
-                member.PermitType = (PermitType)tempBinary.ReadInt32_Ex();
-                member.BadRecord = tempBinary.ReadInt32_Ex() == 1;
-                member.SpecialTitle = tempBinary.ReadString_Ex(_defaultEncoding);
-                member.SpecialTitleDurationTime = tempBinary.ReadInt32_Ex().ToDateTime();
-                member.CanModifiedCard = tempBinary.ReadInt32_Ex() == 1;
+                BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())); //解析群成员信息
+                GroupMember member = new GroupMember ();
+                member.GroupId = tempBinary.ReadInt64_Ex ();
+                member.QQId = tempBinary.ReadInt64_Ex ();
+                member.Nick = tempBinary.ReadString_Ex (_defaultEncoding);
+                member.Card = tempBinary.ReadString_Ex (_defaultEncoding);
+                member.Sex = (Sex)tempBinary.ReadInt32_Ex ();
+                member.Age = tempBinary.ReadInt32_Ex ();
+                member.Area = tempBinary.ReadString_Ex (_defaultEncoding);
+                member.JoiningTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                member.LastDateTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                member.Level = tempBinary.ReadString_Ex (_defaultEncoding);
+                member.PermitType = (PermitType)tempBinary.ReadInt32_Ex ();
+                member.BadRecord = tempBinary.ReadInt32_Ex () == 1;
+                member.SpecialTitle = tempBinary.ReadString_Ex (_defaultEncoding);
+                member.SpecialTitleDurationTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                member.CanModifiedCard = tempBinary.ReadInt32_Ex () == 1;
                 #endregion
-                memberInfos.Add(member);
+                memberInfos.Add (member);
             }
             #endregion
             return memberInfos;
@@ -478,28 +487,28 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取群列表
         /// </summary>
         /// <returns>获取成功返回 <see cref="List{Group}"/>, 失败返回 null</returns>
-        public List<Group> GetGroupList()
+        public List<Group> GetGroupList ()
         {
-            string result = CQP.CQ_getGroupList(_authCode);
-            if (string.IsNullOrEmpty(result))
+            string result = CQP.CQ_getGroupList (_authCode);
+            if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
-            List<Group> groups = new List<Group>();
+            List<Group> groups = new List<Group> ();
             #region --其他_转换_文本到群列表信息a--
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(result)));
-            for (int i = 0, len = binary.ReadInt32_Ex(); i < len; i++)
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
+            for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
             {
-                if (binary.Length() <= 0)
+                if (binary.Length () <= 0)
                 {
                     return null;
                 }
                 #region --其他_转换_ansihex到群信息--
-                BinaryReader tempBinary = new BinaryReader(new MemoryStream(binary.ReadToken_Ex()));
-                Group group = new Group();
-                group.Id = tempBinary.ReadInt64_Ex();
-                group.Name = tempBinary.ReadString_Ex(_defaultEncoding);
-                groups.Add(group);
+                BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ()));
+                Group group = new Group ();
+                group.Id = tempBinary.ReadInt64_Ex ();
+                group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
+                groups.Add (group);
                 #endregion
             }
             #endregion
@@ -510,18 +519,18 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取发送语音支持
         /// </summary>
         /// <returns></returns>
-        public bool GetSendRecordSupport()
+        public bool GetSendRecordSupport ()
         {
-            return CQP.CQ_canSendRecord(_authCode) > 0;
+            return CQP.CQ_canSendRecord (_authCode) > 0;
         }
 
         /// <summary>
         /// 获取发送图片支持
         /// </summary>
         /// <returns></returns>
-        public bool GetSendImageSupport()
+        public bool GetSendImageSupport ()
         {
-            return CQP.CQ_canSendImage(_authCode) > 0;
+            return CQP.CQ_canSendImage (_authCode) > 0;
         }
         #endregion
 
@@ -533,9 +542,13 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="type">类型</param>
         /// <param name="content">内容</param>
         /// <returns></returns>
-        public int AddLoger(LogerLevel level, string type, string content)
+        public int AddLoger (LogerLevel level, string type, string content)
         {
-            return CQP.CQ_addLog(_authCode, (int)level, type, content.ToIntPtr(_defaultEncoding));
+            GCHandle handle = content.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_addLog (_authCode, (int)level, type, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return result;
+
         }
 
         /// <summary>
@@ -543,9 +556,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="message">错误信息</param>
         /// <returns></returns>
-        public int AddFatalError(string message)
+        public int AddFatalError (string message)
         {
-            return CQP.CQ_setFatal(_authCode, message);
+            return CQP.CQ_setFatal (_authCode, message);
         }
         #endregion
 
@@ -557,13 +570,16 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="response">反馈类型</param>
         /// <param name="notes">备注</param>
         /// <returns></returns>
-        public int SetFriendAddRequest(string tag, ResponseType response, string notes = null)
+        public int SetFriendAddRequest (string tag, ResponseType response, string notes = null)
         {
             if (notes == null)
             {
                 notes = string.Empty;
             }
-            return CQP.CQ_setFriendAddRequest(_authCode, tag, (int)response, notes.ToIntPtr(_defaultEncoding));
+            GCHandle handle = notes.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return result;
         }
 
         /// <summary>
@@ -574,13 +590,16 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="response">反馈类型</param>
         /// <param name="appendMsg">备注</param>
         /// <returns></returns>
-        public int SetGroupAddRequest(string tag, RequestType request, ResponseType response, string appendMsg)
+        public int SetGroupAddRequest (string tag, RequestType request, ResponseType response, string appendMsg)
         {
             if (appendMsg == null)
             {
                 appendMsg = string.Empty;
             }
-            return CQP.CQ_setGroupAddRequestV2(_authCode, tag, (int)request, (int)response, appendMsg.ToIntPtr(_defaultEncoding));
+            GCHandle handle = appendMsg.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return result;
         }
         #endregion
 
@@ -592,14 +611,16 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="anonymous">匿名参数</param>
         /// <param name="time">禁言时间, 单位: 秒, 不支持解禁</param>
         /// <returns></returns>
-        public int SetGroupAnonymousBanSpeak(long groupId, string anonymous, TimeSpan time)
+        public int SetGroupAnonymousBanSpeak (long groupId, string anonymous, TimeSpan time)
         {
             if (time.TotalSeconds <= 0)
             {
                 time = TimeSpan.Zero;
             }
-
-            return CQP.CQ_setGroupAnonymousBan(_authCode, groupId, anonymous.ToIntPtr(_defaultEncoding), (long)time.TotalSeconds);
+            GCHandle handle = anonymous.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_setGroupAnonymousBan (_authCode, groupId, handle.AddrOfPinnedObject (), (long)time.TotalSeconds);
+            handle.Free ();
+            return result;
         }
 
         /// <summary>
@@ -609,13 +630,13 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="time">禁言的时间，单位为秒。如果要解禁，请给TimeSpan.Zero</param>
         /// <returns></returns>
-        public int SetGroupBanSpeak(long groupId, long qqId, TimeSpan time)
+        public int SetGroupBanSpeak (long groupId, long qqId, TimeSpan time)
         {
             if (time.Ticks < 0)
             {
                 time = TimeSpan.Zero;
             }
-            return CQP.CQ_setGroupBan(_authCode, groupId, qqId, (long)time.TotalSeconds);
+            return CQP.CQ_setGroupBan (_authCode, groupId, qqId, (long)time.TotalSeconds);
         }
 
         /// <summary>
@@ -624,9 +645,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="groupId">目标群</param>
         /// <param name="isOpen">是否开启</param>
         /// <returns></returns>
-        public int SetGroupWholeBanSpeak(long groupId, bool isOpen)
+        public int SetGroupWholeBanSpeak (long groupId, bool isOpen)
         {
-            return CQP.CQ_setGroupWholeBan(_authCode, groupId, isOpen);
+            return CQP.CQ_setGroupWholeBan (_authCode, groupId, isOpen);
         }
 
         /// <summary>
@@ -636,9 +657,12 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="newNick">新昵称</param>
         /// <returns></returns>
-        public int SetGroupMemberNewCard(long groupId, long qqId, string newNick)
+        public int SetGroupMemberNewCard (long groupId, long qqId, string newNick)
         {
-            return CQP.CQ_setGroupCard(_authCode, groupId, qqId, newNick.ToIntPtr(_defaultEncoding));
+            GCHandle handle = newNick.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_setGroupCard (_authCode, groupId, qqId, handle.AddrOfPinnedObject ());
+            handle.Free ();
+            return result;
         }
 
         /// <summary>
@@ -649,13 +673,16 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="specialTitle">如果要删除，这里填空</param>
         /// <param name="time">专属头衔有效期，单位为秒。如果永久有效，time填写负数</param>
         /// <returns></returns>
-        public int SetGroupSpecialTitle(long groupId, long qqId, string specialTitle, TimeSpan time)
+        public int SetGroupSpecialTitle (long groupId, long qqId, string specialTitle, TimeSpan time)
         {
             if (time.Ticks < 0)
             {
-                time = new TimeSpan(-10000000);     //-1秒
+                time = new TimeSpan (-10000000);     //-1秒
             }
-            return CQP.CQ_setGroupSpecialTitle(_authCode, groupId, qqId, specialTitle.ToIntPtr(_defaultEncoding), (long)time.TotalSeconds);
+            GCHandle handle = specialTitle.GetStringGCHandle (_defaultEncoding);
+            int result = CQP.CQ_setGroupSpecialTitle (_authCode, groupId, qqId, handle.AddrOfPinnedObject (), (long)time.TotalSeconds);
+            handle.Free ();
+            return result;
         }
 
         /// <summary>
@@ -665,9 +692,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="isCalcel">True: 设置管理员, False: 取消管理员</param>
         /// <returns></returns>
-        public int SetGroupManager(long groupId, long qqId, bool isCalcel)
+        public int SetGroupManager (long groupId, long qqId, bool isCalcel)
         {
-            return CQP.CQ_setGroupAdmin(_authCode, groupId, qqId, isCalcel);
+            return CQP.CQ_setGroupAdmin (_authCode, groupId, qqId, isCalcel);
         }
 
         /// <summary>
@@ -676,9 +703,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="groupId">目标群</param>
         /// <param name="isOpen">是否打开</param>
         /// <returns></returns>
-        public int SetAnonymousStatus(long groupId, bool isOpen)
+        public int SetAnonymousStatus (long groupId, bool isOpen)
         {
-            return CQP.CQ_setGroupAnonymous(_authCode, groupId, isOpen);
+            return CQP.CQ_setGroupAnonymous (_authCode, groupId, isOpen);
         }
 
         /// <summary>
@@ -687,9 +714,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="groupId">目标群</param>
         /// <param name="dissolve">默认为False, True: 解散本群(群主) False: 退出本群(管理、群成员)</param>
         /// <returns></returns>
-        public int SetGroupExit(long groupId, bool dissolve = false)
+        public int SetGroupExit (long groupId, bool dissolve = false)
         {
-            return CQP.CQ_setGroupLeave(_authCode, groupId, dissolve);
+            return CQP.CQ_setGroupLeave (_authCode, groupId, dissolve);
         }
 
         /// <summary>
@@ -699,9 +726,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="qqId">目标QQ</param>
         /// <param name="notAccept">如果为True，则“不再接收此人加群申请”，请慎用。留空为False</param>
         /// <returns></returns>
-        public int SetGroupMemberRemove(long groupId, long qqId, bool notAccept = false)
+        public int SetGroupMemberRemove (long groupId, long qqId, bool notAccept = false)
         {
-            return CQP.CQ_setGroupKick(_authCode, groupId, qqId, notAccept);
+            return CQP.CQ_setGroupKick (_authCode, groupId, qqId, notAccept);
         }
 
         /// <summary>
@@ -709,9 +736,9 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="discussId">目标讨论组</param>
         /// <returns></returns>
-        public int SetDiscussExit(long discussId)
+        public int SetDiscussExit (long discussId)
         {
-            return CQP.CQ_setDiscussLeave(_authCode, discussId);
+            return CQP.CQ_setDiscussLeave (_authCode, discussId);
         }
         #endregion
 
@@ -720,8 +747,8 @@ namespace Native.Csharp.Sdk.Cqp
         /// 设置App验证码
         /// </summary>
         /// <param name="authCode"></param>
-        [Obsolete("更改了该类的构造方式, 此方法不建议再使用")]
-        public void SetAuthCode(int authCode)
+        [Obsolete ("更改了该类的构造方式, 此方法不建议再使用")]
+        public void SetAuthCode (int authCode)
         {
             _authCode = authCode;
         }
@@ -730,8 +757,8 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取App验证码
         /// </summary>
         /// <returns></returns>
-        [Obsolete("更改了该类的构造方式, 此方法不建议再使用")]
-        public int GetAuthCode()
+        [Obsolete ("更改了该类的构造方式, 此方法不建议再使用")]
+        public int GetAuthCode ()
         {
             return _authCode;
         }
@@ -741,13 +768,13 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="source">匿名参数</param>
         /// <returns></returns>
-        public GroupAnonymous GetAnonymous(string source)
+        public GroupAnonymous GetAnonymous (string source)
         {
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(source)));
-            GroupAnonymous anonymous = new GroupAnonymous();
-            anonymous.Id = binary.ReadInt64_Ex();
-            anonymous.CodeName = binary.ReadString_Ex();
-            anonymous.Token = binary.ReadToken_Ex();
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
+            GroupAnonymous anonymous = new GroupAnonymous ();
+            anonymous.Id = binary.ReadInt64_Ex ();
+            anonymous.CodeName = binary.ReadString_Ex ();
+            anonymous.Token = binary.ReadToken_Ex ();
             return anonymous;
         }
 
@@ -756,14 +783,14 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="source">群文件参数</param>
         /// <returns></returns>
-        public GroupFile GetFile(string source)
+        public GroupFile GetFile (string source)
         {
-            BinaryReader binary = new BinaryReader(new MemoryStream(Convert.FromBase64String(source)));
-            GroupFile file = new GroupFile();
-            file.Id = binary.ReadString_Ex();      // 参照官方SDK, 编码为 ASCII
-            file.Name = binary.ReadString_Ex();    // 参照官方SDK, 编码为 ASCII
-            file.Size = binary.ReadInt64_Ex();
-            file.Busid = Convert.ToInt32(binary.ReadInt64_Ex());
+            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
+            GroupFile file = new GroupFile ();
+            file.Id = binary.ReadString_Ex ();      // 参照官方SDK, 编码为 ASCII
+            file.Name = binary.ReadString_Ex ();    // 参照官方SDK, 编码为 ASCII
+            file.Size = binary.ReadInt64_Ex ();
+            file.Busid = Convert.ToInt32 (binary.ReadInt64_Ex ());
             return file;
         }
 
@@ -772,14 +799,14 @@ namespace Native.Csharp.Sdk.Cqp
         /// </summary>
         /// <param name="floatWindow"></param>
         /// <returns></returns>
-        public string FormatStringFloatWindow(FloatWindow floatWindow)
+        public string FormatStringFloatWindow (FloatWindow floatWindow)
         {
-            BinaryWriter binary = new BinaryWriter(new MemoryStream());
-            binary.Write_Ex(floatWindow.Data);
-            binary.Write_Ex(floatWindow.Unit);
-            binary.Write_Ex((int)floatWindow.Color);
+            BinaryWriter binary = new BinaryWriter (new MemoryStream ());
+            binary.Write_Ex (floatWindow.Data);
+            binary.Write_Ex (floatWindow.Unit);
+            binary.Write_Ex ((int)floatWindow.Color);
 
-            return Convert.ToBase64String(binary.ToArray());
+            return Convert.ToBase64String (binary.ToArray ());
         }
         #endregion
     }
