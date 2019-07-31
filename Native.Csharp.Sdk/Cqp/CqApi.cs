@@ -386,7 +386,7 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="QQInfo"/>, 失败返回 null</returns>
         public QQInfo GetQQInfo (long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache);
+            string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
@@ -411,7 +411,7 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="GroupMember"/>, 失败返回 null</returns>
         public GroupMember GetMemberInfo (long groupId, long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getGroupMemberInfoV2 (_authCode, groupId, qqId, notCache);
+            string result = CQP.CQ_getGroupMemberInfoV2 (_authCode, groupId, qqId, notCache).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
@@ -447,7 +447,7 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="List{GroupMember}"/>, 失败返回 null</returns>
         public List<GroupMember> GetMemberList (long groupId)
         {
-            string result = CQP.CQ_getGroupMemberList (_authCode, groupId);
+            string result = CQP.CQ_getGroupMemberList (_authCode, groupId).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
@@ -496,7 +496,7 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="List{Group}"/>, 失败返回 null</returns>
         public List<Group> GetGroupList ()
         {
-            string result = CQP.CQ_getGroupList (_authCode);
+            string result = CQP.CQ_getGroupList (_authCode).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
