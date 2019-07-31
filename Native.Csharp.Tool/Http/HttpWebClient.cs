@@ -75,7 +75,9 @@ namespace Native.Csharp.Tool.Http
         /// 初始化 <see cref="HttpWebClient"/> 类的一个实例对象
         /// </summary>
         public HttpWebClient ()
-        { }
+        {
+            this.ServiceSecurityType = GetSecurityAllValue ();
+        }
         #endregion
 
         #region --公开方法--
@@ -117,7 +119,6 @@ namespace Native.Csharp.Tool.Http
             httpWebClient.Proxy = proxy;
             httpWebClient.AllowAutoRedirect = allowAutoRedirect;
             httpWebClient.AutoCookieMerge = autoCookieMerge;
-            httpWebClient.ServiceSecurityType = GetSecurityAllValue ();
             byte[] result = httpWebClient.DownloadData (new Uri (url));
             headers = httpWebClient.ResponseHeaders;
             cookies = httpWebClient.CookieCollection;
@@ -333,7 +334,6 @@ namespace Native.Csharp.Tool.Http
             httpWebClient.Proxy = proxy;
             httpWebClient.AutoCookieMerge = autoCookieMerge;
             httpWebClient.AllowAutoRedirect = allowAutoRedirect;
-            httpWebClient.ServiceSecurityType = GetSecurityAllValue ();
             byte[] result = httpWebClient.UploadData (new Uri (url), data);
             headers = httpWebClient.ResponseHeaders;
             cookies = httpWebClient.CookieCollection;

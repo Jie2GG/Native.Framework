@@ -386,18 +386,20 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="QQInfo"/>, 失败返回 null</returns>
         public QQInfo GetQQInfo (long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache);
+            string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
-            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
-            QQInfo qqInfo = new QQInfo ();
-            qqInfo.Id = binary.ReadInt64_Ex ();
-            qqInfo.Nick = binary.ReadString_Ex (_defaultEncoding);
-            qqInfo.Sex = (Sex)binary.ReadInt32_Ex ();
-            qqInfo.Age = binary.ReadInt32_Ex ();
-            return qqInfo;
+            using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
+            {
+                QQInfo qqInfo = new QQInfo ();
+                qqInfo.Id = binary.ReadInt64_Ex ();
+                qqInfo.Nick = binary.ReadString_Ex (_defaultEncoding);
+                qqInfo.Sex = (Sex)binary.ReadInt32_Ex ();
+                qqInfo.Age = binary.ReadInt32_Ex ();
+                return qqInfo;
+            }
         }
 
         /// <summary>
@@ -409,32 +411,33 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="GroupMember"/>, 失败返回 null</returns>
         public GroupMember GetMemberInfo (long groupId, long qqId, bool notCache = false)
         {
-            string result = CQP.CQ_getGroupMemberInfoV2 (_authCode, groupId, qqId, notCache);
+            string result = CQP.CQ_getGroupMemberInfoV2 (_authCode, groupId, qqId, notCache).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
             #region --其它_转换_文本到群成员信息--
-            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
-            GroupMember member = new GroupMember ();
-            member.GroupId = binary.ReadInt64_Ex ();
-            member.QQId = binary.ReadInt64_Ex ();
-            member.Nick = binary.ReadString_Ex (_defaultEncoding);
-            member.Card = binary.ReadString_Ex (_defaultEncoding);
-            member.Sex = (Sex)binary.ReadInt32_Ex ();
-            member.Age = binary.ReadInt32_Ex ();
-            member.Area = binary.ReadString_Ex (_defaultEncoding);
-            member.JoiningTime = binary.ReadInt32_Ex ().ToDateTime ();
-            member.LastDateTime = binary.ReadInt32_Ex ().ToDateTime ();
-            member.Level = binary.ReadString_Ex (_defaultEncoding);
-            member.PermitType = (PermitType)binary.ReadInt32_Ex ();
-            member.BadRecord = binary.ReadInt32_Ex () == 1;
-            member.SpecialTitle = binary.ReadString_Ex (_defaultEncoding);
-            member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
-            member.CanModifiedCard = binary.ReadInt32_Ex () == 1;
+            using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
+            {
+                GroupMember member = new GroupMember ();
+                member.GroupId = binary.ReadInt64_Ex ();
+                member.QQId = binary.ReadInt64_Ex ();
+                member.Nick = binary.ReadString_Ex (_defaultEncoding);
+                member.Card = binary.ReadString_Ex (_defaultEncoding);
+                member.Sex = (Sex)binary.ReadInt32_Ex ();
+                member.Age = binary.ReadInt32_Ex ();
+                member.Area = binary.ReadString_Ex (_defaultEncoding);
+                member.JoiningTime = binary.ReadInt32_Ex ().ToDateTime ();
+                member.LastDateTime = binary.ReadInt32_Ex ().ToDateTime ();
+                member.Level = binary.ReadString_Ex (_defaultEncoding);
+                member.PermitType = (PermitType)binary.ReadInt32_Ex ();
+                member.BadRecord = binary.ReadInt32_Ex () == 1;
+                member.SpecialTitle = binary.ReadString_Ex (_defaultEncoding);
+                member.SpecialTitleDurationTime = binary.ReadInt32_Ex ().ToDateTime ();
+                member.CanModifiedCard = binary.ReadInt32_Ex () == 1;
+                return member;
+            }
             #endregion
-            return member;
-
         }
 
         /// <summary>
@@ -444,43 +447,47 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="List{GroupMember}"/>, 失败返回 null</returns>
         public List<GroupMember> GetMemberList (long groupId)
         {
-            string result = CQP.CQ_getGroupMemberList (_authCode, groupId);
+            string result = CQP.CQ_getGroupMemberList (_authCode, groupId).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
             #region --其他_转换_文本到群成员列表信息a--
-            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
-            List<GroupMember> memberInfos = new List<GroupMember> ();
-            for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
+            using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
             {
-                if (binary.Length () <= 0)
+                List<GroupMember> memberInfos = new List<GroupMember> ();
+                for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
                 {
-                    return null;
+                    if (binary.Length () <= 0)
+                    {
+                        return null;
+                    }
+                    #region --其它_转换_ansihex到群成员信息--
+                    using (BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ()))) //解析群成员信息
+                    {
+                        GroupMember member = new GroupMember ();
+                        member.GroupId = tempBinary.ReadInt64_Ex ();
+                        member.QQId = tempBinary.ReadInt64_Ex ();
+                        member.Nick = tempBinary.ReadString_Ex (_defaultEncoding);
+                        member.Card = tempBinary.ReadString_Ex (_defaultEncoding);
+                        member.Sex = (Sex)tempBinary.ReadInt32_Ex ();
+                        member.Age = tempBinary.ReadInt32_Ex ();
+                        member.Area = tempBinary.ReadString_Ex (_defaultEncoding);
+                        member.JoiningTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                        member.LastDateTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                        member.Level = tempBinary.ReadString_Ex (_defaultEncoding);
+                        member.PermitType = (PermitType)tempBinary.ReadInt32_Ex ();
+                        member.BadRecord = tempBinary.ReadInt32_Ex () == 1;
+                        member.SpecialTitle = tempBinary.ReadString_Ex (_defaultEncoding);
+                        member.SpecialTitleDurationTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
+                        member.CanModifiedCard = tempBinary.ReadInt32_Ex () == 1;
+                        memberInfos.Add (member);
+                    }
+                    #endregion
                 }
-                #region --其它_转换_ansihex到群成员信息--
-                BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())); //解析群成员信息
-                GroupMember member = new GroupMember ();
-                member.GroupId = tempBinary.ReadInt64_Ex ();
-                member.QQId = tempBinary.ReadInt64_Ex ();
-                member.Nick = tempBinary.ReadString_Ex (_defaultEncoding);
-                member.Card = tempBinary.ReadString_Ex (_defaultEncoding);
-                member.Sex = (Sex)tempBinary.ReadInt32_Ex ();
-                member.Age = tempBinary.ReadInt32_Ex ();
-                member.Area = tempBinary.ReadString_Ex (_defaultEncoding);
-                member.JoiningTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
-                member.LastDateTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
-                member.Level = tempBinary.ReadString_Ex (_defaultEncoding);
-                member.PermitType = (PermitType)tempBinary.ReadInt32_Ex ();
-                member.BadRecord = tempBinary.ReadInt32_Ex () == 1;
-                member.SpecialTitle = tempBinary.ReadString_Ex (_defaultEncoding);
-                member.SpecialTitleDurationTime = tempBinary.ReadInt32_Ex ().ToDateTime ();
-                member.CanModifiedCard = tempBinary.ReadInt32_Ex () == 1;
-                #endregion
-                memberInfos.Add (member);
+                return memberInfos;
             }
             #endregion
-            return memberInfos;
         }
 
         /// <summary>
@@ -489,30 +496,34 @@ namespace Native.Csharp.Sdk.Cqp
         /// <returns>获取成功返回 <see cref="List{Group}"/>, 失败返回 null</returns>
         public List<Group> GetGroupList ()
         {
-            string result = CQP.CQ_getGroupList (_authCode);
+            string result = CQP.CQ_getGroupList (_authCode).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
             List<Group> groups = new List<Group> ();
             #region --其他_转换_文本到群列表信息a--
-            BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result)));
-            for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
+            using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
             {
-                if (binary.Length () <= 0)
+                for (int i = 0, len = binary.ReadInt32_Ex (); i < len; i++)
                 {
-                    return null;
+                    if (binary.Length () <= 0)
+                    {
+                        return null;
+                    }
+                    #region --其他_转换_ansihex到群信息--
+                    using (BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())))
+                    {
+                        Group group = new Group ();
+                        group.Id = tempBinary.ReadInt64_Ex ();
+                        group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
+                        groups.Add (group);
+                    }
+                    #endregion
                 }
-                #region --其他_转换_ansihex到群信息--
-                BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ()));
-                Group group = new Group ();
-                group.Id = tempBinary.ReadInt64_Ex ();
-                group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
-                groups.Add (group);
-                #endregion
+                return groups;
             }
             #endregion
-            return groups;
         }
 
         /// <summary>
