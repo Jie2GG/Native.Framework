@@ -285,40 +285,36 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
-			if (ReceiveFriendMessage_1 != null)
+			CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, msgId, fromQQ, msg.ToString (_defaultEncoding));
+			if (subType == 11)
 			{
-				CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, msgId, fromQQ, msg.ToString (_defaultEncoding));
-				if (subType == 11)
+				if (ReceiveFriendMessage_1 != null)
 				{
-					if (ReceiveFriendMessage_1 != null)
-					{
-						ReceiveFriendMessage_1 (null, args);
-					}
+					ReceiveFriendMessage_1 (null, args);
 				}
-				else if (subType == 1)
-				{
-					if (ReceiveOnlineStatusMessage_1 != null)
-					{
-						ReceiveOnlineStatusMessage_1 (null, args);
-					}
-				}
-				else if (subType == 2)
-				{
-					if (ReceiveGroupPrivateMessage_1 != null)
-					{
-						ReceiveGroupPrivateMessage_1 (null, args);
-					}
-				}
-				else if (subType == 3)
-				{
-					if (ReceiveDiscussPrivateMessage_1 != null)
-					{
-						ReceiveDiscussPrivateMessage_1 (null, args);
-					}
-				}
-				return Convert.ToInt32 (args.Handler);
 			}
-			return -1;
+			else if (subType == 1)
+			{
+				if (ReceiveOnlineStatusMessage_1 != null)
+				{
+					ReceiveOnlineStatusMessage_1 (null, args);
+				}
+			}
+			else if (subType == 2)
+			{
+				if (ReceiveGroupPrivateMessage_1 != null)
+				{
+					ReceiveGroupPrivateMessage_1 (null, args);
+				}
+			}
+			else if (subType == 3)
+			{
+				if (ReceiveDiscussPrivateMessage_1 != null)
+				{
+					ReceiveDiscussPrivateMessage_1 (null, args);
+				}
+			}
+			return Convert.ToInt32 (args.Handler);
 		}
 
 		/*

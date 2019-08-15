@@ -38,6 +38,10 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年08月15日 版本: V3.1.11.0515
+
+	1. 修复 LibExport.tt 导致的 "群私聊消息事件和好友消息事件" 必须同时注册的 bug
+
 > 2019年08月05日 版本: V3.1.10.0805
 
 	1. 修改 Unity 目标版本为 .Net Framework 4.5 以兼容 Docket
