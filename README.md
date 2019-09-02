@@ -38,6 +38,57 @@
 > 5. ~~对于 Visual Studio 弹出安全警告导致编译不通过的问题~~ <font color=#FF0000>(用 git 克隆到VS即可)</font>
 
 ## Native.SDK 更新日志
+> 2019年08月15日 版本: V3.1.11.0515
+
+	1. 修复 LibExport.tt 导致的 "群私聊消息事件和好友消息事件" 必须同时注册的 bug
+
+> 2019年08月05日 版本: V3.1.10.0805
+
+	1. 修改 Unity 目标版本为 .Net Framework 4.5 以兼容 Docket
+
+> 2019年07月31日 版本: V3.1.9.0731
+
+	1. 修复 一些接口的内存泄漏 (具体表现: 非法内存读取)
+	2. 优化 HttpWebClient 对于 Https 安全验证的初始化方式 (自动获取当前运行版本的验证和)
+
+> 2019年07月30日 版本: V3.1.8.0730
+
+	1. 修复 转换 String(GB18030) -> IntPrt 时内存泄漏的问题 (具体表现: 非法内存读取)
+	2. 优化 HttpWebClient 对于 Https 的安全验证方式, 现在为手动指定. (用 TLS1.3 需要 .Net 4.8 的支持)
+	3. 优化 HttpWebClient 中 Post 和 Get 方法的 Https 安全验证为 .Net 4.5 的所有验证机制
+
+> 2019年07月16日 版本: V3.1.7.0716
+
+	1. 优化 HttpWebClient 对 HTTPS 的验证, 增加了 TLS 1.3
+
+> 2019年07月11日 版本: V3.1.6.0711
+
+	1. 修复 Native.Csharp.Tool 项目在 Release 方式下 SQLite 组件会报大量的错误
+
+> 2019年07月10日 版本: V3.1.5.0710
+
+	1. 修正 CqApi.SetFriendAddRequest 方法第三个参数的定义及注释
+	2. 修正 CqApi.SendPraise 方法的逻辑, 将第二个参数的范围限制在 1-10 之间
+	3. 优化 CqApi.GetQQInfo 方法的调用方式
+	4. 优化 CqApi.GetMemberInfo 方法的调用方式
+	5. 优化 CqApi.GetMemberList 方法的调用方式
+	6. 优化 CqApi.GetGroupList 方法的调用方式
+	7. 优化 Native.Csharp.Sdk 项目的注释内容
+
+> 2019年07月05日 版本: V3.1.4.0705
+
+	1. 修复 HttpWebClient.CookieCollection 为 null 时, 开启自动合并更新会报错
+
+> 2019年06月27日 版本: V3.1.3.0627
+
+	1. 修复 HttpWebClient 重复 POST 请求引发 Headers 设置错误异常
+	2. 修正 Native.Csharp.Tool 项目版本号
+	3. 修正 Native.Csharp.Sdk 项目版本号
+
+> 2019年06月23日 版本: V3.1.2.0623
+
+	1. 修复 CqApi.ReceiveRecord 传递格式不正确的问题
+
 > 2019年06月19日 版本: V3.1.1.0619
 
 	1. 优化 Native.Csharp.Sdk 项目对 酷Q on Docker(Wine) 的兼容性

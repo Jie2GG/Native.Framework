@@ -9,7 +9,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// QQ信息
 	/// </summary>
-	public class QQ
+	public class QQInfo
 	{
 		/// <summary>
 		/// QQ号
