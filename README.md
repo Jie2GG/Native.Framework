@@ -44,4 +44,5 @@ https://github.com/Jie2GG/Native.Csharp.Frame/blob/Final/UPDATE.md
 ## 关于打赏
 
 您的支持就是我更新的动力!
-![微信二维码](https://raw.githubusercontent.com/Jie2GG/Image/master/WeChat.png){:height="300px" width="100px"} ![支付宝二维码](https://raw.githubusercontent.com/Jie2GG/Image/master/AliPlay.png){:height="300px" width="100px"}
+<img src="https://raw.githubusercontent.com/Jie2GG/Image/master/WeChat.png" width="100" height="300" alt="微信二维码"/>
+<img src="https://raw.githubusercontent.com/Jie2GG/Image/master/AliPlay.png" width="100" height="300" alt="支付宝二维码"/>
