@@ -53,6 +53,8 @@
     <Compile Include="Cqp\Enum\FloatWindowColors.cs" />
     <Compile Include="Cqp\Enum\LogerLevel.cs" />
     <Compile Include="Cqp\Enum\MessageHanding.cs" />
+    <Compile Include="Cqp\Enum\MusicStyle.cs" />
+    <Compile Include="Cqp\Enum\MusicType.cs" />
     <Compile Include="Cqp\Enum\PermitType.cs" />
     <Compile Include="Cqp\Enum\RequestType.cs" />
     <Compile Include="Cqp\Enum\ResponseType.cs" />
