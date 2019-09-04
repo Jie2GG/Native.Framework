@@ -3,6 +3,7 @@
 	
 	1. 更新 CqApi.GetCookies 接口, 由专项获取 Cookies
 	2. 更新 CqApi.CqCode_Music 接口, 新增新版分享样式 (Pro)
+	3. 优化 CqApi.GetCookies 接口, 支持直接获取 CookiesCollection 对象 (测试)
 
 > 2019年08月15日 版本: V3.1.11.0815
 
