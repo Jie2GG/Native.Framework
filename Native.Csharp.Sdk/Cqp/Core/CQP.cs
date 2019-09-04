@@ -11,6 +11,14 @@ namespace Native.Csharp.Sdk.Cqp.Core
         /* 
 		 * 官方SDK更新日志:
 		 * 
+         *  V9 应用机制内的变动（即 V9.x 内的变动）通常**不会**影响已发布的应用，但有可能需要开发者在更新旧版本应用时，对代码进行细微调整。
+         *  
+         *  V9.23 (2019-9-3)
+         *  ----------------
+         *  新增 扩展 Cookies 适用范围
+         *   * 获取 Cookies 时，填写 Cookies 将要使用的域名，如 api.example.com，可以获得该域名的强登录态 Cookies。
+         *     强登录态 Cookies 仅支持部分域名，由于协议差异，酷Q Air 及 酷Q Pro 支持的域名不同。
+         *  
 		 *	V9.20 (2019-3-3)
 		 *	----------------
 		 *
@@ -46,8 +54,12 @@ namespace Native.Csharp.Sdk.Cqp.Core
         [DllImport (DllName, EntryPoint = "CQ_sendLikeV2")]
         public static extern int CQ_sendLikeV2 (int authCode, long qqId, int times);
 
+        [Obsolete ("请使用 CQ_getCookiesV2 版本 API")]
         [DllImport (DllName, EntryPoint = "CQ_getCookies")]
         public static extern string CQ_getCookies (int authCode);
+
+        [DllImport (DllName, EntryPoint = "CQ_getCookiesV2")]
+        public static extern string CQ_getCookiesV2 (int authCode, string domain);
 
         [Obsolete ("请使用 CQ_getRecordV2 版本 API")]
         [DllImport (DllName, EntryPoint = "CQ_getRecord")]
