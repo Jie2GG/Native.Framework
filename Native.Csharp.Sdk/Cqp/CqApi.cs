@@ -864,8 +864,8 @@ namespace Native.Csharp.Sdk.Cqp
         {
             BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
             GroupFile file = new GroupFile ();
-            file.Id = binary.ReadString_Ex ();      // 参照官方SDK, 编码为 ASCII
-            file.Name = binary.ReadString_Ex ();    // 参照官方SDK, 编码为 ASCII
+            file.Id = binary.ReadString_Ex (_defaultEncoding);      // 参照官方SDK, 编码为 ASCII
+            file.Name = binary.ReadString_Ex (_defaultEncoding);    // 参照官方SDK, 编码为 ASCII
             file.Size = binary.ReadInt64_Ex ();
             file.Busid = Convert.ToInt32 (binary.ReadInt64_Ex ());
             return file;
