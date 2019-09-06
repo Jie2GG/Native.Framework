@@ -580,7 +580,7 @@ namespace Native.Csharp.Sdk.Cqp
                     #region --其他_转换_ansihex到群信息--
                     using (BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())))
                     {
-                        Group group = new Group ();
+                        Model.Group group = new Model.Group ();
                         group.Id = tempBinary.ReadInt64_Ex ();
                         group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
                         groups.Add (group);
