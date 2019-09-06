@@ -482,8 +482,6 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventFriend_Add (int subType, int sendTime, long fromQQ)
 		{
-            // 在这里加一下日志输出看看 subType, sendTime, fromQQ 的值有没有
-
 			CqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs (10, sendTime.ToDateTime (), fromQQ);
 			if (subType == 1)
 			{
