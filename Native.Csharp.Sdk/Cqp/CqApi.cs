@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using Native.Csharp.Sdk.Cqp.Core;
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Model;
@@ -20,6 +22,7 @@ namespace Native.Csharp.Sdk.Cqp
         private int _authCode = 0;
         private string _appDirCache = null;
         private Encoding _defaultEncoding = null;
+        private Regex _cookieRegex = null;
         #endregion
 
         #region --属性--
@@ -38,6 +41,7 @@ namespace Native.Csharp.Sdk.Cqp
         {
             this._authCode = authCode;
             this._defaultEncoding = Encoding.GetEncoding ("GB18030");
+            this._cookieRegex = new Regex ("(.*?)=(.*?)(?:;|$)", RegexOptions.Compiled);
         }
         #endregion
 
@@ -189,10 +193,40 @@ namespace Native.Csharp.Sdk.Cqp
         /// <param name="id">歌曲ID</param>
         /// <param name="type">歌曲来源, 目前支持 qq/QQ音乐 163/网易云音乐 xiami/虾米音乐，默认为qq</param>
         /// <param name="newStyle">启用新样式, 目前仅支持 QQ音乐 </param>
+        /// <exception cref="ArgumentException">当参数无效时引发异常</exception>
         /// <returns></returns>
+        [Obsolete ("本方法已经过时, 且不再使用. 请使用 CqCode_Music 的第二个重载方法")]
         public string CqCode_Music (long id, string type = "qq", bool newStyle = false)
         {
-            return string.Format ("[CQ:music,id={0},type={1}{2}]", id, CqCode_Trope (type, true), newStyle ? "style=1" : string.Empty);
+            MusicType musicType;
+            if (type.CompareTo (MusicType.Tencent.GetDescription ()) == 0)
+            {
+                musicType = MusicType.Tencent;
+            }
+            else if (type.CompareTo (MusicType.Netease.GetDescription ()) == 0)
+            {
+                musicType = MusicType.Netease;
+            }
+            else if (type.CompareTo (MusicType.XiaMi.GetDescription ()) == 0)
+            {
+                musicType = MusicType.XiaMi;
+            }
+            else
+            {
+                throw new ArgumentException ("参数: type 无效");
+            }
+            return CqCode_Music (id, musicType, newStyle ? MusicStyle.BigCard : MusicStyle.Old);
+        }
+        /// <summary>
+        /// 获取酷Q "音乐" 代码
+        /// </summary>
+        /// <param name="id">歌曲ID</param>
+        /// <param name="type">歌曲来源</param>
+        /// <param name="style">分享样式</param>
+        /// <returns>返回可发送的 CQ码</returns>
+        public string CqCode_Music (long id, MusicType type = MusicType.Tencent, MusicStyle style = MusicStyle.Old)
+        {
+            return string.Format ("[CQ:music,id={0},type=]", id, type.GetDescription (), (int)style);
         }
         /// <summary>
         /// 获取酷Q "音乐自定义" 代码
@@ -364,9 +398,41 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取 Cookies 慎用,此接口需要严格授权
         /// </summary>
         /// <returns>返回 Cookies 字符串</returns>
+        [Obsolete ("此方法已失效, 请使用 GetCookies 的第二个重载. 此方法将永远抛出异常")]
         public string GetCookies ()
         {
             return CQP.CQ_getCookies (_authCode);
+        }
+
+        /// <summary>
+        /// 获取 Cookies 慎用,此接口需要严格授权
+        /// </summary>
+        /// <param name="domain">目标域名, 如 api.example.com</param>
+        /// <returns>返回 Cookies 字符串</returns>
+        public string GetCookies (string domain)
+        {
+            return CQP.CQ_getCookiesV2 (_authCode, domain);
+        }
+
+        /// <summary>
+        /// 获取 Cookies 慎用, 此接口需要严格授权
+        /// </summary>
+        /// <param name="domain">目标域名, 如 api.example.com</param>
+        /// <returns>返回 <see cref="CookieCollection"/> 对象</returns>
+        public CookieCollection GetCookieCollection (string domain)
+        {
+            /*
+             * uin=o2184656498;
+               skey= MVPSrhTvmh;
+               vkey=GC%2FgRGC875U%2Boa09uLp6xdkLMlH0wfbz82373.6720201%3D%3D
+             */
+            CookieCollection collection = new CookieCollection ();
+            MatchCollection matchCollection = _cookieRegex.Matches (GetCookies (domain));    // 根据 Cookies 规则匹配键值
+            foreach (Match item in matchCollection)
+            {
+                collection.Add (new Cookie (item.Groups[1].Value, item.Groups[2].Value));   // 转换为 Cookie 对象
+            }
+            return collection;
         }
 
         /// <summary>
@@ -494,14 +560,14 @@ namespace Native.Csharp.Sdk.Cqp
         /// 获取群列表
         /// </summary>
         /// <returns>获取成功返回 <see cref="List{Group}"/>, 失败返回 null</returns>
-        public List<Group> GetGroupList ()
+        public List<Model.Group> GetGroupList ()
         {
             string result = CQP.CQ_getGroupList (_authCode).ToString (Encoding.ASCII);
             if (string.IsNullOrEmpty (result))
             {
                 return null;
             }
-            List<Group> groups = new List<Group> ();
+            List<Model.Group> groups = new List<Model.Group> ();
             #region --其他_转换_文本到群列表信息a--
             using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
             {
@@ -514,7 +580,7 @@ namespace Native.Csharp.Sdk.Cqp
                     #region --其他_转换_ansihex到群信息--
                     using (BinaryReader tempBinary = new BinaryReader (new MemoryStream (binary.ReadToken_Ex ())))
                     {
-                        Group group = new Group ();
+                        Model.Group group = new Model.Group ();
                         group.Id = tempBinary.ReadInt64_Ex ();
                         group.Name = tempBinary.ReadString_Ex (_defaultEncoding);
                         groups.Add (group);
@@ -798,8 +864,8 @@ namespace Native.Csharp.Sdk.Cqp
         {
             BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (source)));
             GroupFile file = new GroupFile ();
-            file.Id = binary.ReadString_Ex ();      // 参照官方SDK, 编码为 ASCII
-            file.Name = binary.ReadString_Ex ();    // 参照官方SDK, 编码为 ASCII
+            file.Id = binary.ReadString_Ex (_defaultEncoding);      // 参照官方SDK, 编码为 ASCII
+            file.Name = binary.ReadString_Ex (_defaultEncoding);    // 参照官方SDK, 编码为 ASCII
             file.Size = binary.ReadInt64_Ex ();
             file.Busid = Convert.ToInt32 (binary.ReadInt64_Ex ());
             return file;
