@@ -28,11 +28,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Native.Csharp.App.Event;
-using Native.Csharp.App.EventArgs;
-using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Native.Csharp.Sdk.Cqp.Model;
-using Native.Csharp.Sdk.Cqp.Other;
+using Native.Csharp.Sdk.Cqp.Expand;
 using Unity;
 
 namespace Native.Csharp.App.Core
@@ -100,7 +100,7 @@ namespace Native.Csharp.App.Core
 			Common.CqApi = new CqApi (authCode);
 
 			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
-			Common.UnityContainer.RegisterInstance<CqApi> (Common.CqApi);
+			Common.UnityContainer.RegisterInstance<CqApi> ("<#=		Host.ResolveAssemblyReference ("$(TargetName)") #>", Common.CqApi);
 
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -169,7 +169,10 @@ namespace Native.Csharp.App.Core
 			{
 				return root["name"].Value<string> ();
 			}
-			catch {	}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
+			}
 		}
 		return "解析失败";
 	}
@@ -183,7 +186,10 @@ namespace Native.Csharp.App.Core
 			{
 				return root["version"].Value<string> ();
 			}
-			catch { }
+			catch (Exception e) 
+			{
+				this.Error (e.Message);
+			}
 		}
 		return "0.0.0";
 	}
@@ -194,301 +200,309 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (events != null)
 		{
-			foreach (JToken token in events)
+			try
 			{
-				temp.AppendLine ("\t\t/*");
-				temp.AppendLine (string.Format ("\t\t * Id: {0}", token["id"].Value<int> ()));
-				temp.AppendLine (string.Format ("\t\t * Type: {0}", token["type"].Value<int> ()));
-				temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t */");
-				switch (token["type"].Value<int> ())
+				foreach (JToken token in events)
 				{
-					case 1001:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqStartupEventArgs> CqStartup_{0};", token["id"].Value<int> ()));
+					temp.AppendLine ("\t\t/*");
+					temp.AppendLine (string.Format ("\t\t * Id: {0}", token["id"].Value<int> ()));
+					temp.AppendLine (string.Format ("\t\t * Type: {0}", token["type"].Value<int> ()));
+					temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t */");
+					switch (token["type"].Value<int> ())
+					{
+						case 1001:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqStartupEventArgs> CqStartup_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tif (CqStartup_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tCqStartup_{0} (null, new CqStartupEventArgs ({0}));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn 0;");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 1002:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqExitEventArgs> CqExit_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tif (CqStartup_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tCqStartup_{0} (null, new CqStartupEventArgs ({0}, \"{1}\"));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn 0;");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 1002:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqExitEventArgs> CqExit_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tif (CqExit_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tCqExit_{0} (null, new CqExitEventArgs ({0}));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn 0;");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 1003:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAppEnableEventArgs> AppEnable_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tif (CqExit_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tCqExit_{0} (null, new CqExitEventArgs ({0}, \"{1}\"));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn 0;");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 1003:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAppEnableEventArgs> AppEnable_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tif (AppEnable_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} (null, new CqAppEnableEventArgs ({0}));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn 0;");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 1004:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAppDisableEventArgs> AppDisable_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tif (AppEnable_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} (null, new CqAppEnableEventArgs ({0}, \"{1}\"));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn 0;");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 1004:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAppDisableEventArgs> AppDisable_{0};", token["id"].Value<int> ()));
 		
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tif (AppDisable_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} (null, new CqAppDisableEventArgs ({0}));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn 0;");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 21:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveFriendMessage_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveOnlineStatusMessage_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveGroupPrivateMessage_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveDiscussPrivateMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tif (AppDisable_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} (null, new CqAppDisableEventArgs ({0}, \"{1}\"));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn 0;");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 21:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveFriendMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveOnlineStatusMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveGroupPrivateMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqPrivateMessageEventArgs> ReceiveDiscussPrivateMessage_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromQQ, IntPtr msg, int font)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, msgId, fromQQ, msg.ToString (_defaultEncoding));"));
-						temp.AppendLine ("\t\t\tif (subType == 11)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveOnlineStatusMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveOnlineStatusMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 2)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupPrivateMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupPrivateMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 3)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveDiscussPrivateMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveDiscussPrivateMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 2:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMessageEventArgs> ReceiveGroupMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromQQ, IntPtr msg, int font)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs ({0}, \"{1}\", msgId, fromQQ, msg.ToString (_defaultEncoding));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 11)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveOnlineStatusMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveOnlineStatusMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupPrivateMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupPrivateMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 3)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveDiscussPrivateMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveDiscussPrivateMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 2:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMessageEventArgs> ReceiveGroupMessage_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine ("\t\t\tGroupAnonymous anonymous = null;");
-						temp.AppendLine ("\t\t\tif (fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous))");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine ("\t\t\t\tanonymous = Common.CqApi.GetAnonymous (fromAnonymous);");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tCqGroupMessageEventArgs args = new CqGroupMessageEventArgs ({0}, msgId, fromGroup, fromQQ, anonymous, msg.ToString (_defaultEncoding));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 4:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqDiscussMessageEventArgs> ReceiveDiscussMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine ("\t\t\tGroupAnonymous anonymous = null;");
+							temp.AppendLine ("\t\t\tif (fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous))");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine ("\t\t\t\tanonymous = Common.CqApi.GetAnonymous (fromAnonymous);");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupMessageEventArgs args = new CqGroupMessageEventArgs ({0}, \"{1}\", msgId, fromGroup, fromQQ, anonymous, msg.ToString (_defaultEncoding));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveGroupMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveGroupMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 4:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqDiscussMessageEventArgs> ReceiveDiscussMessage_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqDiscussMessageEventArgs args = new CqDiscussMessageEventArgs ({0}, msgId, fromDiscuss, fromQQ, msg.ToString (_defaultEncoding));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveDiscussMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveDiscussMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 11:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupFileUploadEventArgs> ReceiveFileUploadMessage_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqDiscussMessageEventArgs args = new CqDiscussMessageEventArgs ({0}, \"{1}\", msgId, fromDiscuss, fromQQ, msg.ToString (_defaultEncoding));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveDiscussMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveDiscussMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 11:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupFileUploadEventArgs> ReceiveFileUploadMessage_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, string file)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqGroupFileUploadEventArgs args = new CqGroupFileUploadEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, Common.CqApi.GetFile (file));", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFileUploadMessage_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFileUploadMessage_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 101:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageIncrease_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageDecrease_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, string file)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupFileUploadEventArgs args = new CqGroupFileUploadEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, fromQQ, Common.CqApi.GetFile (file));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFileUploadMessage_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFileUploadMessage_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 101:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageIncrease_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupManageChangeEventArgs> ReceiveManageDecrease_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long beingOperateQQ)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqGroupManageChangeEventArgs args = new CqGroupManageChangeEventArgs ({0}, sendTime.ToDateTime (), fromGroup, beingOperateQQ);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveManageDecrease_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveManageDecrease_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 2)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveManageIncrease_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveManageIncrease_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 102:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberLeave_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberRemove_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long beingOperateQQ)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupManageChangeEventArgs args = new CqGroupManageChangeEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, beingOperateQQ);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveManageDecrease_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveManageDecrease_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveManageIncrease_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveManageIncrease_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 102:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberLeave_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberDecreaseEventArgs> ReceiveMemberRemove_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqGroupMemberDecreaseEventArgs args = new CqGroupMemberDecreaseEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberLeave_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberLeave_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 2)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberRemove_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberRemove_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 103:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberPass_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberBeInvitee_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupMemberDecreaseEventArgs args = new CqGroupMemberDecreaseEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberLeave_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberLeave_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberRemove_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberRemove_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 103:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberPass_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupMemberIncreaseEventArgs> ReceiveMemberBeInvitee_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberPass_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberPass_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 2)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberBeInvitee_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 201:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqFriendIncreaseEventArgs> ReceiveFriendIncrease_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberPass_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberPass_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveMemberBeInvitee_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveMemberBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 201:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqFriendIncreaseEventArgs> ReceiveFriendIncrease_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromQQ)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs ({0}, sendTime.ToDateTime (), fromQQ);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendIncrease_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendIncrease_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 301:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromQQ)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromQQ);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendIncrease_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendIncrease_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 301:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs ({0}, sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendAdd_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendAdd_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
-					case 302:
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_{0};", token["id"].Value<int> ()));
-						temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveFriendAdd_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveFriendAdd_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+						case 302:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_{0};", token["id"].Value<int> ()));
 
-						temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-						temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)", token["function"].Value<string> ()));
-						temp.AppendLine ("\t\t{");
-						temp.AppendLine (string.Format ("\t\t\tCqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs ({0}, sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\tif (subType == 1)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupRequest_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupRequest_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\telse if (subType == 2)");
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupBeInvitee_{0} != null)", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
-						temp.AppendLine ("\t\t\t\t}");
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
-						temp.AppendLine ("\t\t}");
-						break;
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupRequest_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupRequest_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveAddGroupBeInvitee_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveAddGroupBeInvitee_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
+					}
+					temp.AppendLine ();
 				}
-				temp.AppendLine ();
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
+				temp.Append ("\t\t// 项目文件解析失败");
 			}
 		}
 		else 
@@ -504,128 +518,135 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (events != null)
 		{
-			foreach (JToken token in events)
+			try
 			{
-				temp.AppendLine ("\t\t\t/*");
-				temp.AppendLine (string.Format ("\t\t\t * Id: {0}", token["id"].Value<int> ()));
-				temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t */");
-				switch (token["type"].Value<int> ())
+				foreach (JToken token in events)
 				{
-					case 1001:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqStartup> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tCqStartup_{0} = Common.UnityContainer.Resolve<ICqStartup> (\"{1}\").CqStartup;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 1002:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqExit> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tCqExit_{0} = Common.UnityContainer.Resolve<ICqExit> (\"{1}\").CqExit;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 1003:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppEnable> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} = Common.UnityContainer.Resolve<ICqAppEnable> (\"{1}\").CqAppEnable;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 1004:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppDisable> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} = Common.UnityContainer.Resolve<ICqAppDisable> (\"{1}\").CqAppDisable;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 21:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendMessage_{0} = Common.UnityContainer.Resolve<IReceiveFriendMessage> (\"{1}\").ReceiveFriendMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveOnlineStatusMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveOnlineStatusMessage_{0} = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> (\"{1}\").ReceiveOnlineStatusMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupPrivateMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveGroupPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> (\"{1}\").ReceiveGroupPrivateMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveDiscussPrivateMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveDiscussPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> (\"{1}\").ReceiveDiscussPrivateMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 2:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveGroupMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupMessage> (\"{1}\").ReceiveGroupMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 4:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveDiscussMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveDiscussMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussMessage> (\"{1}\").ReceiveDiscussMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 11:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupFileUpload> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveFileUploadMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> (\"{1}\").ReceiveGroupFileUpload;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 101:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupManageIncrease> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveManageIncrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> (\"{1}\").ReceiveGroupManageIncrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupManageDecrease> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveManageDecrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> (\"{1}\").ReceiveGroupManageDecrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 102:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberLeave> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberLeave_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> (\"{1}\").ReceiveGroupMemberLeave;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberRemove> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberRemove_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> (\"{1}\").ReceiveGroupMemberRemove;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 103:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberPass> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberPass_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> (\"{1}\").ReceiveGroupMemberPass;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberBeInvitee> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> (\"{1}\").ReceiveGroupMemberBeInvitee;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 201:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendIncrease> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendIncrease_{0} = Common.UnityContainer.Resolve<IReceiveFriendIncrease> (\"{1}\").ReceiveFriendIncrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 301:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendAddRequest> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendAdd_{0} = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> (\"{1}\").ReceiveFriendAddRequest;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
-					case 302:
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveAddGroupRequest> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveAddGroupRequest_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> (\"{1}\").ReceiveAddGroupRequest;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveAddGroupBeInvitee> (\"{0}\") == true)", token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t{");				
-						temp.AppendLine (string.Format ("\t\t\t\tReceiveAddGroupBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> (\"{1}\").ReceiveAddGroupBeInvitee;", token["id"].Value<int> (), token["name"].Value<string> ()));
-						temp.AppendLine ("\t\t\t}");
-						break;
+					temp.AppendLine ("\t\t\t/*");
+					temp.AppendLine (string.Format ("\t\t\t * Id: {0}", token["id"].Value<int> ()));
+					temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t */");
+					switch (token["type"].Value<int> ())
+					{
+						case 1001:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqStartup> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tCqStartup_{0} = Common.UnityContainer.Resolve<ICqStartup> (\"{1}\").CqStartup;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 1002:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqExit> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tCqExit_{0} = Common.UnityContainer.Resolve<ICqExit> (\"{1}\").CqExit;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 1003:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppEnable> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tAppEnable_{0} = Common.UnityContainer.Resolve<ICqAppEnable> (\"{1}\").CqAppEnable;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 1004:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqAppDisable> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tAppDisable_{0} = Common.UnityContainer.Resolve<ICqAppDisable> (\"{1}\").CqAppDisable;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 21:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendMessage_{0} = Common.UnityContainer.Resolve<IReceiveFriendMessage> (\"{1}\").ReceiveFriendMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveOnlineStatusMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveOnlineStatusMessage_{0} = Common.UnityContainer.Resolve<IReceiveOnlineStatusMessage> (\"{1}\").ReceiveOnlineStatusMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupPrivateMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveGroupPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupPrivateMessage> (\"{1}\").ReceiveGroupPrivateMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveDiscussPrivateMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveDiscussPrivateMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussPrivateMessage> (\"{1}\").ReceiveDiscussPrivateMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 2:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveGroupMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupMessage> (\"{1}\").ReceiveGroupMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 4:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveDiscussMessage> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveDiscussMessage_{0} = Common.UnityContainer.Resolve<IReceiveDiscussMessage> (\"{1}\").ReceiveDiscussMessage;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 11:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupFileUpload> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveFileUploadMessage_{0} = Common.UnityContainer.Resolve<IReceiveGroupFileUpload> (\"{1}\").ReceiveGroupFileUpload;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 101:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupManageIncrease> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveManageIncrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageIncrease> (\"{1}\").ReceiveGroupManageIncrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupManageDecrease> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveManageDecrease_{0} = Common.UnityContainer.Resolve<IReceiveGroupManageDecrease> (\"{1}\").ReceiveGroupManageDecrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 102:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberLeave> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberLeave_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberLeave> (\"{1}\").ReceiveGroupMemberLeave;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberRemove> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberRemove_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberRemove> (\"{1}\").ReceiveGroupMemberRemove;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 103:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberPass> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberPass_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberPass> (\"{1}\").ReceiveGroupMemberPass;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberBeInvitee> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> (\"{1}\").ReceiveGroupMemberBeInvitee;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 201:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendIncrease> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendIncrease_{0} = Common.UnityContainer.Resolve<IReceiveFriendIncrease> (\"{1}\").ReceiveFriendIncrease;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 301:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveFriendAddRequest> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveFriendAdd_{0} = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> (\"{1}\").ReceiveFriendAddRequest;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 302:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveAddGroupRequest> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveAddGroupRequest_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> (\"{1}\").ReceiveAddGroupRequest;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveAddGroupBeInvitee> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");				
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveAddGroupBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> (\"{1}\").ReceiveAddGroupBeInvitee;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+					}
+					temp.AppendLine ("\t\t\t");
 				}
-				temp.AppendLine ("\t\t\t");
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
 			}
 		}
 		else 
