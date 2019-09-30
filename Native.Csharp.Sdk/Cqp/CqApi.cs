@@ -449,8 +449,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="notCache">不使用缓存, 默认为"False"，通常忽略本参数，仅在必要时使用</param>
-		/// <returns>获取成功返回 <see cref="QQ"/>, 失败返回 null</returns>
-		public QQ GetQQInfo (long qqId, bool notCache = false)
+		/// <returns>获取成功返回 <see cref="QQInfo"/>, 失败返回 null</returns>
+		public QQInfo GetQQInfo (long qqId, bool notCache = false)
 		{
 			string result = CQP.CQ_getStrangerInfo (_authCode, qqId, notCache).ToString (Encoding.ASCII);
 			if (string.IsNullOrEmpty (result))
@@ -459,7 +459,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			using (BinaryReader binary = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
 			{
-				QQ qqInfo = new QQ ();
+				QQInfo qqInfo = new QQInfo ();
 				qqInfo.Id = binary.ReadInt64_Ex ();
 				qqInfo.Nick = binary.ReadString_Ex (_defaultEncoding);
 				qqInfo.Sex = (Sex)binary.ReadInt32_Ex ();
