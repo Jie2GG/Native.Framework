@@ -106,7 +106,7 @@
     <Compile Include="Cqp\Model\GroupFile.cs" />
     <Compile Include="Cqp\Model\GroupInfo.cs" />
     <Compile Include="Cqp\Model\GroupMemberInfo.cs" />
-    <Compile Include="Cqp\Model\QQ.cs" />
+    <Compile Include="Cqp\Model\QQInfo.cs" />
     <Compile Include="Cqp\Expand\BinaryReaderExpand.cs" />
     <Compile Include="Cqp\Expand\BinaryWriterExpand.cs" />
     <Compile Include="Cqp\Expand\SystemExpand.cs" />

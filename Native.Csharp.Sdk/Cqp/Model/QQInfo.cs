@@ -9,7 +9,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ 的类
 	/// </summary>
-	public class QQ
+	public class QQInfo
 	{
 		/// <summary>
 		/// 获取唯一标识符, 即QQ号码
