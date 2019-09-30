@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
-    /// <summary>
-    /// 描述 酷Q 消息中一串 [CQ:...] 的对象
-    /// </summary>
+	/// <summary>
+	/// 描述 酷Q 消息中一串 [CQ:...] 的对象
+	/// </summary>
 	public class CqCode
 	{
 		#region --属性--
@@ -32,5 +32,16 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		public Dictionary<string, string> Dictionary { get; set; }
 		#endregion
+
+		/// <summary>
+		/// 初始化 <see cref="CqCode"/> 类的新实例
+		/// </summary>
+		public CqCode ()
+		{
+			this.OriginalString = string.Empty;
+			this.Index = 0;
+			this.Type = CqCodeType.Unknown;
+			this.Dictionary = new Dictionary<string, string> ();
+		}
 	}
 }

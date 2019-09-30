@@ -7,11 +7,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Native.Csharp.App.Event;
-using Native.Csharp.App.EventArgs;
-using Native.Csharp.App.Interface;
 using Native.Csharp.Sdk.Cqp;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Native.Csharp.Sdk.Cqp.Model;
-using Native.Csharp.Sdk.Cqp.Other;
+using Native.Csharp.Sdk.Cqp.Expand;
 using Unity;
 
 namespace Native.Csharp.App.Core
@@ -79,7 +79,7 @@ namespace Native.Csharp.App.Core
 			Common.CqApi = new CqApi (authCode);
 
 			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
-			Common.UnityContainer.RegisterInstance<CqApi> (Common.CqApi);
+			Common.UnityContainer.RegisterInstance<CqApi> ("Native.Csharp", Common.CqApi);
 
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -285,7 +285,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
-			CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, msgId, fromQQ, msg.ToString (_defaultEncoding));
+			CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, "私聊消息处理", msgId, fromQQ, msg.ToString (_defaultEncoding));
 			if (subType == 11)
 			{
 				if (ReceiveFriendMessage_1 != null)
@@ -332,7 +332,7 @@ namespace Native.Csharp.App.Core
 			{
 				anonymous = Common.CqApi.GetAnonymous (fromAnonymous);
 			}
-			CqGroupMessageEventArgs args = new CqGroupMessageEventArgs (2, msgId, fromGroup, fromQQ, anonymous, msg.ToString (_defaultEncoding));
+			CqGroupMessageEventArgs args = new CqGroupMessageEventArgs (2, "群消息处理", msgId, fromGroup, fromQQ, anonymous, msg.ToString (_defaultEncoding));
 			if (subType == 1)
 			{
 				if (ReceiveGroupMessage_2 != null)
@@ -353,7 +353,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)
 		{
-			CqDiscussMessageEventArgs args = new CqDiscussMessageEventArgs (3, msgId, fromDiscuss, fromQQ, msg.ToString (_defaultEncoding));
+			CqDiscussMessageEventArgs args = new CqDiscussMessageEventArgs (3, "讨论组消息处理", msgId, fromDiscuss, fromQQ, msg.ToString (_defaultEncoding));
 			if (subType == 1)
 			{
 				if (ReceiveDiscussMessage_3 != null)
@@ -374,7 +374,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventGroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
-			CqGroupFileUploadEventArgs args = new CqGroupFileUploadEventArgs (4, sendTime.ToDateTime (), fromGroup, fromQQ, Common.CqApi.GetFile (file));
+			CqGroupFileUploadEventArgs args = new CqGroupFileUploadEventArgs (4, "群文件上传事件处理", sendTime.ToDateTime (), fromGroup, fromQQ, Common.CqApi.GetFile (file));
 			if (subType == 1)
 			{
 				if (ReceiveFileUploadMessage_4 != null)
@@ -396,7 +396,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventSystem_GroupAdmin (int subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
-			CqGroupManageChangeEventArgs args = new CqGroupManageChangeEventArgs (5, sendTime.ToDateTime (), fromGroup, beingOperateQQ);
+			CqGroupManageChangeEventArgs args = new CqGroupManageChangeEventArgs (5, "群管理变动事件处理", sendTime.ToDateTime (), fromGroup, beingOperateQQ);
 			if (subType == 1)
 			{
 				if (ReceiveManageDecrease_5 != null)
@@ -425,7 +425,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventSystem_GroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			CqGroupMemberDecreaseEventArgs args = new CqGroupMemberDecreaseEventArgs (6, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);
+			CqGroupMemberDecreaseEventArgs args = new CqGroupMemberDecreaseEventArgs (6, "群成员减少事件处理", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);
 			if (subType == 1)
 			{
 				if (ReceiveMemberLeave_6 != null)
@@ -454,7 +454,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventSystem_GroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
-			CqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs (7, sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);
+			CqGroupMemberIncreaseEventArgs args = new CqGroupMemberIncreaseEventArgs (7, "群成员增加事件处理", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ);
 			if (subType == 1)
 			{
 				if (ReceiveMemberPass_7 != null)
@@ -482,7 +482,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventFriend_Add (int subType, int sendTime, long fromQQ)
 		{
-			CqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs (10, sendTime.ToDateTime (), fromQQ);
+			CqFriendIncreaseEventArgs args = new CqFriendIncreaseEventArgs (10, "好友已添加事件处理", sendTime.ToDateTime (), fromQQ);
 			if (subType == 1)
 			{
 				if (ReceiveFriendIncrease_10 != null)
@@ -503,7 +503,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (8, sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (8, "好友添加请求处理", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
 				if (ReceiveFriendAdd_8 != null)
@@ -525,7 +525,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (9, sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (9, "群添加请求处理", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
 				if (ReceiveAddGroupRequest_9 != null)
@@ -555,7 +555,7 @@ namespace Native.Csharp.App.Core
 		{
 			if (CqStartup_1001 != null)
 			{
-				CqStartup_1001 (null, new CqStartupEventArgs (1001));
+				CqStartup_1001 (null, new CqStartupEventArgs (1001, "酷Q启动事件"));
 			}
 			return 0;
 		}
@@ -572,7 +572,7 @@ namespace Native.Csharp.App.Core
 		{
 			if (CqExit_1002 != null)
 			{
-				CqExit_1002 (null, new CqExitEventArgs (1002));
+				CqExit_1002 (null, new CqExitEventArgs (1002, "酷Q关闭事件"));
 			}
 			return 0;
 		}
@@ -589,7 +589,7 @@ namespace Native.Csharp.App.Core
 		{
 			if (AppEnable_1003 != null)
 			{
-				AppEnable_1003 (null, new CqAppEnableEventArgs (1003));
+				AppEnable_1003 (null, new CqAppEnableEventArgs (1003, "应用已被启用"));
 			}
 			return 0;
 		}
@@ -606,7 +606,7 @@ namespace Native.Csharp.App.Core
 		{
 			if (AppDisable_1004 != null)
 			{
-				AppDisable_1004 (null, new CqAppDisableEventArgs (1004));
+				AppDisable_1004 (null, new CqAppDisableEventArgs (1004, "应用将被停用"));
 			}
 			return 0;
 		}

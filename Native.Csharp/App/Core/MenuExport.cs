@@ -1,52 +1,52 @@
-ï»¿/*
- *	æ­¤ä»£ç ç”± T4 å¼•æ“æ ¹æ® MenuExport.tt æ¨¡æ¿ç”Ÿæˆ, è‹¥æ‚¨ä¸äº†è§£ä»¥ä¸‹ä»£ç çš„ç”¨å¤„, è¯·å‹¿ä¿®æ”¹!
+/*
+ *	´Ë´úÂëÓÉ T4 ÒıÇæ¸ù¾İ MenuExport.tt Ä£°åÉú³É, ÈôÄú²»ÁË½âÒÔÏÂ´úÂëµÄÓÃ´¦, ÇëÎğĞŞ¸Ä!
  *	
- *	æ­¤æ–‡ä»¶åŒ…å«é¡¹ç›® Json æ–‡ä»¶çš„èœå•å¯¼å‡ºå‡½æ•°.
+ *	´ËÎÄ¼ş°üº¬ÏîÄ¿ Json ÎÄ¼şµÄ²Ëµ¥µ¼³öº¯Êı.
  */
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using Native.Csharp.App.EventArgs;
-using Native.Csharp.App.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Unity;
 
 namespace Native.Csharp.App.Core
 {
     public class MenuExport
     {
-		#region --æ„é€ å‡½æ•°--
+		#region --¹¹Ôìº¯Êı--
 		/// <summary>
-		/// é™æ€æ„é€ å‡½æ•°, æ³¨å†Œä¾èµ–æ³¨å…¥å›è°ƒ
+		/// ¾²Ì¬¹¹Ôìº¯Êı, ×¢²áÒÀÀµ×¢Èë»Øµ÷
 		/// </summary>
         static MenuExport ()
         {
-			// åˆ†å‘åº”ç”¨å†…äº‹ä»¶
+			// ·Ö·¢Ó¦ÓÃÄÚÊÂ¼ş
 			ResolveAppbackcall ();
         }
         #endregion
 
-		#region --ç§æœ‰æ–¹æ³•--
+		#region --Ë½ÓĞ·½·¨--
 		/// <summary>
-		/// è·å–æ‰€æœ‰çš„æ³¨å…¥é¡¹, åˆ†å‘åˆ°å¯¹åº”çš„äº‹ä»¶
+		/// »ñÈ¡ËùÓĞµÄ×¢ÈëÏî, ·Ö·¢µ½¶ÔÓ¦µÄÊÂ¼ş
 		/// </summary>
 		private static void ResolveAppbackcall ()
 		{
 			/*
-			 * Name: æ‰“å¼€æ§åˆ¶å°
+			 * Name: ´ò¿ª¿ØÖÆÌ¨
 			 * Function: _eventOpenConsole
 			 */
-			if (Common.UnityContainer.IsRegistered<ICallMenu> ("æ‰“å¼€æ§åˆ¶å°") == true)
+			if (Common.UnityContainer.IsRegistered<ICallMenu> ("´ò¿ª¿ØÖÆÌ¨") == true)
 			{
-				Menu__eventOpenConsole = Common.UnityContainer.Resolve<ICallMenu> ("æ‰“å¼€æ§åˆ¶å°").CallMenu;
+				Menu__eventOpenConsole = Common.UnityContainer.Resolve<ICallMenu> ("´ò¿ª¿ØÖÆÌ¨").CallMenu;
 			}
 
 
 		}
         #endregion
 
-		#region --å¯¼å‡ºæ–¹æ³•--
+		#region --µ¼³ö·½·¨--
 		/*
-		 * Name: æ‰“å¼€æ§åˆ¶å°
+		 * Name: ´ò¿ª¿ØÖÆÌ¨
 		 * Function: _eventOpenConsole
 		 */
 		public static event EventHandler<CqCallMenuEventArgs> Menu__eventOpenConsole;
@@ -55,7 +55,7 @@ namespace Native.Csharp.App.Core
 		{
 			if (Menu__eventOpenConsole != null)
 			{
-				Menu__eventOpenConsole (null, new CqCallMenuEventArgs ("æ‰“å¼€æ§åˆ¶å°"));
+				Menu__eventOpenConsole (null, new CqCallMenuEventArgs ("´ò¿ª¿ØÖÆÌ¨"));
 			}
 			return 0;
 		}

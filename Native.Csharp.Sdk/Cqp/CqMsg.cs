@@ -82,7 +82,10 @@ namespace Native.Csharp.Sdk.Cqp
 					#endregion
 
 					#region --键值对解析--
-					tempCode.Dictionary = new Dictionary<string, string> ();
+					if (tempCode.Dictionary == null)
+					{
+						tempCode.Dictionary = new Dictionary<string, string> ();
+					}
 					MatchCollection kvResult = _regex[1].Matches (match.Groups[2].Value);
 					foreach (Match kvMatch in kvResult)
 					{

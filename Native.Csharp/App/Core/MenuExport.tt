@@ -27,8 +27,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using Native.Csharp.App.EventArgs;
-using Native.Csharp.App.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Unity;
 
 namespace Native.Csharp.App.Core
@@ -84,23 +84,30 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (menus != null)
 		{
-			foreach (JToken token in menus)
+			try
 			{
-				temp.AppendLine ("\t\t/*");
-				temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t */");
-				temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqCallMenuEventArgs> Menu_{0};", token["function"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t{");
-				temp.AppendLine (string.Format ("\t\t\tif (Menu_{0} != null)", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t\t{");
-				temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} (null, new CqCallMenuEventArgs (\"{1}\"));", token["function"].Value<string> (), token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t}");
-				temp.AppendLine ("\t\t\treturn 0;");
-				temp.AppendLine ("\t\t}");
-				temp.AppendLine ();
+				foreach (JToken token in menus)
+				{
+					temp.AppendLine ("\t\t/*");
+					temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t */");
+					temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqCallMenuEventArgs> Menu_{0};", token["function"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} ()", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t{");
+					temp.AppendLine (string.Format ("\t\t\tif (Menu_{0} != null)", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t\t{");
+					temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} (null, new CqCallMenuEventArgs (\"{1}\"));", token["function"].Value<string> (), token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t}");
+					temp.AppendLine ("\t\t\treturn 0;");
+					temp.AppendLine ("\t\t}");
+					temp.AppendLine ();
+				}
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
 			}
 		}
 		return temp.ToString();
@@ -112,17 +119,24 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (menus != null)
 		{
-			foreach (JToken token in menus)
+			try
 			{
-				temp.AppendLine ("\t\t\t/*");
-				temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t\t * Function: {0}", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t\t */");
-				temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICallMenu> (\"{0}\") == true)", token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t{");
-				temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} = Common.UnityContainer.Resolve<ICallMenu> (\"{1}\").CallMenu;", token["function"].Value<string> (), token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t}");
-				temp.AppendLine ();
+				foreach (JToken token in menus)
+				{
+					temp.AppendLine ("\t\t\t/*");
+					temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t\t * Function: {0}", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t\t */");
+					temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICallMenu> (\"{0}\") == true)", token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t{");
+					temp.AppendLine (string.Format ("\t\t\t\tMenu_{0} = Common.UnityContainer.Resolve<ICallMenu> (\"{1}\").CallMenu;", token["function"].Value<string> (), token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t}");
+					temp.AppendLine ();
+				}
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
 			}
 		}
 		return temp.ToString ();

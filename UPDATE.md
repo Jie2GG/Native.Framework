@@ -1,4 +1,11 @@
 # Native.SDK 更新日志
+> 2019年09月15日 版本: V3.3.0.0915
+
+	1. 转移 App 下的 Interface 和 EventArgs 到 Sdk 项目中
+	2. 修复 LibExport.tt 中 Type=21 事件永远 id 为 1
+	3. 升级 LibExport.tt 使所有事件参数的 Id 和 Name 都与 Json 中相同
+	4. 修改 Native.Csharp.Sdk 下的部分类命名空间及命名.
+
 > 2019年09月06日 版本: V3.2.1.0906
 	
 	1. 修复 CqApi 部分接口引用不明确
