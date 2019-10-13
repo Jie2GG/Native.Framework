@@ -201,6 +201,19 @@ namespace Native.Csharp.App.Core
 			}
 			
 			/*
+			 * Id: 8
+			 * Name: 群禁言事件处理
+			 */
+			if (Common.UnityContainer.IsRegistered<IReceiveSetGroupBan> ("群禁言事件处理") == true)
+			{
+				ReceiveSetGroupBan_8 = Common.UnityContainer.Resolve<IReceiveSetGroupBan> ("群禁言事件处理").ReceiveSetGroupBan;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveRemoveGroupBan> ("群禁言事件处理") == true)
+			{
+				ReceiveRemoveGroupBan_8 = Common.UnityContainer.Resolve<IReceiveRemoveGroupBan> ("群禁言事件处理").ReceiveRemoveGroupBan;
+			}
+			
+			/*
 			 * Id: 10
 			 * Name: 好友已添加事件处理
 			 */
@@ -467,6 +480,35 @@ namespace Native.Csharp.App.Core
 				if (ReceiveMemberBeInvitee_7 != null)
 				{
 					ReceiveMemberBeInvitee_7 (null, args);
+				}
+			}
+			return Convert.ToInt32 (args.Handler);
+		}
+
+		/*
+		 * Id: 8
+		 * Type: 104
+		 * Name: 群禁言事件处理
+		 * Function: _eventSystem_GroupBan
+		 */
+		public static event EventHandler<CqGroupBanEventArgs> ReceiveSetGroupBan_8;
+		public static event EventHandler<CqGroupBanEventArgs> ReceiveRemoveGroupBan_8;
+		[DllExport (ExportName = "_eventSystem_GroupBan", CallingConvention = CallingConvention.StdCall)]
+		private static int Evnet__eventSystem_GroupBan (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration)
+		{
+			CqGroupBanEventArgs args = new CqGroupBanEventArgs (8, "群禁言事件处理", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ, new TimeSpan (duration * 10000000));
+			if (subType == 1)
+			{
+				if (ReceiveSetGroupBan_8 != null)
+				{
+					ReceiveSetGroupBan_8 (null, args);
+				}
+			}
+			else if (subType == 2)
+			{
+				if (ReceiveRemoveGroupBan_8 != null)
+				{
+					ReceiveRemoveGroupBan_8 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);

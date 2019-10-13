@@ -18,5 +18,13 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 群名字
 		/// </summary>
 		public string Name { get; set; }
-	}
+        /// <summary>
+        /// 当前成员数量, 由 <see cref="CqApi.GetGroupInfo(long)"/> 方法获取
+        /// </summary>
+        public int CurrentNumber { get; set; }
+        /// <summary>
+        /// 获取最大成员数量, 由 <see cref="CqApi.GetGroupInfo(long)"/> 方法获取
+        /// </summary>
+        public int MaximumNumber { get; set; }
+    }
 }

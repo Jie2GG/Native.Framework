@@ -436,6 +436,31 @@ namespace Native.Csharp.App.Core
 							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
 							temp.AppendLine ("\t\t}");
 							break;
+						case 104:
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupBanEventArgs> ReceiveSetGroupBan_{0};", token["id"].Value<int> ()));
+							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqGroupBanEventArgs> ReceiveRemoveGroupBan_{0};", token["id"].Value<int> ()));
+	   
+							temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+							temp.AppendLine (string.Format ("\t\tprivate static int Evnet_{0} (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration)", token["function"].Value<string> ()));
+							temp.AppendLine ("\t\t{");
+							temp.AppendLine (string.Format ("\t\t\tCqGroupBanEventArgs args = new CqGroupBanEventArgs ({0}, \"{1}\", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ, new TimeSpan (duration * 10000000));", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\tif (subType == 1)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveSetGroupBan_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveSetGroupBan_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\telse if (subType == 2)");
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tif (ReceiveRemoveGroupBan_{0} != null)", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\t\tReceiveRemoveGroupBan_{0} (null, args);", token["id"].Value<int> ()));
+							temp.AppendLine ("\t\t\t\t}");
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine ("\t\t\treturn Convert.ToInt32 (args.Handler);");
+							temp.AppendLine ("\t\t}");
+							break;
 						case 201:
 							temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqFriendIncreaseEventArgs> ReceiveFriendIncrease_{0};", token["id"].Value<int> ()));
 
@@ -616,6 +641,16 @@ namespace Native.Csharp.App.Core
 							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveGroupMemberBeInvitee> (\"{0}\") == true)", token["name"].Value<string> ()));
 							temp.AppendLine ("\t\t\t{");
 							temp.AppendLine (string.Format ("\t\t\t\tReceiveMemberBeInvitee_{0} = Common.UnityContainer.Resolve<IReceiveGroupMemberBeInvitee> (\"{1}\").ReceiveGroupMemberBeInvitee;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							break;
+						case 104:
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveSetGroupBan> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveSetGroupBan_{0} = Common.UnityContainer.Resolve<IReceiveSetGroupBan> (\"{1}\").ReceiveSetGroupBan;", token["id"].Value<int> (), token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t}");
+							temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<IReceiveRemoveGroupBan> (\"{0}\") == true)", token["name"].Value<string> ()));
+							temp.AppendLine ("\t\t\t{");
+							temp.AppendLine (string.Format ("\t\t\t\tReceiveRemoveGroupBan_{0} = Common.UnityContainer.Resolve<IReceiveRemoveGroupBan> (\"{1}\").ReceiveRemoveGroupBan;", token["id"].Value<int> (), token["name"].Value<string> ()));
 							temp.AppendLine ("\t\t\t}");
 							break;
 						case 201:
