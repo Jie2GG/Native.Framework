@@ -32,12 +32,21 @@ namespace Native.Csharp.App.Core
 		private static void ResolveAppbackcall ()
 		{
 			/*
-			 * Name: 打开控制台
-			 * Function: _eventOpenConsole
+			 * Name: 设置A
+			 * Function: _menuA
 			 */
-			if (Common.UnityContainer.IsRegistered<ICallMenu> ("打开控制台") == true)
+			if (Common.UnityContainer.IsRegistered<ICallMenu> ("设置A") == true)
 			{
-				Menu__eventOpenConsole = Common.UnityContainer.Resolve<ICallMenu> ("打开控制台").CallMenu;
+				Menu__menuA = Common.UnityContainer.Resolve<ICallMenu> ("设置A").CallMenu;
+			}
+
+			/*
+			 * Name: 设置B
+			 * Function: _menuB
+			 */
+			if (Common.UnityContainer.IsRegistered<ICallMenu> ("设置B") == true)
+			{
+				Menu__menuB = Common.UnityContainer.Resolve<ICallMenu> ("设置B").CallMenu;
 			}
 
 
@@ -46,16 +55,31 @@ namespace Native.Csharp.App.Core
 
 		#region --导出方法--
 		/*
-		 * Name: 打开控制台
-		 * Function: _eventOpenConsole
+		 * Name: 设置A
+		 * Function: _menuA
 		 */
-		public static event EventHandler<CqCallMenuEventArgs> Menu__eventOpenConsole;
-		[DllExport (ExportName = "_eventOpenConsole", CallingConvention = CallingConvention.StdCall)]
-		private static int Evnet__eventOpenConsole ()
+		public static event EventHandler<CqCallMenuEventArgs> Menu__menuA;
+		[DllExport (ExportName = "_menuA", CallingConvention = CallingConvention.StdCall)]
+		private static int Evnet__menuA ()
 		{
-			if (Menu__eventOpenConsole != null)
+			if (Menu__menuA != null)
 			{
-				Menu__eventOpenConsole (null, new CqCallMenuEventArgs ("打开控制台"));
+				Menu__menuA (null, new CqCallMenuEventArgs ("设置A"));
+			}
+			return 0;
+		}
+
+		/*
+		 * Name: 设置B
+		 * Function: _menuB
+		 */
+		public static event EventHandler<CqCallMenuEventArgs> Menu__menuB;
+		[DllExport (ExportName = "_menuB", CallingConvention = CallingConvention.StdCall)]
+		private static int Evnet__menuB ()
+		{
+			if (Menu__menuB != null)
+			{
+				Menu__menuB (null, new CqCallMenuEventArgs ("设置B"));
 			}
 			return 0;
 		}

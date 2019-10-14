@@ -57,7 +57,7 @@ namespace Native.Csharp.App.Core
 		{
 			// 请勿随意修改
 			// 
-			Common.AppName = "酷Q样例应用 for C#";
+			Common.AppName = "酷Q样例应用";
 			Common.AppVersion = Version.Parse ("1.0.0");		
 
 			//
@@ -223,25 +223,25 @@ namespace Native.Csharp.App.Core
 			}
 			
 			/*
-			 * Id: 8
+			 * Id: 11
 			 * Name: 好友添加请求处理
 			 */
 			if (Common.UnityContainer.IsRegistered<IReceiveFriendAddRequest> ("好友添加请求处理") == true)
 			{
-				ReceiveFriendAdd_8 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("好友添加请求处理").ReceiveFriendAddRequest;
+				ReceiveFriendAdd_11 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("好友添加请求处理").ReceiveFriendAddRequest;
 			}
 			
 			/*
-			 * Id: 9
+			 * Id: 12
 			 * Name: 群添加请求处理
 			 */
 			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupRequest> ("群添加请求处理") == true)
 			{
-				ReceiveAddGroupRequest_9 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("群添加请求处理").ReceiveAddGroupRequest;
+				ReceiveAddGroupRequest_12 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("群添加请求处理").ReceiveAddGroupRequest;
 			}
 			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupBeInvitee> ("群添加请求处理") == true)
 			{
-				ReceiveAddGroupBeInvitee_9 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("群添加请求处理").ReceiveAddGroupBeInvitee;
+				ReceiveAddGroupBeInvitee_12 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("群添加请求处理").ReceiveAddGroupBeInvitee;
 			}
 			
 			/*
@@ -536,50 +536,50 @@ namespace Native.Csharp.App.Core
 		}
 
 		/*
-		 * Id: 8
+		 * Id: 11
 		 * Type: 301
 		 * Name: 好友添加请求处理
 		 * Function: _eventRequest_AddFriend
 		 */
-		public static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_8;
+		public static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_11;
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (8, "好友添加请求处理", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (11, "好友添加请求处理", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
-				if (ReceiveFriendAdd_8 != null)
+				if (ReceiveFriendAdd_11 != null)
 				{
-					ReceiveFriendAdd_8 (null, args);
+					ReceiveFriendAdd_11 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);
 		}
 
 		/*
-		 * Id: 9
+		 * Id: 12
 		 * Type: 302
 		 * Name: 群添加请求处理
 		 * Function: _eventRequest_AddGroup
 		 */
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_9;
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_9;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_12;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_12;
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (9, "群添加请求处理", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (12, "群添加请求处理", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
-				if (ReceiveAddGroupRequest_9 != null)
+				if (ReceiveAddGroupRequest_12 != null)
 				{
-					ReceiveAddGroupRequest_9 (null, args);
+					ReceiveAddGroupRequest_12 (null, args);
 				}
 			}
 			else if (subType == 2)
 			{
-				if (ReceiveAddGroupBeInvitee_9 != null)
+				if (ReceiveAddGroupBeInvitee_12 != null)
 				{
-					ReceiveAddGroupBeInvitee_9 (null, args);
+					ReceiveAddGroupBeInvitee_12 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);
