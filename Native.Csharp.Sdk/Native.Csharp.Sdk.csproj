@@ -105,6 +105,7 @@
     <Compile Include="Cqp\Interface\IReceiveSetGroupBan.cs" />
     <Compile Include="Cqp\Model\CqCode.cs" />
     <Compile Include="Cqp\Model\FloatWindow.cs" />
+    <Compile Include="Cqp\Model\FriendInfo.cs" />
     <Compile Include="Cqp\Model\GroupAnonymous.cs" />
     <Compile Include="Cqp\Model\GroupFile.cs" />
     <Compile Include="Cqp\Model\GroupInfo.cs" />
