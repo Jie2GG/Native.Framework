@@ -595,7 +595,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <summary>
 		/// 获取发送语音支持
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>获取成功则返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool GetSendRecordSupport ()
 		{
 			return CQP.CQ_canSendRecord (_authCode) > 0;
@@ -604,10 +604,91 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <summary>
 		/// 获取发送图片支持
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>获取成功则返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool GetSendImageSupport ()
 		{
 			return CQP.CQ_canSendImage (_authCode) > 0;
+		}
+
+		/// <summary>
+		/// 获取群信息
+		/// </summary>
+		/// <param name="groupId">群号码</param>
+		/// <param name="notCache">不使用缓存, 通常为 <code>false</code>, 仅在必要时使用</param>
+		/// <returns>如果成功返回 <see cref="GroupInfo"/>, 若失败返回 null</returns>
+		public GroupInfo GetGroupInfo (long groupId, bool notCache = false)
+		{
+			string result = CQP.CQ_getGroupInfo (_authCode, groupId, false);
+			if (string.IsNullOrEmpty (result))
+			{
+				return null;
+			}
+			#region --其他_转换_文本到群信息--
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
+			{
+				if (reader.Length () < 18)
+				{
+					return null;
+				}
+
+				GroupInfo info = new GroupInfo ();
+				info.Id = reader.ReadInt64_Ex ();
+				info.Name = reader.ReadString_Ex (_defaultEncoding);
+				info.CurrentNumber = reader.ReadInt32_Ex ();
+				info.MaximumNumber = reader.ReadInt32_Ex ();
+				return info;
+			}
+			#endregion
+		}
+
+		/// <summary>
+		/// 获取好友列表
+		/// </summary>
+		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/>, 否则返回 null</returns>
+		public List<FriendInfo> GetFriendList ()
+		{
+			string result = CQP.CQ_getFriendList (_authCode, false);
+			if (string.IsNullOrEmpty (result))
+			{
+				return null;
+			}
+
+			#region --其他_转换_文本到好友列表信息a--
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (Convert.FromBase64String (result))))
+			{
+				if (reader.Length () < 4)
+				{
+					return null;
+				}
+
+				List<FriendInfo> friends = new List<FriendInfo> ();
+				for (int i = 0, len = reader.ReadInt32_Ex (); i < len; i++)
+				{
+					FriendInfo temp = new FriendInfo ();
+					if (reader.Length () <= 0)
+					{
+						return null;
+					}
+
+					#region --其他_转换_ansihex到好友信息--
+					using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+					{
+						if (tempReader.Length () < 12)
+						{
+							return null;
+						}
+
+						temp.Id = tempReader.ReadInt64_Ex ();
+						temp.Nick = tempReader.ReadString_Ex (_defaultEncoding);
+						temp.Note = tempReader.ReadString_Ex (_defaultEncoding);
+					}
+					#endregion
+
+					friends.Add (temp);
+				}
+				return friends;
+			}
+			#endregion
 		}
 		#endregion
 

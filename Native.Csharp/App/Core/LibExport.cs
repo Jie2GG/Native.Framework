@@ -57,7 +57,7 @@ namespace Native.Csharp.App.Core
 		{
 			// 请勿随意修改
 			// 
-			Common.AppName = "酷Q样例应用 for C#";
+			Common.AppName = "酷Q样例应用";
 			Common.AppVersion = Version.Parse ("1.0.0");		
 
 			//
@@ -201,6 +201,19 @@ namespace Native.Csharp.App.Core
 			}
 			
 			/*
+			 * Id: 8
+			 * Name: 群禁言事件处理
+			 */
+			if (Common.UnityContainer.IsRegistered<IReceiveSetGroupBan> ("群禁言事件处理") == true)
+			{
+				ReceiveSetGroupBan_8 = Common.UnityContainer.Resolve<IReceiveSetGroupBan> ("群禁言事件处理").ReceiveSetGroupBan;
+			}
+			if (Common.UnityContainer.IsRegistered<IReceiveRemoveGroupBan> ("群禁言事件处理") == true)
+			{
+				ReceiveRemoveGroupBan_8 = Common.UnityContainer.Resolve<IReceiveRemoveGroupBan> ("群禁言事件处理").ReceiveRemoveGroupBan;
+			}
+			
+			/*
 			 * Id: 10
 			 * Name: 好友已添加事件处理
 			 */
@@ -210,25 +223,25 @@ namespace Native.Csharp.App.Core
 			}
 			
 			/*
-			 * Id: 8
+			 * Id: 11
 			 * Name: 好友添加请求处理
 			 */
 			if (Common.UnityContainer.IsRegistered<IReceiveFriendAddRequest> ("好友添加请求处理") == true)
 			{
-				ReceiveFriendAdd_8 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("好友添加请求处理").ReceiveFriendAddRequest;
+				ReceiveFriendAdd_11 = Common.UnityContainer.Resolve<IReceiveFriendAddRequest> ("好友添加请求处理").ReceiveFriendAddRequest;
 			}
 			
 			/*
-			 * Id: 9
+			 * Id: 12
 			 * Name: 群添加请求处理
 			 */
 			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupRequest> ("群添加请求处理") == true)
 			{
-				ReceiveAddGroupRequest_9 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("群添加请求处理").ReceiveAddGroupRequest;
+				ReceiveAddGroupRequest_12 = Common.UnityContainer.Resolve<IReceiveAddGroupRequest> ("群添加请求处理").ReceiveAddGroupRequest;
 			}
 			if (Common.UnityContainer.IsRegistered<IReceiveAddGroupBeInvitee> ("群添加请求处理") == true)
 			{
-				ReceiveAddGroupBeInvitee_9 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("群添加请求处理").ReceiveAddGroupBeInvitee;
+				ReceiveAddGroupBeInvitee_12 = Common.UnityContainer.Resolve<IReceiveAddGroupBeInvitee> ("群添加请求处理").ReceiveAddGroupBeInvitee;
 			}
 			
 			/*
@@ -473,6 +486,35 @@ namespace Native.Csharp.App.Core
 		}
 
 		/*
+		 * Id: 8
+		 * Type: 104
+		 * Name: 群禁言事件处理
+		 * Function: _eventSystem_GroupBan
+		 */
+		public static event EventHandler<CqGroupBanEventArgs> ReceiveSetGroupBan_8;
+		public static event EventHandler<CqGroupBanEventArgs> ReceiveRemoveGroupBan_8;
+		[DllExport (ExportName = "_eventSystem_GroupBan", CallingConvention = CallingConvention.StdCall)]
+		private static int Evnet__eventSystem_GroupBan (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration)
+		{
+			CqGroupBanEventArgs args = new CqGroupBanEventArgs (8, "群禁言事件处理", sendTime.ToDateTime (), fromGroup, fromQQ, beingOperateQQ, new TimeSpan (duration * 10000000));
+			if (subType == 1)
+			{
+				if (ReceiveSetGroupBan_8 != null)
+				{
+					ReceiveSetGroupBan_8 (null, args);
+				}
+			}
+			else if (subType == 2)
+			{
+				if (ReceiveRemoveGroupBan_8 != null)
+				{
+					ReceiveRemoveGroupBan_8 (null, args);
+				}
+			}
+			return Convert.ToInt32 (args.Handler);
+		}
+
+		/*
 		 * Id: 10
 		 * Type: 201
 		 * Name: 好友已添加事件处理
@@ -494,50 +536,50 @@ namespace Native.Csharp.App.Core
 		}
 
 		/*
-		 * Id: 8
+		 * Id: 11
 		 * Type: 301
 		 * Name: 好友添加请求处理
 		 * Function: _eventRequest_AddFriend
 		 */
-		public static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_8;
+		public static event EventHandler<CqAddFriendRequestEventArgs> ReceiveFriendAdd_11;
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (8, "好友添加请求处理", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddFriendRequestEventArgs args = new CqAddFriendRequestEventArgs (11, "好友添加请求处理", sendTime.ToDateTime (), fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
-				if (ReceiveFriendAdd_8 != null)
+				if (ReceiveFriendAdd_11 != null)
 				{
-					ReceiveFriendAdd_8 (null, args);
+					ReceiveFriendAdd_11 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);
 		}
 
 		/*
-		 * Id: 9
+		 * Id: 12
 		 * Type: 302
 		 * Name: 群添加请求处理
 		 * Function: _eventRequest_AddGroup
 		 */
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_9;
-		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_9;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupRequest_12;
+		public static event EventHandler<CqAddGroupRequestEventArgs> ReceiveAddGroupBeInvitee_12;
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventRequest_AddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)
 		{
-			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (9, "群添加请求处理", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
+			CqAddGroupRequestEventArgs args = new CqAddGroupRequestEventArgs (12, "群添加请求处理", sendTime.ToDateTime (), fromGroup, fromQQ, msg.ToString (_defaultEncoding), responseFlag);
 			if (subType == 1)
 			{
-				if (ReceiveAddGroupRequest_9 != null)
+				if (ReceiveAddGroupRequest_12 != null)
 				{
-					ReceiveAddGroupRequest_9 (null, args);
+					ReceiveAddGroupRequest_12 (null, args);
 				}
 			}
 			else if (subType == 2)
 			{
-				if (ReceiveAddGroupBeInvitee_9 != null)
+				if (ReceiveAddGroupBeInvitee_12 != null)
 				{
-					ReceiveAddGroupBeInvitee_9 (null, args);
+					ReceiveAddGroupBeInvitee_12 (null, args);
 				}
 			}
 			return Convert.ToInt32 (args.Handler);

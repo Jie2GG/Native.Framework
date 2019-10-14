@@ -69,6 +69,7 @@
     <Compile Include="Cqp\EventArgs\CqEventArgsBase.cs" />
     <Compile Include="Cqp\EventArgs\CqExitEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CqFriendIncreaseEventArgs.cs" />
+    <Compile Include="Cqp\EventArgs\CqGroupBanEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CqGroupFileUploadEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CqGroupManageChangeEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CqGroupMemberDecreaseEventArgs.cs" />
@@ -100,8 +101,11 @@
     <Compile Include="Cqp\Interface\IReceiveGroupMessage.cs" />
     <Compile Include="Cqp\Interface\IReceiveGroupPrivateMessage.cs" />
     <Compile Include="Cqp\Interface\IReceiveOnlineStatusMessage.cs" />
+    <Compile Include="Cqp\Interface\IReceiveRemoveGroupBan.cs" />
+    <Compile Include="Cqp\Interface\IReceiveSetGroupBan.cs" />
     <Compile Include="Cqp\Model\CqCode.cs" />
     <Compile Include="Cqp\Model\FloatWindow.cs" />
+    <Compile Include="Cqp\Model\FriendInfo.cs" />
     <Compile Include="Cqp\Model\GroupAnonymous.cs" />
     <Compile Include="Cqp\Model\GroupFile.cs" />
     <Compile Include="Cqp\Model\GroupInfo.cs" />
