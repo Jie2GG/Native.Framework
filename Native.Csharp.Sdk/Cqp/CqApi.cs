@@ -226,7 +226,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回可发送的 CQ码</returns>
 		public string CqCode_Music (long id, MusicType type = MusicType.Tencent, MusicStyle style = MusicStyle.Old)
 		{
-			return string.Format ("[CQ:music,id={0},type=]", id, type.GetDescription (), (int)style);
+			return string.Format ("[CQ:music,id={0},type={1},style={2}]", id, type.GetDescription (), (int)style);
 		}
 		/// <summary>
 		/// 获取酷Q "音乐自定义" 代码
