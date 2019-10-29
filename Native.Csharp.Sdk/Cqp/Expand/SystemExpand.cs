@@ -80,7 +80,7 @@ namespace Native.Csharp.Sdk.Cqp.Expand
 
             FieldInfo fieldInfo = value.GetType ().GetField (value.ToString ());
             DescriptionAttribute attribute = fieldInfo.GetCustomAttribute<DescriptionAttribute> (false);
-            return attribute.ToString ();
+            return attribute.Description;
         }
     }
 }
