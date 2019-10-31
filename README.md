@@ -39,7 +39,7 @@
 
 ## Native.SDK 更新日志
 
-https://github.com/Jie2GG/Native.Csharp.Frame/blob/Final/UPDATE.md
+### [查看更新日志](UPDATE.md)
 
 ## 关于打赏
 

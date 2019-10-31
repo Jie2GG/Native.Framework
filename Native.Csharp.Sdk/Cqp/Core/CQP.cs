@@ -13,6 +13,13 @@ namespace Native.Csharp.Sdk.Cqp.Core
 		 * 
          *  V9 应用机制内的变动（即 V9.x 内的变动）通常**不会**影响已发布的应用，但有可能需要开发者在更新旧版本应用时，对代码进行细微调整。
          *  
+         *  V9.25 (2019-10-8)
+         *  -----------------
+         *  新增 取群信息 Api
+         *   * 支持获取群当前人数与人数上限。如果您此前使用其他方式获取，建议迁移至本接口。
+         *   
+         *  新增 群禁言事件
+         *  
          *  V9.23 (2019-9-3)
          *  ----------------
          *  新增 扩展 Cookies 适用范围
@@ -142,6 +149,12 @@ namespace Native.Csharp.Sdk.Cqp.Core
 
         [DllImport (DllName, EntryPoint = "CQ_getImage")]
         public static extern string CQ_getImage (int authCode, string file);
-        #endregion
-    }
+
+        [DllImport(DllName, EntryPoint = "CQ_getGroupInfo")]
+        public static extern string CQ_getGroupInfo(int authCode, long groupId, bool notCache);
+
+		[DllImport (DllName, EntryPoint = "CQ_getFriendList")]
+		public static extern string CQ_getFriendList (int authCode, bool reserved);
+		#endregion
+	}
 }

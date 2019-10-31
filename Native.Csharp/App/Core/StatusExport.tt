@@ -27,8 +27,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using Native.Csharp.App.EventArgs;
-using Native.Csharp.App.Interface;
+using Native.Csharp.Sdk.Cqp.EventArgs;
+using Native.Csharp.Sdk.Cqp.Interface;
 using Unity;
 
 namespace Native.Csharp.App.Core
@@ -84,27 +84,34 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (status != null)
 		{
-			foreach (JToken token in status)
+			try
 			{
-				temp.AppendLine ("\t\t/*");
-				temp.AppendLine (string.Format ("\t\t * Id: {0}", token["id"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Title: {0}", token["title"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t * Period: {0}", token["period"].Value<string> ()));
-				temp.AppendLine ("\t\t */");
-				temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqStatusEventArgs> Status_{0};", token["title"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\tprivate static string Evnet_{0} ()", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t{");
-				temp.AppendLine (string.Format ("\t\t\tCqStatusEventArgs args = new CqStatusEventArgs ({0}, \"{1}\", \"{2}\", {3});", token["id"].Value<int> (), token["name"].Value<string> (), token["title"].Value<string> (), token["period"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t\tif (Status_{0} != null)", token["title"].Value<string> ()));
-				temp.AppendLine ("\t\t\t{");
-				temp.AppendLine (string.Format ("\t\t\t\tStatus_{0} (null, args);", token["title"].Value<string> ()));
-				temp.AppendLine ("\t\t\t}");
-				temp.AppendLine ("\t\t\treturn args.FloatWindowData;");
-				temp.AppendLine ("\t\t}");
-				temp.AppendLine ();
+				foreach (JToken token in status)
+				{
+					temp.AppendLine ("\t\t/*");
+					temp.AppendLine (string.Format ("\t\t * Id: {0}", token["id"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Title: {0}", token["title"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Function: {0}", token["function"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t * Period: {0}", token["period"].Value<string> ()));
+					temp.AppendLine ("\t\t */");
+					temp.AppendLine (string.Format ("\t\tpublic static event EventHandler<CqStatusEventArgs> Status_{0};", token["title"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\tprivate static string Evnet_{0} ()", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t{");
+					temp.AppendLine (string.Format ("\t\t\tCqStatusEventArgs args = new CqStatusEventArgs ({0}, \"{1}\", \"{2}\", {3});", token["id"].Value<int> (), token["name"].Value<string> (), token["title"].Value<string> (), token["period"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t\tif (Status_{0} != null)", token["title"].Value<string> ()));
+					temp.AppendLine ("\t\t\t{");
+					temp.AppendLine (string.Format ("\t\t\t\tStatus_{0} (null, args);", token["title"].Value<string> ()));
+					temp.AppendLine ("\t\t\t}");
+					temp.AppendLine ("\t\t\treturn args.FloatWindowData;");
+					temp.AppendLine ("\t\t}");
+					temp.AppendLine ();
+				}
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
 			}
 		}
 		return temp.ToString();
@@ -116,17 +123,24 @@ namespace Native.Csharp.App.Core
 		StringBuilder temp = new StringBuilder ();
 		if (status != null)
 		{
-			foreach (JToken token in status)
+			try
 			{
-				temp.AppendLine ("\t\t\t/*");
-				temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
-				temp.AppendLine (string.Format ("\t\t\t * Function: {0}", token["function"].Value<string> ()));
-				temp.AppendLine ("\t\t\t */");
-				temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqStatus> (\"{0}\") == true)", token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t{");
-				temp.AppendLine (string.Format ("\t\t\t\tStatus_{0} = Common.UnityContainer.Resolve<ICqStatus> (\"{1}\").CqStatus;", token["title"].Value<string> (), token["name"].Value<string> ()));
-				temp.AppendLine ("\t\t\t}");
-				temp.AppendLine ();
+				foreach (JToken token in status)
+				{
+					temp.AppendLine ("\t\t\t/*");
+					temp.AppendLine (string.Format ("\t\t\t * Name: {0}", token["name"].Value<string> ()));
+					temp.AppendLine (string.Format ("\t\t\t * Function: {0}", token["function"].Value<string> ()));
+					temp.AppendLine ("\t\t\t */");
+					temp.AppendLine (string.Format ("\t\t\tif (Common.UnityContainer.IsRegistered<ICqStatus> (\"{0}\") == true)", token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t{");
+					temp.AppendLine (string.Format ("\t\t\t\tStatus_{0} = Common.UnityContainer.Resolve<ICqStatus> (\"{1}\").CqStatus;", token["title"].Value<string> (), token["name"].Value<string> ()));
+					temp.AppendLine ("\t\t\t}");
+					temp.AppendLine ();
+				}
+			}
+			catch (Exception e)
+			{
+				this.Error (e.Message);
 			}
 		}
 		return temp.ToString();
