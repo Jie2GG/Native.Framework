@@ -76,7 +76,7 @@
     <Compile Include="Cqp\EventArgs\CQFriendAddEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQGroupAddRequestEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQGroupBanSpeakEventeArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CQGroupFileUploadEventArgs.cs" />
+    <Compile Include="Cqp\EventArgs\CQGroupUploadEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQGroupManageChangeEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQGroupMemberDecreaseEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQGroupMemberIncreaseEventArgs.cs" />
@@ -90,10 +90,14 @@
     <Compile Include="Cqp\Expand\BinaryReaderExpand.cs" />
     <Compile Include="Cqp\Expand\BinaryWriterExpand.cs" />
     <Compile Include="Cqp\Expand\SystemExpand.cs" />
-    <Compile Include="Cqp\Interface\ICQAppDisableEventHandler.cs" />
-    <Compile Include="Cqp\Interface\ICQAppEnableEventHandler.cs" />
-    <Compile Include="Cqp\Interface\ICQExitEventHandler.cs" />
-    <Compile Include="Cqp\Interface\ICQStartupEventHandler.cs" />
+    <Compile Include="Cqp\Interface\IAppDisable.cs" />
+    <Compile Include="Cqp\Interface\IAppEnable.cs" />
+    <Compile Include="Cqp\Interface\ICQExit.cs" />
+    <Compile Include="Cqp\Interface\IReceiveDiscussMessage.cs" />
+    <Compile Include="Cqp\Interface\IReceiveGroupMessage.cs" />
+    <Compile Include="Cqp\Interface\ICQStartup.cs" />
+    <Compile Include="Cqp\Interface\IReceiveGroupUpload.cs" />
+    <Compile Include="Cqp\Interface\IReceivePrivateMessage.cs" />
     <Compile Include="Cqp\Model\CQCode.cs" />
     <Compile Include="Cqp\Model\Discuss.cs" />
     <Compile Include="Cqp\Model\FriendInfo.cs" />

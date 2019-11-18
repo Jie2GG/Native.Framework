@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
-	/// 酷Q退出事件接口
+	/// 酷Q私聊消息事件接口
 	/// <para/>
-	/// Type: 1002
+	/// Type: 21
 	/// </summary>
-	public interface ICQExitEventHandler
+	public interface IReceivePrivateMessage
 	{
 		/// <summary>
-		/// 当在派生类中重写时, 处理 酷Q退出事件 回调
+		/// 当在派生类中重写时, 处理 酷Q私聊消息事件 回调
 		/// </summary>
 		/// <param name="sender">事件来源对象</param>
 		/// <param name="e">附加的事件参数</param>
-		void CQExitEventHandler (object sender, CQExitEventArgs e);
+		void PrivateMessageEventHandler (object sender, CQPrivateMessageEventArgs e);
 	}
 }
