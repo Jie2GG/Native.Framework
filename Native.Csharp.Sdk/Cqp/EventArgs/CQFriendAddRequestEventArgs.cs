@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
 	/// <summary>
-	/// 提供用于描述酷Q群文件上传事件参数的类
+	/// 提供用于描述酷Q好友添加请求事件参数的类
 	/// <para/>
-	/// Type: 11
+	/// Type: 301
 	/// </summary>
-	public class CQGroupFileUploadEventArgs : CQEventEventArgs
+	public class CQFriendAddRequestEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取当前事件的消息子类型
+		/// 获取当前事件的子类型
 		/// </summary>
-		public CQGroupFileUploadType SubType { get; private set; }
+		public CQFriendAddRequestType SubType { get; private set; }
 
 		/// <summary>
 		/// 获取当前事件的发送时间
@@ -28,24 +28,24 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		public DateTime SendTime { get; private set; }
 
 		/// <summary>
-		/// 获取当前事件的来源群
-		/// </summary>
-		public Group FromGroup { get; private set; }
-
-		/// <summary>
 		/// 获取当前事件的来源QQ
 		/// </summary>
 		public QQ FromQQ { get; private set; }
 
 		/// <summary>
-		/// 获取当前事件的文件信息
+		/// 获取当前事件的附加消息
 		/// </summary>
-		public GroupFileInfo FileInfo { get; private set; }
+		public string AppendMessage { get; private set; }
+
+		/// <summary>
+		/// 获取当前事件用于处理请求所使用的响应标识
+		/// </summary>
+		public string ResponseFlag { get; private set; }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQGroupFileUploadEventArgs"/> 类的新实例
+		/// 初始化 <see cref="CQFriendAddRequestEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="id">事件Id</param>
 		/// <param name="type">事件类型</param>
@@ -54,19 +54,19 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="priority">默认优先级</param>
 		/// <param name="subType">子类型</param>
 		/// <param name="sendTime">发送时间</param>
-		/// <param name="fromGroup">来源群</param>
 		/// <param name="fromQQ">来源QQ</param>
-		/// <param name="file">文件信息</param>
+		/// <param name="msg">附言</param>
+		/// <param name="responseFlag">反馈标识</param>
 		/// <param name="api">接口Api实例</param>
-		public CQGroupFileUploadEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, string file, CQApi api)
+		public CQFriendAddRequestEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromQQ, string msg, string responseFlag, CQApi api)
 			: base (id, type, name, function, priority)
 		{
-			this.SubType = (CQGroupFileUploadType)subType;
+			this.SubType = (CQFriendAddRequestType)subType;
 			this.SendTime = sendTime.ToDateTime ();
-			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
-			this.FileInfo = new GroupFileInfo (file);
-		} 
+			this.AppendMessage = msg;
+			this.ResponseFlag = responseFlag;
+		}
 		#endregion
 	}
 }

@@ -1,47 +1,151 @@
 ﻿using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Expand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
-	/// <summary>
-	/// 描述 酷Q 消息中一串 [CQ:...] 的对象
-	/// </summary>
-	public class CqCode
-	{
-		#region --属性--
-		/// <summary>
-		/// 获取或设置一个值, 指示当前实例的原始字符串
-		/// </summary>
-		public string OriginalString { get; set; }
+    /// <summary>
+    /// 表示 CQ码 的类
+    /// </summary>
+    public class CQCode
+    {
+        #region --字段--
+        private static readonly Lazy<Regex[]> _regices = new Lazy<Regex[]> (InitializeRegex);
+        private string _originalString;
+        private CQFunction _type;
+        private Dictionary<string, string> _items;
+        #endregion
 
-		/// <summary>
-		/// 获取或设置一个值, 指示当前实例位于消息上下文的起始索引
-		/// </summary>
-		public int Index { get; set; }
+        #region --属性--
+        /// <summary>
+        /// 获取一个值, 指示当前实例的功能
+        /// </summary>
+        public CQFunction Function { get { return _type; } }
 
-		/// <summary>
-		/// 获取一个值, 该值指示当前实例所表示的 CQ码 的类型
-		/// </summary>
-		public CqCodeType Type { get; set; }
+        /// <summary>
+        /// 获取当前实例所包含的所有项目
+        /// </summary>
+        public Dictionary<string, string> Items { get { return _items; } }
+        #endregion
 
-		/// <summary>
-		/// 获取一个值, 指示该 CQ码 中所有的键值对
-		/// </summary>
-		public Dictionary<string, string> Dictionary { get; set; }
-		#endregion
+        #region --构造函数--
+        /// <summary>
+        /// 使用 CQ码 字符串初始化 <see cref="CQCode"/> 类的新实例
+        /// </summary>
+        /// <param name="str">CQ码字符串 或 包含CQ码的字符串</param>
+        private CQCode (string str)
+        {
+            this._originalString = str;
 
-		/// <summary>
-		/// 初始化 <see cref="CqCode"/> 类的新实例
-		/// </summary>
-		public CqCode ()
-		{
-			this.OriginalString = string.Empty;
-			this.Index = 0;
-			this.Type = CqCodeType.Unknown;
-			this.Dictionary = new Dictionary<string, string> ();
-		}
-	}
+            #region --解析 CqCode--
+            Match match = _regices.Value[0].Match (str);
+            if (!match.Success)
+            {
+                throw new FormatException ("无法解析所传入的字符串, 字符串非CQ码格式!");
+            }
+            #endregion
+
+            #region --解析CQ码类型--
+            if (!System.Enum.TryParse<CQFunction> (match.Groups[1].Value, true, out _type))
+            {
+                this._type = CQFunction.Unknown;    // 解析不出来的时候, 直接给一个默认
+            }
+            #endregion
+
+            #region --解析键值对--
+            MatchCollection collection = _regices.Value[1].Matches (match.Groups[2].Value);
+            this._items = new Dictionary<string, string> (collection.Count);
+            foreach (Match item in collection)
+            {
+                this._items.Add (item.Groups[1].Value, item.Groups[2].Value);
+            }
+            #endregion
+        }
+
+        /// <summary>
+        /// 初始化 <see cref="CQCode"/> 类的新实例
+        /// </summary>
+        /// <param name="type">CQ码类型</param>
+        /// <param name="keyValues">包含的键值对</param>
+        public CQCode (CQFunction type, params KeyValuePair<string, string>[] keyValues)
+        {
+            this._type = type;
+            this._items = new Dictionary<string, string> (keyValues.Length);
+            foreach (KeyValuePair<string, string> item in keyValues)
+            {
+                this._items.Add (item.Key, item.Value);
+            }
+
+            this._originalString = null;
+        }
+        #endregion
+
+        #region --公开方法--
+        /// <summary>
+        /// 从字符串中解析出所有的 CQ码, 转换为 <see cref="CQCode"/> 集合
+        /// </summary>
+        /// <param name="source">原始字符串</param>
+        /// <returns>返回等效的 <see cref="List{CqCode}"/></returns>
+        public static List<CQCode> Parse (string source)
+        {
+            MatchCollection collection = _regices.Value[0].Matches (source);
+            List<CQCode> codes = new List<CQCode> (collection.Count);
+            foreach (Match item in collection)
+            {
+                codes.Add (new CQCode (item.Groups[0].Value));
+            }
+            return codes;
+        }
+
+        /// <summary>
+        /// 返回此实例等效的CQ码形式
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString ()
+        {
+            if (this._originalString == null)
+            {
+                if (this._items.Count == 0)
+                {
+                    // 特殊CQ码, 抖动窗口
+                    this._originalString = string.Format ("[CQ:{0}]", _type.GetDescription ());
+                }
+                else
+                {
+                    // 普通CQ码, 带参数
+                    StringBuilder builder = new StringBuilder ();
+                    builder.Append ("[CQ:");
+                    builder.Append (this._type.GetDescription ());   // function
+                    foreach (KeyValuePair<string, string> item in this._items)
+                    {
+                        builder.AppendFormat (",{0}={1}", item.Key, item.Value);
+                    }
+                    builder.Append ("]");
+                }
+            }
+            return this._originalString;
+        }
+        #endregion
+
+        #region --私有方法--
+        /// <summary>
+        /// 延时初始化正则表达式
+        /// </summary>
+        /// <returns></returns>
+        private static Regex[] InitializeRegex ()
+        {
+            // 此处延时加载, 以提升运行速度
+            return new Regex[]
+            {
+                new Regex(@"\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled),    // 匹配CQ码
+                new Regex(@",([A-Za-z]+)=([^,\[\]]+)", RegexOptions.Compiled)               // 匹配键值对
+            };
+        }
+        #endregion
+    }
 }

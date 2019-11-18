@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
 	/// <summary>
-	/// 提供用于描述应用启用事件参数的类
+	/// 提供用于描述酷Q停止事件参数的类
 	/// <para/>
-	/// Type: 1003
+	/// Type: 1002
 	/// </summary>
-	public class CQAppEnableEventArgs : CQEventEventArgs
+	public class CQStopEventArgs : CQEventEventArgs
 	{
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQAppEnableEventArgs"/> 类的新实例
+		/// 初始化 <see cref="CQStopEventArgs"/> 类的新实例
 		/// </summary>
-		/// <param name="id">事件id</param>
+		/// <param name="id">事件ID</param>
 		/// <param name="type">类型</param>
 		/// <param name="name">名称</param>
-		/// <param name="function">函数名</param>
+		/// <param name="function">函数名称</param>
 		/// <param name="priority">默认优先级</param>
-		public CQAppEnableEventArgs (int id, int type, string name, string function, uint priority)
+		public CQStopEventArgs (int id, int type, string name, string function, uint priority)
 			: base (id, type, name, function, priority)
 		{
-		} 
+		}
 		#endregion
 
 		#region --公开方法--

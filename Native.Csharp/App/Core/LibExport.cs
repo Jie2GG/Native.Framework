@@ -76,10 +76,10 @@ namespace Native.Csharp.App.Core
 		private static int Initialize (int authCode)
 		{
 			// 酷Q获取应用信息后，如果接受该应用，将会调用这个函数并传递AuthCode。
-			Common.CqApi = new CqApi (authCode);
+			Common.CqApi = new CQApi (authCode);
 
 			// AuthCode 传递完毕后将对象加入容器托管, 以便在其它项目中调用
-			Common.UnityContainer.RegisterInstance<CqApi> ("Native.Csharp", Common.CqApi);
+			Common.UnityContainer.RegisterInstance<CQApi> ("Native.Csharp", Common.CqApi);
 
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;

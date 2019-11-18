@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Expand;
+using Native.Csharp.Sdk.Cqp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,58 +9,64 @@ using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
-    /// <summary>
-    /// 表示群成员减少事件参数的类
-    /// </summary>
-    public class CqGroupMemberDecreaseEventArgs : CqEventArgsBase
-    {
-        /// <summary>
-        /// 获取一个值, 该值表示当前事件的类型
-        /// </summary>
-        public override int Type { get { return 102; } }
+	/// <summary>
+	/// 提供用于描述酷Q群成员减少事件参数的类
+	/// <para/>
+	/// Type: 102
+	/// </summary>
+	public class CQGroupMemberDecreaseEventArgs : CQEventEventArgs
+	{
+		#region --属性--
+		/// <summary>
+		/// 获取当前事件的子类型
+		/// </summary>
+		public CQGroupMemberDecreaseType SubType { get; private set; }
 
-        /// <summary>
-        /// 获取当前事件触发时间
-        /// </summary>
-        public DateTime SendTime { get; private set; }
+		/// <summary>
+		/// 获取当前事件的发送时间
+		/// </summary>
+		public DateTime SendTime { get; private set; }
 
-        /// <summary>
-        /// 获取当前消息的来源群组号
-        /// </summary>
-        public long FromGroup { get; private set; }
+		/// <summary>
+		/// 获取当前事件的来源群
+		/// </summary>
+		public Group FromGroup { get; private set; }
 
-        /// <summary>
-        /// 获取当前消息的来源QQ号
-        /// </summary>
-        public long FromQQ { get; private set; }
+		/// <summary>
+		/// 获取当前事件的来源QQ
+		/// </summary>
+		public QQ FromQQ { get; private set; }
 
-        /// <summary>
-        /// 获取当前事件触发时的目标QQ
-        /// </summary>
-        public long BeingOperateQQ { get; private set; }
+		/// <summary>
+		/// 获取当前事件被操作的QQ
+		/// </summary>
+		public QQ BeingOperateAccount { get; private set; }
+		#endregion
 
-        /// <summary>
-        /// 获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
-        /// </summary>
-        public bool Handler { get; set; }
-
-        /// <summary>
-        /// 初始化 <see cref="CqGroupMemberDecreaseEventArgs"/> 类的一个新实例
-        /// </summary>
-        /// <param name="id">事件ID</param>
-        /// <param name="name">事件名称</param>
-        /// <param name="sendTime">发送时间</param>
-        /// <param name="fromGroup">来源群</param>
-        /// <param name="fromQQ">操作者QQ</param>
-        /// <param name="operateQQ">被操作QQ</param>
-        public CqGroupMemberDecreaseEventArgs (int id, string name, DateTime sendTime, long fromGroup, long fromQQ, long operateQQ)
-        {
-            base.Id = id;
-            base.Name = name;
-            this.SendTime = sendTime;
-            this.FromGroup = fromGroup;
-            this.FromQQ = fromQQ;
-            this.BeingOperateQQ = operateQQ;
-        }
-    }
+		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="CQGroupMemberDecreaseEventArgs"/> 类的新实例
+		/// </summary>
+		/// <param name="id">事件ID</param>
+		/// <param name="type">事件类型</param>
+		/// <param name="name">事件名称</param>
+		/// <param name="function">函数名称</param>
+		/// <param name="priority">默认优先级</param>
+		/// <param name="subType">子类型</param>
+		/// <param name="sendTime">发送时间</param>
+		/// <param name="fromGroup">来源群</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="beingOperateQQ">被操作QQ</param>
+		/// <param name="api">接口Api实例</param>
+		public CQGroupMemberDecreaseEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, CQApi api)
+			: base (id, type, name, function, priority)
+		{
+			this.SubType = (CQGroupMemberDecreaseType)subType;
+			this.SendTime = sendTime.ToDateTime ();
+			this.FromGroup = new Group (api, fromGroup);
+			this.FromQQ = new QQ (api, fromQQ);
+			this.BeingOperateAccount = new QQ (api, beingOperateQQ);
+		}
+		#endregion
+	}
 }

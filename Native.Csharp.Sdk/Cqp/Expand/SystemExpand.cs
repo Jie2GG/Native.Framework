@@ -66,12 +66,32 @@ namespace Native.Csharp.Sdk.Cqp.Expand
             return encoding.GetString (buffer);
         }
 
-        /// <summary>
-        /// 读取 <see cref="System.Enum"/> 标记 <see cref="System.ComponentModel.DescriptionAttribute"/> 的值
-        /// </summary>
-        /// <param name="value">原始 <see cref="System.Enum"/> 值</param>
-        /// <returns></returns>
-        public static string GetDescription (this System.Enum value)
+		/// <summary>
+		/// 获取消息的文本形式
+		/// </summary>
+		/// <param name="obj">消息参数</param>
+		/// <exception cref="ArgumentNullException">发现有 null 参数</exception>
+		/// <returns>返回各对象的文本表现形式</returns>
+		public static string ToString_Ex (this object[] obj)
+		{
+			StringBuilder builder = new StringBuilder ();
+			for (int i = 0; i < obj.Length; i++)
+			{
+				if (obj[i] == null)
+				{
+					throw new ArgumentNullException ("message", string.Format ("传入的参数 message 的第 {0} 个成员为 null", i));
+				}
+				builder.Append (obj[i].ToString ());
+			}
+			return builder.ToString ();
+		}
+
+		/// <summary>
+		/// 读取 <see cref="System.Enum"/> 标记 <see cref="System.ComponentModel.DescriptionAttribute"/> 的值
+		/// </summary>
+		/// <param name="value">原始 <see cref="System.Enum"/> 值</param>
+		/// <returns></returns>
+		public static string GetDescription (this System.Enum value)
         {
             if (value == null)
             {
@@ -80,7 +100,7 @@ namespace Native.Csharp.Sdk.Cqp.Expand
 
             FieldInfo fieldInfo = value.GetType ().GetField (value.ToString ());
             DescriptionAttribute attribute = fieldInfo.GetCustomAttribute<DescriptionAttribute> (false);
-            return attribute.ToString ();
+            return attribute.Description;
         }
-    }
+	}
 }

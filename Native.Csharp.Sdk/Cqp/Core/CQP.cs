@@ -124,10 +124,10 @@ namespace Native.Csharp.Sdk.Cqp.Core
         public static extern int CQ_setGroupAddRequestV2 (int authCode, string identifying, int requestType, int responseType, IntPtr appendMsg);
 
         [DllImport (DllName, EntryPoint = "CQ_addLog")]
-        public static extern int CQ_addLog (int authCode, int priority, string type, IntPtr Msg);
+        public static extern int CQ_addLog (int authCode, int priority, string type, IntPtr msg);
 
         [DllImport (DllName, EntryPoint = "CQ_setFatal")]
-        public static extern int CQ_setFatal (int authCode, string errorMsg);
+        public static extern int CQ_setFatal (int authCode, IntPtr errorMsg);
 
         [DllImport (DllName, EntryPoint = "CQ_getGroupMemberInfoV2")]
         public static extern IntPtr CQ_getGroupMemberInfoV2 (int authCode, long groudId, long qqId, bool isCache);

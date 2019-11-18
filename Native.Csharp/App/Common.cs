@@ -40,6 +40,6 @@ namespace Native.Csharp.App
 		/// <summary>
 		/// 获取或设置当前 App 使用的 酷Q Api 接口实例
 		/// </summary>
-		public static CqApi CqApi { get; set; }
+		public static CQApi CqApi { get; set; }
 	}
 }
