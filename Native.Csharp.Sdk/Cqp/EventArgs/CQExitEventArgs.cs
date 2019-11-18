@@ -11,18 +11,18 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 1002
 	/// </summary>
-	public class CQStopEventArgs : CQEventEventArgs
+	public class CQExitEventArgs : CQEventEventArgs
 	{
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQStopEventArgs"/> 类的新实例
+		/// 初始化 <see cref="CQExitEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="id">事件ID</param>
 		/// <param name="type">类型</param>
 		/// <param name="name">名称</param>
 		/// <param name="function">函数名称</param>
 		/// <param name="priority">默认优先级</param>
-		public CQStopEventArgs (int id, int type, string name, string function, uint priority)
+		public CQExitEventArgs (int id, int type, string name, string function, uint priority)
 			: base (id, type, name, function, priority)
 		{
 		}

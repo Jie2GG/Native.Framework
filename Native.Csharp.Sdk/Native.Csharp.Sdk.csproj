@@ -84,12 +84,16 @@
     <Compile Include="Cqp\EventArgs\CQMenuEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQEventEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQPrivateMessageEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CQStartEventArgs.cs" />
+    <Compile Include="Cqp\EventArgs\CQStartupEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQStatusEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CQStopEventArgs.cs" />
+    <Compile Include="Cqp\EventArgs\CQExitEventArgs.cs" />
     <Compile Include="Cqp\Expand\BinaryReaderExpand.cs" />
     <Compile Include="Cqp\Expand\BinaryWriterExpand.cs" />
     <Compile Include="Cqp\Expand\SystemExpand.cs" />
+    <Compile Include="Cqp\Interface\ICQAppDisableEventHandler.cs" />
+    <Compile Include="Cqp\Interface\ICQAppEnableEventHandler.cs" />
+    <Compile Include="Cqp\Interface\ICQExitEventHandler.cs" />
+    <Compile Include="Cqp\Interface\ICQStartupEventHandler.cs" />
     <Compile Include="Cqp\Model\CQCode.cs" />
     <Compile Include="Cqp\Model\Discuss.cs" />
     <Compile Include="Cqp\Model\FriendInfo.cs" />
@@ -103,9 +107,7 @@
     <Compile Include="Cqp\Model\StrangerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cqp\Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
