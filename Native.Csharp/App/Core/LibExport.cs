@@ -138,18 +138,18 @@ namespace Native.Csharp.App.Core
 			 * Id: 2
 			 * Name: 群消息处理
 			 */
-			if (Common.UnityContainer.IsRegistered<IReceiveGroupMessage> ("群消息处理") == true)
+			if (Common.UnityContainer.IsRegistered<IGroupMessage> ("群消息处理") == true)
 			{
-				ReceiveGroupMessage_2 = Common.UnityContainer.Resolve<IReceiveGroupMessage> ("群消息处理").ReceiveGroupMessage;
+				ReceiveGroupMessage_2 = Common.UnityContainer.Resolve<IGroupMessage> ("群消息处理").ReceiveGroupMessage;
 			}
 			
 			/*
 			 * Id: 3
 			 * Name: 讨论组消息处理
 			 */
-			if (Common.UnityContainer.IsRegistered<IReceiveDiscussMessage> ("讨论组消息处理") == true)
+			if (Common.UnityContainer.IsRegistered<IDiscussMessage> ("讨论组消息处理") == true)
 			{
-				ReceiveDiscussMessage_3 = Common.UnityContainer.Resolve<IReceiveDiscussMessage> ("讨论组消息处理").ReceiveDiscussMessage;
+				ReceiveDiscussMessage_3 = Common.UnityContainer.Resolve<IDiscussMessage> ("讨论组消息处理").ReceiveDiscussMessage;
 			}
 			
 			/*
@@ -295,9 +295,11 @@ namespace Native.Csharp.App.Core
 		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveOnlineStatusMessage_1;
 		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveGroupPrivateMessage_1;
 		public static event EventHandler<CqPrivateMessageEventArgs> ReceiveDiscussPrivateMessage_1;
+		
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]
 		private static int Evnet__eventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)
 		{
+
 			CqPrivateMessageEventArgs args = new CqPrivateMessageEventArgs (1, "私聊消息处理", msgId, fromQQ, msg.ToString (_defaultEncoding));
 			if (subType == 11)
 			{

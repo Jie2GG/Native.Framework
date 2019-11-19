@@ -38,7 +38,12 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		public QQ FromQQ { get; private set; }
 
 		/// <summary>
-		/// 获取当前事件的被操作QQ
+		/// 获取一个值, 指示当前事件是否为全体禁言
+		/// </summary>
+		public bool IsAllBanSpeak { get; private set; }
+
+		/// <summary>
+		/// 获取当前事件的被操作QQ, 若 <see cref="IsAllBanSpeak"/> 是 <code>true</code> 
 		/// </summary>
 		public QQ BeingOperateQQ { get; private set; }
 
@@ -71,8 +76,17 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
-			this.BeingOperateQQ = new QQ (api, beingOperateQQ);
-			this.BanSpeakTimeSpan = TimeSpan.FromSeconds (duration);
+			this.IsAllBanSpeak = beingOperateQQ == 0;
+			if (!this.IsAllBanSpeak)
+			{
+				this.BeingOperateQQ = new QQ (api, beingOperateQQ);
+				this.BanSpeakTimeSpan = TimeSpan.FromSeconds (duration);
+			}
+			else
+			{
+				this.BeingOperateQQ = null;
+				this.BanSpeakTimeSpan = null;
+			}
 		}
 		#endregion
 	}

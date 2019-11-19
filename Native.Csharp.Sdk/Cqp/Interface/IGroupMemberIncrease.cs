@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
-	/// 酷Q讨论组消息接口
+	/// 酷Q群成员增加事件接口
 	/// <para/>
-	/// Type: 4
+	/// Type: 103
 	/// </summary>
-	public interface IReceiveDiscussMessage
+	public interface IGroupMemberIncrease
 	{
 		/// <summary>
-		/// 当在派生类中重写时, 处理 酷Q讨论组消息 回调
+		/// 当在派生类中重写时, 处理 酷Q群成员增加事件 回调
 		/// </summary>
 		/// <param name="sender">事件来源对象</param>
 		/// <param name="e">附加的事件参数</param>
-		void ReceiveDiscussMessage (object sender, CQDiscussMessageEventArgs e);
+		void GroupMemberIncrease (object sender, CQGroupMemberIncreaseEventArgs e);
 	}
 }

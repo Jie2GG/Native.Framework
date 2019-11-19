@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
-	/// 酷Q私聊消息事件接口
+	/// 酷Q群禁言事件接口
 	/// <para/>
-	/// Type: 21
+	/// Type: 104
 	/// </summary>
-	public interface IReceivePrivateMessage
+	public interface IGroupBanSpeak
 	{
 		/// <summary>
-		/// 当在派生类中重写时, 处理 酷Q私聊消息事件 回调
+		/// 当在派生类中重写时, 处理 酷Q群禁言事件 回调
 		/// </summary>
 		/// <param name="sender">事件来源对象</param>
 		/// <param name="e">附加的事件参数</param>
-		void PrivateMessageEventHandler (object sender, CQPrivateMessageEventArgs e);
+		void GroupBanSpeak (object sender, CQGroupBanSpeakEventeArgs e);
 	}
 }
