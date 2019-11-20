@@ -1,0 +1,111 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="$(ProjectDir)Lib\Newtonsoft.Json.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Newtonsoft.Json"#>
+<#@ import namespace="Newtonsoft.Json.Linq"#>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating"#>
+<#@ import namespace="EnvDTE" #>
+<#@ output extension=".log" #>
+<#
+	WriteLog (LogLevel.Info, "获取 Visual Studio 实例...");
+	// 获取 Visual Studio 实例
+	DTE dt = ((IServiceProvider)this.Host).GetService (typeof (DTE)) as DTE;
+	ProjectItem templateProjectItem = dt.Solution.FindProjectItem (this.Host.TemplateFile);
+#>
+<# 
+	WriteLog (LogLevel.Info, "读取 Json 文件...");
+	// 获取项目 Json 文件
+	string projectDir = Host.ResolveAssemblyReference ("$(ProjectDir)");
+	string targetName = Host.ResolveAssemblyReference ("$(TargetName)");
+	string filePath = string.Format("{0}{1}.json", projectDir, targetName);
+	JObject jsonRoot = null;
+	if (File.Exists (filePath) == true)
+	{
+		using (JsonTextReader reader = new JsonTextReader (new StreamReader (File.OpenRead (filePath), Encoding.UTF8)))
+		{
+			jsonRoot = JObject.Load (reader);
+		}
+	}
+	else 
+	{
+		WriteLog (LogLevel.Error, string.Format ("Json文件: {0}.json 读取失败, 请检查文件名称是否与程序集名称一致!", targetName));
+	}
+#>
+<# 
+	WriteLog (LogLevel.Info, "准备 CQEventExport.cs 文件元数据...");
+	// 解析 Event 节点
+	StringBuilder builder = new StringBuilder ();
+	builder.AppendLine ("using System;");
+	builder.AppendLine ("using System.Text;");
+	builder.AppendLine ("using System.Runtime.InteropServices;");
+	builder.AppendLine ("using Native.Csharp.Sdk.Cqp;");
+	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.EventArgs;");
+	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Interface;");
+	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Model;");
+	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Expand;");
+	builder.AppendLine ("using Unity;");
+	builder.AppendLine ();
+	builder.AppendLine ("namespace Native.Csharp.App.Export");
+	builder.AppendLine ("{");
+	builder.AppendLine (CurrentIndent );
+	builder.AppendLine ("}");
+	WriteFile (templateProjectItem, "CQEventExport.cs", builder.ToString ());
+#>
+<#+	
+	// 写文件方法
+	public void WriteFile (ProjectItem project, string fileName, string content)
+	{
+		try
+		{
+			// 获取当前 T4 模板的位置
+			string templateFileDir = Path.GetDirectoryName(this.Host.TemplateFile);
+			string targetFileName = Path.Combine (templateFileDir, fileName);
+
+			// 写入文件
+			File.WriteAllText(targetFileName, content);
+			// 将文件绑定到 CQExport.tt
+			project.ProjectItems.AddFromFile(targetFileName);
+		}
+		catch (Exception e)
+		{
+			WriteLog (LogLevel.Error, string.Format ("写入文件发生错误. {0}", e.Message));
+		}
+	}
+#>
+<#+
+	public enum LogLevel 
+	{
+		Info,
+		Wraning,
+		Error
+	}
+
+	public void WriteLog (LogLevel level, string msg)
+	{
+		StringBuilder builder = new StringBuilder ();
+		builder.Append ("[");
+		if (level == LogLevel.Info)
+		{
+			builder.Append ("信息");
+		}
+		else if (level == LogLevel.Wraning)
+		{
+			builder.Append ("警告");
+		}
+		else if (level == LogLevel.Error)
+		{
+			builder.Append ("错误");
+			this.Error (msg);
+		}
+		builder.AppendFormat (", {0}]: ", DateTime.Now.ToString ("HH:mm:ss"));
+		builder.Append (msg);
+		builder.AppendLine ();
+		this.Write (builder.ToString ());
+	}
+#>

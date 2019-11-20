@@ -36,7 +36,6 @@ namespace Native.Csharp.Sdk.Cqp
 		public CQLog (int authCode)
 		{
 			this._authCode = authCode;
-			this._logCache = new ConcurrentDictionary<string, string> ();
 		}
 		#endregion
 

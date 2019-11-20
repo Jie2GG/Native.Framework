@@ -29,13 +29,13 @@ namespace Native.Csharp.App.Event
             // 以下为 Json 文件中的 1001, 1002, 1003, 1004 事件的注入
 
             // 注入 Type=1001 的回调
-            container.RegisterType<ICqStartup, Event_CqStartup> ("酷Q启动事件");
+            // container.RegisterType<ICqStartup, Event_CqStartup> ("酷Q启动事件");
             // 注入 Type=1002 的回调
-            container.RegisterType<ICqExit, Event_CqExit> ("酷Q关闭事件");
+            // container.RegisterType<ICqExit, Event_CqExit> ("酷Q关闭事件");
             // 注入 Type=1003 的回调
-            container.RegisterType<ICqAppEnable, Event_CqAppEnable> ("应用已被启用");
+            // container.RegisterType<ICqAppEnable, Event_CqAppEnable> ("应用已被启用");
             // 注入 Type=1004 的回调
-            container.RegisterType<ICqAppDisable, Event_CqAppDisable> ("应用将被停用");
+            // container.RegisterType<ICqAppDisable, Event_CqAppDisable> ("应用将被停用");
         }
 
 		/// <summary>

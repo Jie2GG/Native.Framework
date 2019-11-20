@@ -35,12 +35,24 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public bool IsRegexMessage { get; private set; }
 
 		/// <summary>
-		/// 获取当前实例解析出的键值对消息
+		/// 获取当前实例解析出的正则消息键值对
 		/// </summary>
 		public Dictionary<string, string> PairsMessage { get; private set; }
 		#endregion
 
 		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="QQMessage"/> 类的新实例
+		/// </summary>
+		/// <param name="api">用于获取信息的实例</param>
+		/// <param name="id">消息ID</param>
+		/// <param name="msg">消息内容</param>
+		public QQMessage (CQApi api, int id, string msg)
+			: this (api, id, msg, false)
+		{
+
+		}
+
 		/// <summary>
 		/// 初始化 <see cref="QQMessage"/> 类的新实例
 		/// </summary>
