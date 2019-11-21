@@ -12,100 +12,397 @@
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating"#>
 <#@ import namespace="EnvDTE" #>
 <#@ output extension=".log" #>
-<#
-	WriteLog (LogLevel.Info, "获取 Visual Studio 实例...");
-	// 获取 Visual Studio 实例
-	DTE dt = ((IServiceProvider)this.Host).GetService (typeof (DTE)) as DTE;
-	ProjectItem templateProjectItem = dt.Solution.FindProjectItem (this.Host.TemplateFile);
-#>
 <# 
-	WriteLog (LogLevel.Info, "读取 Json 文件...");
-	// 获取项目 Json 文件
-	string projectDir = Host.ResolveAssemblyReference ("$(ProjectDir)");
-	string targetName = Host.ResolveAssemblyReference ("$(TargetName)");
-	string filePath = string.Format("{0}{1}.json", projectDir, targetName);
-	JObject jsonRoot = null;
-	if (File.Exists (filePath) == true)
+	Log.Initialize (this);
+	CQJsonReader.Initialize (this.Host);
+	if (CQJsonReader.IsReadSuccess)
 	{
-		using (JsonTextReader reader = new JsonTextReader (new StreamReader (File.OpenRead (filePath), Encoding.UTF8)))
-		{
-			jsonRoot = JObject.Load (reader);
-		}
-	}
-	else 
-	{
-		WriteLog (LogLevel.Error, string.Format ("Json文件: {0}.json 读取失败, 请检查文件名称是否与程序集名称一致!", targetName));
+		ParseJsonEventNode ();
+		ParseJsonMenuNode ();
+		ParseJsonStatusNode ();
+		ParseJsonAuthNode ();
 	}
 #>
-<# 
-	WriteLog (LogLevel.Info, "准备 CQEventExport.cs 文件元数据...");
-	// 解析 Event 节点
-	StringBuilder builder = new StringBuilder ();
-	builder.AppendLine ("using System;");
-	builder.AppendLine ("using System.Text;");
-	builder.AppendLine ("using System.Runtime.InteropServices;");
-	builder.AppendLine ("using Native.Csharp.Sdk.Cqp;");
-	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.EventArgs;");
-	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Interface;");
-	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Model;");
-	builder.AppendLine ("using Native.Csharp.Sdk.Cqp.Expand;");
-	builder.AppendLine ("using Unity;");
-	builder.AppendLine ();
-	builder.AppendLine ("namespace Native.Csharp.App.Export");
-	builder.AppendLine ("{");
-	builder.AppendLine (CurrentIndent );
-	builder.AppendLine ("}");
-	WriteFile (templateProjectItem, "CQEventExport.cs", builder.ToString ());
-#>
-<#+	
-	// 写文件方法
-	public void WriteFile (ProjectItem project, string fileName, string content)
+<#+
+	public void ParseJsonEventNode ()
 	{
-		try
-		{
-			// 获取当前 T4 模板的位置
-			string templateFileDir = Path.GetDirectoryName(this.Host.TemplateFile);
-			string targetFileName = Path.Combine (templateFileDir, fileName);
+		TemplateBuilder.Initialize (this.Host, "CQEventExport.cs");
 
-			// 写入文件
-			File.WriteAllText(targetFileName, content);
-			// 将文件绑定到 CQExport.tt
-			project.ProjectItems.AddFromFile(targetFileName);
-		}
-		catch (Exception e)
+		Log.Info ("添加引用库数据...");
+		TemplateBuilder.UsingItems.Add ("System");
+		TemplateBuilder.UsingItems.Add ("System.Text");
+		TemplateBuilder.UsingItems.Add ("System.Reflection");
+		TemplateBuilder.UsingItems.Add ("System.Runtime.InteropServices");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.App.Event");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.EventArgs");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Interface");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Model");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Expand");
+		TemplateBuilder.UsingItems.Add ("Unity");
+		TemplateBuilder.UsingItems.Add ("Unity.Injection");
+
+		TemplateBuilder.Namespace = "Native.Csharp.App.Export";
+
+		Log.Info ("添加构造函数...");
+		TemplateBuilder.WriteLine (0, "public class CQEventExport");
+		TemplateBuilder.WriteLine (0, "{");
+		TemplateBuilder.WriteLine (1, "#region --构造函数--");
+		TemplateBuilder.WriteLine (1, "/// <summary>");
+		TemplateBuilder.WriteLine (1, "/// 由托管环境初始化的 <see cref=\"CQEventExport\"/> 的新实例");
+		TemplateBuilder.WriteLine (1, "/// </summary>");
+		TemplateBuilder.WriteLine (1, "static CQEventExport ()");
+		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteLine (2, "// 初始化 Costura.Fody");
+		TemplateBuilder.WriteLine (2, "CosturaUtility.Initialize ();");
+		TemplateBuilder.WriteLine (2, "// 初始化依赖注入容器");
+		TemplateBuilder.WriteLine (2, "Common.UnityContainer = new UnityContainer ();");
+		TemplateBuilder.WriteLine (2, "// 程序开始调用方法进行注册");
+		TemplateBuilder.WriteLine (2, "Event_AppMain.Registbackcall (Common.UnityContainer);");
+		TemplateBuilder.WriteLine (2, "// 分发应用内事件");
+		//TemplateBuilder.WriteLine (2, "ResolveAppbackcall ();");
+		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1, "#endregion");
+
+		Log.Info ("添加 AppInfo 核心方法...");
+		TemplateBuilder.WriteLine (1, "#region --核心方法--");
+		TemplateBuilder.WriteLine (1, "/// <summary>");
+		TemplateBuilder.WriteLine (1, "/// 返回酷Q用于识别本应用的 AppID 和 ApiVer");
+		TemplateBuilder.WriteLine (1, "/// </summary>");
+		TemplateBuilder.WriteLine (1, "/// <returns>酷Q用于识别本应用的 AppID 和 ApiVer</returns>");
+		TemplateBuilder.WriteLine (1, "[DllExport (ExportName = \"AppInfo\", CallingConvention = CallingConvention.StdCall)]");
+		TemplateBuilder.WriteLine (1, "private static string AppInfo ()");
+		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteFormatLine (2, "return \"{0},{1}\";", CQJsonReader.GetApiVer (), this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1);
+		TemplateBuilder.WriteLine (1, "/// <summary>");
+		TemplateBuilder.WriteLine (1, "/// 接收应用 Authcode, 用于注册接口");
+		TemplateBuilder.WriteLine (1, "/// </summary>");
+		TemplateBuilder.WriteLine (1, "/// <param name=\"authCode\">酷Q应用验证码</param>");
+		TemplateBuilder.WriteLine (1, "/// <returns>返回注册结果给酷Q</returns>");
+		TemplateBuilder.WriteLine (1, "[DllExport (ExportName = \"Initialize\", CallingConvention = CallingConvention.StdCall)]");
+		TemplateBuilder.WriteLine (1, "private static int Initialize (int authCode)");
+		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQApi 实例");
+		TemplateBuilder.WriteFormatLine (2, "Common.UnityContainer.RegisterType<CQApi> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQLog 实例");
+		TemplateBuilder.WriteFormatLine (2, "Common.UnityContainer.RegisterType<CQLog> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteLine (2, "return 0;");
+		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1, "#endregion");
+
+		TemplateBuilder.WriteLine (0, "}");
+
+		TemplateBuilder.Finish ();
+	}
+#>
+<#+
+	public void ParseJsonMenuNode ()
+	{
+		TemplateBuilder.Initialize (this.Host, "CQMenuExport.cs");
+		TemplateBuilder.Namespace = "Native.Csharp.App.Export";
+		TemplateBuilder.Finish ();
+	}
+#>
+<#+
+	public void ParseJsonStatusNode ()
+	{
+		TemplateBuilder.Initialize (this.Host, "CQStatusExport.cs");
+		TemplateBuilder.Namespace = "Native.Csharp.App.Export";
+		TemplateBuilder.Finish ();
+	}
+#>
+<#+
+	public static void ParseJsonAuthNode ()
+	{
+	}
+#>
+<#+
+	/// <summary>
+	/// 文本模板编辑类
+	/// </summary>
+	public static class TemplateBuilder 
+	{
+		private static ProjectItem project = null;
+		private static StringBuilder fileContent = null;
+		private static string targetFileName = null;
+		private static string targetFilePath = null;
+
+		public static string Namespace { get; set; }
+		public static List<string> UsingItems { get; private set; }
+
+		/// <summary>
+		/// 初始化
+		/// </summary>
+		public static void Initialize (ITextTemplatingEngineHost host, string name)
 		{
-			WriteLog (LogLevel.Error, string.Format ("写入文件发生错误. {0}", e.Message));
+			Log.Info ("正在为文件: {0} 初始化模板编辑器...", name);
+			// 获取 Visual Studio 实例对象
+			DTE dt = ((IServiceProvider)host).GetService (typeof (DTE)) as DTE;
+			project = dt.Solution.FindProjectItem (host.TemplateFile);
+			
+
+			Log.Info ("确定文件保存位置...");
+			// 获取当前 T4 模板的位置
+			string templateFileDir = Path.GetDirectoryName(host.TemplateFile);
+			targetFileName = name;
+			targetFilePath = Path.Combine (templateFileDir, targetFileName);
+			fileContent = new StringBuilder ();
+			
+
+			// 初始化引用集合
+			UsingItems = new List<string> ();
+			Namespace = string.Empty;
+		}
+
+		/// <summary>
+		/// 写入字符串
+		/// </summary>
+		public static void Write (int tabCout, string value)
+		{
+			if (fileContent != null)
+			{
+				tabCout += 1;
+				for (int i = 0; i < tabCout; i++)
+				{
+					fileContent.Append ("\t");
+				}
+				fileContent.Append (value);
+			}
+		}
+
+		/// <summary>
+		/// 写入一行字符串
+		/// </summary>
+		public static void WriteLine (int tabCout)
+		{
+			Write (tabCout, Environment.NewLine);
+		}
+
+		/// <summary>
+		/// 写入一行字符串
+		/// </summary>
+		public static void WriteLine (int tabCout, string value)
+		{
+			Write (tabCout, value);
+			Write (0, Environment.NewLine);
+		}
+
+		/// <summary>
+		/// 写入格式字符串
+		/// </summary>
+		public static void WriteFormat (int tabCout, string format, params object[] args)
+		{
+			if (fileContent != null)
+			{
+				tabCout += 1;
+				for (int i = 0; i < tabCout; i++)
+				{
+					fileContent.Append ("\t");
+				}
+
+				fileContent.AppendFormat (format, args);
+			}
+		}
+
+		
+		/// <summary>
+		/// 写入一行格式化字符串
+		/// </summary>
+		public static void WriteFormatLine (int tabCout, string format, params object[] args)
+		{
+			WriteFormat (tabCout, format, args);
+			Write (0, Environment.NewLine);
+		}
+
+		/// <summary>
+		/// 结束写入并绑定文件到模板
+		/// </summary>
+		public static void Finish ()
+		{
+			if (fileContent != null)
+			{
+				try
+				{
+					// 插入命名空间
+					Log.Info ("写入命名空间...");
+					fileContent.Insert (0, Environment.NewLine);
+					fileContent.Insert (0, "{");
+					fileContent.Insert (0, Environment.NewLine);
+					fileContent.Insert (0, string.Format ("namespace {0}", Namespace));
+					fileContent.Insert (0, Environment.NewLine);
+					fileContent.AppendLine ("}");
+					// 组合引用
+					Log.Info ("写入引用列表...");
+					UsingItems.Reverse ();
+					foreach (string item in UsingItems)
+					{
+						fileContent.Insert (0, string.Format ("using {0};{1}", item, Environment.NewLine));
+					}
+
+					// 写入头注释
+					Log.Info ("写入文件头注释...");
+					fileContent.Insert (0, string.Format (" */{0}", Environment.NewLine));
+					fileContent.Insert (0, string.Format (" * 此文件由T4引擎自动生成, 请勿修改此文件中的代码!{0}", Environment.NewLine));
+					fileContent.Insert (0, string.Format ("/*{0}", Environment.NewLine));				
+
+					Log.Info ("写入文件: {0} 并绑定模板...", targetFileName);
+					// 将数据写入文件
+					File.WriteAllText (targetFilePath, fileContent.ToString ());
+
+					// 将文件绑定到当前模板下
+					project.ProjectItems.AddFromFile (targetFilePath);
+				}
+				catch (Exception e)
+				{
+					Log.Error ("文件写入失败! {0}{1}{2}", e.Message, Environment.NewLine, e.StackTrace);
+				}
+			}
 		}
 	}
 #>
 <#+
-	public enum LogLevel 
+	/// <summary>
+	/// 酷Q的Json读取类
+	/// </summary>
+	public static class CQJsonReader
 	{
-		Info,
-		Wraning,
-		Error
-	}
+		private static JObject root = null;
 
-	public void WriteLog (LogLevel level, string msg)
+		/// <summary>
+		/// 获取一个值, 指示 Json 文件是否读取成功
+		/// </summary>
+		public static bool IsReadSuccess { get; private set; }
+
+		/// <summary>
+		/// 初始化
+		/// </summary>
+		public static void Initialize (ITextTemplatingEngineHost host)
+		{
+			Log.Info ("获取项目基本信息...");
+			string projectDir = host.ResolveAssemblyReference ("$(ProjectDir)");
+			Log.Info ("项目目录: {0}", projectDir);
+			string targetName = host.ResolveAssemblyReference ("$(TargetName)");
+			Log.Info ("项目名称: {0}", targetName);
+			string filePath = Path.Combine (projectDir, string.Format ("{0}.json", targetName));
+			Log.Info ("Json路径: {0}", filePath);
+			if (File.Exists (filePath) == true)
+			{
+				try
+				{
+					Log.Info ("正在读取文件...");
+					using (JsonTextReader reader = new JsonTextReader (new StreamReader (File.OpenRead (filePath), Encoding.UTF8)))
+					{
+						root = JObject.Load (reader);
+						IsReadSuccess = true;
+					}
+				}
+				catch (Exception e)
+				{
+					Log.Error ("文件读取失败! {0}", e.Message);
+				}
+			}
+			else 
+			{
+				Log.Error ("请检查Json文件名是否与项目程序集名称一致!");
+			}
+		}
+
+		public static int GetApiVer ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 ApiVer 信息...");
+				return root.Value<int> ("apiver");
+			}
+			return 0;
+		}
+
+		/// <summary>
+		/// 获取 event 节点信息
+		/// </summary>
+		public static IEnumerable<JObject> GetEventNode ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 Event 节点...");
+				return root.Values<JObject> ("event");
+			}
+			return null;
+		}
+	}
+#>
+<#+
+	/// <summary>
+	/// 日志类
+	/// </summary>
+	public static class Log 
 	{
-		StringBuilder builder = new StringBuilder ();
-		builder.Append ("[");
-		if (level == LogLevel.Info)
+		private static TextTransformation textTransform;
+
+		public const string INFO = "信息";
+		public const string WARNING = "警告";
+		public const string ERROR = "错误";
+
+		/// <summary>
+		/// 初始化
+		/// </summary>
+		public static void Initialize (TextTransformation transform)
 		{
-			builder.Append ("信息");
+			textTransform = transform;
 		}
-		else if (level == LogLevel.Wraning)
+
+		/// <summary>
+		/// 信息
+		/// </summary>
+		public static void Info (string format, params object[] args)
 		{
-			builder.Append ("警告");
+			if (textTransform != null)
+			{
+				StringBuilder builder = new	StringBuilder ();
+				builder.AppendFormat (format, args);
+				WriteLog (INFO, builder.ToString ());
+			}
 		}
-		else if (level == LogLevel.Error)
+
+		/// <summary>
+		/// 警告
+		/// </summary>
+		public static void Warning (string format, params object[] args)
 		{
-			builder.Append ("错误");
-			this.Error (msg);
+			if (textTransform != null)
+			{
+				StringBuilder builder = new	StringBuilder ();
+				builder.AppendFormat (format, args);
+				WriteLog (WARNING, builder.ToString ());
+				textTransform.Warning (builder.ToString ());
+			}
 		}
-		builder.AppendFormat (", {0}]: ", DateTime.Now.ToString ("HH:mm:ss"));
-		builder.Append (msg);
-		builder.AppendLine ();
-		this.Write (builder.ToString ());
+
+		/// <summary>
+		/// 错误
+		/// </summary>
+		public static void Error (string format, params object[] args)
+		{
+			if (textTransform != null)
+			{
+				StringBuilder builder = new	StringBuilder ();
+				builder.AppendFormat (format, args);
+				WriteLog (ERROR, builder.ToString ());
+				textTransform.Error (builder.ToString ());
+			}
+		}
+
+		private static void WriteLog (string type, string msg)
+		{
+			if (textTransform != null)
+			{
+				StringBuilder builder = new StringBuilder ();
+				builder.AppendFormat ("[{0}],{1}: {2}", type, DateTime.Now.ToString ("HH:mm:ss"), msg);
+				builder.AppendLine ();
+				textTransform.Write (builder.ToString ());
+			}
+		}
 	}
 #>
