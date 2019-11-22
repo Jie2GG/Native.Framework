@@ -26,13 +26,23 @@ namespace Native.Csharp.App.Export
 		{	
 			// 初始化 Costura.Fody	
 			CosturaUtility.Initialize ();	
-			// 初始化依赖注入容器	
-			Common.UnityContainer = new UnityContainer ();	
+			
+			Type type = typeof (App.AppInfo);	// 反射初始化容器	
+			type.GetProperty ("Id", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { "Native.Csharp" });	
+			type.GetProperty ("ResultCode", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { 1 });	
+			type.GetProperty ("ApiVersion", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { 9 });	
+			type.GetProperty ("Name", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { "酷Q样例应用" });	
+			type.GetProperty ("Version", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { new Version ("1.0.0") });	
+			type.GetProperty ("VersionId", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { 1 });	
+			type.GetProperty ("Author", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { "Example" });	
+			type.GetProperty ("Description", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { "酷Q样例应用(V9应用机制)" });	
+			type.GetProperty ("UnityContainer", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { new UnityContainer () });	
+				
 			// 程序开始调用方法进行注册	
-			Event_AppMain.Registbackcall (Common.UnityContainer);	
-			// 分发应用内事件	
+			Event_AppMain.Registbackcall (App.AppInfo.UnityContainer);	
 		}	
 		#endregion	
+		
 		#region --核心方法--	
 		/// <summary>	
 		/// 返回酷Q用于识别本应用的 AppID 和 ApiVer	
@@ -53,10 +63,38 @@ namespace Native.Csharp.App.Export
 		private static int Initialize (int authCode)	
 		{	
 			// 向容器注册一个 CQApi 实例	
-			Common.UnityContainer.RegisterType<CQApi> ("Native.Csharp", new InjectionConstructor(authCode));	
+			App.AppInfo.UnityContainer.RegisterType<CQApi> ("Native.Csharp", new InjectionConstructor(authCode));	
 			// 向容器注册一个 CQLog 实例	
-			Common.UnityContainer.RegisterType<CQLog> ("Native.Csharp", new InjectionConstructor(authCode));	
+			App.AppInfo.UnityContainer.RegisterType<CQLog> ("Native.Csharp", new InjectionConstructor(authCode));	
+			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
+			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
 			return 0;	
+		}	
+		#endregion	
+		
+		#region --私有方法--	
+		/// <summary>	
+		/// 全局异常捕获, 用于捕获开发者未处理的异常, 此异常将回弹至酷Q进行处理	
+		/// </summary>	
+		/// <param name="sender">事件来源对象</param>	
+		/// <param name="e">附加的事件参数</param>	
+		private static void CurrentDomain_UnhandledException (object sender, UnhandledExceptionEventArgs e)	
+		{	
+			Exception ex = e.ExceptionObject as Exception;	
+			if (ex != null)	
+			{	
+				StringBuilder innerLog = new StringBuilder ();	
+				innerLog.AppendLine ("发现未处理的异常!");	
+				innerLog.AppendLine (ex.ToString ());	
+				App.AppInfo.CQLog.SetFatalMessage (innerLog.ToString ());	
+			}	
+		}	
+		/// <summary>	
+		/// 读取容器中的注册项, 进行事件分发	
+		/// </summary>	
+		private static void ResolveBackcall ()	
+		{	
 		}	
 		#endregion	
 	}	

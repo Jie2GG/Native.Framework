@@ -44,9 +44,10 @@
 
 		TemplateBuilder.Namespace = "Native.Csharp.App.Export";
 
-		Log.Info ("添加构造函数...");
 		TemplateBuilder.WriteLine (0, "public class CQEventExport");
 		TemplateBuilder.WriteLine (0, "{");
+
+		Log.Info ("添加构造函数...");
 		TemplateBuilder.WriteLine (1, "#region --构造函数--");
 		TemplateBuilder.WriteLine (1, "/// <summary>");
 		TemplateBuilder.WriteLine (1, "/// 由托管环境初始化的 <see cref=\"CQEventExport\"/> 的新实例");
@@ -55,14 +56,23 @@
 		TemplateBuilder.WriteLine (1, "{");
 		TemplateBuilder.WriteLine (2, "// 初始化 Costura.Fody");
 		TemplateBuilder.WriteLine (2, "CosturaUtility.Initialize ();");
-		TemplateBuilder.WriteLine (2, "// 初始化依赖注入容器");
-		TemplateBuilder.WriteLine (2, "Common.UnityContainer = new UnityContainer ();");
+		TemplateBuilder.WriteLine (2);
+		TemplateBuilder.WriteLine (2, "Type type = typeof (App.AppInfo);\t// 反射初始化容器");
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"Id\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ \"{0}\" }});", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"ResultCode\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ {0} }});", CQJsonReader.GetResultCode ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"ApiVersion\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ {0} }});", CQJsonReader.GetApiVer ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"Name\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ \"{0}\" }});", CQJsonReader.GetName ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"Version\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ new Version (\"{0}\") }});", CQJsonReader.GetVersion ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"VersionId\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ {0} }});", CQJsonReader.GetVersionId ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"Author\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ \"{0}\" }});", CQJsonReader.GetAuthor ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"Description\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ \"{0}\" }});", CQJsonReader.GetDescription ());
+		TemplateBuilder.WriteFormatLine (2, "type.GetProperty (\"UnityContainer\", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] {{ new UnityContainer () }});");
+		TemplateBuilder.WriteLine (2, "");
 		TemplateBuilder.WriteLine (2, "// 程序开始调用方法进行注册");
-		TemplateBuilder.WriteLine (2, "Event_AppMain.Registbackcall (Common.UnityContainer);");
-		TemplateBuilder.WriteLine (2, "// 分发应用内事件");
-		//TemplateBuilder.WriteLine (2, "ResolveAppbackcall ();");
+		TemplateBuilder.WriteLine (2, "Event_AppMain.Registbackcall (App.AppInfo.UnityContainer);");
 		TemplateBuilder.WriteLine (1, "}");
 		TemplateBuilder.WriteLine (1, "#endregion");
+		TemplateBuilder.WriteLine (1);
 
 		Log.Info ("添加 AppInfo 核心方法...");
 		TemplateBuilder.WriteLine (1, "#region --核心方法--");
@@ -85,15 +95,45 @@
 		TemplateBuilder.WriteLine (1, "private static int Initialize (int authCode)");
 		TemplateBuilder.WriteLine (1, "{");
 		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQApi 实例");
-		TemplateBuilder.WriteFormatLine (2, "Common.UnityContainer.RegisterType<CQApi> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterType<CQApi> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
 		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQLog 实例");
-		TemplateBuilder.WriteFormatLine (2, "Common.UnityContainer.RegisterType<CQLog> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterType<CQLog> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteLine (2, "// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理");
+		TemplateBuilder.WriteLine (2, "AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;");
+		TemplateBuilder.WriteLine (2, "// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。");
 		TemplateBuilder.WriteLine (2, "return 0;");
 		TemplateBuilder.WriteLine (1, "}");
 		TemplateBuilder.WriteLine (1, "#endregion");
+		TemplateBuilder.WriteLine (1);
+		TemplateBuilder.WriteLine (1, "#region --私有方法--");
+		TemplateBuilder.WriteLine (1, "/// <summary>");
+		TemplateBuilder.WriteLine (1, "/// 全局异常捕获, 用于捕获开发者未处理的异常, 此异常将回弹至酷Q进行处理");
+		TemplateBuilder.WriteLine (1, "/// </summary>");
+		TemplateBuilder.WriteLine (1, "/// <param name=\"sender\">事件来源对象</param>");
+		TemplateBuilder.WriteLine (1, "/// <param name=\"e\">附加的事件参数</param>");
+		TemplateBuilder.WriteLine (1, "private static void CurrentDomain_UnhandledException (object sender, UnhandledExceptionEventArgs e)");
+		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteLine (2, "Exception ex = e.ExceptionObject as Exception;");
+		TemplateBuilder.WriteLine (2, "if (ex != null)");
+		TemplateBuilder.WriteLine (2, "{");
+		TemplateBuilder.WriteLine (3, "StringBuilder innerLog = new StringBuilder ();");
+		TemplateBuilder.WriteLine (3, "innerLog.AppendLine (\"发现未处理的异常!\");");
+		TemplateBuilder.WriteLine (3, "innerLog.AppendLine (ex.ToString ());");
+		TemplateBuilder.WriteLine (3, "App.AppInfo.CQLog.SetFatalMessage (innerLog.ToString ());");
+		TemplateBuilder.WriteLine (2, "}");
+		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1, "/// <summary>");
+		TemplateBuilder.WriteLine (1, "/// 读取容器中的注册项, 进行事件分发");
+		TemplateBuilder.WriteLine (1, "/// </summary>");
+		TemplateBuilder.WriteLine (1, "private static void ResolveBackcall ()");
+		TemplateBuilder.WriteLine (1, "{");
+		foreach	(var item in CQJsonReader.GetEventNode ())
+		{
 
+		}
+		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1, "#endregion");
 		TemplateBuilder.WriteLine (0, "}");
-
 		TemplateBuilder.Finish ();
 	}
 #>
@@ -309,6 +349,22 @@
 			}
 		}
 
+		/// <summary>
+		/// 获取返回码
+		/// </summary>
+		public static int GetResultCode ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 ResultCode 信息...");
+				return root.Value<int> ("ret");
+			}
+			return -1;
+		}
+
+		/// <summary>
+		/// 获取Api版本
+		/// </summary>
 		public static int GetApiVer ()
 		{
 			if (root != null)
@@ -316,7 +372,72 @@
 				Log.Info ("获取 ApiVer 信息...");
 				return root.Value<int> ("apiver");
 			}
-			return 0;
+			return -1;
+		}
+
+		/// <summary>
+		/// 获取应用名称
+		/// </summary>
+		public static string GetName ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 Name 信息...");
+				return root.Value<string> ("name");
+			}
+			return string.Empty;
+		}
+
+		/// <summary>
+		/// 获取应用版本
+		/// </summary>
+		public static string GetVersion ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 Version 信息...");
+				return root.Value<string> ("version");
+			}
+			return string.Empty;
+		}
+
+		/// <summary>
+		/// 获取应用顺序版本
+		/// </summary>
+		public static int GetVersionId ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 VersionId 信息...");
+				return root.Value<int> ("version_id");
+			}
+			return -1;
+		}
+
+		/// <summary>
+		/// 获取应用作者
+		/// </summary>
+		public static string GetAuthor ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 author 信息...");
+				return root.Value<string> ("author");
+			}
+			return string.Empty;
+		}
+
+		/// <summary>
+		/// 获取应用说明
+		/// </summary>
+		public static string GetDescription ()
+		{
+			if (root != null)
+			{
+				Log.Info ("获取 description 信息...");
+				return root.Value<string> ("description");
+			}
+			return string.Empty;
 		}
 
 		/// <summary>

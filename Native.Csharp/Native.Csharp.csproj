@@ -78,7 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Common.cs" />
+    <Compile Include="App\AppInfo.cs" />
     <Compile Include="App\Event\Event_AppMain.cs" />
     <Compile Include="App\Export\CQEventExport.cs">
       <DependentUpon>CQExport.tt</DependentUpon>
