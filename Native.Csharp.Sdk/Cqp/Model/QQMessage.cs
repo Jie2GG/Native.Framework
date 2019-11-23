@@ -52,7 +52,6 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		{
 
 		}
-
 		/// <summary>
 		/// 初始化 <see cref="QQMessage"/> 类的新实例
 		/// </summary>

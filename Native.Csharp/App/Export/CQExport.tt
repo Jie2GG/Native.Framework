@@ -260,12 +260,21 @@
 			TemplateBuilder.WriteLine (1, "#region --导出方法--");
 			foreach (JToken token in node)
 			{
+
+				bool isRegex = false;
+				JObject temp = token as JObject;
+				if  (temp != null)
+				{
+					isRegex = temp.ContainsKey ("regex");
+				}
+
 				TemplateBuilder.WriteLine (1, "/*");
 				TemplateBuilder.WriteFormatLine (1, " * Id: {0}", token["id"].Value<int> ());
 				TemplateBuilder.WriteFormatLine (1, " * Type: {0}", token["type"].Value<int> ());
 				TemplateBuilder.WriteFormatLine (1, " * Name: {0}", token["name"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (1, " * Function: {0}", token["function"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (1, " * Priority: {0}", token["priority"].Value<int> ());
+				TemplateBuilder.WriteFormatLine (1, " * IsRegex: {0}", isRegex);
 				TemplateBuilder.WriteLine (1, " */");
 
 				Log.Info ("导出 {0} 函数...", token["function"].Value<string> ());
@@ -330,7 +339,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), {5}, App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -343,7 +352,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQGroupMessageEventArgs args = new CQGroupMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQGroupMessageEventArgs args = new CQGroupMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), {5}, App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -356,7 +365,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), {5}, App.AppInfo.CQApi);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");

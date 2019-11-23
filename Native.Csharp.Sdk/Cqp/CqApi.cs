@@ -1,8 +1,4 @@
-﻿using Native.Csharp.Sdk.Cqp.Core;
-using Native.Csharp.Sdk.Cqp.Enum;
-using Native.Csharp.Sdk.Cqp.Expand;
-using Native.Csharp.Sdk.Cqp.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+using Native.Csharp.Sdk.Cqp.Core;
+using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Expand;
+using Native.Csharp.Sdk.Cqp.Model;
 
 namespace Native.Csharp.Sdk.Cqp
 {

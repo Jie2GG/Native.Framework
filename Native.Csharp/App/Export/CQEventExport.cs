@@ -290,6 +290,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 私聊消息处理	
 		 * Function: _eventPrivateMsg	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQPrivateMessageEventArgs> Event_eventPrivateMsgHandler;	
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]	
@@ -297,7 +298,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventPrivateMsgHandler != null)	
 			{	
-				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);	
+				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
 				Event_eventPrivateMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -309,6 +310,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群消息处理	
 		 * Function: _eventGroupMsg	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupMessageEventArgs> Event_eventGroupMsgHandler;	
 		[DllExport (ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]	
@@ -316,7 +318,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupMsgHandler != null)	
 			{	
-				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);	
+				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
 				Event_eventGroupMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -328,6 +330,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 讨论组消息处理	
 		 * Function: _eventDiscussMsg	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQDiscussMessageEventArgs> Event_eventDiscussMsgHandler;	
 		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]	
@@ -335,7 +338,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventDiscussMsgHandler != null)	
 			{	
-				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), App.AppInfo.CQApi);	
+				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
 				Event_eventDiscussMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -347,6 +350,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群文件上传事件处理	
 		 * Function: _eventGroupUpload	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupUploadEventArgs> Event_eventGroupUploadHandler;	
 		[DllExport (ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]	
@@ -366,6 +370,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群管理变动事件处理	
 		 * Function: _eventSystem_GroupAdmin	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupManageChangeEventArgs> Event_eventSystem_GroupAdminHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]	
@@ -385,6 +390,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群成员减少事件处理	
 		 * Function: _eventSystem_GroupMemberDecrease	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupMemberDecreaseEventArgs> Event_eventSystem_GroupMemberDecreaseHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]	
@@ -404,6 +410,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群成员增加事件处理	
 		 * Function: _eventSystem_GroupMemberIncrease	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupMemberIncreaseEventArgs> Event_eventSystem_GroupMemberIncreaseHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]	
@@ -423,6 +430,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群禁言事件处理	
 		 * Function: _eventSystem_GroupBan	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupBanSpeakEventArgs> Event_eventSystem_GroupBanHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupBan", CallingConvention = CallingConvention.StdCall)]	
@@ -442,6 +450,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 好友已添加事件处理	
 		 * Function: _eventFriend_Add	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQFriendAddEventArgs> Event_eventFriend_AddHandler;	
 		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]	
@@ -461,6 +470,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 好友添加请求处理	
 		 * Function: _eventRequest_AddFriend	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQFriendAddRequestEventArgs> Event_eventRequest_AddFriendHandler;	
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]	
@@ -480,6 +490,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 群添加请求处理	
 		 * Function: _eventRequest_AddGroup	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQGroupAddRequestEventArgs> Event_eventRequest_AddGroupHandler;	
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]	
@@ -499,6 +510,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 酷Q启动事件	
 		 * Function: _eventStartup	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQStartupEventArgs> Event_eventStartupHandler;	
 		[DllExport (ExportName = "_eventStartup", CallingConvention = CallingConvention.StdCall)]	
@@ -518,6 +530,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 酷Q关闭事件	
 		 * Function: _eventExit	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQExitEventArgs> Event_eventExitHandler;	
 		[DllExport (ExportName = "_eventExit", CallingConvention = CallingConvention.StdCall)]	
@@ -537,6 +550,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 应用已被启用	
 		 * Function: _eventEnable	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQAppEnableEventArgs> Event_eventEnableHandler;	
 		[DllExport (ExportName = "_eventEnable", CallingConvention = CallingConvention.StdCall)]	
@@ -556,6 +570,7 @@ namespace Native.Csharp.App.Export
 		 * Name: 应用将被停用	
 		 * Function: _eventDisable	
 		 * Priority: 30000	
+		 * IsRegex: False	
 		 */	
 		public static event EventHandler<CQAppDisableEventArgs> Event_eventDisableHandler;	
 		[DllExport (ExportName = "_eventDisable", CallingConvention = CallingConvention.StdCall)]	

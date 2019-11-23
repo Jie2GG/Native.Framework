@@ -57,12 +57,13 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="fromAnonymous">来源匿名</param>
 		/// <param name="msg">消息内容</param>
+		/// <param name="isRegex">是否正则消息</param>
 		/// <param name="api">接口Api实例</param>
-		public CQGroupMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, CQApi api)
+		public CQGroupMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, bool isRegex, CQApi api)
 			: base (id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupMessageType)subType;
-			this.Message = new QQMessage (api, msgId, msg);
+			this.Message = new QQMessage (api, msgId, msg, isRegex);
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
 			this.FromAnonymous = new GroupMemberAnonymousInfo (fromAnonymous);

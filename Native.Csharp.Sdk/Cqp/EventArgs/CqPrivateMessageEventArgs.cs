@@ -45,13 +45,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="msgId">消息ID</param>
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="msg">消息内容</param>
+		/// <param name="isRegex">是否为正则消息</param>
 		/// <param name="api">接口API实例</param>
-		public CQPrivateMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromQQ, string msg, CQApi api)
+		public CQPrivateMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromQQ, string msg, bool isRegex, CQApi api)
 			: base (id, type, name, function, priority)
 		{
 			this.SubType = (CQPrviateMessageType)subType;
 			this.FromQQ = new QQ (api, fromQQ);
-			this.Message = new QQMessage (api, msgId, msg);
+			this.Message = new QQMessage (api, msgId, msg, isRegex);
 		}
 		#endregion
 	}

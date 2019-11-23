@@ -123,9 +123,7 @@
     </Content>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App\Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport" />
   <ImportGroup Label=".NET DllExport" />
