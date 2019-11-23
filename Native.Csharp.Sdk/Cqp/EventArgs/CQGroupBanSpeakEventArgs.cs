@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 104
 	/// </summary>
-	public class CQGroupBanSpeakEventeArgs : CQEventEventArgs
+	public class CQGroupBanSpeakEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -55,7 +55,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQGroupBanSpeakEventeArgs"/> 类的新实例
+		/// 初始化 <see cref="CQGroupBanSpeakEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="id">事件Id</param>
 		/// <param name="type">事件类型</param>
@@ -69,7 +69,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="beingOperateQQ">被操作QQ</param>
 		/// <param name="duration">禁言时长, 单位: 秒</param>
 		/// <param name="api">接口Api实例</param>
-		public CQGroupBanSpeakEventeArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration, CQApi api)
+		public CQGroupBanSpeakEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration, CQApi api)
 			: base (id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupBanSpeakType)subType;

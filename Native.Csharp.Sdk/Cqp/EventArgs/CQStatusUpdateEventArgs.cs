@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Native.Csharp.Sdk.Cqp.EventArgs
+{
+	/// <summary>
+	/// 提供用于描述酷Q悬浮窗状态更新事件参数的类
+	/// </summary>
+	public class CQStatusUpdateEventArgs : CQStatusEventArgs
+	{
+		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="CQStatusUpdateEventArgs"/> 类的新实例
+		/// </summary>
+		/// <param name="id">悬浮窗id</param>
+		/// <param name="name">名称</param>
+		/// <param name="title">英文名称</param>
+		/// <param name="function">函数名称</param>
+		/// <param name="period">更新间隔</param>
+		public CQStatusUpdateEventArgs (int id, string name, string title, string function, long period)
+			: base (id, name, title, function, period)
+		{
+		} 
+		#endregion
+	}
+}

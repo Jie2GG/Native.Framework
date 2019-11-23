@@ -1,5 +1,4 @@
 ﻿using Native.Csharp.Sdk.Cqp.EventArgs;
-using Native.Csharp.Sdk.Cqp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +8,15 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.Interface
 {
 	/// <summary>
-	/// 酷Q更新状态事件接口
+	/// 酷Q调用菜单事件接口
 	/// </summary>
-	public interface IUpdateStatus
+	public interface IMenuCall
 	{
 		/// <summary>
-		/// 当在派生类中重写时, 处理 酷Q更新状态事件 回调
+		/// 当在派生类中重写时, 处理 酷Q调用菜单事件 回调
 		/// </summary>
 		/// <param name="sender">事件来源对象</param>
 		/// <param name="e">附加的事件参数</param>
-		/// <returns>返回用于展示的 <see cref="CQFloatWindow"/> 对象</returns>
-		CQFloatWindow UpdateStatus (object sender, CQStatusEventArgs e);
+		void MenuCall (object sender, CQMenuCallEventArgs e);
 	}
 }

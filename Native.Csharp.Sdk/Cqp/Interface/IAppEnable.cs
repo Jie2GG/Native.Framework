@@ -19,6 +19,6 @@ namespace Native.Csharp.Sdk.Cqp.Interface
 		/// </summary>
 		/// <param name="sender">事件来源对象</param>
 		/// <param name="e">附加的事件参数</param>
-		void CQAppEnable (object sender, CQAppEnableEventArgs e);
+		void AppEnable (object sender, CQAppEnableEventArgs e);
 	}
 }
