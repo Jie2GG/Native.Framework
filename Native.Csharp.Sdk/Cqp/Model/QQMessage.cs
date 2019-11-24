@@ -66,7 +66,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				throw new ArgumentNullException ("api");
 			}
 
-			if (id < 10000)
+			if (id < 0)
 			{
 				throw new ArgumentOutOfRangeException ("id");
 			}
