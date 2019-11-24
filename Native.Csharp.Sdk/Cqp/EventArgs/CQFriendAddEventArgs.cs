@@ -52,7 +52,27 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.SubType = (CQFriendAddType)subType;
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromQQ = new QQ (api, fromQQ);
-		} 
+		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
+			builder.AppendFormat ("来源QQ: {0}", this.FromQQ.Id);
+			return builder.ToString ();
+		}
 		#endregion
 	}
 }

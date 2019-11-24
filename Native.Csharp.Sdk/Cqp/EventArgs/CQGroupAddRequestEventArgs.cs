@@ -64,7 +64,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="msg">附加消息</param>
 		/// <param name="responseFlag">反馈标识</param>
 		/// <param name="api"></param>
-		public CQGroupAddRequestEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag, CQApi api) 
+		public CQGroupAddRequestEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag, CQApi api)
 			: base (id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupAddRequestType)subType;
@@ -73,7 +73,29 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.FromQQ = new QQ (api, fromQQ);
 			this.AppendMessage = msg;
 			this.ResponseFlag = responseFlag;
-		} 
+		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
+			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
+			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
+			builder.AppendFormat ("附加消息: {0}", this.AppendMessage);
+			return builder.ToString ();
+		}
 		#endregion
 	}
 }

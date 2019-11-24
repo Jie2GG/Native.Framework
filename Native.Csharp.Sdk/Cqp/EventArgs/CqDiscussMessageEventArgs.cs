@@ -79,7 +79,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (this.FromDiscuss.ToString ());
 			builder.AppendLine (this.FromQQ.ToString ());
-			builder.AppendLine (this.Message.ToString ());
+			builder.Append (this.Message.ToString ());
 			return builder.ToString ();
 		}
 		#endregion

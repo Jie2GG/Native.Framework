@@ -23,7 +23,24 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		public CQStatusUpdateEventArgs (int id, string name, string title, string function, long period)
 			: base (id, name, title, function, period)
 		{
-		} 
+		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("标题: {0}", this.Title));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendFormat ("刷新间隔: {0}", this.Period);
+			return builder.ToString ();
+		}
 		#endregion
 	}
 }

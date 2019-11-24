@@ -40,7 +40,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <summary>
 		/// 获取当前事件被操作的QQ
 		/// </summary>
-		public QQ BeingOperateAccount { get; private set; }
+		public QQ BeingOperateQQ { get; private set; }
 		#endregion
 
 		#region --构造函数--
@@ -65,7 +65,29 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
-			this.BeingOperateAccount = new QQ (api, beingOperateQQ);
+			this.BeingOperateQQ = new QQ (api, beingOperateQQ);
+		}
+		#endregion
+
+		#region --公开函数--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
+			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
+			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
+			builder.AppendFormat ("被操作QQ: {0}", this.BeingOperateQQ.Id);
+			return builder.ToString ();
 		}
 		#endregion
 	}

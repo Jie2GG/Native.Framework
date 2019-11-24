@@ -43,7 +43,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		public bool IsAllBanSpeak { get; private set; }
 
 		/// <summary>
-		/// 获取当前事件的被操作QQ, 若 <see cref="IsAllBanSpeak"/> 是 <code>true</code> 
+		/// 获取当前事件的被操作QQ, 若 <see cref="IsAllBanSpeak"/> 是 <code>false</code> 则为 null
 		/// </summary>
 		public QQ BeingOperateQQ { get; private set; }
 
@@ -87,6 +87,34 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 				this.BeingOperateQQ = null;
 				this.BanSpeakTimeSpan = null;
 			}
+		}
+		#endregion
+
+		#region --公开函数--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
+			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
+			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
+			builder.AppendFormat ("全体禁言: {0}", this.IsAllBanSpeak);
+			if (!this.IsAllBanSpeak)
+			{
+				builder.AppendLine ();
+				builder.AppendLine (string.Format ("被操作QQ: {0}", this.BeingOperateQQ.Id));
+				builder.AppendFormat ("禁言时常: {0}", this.BanSpeakTimeSpan);
+			}
+			return builder.ToString ();
 		}
 		#endregion
 	}

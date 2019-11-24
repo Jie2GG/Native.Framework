@@ -40,7 +40,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
 			builder.AppendLine (string.Format ("名称: {0}", this.Name));
 			builder.AppendLine (string.Format ("函数: {0}", this.Function));
-			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendFormat ("优先级: {0}", this.Priority);
 			return builder.ToString ();
 		}
 		#endregion

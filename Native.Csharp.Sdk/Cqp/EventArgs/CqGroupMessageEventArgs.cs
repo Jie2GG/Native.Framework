@@ -32,6 +32,11 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		public QQ FromQQ { get; private set; }
 
 		/// <summary>
+		/// 获取当前事件是否来源于匿名群成员
+		/// </summary>
+		public bool IsFromAnonymous { get; private set; }
+
+		/// <summary>
 		/// 获取当前事件的匿名对象
 		/// </summary>
 		public GroupMemberAnonymousInfo FromAnonymous { get; private set; }
@@ -66,7 +71,55 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.Message = new QQMessage (api, msgId, msg, isRegex);
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
-			this.FromAnonymous = new GroupMemberAnonymousInfo (fromAnonymous);
+			this.IsFromAnonymous = fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous);
+			if (this.IsFromAnonymous)
+			{
+				this.FromAnonymous = new GroupMemberAnonymousInfo (fromAnonymous);
+			}
+			else
+			{
+				this.FromAnonymous = null;
+			}
+		}
+		#endregion
+
+		#region --公开函数--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
+			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
+			builder.AppendLine (string.Format ("是否匿名: {0}", this.IsFromAnonymous));
+			if (this.IsFromAnonymous)
+			{
+				builder.AppendLine (string.Format ("匿名信息: ({0}){1}", this.FromAnonymous.Id, this.FromAnonymous.Name));
+			}
+			builder.AppendLine (string.Format ("消息ID: {0}", this.Message.Id));
+			builder.AppendLine (string.Format ("是否正则消息: {0}", this.Message.IsRegexMessage));
+			if (this.Message.IsRegexMessage)
+			{
+				builder.Append ("解析结果: ");
+				foreach (KeyValuePair<string, string> keyValue in this.Message.PairsMessage)
+				{
+					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
+				}
+				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
+			}
+			else
+			{
+				builder.AppendFormat ("消息内容: {0}", this.Message.OriginalMessage);
+			}
+			return builder.ToString ();
 		}
 		#endregion
 	}
