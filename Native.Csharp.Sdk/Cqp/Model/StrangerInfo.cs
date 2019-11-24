@@ -70,7 +70,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
             builder.AppendLine (string.Format ("帐号: {0}", this.Account));
             builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
             builder.AppendLine (string.Format ("性别: {0}", this.Sex));
-            builder.AppendLine (string.Format ("年龄: {0}", this.Age));
+            builder.AppendFormat ("年龄: {0}", this.Age);
             return builder.ToString ();
         }
         #endregion

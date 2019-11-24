@@ -133,7 +133,20 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		{
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("ID: {0}", this.Id));
-			builder.AppendLine (string.Format ("消息内容: {0}", this.OriginalMessage));
+			builder.AppendLine (string.Format ("正则消息: {0}", this.IsRegexMessage));
+			if (!this.IsRegexMessage)
+			{
+				builder.AppendFormat ("消息内容: {0}", this.OriginalMessage);
+			}
+			else
+			{
+				builder.Append ("解析结果: ");
+				foreach (KeyValuePair<string, string> keyValue in this.PairsMessage)
+				{
+					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
+				}
+				builder.Remove (builder.Length - 2, 2);	// 删除最后的符号和空格
+			}
 			return builder.ToString ();
 		}
 		#endregion

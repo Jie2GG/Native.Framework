@@ -67,7 +67,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("账号: {0}", this.Account));
 			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
-			builder.AppendLine (string.Format ("备注: {0}", this.Postscript));
+			builder.AppendFormat ("备注: {0}", this.Postscript);
 			return builder.ToString ();
 		}
 		#endregion

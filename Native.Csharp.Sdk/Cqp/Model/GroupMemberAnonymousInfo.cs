@@ -74,7 +74,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		{
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("Id: {0}", this.Id));
-			builder.AppendLine (string.Format ("代号: {0}", this.Name));
+			builder.AppendFormat ("代号: {0}", this.Name);
 			return builder.ToString ();
 		}
 		#endregion

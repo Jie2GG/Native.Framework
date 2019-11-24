@@ -138,7 +138,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
             builder.AppendLine (string.Format ("专属头衔: {0}", this.ExclusiveTitle));
             builder.AppendLine (string.Format ("专属头衔过期时间: {0}", this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss")));
             builder.AppendLine (string.Format ("是否为不良记录成员: {0}", this.IsBadRecord ? "是" : "否"));
-            builder.AppendLine (string.Format ("是否允许修改名片: {0}", this.IsAllowEditorCard ? "是" : "否"));
+            builder.AppendFormat ("是否允许修改名片: {0}", this.IsAllowEditorCard ? "是" : "否");
             return builder.ToString ();
         }
         #endregion

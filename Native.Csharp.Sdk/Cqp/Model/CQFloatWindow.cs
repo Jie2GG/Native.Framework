@@ -100,7 +100,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("数据: {0}", this.Value));
 			builder.AppendLine (string.Format ("单位: {0}", this.Unit));
-			builder.AppendLine (string.Format ("颜色: {0}", this.TextColor.GetDescription ()));
+			builder.AppendFormat ("颜色: {0}", this.TextColor.GetDescription ());
 			return builder.ToString ();
 		}
 		#endregion

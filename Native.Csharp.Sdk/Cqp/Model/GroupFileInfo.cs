@@ -73,7 +73,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			builder.AppendLine (string.Format ("BusId: {0}", this.Id));
 			builder.AppendLine (string.Format ("文件名: {0}", this.FileName));
 			builder.AppendLine (string.Format ("文件ID: {0}", this.FileId));
-			builder.AppendLine (string.Format ("文件大小: {0}", this.FileSize));
+			builder.AppendFormat ("文件大小: {0}", this.FileSize);
 			return builder.ToString ();
 		}
 		#endregion

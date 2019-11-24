@@ -77,7 +77,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("群号: {0}", this.GroupId));
 			builder.AppendLine (string.Format ("群名称: {0}", this.Name));
-			builder.AppendLine (string.Format ("当前人数: {0}/{1}", this.CurrentMemberCount, this.MaxMemberCount));
+			builder.AppendFormat ("当前人数: {0}/{1}", this.CurrentMemberCount, this.MaxMemberCount);
 			return builder.ToString ();
 		}
 		#endregion
