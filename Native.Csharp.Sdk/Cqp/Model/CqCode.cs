@@ -126,6 +126,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
                         builder.AppendFormat (",{0}={1}", item.Key, item.Value);
                     }
                     builder.Append ("]");
+					this._originalString = builder.ToString ();
                 }
             }
             return this._originalString;
