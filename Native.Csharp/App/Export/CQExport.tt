@@ -106,9 +106,9 @@
 		TemplateBuilder.WriteLine (1, "private static int Initialize (int authCode)");
 		TemplateBuilder.WriteLine (1, "{");
 		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQApi 实例");
-		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterType<CQApi> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterInstance<CQApi> (\"{0}\", new CQApi (authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
 		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQLog 实例");
-		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterType<CQLog> (\"{0}\", new InjectionConstructor(authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
+		TemplateBuilder.WriteFormatLine (2, "App.AppInfo.UnityContainer.RegisterInstance<CQLog> (\"{0}\", new CQLog (authCode));", this.Host.ResolveAssemblyReference ("$(TargetName)"));
 		TemplateBuilder.WriteLine (2, "// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理");
 		TemplateBuilder.WriteLine (2, "AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;");
 		TemplateBuilder.WriteLine (2, "// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。");

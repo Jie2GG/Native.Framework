@@ -68,9 +68,9 @@ namespace Native.Csharp.App.Export
 		private static int Initialize (int authCode)	
 		{	
 			// 向容器注册一个 CQApi 实例	
-			App.AppInfo.UnityContainer.RegisterType<CQApi> ("Native.Csharp", new InjectionConstructor(authCode));	
+			App.AppInfo.UnityContainer.RegisterInstance<CQApi> ("Native.Csharp", new CQApi (authCode));	
 			// 向容器注册一个 CQLog 实例	
-			App.AppInfo.UnityContainer.RegisterType<CQLog> ("Native.Csharp", new InjectionConstructor(authCode));	
+			App.AppInfo.UnityContainer.RegisterInstance<CQLog> ("Native.Csharp", new CQLog (authCode));	
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
