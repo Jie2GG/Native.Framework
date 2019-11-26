@@ -107,9 +107,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventPrivateMsg	
 			 * Priority: 30000	
 			 */	
-			foreach (IPrivateMessage item in App.AppInfo.UnityContainer.ResolveAll<IPrivateMessage> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IPrivateMessage> ("私聊消息处理"))	
 			{	
-				Event_eventPrivateMsgHandler += item.PrivateMessage;	
+				Event_eventPrivateMsgHandler += App.AppInfo.UnityContainer.Resolve<IPrivateMessage> ("私聊消息处理").PrivateMessage;	
 			}	
 			
 			/*	
@@ -119,9 +119,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventGroupMsg	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupMessage item in App.AppInfo.UnityContainer.ResolveAll<IGroupMessage> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMessage> ("群消息处理"))	
 			{	
-				Event_eventGroupMsgHandler += item.GroupMessage;	
+				Event_eventGroupMsgHandler += App.AppInfo.UnityContainer.Resolve<IGroupMessage> ("群消息处理").GroupMessage;	
 			}	
 			
 			/*	
@@ -239,9 +239,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventStartup	
 			 * Priority: 30000	
 			 */	
-			foreach (ICQStartup item in App.AppInfo.UnityContainer.ResolveAll<ICQStartup> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<ICQStartup> ("酷Q启动事件"))	
 			{	
-				Event_eventStartupHandler += item.CQStartup;	
+				Event_eventStartupHandler += App.AppInfo.UnityContainer.Resolve<ICQStartup> ("酷Q启动事件").CQStartup;	
 			}	
 			
 			/*	
@@ -251,9 +251,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventExit	
 			 * Priority: 30000	
 			 */	
-			foreach (ICQExit item in App.AppInfo.UnityContainer.ResolveAll<ICQExit> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<ICQExit> ("酷Q关闭事件"))	
 			{	
-				Event_eventExitHandler += item.CQExit;	
+				Event_eventExitHandler += App.AppInfo.UnityContainer.Resolve<ICQExit> ("酷Q关闭事件").CQExit;	
 			}	
 			
 			/*	
@@ -263,9 +263,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventEnable	
 			 * Priority: 30000	
 			 */	
-			foreach (IAppEnable item in App.AppInfo.UnityContainer.ResolveAll<IAppEnable> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IAppEnable> ("应用已被启用"))	
 			{	
-				Event_eventEnableHandler += item.AppEnable;	
+				Event_eventEnableHandler += App.AppInfo.UnityContainer.Resolve<IAppEnable> ("应用已被启用").AppEnable;	
 			}	
 			
 			/*	
@@ -275,9 +275,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventDisable	
 			 * Priority: 30000	
 			 */	
-			foreach (IAppDisable item in App.AppInfo.UnityContainer.ResolveAll<IAppDisable> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IAppDisable> ("应用将被停用"))	
 			{	
-				Event_eventDisableHandler += item.AppDisable;	
+				Event_eventDisableHandler += App.AppInfo.UnityContainer.Resolve<IAppDisable> ("应用将被停用").AppDisable;	
 			}	
 			
 		}	

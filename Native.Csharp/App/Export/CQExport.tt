@@ -160,39 +160,39 @@
 				switch (token["type"].Value<int> ())
 				{
 					case 1001:
-						TemplateBuilder.WriteFormatLine (2, "foreach (ICQStartup item in App.AppInfo.UnityContainer.ResolveAll<ICQStartup> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<ICQStartup> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.CQStartup;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<ICQStartup> (\"{1}\").CQStartup;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 1002:
-						TemplateBuilder.WriteFormatLine (2, "foreach (ICQExit item in App.AppInfo.UnityContainer.ResolveAll<ICQExit> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<ICQExit> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.CQExit;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<ICQExit> (\"{1}\").CQExit;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 1003:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IAppEnable item in App.AppInfo.UnityContainer.ResolveAll<IAppEnable> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IAppEnable> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.AppEnable;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IAppEnable> (\"{1}\").AppEnable;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 1004:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IAppDisable item in App.AppInfo.UnityContainer.ResolveAll<IAppDisable> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IAppDisable> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.AppDisable;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IAppDisable> (\"{1}\").AppDisable;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 21:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IPrivateMessage item in App.AppInfo.UnityContainer.ResolveAll<IPrivateMessage> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IPrivateMessage> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.PrivateMessage;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IPrivateMessage> (\"{1}\").PrivateMessage;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 2:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupMessage item in App.AppInfo.UnityContainer.ResolveAll<IGroupMessage> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupMessage> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupMessage;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupMessage> (\"{1}\").GroupMessage;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 4:
