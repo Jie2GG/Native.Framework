@@ -135,6 +135,7 @@
 		TemplateBuilder.WriteLine (3, "App.AppInfo.CQLog.SetFatalMessage (innerLog.ToString ());");
 		TemplateBuilder.WriteLine (2, "}");
 		TemplateBuilder.WriteLine (1, "}");
+		TemplateBuilder.WriteLine (1);
 
 		//解析 event 节点
 		JArray node = CQJsonReader.GetEventNode ();
@@ -196,57 +197,57 @@
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 4:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IDiscussMessage item in App.AppInfo.UnityContainer.ResolveAll<IDiscussMessage> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IDiscussMessage> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.DiscussMessage;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IDiscussMessage> (\"{1}\").DiscussMessage;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 11:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupUpload item in App.AppInfo.UnityContainer.ResolveAll<IGroupUpload> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupUpload> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupUpload;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupUpload> (\"{1}\").GroupUpload;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 101:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupManageChange item in App.AppInfo.UnityContainer.ResolveAll<IGroupManageChange> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupManageChange> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupManageChange;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupManageChange> (\"{1}\").GroupManageChange;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 102:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupMemberDecrease item in App.AppInfo.UnityContainer.ResolveAll<IGroupMemberDecrease> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberDecrease> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupMemberDecrease;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupMemberDecrease> (\"{1}\").GroupMemberDecrease;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 103:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupMemberIncrease item in App.AppInfo.UnityContainer.ResolveAll<IGroupMemberIncrease> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberIncrease> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupMemberIncrease;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupMemberIncrease> (\"{1}\").GroupMemberIncrease;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 104:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupBanSpeak item in App.AppInfo.UnityContainer.ResolveAll<IGroupBanSpeak> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupBanSpeak> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupBanSpeak;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupBanSpeak> (\"{1}\").GroupBanSpeak;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 201:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IFriendAdd item in App.AppInfo.UnityContainer.ResolveAll<IFriendAdd> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IFriendAdd> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.FriendAdd;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IFriendAdd> (\"{1}\").FriendAdd;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 301:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IFriendAddRequest item in App.AppInfo.UnityContainer.ResolveAll<IFriendAddRequest> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IFriendAddRequest> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.FriendAddRequest;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IFriendAddRequest> (\"{1}\").FriendAddRequest;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 					case 302:
-						TemplateBuilder.WriteFormatLine (2, "foreach (IGroupAddRequest item in App.AppInfo.UnityContainer.ResolveAll<IGroupAddRequest> ())");
+						TemplateBuilder.WriteFormatLine (2, "if (App.AppInfo.UnityContainer.IsRegistered<IGroupAddRequest> (\"{0}\"))", token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += item.GroupAddRequest;", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler += App.AppInfo.UnityContainer.Resolve<IGroupAddRequest> (\"{1}\").GroupAddRequest;", token["function"].Value<string> (), token["name"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						break;
 				}
@@ -268,14 +269,15 @@
 					isRegex = temp.ContainsKey ("regex");
 				}
 
-				TemplateBuilder.WriteLine (1, "/*");
-				TemplateBuilder.WriteFormatLine (1, " * Id: {0}", token["id"].Value<int> ());
-				TemplateBuilder.WriteFormatLine (1, " * Type: {0}", token["type"].Value<int> ());
-				TemplateBuilder.WriteFormatLine (1, " * Name: {0}", token["name"].Value<string> ());
-				TemplateBuilder.WriteFormatLine (1, " * Function: {0}", token["function"].Value<string> ());
-				TemplateBuilder.WriteFormatLine (1, " * Priority: {0}", token["priority"].Value<int> ());
-				TemplateBuilder.WriteFormatLine (1, " * IsRegex: {0}", isRegex);
-				TemplateBuilder.WriteLine (1, " */");
+				TemplateBuilder.WriteLine (1, "/// <summary>");
+				TemplateBuilder.WriteLine (1, "/// 事件回调, 以下是对应 Json 文件的信息");
+				TemplateBuilder.WriteFormatLine (1, "/// <para>Id: {0}</para>", token["id"].Value<int> ());
+				TemplateBuilder.WriteFormatLine (1, "/// <para>Type: {0}</para>", token["type"].Value<int> ());
+				TemplateBuilder.WriteFormatLine (1, "/// <para>Name: {0}</para>", token["name"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (1, "/// <para>Function: {0}</para>", token["function"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (1, "/// <para>Priority: {0}</para>", token["priority"].Value<uint> ());
+				TemplateBuilder.WriteFormatLine (1, "/// <para>IsRegex: {0}</para>", isRegex);
+				TemplateBuilder.WriteLine (1, "/// </summary>");
 
 				Log.Info ("导出 {0} 函数...", token["function"].Value<string> ());
 				switch (token["type"].Value<int> ())

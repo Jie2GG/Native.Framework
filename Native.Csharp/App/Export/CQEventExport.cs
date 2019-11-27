@@ -95,6 +95,7 @@ namespace Native.Csharp.App.Export
 				App.AppInfo.CQLog.SetFatalMessage (innerLog.ToString ());	
 			}	
 		}	
+		
 		/// <summary>	
 		/// 读取容器中的注册项, 进行事件分发	
 		/// </summary>	
@@ -131,9 +132,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventDiscussMsg	
 			 * Priority: 30000	
 			 */	
-			foreach (IDiscussMessage item in App.AppInfo.UnityContainer.ResolveAll<IDiscussMessage> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IDiscussMessage> ("讨论组消息处理"))	
 			{	
-				Event_eventDiscussMsgHandler += item.DiscussMessage;	
+				Event_eventDiscussMsgHandler += App.AppInfo.UnityContainer.Resolve<IDiscussMessage> ("讨论组消息处理").DiscussMessage;	
 			}	
 			
 			/*	
@@ -143,9 +144,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventGroupUpload	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupUpload item in App.AppInfo.UnityContainer.ResolveAll<IGroupUpload> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupUpload> ("群文件上传事件处理"))	
 			{	
-				Event_eventGroupUploadHandler += item.GroupUpload;	
+				Event_eventGroupUploadHandler += App.AppInfo.UnityContainer.Resolve<IGroupUpload> ("群文件上传事件处理").GroupUpload;	
 			}	
 			
 			/*	
@@ -155,9 +156,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupAdmin	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupManageChange item in App.AppInfo.UnityContainer.ResolveAll<IGroupManageChange> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupManageChange> ("群管理变动事件处理"))	
 			{	
-				Event_eventSystem_GroupAdminHandler += item.GroupManageChange;	
+				Event_eventSystem_GroupAdminHandler += App.AppInfo.UnityContainer.Resolve<IGroupManageChange> ("群管理变动事件处理").GroupManageChange;	
 			}	
 			
 			/*	
@@ -167,9 +168,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupMemberDecrease	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupMemberDecrease item in App.AppInfo.UnityContainer.ResolveAll<IGroupMemberDecrease> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberDecrease> ("群成员减少事件处理"))	
 			{	
-				Event_eventSystem_GroupMemberDecreaseHandler += item.GroupMemberDecrease;	
+				Event_eventSystem_GroupMemberDecreaseHandler += App.AppInfo.UnityContainer.Resolve<IGroupMemberDecrease> ("群成员减少事件处理").GroupMemberDecrease;	
 			}	
 			
 			/*	
@@ -179,9 +180,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupMemberIncrease	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupMemberIncrease item in App.AppInfo.UnityContainer.ResolveAll<IGroupMemberIncrease> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberIncrease> ("群成员增加事件处理"))	
 			{	
-				Event_eventSystem_GroupMemberIncreaseHandler += item.GroupMemberIncrease;	
+				Event_eventSystem_GroupMemberIncreaseHandler += App.AppInfo.UnityContainer.Resolve<IGroupMemberIncrease> ("群成员增加事件处理").GroupMemberIncrease;	
 			}	
 			
 			/*	
@@ -191,9 +192,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupBan	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupBanSpeak item in App.AppInfo.UnityContainer.ResolveAll<IGroupBanSpeak> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupBanSpeak> ("群禁言事件处理"))	
 			{	
-				Event_eventSystem_GroupBanHandler += item.GroupBanSpeak;	
+				Event_eventSystem_GroupBanHandler += App.AppInfo.UnityContainer.Resolve<IGroupBanSpeak> ("群禁言事件处理").GroupBanSpeak;	
 			}	
 			
 			/*	
@@ -203,9 +204,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventFriend_Add	
 			 * Priority: 30000	
 			 */	
-			foreach (IFriendAdd item in App.AppInfo.UnityContainer.ResolveAll<IFriendAdd> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IFriendAdd> ("好友已添加事件处理"))	
 			{	
-				Event_eventFriend_AddHandler += item.FriendAdd;	
+				Event_eventFriend_AddHandler += App.AppInfo.UnityContainer.Resolve<IFriendAdd> ("好友已添加事件处理").FriendAdd;	
 			}	
 			
 			/*	
@@ -215,9 +216,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventRequest_AddFriend	
 			 * Priority: 30000	
 			 */	
-			foreach (IFriendAddRequest item in App.AppInfo.UnityContainer.ResolveAll<IFriendAddRequest> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IFriendAddRequest> ("好友添加请求处理"))	
 			{	
-				Event_eventRequest_AddFriendHandler += item.FriendAddRequest;	
+				Event_eventRequest_AddFriendHandler += App.AppInfo.UnityContainer.Resolve<IFriendAddRequest> ("好友添加请求处理").FriendAddRequest;	
 			}	
 			
 			/*	
@@ -227,9 +228,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventRequest_AddGroup	
 			 * Priority: 30000	
 			 */	
-			foreach (IGroupAddRequest item in App.AppInfo.UnityContainer.ResolveAll<IGroupAddRequest> ())	
+			if (App.AppInfo.UnityContainer.IsRegistered<IGroupAddRequest> ("群添加请求处理"))	
 			{	
-				Event_eventRequest_AddGroupHandler += item.GroupAddRequest;	
+				Event_eventRequest_AddGroupHandler += App.AppInfo.UnityContainer.Resolve<IGroupAddRequest> ("群添加请求处理").GroupAddRequest;	
 			}	
 			
 			/*	
@@ -284,14 +285,15 @@ namespace Native.Csharp.App.Export
 		#endregion	
 		
 		#region --导出方法--	
-		/*	
-		 * Id: 1	
-		 * Type: 21	
-		 * Name: 私聊消息处理	
-		 * Function: _eventPrivateMsg	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 1</para>	
+		/// <para>Type: 21</para>	
+		/// <para>Name: 私聊消息处理</para>	
+		/// <para>Function: _eventPrivateMsg</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQPrivateMessageEventArgs> Event_eventPrivateMsgHandler;	
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventPrivateMsg (int subType, int msgId, long fromQQ, IntPtr msg, int font)	
@@ -304,14 +306,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 2	
-		 * Type: 2	
-		 * Name: 群消息处理	
-		 * Function: _eventGroupMsg	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 2</para>	
+		/// <para>Type: 2</para>	
+		/// <para>Name: 群消息处理</para>	
+		/// <para>Function: _eventGroupMsg</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupMessageEventArgs> Event_eventGroupMsgHandler;	
 		[DllExport (ExportName = "_eventGroupMsg", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventGroupMsg (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, IntPtr msg, int font)	
@@ -324,14 +327,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 3	
-		 * Type: 4	
-		 * Name: 讨论组消息处理	
-		 * Function: _eventDiscussMsg	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 3</para>	
+		/// <para>Type: 4</para>	
+		/// <para>Name: 讨论组消息处理</para>	
+		/// <para>Function: _eventDiscussMsg</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQDiscussMessageEventArgs> Event_eventDiscussMsgHandler;	
 		[DllExport (ExportName = "_eventDiscussMsg", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventDiscussMsg (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font)	
@@ -344,14 +348,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 4	
-		 * Type: 11	
-		 * Name: 群文件上传事件处理	
-		 * Function: _eventGroupUpload	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 4</para>	
+		/// <para>Type: 11</para>	
+		/// <para>Name: 群文件上传事件处理</para>	
+		/// <para>Function: _eventGroupUpload</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupUploadEventArgs> Event_eventGroupUploadHandler;	
 		[DllExport (ExportName = "_eventGroupUpload", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventGroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file)	
@@ -364,14 +369,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 5	
-		 * Type: 101	
-		 * Name: 群管理变动事件处理	
-		 * Function: _eventSystem_GroupAdmin	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 5</para>	
+		/// <para>Type: 101</para>	
+		/// <para>Name: 群管理变动事件处理</para>	
+		/// <para>Function: _eventSystem_GroupAdmin</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupManageChangeEventArgs> Event_eventSystem_GroupAdminHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupAdmin", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventSystem_GroupAdmin (int subType, int sendTime, long fromGroup, long beingOperateQQ)	
@@ -384,14 +390,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 6	
-		 * Type: 102	
-		 * Name: 群成员减少事件处理	
-		 * Function: _eventSystem_GroupMemberDecrease	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 6</para>	
+		/// <para>Type: 102</para>	
+		/// <para>Name: 群成员减少事件处理</para>	
+		/// <para>Function: _eventSystem_GroupMemberDecrease</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupMemberDecreaseEventArgs> Event_eventSystem_GroupMemberDecreaseHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupMemberDecrease", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventSystem_GroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)	
@@ -404,14 +411,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 7	
-		 * Type: 103	
-		 * Name: 群成员增加事件处理	
-		 * Function: _eventSystem_GroupMemberIncrease	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 7</para>	
+		/// <para>Type: 103</para>	
+		/// <para>Name: 群成员增加事件处理</para>	
+		/// <para>Function: _eventSystem_GroupMemberIncrease</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupMemberIncreaseEventArgs> Event_eventSystem_GroupMemberIncreaseHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupMemberIncrease", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventSystem_GroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)	
@@ -424,14 +432,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 8	
-		 * Type: 104	
-		 * Name: 群禁言事件处理	
-		 * Function: _eventSystem_GroupBan	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 8</para>	
+		/// <para>Type: 104</para>	
+		/// <para>Name: 群禁言事件处理</para>	
+		/// <para>Function: _eventSystem_GroupBan</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupBanSpeakEventArgs> Event_eventSystem_GroupBanHandler;	
 		[DllExport (ExportName = "_eventSystem_GroupBan", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventSystem_GroupBan (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration)	
@@ -444,14 +453,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 10	
-		 * Type: 201	
-		 * Name: 好友已添加事件处理	
-		 * Function: _eventFriend_Add	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 10</para>	
+		/// <para>Type: 201</para>	
+		/// <para>Name: 好友已添加事件处理</para>	
+		/// <para>Function: _eventFriend_Add</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQFriendAddEventArgs> Event_eventFriend_AddHandler;	
 		[DllExport (ExportName = "_eventFriend_Add", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventFriend_Add (int subType, int sendTime, long fromQQ)	
@@ -464,14 +474,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 11	
-		 * Type: 301	
-		 * Name: 好友添加请求处理	
-		 * Function: _eventRequest_AddFriend	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 11</para>	
+		/// <para>Type: 301</para>	
+		/// <para>Name: 好友添加请求处理</para>	
+		/// <para>Function: _eventRequest_AddFriend</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQFriendAddRequestEventArgs> Event_eventRequest_AddFriendHandler;	
 		[DllExport (ExportName = "_eventRequest_AddFriend", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventRequest_AddFriend (int subType, int sendTime, long fromQQ, IntPtr msg, string responseFlag)	
@@ -484,14 +495,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 12	
-		 * Type: 302	
-		 * Name: 群添加请求处理	
-		 * Function: _eventRequest_AddGroup	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 12</para>	
+		/// <para>Type: 302</para>	
+		/// <para>Name: 群添加请求处理</para>	
+		/// <para>Function: _eventRequest_AddGroup</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQGroupAddRequestEventArgs> Event_eventRequest_AddGroupHandler;	
 		[DllExport (ExportName = "_eventRequest_AddGroup", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventRequest_AddGroup (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, string responseFlag)	
@@ -504,14 +516,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 1001	
-		 * Type: 1001	
-		 * Name: 酷Q启动事件	
-		 * Function: _eventStartup	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 1001</para>	
+		/// <para>Type: 1001</para>	
+		/// <para>Name: 酷Q启动事件</para>	
+		/// <para>Function: _eventStartup</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQStartupEventArgs> Event_eventStartupHandler;	
 		[DllExport (ExportName = "_eventStartup", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventStartup ()	
@@ -524,14 +537,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 1002	
-		 * Type: 1002	
-		 * Name: 酷Q关闭事件	
-		 * Function: _eventExit	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 1002</para>	
+		/// <para>Type: 1002</para>	
+		/// <para>Name: 酷Q关闭事件</para>	
+		/// <para>Function: _eventExit</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQExitEventArgs> Event_eventExitHandler;	
 		[DllExport (ExportName = "_eventExit", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventExit ()	
@@ -544,14 +558,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 1003	
-		 * Type: 1003	
-		 * Name: 应用已被启用	
-		 * Function: _eventEnable	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 1003</para>	
+		/// <para>Type: 1003</para>	
+		/// <para>Name: 应用已被启用</para>	
+		/// <para>Function: _eventEnable</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQAppEnableEventArgs> Event_eventEnableHandler;	
 		[DllExport (ExportName = "_eventEnable", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventEnable ()	
@@ -564,14 +579,15 @@ namespace Native.Csharp.App.Export
 			return 0;	
 		}	
 		
-		/*	
-		 * Id: 1004	
-		 * Type: 1004	
-		 * Name: 应用将被停用	
-		 * Function: _eventDisable	
-		 * Priority: 30000	
-		 * IsRegex: False	
-		 */	
+		/// <summary>	
+		/// 事件回调, 以下是对应 Json 文件的信息	
+		/// <para>Id: 1004</para>	
+		/// <para>Type: 1004</para>	
+		/// <para>Name: 应用将被停用</para>	
+		/// <para>Function: _eventDisable</para>	
+		/// <para>Priority: 30000</para>	
+		/// <para>IsRegex: False</para>	
+		/// </summary>	
 		public static event EventHandler<CQAppDisableEventArgs> Event_eventDisableHandler;	
 		[DllExport (ExportName = "_eventDisable", CallingConvention = CallingConvention.StdCall)]	
 		public static int Event_eventDisable ()	
