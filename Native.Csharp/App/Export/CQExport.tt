@@ -1096,7 +1096,7 @@
 			if (textTransform != null)
 			{
 				StringBuilder builder = new StringBuilder ();
-				builder.AppendFormat ("[{0}],{1}: {2}", type, DateTime.Now.ToString ("HH:mm:ss"), msg);
+				builder.AppendFormat ("[{0}]: {1}", type, msg);
 				builder.AppendLine ();
 				textTransform.Write (builder.ToString ());
 			}
