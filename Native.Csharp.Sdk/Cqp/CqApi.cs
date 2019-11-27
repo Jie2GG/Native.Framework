@@ -209,15 +209,15 @@ namespace Native.Csharp.Sdk.Cqp
 
 			if (!string.IsNullOrEmpty (title))
 			{
-				code.Items.Add ("title", CQEnCode (title, true));
+				code.Items.Add ("title", title);
 			}
 			if (!string.IsNullOrEmpty (content))
 			{
-				code.Items.Add ("content", CQEnCode (content, true));
+				code.Items.Add ("content", content);
 			}
 			if (!string.IsNullOrEmpty (imageUrl))
 			{
-				code.Items.Add ("image", CQEnCode (imageUrl, true));
+				code.Items.Add ("image", imageUrl);
 			}
 
 			return code;
@@ -316,8 +316,8 @@ namespace Native.Csharp.Sdk.Cqp
 				new KeyValuePair<string, string> ("lat", Convert.ToString (lat)),
 				new KeyValuePair<string, string> ("lon", Convert.ToString (lon)),
 				new KeyValuePair<string, string> ("zoom", Convert.ToString (zoom)),
-				new KeyValuePair<string, string> ("title", CQEnCode (site, true)),
-				new KeyValuePair<string, string> ("content", CQEnCode (detail, true)));
+				new KeyValuePair<string, string> ("title", site),
+				new KeyValuePair<string, string> ("content", detail));
 		}
 
 		/// <summary>
@@ -376,21 +376,21 @@ namespace Native.Csharp.Sdk.Cqp
 			CQCode code = new CQCode (
 				CQFunction.Music,
 				new KeyValuePair<string, string> ("type", "custom"),
-				new KeyValuePair<string, string> ("url", CQEnCode (url, true)),
-				new KeyValuePair<string, string> ("audio", CQEnCode (musicUrl, true)));
+				new KeyValuePair<string, string> ("url", url),
+				new KeyValuePair<string, string> ("audio", musicUrl));
 			if (!string.IsNullOrEmpty (title))
 			{
-				code.Items.Add ("title", CQEnCode (title, true));
+				code.Items.Add ("title", title);
 			}
 
 			if (!string.IsNullOrEmpty (content))
 			{
-				code.Items.Add ("content", CQEnCode (content, true));
+				code.Items.Add ("content", content);
 			}
 
 			if (!string.IsNullOrEmpty (imageUrl))
 			{
-				code.Items.Add ("imageUrl", CQEnCode (imageUrl, true));
+				code.Items.Add ("imageUrl", imageUrl);
 			}
 			return code;
 		}
@@ -410,7 +410,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 			return new CQCode (
 				CQFunction.Image,
-				new KeyValuePair<string, string> ("file", CQEnCode (path, true)));
+				new KeyValuePair<string, string> ("file", path));
 		}
 
 		/// <summary>
@@ -428,7 +428,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 			return new CQCode (
 				CQFunction.Record,
-				new KeyValuePair<string, string> ("file", CQEnCode (path, true)));
+				new KeyValuePair<string, string> ("file", path));
 		}
 		#endregion
 
