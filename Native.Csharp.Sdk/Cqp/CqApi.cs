@@ -36,6 +36,21 @@ namespace Native.Csharp.Sdk.Cqp
 		public int AuthCode { get { return _authCode; } }
 
 		/// <summary>
+		/// 获取酷Q分配给本应用的数据路径 (所用应用数据赢存放于此路径下)
+		/// </summary>
+		public string AppDirectory
+		{
+			get
+			{
+				if (string.IsNullOrEmpty (this._appDirectoryCache))
+				{
+					this._appDirectoryCache = CQP.CQ_getAppDirectory (AuthCode);
+				}
+				return this._appDirectoryCache;
+			}
+		}
+
+		/// <summary>
 		/// 获取一个值, 指示正在运行的酷Q版本是否支持发送语音
 		/// </summary>
 		public bool IsAllowSendRecord { get { return CQP.CQ_canSendRecord (AuthCode) > 0; } }
@@ -663,20 +678,6 @@ namespace Native.Csharp.Sdk.Cqp
 		public string GetLoginNick ()
 		{
 			return CQP.CQ_getLoginNick (AuthCode).ToString (DefaultEncoding);
-		}
-
-		/// <summary>
-		/// 获取酷Q框架分配给本应用的应用数据路径 (所有应用数据应存于此路径下)
-		/// </summary>
-		/// <returns>返回本地绝对路径字符串</returns>
-		public string GetAppDirectory ()
-		{
-			if (string.IsNullOrEmpty (this._appDirectoryCache))
-			{
-				this._appDirectoryCache = CQP.CQ_getAppDirectory (AuthCode);
-			}
-
-			return this._appDirectoryCache;
 		}
 
 		/// <summary>

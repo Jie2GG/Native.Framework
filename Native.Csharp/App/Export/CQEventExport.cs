@@ -5,7 +5,6 @@ using System;
 using System.Text;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using Native.Csharp.App.Event;
 using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.EventArgs;
 using Native.Csharp.Sdk.Cqp.Interface;
@@ -20,6 +19,11 @@ namespace Native.Csharp.App.Export
 	/// </summary>	
 	public class CQEventExport	
 	{	
+		#region --字段--	
+		private static CQApi api = null;	
+		private static CQLog logger = null;	
+		#endregion	
+		
 		#region --构造函数--	
 		/// <summary>	
 		/// 由托管环境初始化的 <see cref="CQEventExport"/> 的新实例	
@@ -29,7 +33,7 @@ namespace Native.Csharp.App.Export
 			// 初始化 Costura.Fody	
 			CosturaUtility.Initialize ();	
 			
-			Type type = typeof (App.AppInfo);	// 反射初始化容器	
+			Type type = typeof (Common.AppInfo);	// 反射初始化容器	
 			type.GetProperty ("Id", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { "Native.Csharp" });	
 			type.GetProperty ("ResultCode", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { 1 });	
 			type.GetProperty ("ApiVersion", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { 9 });	
@@ -41,7 +45,7 @@ namespace Native.Csharp.App.Export
 			type.GetProperty ("UnityContainer", BindingFlags.Public | BindingFlags.Static).SetMethod.Invoke (null, new object[] { new UnityContainer () });	
 			
 			// 调用方法进行注册	
-			Event_AppMain.RegistEventBackcall (App.AppInfo.UnityContainer);	
+			CQMain.Register (Common.AppInfo.UnityContainer);	
 			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
@@ -68,9 +72,11 @@ namespace Native.Csharp.App.Export
 		private static int Initialize (int authCode)	
 		{	
 			// 向容器注册一个 CQApi 实例	
-			App.AppInfo.UnityContainer.RegisterInstance<CQApi> ("Native.Csharp", new CQApi (authCode));	
+			api = new CQApi (authCode);	
+			Common.AppInfo.UnityContainer.RegisterInstance<CQApi> ("Native.Csharp", api);	
 			// 向容器注册一个 CQLog 实例	
-			App.AppInfo.UnityContainer.RegisterInstance<CQLog> ("Native.Csharp", new CQLog (authCode));	
+			logger = new CQLog (authCode);	
+			Common.AppInfo.UnityContainer.RegisterInstance<CQLog> ("Native.Csharp", logger);	
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
@@ -92,7 +98,7 @@ namespace Native.Csharp.App.Export
 				StringBuilder innerLog = new StringBuilder ();	
 				innerLog.AppendLine ("发现未处理的异常!");	
 				innerLog.AppendLine (ex.ToString ());	
-				App.AppInfo.CQLog.SetFatalMessage (innerLog.ToString ());	
+				logger.SetFatalMessage (innerLog.ToString ());	
 			}	
 		}	
 		
@@ -108,9 +114,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventPrivateMsg	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IPrivateMessage> ("私聊消息处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IPrivateMessage> ("私聊消息处理"))	
 			{	
-				Event_eventPrivateMsgHandler += App.AppInfo.UnityContainer.Resolve<IPrivateMessage> ("私聊消息处理").PrivateMessage;	
+				Event_eventPrivateMsgHandler += Common.AppInfo.UnityContainer.Resolve<IPrivateMessage> ("私聊消息处理").PrivateMessage;	
 			}	
 			
 			/*	
@@ -120,9 +126,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventGroupMsg	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMessage> ("群消息处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupMessage> ("群消息处理"))	
 			{	
-				Event_eventGroupMsgHandler += App.AppInfo.UnityContainer.Resolve<IGroupMessage> ("群消息处理").GroupMessage;	
+				Event_eventGroupMsgHandler += Common.AppInfo.UnityContainer.Resolve<IGroupMessage> ("群消息处理").GroupMessage;	
 			}	
 			
 			/*	
@@ -132,9 +138,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventDiscussMsg	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IDiscussMessage> ("讨论组消息处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IDiscussMessage> ("讨论组消息处理"))	
 			{	
-				Event_eventDiscussMsgHandler += App.AppInfo.UnityContainer.Resolve<IDiscussMessage> ("讨论组消息处理").DiscussMessage;	
+				Event_eventDiscussMsgHandler += Common.AppInfo.UnityContainer.Resolve<IDiscussMessage> ("讨论组消息处理").DiscussMessage;	
 			}	
 			
 			/*	
@@ -144,9 +150,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventGroupUpload	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupUpload> ("群文件上传事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupUpload> ("群文件上传事件处理"))	
 			{	
-				Event_eventGroupUploadHandler += App.AppInfo.UnityContainer.Resolve<IGroupUpload> ("群文件上传事件处理").GroupUpload;	
+				Event_eventGroupUploadHandler += Common.AppInfo.UnityContainer.Resolve<IGroupUpload> ("群文件上传事件处理").GroupUpload;	
 			}	
 			
 			/*	
@@ -156,9 +162,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupAdmin	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupManageChange> ("群管理变动事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupManageChange> ("群管理变动事件处理"))	
 			{	
-				Event_eventSystem_GroupAdminHandler += App.AppInfo.UnityContainer.Resolve<IGroupManageChange> ("群管理变动事件处理").GroupManageChange;	
+				Event_eventSystem_GroupAdminHandler += Common.AppInfo.UnityContainer.Resolve<IGroupManageChange> ("群管理变动事件处理").GroupManageChange;	
 			}	
 			
 			/*	
@@ -168,9 +174,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupMemberDecrease	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberDecrease> ("群成员减少事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupMemberDecrease> ("群成员减少事件处理"))	
 			{	
-				Event_eventSystem_GroupMemberDecreaseHandler += App.AppInfo.UnityContainer.Resolve<IGroupMemberDecrease> ("群成员减少事件处理").GroupMemberDecrease;	
+				Event_eventSystem_GroupMemberDecreaseHandler += Common.AppInfo.UnityContainer.Resolve<IGroupMemberDecrease> ("群成员减少事件处理").GroupMemberDecrease;	
 			}	
 			
 			/*	
@@ -180,9 +186,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupMemberIncrease	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupMemberIncrease> ("群成员增加事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupMemberIncrease> ("群成员增加事件处理"))	
 			{	
-				Event_eventSystem_GroupMemberIncreaseHandler += App.AppInfo.UnityContainer.Resolve<IGroupMemberIncrease> ("群成员增加事件处理").GroupMemberIncrease;	
+				Event_eventSystem_GroupMemberIncreaseHandler += Common.AppInfo.UnityContainer.Resolve<IGroupMemberIncrease> ("群成员增加事件处理").GroupMemberIncrease;	
 			}	
 			
 			/*	
@@ -192,9 +198,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventSystem_GroupBan	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupBanSpeak> ("群禁言事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupBanSpeak> ("群禁言事件处理"))	
 			{	
-				Event_eventSystem_GroupBanHandler += App.AppInfo.UnityContainer.Resolve<IGroupBanSpeak> ("群禁言事件处理").GroupBanSpeak;	
+				Event_eventSystem_GroupBanHandler += Common.AppInfo.UnityContainer.Resolve<IGroupBanSpeak> ("群禁言事件处理").GroupBanSpeak;	
 			}	
 			
 			/*	
@@ -204,9 +210,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventFriend_Add	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IFriendAdd> ("好友已添加事件处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IFriendAdd> ("好友已添加事件处理"))	
 			{	
-				Event_eventFriend_AddHandler += App.AppInfo.UnityContainer.Resolve<IFriendAdd> ("好友已添加事件处理").FriendAdd;	
+				Event_eventFriend_AddHandler += Common.AppInfo.UnityContainer.Resolve<IFriendAdd> ("好友已添加事件处理").FriendAdd;	
 			}	
 			
 			/*	
@@ -216,9 +222,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventRequest_AddFriend	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IFriendAddRequest> ("好友添加请求处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IFriendAddRequest> ("好友添加请求处理"))	
 			{	
-				Event_eventRequest_AddFriendHandler += App.AppInfo.UnityContainer.Resolve<IFriendAddRequest> ("好友添加请求处理").FriendAddRequest;	
+				Event_eventRequest_AddFriendHandler += Common.AppInfo.UnityContainer.Resolve<IFriendAddRequest> ("好友添加请求处理").FriendAddRequest;	
 			}	
 			
 			/*	
@@ -228,9 +234,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventRequest_AddGroup	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IGroupAddRequest> ("群添加请求处理"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IGroupAddRequest> ("群添加请求处理"))	
 			{	
-				Event_eventRequest_AddGroupHandler += App.AppInfo.UnityContainer.Resolve<IGroupAddRequest> ("群添加请求处理").GroupAddRequest;	
+				Event_eventRequest_AddGroupHandler += Common.AppInfo.UnityContainer.Resolve<IGroupAddRequest> ("群添加请求处理").GroupAddRequest;	
 			}	
 			
 			/*	
@@ -240,9 +246,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventStartup	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<ICQStartup> ("酷Q启动事件"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<ICQStartup> ("酷Q启动事件"))	
 			{	
-				Event_eventStartupHandler += App.AppInfo.UnityContainer.Resolve<ICQStartup> ("酷Q启动事件").CQStartup;	
+				Event_eventStartupHandler += Common.AppInfo.UnityContainer.Resolve<ICQStartup> ("酷Q启动事件").CQStartup;	
 			}	
 			
 			/*	
@@ -252,9 +258,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventExit	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<ICQExit> ("酷Q关闭事件"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<ICQExit> ("酷Q关闭事件"))	
 			{	
-				Event_eventExitHandler += App.AppInfo.UnityContainer.Resolve<ICQExit> ("酷Q关闭事件").CQExit;	
+				Event_eventExitHandler += Common.AppInfo.UnityContainer.Resolve<ICQExit> ("酷Q关闭事件").CQExit;	
 			}	
 			
 			/*	
@@ -264,9 +270,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventEnable	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IAppEnable> ("应用已被启用"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IAppEnable> ("应用已被启用"))	
 			{	
-				Event_eventEnableHandler += App.AppInfo.UnityContainer.Resolve<IAppEnable> ("应用已被启用").AppEnable;	
+				Event_eventEnableHandler += Common.AppInfo.UnityContainer.Resolve<IAppEnable> ("应用已被启用").AppEnable;	
 			}	
 			
 			/*	
@@ -276,9 +282,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _eventDisable	
 			 * Priority: 30000	
 			 */	
-			if (App.AppInfo.UnityContainer.IsRegistered<IAppDisable> ("应用将被停用"))	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IAppDisable> ("应用将被停用"))	
 			{	
-				Event_eventDisableHandler += App.AppInfo.UnityContainer.Resolve<IAppDisable> ("应用将被停用").AppDisable;	
+				Event_eventDisableHandler += Common.AppInfo.UnityContainer.Resolve<IAppDisable> ("应用将被停用").AppDisable;	
 			}	
 			
 		}	
@@ -300,7 +306,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventPrivateMsgHandler != null)	
 			{	
-				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
+				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, api);	
 				Event_eventPrivateMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -321,7 +327,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupMsgHandler != null)	
 			{	
-				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
+				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), false, api);	
 				Event_eventGroupMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -342,7 +348,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventDiscussMsgHandler != null)	
 			{	
-				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, App.AppInfo.CQApi);	
+				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, api);	
 				Event_eventDiscussMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -363,7 +369,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupUploadHandler != null)	
 			{	
-				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromQQ, fromQQ, file, App.AppInfo.CQApi);	
+				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromQQ, fromQQ, file, api);	
 				Event_eventGroupUploadHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -384,7 +390,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupAdminHandler != null)	
 			{	
-				CQGroupManageChangeEventArgs args = new CQGroupManageChangeEventArgs (5, 101, "群管理变动事件处理", "_eventSystem_GroupAdmin", 30000, subType, sendTime, fromGroup, beingOperateQQ, App.AppInfo.CQApi);	
+				CQGroupManageChangeEventArgs args = new CQGroupManageChangeEventArgs (5, 101, "群管理变动事件处理", "_eventSystem_GroupAdmin", 30000, subType, sendTime, fromGroup, beingOperateQQ, api);	
 				Event_eventSystem_GroupAdminHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -405,7 +411,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupMemberDecreaseHandler != null)	
 			{	
-				CQGroupMemberDecreaseEventArgs args = new CQGroupMemberDecreaseEventArgs (6, 102, "群成员减少事件处理", "_eventSystem_GroupMemberDecrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, App.AppInfo.CQApi);	
+				CQGroupMemberDecreaseEventArgs args = new CQGroupMemberDecreaseEventArgs (6, 102, "群成员减少事件处理", "_eventSystem_GroupMemberDecrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, api);	
 				Event_eventSystem_GroupMemberDecreaseHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -426,7 +432,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupMemberIncreaseHandler != null)	
 			{	
-				CQGroupMemberIncreaseEventArgs args = new CQGroupMemberIncreaseEventArgs (7, 103, "群成员增加事件处理", "_eventSystem_GroupMemberIncrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, App.AppInfo.CQApi);	
+				CQGroupMemberIncreaseEventArgs args = new CQGroupMemberIncreaseEventArgs (7, 103, "群成员增加事件处理", "_eventSystem_GroupMemberIncrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, api);	
 				Event_eventSystem_GroupMemberIncreaseHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -447,7 +453,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupBanHandler != null)	
 			{	
-				CQGroupBanSpeakEventArgs args = new CQGroupBanSpeakEventArgs (8, 104, "群禁言事件处理", "_eventSystem_GroupBan", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration, App.AppInfo.CQApi);	
+				CQGroupBanSpeakEventArgs args = new CQGroupBanSpeakEventArgs (8, 104, "群禁言事件处理", "_eventSystem_GroupBan", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration, api);	
 				Event_eventSystem_GroupBanHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -468,7 +474,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventFriend_AddHandler != null)	
 			{	
-				CQFriendAddEventArgs args = new CQFriendAddEventArgs (10, 201, "好友已添加事件处理", "_eventFriend_Add", 30000, subType, sendTime, fromQQ, App.AppInfo.CQApi);	
+				CQFriendAddEventArgs args = new CQFriendAddEventArgs (10, 201, "好友已添加事件处理", "_eventFriend_Add", 30000, subType, sendTime, fromQQ, api);	
 				Event_eventFriend_AddHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -489,7 +495,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventRequest_AddFriendHandler != null)	
 			{	
-				CQFriendAddRequestEventArgs args = new CQFriendAddRequestEventArgs (11, 301, "好友添加请求处理", "_eventRequest_AddFriend", 30000, subType, sendTime, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, App.AppInfo.CQApi);	
+				CQFriendAddRequestEventArgs args = new CQFriendAddRequestEventArgs (11, 301, "好友添加请求处理", "_eventRequest_AddFriend", 30000, subType, sendTime, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, api);	
 				Event_eventRequest_AddFriendHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -510,7 +516,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventRequest_AddGroupHandler != null)	
 			{	
-				CQGroupAddRequestEventArgs args = new CQGroupAddRequestEventArgs (12, 302, "群添加请求处理", "_eventRequest_AddGroup", 30000, subType, sendTime, fromGroup, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, App.AppInfo.CQApi);	
+				CQGroupAddRequestEventArgs args = new CQGroupAddRequestEventArgs (12, 302, "群添加请求处理", "_eventRequest_AddGroup", 30000, subType, sendTime, fromGroup, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, api);	
 				Event_eventRequest_AddGroupHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	

@@ -5,7 +5,7 @@ using System.Text;
 using Native.Csharp.Sdk.Cqp;
 using Unity;
 
-namespace Native.Csharp.App
+namespace Native.Csharp.App.Common
 {
 	/// <summary>
 	/// 表示当前插件的一些基本信息的类
@@ -56,15 +56,5 @@ namespace Native.Csharp.App
 		/// 获取当前 App 使用的依赖注入容器实例
 		/// </summary>
 		public static IUnityContainer UnityContainer { get; private set; }
-
-		/// <summary>
-		/// 获取当前 App 使用的 酷Q Api 接口实例
-		/// </summary>
-		public static CQApi CQApi { get { return UnityContainer.Resolve<CQApi> (Id); } }
-
-		/// <summary>
-		/// 获取当前 App 使用的 酷Q Log 接口实例
-		/// </summary>
-		public static CQLog CQLog { get { return UnityContainer.Resolve<CQLog> (Id); } }
 	}
 }

@@ -35,7 +35,7 @@ namespace Native.Csharp.App.Export
 			 * Name: 设置A	
 			 * Function: _menuA	
 			 */	
-			foreach (IMenuCall item in App.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
+			foreach (IMenuCall item in Common.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
 			{	
 				Menu_menuAHandler += item.MenuCall;	
 			}	
@@ -44,7 +44,7 @@ namespace Native.Csharp.App.Export
 			 * Name: 设置B	
 			 * Function: _menuB	
 			 */	
-			foreach (IMenuCall item in App.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
+			foreach (IMenuCall item in Common.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
 			{	
 				Menu_menuBHandler += item.MenuCall;	
 			}	

@@ -17,7 +17,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取一个值, 指示当前的QQ帐号
 		/// </summary>
-		public long Account { get; private set; }
+		public long Id { get; private set; }
 
 		/// <summary>
 		/// 获取一个值, 指示当前的QQ昵称
@@ -50,7 +50,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 					throw new InvalidDataException ("读取失败, 原始数据格式错误");
 				}
 
-				this.Account = reader.ReadInt32_Ex ();
+				this.Id = reader.ReadInt32_Ex ();
 				this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
 				this.Postscript = reader.ReadString_Ex (CQApi.DefaultEncoding);
 			}
@@ -65,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("账号: {0}", this.Account));
+			builder.AppendLine (string.Format ("账号: {0}", this.Id));
 			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
 			builder.AppendFormat ("备注: {0}", this.Postscript);
 			return builder.ToString ();

@@ -39,7 +39,7 @@ namespace Native.Csharp.App.Export
 			 * Function: _statusUptime	
 			 * Period: 1000	
 			 */	
-			foreach (IStatusUpdate item in App.AppInfo.UnityContainer.ResolveAll<IStatusUpdate> ())	
+			foreach (IStatusUpdate item in Common.AppInfo.UnityContainer.ResolveAll<IStatusUpdate> ())	
 			{	
 				Status_statusUptimeHandler += item.StatusUpdate;	
 			}	

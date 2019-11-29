@@ -38,6 +38,25 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 		#region --公开方法--
 		/// <summary>
+		/// 发送讨论组消息
+		/// </summary>
+		/// <param name="message">消息内容, 获取内容时将调用<see cref="object.ToString"/>进行消息转换</param>
+		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
+		public QQMessage SendDiscussMessage (params object[] message)
+		{
+			return this.CQApi.SendDiscussMessage (this, message);
+		}
+
+		/// <summary>
+		/// 退出讨论组.
+		/// </summary>
+		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		public bool ExitDiscuss ()
+		{
+			return this.CQApi.ExitDiscuss (this);
+		}
+
+		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
