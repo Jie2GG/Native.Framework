@@ -18,7 +18,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
         /// <summary>
         /// 获取一个值, 指示当前的QQ帐号
         /// </summary>
-        public long Account { get; private set; }
+        public long Id { get; private set; }
 
         /// <summary>
         /// 获取一个值, 指示当前的QQ昵称
@@ -51,7 +51,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
 			{
-				this.Account = reader.ReadInt64_Ex ();
+				this.Id = reader.ReadInt64_Ex ();
 				this.Nick = reader.ReadString_Ex ();
 				this.Sex = (QQSex)reader.ReadInt32_Ex ();
 				this.Age = reader.ReadInt32_Ex ();
@@ -67,7 +67,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
         public override string ToString ()
         {
             StringBuilder builder = new StringBuilder ();
-            builder.AppendLine (string.Format ("帐号: {0}", this.Account));
+            builder.AppendLine (string.Format ("帐号: {0}", this.Id));
             builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
             builder.AppendLine (string.Format ("性别: {0}", this.Sex));
             builder.AppendFormat ("年龄: {0}", this.Age);

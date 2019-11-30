@@ -19,59 +19,73 @@ namespace Native.Csharp.Sdk.Cqp.Model
         /// 获取一个值, 指示成员所在群号码
         /// </summary>
         public long GroupId { get; private set; }
+
         /// <summary>
         /// 获取一个值, 指示当前成员的QQ号
         /// </summary>
         public long Account { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前成员的QQ昵称
         /// </summary>
         public string Nick { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前成员在此群的群名片
         /// </summary>
         public string Card { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员的性别
         /// </summary>
         public QQSex Sex { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员年龄
         /// </summary>
         public int Age { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前成员所在地区
         /// </summary>
         public string Area { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前成员加入群的日期和时间
         /// </summary>
         public DateTime JoinGroupDateTime { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员最后一次发言的日期和时间
         /// </summary>
         public DateTime LastSpeakDateTime { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员的等级
         /// </summary>
         public string Level { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前的群成员类型
         /// </summary>
         public QQGroupMemberType MemberType { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员在此群获得的专属头衔
         /// </summary>
         public string ExclusiveTitle { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员在此群的专属头衔过期时间, 若本属性为 null 则表示无期限
         /// </summary>
         public DateTime? ExclusiveTitleExpirationTime { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员是否为不良记录群成员
         /// </summary>
         public bool IsBadRecord { get; private set; }
-        /// <summary>
+        
+		/// <summary>
         /// 获取一个值, 指示当前群成员是否允许修改群名片
         /// </summary>
         public bool IsAllowEditorCard { get; private set; }

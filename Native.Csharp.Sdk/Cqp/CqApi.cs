@@ -657,7 +657,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取登录帐号
 		/// </summary>
 		/// <returns>返回当前酷Q框架登录的帐号</returns>
-		public long GetLoginLongQQ ()
+		public long GetLoginQQLong ()
 		{
 			return this.GetLoginQQ ().Id;
 		}

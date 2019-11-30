@@ -1,4 +1,5 @@
-﻿using Native.Csharp.Sdk.Cqp.Expand;
+﻿using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Expand;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,10 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// </summary>
 	public class QQMessage
 	{
+		#region --字段--
+		private List<CQCode> _cqCodes = null;
+		#endregion
+
 		#region --属性--
 		/// <summary>
 		/// 获取当前实例用于获取信息的 <see cref="Native.Csharp.Sdk.Cqp.CQApi"/> 实例对象
@@ -38,6 +43,27 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 获取当前实例解析出的正则消息键值对
 		/// </summary>
 		public Dictionary<string, string> PairsMessage { get; private set; }
+
+		/// <summary>
+		/// 获取当前消息的所有 [CQ:...] 的对象集合
+		/// </summary>
+		public List<CQCode> CQCodes
+		{
+			get
+			{
+				if (this.IsRegexMessage)
+				{
+					return null;
+				}
+
+				if (this._cqCodes == null)
+				{
+					_cqCodes = CQCode.Parse (this.OriginalMessage);
+				}
+
+				return this._cqCodes;
+			}
+		}
 		#endregion
 
 		#region --构造函数--
@@ -52,6 +78,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		{
 
 		}
+
 		/// <summary>
 		/// 初始化 <see cref="QQMessage"/> 类的新实例
 		/// </summary>
@@ -126,6 +153,37 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 接收消息中的语音 (消息含有CQ码 "record" 的消息)
+		/// </summary>
+		/// <param name="format">所需的目标语音的音频格式</param>
+		/// <returns>返回语音文件位于本地服务器的绝对路径</returns>
+		public string ReceiveRecord (CQAudioFormat format)
+		{
+			if (this.IsRegexMessage)
+			{
+				return null;
+			}
+
+			CQCode record = (from code in this.CQCodes where code.Function == CQFunction.Record select code).First ();
+			return this.CQApi.ReceiveRecord (record.Items["file"], format);
+		}
+
+		/// <summary>
+		/// 接收消息中的图片 (消息含有CQ码 "image" 的消息)
+		/// </summary>
+		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
+		public string ReceiveImage ()
+		{
+			if (this.IsRegexMessage)
+			{
+				return null;
+			}
+
+			CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).First ();
+			return this.CQApi.ReceiveImage (image.Items["file"]);
+		}
+
+		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
@@ -145,7 +203,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				{
 					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
 				}
-				builder.Remove (builder.Length - 2, 2);	// 删除最后的符号和空格
+				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
 			}
 			return builder.ToString ();
 		}
