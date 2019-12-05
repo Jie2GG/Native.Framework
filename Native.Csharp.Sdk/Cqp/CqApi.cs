@@ -1553,5 +1553,46 @@ namespace Native.Csharp.Sdk.Cqp
 			return CQP.CQ_setGroupKick (this.AuthCode, group.Id, qq.Id, notRequest) == 0;
 		}
 		#endregion
+
+		#region --请求类方法--
+		/// <summary>
+		/// 置好友添加请求
+		/// </summary>
+		/// <param name="tag">请求反馈标识</param>
+		/// <param name="response">反馈类型</param>
+		/// <param name="notes">备注</param>
+		/// <returns></returns>
+		public int SetFriendAddRequest (string tag, CQResponseType response, string notes = null)
+		{
+			if (notes == null)
+			{
+				notes = string.Empty;
+			}
+			GCHandle handle = notes.GetStringGCHandle (_defaultEncoding);
+			int result = CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, handle.AddrOfPinnedObject ());
+			handle.Free ();
+			return result;
+		}
+
+		/// <summary>
+		/// 置群添加请求
+		/// </summary>
+		/// <param name="tag">请求反馈标识</param>
+		/// <param name="request">请求类型</param>
+		/// <param name="response">反馈类型</param>
+		/// <param name="appendMsg">备注</param>
+		/// <returns></returns>
+		public int SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
+		{
+			if (appendMsg == null)
+			{
+				appendMsg = string.Empty;
+			}
+			GCHandle handle = appendMsg.GetStringGCHandle (_defaultEncoding);
+			int result = CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, handle.AddrOfPinnedObject ());
+			handle.Free ();
+			return result;
+		}
+		#endregion
 	}
 }

@@ -53,6 +53,7 @@
     <Compile Include="Cqp\Enum\CQFloatWindowColors.cs" />
     <Compile Include="Cqp\Enum\CQFriendAddRequestType.cs" />
     <Compile Include="Cqp\Enum\CQGroupAddRequestType.cs" />
+    <Compile Include="Cqp\Enum\CQResponseType.cs" />
     <Compile Include="Cqp\EventArgs\CQMenuCallEventArgs.cs" />
     <Compile Include="Cqp\EventArgs\CQFriendAddRequestEventArgs.cs" />
     <Compile Include="Cqp\Enum\CQFriendAddType.cs" />

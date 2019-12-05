@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,6 +11,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 	/// <summary>
 	/// 用于描述 Ini 配置项的类
 	/// </summary>
+	[Serializable]
 	public class IniObject : Dictionary<string, IniSection>
 	{
 		#region --字段--
@@ -98,12 +100,22 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			: base (capacity)
 		{ }
 		/// <summary>
-		/// 初始化 <see cref="IniSection"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{String, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
+		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{String, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
 		/// </summary>
 		/// <param name="dictionary"><see cref="IDictionary{String, IniSection}"/>, 它的元素被复制到新 <see cref="IniObject"/> </param>
 		public IniObject (IDictionary<string, IniSection> dictionary)
 			: base (dictionary)
 		{ }
+		/// <summary>
+		/// 用序列化数据初始化 <see cref="IniObject"/> 类的新实例, 
+		/// </summary>
+		/// <param name="serializationInfo">一个 <see cref="SerializationInfo"/> 包含 <see cref="IniObject"/> 所需的信息。</param>
+		/// <param name="streamingContext">一个 <see cref="StreamingContext"/> 结构包含与 <see cref="IniObject"/> 关联的序列化流的源和目标。</param>
+		protected IniObject (System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext)
+			: base (serializationInfo, streamingContext)
+		{
+
+		}
 		#endregion
 
 		#region --公开方法--
