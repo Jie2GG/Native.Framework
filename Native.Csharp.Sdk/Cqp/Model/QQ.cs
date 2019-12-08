@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -279,12 +280,103 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			QQ qq = obj as QQ;
+			if (qq != null)
+			{
+				return this.Id == qq.Id;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回此实例的哈希代码
+		/// </summary>
+		/// <returns>32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Id.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
 			return string.Format ("QQ号: {0}", this.Id);
+		}
+		#endregion
+
+		#region --私有方法--
+		/// <summary>
+		/// 比较 <see cref="QQMessage"/> 中的内容和 string 是否相等
+		/// </summary>
+		/// <param name="qq">相比较的 <see cref="QQ"/> 对象</param>
+		/// <param name="qqId">相比较的QQ号</param>
+		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
+		private static bool Equals (QQ qq, long qqId)
+		{
+			if (qq == null || qqId < 10000)
+			{
+				return false;
+			}
+			return qq.Id == qqId;
+		}
+		#endregion
+
+		#region --运算符方法--
+		/// <summary>
+		/// 确定<see cref="QQ"/> 中是否是指定的QQ号
+		/// </summary>
+		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
+		/// <param name="qqId">要比较的QQ号</param>
+		/// <returns>如果 qq 中的值与 qqId 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (QQ qq, long qqId)
+		{
+			return Equals (qq, qqId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="QQ"/> 中是否是指定的QQ号
+		/// </summary>
+		/// <param name="qqId">要比较的QQ号</param>
+		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
+		/// <returns>如果 qqId 与 qq中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (long qqId, QQ qq)
+		{
+			return Equals (qq, qqId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="QQ"/> 中是否不是指定的QQ号
+		/// </summary>
+		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
+		/// <param name="qqId">要比较的QQ号</param>
+		/// <returns>如果 qq 中的值与 qqId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (QQ qq, long qqId)
+		{
+			return !Equals (qq, qqId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="QQ"/> 中是否不是指定的QQ号
+		/// </summary>
+		/// <param name="qqId">要比较的QQ号</param>
+		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
+		/// <returns>如果 qqId 与 qq中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (long qqId, QQ qq)
+		{
+			return !Equals (qq, qqId);
 		}
 		#endregion
 	}

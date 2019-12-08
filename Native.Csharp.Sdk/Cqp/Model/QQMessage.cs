@@ -188,7 +188,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 确定指定的对象是否等于当前对象
 		/// </summary>
 		/// <param name="obj">要与当前对象进行比较的对象</param>
-		/// <returns>如果指定的对象等于当前对象，则为 true，否则为 false</returns>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
 		public override bool Equals (object obj)
 		{
 			QQMessage msg = obj as QQMessage;
@@ -234,53 +234,70 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 		#endregion
 
+		#region --私有方法--
+		/// <summary>
+		/// 比较 <see cref="QQMessage"/> 中的内容和 string 是否相等
+		/// </summary>
+		/// <param name="msg">相比较的 <see cref="QQMessage"/> 对象</param>
+		/// <param name="str">相比较的字符串</param>
+		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
+		private static bool Equals (QQMessage msg, string str)
+		{
+			if (msg == null || str == null)
+			{
+				return false;
+			}
+			return string.Equals (msg.OriginalMessage, str);
+		}
+		#endregion
+
 		#region --运算符方法--
 		/// <summary>
-		/// 确定两个指定的字符串是否具有相同的值
+		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
 		/// </summary>
 		/// <param name="msg">要比较的第一个<see cref="QQMessage"/>对象，或 null</param>
 		/// <param name="str">要比较的第二个字符串，或 null</param>
-		/// <returns>如果 msg 中的值与 str 相同, 则为 <code>truer</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 msg 中的值与 str 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator == (QQMessage msg, string str)
 		{
-			return string.Equals (msg.OriginalMessage, str);
+			return Equals (msg, str);
 		}
 
 		/// <summary>
-		/// 确定两个指定的字符串是否具有相同的值
+		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
 		/// </summary>
 		/// <param name="str">要比较的第一个字符串，或 null</param>
 		/// <param name="msg">要比较的第二个<see cref="QQMessage"/>对象，或 null</param>
-		/// <returns>如果 msg 中的值与 str 相同, 则为 <code>truer</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 str与 msg 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator == (string str, QQMessage msg)
 		{
-			return string.Equals (str, msg.OriginalMessage);
+			return Equals (msg, str);
 		}
 
 		/// <summary>
-		/// 确定两个指定的字符串是否具有相同的值
+		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
 		/// </summary>
 		/// <param name="msg">要比较的第一个<see cref="QQMessage"/>对象，或 null</param>
 		/// <param name="str">要比较的第二个字符串，或 null</param>
-		/// <returns>如果 msg 中的值与 str 不同, 则为 <code>truer</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 msg 中的值与 str 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator != (QQMessage msg, string str)
 		{
-			return !string.Equals (msg.OriginalMessage, str);
+			return !Equals (msg, str);
 		}
 
 		/// <summary>
-		/// 确定两个指定的字符串是否具有相同的值
+		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
 		/// </summary>
 		/// <param name="str">要比较的第一个字符串，或 null</param>
 		/// <param name="msg">要比较的第二个<see cref="QQMessage"/>对象，或 null</param>
-		/// <returns>如果 msg 中的值与 str 不同, 则为 <code>truer</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 str与 msg 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator != (string str, QQMessage msg)
 		{
-			return !string.Equals (msg.OriginalMessage, str);
+			return !Equals (msg, str);
 		}
 		#endregion
 	}
