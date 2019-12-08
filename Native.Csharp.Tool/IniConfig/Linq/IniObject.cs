@@ -107,7 +107,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			: base (dictionary)
 		{ }
 		/// <summary>
-		/// 用序列化数据初始化 <see cref="IniObject"/> 类的新实例, 
+		/// 用序列化数据初始化 <see cref="IniObject"/> 类的新实例
 		/// </summary>
 		/// <param name="serializationInfo">一个 <see cref="SerializationInfo"/> 包含 <see cref="IniObject"/> 所需的信息。</param>
 		/// <param name="streamingContext">一个 <see cref="StreamingContext"/> 结构包含与 <see cref="IniObject"/> 关联的序列化流的源和目标。</param>

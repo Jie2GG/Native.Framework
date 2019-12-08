@@ -14,6 +14,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 	/// <summary>
 	/// 用于描述 Ini 配置项节的类
 	/// </summary>
+	[Serializable]
 	public class IniSection : Dictionary<string, IniValue>
 	{
 		#region --字段--
@@ -122,6 +123,15 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 		protected IniSection (string name, SerializationInfo info, StreamingContext context) : base (info, context)
 		{
 			this._name = name;
+		}
+		/// <summary>
+		/// 用序列化数据初始化 <see cref="IniSection"/> 类的新实例 
+		/// </summary>
+		/// <param name="serializationInfo">一个 <see cref="SerializationInfo"/> 包含 <see cref="IniSection"/> 所需的信息。</param>
+		/// <param name="streamingContext">一个 <see cref="StreamingContext"/> 结构包含与 <see cref="IniSection"/> 关联的序列化流的源和目标。</param>
+		protected IniSection (SerializationInfo serializationInfo, StreamingContext streamingContext)
+			: base (serializationInfo, streamingContext)
+		{
 		}
 		#endregion
 
@@ -287,7 +297,7 @@ namespace Native.Csharp.Tool.IniConfig.Linq
 			StringBuilder iniStr = new StringBuilder ();
 			using (TextWriter textWriter = new StringWriter (iniStr))
 			{
-				textWriter.WriteLine ("[{0}]", this.Name.Trim ());	//添加 "节"
+				textWriter.WriteLine ("[{0}]", this.Name.Trim ());  //添加 "节"
 				foreach (KeyValuePair<string, IniValue> item in this)
 				{
 					textWriter.WriteLine ("{0}={1}", item.Key.Trim (), item.Value.Value.Trim ());
