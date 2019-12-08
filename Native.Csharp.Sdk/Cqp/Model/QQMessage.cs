@@ -205,7 +205,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns> 32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return this.OriginalMessage.GetHashCode ();
+			return this.OriginalMessage.GetHashCode () & base.GetHashCode ();
 		}
 
 		/// <summary>
