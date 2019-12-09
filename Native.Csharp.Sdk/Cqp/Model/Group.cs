@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -337,12 +338,103 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			Group group = obj as Group;
+			if (group != null)
+			{
+				return this.Id == group.Id;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Id.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
 			return string.Format ("QQ群号: {0}", this.Id);
+		}
+		#endregion
+
+		#region --私有方法--
+		/// <summary>
+		/// 比较 <see cref="Group"/> 中的内容和 string 是否相等
+		/// </summary>
+		/// <param name="group">相比较的 <see cref="Group"/> 对象</param>
+		/// <param name="groupId">相比较的群号</param>
+		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
+		public static bool Equals (Group group, long groupId)
+		{
+			if (group == null || groupId < 10000)
+			{
+				return false;
+			}
+			return group.Id == groupId;
+		}
+		#endregion
+
+		#region --运算符方法--
+		/// <summary>
+		/// 确定<see cref="Group"/> 中是否是指定的讨论组号
+		/// </summary>
+		/// <param name="group">要比较的<see cref="Group"/>对象，或 null</param>
+		/// <param name="groupId">要比较的讨论组号</param>
+		/// <returns>如果 group 中的值与 groupId 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (Group group, long groupId)
+		{
+			return Equals (group, groupId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Group"/> 中是否是指定的讨论组号
+		/// </summary>
+		/// <param name="groupId">要比较的讨论组号</param>
+		/// <param name="group">要比较的<see cref="Group"/>对象，或 null</param>
+		/// <returns>如果 groupId 与 group 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (long groupId, Group group)
+		{
+			return Equals (group, groupId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Group"/> 中是否不是指定的讨论组号
+		/// </summary>
+		/// <param name="group">要比较的<see cref="Group"/>对象，或 null</param>
+		/// <param name="groupId">要比较的讨论组号</param>
+		/// <returns>如果 group 中的值与 groupId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (Group group, long groupId)
+		{
+			return !Equals (group, groupId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Group"/> 中是否不是指定的讨论组号
+		/// </summary>
+		/// <param name="groupId">要比较的讨论组号</param>
+		/// <param name="group">要比较的<see cref="Group"/>对象，或 null</param>
+		/// <returns>如果 groupId 与 group 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (long groupId, Group group)
+		{
+			return !Equals (group, groupId);
 		}
 		#endregion
 	}

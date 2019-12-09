@@ -9,89 +9,89 @@ using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
-    /// <summary>
-    /// 表示描述 QQ群成员 的类
-    /// </summary>
-    public class GroupMemberInfo
-    {
-        #region --属性--
-        /// <summary>
-        /// 获取一个值, 指示成员所在群号码
-        /// </summary>
-        public long GroupId { get; private set; }
+	/// <summary>
+	/// 表示描述 QQ群成员 的类
+	/// </summary>
+	public class GroupMemberInfo
+	{
+		#region --属性--
+		/// <summary>
+		/// 获取一个值, 指示成员所在群号码
+		/// </summary>
+		public long GroupId { get; private set; }
 
-        /// <summary>
-        /// 获取一个值, 指示当前成员的QQ号
-        /// </summary>
-        public long Account { get; private set; }
-        
 		/// <summary>
-        /// 获取一个值, 指示当前成员的QQ昵称
-        /// </summary>
-        public string Nick { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前成员在此群的群名片
-        /// </summary>
-        public string Card { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员的性别
-        /// </summary>
-        public QQSex Sex { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员年龄
-        /// </summary>
-        public int Age { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前成员所在地区
-        /// </summary>
-        public string Area { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前成员加入群的日期和时间
-        /// </summary>
-        public DateTime JoinGroupDateTime { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员最后一次发言的日期和时间
-        /// </summary>
-        public DateTime LastSpeakDateTime { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员的等级
-        /// </summary>
-        public string Level { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前的群成员类型
-        /// </summary>
-        public QQGroupMemberType MemberType { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员在此群获得的专属头衔
-        /// </summary>
-        public string ExclusiveTitle { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员在此群的专属头衔过期时间, 若本属性为 null 则表示无期限
-        /// </summary>
-        public DateTime? ExclusiveTitleExpirationTime { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员是否为不良记录群成员
-        /// </summary>
-        public bool IsBadRecord { get; private set; }
-        
-		/// <summary>
-        /// 获取一个值, 指示当前群成员是否允许修改群名片
-        /// </summary>
-        public bool IsAllowEditorCard { get; private set; }
-        #endregion
+		/// 获取一个值, 指示当前成员的QQ号
+		/// </summary>
+		public long QQId { get; private set; }
 
-        #region --构造函数--
+		/// <summary>
+		/// 获取一个值, 指示当前成员的QQ昵称
+		/// </summary>
+		public string Nick { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前成员在此群的群名片
+		/// </summary>
+		public string Card { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员的性别
+		/// </summary>
+		public QQSex Sex { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员年龄
+		/// </summary>
+		public int Age { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前成员所在地区
+		/// </summary>
+		public string Area { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前成员加入群的日期和时间
+		/// </summary>
+		public DateTime JoinGroupDateTime { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员最后一次发言的日期和时间
+		/// </summary>
+		public DateTime LastSpeakDateTime { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员的等级
+		/// </summary>
+		public string Level { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前的群成员类型
+		/// </summary>
+		public QQGroupMemberType MemberType { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员在此群获得的专属头衔
+		/// </summary>
+		public string ExclusiveTitle { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员在此群的专属头衔过期时间, 若本属性为 null 则表示无期限
+		/// </summary>
+		public DateTime? ExclusiveTitleExpirationTime { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员是否为不良记录群成员
+		/// </summary>
+		public bool IsBadRecord { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前群成员是否允许修改群名片
+		/// </summary>
+		public bool IsAllowEditorCard { get; private set; }
+		#endregion
+
+		#region --构造函数--
 		/// <summary>
 		/// 使用原始数据初始化 <see cref="GroupMemberInfo"/> 类的新实例
 		/// </summary>
@@ -99,62 +99,77 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <exception cref="InvalidDataException">原始数据格式错误</exception>
 		/// <param name="cipherBytes">原始数据</param>
 		public GroupMemberInfo (byte[] cipherBytes)
-        {
-            if (cipherBytes == null)
-            {
-                throw new ArgumentNullException ("cipherBytes");
-            }
+		{
+			if (cipherBytes == null)
+			{
+				throw new ArgumentNullException ("cipherBytes");
+			}
 
-            using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
-            {
-                if (reader.Length() < 40)
-                {
-                    throw new InvalidDataException ("读取失败, 原始数据格式错误");
-                }
-                this.GroupId = reader.ReadInt64_Ex ();
-                this.Account = reader.ReadInt64_Ex ();
-                this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
-                this.Card = reader.ReadString_Ex (CQApi.DefaultEncoding);
-                this.Sex = (QQSex)reader.ReadInt32_Ex ();
-                this.Age = reader.ReadInt32_Ex ();
-                this.Area = reader.ReadString_Ex (CQApi.DefaultEncoding);
-                this.JoinGroupDateTime = reader.ReadInt32_Ex ().ToDateTime ();
-                this.LastSpeakDateTime = reader.ReadInt32_Ex ().ToDateTime ();
-                this.Level = reader.ReadString_Ex (CQApi.DefaultEncoding);
-                this.MemberType = (QQGroupMemberType)reader.ReadInt32_Ex ();
-                this.IsBadRecord = reader.ReadInt32_Ex () == 1;
-                this.ExclusiveTitle = reader.ReadString_Ex (CQApi.DefaultEncoding);
-                this.LastSpeakDateTime = reader.ReadInt32_Ex ().ToDateTime ();
-                this.IsAllowEditorCard = reader.ReadInt32_Ex () == 1;
-            }
-        }
-        #endregion
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
+			{
+				if (reader.Length () < 40)
+				{
+					throw new InvalidDataException ("读取失败, 原始数据格式错误");
+				}
+				this.GroupId = reader.ReadInt64_Ex ();
+				this.QQId = reader.ReadInt64_Ex ();
+				this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
+				this.Card = reader.ReadString_Ex (CQApi.DefaultEncoding);
+				this.Sex = (QQSex)reader.ReadInt32_Ex ();
+				this.Age = reader.ReadInt32_Ex ();
+				this.Area = reader.ReadString_Ex (CQApi.DefaultEncoding);
+				this.JoinGroupDateTime = reader.ReadInt32_Ex ().ToDateTime ();
+				this.LastSpeakDateTime = reader.ReadInt32_Ex ().ToDateTime ();
+				this.Level = reader.ReadString_Ex (CQApi.DefaultEncoding);
+				this.MemberType = (QQGroupMemberType)reader.ReadInt32_Ex ();
+				this.IsBadRecord = reader.ReadInt32_Ex () == 1;
+				this.ExclusiveTitle = reader.ReadString_Ex (CQApi.DefaultEncoding);
+				this.LastSpeakDateTime = reader.ReadInt32_Ex ().ToDateTime ();
+				this.IsAllowEditorCard = reader.ReadInt32_Ex () == 1;
+			}
+		}
+		#endregion
 
-        #region --公开方法--
-        /// <summary>
-        /// 将当前实例的字符串
-        /// </summary>
-        /// <returns>返回当前实例的字符串</returns>
-        public override string ToString ()
-        {
-            StringBuilder builder = new StringBuilder ();
-            builder.AppendLine (string.Format ("群号: {0}", this.GroupId));
-            builder.AppendLine (string.Format ("帐号: {0}", this.Account));
-            builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
-            builder.AppendLine (string.Format ("群名片: {0}", this.Card));
-            builder.AppendLine (string.Format ("性别: {0}", this.Sex));
-            builder.AppendLine (string.Format ("年龄: {0}", this.Age));
-            builder.AppendLine (string.Format ("所在地区: {0}", this.Area));
-            builder.AppendLine (string.Format ("加群时间: {0}", this.JoinGroupDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
-            builder.AppendLine (string.Format ("最后发言时间: {0}", this.LastSpeakDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
-            builder.AppendLine (string.Format ("等级: {0}", this.Level));
-            builder.AppendLine (string.Format ("成员类型: {0}", this.MemberType.GetDescription ()));
-            builder.AppendLine (string.Format ("专属头衔: {0}", this.ExclusiveTitle));
-            builder.AppendLine (string.Format ("专属头衔过期时间: {0}", this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss")));
-            builder.AppendLine (string.Format ("是否为不良记录成员: {0}", this.IsBadRecord ? "是" : "否"));
-            builder.AppendFormat ("是否允许修改名片: {0}", this.IsAllowEditorCard ? "是" : "否");
-            return builder.ToString ();
-        }
-        #endregion
-    }
+		#region --公开方法--
+		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
+		public override bool Equals (object obj)
+		{
+			GroupMemberInfo info = obj as GroupMemberInfo;
+			if (info != null)
+			{
+				return this.GroupId == info.GroupId && this.QQId == info.QQId && string.Equals (this.Nick, info.Nick) && string.Equals (this.Card, info.Card) && this.JoinGroupDateTime == info.JoinGroupDateTime && this.LastSpeakDateTime == info.LastSpeakDateTime && string.Equals (this.Level, info.Level) && this.MemberType == info.MemberType && string.Equals (this.ExclusiveTitle, info.ExclusiveTitle) && this.ExclusiveTitleExpirationTime == info.ExclusiveTitleExpirationTime && this.IsAllowEditorCard == info.IsAllowEditorCard && this.IsBadRecord == info.IsBadRecord;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 将当前实例的字符串
+		/// </summary>
+		/// <returns>返回当前实例的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("群号: {0}", this.GroupId));
+			builder.AppendLine (string.Format ("帐号: {0}", this.QQId));
+			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
+			builder.AppendLine (string.Format ("群名片: {0}", this.Card));
+			builder.AppendLine (string.Format ("性别: {0}", this.Sex));
+			builder.AppendLine (string.Format ("年龄: {0}", this.Age));
+			builder.AppendLine (string.Format ("所在地区: {0}", this.Area));
+			builder.AppendLine (string.Format ("加群时间: {0}", this.JoinGroupDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
+			builder.AppendLine (string.Format ("最后发言时间: {0}", this.LastSpeakDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
+			builder.AppendLine (string.Format ("等级: {0}", this.Level));
+			builder.AppendLine (string.Format ("成员类型: {0}", this.MemberType.GetDescription ()));
+			builder.AppendLine (string.Format ("专属头衔: {0}", this.ExclusiveTitle));
+			builder.AppendLine (string.Format ("专属头衔过期时间: {0}", this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss")));
+			builder.AppendLine (string.Format ("是否为不良记录成员: {0}", this.IsBadRecord ? "是" : "否"));
+			builder.AppendFormat ("是否允许修改名片: {0}", this.IsAllowEditorCard ? "是" : "否");
+			return builder.ToString ();
+		}
+		#endregion
+	}
 }

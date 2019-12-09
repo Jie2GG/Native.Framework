@@ -348,7 +348,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		/// <param name="qqId">要比较的QQ号</param>
 		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <returns>如果 qqId 与 qq中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 qqId 与 qq 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator == (long qqId, QQ qq)
 		{
@@ -372,7 +372,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		/// <param name="qqId">要比较的QQ号</param>
 		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <returns>如果 qqId 与 qq中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 qqId 与 qq 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator != (long qqId, QQ qq)
 		{

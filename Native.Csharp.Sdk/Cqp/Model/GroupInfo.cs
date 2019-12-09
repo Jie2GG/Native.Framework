@@ -69,6 +69,30 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 		#region --公开方法--
 		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			GroupInfo info = obj as GroupInfo;
+			if (info != null)
+			{
+				return this.GroupId == info.GroupId && string.Equals (this.Name, info.Name) && this.CurrentMemberCount == info.CurrentMemberCount && this.MaxMemberCount == info.MaxMemberCount;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.GroupId.GetHashCode () & this.Name.GetHashCode () & this.CurrentMemberCount.GetHashCode () & this.MaxMemberCount.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 获取于当前实例等效的字符串副本
 		/// </summary>
 		/// <returns>返回于当前实例等效的字符串</returns>

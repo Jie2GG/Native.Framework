@@ -51,7 +51,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 			this.OriginalString = cipherText;
 
-			using (BinaryReader reader = new BinaryReader (new MemoryStream (Convert.FromBase64String(cipherText))))
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (Convert.FromBase64String (cipherText))))
 			{
 				if (reader.Length () < 12)
 				{
@@ -66,6 +66,30 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		#endregion
 
 		#region --公开方法--
+		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			GroupMemberAnonymousInfo info = obj as GroupMemberAnonymousInfo;
+			if (info != null)
+			{
+				return string.Equals (this.OriginalString, info.OriginalString);
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.OriginalString.GetHashCode ();
+		}
+
 		/// <summary>
 		/// 获取与当前实例等效的字符串
 		/// </summary>

@@ -91,6 +91,23 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 		#endregion
 
+		#region --私有方法--
+		/// <summary>
+		/// 比较 <see cref="Discuss"/> 中的内容和 string 是否相等
+		/// </summary>
+		/// <param name="discuss">相比较的 <see cref="Discuss"/> 对象</param>
+		/// <param name="discussId">相比较的讨论组号</param>
+		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
+		private static bool Equals (Discuss discuss, long discussId)
+		{
+			if (discuss == null || discussId < 10000)
+			{
+				return false;
+			}
+			return discuss.Id == discussId;
+		}
+		#endregion
+
 		#region --运算符方法--
 		/// <summary>
 		/// 确定<see cref="Discuss"/> 中是否是指定的讨论组号
@@ -109,7 +126,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		/// <param name="discussId">要比较的讨论组号</param>
 		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
-		/// <returns>如果 discussId 与 qq中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 discussId 与 discuss 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator == (long discussId, Discuss discuss)
 		{
@@ -121,7 +138,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
 		/// <param name="discussId">要比较的讨论组号</param>
-		/// <returns>如果 qq 中的值与 discussId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 discuss 中的值与 discussId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator != (Discuss discuss, long discussId)
 		{
@@ -133,7 +150,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// </summary>
 		/// <param name="discussId">要比较的讨论组号</param>
 		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
-		/// <returns>如果 discussId 与 qq中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		/// <returns>如果 discussId 与 discuss 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
 		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
 		public static bool operator != (long discussId, Discuss discuss)
 		{
