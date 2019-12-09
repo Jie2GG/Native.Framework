@@ -9,31 +9,31 @@ using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
-    /// <summary>
-    /// 描述 QQ陌生人信息 的类
-    /// </summary>
-    public class StrangerInfo
-    {
-        #region --属性--
-        /// <summary>
-        /// 获取一个值, 指示当前的QQ帐号
-        /// </summary>
-        public long Id { get; private set; }
+	/// <summary>
+	/// 描述 QQ陌生人信息 的类
+	/// </summary>
+	public class StrangerInfo
+	{
+		#region --属性--
+		/// <summary>
+		/// 获取一个值, 指示当前的QQ帐号
+		/// </summary>
+		public long Id { get; private set; }
 
-        /// <summary>
-        /// 获取一个值, 指示当前的QQ昵称
-        /// </summary>
-        public string Nick { get; private set; }
+		/// <summary>
+		/// 获取一个值, 指示当前的QQ昵称
+		/// </summary>
+		public string Nick { get; private set; }
 
-        /// <summary>
-        /// 获取一个值, 指示当前QQ的性别
-        /// </summary>
-        public QQSex Sex { get; private set; }
+		/// <summary>
+		/// 获取一个值, 指示当前QQ的性别
+		/// </summary>
+		public QQSex Sex { get; private set; }
 
-        /// <summary>
-        /// 获取一个值, 指示当前的年龄
-        /// </summary>
-        public int Age { get; private set; }
+		/// <summary>
+		/// 获取一个值, 指示当前的年龄
+		/// </summary>
+		public int Age { get; private set; }
 		#endregion
 
 		#region --构造函数--
@@ -43,7 +43,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <exception cref="ArgumentNullException">参数: cipherBytes 为 null 时引发此异常</exception>
 		/// <param name="cipherBytes">原始数据</param>
 		public StrangerInfo (byte[] cipherBytes)
-        {
+		{
 			if (cipherBytes == null)
 			{
 				throw new ArgumentNullException ("cipherBytes");
@@ -57,22 +57,46 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				this.Age = reader.ReadInt32_Ex ();
 			}
 		}
-        #endregion
+		#endregion
 
-        #region --公开方法--
-        /// <summary>
-        /// 将当前实例的字符串
-        /// </summary>
-        /// <returns>返回当前实例的字符串</returns>
-        public override string ToString ()
-        {
-            StringBuilder builder = new StringBuilder ();
-            builder.AppendLine (string.Format ("帐号: {0}", this.Id));
-            builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
-            builder.AppendLine (string.Format ("性别: {0}", this.Sex));
-            builder.AppendFormat ("年龄: {0}", this.Age);
-            return builder.ToString ();
-        }
-        #endregion
-    }
+		#region --公开方法--
+		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			StrangerInfo info = obj as StrangerInfo;
+			if (info != null)
+			{
+				return this.Id == info.Id && string.Equals (this.Nick, info.Nick) && this.Age == info.Age && this.Sex == info.Sex;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Id.GetHashCode () & this.Nick.GetHashCode () & this.Sex.GetHashCode () & this.Age.GetHashCode ();
+		}
+
+		/// <summary>
+		/// 将当前实例的字符串
+		/// </summary>
+		/// <returns>返回当前实例的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("帐号: {0}", this.Id));
+			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
+			builder.AppendLine (string.Format ("性别: {0}", this.Sex));
+			builder.AppendFormat ("年龄: {0}", this.Age);
+			return builder.ToString ();
+		}
+		#endregion
+	}
 }

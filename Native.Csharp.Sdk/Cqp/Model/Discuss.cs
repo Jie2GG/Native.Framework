@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,12 +58,86 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		public override bool Equals (object obj)
+		{
+			Discuss discuss = obj as Discuss;
+			if (discuss != null)
+			{
+				return this.Id == discuss.Id;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Id.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
 			return string.Format ("讨论组号: {0}", this.Id);
+		}
+		#endregion
+
+		#region --运算符方法--
+		/// <summary>
+		/// 确定<see cref="Discuss"/> 中是否是指定的讨论组号
+		/// </summary>
+		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
+		/// <param name="discussId">要比较的讨论组号</param>
+		/// <returns>如果 discuss 中的值与 discussId 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (Discuss discuss, long discussId)
+		{
+			return Equals (discuss, discussId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Discuss"/> 中是否是指定的讨论组号
+		/// </summary>
+		/// <param name="discussId">要比较的讨论组号</param>
+		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
+		/// <returns>如果 discussId 与 qq中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator == (long discussId, Discuss discuss)
+		{
+			return Equals (discuss, discussId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Discuss"/> 中是否不是指定的讨论组号
+		/// </summary>
+		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
+		/// <param name="discussId">要比较的讨论组号</param>
+		/// <returns>如果 qq 中的值与 discussId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (Discuss discuss, long discussId)
+		{
+			return !Equals (discuss, discussId);
+		}
+
+		/// <summary>
+		/// 确定<see cref="Discuss"/> 中是否不是指定的讨论组号
+		/// </summary>
+		/// <param name="discussId">要比较的讨论组号</param>
+		/// <param name="discuss">要比较的<see cref="Discuss"/>对象，或 null</param>
+		/// <returns>如果 discussId 与 qq中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
+		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
+		public static bool operator != (long discussId, Discuss discuss)
+		{
+			return !Equals (discuss, discussId);
 		}
 		#endregion
 	}
