@@ -14,9 +14,9 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取一个值, 指示当前QQ群号码
+		/// 获取一个值, 指示当前QQ群 <see cref="Model.Group"/> 对象
 		/// </summary>
-		public long GroupId { get; private set; }
+		public Group Group { get; private set; }
 
 		/// <summary>
 		/// 获取当前QQ群的名称
@@ -38,11 +38,12 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 使用指定的原始数据初始化 <see cref="GroupInfo"/> 类的新实例
 		/// </summary>
+		/// <param name="api">用于获取信息的实例</param>
 		/// <param name="cipherBytes">原始数据</param>
 		/// <param name="oldApi">是否兼容老久API</param>
 		/// <exception cref="ArgumentNullException">当参数 cipherBytes 为 null 时引发此异常</exception>
 		/// <exception cref="InvalidDataException">原始数据格式错误</exception>
-		public GroupInfo (byte[] cipherBytes, bool oldApi = false)
+		public GroupInfo (CQApi api, byte[] cipherBytes, bool oldApi = false)
 		{
 			if (cipherBytes == null)
 			{
@@ -56,7 +57,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 					throw new InvalidDataException ("读取失败, 原始数据格式错误");
 				}
 
-				this.GroupId = reader.ReadInt64_Ex ();
+				this.Group = new Group (api, reader.ReadInt64_Ex ());
 				this.Name = reader.ReadString_Ex (CQApi.DefaultEncoding);
 				if (oldApi == false)
 				{
@@ -78,7 +79,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			GroupInfo info = obj as GroupInfo;
 			if (info != null)
 			{
-				return this.GroupId == info.GroupId && string.Equals (this.Name, info.Name) && this.CurrentMemberCount == info.CurrentMemberCount && this.MaxMemberCount == info.MaxMemberCount;
+				return this.Group == info.Group && string.Equals (this.Name, info.Name) && this.CurrentMemberCount == info.CurrentMemberCount && this.MaxMemberCount == info.MaxMemberCount;
 			}
 			return base.Equals (obj);
 		}
@@ -89,7 +90,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns> 32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return base.GetHashCode () & this.GroupId.GetHashCode () & this.Name.GetHashCode () & this.CurrentMemberCount.GetHashCode () & this.MaxMemberCount.GetHashCode ();
+			return base.GetHashCode () & this.Group.GetHashCode () & this.Name.GetHashCode () & this.CurrentMemberCount.GetHashCode () & this.MaxMemberCount.GetHashCode ();
 		}
 
 		/// <summary>
@@ -99,7 +100,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("群号: {0}", this.GroupId));
+			builder.AppendLine (string.Format ("群号: {0}", this.Group));
 			builder.AppendLine (string.Format ("群名称: {0}", this.Name));
 			builder.AppendFormat ("当前人数: {0}/{1}", this.CurrentMemberCount, this.MaxMemberCount);
 			return builder.ToString ();

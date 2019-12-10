@@ -755,7 +755,7 @@ namespace Native.Csharp.Sdk.Cqp
 			byte[] data = Convert.FromBase64String (CQP.CQ_getStrangerInfo (AuthCode, qq.Id, notCache).ToString (Encoding.ASCII));
 			try
 			{
-				return new StrangerInfo (data);
+				return new StrangerInfo (this, data);
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -787,7 +787,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 					try
 					{
-						tempFriends.Add (new FriendInfo (reader.ReadToken_Ex ()));
+						tempFriends.Add (new FriendInfo (this, reader.ReadToken_Ex ()));
 					}
 					catch (ArgumentNullException ex)
 					{
@@ -839,7 +839,7 @@ namespace Native.Csharp.Sdk.Cqp
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberInfoV2 (AuthCode, group.Id, qq.Id, notCache).ToString (Encoding.ASCII));
 			try
 			{
-				return new GroupMemberInfo (data);
+				return new GroupMemberInfo (this, data);
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -893,7 +893,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 					try
 					{
-						tempMembers.Add (new GroupMemberInfo (reader.ReadToken_Ex ()));
+						tempMembers.Add (new GroupMemberInfo (this, reader.ReadToken_Ex ()));
 					}
 					catch (ArgumentNullException ex)
 					{
@@ -938,7 +938,7 @@ namespace Native.Csharp.Sdk.Cqp
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (AuthCode, group.Id, notCache));
 			try
 			{
-				return new GroupInfo (data);
+				return new GroupInfo (this, data);
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -977,7 +977,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 					try
 					{
-						tempGroups.Add (new GroupInfo (reader.ReadToken_Ex (), true));
+						tempGroups.Add (new GroupInfo (this, reader.ReadToken_Ex (), true));
 					}
 					catch (ArgumentNullException ex)
 					{

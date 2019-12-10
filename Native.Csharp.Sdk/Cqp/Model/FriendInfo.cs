@@ -15,9 +15,9 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取一个值, 指示当前的QQ帐号
+		/// 获取一个值, 指示当前账号的 <see cref="Model.QQ"/> 实例
 		/// </summary>
-		public long Id { get; private set; }
+		public QQ QQ { get; private set; }
 
 		/// <summary>
 		/// 获取一个值, 指示当前的QQ昵称
@@ -34,9 +34,10 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 使用原始数据初始化 <see cref="FriendInfo"/> 类的新实例
 		/// </summary>
-		/// <exception cref="ArgumentNullException">参数: cipherBytes 为 null 时引发此异常</exception>
+		/// <param name="api">用于获取信息的实例</param>
 		/// <param name="cipherBytes">原始数据</param>
-		public FriendInfo (byte[] cipherBytes)
+		/// <exception cref="ArgumentNullException">参数: cipherBytes 为 null 时引发此异常</exception>
+		public FriendInfo (CQApi api, byte[] cipherBytes)
 		{
 			if (cipherBytes == null)
 			{
@@ -50,7 +51,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 					throw new InvalidDataException ("读取失败, 原始数据格式错误");
 				}
 
-				this.Id = reader.ReadInt32_Ex ();
+				this.QQ = new QQ (api, reader.ReadInt32_Ex ());
 				this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
 				this.Postscript = reader.ReadString_Ex (CQApi.DefaultEncoding);
 			}
@@ -68,7 +69,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			FriendInfo info = obj as FriendInfo;
 			if (info != null)
 			{
-				return this.Id == info.Id && string.Equals (this.Nick, info.Nick) && string.Equals (this.Postscript, info.Postscript);
+				return this.QQ == info.QQ && string.Equals (this.Nick, info.Nick) && string.Equals (this.Postscript, info.Postscript);
 			}
 			return base.Equals (obj);
 		}
@@ -79,7 +80,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return base.GetHashCode () & this.Id.GetHashCode () & this.Nick.GetHashCode () & this.Postscript.GetHashCode ();
+			return base.GetHashCode () & this.QQ.GetHashCode () & this.Nick.GetHashCode () & this.Postscript.GetHashCode ();
 		}
 
 		/// <summary>
@@ -89,7 +90,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("账号: {0}", this.Id));
+			builder.AppendLine (string.Format ("账号: {0}", this.QQ));
 			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
 			builder.AppendFormat ("备注: {0}", this.Postscript);
 			return builder.ToString ();
