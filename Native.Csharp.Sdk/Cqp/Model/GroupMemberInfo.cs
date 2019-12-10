@@ -147,6 +147,15 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.GroupId.GetHashCode () & this.QQId.GetHashCode () & this.Nick.GetHashCode () & this.Card.GetHashCode () & this.JoinGroupDateTime.GetHashCode () & this.LastSpeakDateTime.GetHashCode () & this.Level.GetHashCode () & this.MemberType.GetHashCode () & this.ExclusiveTitle.GetHashCode () & this.ExclusiveTitleExpirationTime.GetHashCode () & this.IsAllowEditorCard.GetHashCode () & this.IsBadRecord.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 将当前实例的字符串
 		/// </summary>
 		/// <returns>返回当前实例的字符串</returns>

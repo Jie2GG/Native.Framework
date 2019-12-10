@@ -62,7 +62,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			this._items = new Dictionary<string, string> (collection.Count);
 			foreach (Match item in collection)
 			{
-				this._items.Add (item.Groups[1].Value, CQApi.CQDeCode(item.Groups[2].Value));
+				this._items.Add (item.Groups[1].Value, CQApi.CQDeCode (item.Groups[2].Value));
 			}
 			#endregion
 		}
@@ -100,6 +100,30 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				codes.Add (new CQCode (item.Groups[0].Value));
 			}
 			return codes;
+		}
+
+		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
+		public override bool Equals (object obj)
+		{
+			CQCode code = obj as CQCode;
+			if (code != null)
+			{
+				return string.Equals (this._originalString, code._originalString);
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this._originalString.GetHashCode ();
 		}
 
 		/// <summary>

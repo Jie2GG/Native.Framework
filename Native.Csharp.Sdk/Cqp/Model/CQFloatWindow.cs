@@ -92,6 +92,30 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 确定指定的对象是否等于当前对象
+		/// </summary>
+		/// <param name="obj">要与当前对象进行比较的对象</param>
+		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
+		public override bool Equals (object obj)
+		{
+			CQFloatWindow floatWindow = obj as CQFloatWindow;
+			if (floatWindow != null)
+			{
+				return this.Value == floatWindow.Value && string.Equals (this.Unit, floatWindow.Unit) && this.TextColor == floatWindow.TextColor;
+			}
+			return base.Equals (obj);
+		}
+
+		/// <summary>
+		/// 返回该字符串的哈希代码
+		/// </summary>
+		/// <returns> 32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Value.GetHashCode () & this.Unit.GetHashCode () & this.TextColor.GetHashCode ();
+		}
+
+		/// <summary>
 		/// 返回当前对象的字符串
 		/// </summary>
 		/// <returns>当前对象的字符串</returns>
