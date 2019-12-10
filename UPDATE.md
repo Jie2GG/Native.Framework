@@ -10,10 +10,11 @@
 	7. 新增 StrangerInfo 类, 用于描述 陌生人信息
 	8. 新增 CQLog 类, 将日志部分分离为单独的类
 	9. 新增 事件参数子类型枚举, 用于快速区分事件的子类型
-	10. 合并 文件 LibExport.tt, MenuExport.tt, StatusExport.tt 为 CQExport.tt, 并添加 CQExport.log 日志文件
-	11. 合并 事件参数, 还原为和官方SDK一致
-	12. 重构 CQApi 类, 为其增加针对 CQCode, QQ, Group, Discuss, FirendInfo, QQMessage, StrangerInfo 类的接口
-	13. 重构 所有事件参数, 规范其行为, 增加重写方法
+	10. 新增 模型运算符重载, 用于和基础数据类型比对
+	11. 合并 文件 LibExport.tt, MenuExport.tt, StatusExport.tt 为 CQExport.tt, 并添加 CQExport.log 日志文件
+	12. 合并 事件参数, 还原为和官方SDK一致
+	13. 重构 CQApi 类, 为其增加针对 CQCode, QQ, Group, Discuss, FirendInfo, QQMessage, StrangerInfo 类的接口
+	14. 重构 所有事件参数, 规范其行为, 增加重写方法
 
 > 2019年10月13日 版本: V3.4.1.1016
 

@@ -1,5 +1,6 @@
 ﻿using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Expand;
+using Native.Csharp.Sdk.Cqp.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ消息 的类
 	/// </summary>
-	public class QQMessage
+	public class QQMessage: IToSendString
 	{
 		#region --字段--
 		private List<CQCode> _cqCodes = null;
@@ -231,6 +232,19 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
 			}
 			return builder.ToString ();
+		}
+
+		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			if (!this.IsRegexMessage)
+			{
+				return this.OriginalMessage;
+			}
+			return string.Empty;
 		}
 		#endregion
 

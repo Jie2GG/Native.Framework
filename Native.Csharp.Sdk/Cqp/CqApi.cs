@@ -474,7 +474,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			string msg = message.ToString_Ex ();
+			string msg = message.ToSendString ();
 			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
 			try
 			{
@@ -513,7 +513,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			string msg = message.ToString_Ex ();
+			string msg = message.ToSendString ();
 			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
 			try
 			{
@@ -547,7 +547,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public QQMessage SendDiscussMessage (Discuss discuss, params object[] message)
 		{
-			string msg = message.ToString_Ex ();
+			string msg = message.ToSendString ();
 			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
 			try
 			{

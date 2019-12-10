@@ -49,7 +49,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回当前实例 <see cref="CQLog"/></returns>
 		public CQLog WriteLine (CQLogLevel level, string type, params object[] contents)
 		{
-			GCHandle handle = contents.ToString_Ex ().GetStringGCHandle ();
+			GCHandle handle = contents.ToSendString ().GetStringGCHandle ();
 			try
 			{
 				CQP.CQ_addLog (this.AuthCode, (int)level, type, handle.AddrOfPinnedObject ());
@@ -155,7 +155,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="contents">日志详细信息</param>
 		public void SetFatalMessage (params object[] contents)
 		{
-			GCHandle handle = contents.ToString_Ex ().GetStringGCHandle ();
+			GCHandle handle = contents.ToSendString ().GetStringGCHandle ();
 			try
 			{
 				CQP.CQ_setFatal (_authCode, handle.AddrOfPinnedObject ());

@@ -111,6 +111,7 @@
     <Compile Include="Cqp\Interface\IGroupUpload.cs" />
     <Compile Include="Cqp\Interface\IPrivateMessage.cs" />
     <Compile Include="Cqp\Interface\IStatusUpdate.cs" />
+    <Compile Include="Cqp\Interface\IToSendString.cs" />
     <Compile Include="Cqp\Model\CQCode.cs" />
     <Compile Include="Cqp\Model\CQFloatWindow.cs" />
     <Compile Include="Cqp\Model\Discuss.cs" />
