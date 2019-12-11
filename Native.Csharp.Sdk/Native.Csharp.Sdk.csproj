@@ -1,120 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Native.Csharp.Sdk</RootNamespace>
-    <AssemblyName>Native.Csharp.Sdk</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <TargetFramework>net45</TargetFramework>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jie2GG</Authors>
+    <Description></Description>
+    <Company>Jie2GG</Company>
+    <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\x86\Debug\Native.Csharp.Sdk.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Cqp\Core\CQP.cs" />
-    <Compile Include="Cqp\Core\Kernel32.cs" />
-    <Compile Include="Cqp\CqApi.cs" />
-    <Compile Include="Cqp\CqMsg.cs" />
-    <Compile Include="Cqp\Enum\AudioOutFormat.cs" />
-    <Compile Include="Cqp\Enum\CqCodeType.cs" />
-    <Compile Include="Cqp\Enum\Face.cs" />
-    <Compile Include="Cqp\Enum\FloatWindowColors.cs" />
-    <Compile Include="Cqp\Enum\LogerLevel.cs" />
-    <Compile Include="Cqp\Enum\MessageHanding.cs" />
-    <Compile Include="Cqp\Enum\MusicStyle.cs" />
-    <Compile Include="Cqp\Enum\MusicType.cs" />
-    <Compile Include="Cqp\Enum\PermitType.cs" />
-    <Compile Include="Cqp\Enum\RequestType.cs" />
-    <Compile Include="Cqp\Enum\ResponseType.cs" />
-    <Compile Include="Cqp\Enum\Sex.cs" />
-    <Compile Include="Cqp\EventArgs\CqAddFriendRequestEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqAddGroupRequestEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqAppDisableEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqAppEnableEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqCallMenuEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqDiscussMessageEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqEventArgsBase.cs" />
-    <Compile Include="Cqp\EventArgs\CqExitEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqFriendIncreaseEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupBanEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupFileUploadEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupManageChangeEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupMemberDecreaseEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupMemberIncreaseEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqGroupMessageEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqPrivateMessageEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqStartupEventArgs.cs" />
-    <Compile Include="Cqp\EventArgs\CqStatusEventArgs.cs" />
-    <Compile Include="Cqp\Interface\ICallMenu.cs" />
-    <Compile Include="Cqp\Interface\ICqAppDisable.cs" />
-    <Compile Include="Cqp\Interface\ICqAppEnable.cs" />
-    <Compile Include="Cqp\Interface\ICqExit.cs" />
-    <Compile Include="Cqp\Interface\ICqStartup.cs" />
-    <Compile Include="Cqp\Interface\ICqStatus.cs" />
-    <Compile Include="Cqp\Interface\IReceiveAddGroupBeInvitee.cs" />
-    <Compile Include="Cqp\Interface\IReceiveAddGroupRequest.cs" />
-    <Compile Include="Cqp\Interface\IReceiveDiscussMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveDiscussPrivateMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveFriendAddRequest.cs" />
-    <Compile Include="Cqp\Interface\IReceiveFriendIncrease.cs" />
-    <Compile Include="Cqp\Interface\IReceiveFriendMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupFileUpload.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupManageDecrease.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupManageIncrease.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupMemberBeInvitee.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupMemberLeave.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupMemberPass.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupMemberRemove.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveGroupPrivateMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveOnlineStatusMessage.cs" />
-    <Compile Include="Cqp\Interface\IReceiveRemoveGroupBan.cs" />
-    <Compile Include="Cqp\Interface\IReceiveSetGroupBan.cs" />
-    <Compile Include="Cqp\Model\CqCode.cs" />
-    <Compile Include="Cqp\Model\FloatWindow.cs" />
-    <Compile Include="Cqp\Model\FriendInfo.cs" />
-    <Compile Include="Cqp\Model\GroupAnonymous.cs" />
-    <Compile Include="Cqp\Model\GroupFile.cs" />
-    <Compile Include="Cqp\Model\GroupInfo.cs" />
-    <Compile Include="Cqp\Model\GroupMemberInfo.cs" />
-    <Compile Include="Cqp\Model\QQInfo.cs" />
-    <Compile Include="Cqp\Expand\BinaryReaderExpand.cs" />
-    <Compile Include="Cqp\Expand\BinaryWriterExpand.cs" />
-    <Compile Include="Cqp\Expand\SystemExpand.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
