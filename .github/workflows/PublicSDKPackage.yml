@@ -1,7 +1,7 @@
 name: Build and public SDK
 on:
   schedule:
-  - cron: "* * * * *"
+  - cron: "20 * * * *"
 jobs:
   build:
     runs-on: windows-2019
@@ -19,7 +19,7 @@ jobs:
           .\nuget restore "$Env:GITHUB_WORKSPACE"
       - name: Build NET45
         run: |
-          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe "$Env:GITHUB_WORKSPACE\Native.Csharp.Sdk\Native.Csharp.Sdk.csproj" /t:Build /p:Configuration=Release /p:Platform="x86"
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" "$Env:GITHUB_WORKSPACE\Native.Csharp.Sdk\Native.Csharp.Sdk.csproj" /t:Build /p:Configuration=Release /p:Platform="x86"
       - name: Add private GitHub registry to NuGet
         run: |
           .\nuget sources add -name github -Source https://nuget.pkg.github.com/Jie2GG/index.json -Username Jie2GG -Password ${{ secrets.Nuget }}
