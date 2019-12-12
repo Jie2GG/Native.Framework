@@ -15,11 +15,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x86</PlatformTarget>
     <DefineConstants>TRACE;NET_45;SQLITE_STANDARD;INTEROP_VIRTUAL_TABLE;INTEROP_SESSION_EXTENSION;TRACE_SHARED;THROW_ON_DISPOSED</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>x86</PlatformTarget>
     <DefineConstants>TRACE;DEBUG;NET_45;SQLITE_STANDARD;INTEROP_VIRTUAL_TABLE;INTEROP_SESSION_EXTENSION;TRACE_SHARED;THROW_ON_DISPOSED</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,5 +40,9 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
   </ItemGroup>
+
+  <Target Name="Build">
+    <MSBuild Projects="@(Projects)" Properties="DefineConstants=$(DefineConstants)"/>
+  </Target>
 
 </Project>
