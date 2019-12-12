@@ -2,10 +2,10 @@ name: Build and public Tool
 on:
   push:
     branches:
-      - Final
+      - Final-temp
   pull_request:
     branches:
-      - Final
+      - Final-temp
 jobs:
   build:
     runs-on: windows-2019
