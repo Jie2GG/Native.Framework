@@ -1,4 +1,4 @@
-name: Build and public SDK
+name: Build and public Tool
 on:
   schedule:
   - cron: "0 8 * * *"
