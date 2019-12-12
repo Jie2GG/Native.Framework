@@ -9,6 +9,7 @@
     <Company>Jie2GG</Company>
     <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
+    <Version>2.6.1.1212</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
