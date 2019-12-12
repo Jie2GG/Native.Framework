@@ -1,7 +1,11 @@
 name: Build and public Tool
 on:
-  schedule:
-  - cron: "* * * * *"
+  push:
+    branches:
+      - Final
+  pull_request:
+    branches:
+      - Final
 jobs:
   build:
     runs-on: windows-2019
