@@ -24,7 +24,7 @@ jobs:
       - name: Build Tool
         run: |
           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-          .\MSBuild.exe /t:Build "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool" /p:Configuration=Release /p:Platform=x86 /p:DefineConstants=""TRACE;NET_45;SQLITE_STANDARD;INTEROP_VIRTUAL_TABLE;INTEROP_SESSION_EXTENSION;TRACE_SHARED;THROW_ON_DISPOSED""
+          .\MSBuild.exe /t:Build "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool" /p:Configuration=Release /p:Platform=x86
       - name: Add private GitHub registry to NuGet
         run: |
           .\nuget sources add -name github -Source https://nuget.pkg.github.com/Jie2GG/index.json -Username Jie2GG -Password ${{ secrets.Nuget }}
