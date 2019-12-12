@@ -5,15 +5,26 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Jie2GG</Authors>
-    <Description></Description>
+    <Description>Native SDK ,酷Q机器人SDK</Description>
     <Company>Jie2GG</Company>
     <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
-    <Version>2.6.1.1212</Version>
+    <Version>2.6.1.12121</Version>
+    <Copyright>MIT</Copyright>
+    <PackageIcon>Logo.jpg</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>CoolQ;Native</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

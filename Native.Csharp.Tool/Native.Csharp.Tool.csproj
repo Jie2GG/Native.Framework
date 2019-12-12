@@ -1,15 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Jie2GG</Authors>
-    <Description></Description>
+    <Description>Native.SDK 工具集</Description>
     <Company>Jie2GG</Company>
     <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
     <Version>3.0.6.1212</Version>
+    <Copyright>MIT</Copyright>
+    <PackageIcon>Logo.jpg</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>CoolQ;Native</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,7 +29,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SQLite.Interop.dll" />
+    <None Include=".\Logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +49,7 @@
   </ItemGroup>
 
   <Target Name="Build">
-    <MSBuild Projects="@(Projects)" Properties="DefineConstants=$(DefineConstants)"/>
+    <MSBuild Projects="@(Projects)" Properties="DefineConstants=$(DefineConstants)" />
   </Target>
 
 </Project>
