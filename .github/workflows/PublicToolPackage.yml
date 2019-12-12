@@ -30,7 +30,7 @@ jobs:
           .\nuget sources add -name github -Source https://nuget.pkg.github.com/Jie2GG/index.json -Username Jie2GG -Password ${{ secrets.Nuget }}
       - name: Push generated package to GitHub registry
         run: |
-          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\x86\release\*.nupkg" -Source github -SkipDuplicate
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\release\*.nupkg" -Source github -SkipDuplicate
       - name: Push generated package to NuGet registry
         run: |
-          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\x86\release\*.nupkg" -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Nuget_Api }} -NoSymbols 
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\release\*.nupkg" -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Nuget_Api }} -NoSymbols 
