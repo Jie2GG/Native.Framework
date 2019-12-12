@@ -1,7 +1,7 @@
 name: Build and public Tool
 on:
   schedule:
-  - cron: "0 8 * * *"
+  - cron: "* * * * *"
 jobs:
   build:
     runs-on: windows-2019
