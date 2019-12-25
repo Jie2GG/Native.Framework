@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Native.Csharp.Sdk.Cqp.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
@@ -10,7 +11,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ 的类
 	/// </summary>
-	public class QQ
+	public class QQ : IToSendString
 	{
 		#region --属性--
 		/// <summary>
@@ -277,6 +278,15 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public bool RemoveGroupMember (Group group, bool notRequest = false)
 		{
 			return this.CQApi.RemoveGroupMember (group, this, notRequest);
+		}
+
+		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			return this.Id.ToString ();
 		}
 
 		/// <summary>

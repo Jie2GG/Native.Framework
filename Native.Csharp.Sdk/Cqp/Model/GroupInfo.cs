@@ -24,12 +24,12 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public string Name { get; private set; }
 
 		/// <summary>
-		/// 获取一个值, 指示QQ群的当前人数
+		/// 获取一个值, 指示QQ群的当前人数; 当前属性仅在 <see cref="CQApi.GetGroupInfo(Group, bool)"/> 或 <see cref="CQApi.GetGroupInfo(long, bool)"/> 中可用
 		/// </summary>
 		public int CurrentMemberCount { get; private set; }
 
 		/// <summary>
-		/// 获取一个值, 指示当前QQ群最大可容纳的人数
+		/// 获取一个值, 指示当前QQ群最大可容纳的人数; 当前属性仅在 <see cref="CQApi.GetGroupInfo(Group, bool)"/> 或 <see cref="CQApi.GetGroupInfo(long, bool)"/> 中可用
 		/// </summary>
 		public int MaxMemberCount { get; private set; }
 		#endregion

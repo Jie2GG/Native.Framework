@@ -62,9 +62,9 @@ namespace Native.Csharp.App.Export
 			CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (1, "运行时间", "UPTIME", "_statusUptime", 1000);	
 			if (Status_statusUptimeHandler != null)	
 			{	
-				return Status_statusUptimeHandler (typeof (CQStatusExport), args).GetFloatWindowData ();	
+				return Status_statusUptimeHandler (typeof (CQStatusExport), args).ToSendString ();	
 			}	
-			return new CQFloatWindow ().GetFloatWindowData (); // 返回默认悬浮窗样式	
+			return new CQFloatWindow ().ToSendString (); // 返回默认悬浮窗样式	
 		}	
 		
 		#endregion	

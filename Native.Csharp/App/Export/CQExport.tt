@@ -677,9 +677,9 @@
 				TemplateBuilder.WriteFormatLine (2, "CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs ({0}, \"{1}\", \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["name"].Value<string> (), token["title"].Value<string> (), token["function"].Value<string> (), token["period"].Value<int> ());
 				TemplateBuilder.WriteFormatLine (2, "if (Status{0}Handler != null)", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "{");
-				TemplateBuilder.WriteFormatLine (3, "return Status{0}Handler (typeof (CQStatusExport), args).GetFloatWindowData ();", token["function"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (3, "return Status{0}Handler (typeof (CQStatusExport), args).ToSendString ();", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "}");
-				TemplateBuilder.WriteLine (2, "return new CQFloatWindow ().GetFloatWindowData (); // 返回默认悬浮窗样式");
+				TemplateBuilder.WriteLine (2, "return new CQFloatWindow ().ToSendString (); // 返回默认悬浮窗样式");
 				TemplateBuilder.WriteLine (1, "}");
 				TemplateBuilder.WriteLine (1);
 			}

@@ -1,5 +1,6 @@
 ﻿using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Expand;
+using Native.Csharp.Sdk.Cqp.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// 表示 酷Q悬浮窗 的类
 	/// </summary>
-	public class CQFloatWindow
+	public class CQFloatWindow : IToSendString
 	{
 		#region --属性--
 		/// <summary>
@@ -80,7 +81,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 获取当前对象所描述的悬浮窗数据
 		/// </summary>
 		/// <returns>当前对象所描述的悬浮窗数据</returns>
-		public string GetFloatWindowData ()
+		public string ToSendString ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
 			{

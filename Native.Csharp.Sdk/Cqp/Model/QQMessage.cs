@@ -186,6 +186,19 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			if (!this.IsRegexMessage)
+			{
+				return this.OriginalMessage;
+			}
+			return string.Empty;
+		}
+
+		/// <summary>
 		/// 确定指定的对象是否等于当前对象
 		/// </summary>
 		/// <param name="obj">要与当前对象进行比较的对象</param>
@@ -232,19 +245,6 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
 			}
 			return builder.ToString ();
-		}
-
-		/// <summary>
-		/// 返回用于发送的字符串
-		/// </summary>
-		/// <returns>用于发送的字符串</returns>
-		public string ToSendString ()
-		{
-			if (!this.IsRegexMessage)
-			{
-				return this.OriginalMessage;
-			}
-			return string.Empty;
 		}
 		#endregion
 
