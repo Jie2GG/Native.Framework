@@ -478,8 +478,8 @@ namespace Native.Csharp.Sdk.Cqp
 			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
 			try
 			{
-				int msgid = CQP.CQ_sendGroupMsg (AuthCode, group.Id, handle.AddrOfPinnedObject ());
-				return new QQMessage (this, msgid, msg);
+				int msgId = CQP.CQ_sendGroupMsg (AuthCode, group.Id, handle.AddrOfPinnedObject ());
+				return new QQMessage (this, msgId, msg);
 			}
 			finally
 			{

@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ消息 的类
 	/// </summary>
-	public class QQMessage: IToSendString
+	public class QQMessage : IToSendString
 	{
 		#region --字段--
 		private List<CQCode> _cqCodes = null;
@@ -30,6 +30,11 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 获取当前实例的消息ID
 		/// </summary>
 		public int Id { get; private set; }
+
+		/// <summary>
+		/// 获取一个值, 指示当前消息是否发送成功.
+		/// </summary>
+		public bool IsSuccess { get { return this.Id >= 0; } }
 
 		/// <summary>
 		/// 获取当前实例的原始消息
@@ -95,11 +100,6 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				throw new ArgumentNullException ("api");
 			}
 
-			if (id < 0)
-			{
-				throw new ArgumentOutOfRangeException ("id");
-			}
-
 			if (msg == null)
 			{
 				throw new ArgumentNullException ("msg");
@@ -111,6 +111,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			this.IsRegexMessage = isRegex;
 			this.PairsMessage = null;
 
+			#region --正则事件解析--
 			if (isRegex)
 			{
 				// 进行正则事件消息解析
@@ -141,6 +142,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 					}
 				}
 			}
+			#endregion
 		}
 		#endregion
 
