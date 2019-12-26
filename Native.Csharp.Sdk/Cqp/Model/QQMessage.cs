@@ -175,15 +175,16 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 接收消息中的图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
+		/// <param name="index">要接收的图片索引, 该索引从 0 开始</param>
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
-		public string ReceiveImage ()
+		public string ReceiveImage (int index)
 		{
 			if (this.IsRegexMessage)
 			{
 				return null;
 			}
 
-			CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).First ();
+			CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).Skip (index).First ();
 			return this.CQApi.ReceiveImage (image.Items["file"]);
 		}
 
