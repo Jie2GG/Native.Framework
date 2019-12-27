@@ -36,7 +36,7 @@ namespace Native.Csharp.Sdk.Cqp
 		public int AuthCode { get { return _authCode; } }
 
 		/// <summary>
-		/// 获取酷Q分配给本应用的数据路径 (所用应用数据赢存放于此路径下)
+		/// 获取酷Q分配给本应用的数据路径 (所用应用数据应存放于此路径下)
 		/// </summary>
 		public string AppDirectory
 		{
