@@ -297,7 +297,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQStartupEventArgs args = new CQStartupEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQStartupEventArgs args = new CQStartupEventArgs (api, {0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -310,7 +310,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQExitEventArgs args = new CQExitEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQExitEventArgs args = new CQExitEventArgs (api, {0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -323,7 +323,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQAppEnableEventArgs args = new CQAppEnableEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQAppEnableEventArgs args = new CQAppEnableEventArgs (api, {0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -336,7 +336,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQAppDisableEventArgs args = new CQAppDisableEventArgs ({0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQAppDisableEventArgs args = new CQAppDisableEventArgs (api, {0}, {1}, \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
@@ -505,7 +505,9 @@
 
 		Log.Info ("写入引用和命名空间...");
 		TemplateBuilder.UsingItems.Add ("System");
+		TemplateBuilder.UsingItems.Add ("System.Reflection");
 		TemplateBuilder.UsingItems.Add ("System.Runtime.InteropServices");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Unity");
@@ -518,6 +520,11 @@
 		TemplateBuilder.WriteLine (0, "public class CQMenuExport");
 		TemplateBuilder.WriteLine (0, "{");
 
+		TemplateBuilder.WriteLine (1, "#region --字段--");
+		TemplateBuilder.WriteLine (1, "private static CQApi api = null;");
+		TemplateBuilder.WriteLine (1, "#endregion");
+		TemplateBuilder.WriteLine (1);
+
 		Log.Info ("写入构造函数...");
 		TemplateBuilder.WriteLine (1, "#region --构造函数--");
 		TemplateBuilder.WriteLine (1, "/// <summary>");
@@ -525,6 +532,9 @@
 		TemplateBuilder.WriteLine (1, "/// </summary>");
 		TemplateBuilder.WriteLine (1, "static CQMenuExport ()");
 		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteLine (2, "Type type = typeof (CQEventExport);");
+		TemplateBuilder.WriteLine (2, "api = (CQApi)type.GetProperty (\"api\", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);");
+		TemplateBuilder.WriteLine (2);
 		TemplateBuilder.WriteLine (2, "// 调用方法进行实例化");
 		TemplateBuilder.WriteLine (2, "ResolveBackcall ();");
 		TemplateBuilder.WriteLine (1, "}");
@@ -574,7 +584,7 @@
 				TemplateBuilder.WriteLine (1, "{");
 				TemplateBuilder.WriteFormatLine (2, "if (Menu{0}Handler != null)", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "{");
-				TemplateBuilder.WriteFormatLine (3, "CQMenuCallEventArgs args = new CQMenuCallEventArgs (\"{0}\", \"{1}\");", token["name"].Value<string> (), token["function"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (3, "CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, \"{0}\", \"{1}\");", token["name"].Value<string> (), token["function"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (3, "Menu{0}Handler (typeof (CQMenuExport), args);", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "}");
 				TemplateBuilder.WriteLine (2, "return 0;");
@@ -600,7 +610,9 @@
 
 		Log.Info ("写入引用和命名空间...");
 		TemplateBuilder.UsingItems.Add ("System");
+		TemplateBuilder.UsingItems.Add ("System.Reflection");
 		TemplateBuilder.UsingItems.Add ("System.Runtime.InteropServices");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Model");
@@ -614,6 +626,11 @@
 		TemplateBuilder.WriteLine (0, "public class CQStatusExport");
 		TemplateBuilder.WriteLine (0, "{");
 
+		TemplateBuilder.WriteLine (1, "#region --字段--");
+		TemplateBuilder.WriteLine (1, "private static CQApi api = null;");
+		TemplateBuilder.WriteLine (1, "#endregion");
+		TemplateBuilder.WriteLine (1);
+
 		Log.Info ("写入构造函数...");
 		TemplateBuilder.WriteLine (1, "#region --构造函数--");
 		TemplateBuilder.WriteLine (1, "/// <summary>");
@@ -621,6 +638,9 @@
 		TemplateBuilder.WriteLine (1, "/// </summary>");
 		TemplateBuilder.WriteLine (1, "static CQStatusExport ()");
 		TemplateBuilder.WriteLine (1, "{");
+		TemplateBuilder.WriteLine (2, "Type type = typeof (CQEventExport);");
+		TemplateBuilder.WriteLine (2, "api = (CQApi)type.GetProperty (\"api\", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);");
+		TemplateBuilder.WriteLine (2);
 		TemplateBuilder.WriteLine (2, "// 调用方法进行实例化");
 		TemplateBuilder.WriteLine (2, "ResolveBackcall ();");
 		TemplateBuilder.WriteLine (1, "}");
@@ -674,7 +694,7 @@
 				TemplateBuilder.WriteFormatLine (1, "[DllExport (ExportName = \"{0}\", CallingConvention = CallingConvention.StdCall)]", token["function"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (1, "public static string Status{0} ()", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (1, "{");
-				TemplateBuilder.WriteFormatLine (2, "CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs ({0}, \"{1}\", \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["name"].Value<string> (), token["title"].Value<string> (), token["function"].Value<string> (), token["period"].Value<int> ());
+				TemplateBuilder.WriteFormatLine (2, "CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (api, {0}, \"{1}\", \"{2}\", \"{3}\", {4});", token["id"].Value<int> (), token["name"].Value<string> (), token["title"].Value<string> (), token["function"].Value<string> (), token["period"].Value<int> ());
 				TemplateBuilder.WriteFormatLine (2, "if (Status{0}Handler != null)", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "{");
 				TemplateBuilder.WriteFormatLine (3, "return Status{0}Handler (typeof (CQStatusExport), args).ToSendString ();", token["function"].Value<string> ());

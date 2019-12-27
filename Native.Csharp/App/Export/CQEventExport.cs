@@ -537,7 +537,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventStartupHandler != null)	
 			{	
-				CQStartupEventArgs args = new CQStartupEventArgs (1001, 1001, "酷Q启动事件", "_eventStartup", 30000);	
+				CQStartupEventArgs args = new CQStartupEventArgs (api, 1001, 1001, "酷Q启动事件", "_eventStartup", 30000);	
 				Event_eventStartupHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -558,7 +558,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventExitHandler != null)	
 			{	
-				CQExitEventArgs args = new CQExitEventArgs (1002, 1002, "酷Q关闭事件", "_eventExit", 30000);	
+				CQExitEventArgs args = new CQExitEventArgs (api, 1002, 1002, "酷Q关闭事件", "_eventExit", 30000);	
 				Event_eventExitHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -579,7 +579,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventEnableHandler != null)	
 			{	
-				CQAppEnableEventArgs args = new CQAppEnableEventArgs (1003, 1003, "应用已被启用", "_eventEnable", 30000);	
+				CQAppEnableEventArgs args = new CQAppEnableEventArgs (api, 1003, 1003, "应用已被启用", "_eventEnable", 30000);	
 				Event_eventEnableHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -600,7 +600,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventDisableHandler != null)	
 			{	
-				CQAppDisableEventArgs args = new CQAppDisableEventArgs (1004, 1004, "应用将被停用", "_eventDisable", 30000);	
+				CQAppDisableEventArgs args = new CQAppDisableEventArgs (api, 1004, 1004, "应用将被停用", "_eventDisable", 30000);	
 				Event_eventDisableHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	

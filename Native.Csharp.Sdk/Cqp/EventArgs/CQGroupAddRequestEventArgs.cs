@@ -65,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="responseFlag">反馈标识</param>
 		/// <param name="api"></param>
 		public CQGroupAddRequestEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag, CQApi api)
-			: base (id, type, name, function, priority)
+			: base (api, id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupAddRequestType)subType;
 			this.SendTime = sendTime.ToDateTime ();

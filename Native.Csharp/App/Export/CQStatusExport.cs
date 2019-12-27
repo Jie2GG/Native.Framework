@@ -2,7 +2,9 @@
  * 此文件由T4引擎自动生成, 请勿修改此文件中的代码!
  */
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.EventArgs;
 using Native.Csharp.Sdk.Cqp.Interface;
 using Native.Csharp.Sdk.Cqp.Model;
@@ -15,12 +17,19 @@ namespace Native.Csharp.App.Export
 	/// </summary>	
 	public class CQStatusExport	
 	{	
+		#region --字段--	
+		private static CQApi api = null;	
+		#endregion	
+		
 		#region --构造函数--	
 		/// <summary>	
 		/// 由托管环境初始化的 <see cref="CQStatusExport"/> 的新实例	
 		/// </summary>	
 		static CQStatusExport ()	
 		{	
+			Type type = typeof (CQEventExport);	
+			api = (CQApi)type.GetProperty ("api", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);	
+			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
 		}	
@@ -59,7 +68,7 @@ namespace Native.Csharp.App.Export
 		[DllExport (ExportName = "_statusUptime", CallingConvention = CallingConvention.StdCall)]	
 		public static string Status_statusUptime ()	
 		{	
-			CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (1, "运行时间", "UPTIME", "_statusUptime", 1000);	
+			CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (api, 1, "运行时间", "UPTIME", "_statusUptime", 1000);	
 			if (Status_statusUptimeHandler != null)	
 			{	
 				return Status_statusUptimeHandler (typeof (CQStatusExport), args).ToSendString ();	

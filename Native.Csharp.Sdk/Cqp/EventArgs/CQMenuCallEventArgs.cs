@@ -15,10 +15,11 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <summary>
 		/// 初始化 <see cref="CQMenuCallEventArgs"/> 类的新实例
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="function"></param>
-		public CQMenuCallEventArgs (string name, string function)
-			: base (name, function)
+		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="name">菜单名称</param>
+		/// <param name="function">菜单函数</param>
+		public CQMenuCallEventArgs (CQApi api, string name, string function)
+			: base (api, name, function)
 		{
 		}
 		#endregion

@@ -57,9 +57,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="msg">附言</param>
 		/// <param name="responseFlag">反馈标识</param>
-		/// <param name="api">接口Api实例</param>
+		/// <param name="api">酷Q的接口实例</param>
 		public CQFriendAddRequestEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromQQ, string msg, string responseFlag, CQApi api)
-			: base (id, type, name, function, priority)
+			: base (api, id, type, name, function, priority)
 		{
 			this.SubType = (CQFriendAddRequestType)subType;
 			this.SendTime = sendTime.ToDateTime ();

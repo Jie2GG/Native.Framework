@@ -57,9 +57,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="fromGroup">来源群</param>
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="file">文件信息</param>
-		/// <param name="api">接口Api实例</param>
+		/// <param name="api">酷Q的接口实例</param>
 		public CQGroupUploadEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, string file, CQApi api)
-			: base (id, type, name, function, priority)
+			: base (api, id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupFileUploadType)subType;
 			this.SendTime = sendTime.ToDateTime ();

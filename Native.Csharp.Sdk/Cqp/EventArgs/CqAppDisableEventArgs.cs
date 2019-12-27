@@ -17,13 +17,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <summary>
 		/// 初始化 <see cref="CQAppDisableEventArgs"/> 类的新实例
 		/// </summary>
+		/// <param name="api">酷Q的接口实例</param>
 		/// <param name="id">事件id</param>
 		/// <param name="type">类型</param>
 		/// <param name="name">名称</param>
 		/// <param name="function">函数名</param>
 		/// <param name="priority">默认优先级</param>
-		public CQAppDisableEventArgs (int id, int type, string name, string function, uint priority)
-			: base (id, type, name, function, priority)
+		public CQAppDisableEventArgs (CQApi api, int id, int type, string name, string function, uint priority)
+			: base (api, id, type, name, function, priority)
 		{
 		}
 		#endregion

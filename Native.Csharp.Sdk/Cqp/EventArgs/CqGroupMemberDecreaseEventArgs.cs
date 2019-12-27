@@ -57,9 +57,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="fromGroup">来源群</param>
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="beingOperateQQ">被操作QQ</param>
-		/// <param name="api">接口Api实例</param>
+		/// <param name="api">酷Q的接口实例</param>
 		public CQGroupMemberDecreaseEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, CQApi api)
-			: base (id, type, name, function, priority)
+			: base (api, id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupMemberDecreaseType)subType;
 			this.SendTime = sendTime.ToDateTime ();

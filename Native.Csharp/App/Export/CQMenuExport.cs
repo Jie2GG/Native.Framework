@@ -2,7 +2,9 @@
  * 此文件由T4引擎自动生成, 请勿修改此文件中的代码!
  */
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using Native.Csharp.Sdk.Cqp;
 using Native.Csharp.Sdk.Cqp.EventArgs;
 using Native.Csharp.Sdk.Cqp.Interface;
 using Unity;
@@ -14,12 +16,19 @@ namespace Native.Csharp.App.Export
 	/// </summary>	
 	public class CQMenuExport	
 	{	
+		#region --字段--	
+		private static CQApi api = null;	
+		#endregion	
+		
 		#region --构造函数--	
 		/// <summary>	
 		/// 由托管环境初始化的 <see cref="CQMenuExport"/> 的新实例	
 		/// </summary>	
 		static CQMenuExport ()	
 		{	
+			Type type = typeof (CQEventExport);	
+			api = (CQApi)type.GetProperty ("api", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);	
+			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
 		}	
@@ -63,7 +72,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Menu_menuAHandler != null)	
 			{	
-				CQMenuCallEventArgs args = new CQMenuCallEventArgs ("设置A", "_menuA");	
+				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, "设置A", "_menuA");	
 				Menu_menuAHandler (typeof (CQMenuExport), args);	
 			}	
 			return 0;	
@@ -79,7 +88,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Menu_menuBHandler != null)	
 			{	
-				CQMenuCallEventArgs args = new CQMenuCallEventArgs ("设置B", "_menuB");	
+				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, "设置B", "_menuB");	
 				Menu_menuBHandler (typeof (CQMenuExport), args);	
 			}	
 			return 0;	

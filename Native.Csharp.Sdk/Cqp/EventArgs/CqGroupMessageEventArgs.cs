@@ -65,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="isRegex">是否正则消息</param>
 		/// <param name="api">接口Api实例</param>
 		public CQGroupMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, bool isRegex, CQApi api)
-			: base (id, type, name, function, priority)
+			: base (api, id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupMessageType)subType;
 			this.Message = new QQMessage (api, msgId, msg, isRegex);
