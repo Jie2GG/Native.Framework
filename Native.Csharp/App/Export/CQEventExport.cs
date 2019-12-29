@@ -21,7 +21,7 @@ namespace Native.Csharp.App.Export
 	{	
 		#region --字段--	
 		private static CQApi api = null;	
-		private static CQLog logger = null;	
+		private static CQLog log = null;	
 		#endregion	
 		
 		#region --构造函数--	
@@ -75,8 +75,8 @@ namespace Native.Csharp.App.Export
 			api = new CQApi (authCode);	
 			Common.AppInfo.UnityContainer.RegisterInstance<CQApi> ("Native.Csharp", api);	
 			// 向容器注册一个 CQLog 实例	
-			logger = new CQLog (authCode);	
-			Common.AppInfo.UnityContainer.RegisterInstance<CQLog> ("Native.Csharp", logger);	
+			log = new CQLog (authCode);	
+			Common.AppInfo.UnityContainer.RegisterInstance<CQLog> ("Native.Csharp", log);	
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
@@ -98,7 +98,7 @@ namespace Native.Csharp.App.Export
 				StringBuilder innerLog = new StringBuilder ();	
 				innerLog.AppendLine ("发现未处理的异常!");	
 				innerLog.AppendLine (ex.ToString ());	
-				logger.SetFatalMessage (innerLog.ToString ());	
+				log.SetFatalMessage (innerLog.ToString ());	
 			}	
 		}	
 		
@@ -306,7 +306,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventPrivateMsgHandler != null)	
 			{	
-				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, api);	
+				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (api, log, 1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false);	
 				Event_eventPrivateMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -327,7 +327,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupMsgHandler != null)	
 			{	
-				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), false, api);	
+				CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (api, log, 2, 2, "群消息处理", "_eventGroupMsg", 30000, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), false);	
 				Event_eventGroupMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -348,7 +348,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventDiscussMsgHandler != null)	
 			{	
-				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), false, api);	
+				CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (api, log, 3, 4, "讨论组消息处理", "_eventDiscussMsg", 30000, subType, msgId, fromDiscuss, fromQQ, msg.ToString(CQApi.DefaultEncoding), false);	
 				Event_eventDiscussMsgHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -369,7 +369,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupUploadHandler != null)	
 			{	
-				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromQQ, fromQQ, file, api);	
+				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (api, log, 4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromQQ, fromQQ, file);	
 				Event_eventGroupUploadHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -390,7 +390,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupAdminHandler != null)	
 			{	
-				CQGroupManageChangeEventArgs args = new CQGroupManageChangeEventArgs (5, 101, "群管理变动事件处理", "_eventSystem_GroupAdmin", 30000, subType, sendTime, fromGroup, beingOperateQQ, api);	
+				CQGroupManageChangeEventArgs args = new CQGroupManageChangeEventArgs (api, log, 5, 101, "群管理变动事件处理", "_eventSystem_GroupAdmin", 30000, subType, sendTime, fromGroup, beingOperateQQ);	
 				Event_eventSystem_GroupAdminHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -411,7 +411,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupMemberDecreaseHandler != null)	
 			{	
-				CQGroupMemberDecreaseEventArgs args = new CQGroupMemberDecreaseEventArgs (6, 102, "群成员减少事件处理", "_eventSystem_GroupMemberDecrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, api);	
+				CQGroupMemberDecreaseEventArgs args = new CQGroupMemberDecreaseEventArgs (api, log, 6, 102, "群成员减少事件处理", "_eventSystem_GroupMemberDecrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ);	
 				Event_eventSystem_GroupMemberDecreaseHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -432,7 +432,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupMemberIncreaseHandler != null)	
 			{	
-				CQGroupMemberIncreaseEventArgs args = new CQGroupMemberIncreaseEventArgs (7, 103, "群成员增加事件处理", "_eventSystem_GroupMemberIncrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, api);	
+				CQGroupMemberIncreaseEventArgs args = new CQGroupMemberIncreaseEventArgs (api, log, 7, 103, "群成员增加事件处理", "_eventSystem_GroupMemberIncrease", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ);	
 				Event_eventSystem_GroupMemberIncreaseHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -453,7 +453,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventSystem_GroupBanHandler != null)	
 			{	
-				CQGroupBanSpeakEventArgs args = new CQGroupBanSpeakEventArgs (8, 104, "群禁言事件处理", "_eventSystem_GroupBan", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration, api);	
+				CQGroupBanSpeakEventArgs args = new CQGroupBanSpeakEventArgs (api, log, 8, 104, "群禁言事件处理", "_eventSystem_GroupBan", 30000, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration);	
 				Event_eventSystem_GroupBanHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -474,7 +474,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventFriend_AddHandler != null)	
 			{	
-				CQFriendAddEventArgs args = new CQFriendAddEventArgs (10, 201, "好友已添加事件处理", "_eventFriend_Add", 30000, subType, sendTime, fromQQ, api);	
+				CQFriendAddEventArgs args = new CQFriendAddEventArgs (api, log, 10, 201, "好友已添加事件处理", "_eventFriend_Add", 30000, subType, sendTime, fromQQ);	
 				Event_eventFriend_AddHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -495,7 +495,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventRequest_AddFriendHandler != null)	
 			{	
-				CQFriendAddRequestEventArgs args = new CQFriendAddRequestEventArgs (11, 301, "好友添加请求处理", "_eventRequest_AddFriend", 30000, subType, sendTime, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, api);	
+				CQFriendAddRequestEventArgs args = new CQFriendAddRequestEventArgs (api, log, 11, 301, "好友添加请求处理", "_eventRequest_AddFriend", 30000, subType, sendTime, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag);	
 				Event_eventRequest_AddFriendHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -516,7 +516,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventRequest_AddGroupHandler != null)	
 			{	
-				CQGroupAddRequestEventArgs args = new CQGroupAddRequestEventArgs (12, 302, "群添加请求处理", "_eventRequest_AddGroup", 30000, subType, sendTime, fromGroup, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag, api);	
+				CQGroupAddRequestEventArgs args = new CQGroupAddRequestEventArgs (api, log, 12, 302, "群添加请求处理", "_eventRequest_AddGroup", 30000, subType, sendTime, fromGroup, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag);	
 				Event_eventRequest_AddGroupHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -537,7 +537,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventStartupHandler != null)	
 			{	
-				CQStartupEventArgs args = new CQStartupEventArgs (api, 1001, 1001, "酷Q启动事件", "_eventStartup", 30000);	
+				CQStartupEventArgs args = new CQStartupEventArgs (api, log, 1001, 1001, "酷Q启动事件", "_eventStartup", 30000);	
 				Event_eventStartupHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -558,7 +558,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventExitHandler != null)	
 			{	
-				CQExitEventArgs args = new CQExitEventArgs (api, 1002, 1002, "酷Q关闭事件", "_eventExit", 30000);	
+				CQExitEventArgs args = new CQExitEventArgs (api, log, 1002, 1002, "酷Q关闭事件", "_eventExit", 30000);	
 				Event_eventExitHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -579,7 +579,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventEnableHandler != null)	
 			{	
-				CQAppEnableEventArgs args = new CQAppEnableEventArgs (api, 1003, 1003, "应用已被启用", "_eventEnable", 30000);	
+				CQAppEnableEventArgs args = new CQAppEnableEventArgs (api, log, 1003, 1003, "应用已被启用", "_eventEnable", 30000);	
 				Event_eventEnableHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	
@@ -600,7 +600,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventDisableHandler != null)	
 			{	
-				CQAppDisableEventArgs args = new CQAppDisableEventArgs (api, 1004, 1004, "应用将被停用", "_eventDisable", 30000);	
+				CQAppDisableEventArgs args = new CQAppDisableEventArgs (api, log, 1004, 1004, "应用将被停用", "_eventDisable", 30000);	
 				Event_eventDisableHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	

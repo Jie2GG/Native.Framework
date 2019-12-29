@@ -38,6 +38,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// 初始化 <see cref="CQFriendAddEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
 		/// <param name="id">事件Id</param>
 		/// <param name="type">事件类型</param>
 		/// <param name="name">事件名称</param>
@@ -46,8 +47,8 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="subType">子类型</param>
 		/// <param name="sendTime">发送时间</param>
 		/// <param name="fromQQ">来源QQ</param>
-		public CQFriendAddEventArgs (int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromQQ, CQApi api)
-			: base (api, id, type, name, function, priority)
+		public CQFriendAddEventArgs (CQApi api, CQLog log, int id, int type, string name, string function, uint priority, int subType, int sendTime, long fromQQ)
+			: base (api, log, id, type, name, function, priority)
 		{
 			this.SubType = (CQFriendAddType)subType;
 			this.SendTime = sendTime.ToDateTime ();

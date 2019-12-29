@@ -44,13 +44,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// 初始化 <see cref="CQEventEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
 		/// <param name="id">事件id</param>
 		/// <param name="type">类型</param>
 		/// <param name="name">名称</param>
 		/// <param name="function">函数名</param>
 		/// <param name="priority">默认优先级</param>
-		public CQEventEventArgs (CQApi api, int id, int type, string name, string function, uint priority)
-			: base (api, function)
+		public CQEventEventArgs (CQApi api, CQLog log, int id, int type, string name, string function, uint priority)
+			: base (api, log, function)
 		{
 			this.Id = id;
 			this.Type = (CQMessageEventType)type;

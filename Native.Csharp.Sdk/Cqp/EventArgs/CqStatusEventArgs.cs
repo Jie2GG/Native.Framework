@@ -38,13 +38,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// 初始化 <see cref="CQStatusEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
 		/// <param name="id">事件Id</param>
 		/// <param name="name">名称</param>
 		/// <param name="title">标题</param>
 		/// <param name="function">函数名</param>
 		/// <param name="period">刷新间隔</param>
-		public CQStatusEventArgs (CQApi api, int id, string name, string title, string function, long period)
-			: base (api, function)
+		public CQStatusEventArgs (CQApi api, CQLog log, int id, string name, string title, string function, long period)
+			: base (api, log, function)
 		{
 			this.Id = id;
 			this.Name = name;

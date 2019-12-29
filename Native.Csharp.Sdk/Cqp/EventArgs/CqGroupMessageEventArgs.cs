@@ -51,6 +51,8 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <summary>
 		/// 初始化 <see cref="CQGroupMessageEventArgs"/> 类的新实例
 		/// </summary>
+		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
 		/// <param name="id">事件Id</param>
 		/// <param name="type">事件类型</param>
 		/// <param name="name">事件名称</param>
@@ -63,9 +65,8 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// <param name="fromAnonymous">来源匿名</param>
 		/// <param name="msg">消息内容</param>
 		/// <param name="isRegex">是否正则消息</param>
-		/// <param name="api">接口Api实例</param>
-		public CQGroupMessageEventArgs (int id, int type, string name, string function, uint priority, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, bool isRegex, CQApi api)
-			: base (api, id, type, name, function, priority)
+		public CQGroupMessageEventArgs (CQApi api, CQLog log, int id, int type, string name, string function, uint priority, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, bool isRegex)
+			: base (api, log, id, type, name, function, priority)
 		{
 			this.SubType = (CQGroupMessageType)subType;
 			this.Message = new QQMessage (api, msgId, msg, isRegex);

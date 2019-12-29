@@ -20,6 +20,7 @@ namespace Native.Csharp.App.Export
 	{	
 		#region --字段--	
 		private static CQApi api = null;	
+		private static CQLog log = null;	
 		#endregion	
 		
 		#region --构造函数--	
@@ -29,6 +30,7 @@ namespace Native.Csharp.App.Export
 		static CQStatusExport ()	
 		{	
 			api = AppInfo.UnityContainer.Resolve<CQApi> (AppInfo.Id);	
+			log = AppInfo.UnityContainer.Resolve<CQLog> (AppInfo.Id);	
 			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
@@ -68,7 +70,7 @@ namespace Native.Csharp.App.Export
 		[DllExport (ExportName = "_statusUptime", CallingConvention = CallingConvention.StdCall)]	
 		public static string Status_statusUptime ()	
 		{	
-			CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (api, 1, "运行时间", "UPTIME", "_statusUptime", 1000);	
+			CQStatusUpdateEventArgs args = new CQStatusUpdateEventArgs (api, log, 1, "运行时间", "UPTIME", "_statusUptime", 1000);	
 			if (Status_statusUptimeHandler != null)	
 			{	
 				return Status_statusUptimeHandler (typeof (CQStatusExport), args).ToSendString ();	

@@ -19,6 +19,7 @@ namespace Native.Csharp.App.Export
 	{	
 		#region --字段--	
 		private static CQApi api = null;	
+		private static CQLog log = null;	
 		#endregion	
 		
 		#region --构造函数--	
@@ -28,6 +29,7 @@ namespace Native.Csharp.App.Export
 		static CQMenuExport ()	
 		{	
 			api = AppInfo.UnityContainer.Resolve<CQApi> (AppInfo.Id);	
+			log = AppInfo.UnityContainer.Resolve<CQLog> (AppInfo.Id);	
 			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
@@ -72,7 +74,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Menu_menuAHandler != null)	
 			{	
-				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, "设置A", "_menuA");	
+				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, log, "设置A", "_menuA");	
 				Menu_menuAHandler (typeof (CQMenuExport), args);	
 			}	
 			return 0;	
@@ -88,7 +90,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Menu_menuBHandler != null)	
 			{	
-				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, "设置B", "_menuB");	
+				CQMenuCallEventArgs args = new CQMenuCallEventArgs (api, log, "设置B", "_menuB");	
 				Menu_menuBHandler (typeof (CQMenuExport), args);	
 			}	
 			return 0;	

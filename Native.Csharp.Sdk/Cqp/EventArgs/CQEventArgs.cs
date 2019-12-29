@@ -13,9 +13,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取当前事件的 <see cref="CQApi"/> 实例.
+		/// 获取当前事件的 <see cref="Cqp.CQApi"/> 实例.
 		/// </summary>
-		public CQApi Api { get; private set; }
+		public CQApi CQApi { get; private set; }
+
+		/// <summary>
+		/// 获取当前事件的 <see cref="Cqp.CQLog"/> 实例.
+		/// </summary>
+		public CQLog CQLog { get; private set; }
 
 		/// <summary>
 		/// 获取当前事件的回调函数名称. 是 function 字段
@@ -28,10 +33,12 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 		/// 初始化 <see cref="CQEventArgs"/> 类的新实例
 		/// </summary>
 		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
 		/// <param name="function">触发此事件的函数名称</param>
-		public CQEventArgs (CQApi api, string function)
+		public CQEventArgs (CQApi api, CQLog log, string function)
 		{
-			this.Api = api;
+			this.CQApi = api;
+			this.CQLog = log;
 			this.Function = function;
 		}
 		#endregion
