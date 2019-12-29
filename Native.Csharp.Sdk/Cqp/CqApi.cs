@@ -44,7 +44,7 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				if (string.IsNullOrEmpty (this._appDirectoryCache))
 				{
-					this._appDirectoryCache = CQP.CQ_getAppDirectory (AuthCode);
+					this._appDirectoryCache = CQP.CQ_getAppDirectory (AuthCode).ToString (DefaultEncoding);
 				}
 				return this._appDirectoryCache;
 			}

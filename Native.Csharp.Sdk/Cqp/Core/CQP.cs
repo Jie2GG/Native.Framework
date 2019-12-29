@@ -71,7 +71,7 @@ namespace Native.Csharp.Sdk.Cqp.Core
         public static extern int CQ_getCsrfToken (int authCode);
 
         [DllImport (DllName, EntryPoint = "CQ_getAppDirectory", CharSet = CharSet.Unicode)]
-        public static extern string CQ_getAppDirectory (int authCode);
+        public static extern IntPtr CQ_getAppDirectory (int authCode);
 
         [DllImport (DllName, EntryPoint = "CQ_getLoginQQ")]
         public static extern long CQ_getLoginQQ (int authCode);
