@@ -48,9 +48,9 @@ namespace Native.Csharp.App.Export
 			 * Function: _statusUptime	
 			 * Period: 1000	
 			 */	
-			foreach (IStatusUpdate item in Common.AppInfo.UnityContainer.ResolveAll<IStatusUpdate> ())	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IStatusUpdate> ("运行时间"))	
 			{	
-				Status_statusUptimeHandler += item.StatusUpdate;	
+				Status_statusUptimeHandler += Common.AppInfo.UnityContainer.Resolve<IStatusUpdate> ("运行时间").StatusUpdate;	
 			}	
 			
 		}	

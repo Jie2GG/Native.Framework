@@ -44,18 +44,18 @@ namespace Native.Csharp.App.Export
 			 * Name: 设置A	
 			 * Function: _menuA	
 			 */	
-			foreach (IMenuCall item in Common.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IMenuCall> ("设置A"))	
 			{	
-				Menu_menuAHandler += item.MenuCall;	
+				Menu_menuAHandler += Common.AppInfo.UnityContainer.Resolve<IMenuCall> ("设置A").MenuCall;	
 			}	
 			
 			/*	
 			 * Name: 设置B	
 			 * Function: _menuB	
 			 */	
-			foreach (IMenuCall item in Common.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())	
+			if (Common.AppInfo.UnityContainer.IsRegistered<IMenuCall> ("设置B"))	
 			{	
-				Menu_menuBHandler += item.MenuCall;	
+				Menu_menuBHandler += Common.AppInfo.UnityContainer.Resolve<IMenuCall> ("设置B").MenuCall;	
 			}	
 			
 		}	

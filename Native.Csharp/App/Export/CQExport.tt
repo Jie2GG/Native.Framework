@@ -559,9 +559,9 @@
 				TemplateBuilder.WriteFormatLine (2, " * Name: {0}", token["name"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (2, " * Function: {0}", token["function"].Value<string> ());
 				TemplateBuilder.WriteLine (2, " */");
-				TemplateBuilder.WriteLine (2, "foreach (IMenuCall item in Common.AppInfo.UnityContainer.ResolveAll<IMenuCall> ())");
+				TemplateBuilder.WriteFormatLine (2, "if (Common.AppInfo.UnityContainer.IsRegistered<IMenuCall> (\"{0}\"))", token["name"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "{");
-				TemplateBuilder.WriteFormatLine (3, "Menu{0}Handler += item.MenuCall;", token["function"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (3, "Menu{0}Handler += Common.AppInfo.UnityContainer.Resolve<IMenuCall> (\"{1}\").MenuCall;", token["function"].Value<string> (), token["name"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "}");
 				TemplateBuilder.WriteLine (2);
 			}
@@ -667,9 +667,9 @@
 				TemplateBuilder.WriteFormatLine (2, " * Function: {0}", token["function"].Value<string> ());
 				TemplateBuilder.WriteFormatLine (2, " * Period: {0}", token["period"].Value<int> ());
 				TemplateBuilder.WriteLine (2, " */");
-				TemplateBuilder.WriteLine (2, "foreach (IStatusUpdate item in Common.AppInfo.UnityContainer.ResolveAll<IStatusUpdate> ())");
+				TemplateBuilder.WriteFormatLine (2, "if (Common.AppInfo.UnityContainer.IsRegistered<IStatusUpdate> (\"{0}\"))", token["name"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "{");
-				TemplateBuilder.WriteFormatLine (3, "Status{0}Handler += item.StatusUpdate;", token["function"].Value<string> ());
+				TemplateBuilder.WriteFormatLine (3, "Status{0}Handler += Common.AppInfo.UnityContainer.Resolve<IStatusUpdate> (\"{1}\").StatusUpdate;", token["function"].Value<string> (), token["name"].Value<string> ());
 				TemplateBuilder.WriteLine (2, "}");
 				TemplateBuilder.WriteLine (2);
 			}
