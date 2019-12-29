@@ -61,16 +61,16 @@ namespace Native.Csharp.Sdk.Cqp.Core
         [DllImport (DllName, EntryPoint = "CQ_sendLikeV2")]
         public static extern int CQ_sendLikeV2 (int authCode, long qqId, int times);
 
-        [DllImport (DllName, EntryPoint = "CQ_getCookiesV2", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_getCookiesV2")]
         public static extern string CQ_getCookiesV2 (int authCode, string domain);
 
-        [DllImport (DllName, EntryPoint = "CQ_getRecordV2", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_getRecordV2")]
         public static extern string CQ_getRecordV2 (int authCode, string file, string format);
 
         [DllImport (DllName, EntryPoint = "CQ_getCsrfToken")]
         public static extern int CQ_getCsrfToken (int authCode);
 
-        [DllImport (DllName, EntryPoint = "CQ_getAppDirectory", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_getAppDirectory")]
         public static extern IntPtr CQ_getAppDirectory (int authCode);
 
         [DllImport (DllName, EntryPoint = "CQ_getLoginQQ")]
@@ -109,13 +109,13 @@ namespace Native.Csharp.Sdk.Cqp.Core
         [DllImport (DllName, EntryPoint = "CQ_setDiscussLeave")]
         public static extern int CQ_setDiscussLeave (int authCode, long disscussId);
 
-        [DllImport (DllName, EntryPoint = "CQ_setFriendAddRequest", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_setFriendAddRequest")]
         public static extern int CQ_setFriendAddRequest (int authCode, string identifying, int requestType, IntPtr appendMsg);
 
-        [DllImport (DllName, EntryPoint = "CQ_setGroupAddRequestV2", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_setGroupAddRequestV2")]
         public static extern int CQ_setGroupAddRequestV2 (int authCode, string identifying, int requestType, int responseType, IntPtr appendMsg);
 
-        [DllImport (DllName, EntryPoint = "CQ_addLog", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_addLog")]
         public static extern int CQ_addLog (int authCode, int priority, string type, IntPtr msg);
 
         [DllImport (DllName, EntryPoint = "CQ_setFatal")]
@@ -139,13 +139,13 @@ namespace Native.Csharp.Sdk.Cqp.Core
         [DllImport (DllName, EntryPoint = "CQ_canSendRecord")]
         public static extern int CQ_canSendRecord (int authCode);
 
-        [DllImport (DllName, EntryPoint = "CQ_getImage", CharSet = CharSet.Unicode)]
+        [DllImport (DllName, EntryPoint = "CQ_getImage")]
         public static extern string CQ_getImage (int authCode, string file);
 
-        [DllImport(DllName, EntryPoint = "CQ_getGroupInfo", CharSet = CharSet.Unicode)]
+        [DllImport(DllName, EntryPoint = "CQ_getGroupInfo")]
         public static extern string CQ_getGroupInfo(int authCode, long groupId, bool notCache);
 
-		[DllImport (DllName, EntryPoint = "CQ_getFriendList", CharSet = CharSet.Unicode)]
+		[DllImport (DllName, EntryPoint = "CQ_getFriendList")]
 		public static extern string CQ_getFriendList (int authCode, bool reserved);
 		#endregion
 	}
