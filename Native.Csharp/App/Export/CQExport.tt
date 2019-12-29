@@ -508,6 +508,7 @@
 		TemplateBuilder.UsingItems.Add ("System.Reflection");
 		TemplateBuilder.UsingItems.Add ("System.Runtime.InteropServices");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.App.Common");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Unity");
@@ -532,8 +533,7 @@
 		TemplateBuilder.WriteLine (1, "/// </summary>");
 		TemplateBuilder.WriteLine (1, "static CQMenuExport ()");
 		TemplateBuilder.WriteLine (1, "{");
-		TemplateBuilder.WriteLine (2, "Type type = typeof (CQEventExport);");
-		TemplateBuilder.WriteLine (2, "api = (CQApi)type.GetProperty (\"api\", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);");
+		TemplateBuilder.WriteLine (2, "api = AppInfo.UnityContainer.Resolve<CQApi> (AppInfo.Id);");
 		TemplateBuilder.WriteLine (2);
 		TemplateBuilder.WriteLine (2, "// 调用方法进行实例化");
 		TemplateBuilder.WriteLine (2, "ResolveBackcall ();");
@@ -613,6 +613,7 @@
 		TemplateBuilder.UsingItems.Add ("System.Reflection");
 		TemplateBuilder.UsingItems.Add ("System.Runtime.InteropServices");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp");
+		TemplateBuilder.UsingItems.Add ("Native.Csharp.App.Common");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Native.Csharp.Sdk.Cqp.Model");
@@ -638,8 +639,7 @@
 		TemplateBuilder.WriteLine (1, "/// </summary>");
 		TemplateBuilder.WriteLine (1, "static CQStatusExport ()");
 		TemplateBuilder.WriteLine (1, "{");
-		TemplateBuilder.WriteLine (2, "Type type = typeof (CQEventExport);");
-		TemplateBuilder.WriteLine (2, "api = (CQApi)type.GetProperty (\"api\", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);");
+		TemplateBuilder.WriteLine (2, "api = AppInfo.UnityContainer.Resolve<CQApi> (AppInfo.Id);");
 		TemplateBuilder.WriteLine (2);
 		TemplateBuilder.WriteLine (2, "// 调用方法进行实例化");
 		TemplateBuilder.WriteLine (2, "ResolveBackcall ();");

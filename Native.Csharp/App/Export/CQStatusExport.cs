@@ -5,6 +5,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Native.Csharp.Sdk.Cqp;
+using Native.Csharp.App.Common;
 using Native.Csharp.Sdk.Cqp.EventArgs;
 using Native.Csharp.Sdk.Cqp.Interface;
 using Native.Csharp.Sdk.Cqp.Model;
@@ -27,8 +28,7 @@ namespace Native.Csharp.App.Export
 		/// </summary>	
 		static CQStatusExport ()	
 		{	
-			Type type = typeof (CQEventExport);	
-			api = (CQApi)type.GetProperty ("api", BindingFlags.Public | BindingFlags.Static).GetMethod.Invoke (null, null);	
+			api = AppInfo.UnityContainer.Resolve<CQApi> (AppInfo.Id);	
 			
 			// 调用方法进行实例化	
 			ResolveBackcall ();	
