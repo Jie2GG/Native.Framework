@@ -1,14 +1,7 @@
 ﻿using Native.Csharp.Sdk.Cqp.Core;
 using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Expand;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp
 {
@@ -49,15 +42,16 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回当前实例 <see cref="CQLog"/></returns>
 		public CQLog WriteLine (CQLogLevel level, string type, params object[] contents)
 		{
-			GCHandle handle = contents.ToSendString ().GetStringGCHandle ();
+			GCHandle toSendStringHandle = contents.ToSendString ().GetStringGCHandle ();
+			GCHandle typeHandle = type.GetStringGCHandle ();
 			try
 			{
-				CQP.CQ_addLog (this.AuthCode, (int)level, type, handle.AddrOfPinnedObject ());
+				CQP.CQ_addLog (this.AuthCode, (int)level, typeHandle.AddrOfPinnedObject (), toSendStringHandle.AddrOfPinnedObject ());
 				return this;
 			}
 			finally
 			{
-				handle.Free ();
+				toSendStringHandle.Free ();
 			}
 		}
 

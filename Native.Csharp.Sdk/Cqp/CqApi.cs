@@ -633,7 +633,18 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentException ("文件名不可为空", "fileName");
 			}
 
-			return CQP.CQ_getRecordV2 (AuthCode, fileName, format.GetDescription ());
+			GCHandle fileNameHandler = fileName.GetStringGCHandle ();
+			GCHandle formatHandler = format.GetDescription ().GetStringGCHandle ();
+
+			try
+			{
+				return CQP.CQ_getRecordV2 (AuthCode, fileNameHandler.AddrOfPinnedObject (), formatHandler.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
+			}
+			finally
+			{
+				fileNameHandler.Free ();
+				formatHandler.Free ();
+			}
 		}
 
 		/// <summary>
@@ -648,7 +659,16 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				throw new ArgumentException ("文件名不可为空", "fileName");
 			}
-			return CQP.CQ_getImage (AuthCode, fileName);
+
+			GCHandle handle = fileName.GetStringGCHandle ();
+			try
+			{
+				return CQP.CQ_getImage (AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
+			}
+			finally
+			{
+				handle.Free ();
+			}
 		}
 		#endregion
 
@@ -693,7 +713,15 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("domain");
 			}
 
-			return CQP.CQ_getCookiesV2 (AuthCode, domain);
+			GCHandle handle = domain.GetStringGCHandle ();
+			try
+			{
+				return CQP.CQ_getCookiesV2 (AuthCode, handle.AddrOfPinnedObject ()).ToString (_defaultEncoding);
+			}
+			finally
+			{
+				handle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -770,7 +798,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/></returns>
 		public List<FriendInfo> GetFriendList ()
 		{
-			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (AuthCode, false));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (AuthCode, false).ToString (_defaultEncoding));
 			if (data == null)
 			{
 				throw new InvalidDataException ("数据流格式错误");
@@ -935,7 +963,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (AuthCode, group.Id, notCache));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (AuthCode, group.Id, notCache).ToString (_defaultEncoding));
 			try
 			{
 				return new GroupInfo (this, data);
@@ -1562,16 +1590,23 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="response">反馈类型</param>
 		/// <param name="notes">备注</param>
 		/// <returns></returns>
-		public int SetFriendAddRequest (string tag, CQResponseType response, string notes = null)
+		public bool SetFriendAddRequest (string tag, CQResponseType response, string notes = null)
 		{
 			if (notes == null)
 			{
 				notes = string.Empty;
 			}
-			GCHandle handle = notes.GetStringGCHandle (_defaultEncoding);
-			int result = CQP.CQ_setFriendAddRequest (_authCode, tag, (int)response, handle.AddrOfPinnedObject ());
-			handle.Free ();
-			return result;
+			GCHandle notesHandle = notes.GetStringGCHandle (_defaultEncoding);
+			GCHandle tagHandler = tag.GetStringGCHandle (_defaultEncoding);
+			try
+			{
+				return CQP.CQ_setFriendAddRequest (_authCode, tagHandler.AddrOfPinnedObject (), (int)response, notesHandle.AddrOfPinnedObject ()) == 0;
+			}
+			finally
+			{
+				notesHandle.Free ();
+				tagHandler.Free ();
+			}
 		}
 
 		/// <summary>
@@ -1582,16 +1617,23 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="response">反馈类型</param>
 		/// <param name="appendMsg">备注</param>
 		/// <returns></returns>
-		public int SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
+		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
 		{
 			if (appendMsg == null)
 			{
 				appendMsg = string.Empty;
 			}
-			GCHandle handle = appendMsg.GetStringGCHandle (_defaultEncoding);
-			int result = CQP.CQ_setGroupAddRequestV2 (_authCode, tag, (int)request, (int)response, handle.AddrOfPinnedObject ());
-			handle.Free ();
-			return result;
+			GCHandle appendMsgHandle = appendMsg.GetStringGCHandle (_defaultEncoding);
+			GCHandle tagHandle = tag.GetStringGCHandle (_defaultEncoding);
+			try
+			{
+				return CQP.CQ_setGroupAddRequestV2 (_authCode, tagHandle.AddrOfPinnedObject (), (int)request, (int)response, appendMsgHandle.AddrOfPinnedObject ()) == 0;
+			}
+			finally
+			{
+				appendMsgHandle.Free ();
+				tagHandle.AddrOfPinnedObject ();
+			}
 		}
 		#endregion
 	}
