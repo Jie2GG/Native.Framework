@@ -15,6 +15,7 @@
 	12. 合并 事件参数, 还原为和官方SDK一致
 	13. 重构 CQApi 类, 为其增加针对 CQCode, QQ, Group, Discuss, FirendInfo, QQMessage, StrangerInfo 类的接口
 	14. 重构 所有事件参数, 规范其行为, 增加重写方法
+	15. 优化 以当前版本开始之后版本的更新模式优化.
 
 > 2019年10月13日 版本: V3.4.1.1016
 
