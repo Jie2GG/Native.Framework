@@ -3,20 +3,20 @@
 // 如 appid=com.example.demo, 则dll及json文件需分别放在 dev/com.example.demo/app.dll、dev/com.example.demo/app.json
 // [重要] appid 规则见 https://cqp.im/v9/appid
 {
-	"ret": 1, // 返回码，固定为1
-	"apiver": 9, // Api版本，本SDK为9
-	"name": "酷Q样例应用", // 应用名称
-	"version": "1.0.0", // 应用版本
-	"version_id": 1, // 应用顺序版本（每次发布时至少+1）
-	"author": "Example", // 应用作者
+	"ret": 1,
+	"apiver": 9,
+	"name": "酷Q样例应用 for C#",
+	"version": "1.0.0",
+	"version_id": 1,
+	"author": "JieGG",
 	"description": "酷Q样例应用(V9应用机制)",
-	"event": [ // 事件列表，同一事件类型可重复定义（发布前请删除无用事件）
+	"event": [
 		{
-			"id": 1, // 事件ID
-			"type": 21, // 事件类型
-			"name": "私聊消息处理", // 事件名称
-			"function": "_eventPrivateMsg", // 事件对应函数
-			"priority": 30000 // 事件优先级(参见 https://cqp.im/deveventpriority )
+			"id": 1,
+			"type": 21,
+			"name": "私聊消息处理",
+			"function": "_eventPrivateMsg",
+			"priority": 30000
 		},
 		{
 			"id": 2,
