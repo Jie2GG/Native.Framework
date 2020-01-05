@@ -7,24 +7,44 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
 	/// <summary>
-	/// 表示应用启动事件参数的类
+	/// 提供用于描述应用启用事件参数的类
+	/// <para/>
+	/// Type: 1003
 	/// </summary>
-	public class CqAppEnableEventArgs : CqEventArgsBase
+	public class CQAppEnableEventArgs : CQEventEventArgs
 	{
+		#region --构造函数--
 		/// <summary>
-		/// 获取一个值, 该值表示当前事件的类型
+		/// 初始化 <see cref="CQAppEnableEventArgs"/> 类的新实例
 		/// </summary>
-		public override int Type { get { return 1003; } }
-        
-		/// <summary>
-		/// 初始化 <see cref="CqAppEnableEventArgs"/> 类的一个新实例
-		/// </summary>
-		/// <param name="id">事件ID</param>
-        /// <param name="name">事件名称</param>
-		public CqAppEnableEventArgs (int id, string name)
+		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
+		/// <param name="id">事件id</param>
+		/// <param name="type">类型</param>
+		/// <param name="name">名称</param>
+		/// <param name="function">函数名</param>
+		/// <param name="priority">默认优先级</param>
+		public CQAppEnableEventArgs (CQApi api, CQLog log, int id, int type, string name, string function, uint priority)
+			: base (api, log, id, type, name, function, priority)
 		{
-			base.Id = id;
-            base.Name = name;
 		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendFormat ("优先级: {0}", this.Priority);
+			return builder.ToString ();
+		}
+		#endregion
 	}
 }

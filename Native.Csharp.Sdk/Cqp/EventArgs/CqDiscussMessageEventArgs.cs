@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Native.Csharp.Sdk.Cqp.Enum;
+using Native.Csharp.Sdk.Cqp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,58 +8,81 @@ using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
-    /// <summary>
-    /// 表示讨论组消息事件参数的类
-    /// </summary>
-    public class CqDiscussMessageEventArgs : CqEventArgsBase
-    {
-        /// <summary>
-        /// 获取一个值, 该值表示当前事件的类型
-        /// </summary>
-        public override int Type { get { return 4; } }
+	/// <summary>
+	/// 提供用于描述酷Q讨论组事件参数的类
+	/// <para/>
+	/// Type: 4 
+	/// </summary>
+	public class CQDiscussMessageEventArgs : CQEventEventArgs
+	{
+		#region --属性--
+		/// <summary>
+		/// 获取当前事件的消息子类型
+		/// </summary>
+		public CQDiscussMessageType SubType { get; private set; }
 
-        /// <summary>
-        /// 获取或设置一个值, 表示当前事件所产生消息的唯一编号, 可用于撤回消息
-        /// </summary>
-        public int MsgId { get; set; }
+		/// <summary>
+		/// 获取当前事件的来源讨论组
+		/// </summary>
+		public Discuss FromDiscuss { get; private set; }
 
-        /// <summary>
-        /// 获取当前消息的来源QQ号
-        /// </summary>
-        public long FromQQ { get; private set; }
+		/// <summary>
+		/// 获取当前事件的来源QQ
+		/// </summary>
+		public QQ FromQQ { get; private set; }
 
-        /// <summary>
-        /// 获取当前消息的来源讨论组号
-        /// </summary>
-        public long FromDiscuss { get; private set; }
+		/// <summary>
+		/// 获取当前事件的消息内容
+		/// </summary>
+		public QQMessage Message { get; private set; }
+		#endregion
 
-        /// <summary>
-        /// 获取当前消息的消息内容
-        /// </summary>
-        public string Message { get; private set; }
+		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="CQDiscussMessageEventArgs"/> 类的新实例
+		/// </summary>
+		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
+		/// <param name="id">事件Id</param>
+		/// <param name="type">事件类型</param>
+		/// <param name="name">事件名称</param>
+		/// <param name="function">函数名称</param>
+		/// <param name="priority">默认优先级</param>
+		/// <param name="subType">子类型</param>
+		/// <param name="msgId">消息Id</param>
+		/// <param name="fromDiscuss">来源讨论组</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="msg">消息内容</param>
+		/// <param name="isRegex">是否为正则消息</param>
+		public CQDiscussMessageEventArgs (CQApi api, CQLog log, int id, int type, string name, string function, uint priority, int subType, int msgId, long fromDiscuss, long fromQQ, string msg, bool isRegex)
+			: base (api, log, id, type, name, function, priority)
+		{
+			this.SubType = (CQDiscussMessageType)subType;
+			this.Message = new QQMessage (api, msgId, msg, isRegex);
+			this.FromDiscuss = new Discuss (api, fromDiscuss);
+			this.FromQQ = new QQ (api, fromQQ);
+		}
+		#endregion
 
-        /// <summary>
-        /// 获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
-        /// </summary>
-        public bool Handler { get; set; }
-
-        /// <summary>
-        /// 初始化 <see cref="CqDiscussMessageEventArgs"/> 类的一个新实例
-        /// </summary>
-        /// <param name="id">事件ID</param>
-        /// <param name="name">事件名称s</param>
-        /// <param name="msgId">消息ID</param>
-        /// <param name="fromDiscuss">来源讨论组</param>
-        /// <param name="fromQQ">来源QQ</param>
-        /// <param name="msg">消息内容</param>
-        public CqDiscussMessageEventArgs (int id, string name, int msgId, long fromDiscuss, long fromQQ, string msg)
-        {
-            base.Id = id;
-            base.Name = name;
-            this.MsgId = msgId;
-            this.FromDiscuss = fromDiscuss;
-            this.FromQQ = fromQQ;
-            this.Message = msg;
-        }
-    }
+		#region --公开方法--
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("ID: {0}", this.Id));
+			builder.AppendLine (string.Format ("类型: {0}({1})", this.Type, (int)this.Type));
+			builder.AppendLine (string.Format ("名称: {0}", this.Name));
+			builder.AppendLine (string.Format ("函数: {0}", this.Function));
+			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
+			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
+			builder.AppendLine (this.FromDiscuss.ToString ());
+			builder.AppendLine (this.FromQQ.ToString ());
+			builder.Append (this.Message.ToString ());
+			return builder.ToString ();
+		}
+		#endregion
+	}
 }

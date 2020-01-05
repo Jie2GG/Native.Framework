@@ -13,23 +13,21 @@ namespace Native.Csharp.Repair.Core
 	 */
 	public static class Kernel32
 	{
-		// https://docs.microsoft.com/en-us/windows/desktop/api/libloaderapi/nf-libloaderapi-adddlldirectory
 		[DllImport ("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
 		[return: MarshalAs (UnmanagedType.Bool)]
-		public static extern bool AddDllDirectory (string lpPathName);
+		internal static extern bool AddDllDirectory (string lpPathName);
 
-		//https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-setdlldirectorya
 		[DllImport ("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
 		[return: MarshalAs (UnmanagedType.Bool)]
-		public static extern bool SetDllDirectory (string lpPathName);
+		internal static extern bool SetDllDirectory (string lpPathName);
 
 		[DllImport ("kernel32.dll")]
-		public static extern uint SetErrorMode (uint uMode);
+		internal static extern uint SetErrorMode (uint uMode);
 
 		[DllImport ("kernel32", SetLastError = true, CharSet = CharSet.Unicode)]
-		static extern IntPtr LoadLibrary (string dllToLoad);
+		internal static extern IntPtr LoadLibrary (string dllToLoad);
 
-		[DllImport ("kernel32.dll", SetLastError = true)]
-		public static extern IntPtr LoadLibraryEx (string lpFileName, IntPtr hReservedNull, LoadLibraryFlags dwFlags);
+		[DllImport ("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+		internal static extern IntPtr LoadLibraryEx (string lpFileName, IntPtr hReservedNull, LoadLibraryFlags dwFlags);
 	}
 }

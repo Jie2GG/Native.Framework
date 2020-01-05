@@ -1,4 +1,22 @@
 # Native.SDK 更新日志
+> 2019年xx月xx日 版本: V4.0.0.xxxx
+
+	1. 新增 CQCode 类, 用于描述 CQ码
+	2. 新增 QQ 类, 用于描述 QQ信息
+	3. 新增 Group 类, 用于描述 QQ群信息
+	4. 新增 Discuss 类, 用于描述 讨论组信息
+	5. 新增 FriendInfo 类, 用于描述 好友信息
+	6. 新增 QQMessage 类, 用于描述 QQ消息
+	7. 新增 StrangerInfo 类, 用于描述 陌生人信息
+	8. 新增 CQLog 类, 将日志部分分离为单独的类
+	9. 新增 事件参数子类型枚举, 用于快速区分事件的子类型
+	10. 新增 模型运算符重载, 用于和基础数据类型比对
+	11. 合并 文件 LibExport.tt, MenuExport.tt, StatusExport.tt 为 CQExport.tt, 并添加 CQExport.log 日志文件
+	12. 合并 事件参数, 还原为和官方SDK一致
+	13. 重构 CQApi 类, 为其增加针对 CQCode, QQ, Group, Discuss, FirendInfo, QQMessage, StrangerInfo 类的接口
+	14. 重构 所有事件参数, 规范其行为, 增加重写方法
+	15. 优化 以当前版本开始之后版本的更新模式优化.
+
 > 2019年10月13日 版本: V3.4.1.1016
 
 	1. 修复 音乐接口的bug

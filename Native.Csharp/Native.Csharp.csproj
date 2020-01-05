@@ -61,9 +61,6 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -99,27 +96,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Common.cs" />
-    <Compile Include="App\Core\LibExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LibExport.tt</DependentUpon>
+    <Compile Include="App\Common\AppInfo.cs" />
+    <Compile Include="App\Common\AppData.cs" />
+    <Compile Include="App\Export\CQEventExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\MenuExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MenuExport.tt</DependentUpon>
+    <Compile Include="App\Export\CQMenuExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\StatusExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StatusExport.tt</DependentUpon>
+    <Compile Include="App\Export\CQStatusExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Event\Event_CqAppDisable.cs" />
-    <Compile Include="App\Event\Event_CqAppEnable.cs" />
-    <Compile Include="App\Event\Event_AppMain.cs" />
-    <Compile Include="App\Event\Event_CqExit.cs" />
-    <Compile Include="App\Event\Event_CqStartup.cs" />
+    <Compile Include="App\CQMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repair\Core\Kernel32.cs" />
     <Compile Include="Repair\Enum\LoadLibraryFlags.cs" />
@@ -128,6 +116,11 @@
     <Compile Include="Repair\ModuleInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App\Export\CQExport.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQExport.tt</DependentUpon>
+    </None>
     <None Include="Native.Csharp.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -143,17 +136,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\Core\StatusExport.tt">
+    <Content Include="App\Export\CQExport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StatusExport.cs</LastGenOutput>
-    </Content>
-    <Content Include="App\Core\LibExport.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LibExport.cs</LastGenOutput>
-    </Content>
-    <Content Include="App\Core\MenuExport.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MenuExport.cs</LastGenOutput>
+      <LastGenOutput>CQExport.log</LastGenOutput>
     </Content>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
