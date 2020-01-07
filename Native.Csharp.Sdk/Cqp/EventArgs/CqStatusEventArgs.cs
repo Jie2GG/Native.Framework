@@ -7,48 +7,51 @@ using System.Threading.Tasks;
 namespace Native.Csharp.Sdk.Cqp.EventArgs
 {
 	/// <summary>
-	/// 表示酷Q悬浮窗回调事件参数的类
+	/// 提供用于描述酷Q悬浮窗状态事件参数的类, 该类是抽象的
 	/// </summary>
-	public class CqStatusEventArgs : System.EventArgs
+	public abstract class CQStatusEventArgs : CQEventArgs
 	{
+		#region --属性--
 		/// <summary>
-		/// 悬浮窗ID
+		/// 获取来源事件的ID. 是 id 字段
 		/// </summary>
 		public int Id { get; private set; }
 
 		/// <summary>
-		/// 悬浮窗名称
+		/// 获取来源事件的名称. 是 name 字段
 		/// </summary>
 		public string Name { get; private set; }
 
 		/// <summary>
-		/// 悬浮窗标题
+		/// 获取来源事件的显示标题. 是 title 字段
 		/// </summary>
 		public string Title { get; private set; }
 
 		/// <summary>
-		/// 更新间隔
+		/// 获取来源事件的刷新间隔. 是 period 字段, 目前仅支持 1000ms (1秒)
 		/// </summary>
-		public int Period { get; private set; }
+		public TimeSpan Period { get; private set; }
+		#endregion
 
-        /// <summary>
-        /// 获取或设置当前悬浮窗显示的数据
-        /// </summary>
-        public string FloatWindowData { get; set; }
-
-        /// <summary>
-        /// 初始化 <see cref="CqStatusEventArgs"/> 类的一个新实例
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <param name="name">名称</param>
-        /// <param name="title">标题</param>
-        /// <param name="period">更新时间</param>
-        public CqStatusEventArgs (int id, string name, string title, int period)
+		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="CQStatusEventArgs"/> 类的新实例
+		/// </summary>
+		/// <param name="api">酷Q的接口实例</param>
+		/// <param name="log">酷Q的日志实例</param>
+		/// <param name="id">事件Id</param>
+		/// <param name="name">名称</param>
+		/// <param name="title">标题</param>
+		/// <param name="function">函数名</param>
+		/// <param name="period">刷新间隔</param>
+		public CQStatusEventArgs (CQApi api, CQLog log, int id, string name, string title, string function, long period)
+			: base (api, log, function)
 		{
 			this.Id = id;
 			this.Name = name;
 			this.Title = title;
-			this.Period = period;
+			this.Period = new TimeSpan (period * TimeSpan.TicksPerMillisecond);
 		}
+		#endregion
 	}
 }

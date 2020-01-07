@@ -22,7 +22,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>618,1591;3001</NoWarn>
+    <NoWarn>618,1591;3001;CA2213;CA2210;CA2100;IDE1006;CA1063</NoWarn>
     <WarningsAsErrors>NU1605</WarningsAsErrors>
     <DocumentationFile>bin\x86\Debug\Native.Csharp.Tool.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
