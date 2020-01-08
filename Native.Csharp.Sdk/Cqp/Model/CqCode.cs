@@ -1,18 +1,18 @@
 ﻿using Native.Csharp.Sdk.Cqp.Enum;
 using Native.Csharp.Sdk.Cqp.Expand;
+using Native.Csharp.Sdk.Cqp.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Native.Csharp.Sdk.Cqp.Model
 {
 	/// <summary>
 	/// 表示 CQ码 的类
 	/// </summary>
-	public class CQCode
+	public class CQCode : IToSendString
 	{
 		#region --字段--
 		private static readonly Lazy<Regex[]> _regices = new Lazy<Regex[]> (InitializeRegex);
@@ -154,6 +154,15 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				}
 			}
 			return this._originalString;
+		}
+
+		/// <summary>
+		/// 处理返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			return this.ToString ();
 		}
 		#endregion
 
