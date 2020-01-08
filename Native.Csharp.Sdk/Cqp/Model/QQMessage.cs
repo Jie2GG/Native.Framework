@@ -264,7 +264,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			{
 				return false;
 			}
-			return string.Equals (msg.OriginalMessage, str);
+			return string.Compare (msg.OriginalMessage, str) == 0;
 		}
 		#endregion
 
