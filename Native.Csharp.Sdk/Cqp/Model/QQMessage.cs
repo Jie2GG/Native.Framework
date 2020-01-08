@@ -260,11 +260,11 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
 		private static bool Equals (QQMessage msg, string str)
 		{
-			if (msg == null || str == null)
+			if (object.ReferenceEquals (msg, null) || object.ReferenceEquals (str, null))
 			{
 				return false;
 			}
-			return string.Equals (msg.OriginalMessage, str);
+			return string.Compare (msg.OriginalMessage, str) == 0;
 		}
 		#endregion
 

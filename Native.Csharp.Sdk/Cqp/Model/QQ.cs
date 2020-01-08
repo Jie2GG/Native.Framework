@@ -332,7 +332,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
 		private static bool Equals (QQ qq, long qqId)
 		{
-			if (qq == null || qqId < 10000)
+			if (object.ReferenceEquals (qq, null) || qqId < 10000)
 			{
 				return false;
 			}
