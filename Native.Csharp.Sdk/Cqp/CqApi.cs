@@ -89,7 +89,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_At (long qqId)
 		{
-			if (qqId < 10000)
+			if (qqId < QQ.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
@@ -246,7 +246,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_ShareFriendCard (long qqId)
 		{
-			if (qqId < 10000)
+			if (qqId < QQ.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
@@ -457,7 +457,20 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>发送成功将返回消息ID, 发送失败则返回负数</returns>
 		public int SendGroupMessage (long groupId, params object[] message)
 		{
-			return this.SendGroupMessage (new Group (this, groupId), message).Id;
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			try
+			{
+				return CQP.CQ_sendGroupMsg (this.AuthCode, groupId, messageHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				messageHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -475,16 +488,8 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 
 			string msg = message.ToSendString ();
-			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
-			try
-			{
-				int msgId = CQP.CQ_sendGroupMsg (AuthCode, group.Id, handle.AddrOfPinnedObject ());
-				return new QQMessage (this, msgId, msg);
-			}
-			finally
-			{
-				handle.Free ();
-			}
+			int msgId = this.SendGroupMessage (group.Id, msg);
+			return new QQMessage (this, msgId, msg);
 		}
 
 		/// <summary>
@@ -496,7 +501,20 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public int SendPrivateMessage (long qqId, params object[] message)
 		{
-			return this.SendPrivateMessage (new QQ (this, qqId), message).Id;
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			try
+			{
+				return CQP.CQ_sendPrivateMsg (this.AuthCode, qqId, messageHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				messageHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -514,16 +532,8 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 
 			string msg = message.ToSendString ();
-			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
-			try
-			{
-				int msgid = CQP.CQ_sendPrivateMsg (AuthCode, qq.Id, handle.AddrOfPinnedObject ());
-				return new QQMessage (this, msgid, msg);
-			}
-			finally
-			{
-				handle.Free ();
-			}
+			int msgId = this.SendPrivateMessage (qq.Id, msg);
+			return new QQMessage (this, msgId, msg);
 		}
 
 		/// <summary>
@@ -535,7 +545,20 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public int SendDiscussMessage (long discussId, params object[] message)
 		{
-			return this.SendDiscussMessage (new Discuss (this, discussId), message).Id;
+			if (discussId < Discuss.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("discussId");
+			}
+
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			try
+			{
+				return CQP.CQ_sendDiscussMsg (this.AuthCode, discussId, messageHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				messageHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -547,17 +570,14 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public QQMessage SendDiscussMessage (Discuss discuss, params object[] message)
 		{
+			if (discuss == null)
+			{
+				throw new ArgumentNullException ("discuss");
+			}
+
 			string msg = message.ToSendString ();
-			GCHandle handle = msg.GetStringGCHandle (DefaultEncoding);
-			try
-			{
-				int msgId = CQP.CQ_sendDiscussMsg (this.AuthCode, discuss.Id, handle.AddrOfPinnedObject ());
-				return new QQMessage (this, msgId, msg);
-			}
-			finally
-			{
-				handle.Free ();
-			}
+			int msgId = this.SendDiscussMessage (discuss.Id, msg);
+			return new QQMessage (this, msgId, msg);
 		}
 
 		/// <summary>
@@ -568,7 +588,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SendPraise (long qqId, int count = 1)
 		{
-			return this.SendPraise (new QQ (this, qqId), count);
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			if (count < 1 || count > 10)
+			{
+				throw new ArgumentOutOfRangeException ("count", count, "点赞次数超出可处理范围, 其次数最少为 1, 最多为 10");
+			}
+
+			return CQP.CQ_sendLikeV2 (this.AuthCode, qqId, count) == 0;
 		}
 
 		/// <summary>
@@ -586,11 +616,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			if (count < 1 || count > 10)
-			{
-				throw new ArgumentOutOfRangeException ("count", count, "点赞次数超出可处理范围, 其次数最少为 1, 最多为 10");
-			}
-			return CQP.CQ_sendLikeV2 (AuthCode, qq.Id, count) == 0;
+			return this.SendPraise (qq.Id, count);
 		}
 
 		/// <summary>
@@ -600,7 +626,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveMessage (int msgId)
 		{
-			return this.RemoveMessage (new QQMessage (this, msgId, string.Empty));
+			if (msgId < 0)
+			{
+				throw new ArgumentOutOfRangeException ("msgId");
+			}
+
+			return CQP.CQ_deleteMsg (this.AuthCode, msgId) == 0;
 		}
 
 		/// <summary>
@@ -616,7 +647,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("message");
 			}
 
-			return CQP.CQ_deleteMsg (this.AuthCode, message.Id) == 0;
+			return this.RemoveMessage (message.Id);
 		}
 
 		/// <summary>

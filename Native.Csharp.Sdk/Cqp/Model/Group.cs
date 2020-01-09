@@ -13,6 +13,13 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// </summary>
 	public class Group : IToSendString
 	{
+		#region --常量--
+		/// <summary>
+		/// 表示 <see cref="Group"/> 的最小值, 此字段为常数.
+		/// </summary>
+		public const long MinValue = 10000;
+		#endregion
+
 		#region --属性--
 		/// <summary>
 		/// 获取当前实例用于获取信息的 <see cref="Native.Csharp.Sdk.Cqp.CQApi"/> 实例对象
@@ -40,7 +47,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				throw new ArgumentNullException ("api");
 			}
 
-			if (groupId < 10000)
+			if (groupId < MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
