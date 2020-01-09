@@ -1004,7 +1004,7 @@
 			if (root != null)
 			{
 				Log.Info ("获取 description 信息...");
-				return root.Value<string> ("description");
+				return root.Value<string> ("description").Replace ("\r\n", "\\r\\n");
 			}
 			return string.Empty;
 		}
