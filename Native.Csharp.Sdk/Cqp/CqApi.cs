@@ -163,7 +163,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="source">欲转义的原始字符串</param>
 		/// <param name="enCodeComma">是否转义逗号, 默认 <code>false</code></param>
-		/// <exception cref="ArgumentNullException">如果传入的原始字符串</exception>
+		/// <exception cref="ArgumentNullException">参数: source 为 null</exception>
 		/// <returns>返回转义后的字符串副本</returns>
 		public static string CQEnCode (string source, bool enCodeComma)
 		{
@@ -186,11 +186,11 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取字符串副本的非转义形式
 		/// </summary>
 		/// <param name="source">欲反转义的原始字符串</param>
-		/// <exception cref="ArgumentNullException">当原始字符串为空时发生</exception>
+		/// <exception cref="ArgumentNullException">参数: source 为 null</exception>
 		/// <returns>返回反转义的字符串副本</returns>
 		public static string CQDeCode (string source)
 		{
-			if (string.IsNullOrEmpty (source))
+			if (source == null)
 			{
 				throw new ArgumentNullException ("source");
 			}
@@ -209,7 +209,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="title">显示的标题, 建议12字以内</param>
 		/// <param name="content">简介信息, 建议30字以内</param>
 		/// <param name="imageUrl">分享的图片链接, 留空则为默认图片</param>
-		/// <exception cref="ArgumentException">分享链接为空时发生</exception>
+		/// <exception cref="ArgumentException">参数: url 是空字符串或为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_ShareLink (string url, string title, string content, string imageUrl = null)
 		{
@@ -242,7 +242,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "好友名片分享" 代码
 		/// </summary>
 		/// <param name="qqId">QQ号码</param>
-		/// <exception cref="ArgumentOutOfRangeException">QQ号超出可处理范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_ShareFriendCard (long qqId)
 		{
@@ -275,11 +275,11 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "群名片分享" 代码
 		/// </summary>
 		/// <param name="groupId">群组</param>
-		/// <exception cref="ArgumentOutOfRangeException">群号超出可处理范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_ShareGroupCard (long groupId)
 		{
-			if (groupId < 10000)
+			if (groupId < Group.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
@@ -312,7 +312,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="lat">维度</param>
 		/// <param name="lon">经度</param>
 		/// <param name="zoom">放大倍数, 默认: 15倍</param>
-		/// <exception cref="ArgumentException">当分享的地点或详细地址为空</exception>
+		/// <exception cref="ArgumentException">参数: site 或 detail 是空字符串或为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_ShareGPS (string site, string detail, double lat, double lon, int zoom = 15)
 		{
@@ -374,7 +374,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="title">标题, 建议12字以内</param>
 		/// <param name="content">简介, 建议30字以内</param>
 		/// <param name="imageUrl">封面图片链接, 留空为默认</param>
-		/// <exception cref="ArgumentException">当分享链接或歌曲链接为空时发生</exception>
+		/// <exception cref="ArgumentException">参数: url 或 musicUrl 是空字符串或为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_DIYMusic (string url, string musicUrl, string title = null, string content = null, string imageUrl = null)
 		{
@@ -414,7 +414,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "图片" 代码
 		/// </summary>
 		/// <param name="path">图片的路径, 将图片放在 酷Q\data\image 下, 并填写相对路径. 如 酷Q\data\image\1.jpg 则填写 1.jpg</param>
-		/// <exception cref="ArgumentException">当路径为空时发生</exception>
+		/// <exception cref="ArgumentException">参数: path 是空字符串或为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_Image (string path)
 		{
@@ -432,7 +432,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "语音" 代码
 		/// </summary>
 		/// <param name="path">语音的路径, 将音频放在 酷Q\data\record 下, 并填写相对路径. 如 酷Q\data\record\1.amr 则填写 1.amr</param>
-		/// <exception cref="ArgumentException">当路径为空时发生</exception>
+		/// <exception cref="ArgumentException">参数: path 是空字符串或为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_Record (string path)
 		{
@@ -453,7 +453,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <param name="message">消息内容, 获取内容时将调用<see cref="object.ToString"/>进行消息转换</param>
-		/// <excpetion cref="ArgumentNullException">当参数: message 中含有 null</excpetion>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+		/// <excpetion cref="ArgumentNullException">参数: message 中含有 null</excpetion>
 		/// <returns>发送成功将返回消息ID, 发送失败则返回负数</returns>
 		public int SendGroupMessage (long groupId, params object[] message)
 		{
@@ -497,6 +498,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="message">消息内容, 获取内容时将调用<see cref="object.ToString"/>进行消息转换</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <excpetion cref="ArgumentNullException">当参数: message 中含有 null</excpetion>
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public int SendPrivateMessage (long qqId, params object[] message)
@@ -541,6 +543,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="discussId">目标讨论组</param>
 		/// <param name="message">消息内容, 获取内容时将调用<see cref="object.ToString"/>进行消息转换</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: discussId 超出范围</exception>
 		/// <exception cref="ArgumentNullException">当参数: message 中含有 null</exception>
 		/// <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
 		public int SendDiscussMessage (long discussId, params object[] message)
@@ -585,6 +588,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 或 count 超出范围</exception>
 		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SendPraise (long qqId, int count = 1)
 		{
@@ -607,7 +611,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="qq">目标QQ</param>
 		/// <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
 		/// <exception cref="ArgumentNullException">参数: qq 为 null</exception>
-		/// <exception cref="ArgumentOutOfRangeException">点赞次数超出范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: count 超出范围</exception>
 		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SendPraise (QQ qq, int count = 1)
 		{
@@ -623,6 +627,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 撤回消息
 		/// </summary>
 		/// <param name="msgId">消息Id</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: msgId 超出范围</exception>
 		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveMessage (int msgId)
 		{
@@ -655,7 +660,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="fileName">文件名, [CQ:record...] 中的文件名部分</param>
 		/// <param name="format">所需的目标语音的音频格式</param>
-		/// <exception cref="ArgumentException">文件名为空时发生</exception>
+		/// <exception cref="ArgumentException">参数: fileName 是空字符串或为 null</exception>
 		/// <returns>返回语音文件位于本地服务器的绝对路径</returns>
 		public string ReceiveRecord (string fileName, CQAudioFormat format)
 		{
@@ -676,6 +681,29 @@ namespace Native.Csharp.Sdk.Cqp
 				fileNameHandler.Free ();
 				formatHandler.Free ();
 			}
+		}
+
+		/// <summary>
+		/// 接收消息中的语音 (消息含有CQ码 "record" 的消息)
+		/// </summary>
+		/// <param name="recordCode">CQ码对象 <see cref="CQCode"/>, 必须是 <see cref="CQFunction.Record"/> 类型</param>
+		/// <param name="format">所需的目标语音的音频格式</param>
+		/// <exception cref="ArgumentNullException">参数: recordCode 是 null</exception>
+		/// <exception cref="ArgumentException">参数: recordCode 不是 Record 类型</exception>
+		/// <returns>返回语音文件位于本地服务器的绝对路径</returns>
+		public string ReceiveRecord (CQCode recordCode, CQAudioFormat format)
+		{
+			if (recordCode == null)
+			{
+				throw new ArgumentNullException ("recordCode");
+			}
+
+			if (recordCode.Function != CQFunction.Record)
+			{
+				throw new ArgumentException ("传入的CQ码不是 \"Record\" 类型", "recordCode");
+			}
+
+			return this.ReceiveRecord (recordCode.Items["file"], format);
 		}
 
 		/// <summary>
@@ -700,6 +728,28 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				handle.Free ();
 			}
+		}
+
+		/// <summary>
+		/// 接收消息中的图片 (消息含有CQ码 "image" 的消息)
+		/// </summary>
+		/// <param name="imageCode">CQ码对象 <see cref="CQCode"/>, 必须是 <see cref="CQFunction.Image"/> 类型</param>
+		/// <exception cref="ArgumentNullException">参数: imageCode 是 null</exception>
+		/// <exception cref="ArgumentException">参数: imageCode 不是 Image 类型</exception>
+		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
+		public string ReceiveImage (CQCode imageCode)
+		{
+			if (imageCode == null)
+			{
+				throw new ArgumentNullException ("imageCode");
+			}
+
+			if (imageCode.Function != CQFunction.Image)
+			{
+				throw new ArgumentException ("传入的CQ码不是 \"Image\" 类型", "imageCode");
+			}
+
+			return this.ReceiveImage (imageCode.Items["file"]);
 		}
 		#endregion
 
@@ -735,7 +785,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取 Cookies. 慎用, 此接口需要严格授权
 		/// </summary>
 		/// <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
-		/// <exception cref="ArgumentNullException">当参数 domain 为 null 时发生</exception>
+		/// <exception cref="ArgumentNullException">参数: domain 是 null</exception>
 		/// <returns>返回 Cookies 字符串</returns>
 		public string GetCookies (string domain)
 		{
@@ -759,17 +809,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取 Cookies. 慎用, 此接口需要严格授权
 		/// </summary>
 		/// <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
-		/// <exception cref="ArgumentNullException">当参数 domain 为 null 时发生</exception>
-		/// <exception cref="ArgumentException">当参数 domain 无效时发生</exception>
-		/// <exception cref="CookieException">解析 Cookie 时发生</exception>
+		/// <exception cref="ArgumentNullException">参数: domain 是 null</exception>
+		/// <exception cref="ArgumentException">参数: domain 不是正确的 Uri</exception>
+		/// <exception cref="CookieException">解析 Cookie 时发生错误</exception>
 		/// <returns>返回 Cookies 的 <see cref="CookieCollection"/></returns>
 		public CookieCollection GetCookieCollection (string domain)
 		{
-			if (domain == null)
-			{
-				throw new ArgumentNullException ("domain");
-			}
-
 			try
 			{
 				// 初始化域名对象
@@ -810,7 +855,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
-		/// <exception cref="ArgumentOutOfRangeException">当参数 qqId 超出可处理范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+		/// <exception cref="InvalidDataException">获取信息时得到的数据流错误</exception>
 		/// <returns>获取成功返回 <see cref="StrangerInfo"/></returns>
 		public StrangerInfo GetStrangerInfo (long qqId, bool notCache = false)
 		{
@@ -835,7 +881,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qq">目标QQ</param>
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
-		/// <exception cref="InvalidDataException">数据流格式错误</exception>
+		/// <exception cref="ArgumentNullException">参数: qq 是 null</exception>
+		/// <exception cref="InvalidDataException">获取信息时得到的数据流错误</exception>
 		/// <returns>获取成功返回 <see cref="StrangerInfo"/></returns>
 		public StrangerInfo GetStrangerInfo (QQ qq, bool notCache = false)
 		{
@@ -857,14 +904,15 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <summary>
 		/// 获取好友列表
 		/// </summary>
-		/// <exception cref="InvalidDataException">数据流格式错误</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已经读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/></returns>
 		public List<FriendInfo> GetFriendList ()
 		{
 			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (AuthCode, false).ToString (_defaultEncoding));
 			if (data == null)
 			{
-				throw new InvalidDataException ("数据流格式错误");
+				throw new InvalidDataException ("获取的数据为 null");
 			}
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
 			{
@@ -899,6 +947,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标帐号</param>
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误 或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
 		public GroupMemberInfo GetGroupMemberInfo (long groupId, long qqId, bool notCache = false)
 		{
@@ -919,7 +970,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			catch (ArgumentNullException ex)
 			{
-				throw new InvalidDataException ("数据流格式错误", ex);
+				throw new InvalidDataException ("数据流格式错误或数据流为 null", ex);
 			}
 			catch (InvalidDataException ex)
 			{
@@ -935,7 +986,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误</exception>
-		/// <exception cref="EndOfStreamException">已经读取到数据流的末尾</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
 		public GroupMemberInfo GetGroupMemberInfo (Group group, QQ qq, bool notCache = false)
 		{
@@ -967,6 +1018,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取群成员列表
 		/// </summary>
 		/// <param name="groupId">目标群号</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/></returns>
 		public List<GroupMemberInfo> GetGroupMemberList (long groupId)
 		{
@@ -978,7 +1032,7 @@ namespace Native.Csharp.Sdk.Cqp
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (this.AuthCode, groupId).ToString (CQApi.DefaultEncoding));
 			if (data == null)
 			{
-				throw new InvalidDataException ("数据流格式错误");
+				throw new InvalidDataException ("获取的数据为 null");
 			}
 
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
@@ -1014,8 +1068,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群号</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <exception cref="InvalidDataException">数据流格式错误</exception>
-		/// <exception cref="EndOfStreamException">已经读取到数据流的末尾</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/></returns>
 		public List<GroupMemberInfo> GetGroupMemberList (Group group)
 		{
@@ -1043,6 +1097,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群号</param>
 		/// <param name="notCache">不使用缓存, 通常为 <code>false</code>, 仅在必要时使用</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象</returns>
 		public GroupInfo GetGroupInfo (long groupId, bool notCache = false)
 		{
@@ -1059,7 +1116,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			catch (ArgumentNullException ex)
 			{
-				throw new InvalidDataException ("数据流格式错误", ex);
+				throw new InvalidDataException ("数据流格式错误或为 null", ex);
 			}
 			catch (InvalidDataException ex)
 			{
@@ -1073,8 +1130,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群号</param>
 		/// <param name="notCache">不使用缓存, 通常为 <code>false</code>, 仅在必要时使用</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <exception cref="InvalidDataException">数据流格式错误</exception>
-		/// <exception cref="EndOfStreamException">已经读取到数据流的末尾</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象</returns>
 		public GroupInfo GetGroupInfo (Group group, bool notCache = false)
 		{
@@ -1100,16 +1157,15 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <summary>
 		/// 获取群列表
 		/// </summary>
-		/// <exception cref="ArgumentException">群号码超过可处理范围时发生</exception>
-		/// <exception cref="InvalidDataException">数据流格式错误</exception>
-		/// <exception cref="EndOfStreamException">已经读取到数据流的末尾</exception>
+		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
+		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
 		/// <returns>获取成功返回 <see cref="List{GroupInfo}"/> 对象</returns>
 		public List<GroupInfo> GetGroupList ()
 		{
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupList (AuthCode).ToString (Encoding.ASCII));
 			if (data == null)
 			{
-				throw new InvalidDataException ("数据流格式错误");
+				throw new InvalidDataException ("获取的数据为 null");
 			}
 
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
@@ -1147,6 +1203,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="anonymous">目标群成员匿名信息</param>
 		/// <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 time 超出范围</exception>
+		/// <exception cref="ArgumentNullException">参数: anonymous 是 null</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAnonymousMemberBanSpeak (long groupId, GroupMemberAnonymousInfo anonymous, TimeSpan time)
 		{
@@ -1182,8 +1240,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="anonymous">目标群成员匿名信息</param>
 		/// <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
-		/// <exception cref="ArgumentOutOfRangeException">禁言时长超出范围</exception>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 或 anonymous 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group 或 anonymous 是 null</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAnonymousMemberBanSpeak (Group group, GroupMemberAnonymousInfo anonymous, TimeSpan time)
 		{
@@ -1212,6 +1270,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群号</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 、qqId 或 time 超出范围</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupMemberBanSpeak (long groupId, long qqId, TimeSpan time)
 		{
@@ -1239,8 +1298,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群号</param>
 		/// <param name="qq">目标QQ</param>
 		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
-		/// <exception cref="ArgumentOutOfRangeException">禁言时长超出范围</exception>
+		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupMemberBanSpeak (Group group, QQ qq, TimeSpan time)
 		{
@@ -1269,6 +1328,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群号</param>
 		/// <param name="qqId">目标QQ</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool RemoveGroupMemberBanSpeak (long groupId, long qqId)
 		{
@@ -1290,7 +1350,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群号</param>
 		/// <param name="qq">目标QQ</param>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool RemoveGroupMemberBanSpeak (Group group, QQ qq)
 		{
@@ -1311,6 +1371,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 设置群全体禁言
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupBanSpeak (long groupId)
 		{
@@ -1342,6 +1403,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 解除群全体禁言
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupBanSpeak (long groupId)
 		{
@@ -1375,6 +1437,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="newName">新名称</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+		/// <exception cref="ArgumentNullException">参数: newName 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberVisitingCard (long groupId, long qqId, string newName)
 		{
@@ -1410,7 +1474,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
 		/// <param name="newName">新名称</param>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 、 qq 为 null 或 newName 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group、qq 或 newName 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberVisitingCard (Group group, QQ qq, string newName)
 		{
@@ -1441,6 +1505,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="newTitle">新头衔</param>
 		/// <param name="time">过期时间</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId、qqId 或 time 超出范围</exception>
+		/// <exception cref="ArgumentNullException">参数: newTtitle 是 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberExclusiveTitle (long groupId, long qqId, string newTitle, TimeSpan time)
 		{
@@ -1482,8 +1548,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="qq">目标QQ</param>
 		/// <param name="newTitle">新头衔</param>
 		/// <param name="time">过期时间 (范围: 1秒 ~ 30天)</param>
-		/// <exception cref="ArgumentOutOfRangeException">过期时间超出范围</exception>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 、qq 为 null 或 newTitle 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group、qq 或 newTitle 为 null</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberExclusiveTitle (Group group, QQ qq, string newTitle, TimeSpan time)
 		{
@@ -1517,6 +1583,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="newTitle">新头衔</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+		/// <exception cref="ArgumentNullException">参数: newTitle 是 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberForeverExclusiveTitle (long groupId, long qqId, string newTitle)
 		{
@@ -1552,8 +1620,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
 		/// <param name="newTitle">新头衔</param>
-		/// <exception cref="ArgumentOutOfRangeException">过期时间超出范围</exception>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 、qq 为 null 或 newTitle 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group、qq 或 newTitle 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberForeverExclusiveTitle (Group group, QQ qq, string newTitle)
 		{
@@ -1567,7 +1634,14 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			return this.SetGroupMemberForeverExclusiveTitle (group.Id, qq.Id, newTitle);
+			try
+			{
+				return this.SetGroupMemberForeverExclusiveTitle (group.Id, qq.Id, newTitle);
+			}
+			catch (ArgumentNullException)
+			{
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -1575,6 +1649,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupManage (long groupId, long qqId)
 		{
@@ -1596,7 +1671,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupManage (Group group, QQ qq)
 		{
@@ -1618,6 +1693,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupManage (long groupId, long qqId)
 		{
@@ -1639,7 +1715,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
-		/// <exception cref="ArgumentOutOfRangeException">参数: group 为 null 或 qq 为 null</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: group 或 qq 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupManage (Group group, QQ qq)
 		{
@@ -1660,6 +1736,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 开启群匿名
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool OpenGroupAnonymous (long groupId)
 		{
@@ -1690,6 +1767,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 关闭群匿名
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool StopGroupAnonymous (long groupId)
 		{
@@ -1720,6 +1798,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 退出群. 慎用, 此接口需要严格授权
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitGroup (long groupId)
 		{
@@ -1750,6 +1829,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 解散群. 慎用, 此接口需要严格授权
 		/// </summary>
 		/// <param name="groupId">目标群</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool DissolutionGroup (long groupId)
 		{
@@ -1781,6 +1861,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 退出讨论组.
 		/// </summary>
 		/// <param name="discussId">目标讨论组</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: discussId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitDiscuss (long discussId)
 		{
@@ -1814,6 +1895,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
+		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupMember (long groupId, long qqId, bool notRequest = false)
 		{
@@ -1836,7 +1918,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
 		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
-		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
+		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupMember (Group group, QQ qq, bool notRequest = false)
 		{
