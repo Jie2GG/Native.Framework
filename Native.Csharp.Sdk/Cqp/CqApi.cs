@@ -85,7 +85,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <param name="qqId">QQ号</param>
-		/// <exception cref="ArgumentOutOfRangeException">QQ号码超出可处理的范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_At (long qqId)
 		{
@@ -462,7 +462,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
 				return CQP.CQ_sendGroupMsg (this.AuthCode, groupId, messageHandle.AddrOfPinnedObject ());
@@ -506,7 +506,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
 				return CQP.CQ_sendPrivateMsg (this.AuthCode, qqId, messageHandle.AddrOfPinnedObject ());
@@ -550,7 +550,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("discussId");
 			}
 
-			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle ();
+			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
 				return CQP.CQ_sendDiscussMsg (this.AuthCode, discussId, messageHandle.AddrOfPinnedObject ());
@@ -664,8 +664,8 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentException ("文件名不可为空", "fileName");
 			}
 
-			GCHandle fileNameHandler = fileName.GetStringGCHandle ();
-			GCHandle formatHandler = format.GetDescription ().GetStringGCHandle ();
+			GCHandle fileNameHandler = fileName.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle formatHandler = format.GetDescription ().GetStringGCHandle (CQApi.DefaultEncoding);
 
 			try
 			{
@@ -691,7 +691,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentException ("文件名不可为空", "fileName");
 			}
 
-			GCHandle handle = fileName.GetStringGCHandle ();
+			GCHandle handle = fileName.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
 				return CQP.CQ_getImage (AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
@@ -708,9 +708,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取登录帐号
 		/// </summary>
 		/// <returns>返回当前酷Q框架登录的帐号</returns>
-		public long GetLoginQQLong ()
+		public long GetLoginQQId ()
 		{
-			return this.GetLoginQQ ().Id;
+			return CQP.CQ_getLoginQQ (this.AuthCode);
 		}
 
 		/// <summary>
@@ -719,7 +719,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>当前酷Q框架登录的帐号对象</returns>
 		public QQ GetLoginQQ ()
 		{
-			return new QQ (this, CQP.CQ_getLoginQQ (this.AuthCode));
+			return new QQ (this, this.GetLoginQQId ());
 		}
 
 		/// <summary>
@@ -728,7 +728,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回当前登录帐号的昵称字符串</returns>
 		public string GetLoginNick ()
 		{
-			return CQP.CQ_getLoginNick (AuthCode).ToString (DefaultEncoding);
+			return CQP.CQ_getLoginNick (this.AuthCode).ToString (CQApi.DefaultEncoding);
 		}
 
 		/// <summary>
@@ -744,10 +744,10 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("domain");
 			}
 
-			GCHandle handle = domain.GetStringGCHandle ();
+			GCHandle handle = domain.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_getCookiesV2 (AuthCode, handle.AddrOfPinnedObject ()).ToString (_defaultEncoding);
+				return CQP.CQ_getCookiesV2 (AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
 			}
 			finally
 			{
@@ -760,6 +760,8 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
 		/// <exception cref="ArgumentNullException">当参数 domain 为 null 时发生</exception>
+		/// <exception cref="ArgumentException">当参数 domain 无效时发生</exception>
+		/// <exception cref="CookieException">解析 Cookie 时发生</exception>
 		/// <returns>返回 Cookies 的 <see cref="CookieCollection"/></returns>
 		public CookieCollection GetCookieCollection (string domain)
 		{
@@ -768,13 +770,30 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("domain");
 			}
 
-			// 初始化域名对象
-			Uri uri = new Uri (domain);
-			// 使用 Container 对象解析Cookies
-			CookieContainer container = new CookieContainer ();
-			container.SetCookies (uri, GetCookies (domain));
-			// 返回实例
-			return container.GetCookies (uri);
+			try
+			{
+				// 初始化域名对象
+				Uri uri = new Uri (domain);
+
+				// 使用 Container 对象解析Cookies
+				CookieContainer container = new CookieContainer ();
+				container.SetCookies (uri, this.GetCookies (domain));
+
+				// 返回实例
+				return container.GetCookies (uri);
+			}
+			catch (UriFormatException ex)
+			{
+				throw new ArgumentException ("domain", ex);
+			}
+			catch (CookieException)
+			{
+				throw;
+			}
+			catch (ArgumentNullException)
+			{
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -783,7 +802,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>返回 bkn/g_tk 值</returns>
 		public int GetCsrfToken ()
 		{
-			return CQP.CQ_getCsrfToken (AuthCode);
+			return CQP.CQ_getCsrfToken (this.AuthCode);
 		}
 
 		/// <summary>
@@ -791,10 +810,24 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+		/// <exception cref="ArgumentOutOfRangeException">当参数 qqId 超出可处理范围</exception>
 		/// <returns>获取成功返回 <see cref="StrangerInfo"/></returns>
 		public StrangerInfo GetStrangerInfo (long qqId, bool notCache = false)
 		{
-			return this.GetStrangerInfo (new QQ (this, qqId), notCache);
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			byte[] data = Convert.FromBase64String (CQP.CQ_getStrangerInfo (this.AuthCode, qqId, notCache).ToString (CQApi.DefaultEncoding));
+			try
+			{
+				return new StrangerInfo (this, data);
+			}
+			catch (ArgumentNullException ex)
+			{
+				throw new InvalidDataException ("数据流格式错误", ex);
+			}
 		}
 
 		/// <summary>
@@ -811,14 +844,13 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getStrangerInfo (AuthCode, qq.Id, notCache).ToString (Encoding.ASCII));
 			try
 			{
-				return new StrangerInfo (this, data);
+				return this.GetStrangerInfo (qq.Id, notCache);
 			}
-			catch (ArgumentNullException ex)
+			catch (InvalidDataException)
 			{
-				throw new InvalidDataException ("数据流格式错误", ex);
+				throw;
 			}
 		}
 
@@ -870,7 +902,29 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
 		public GroupMemberInfo GetGroupMemberInfo (long groupId, long qqId, bool notCache = false)
 		{
-			return this.GetGroupMemberInfo (new Group (this, groupId), new QQ (this, qqId), notCache);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberInfoV2 (this.AuthCode, groupId, qqId, notCache).ToString (CQApi.DefaultEncoding));
+			try
+			{
+				return new GroupMemberInfo (this, data);
+			}
+			catch (ArgumentNullException ex)
+			{
+				throw new InvalidDataException ("数据流格式错误", ex);
+			}
+			catch (InvalidDataException ex)
+			{
+				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
+			}
 		}
 
 		/// <summary>
@@ -895,18 +949,17 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberInfoV2 (AuthCode, group.Id, qq.Id, notCache).ToString (Encoding.ASCII));
 			try
 			{
-				return new GroupMemberInfo (this, data);
+				return this.GetGroupMemberInfo (group.Id, qq.Id, notCache);
 			}
-			catch (ArgumentNullException ex)
+			catch (InvalidDataException)
 			{
-				throw new InvalidDataException ("数据流格式错误", ex);
+				throw;
 			}
-			catch (InvalidDataException ex)
+			catch (EndOfStreamException)
 			{
-				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
+				throw;
 			}
 		}
 
@@ -917,6 +970,42 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/></returns>
 		public List<GroupMemberInfo> GetGroupMemberList (long groupId)
 		{
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (this.AuthCode, groupId).ToString (CQApi.DefaultEncoding));
+			if (data == null)
+			{
+				throw new InvalidDataException ("数据流格式错误");
+			}
+
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
+			{
+				List<GroupMemberInfo> members = new List<GroupMemberInfo> (reader.ReadInt32_Ex ());
+				for (int i = 0; i < members.Capacity; i++)
+				{
+					if (reader.Length () <= 0)
+					{
+						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾");
+					}
+
+					try
+					{
+						members.Add (new GroupMemberInfo (this, reader.ReadToken_Ex ()));
+					}
+					catch (ArgumentNullException ex)
+					{
+						throw new InvalidDataException ("数据流格式错误", ex);
+					}
+					catch (InvalidDataException ex)
+					{
+						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
+					}
+				}
+			}
+
 			return this.GetGroupMemberList (new Group (this, groupId));
 		}
 
@@ -935,35 +1024,17 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (AuthCode, group.Id).ToString (Encoding.ASCII));
-			if (data == null)
+			try
 			{
-				throw new InvalidDataException ("数据流格式错误");
+				return this.GetGroupMemberList (group.Id);
 			}
-			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
+			catch (InvalidDataException)
 			{
-				List<GroupMemberInfo> tempMembers = new List<GroupMemberInfo> (reader.ReadInt32_Ex ());
-				for (int i = 0; i < tempMembers.Capacity; i++)
-				{
-					if (reader.Length () <= 0)
-					{
-						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾");
-					}
-
-					try
-					{
-						tempMembers.Add (new GroupMemberInfo (this, reader.ReadToken_Ex ()));
-					}
-					catch (ArgumentNullException ex)
-					{
-						throw new InvalidDataException ("数据流格式错误", ex);
-					}
-					catch (InvalidDataException ex)
-					{
-						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
-					}
-				}
-				return tempMembers;
+				throw;
+			}
+			catch (EndOfStreamException)
+			{
+				throw;
 			}
 		}
 
@@ -975,7 +1046,25 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象</returns>
 		public GroupInfo GetGroupInfo (long groupId, bool notCache = false)
 		{
-			return this.GetGroupInfo (new Group (this, groupId), notCache);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (this.AuthCode, groupId, notCache).ToString (CQApi.DefaultEncoding));
+
+			try
+			{
+				return new GroupInfo (this, data);
+			}
+			catch (ArgumentNullException ex)
+			{
+				throw new InvalidDataException ("数据流格式错误", ex);
+			}
+			catch (InvalidDataException ex)
+			{
+				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
+			}
 		}
 
 		/// <summary>
@@ -994,18 +1083,17 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (AuthCode, group.Id, notCache).ToString (_defaultEncoding));
 			try
 			{
-				return new GroupInfo (this, data);
+				return this.GetGroupInfo (group.Id, notCache);
 			}
-			catch (ArgumentNullException ex)
+			catch (InvalidDataException)
 			{
-				throw new InvalidDataException ("数据流格式错误", ex);
+				throw;
 			}
-			catch (InvalidDataException ex)
+			catch (EndOfStreamException)
 			{
-				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
+				throw;
 			}
 		}
 
@@ -1062,7 +1150,30 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAnonymousMemberBanSpeak (long groupId, GroupMemberAnonymousInfo anonymous, TimeSpan time)
 		{
-			return this.SetGroupAnonymousMemberBanSpeak (new Group (this, groupId), anonymous, time);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (anonymous == null)
+			{
+				throw new ArgumentNullException ("anonymous");
+			}
+
+			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
+			{
+				throw new ArgumentOutOfRangeException ("time");
+			}
+
+			GCHandle anonymousHandle = anonymous.OriginalString.GetStringGCHandle (CQApi.DefaultEncoding);
+			try
+			{
+				return CQP.CQ_setGroupAnonymousBan (this.AuthCode, groupId, anonymousHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+			}
+			finally
+			{
+				anonymousHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -1081,24 +1192,17 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			if (anonymous == null)
-			{
-				throw new ArgumentNullException ("anonymous");
-			}
-
-			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
-			{
-				throw new ArgumentOutOfRangeException ("time");
-			}
-
-			GCHandle handle = anonymous.OriginalString.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupAnonymousBan (this.AuthCode, group.Id, handle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+				return this.SetGroupAnonymousMemberBanSpeak (group.Id, anonymous, time);
 			}
-			finally
+			catch (ArgumentOutOfRangeException)
 			{
-				handle.Free ();
+				throw;
+			}
+			catch (ArgumentNullException)
+			{
+				throw;
 			}
 		}
 
@@ -1111,7 +1215,22 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupMemberBanSpeak (long groupId, long qqId, TimeSpan time)
 		{
-			return this.SetGroupMemberBanSpeak (new Group (this, groupId), new QQ (this, qqId), time);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
+			{
+				throw new ArgumentOutOfRangeException ("time");
+			}
+
+			return CQP.CQ_setGroupBan (this.AuthCode, groupId, qqId, (long)time.TotalSeconds) == 0;
 		}
 
 		/// <summary>
@@ -1135,12 +1254,14 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
+			try
 			{
-				throw new ArgumentOutOfRangeException ("time");
+				return this.SetGroupMemberBanSpeak (group.Id, qq.Id, time);
 			}
-
-			return CQP.CQ_setGroupBan (this.AuthCode, group.Id, qq.Id, (long)time.TotalSeconds) == 0;
+			catch (ArgumentOutOfRangeException)
+			{
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -1151,7 +1272,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool RemoveGroupMemberBanSpeak (long groupId, long qqId)
 		{
-			return this.RemoveGroupMemberBanSpeak (new Group (this, groupId), new QQ (this, qqId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			return CQP.CQ_setGroupBan (this.AuthCode, groupId, qqId, 0) == 0;
 		}
 
 		/// <summary>
@@ -1173,7 +1304,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQP.CQ_setGroupBan (this.AuthCode, group.Id, qq.Id, 0) == 0;
+			return this.RemoveGroupMemberBanSpeak (group.Id, qq.Id);
 		}
 
 		/// <summary>
@@ -1183,7 +1314,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupBanSpeak (long groupId)
 		{
-			return this.SetGroupBanSpeak (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			return CQP.CQ_setGroupWholeBan (this.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1199,7 +1335,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupWholeBan (this.AuthCode, group.Id, true) == 0;
+			return this.SetGroupBanSpeak (group.Id);
 		}
 
 		/// <summary>
@@ -1209,7 +1345,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupBanSpeak (long groupId)
 		{
-			return this.RemoveGroupBanSpeak (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			return CQP.CQ_setGroupWholeBan (this.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1225,7 +1366,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupWholeBan (this.AuthCode, group.Id, false) == 0;
+			return this.RemoveGroupBanSpeak (group.Id);
 		}
 
 		/// <summary>
@@ -1237,7 +1378,30 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberVisitingCard (long groupId, long qqId, string newName)
 		{
-			return this.SetGroupMemberVisitingCard (new Group (this, groupId), new QQ (this, qqId), newName);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			if (newName == null)
+			{
+				throw new ArgumentNullException ("newName");
+			}
+
+			GCHandle newNameHandle = newName.GetStringGCHandle (CQApi.DefaultEncoding);
+			try
+			{
+				return CQP.CQ_setGroupCard (this.AuthCode, groupId, qqId, newNameHandle.AddrOfPinnedObject ()) == 0;
+			}
+			finally
+			{
+				newNameHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -1260,19 +1424,13 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			if (newName == null)
-			{
-				throw new ArgumentNullException ("newCard");
-			}
-
-			GCHandle handle = newName.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupCard (this.AuthCode, group.Id, qq.Id, handle.AddrOfPinnedObject ()) == 0;
+				return this.SetGroupMemberVisitingCard (group.Id, qq.Id, newName);
 			}
-			finally
+			catch (ArgumentNullException)
 			{
-				handle.Free ();
+				throw;
 			}
 		}
 
@@ -1286,7 +1444,35 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberExclusiveTitle (long groupId, long qqId, string newTitle, TimeSpan time)
 		{
-			return this.SetGroupMemberExclusiveTitle (new Group (this, groupId), new QQ (this, qqId), newTitle, time);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			if (newTitle == null)
+			{
+				throw new ArgumentNullException ("newTitle");
+			}
+
+			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
+			{
+				throw new ArgumentOutOfRangeException ("time");
+			}
+
+			GCHandle newTitleHandle = newTitle.GetStringGCHandle (CQApi.DefaultEncoding);
+			try
+			{
+				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+			}
+			finally
+			{
+				newTitleHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -1311,24 +1497,17 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			if (newTitle == null)
-			{
-				throw new ArgumentNullException ("newTitle");
-			}
-
-			if (time.TotalSeconds <= 0 || time.TotalSeconds > 2592000)  //要在 1秒 ~ 30天 的范围内
-			{
-				throw new ArgumentOutOfRangeException ("time");
-			}
-
-			GCHandle handle = newTitle.GetStringGCHandle (DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, group.Id, qq.Id, handle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+				return this.SetGroupMemberExclusiveTitle (group.Id, qq.Id, newTitle, time);
 			}
-			finally
+			catch (ArgumentNullException)
 			{
-				handle.Free ();
+				throw;
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				throw;
 			}
 		}
 
@@ -1341,7 +1520,30 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberForeverExclusiveTitle (long groupId, long qqId, string newTitle)
 		{
-			return this.SetGroupMemberForeverExclusiveTitle (new Group (this, groupId), new QQ (this, qqId), newTitle);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			if (newTitle == null)
+			{
+				throw new ArgumentNullException ("newTitle");
+			}
+
+			GCHandle newTitleHandle = newTitle.GetStringGCHandle (CQApi.DefaultEncoding);
+			try
+			{
+				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), -1) == 0;
+			}
+			finally
+			{
+				newTitleHandle.Free ();
+			}
 		}
 
 		/// <summary>
@@ -1365,20 +1567,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			if (newTitle == null)
-			{
-				throw new ArgumentNullException ("newTitle");
-			}
-
-			GCHandle handle = newTitle.GetStringGCHandle (DefaultEncoding);
-			try
-			{
-				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, group.Id, qq.Id, handle.AddrOfPinnedObject (), -1) == 0;
-			}
-			finally
-			{
-				handle.Free ();
-			}
+			return this.SetGroupMemberForeverExclusiveTitle (group.Id, qq.Id, newTitle);
 		}
 
 		/// <summary>
@@ -1389,7 +1578,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupManage (long groupId, long qqId)
 		{
-			return this.SetGroupManage (new Group (this, groupId), new QQ (this, qqId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			return CQP.CQ_setGroupAdmin (this.AuthCode, groupId, qqId, true) == 0;
 		}
 
 		/// <summary>
@@ -1411,7 +1610,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQP.CQ_setGroupAdmin (this.AuthCode, group.Id, qq.Id, true) == 0;
+			return this.SetGroupManage (group.Id, qq.Id);
 		}
 
 		/// <summary>
@@ -1422,7 +1621,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupManage (long groupId, long qqId)
 		{
-			return this.RemoveGroupManage (new Group (this, groupId), new QQ (this, qqId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			return CQP.CQ_setGroupAdmin (this.AuthCode, groupId, qqId, false) == 0;
 		}
 
 		/// <summary>
@@ -1444,7 +1653,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQP.CQ_setGroupAdmin (this.AuthCode, group.Id, qq.Id, false) == 0;
+			return this.RemoveGroupManage (group.Id, qq.Id);
 		}
 
 		/// <summary>
@@ -1454,7 +1663,11 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool OpenGroupAnonymous (long groupId)
 		{
-			return this.OpenGroupAnonymous (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+			return CQP.CQ_setGroupAnonymous (this.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1470,7 +1683,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupAnonymous (this.AuthCode, group.Id, true) == 0;
+			return this.OpenGroupAnonymous (group.Id);
 		}
 
 		/// <summary>
@@ -1480,7 +1693,11 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool StopGroupAnonymous (long groupId)
 		{
-			return this.StopGroupAnonymous (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+			return CQP.CQ_setGroupAnonymous (this.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1496,7 +1713,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupAnonymous (this.AuthCode, group.Id, false) == 0;
+			return this.StopGroupAnonymous (group.Id);
 		}
 
 		/// <summary>
@@ -1506,7 +1723,11 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitGroup (long groupId)
 		{
-			return this.ExitGroup (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+			return CQP.CQ_setGroupLeave (this.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1522,7 +1743,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupLeave (this.AuthCode, group.Id, false) == 0;
+			return this.ExitGroup (group.Id);
 		}
 
 		/// <summary>
@@ -1532,7 +1753,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool DissolutionGroup (long groupId)
 		{
-			return this.DissolutionGroup (new Group (this, groupId));
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			return CQP.CQ_setGroupLeave (this.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1548,7 +1774,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("group");
 			}
 
-			return CQP.CQ_setGroupLeave (this.AuthCode, group.Id, true) == 0;
+			return this.DissolutionGroup (group.Id);
 		}
 
 		/// <summary>
@@ -1558,7 +1784,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitDiscuss (long discussId)
 		{
-			return this.ExitDiscuss (new Discuss (this, discussId));
+			if (discussId < Discuss.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("discussId");
+			}
+
+			return CQP.CQ_setDiscussLeave (this.AuthCode, discussId) == 0;
 		}
 
 		/// <summary>
@@ -1574,7 +1805,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("discuss");
 			}
 
-			return CQP.CQ_setDiscussLeave (this.AuthCode, discuss.Id) == 0;
+			return this.ExitDiscuss (discuss.Id);
 		}
 
 		/// <summary>
@@ -1586,7 +1817,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupMember (long groupId, long qqId, bool notRequest = false)
 		{
-			return this.RemoveGroupMember (new Group (this, groupId), new QQ (this, qqId), notRequest);
+			if (groupId < Group.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("groupId");
+			}
+
+			if (qqId < QQ.MinValue)
+			{
+				throw new ArgumentOutOfRangeException ("qqId");
+			}
+
+			return CQP.CQ_setGroupKick (this.AuthCode, groupId, qqId, notRequest) == 0;
 		}
 
 		/// <summary>
@@ -1609,7 +1850,7 @@ namespace Native.Csharp.Sdk.Cqp
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQP.CQ_setGroupKick (this.AuthCode, group.Id, qq.Id, notRequest) == 0;
+			return this.RemoveGroupMember (group.Id, qq.Id, notRequest);
 		}
 		#endregion
 
@@ -1620,18 +1861,18 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="tag">请求反馈标识</param>
 		/// <param name="response">反馈类型</param>
 		/// <param name="notes">备注</param>
-		/// <returns></returns>
+		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetFriendAddRequest (string tag, CQResponseType response, string notes = null)
 		{
 			if (notes == null)
 			{
 				notes = string.Empty;
 			}
-			GCHandle notesHandle = notes.GetStringGCHandle (_defaultEncoding);
-			GCHandle tagHandler = tag.GetStringGCHandle (_defaultEncoding);
+			GCHandle notesHandle = notes.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle tagHandler = tag.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setFriendAddRequest (_authCode, tagHandler.AddrOfPinnedObject (), (int)response, notesHandle.AddrOfPinnedObject ()) == 0;
+				return CQP.CQ_setFriendAddRequest (this.AuthCode, tagHandler.AddrOfPinnedObject (), (int)response, notesHandle.AddrOfPinnedObject ()) == 0;
 			}
 			finally
 			{
@@ -1647,23 +1888,23 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="request">请求类型</param>
 		/// <param name="response">反馈类型</param>
 		/// <param name="appendMsg">备注</param>
-		/// <returns></returns>
+		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
 		{
 			if (appendMsg == null)
 			{
 				appendMsg = string.Empty;
 			}
-			GCHandle appendMsgHandle = appendMsg.GetStringGCHandle (_defaultEncoding);
-			GCHandle tagHandle = tag.GetStringGCHandle (_defaultEncoding);
+			GCHandle appendMsgHandle = appendMsg.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle tagHandle = tag.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupAddRequestV2 (_authCode, tagHandle.AddrOfPinnedObject (), (int)request, (int)response, appendMsgHandle.AddrOfPinnedObject ()) == 0;
+				return CQP.CQ_setGroupAddRequestV2 (this.AuthCode, tagHandle.AddrOfPinnedObject (), (int)request, (int)response, appendMsgHandle.AddrOfPinnedObject ()) == 0;
 			}
 			finally
 			{
 				appendMsgHandle.Free ();
-				tagHandle.AddrOfPinnedObject ();
+				tagHandle.Free ();
 			}
 		}
 		#endregion

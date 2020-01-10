@@ -34,7 +34,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 判断是否是登录QQ (机器人QQ)
 		/// </summary>
-		public bool IsLoginQQ { get { return this.CQApi.GetLoginQQLong () == this.Id; } }
+		public bool IsLoginQQ { get { return this.CQApi.GetLoginQQId () == this.Id; } }
 		#endregion
 
 		#region --构造函数--
