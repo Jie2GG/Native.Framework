@@ -81,12 +81,11 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			if (!this.IsAllBanSpeak)
 			{
 				this.BeingOperateQQ = new QQ (api, beingOperateQQ);
-				this.BanSpeakTimeSpan = TimeSpan.FromSeconds (duration);
 			}
-			else
+
+			if (subType == 2)	// 当子类型为 2 时才有
 			{
-				this.BeingOperateQQ = null;
-				this.BanSpeakTimeSpan = null;
+				this.BanSpeakTimeSpan = TimeSpan.FromSeconds (duration);
 			}
 		}
 		#endregion

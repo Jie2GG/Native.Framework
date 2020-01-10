@@ -65,11 +65,10 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.SubType = (CQGroupMemberDecreaseType)subType;
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromGroup = new Group (api, fromGroup);
-			if (fromQQ > 0)
+			if (subType == 2)	// 仅仅当类型为2时存在 FromQQ
 			{
-
+				this.FromQQ = new QQ (api, fromQQ);
 			}
-			this.FromQQ = new QQ (api, fromQQ);
 			this.BeingOperateQQ = new QQ (api, beingOperateQQ);
 		}
 		#endregion
