@@ -59,7 +59,7 @@ namespace Native.Csharp.Sdk.Cqp.Core
         public static extern int CQ_deleteMsg (int authCode, long msgId);
 
         [DllImport (DllName, EntryPoint = "CQ_sendLikeV2")]
-        public static extern int CQ_sendLikeV2 (int authCode, long qqId, int times);
+        public static extern int CQ_sendLikeV2 (int authCode, long qqId, int count);
 
         [DllImport (DllName, EntryPoint = "CQ_getCookiesV2")]
         public static extern IntPtr CQ_getCookiesV2 (int authCode, IntPtr domain);

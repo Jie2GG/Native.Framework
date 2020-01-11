@@ -77,7 +77,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			if (this.Message.IsRegexMessage)
 			{
 				builder.Append ("解析结果: ");
-				foreach (KeyValuePair<string, string> keyValue in this.Message.PairsMessage)
+				foreach (KeyValuePair<string, string> keyValue in this.Message.RegexKeyValuePairs)
 				{
 					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
 				}
@@ -85,7 +85,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			}
 			else
 			{
-				builder.AppendFormat ("消息内容: {0}", this.Message.OriginalMessage);
+				builder.AppendFormat ("消息内容: {0}", this.Message.Text);
 			}
 			return builder.ToString ();
 		}

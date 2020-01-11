@@ -1,4 +1,12 @@
 # Native.SDK 更新日志
+> 2019年01月10日 版本: V4.0.2.0110
+
+	1. 修复 CQExport.tt 读取应用简介时换行符未转义的问题
+	2. 修复 部分接口事件参数在初始化时的异常报错
+	3. 优化 CQApi 的接口调用逻辑, 提升运行效率
+	4. 优化 CQApi 的注释, 标记所有可能发生的异常
+	5. 新增 CQApi.ReceiveImage 和 CQApi.ReceiveRecord 接口的重载, 支持直接传入 CQCode 对象
+
 > 2019年01月08日 版本: V4.0.1.0108
 
 	1. 修复　QQMessage, QQ, Group, Discuss 类的运算符重载导致栈溢出的问题

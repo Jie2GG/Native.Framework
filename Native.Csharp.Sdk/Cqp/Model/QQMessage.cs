@@ -39,7 +39,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取当前实例的原始消息
 		/// </summary>
-		public string OriginalMessage { get; private set; }
+		public string Text { get; private set; }
 
 		/// <summary>
 		/// 获取一个值, 指示当前消息是否为正则消息
@@ -49,7 +49,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取当前实例解析出的正则消息键值对
 		/// </summary>
-		public Dictionary<string, string> PairsMessage { get; private set; }
+		public Dictionary<string, string> RegexKeyValuePairs { get; private set; }
 
 		/// <summary>
 		/// 获取当前消息的所有 [CQ:...] 的对象集合
@@ -65,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 				if (this._cqCodes == null)
 				{
-					_cqCodes = CQCode.Parse (this.OriginalMessage);
+					_cqCodes = CQCode.Parse (this.Text);
 				}
 
 				return this._cqCodes;
@@ -107,9 +107,9 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 			this.CQApi = api;
 			this.Id = id;
-			this.OriginalMessage = msg;
+			this.Text = msg;
 			this.IsRegexMessage = isRegex;
-			this.PairsMessage = null;
+			this.RegexKeyValuePairs = null;
 
 			#region --正则事件解析--
 			if (isRegex)
@@ -122,9 +122,9 @@ namespace Native.Csharp.Sdk.Cqp.Model
 						throw new InvalidDataException ("读取失败, 原始数据格式错误");
 					}
 
-					this.PairsMessage = new Dictionary<string, string> (reader.ReadInt32_Ex ());
+					this.RegexKeyValuePairs = new Dictionary<string, string> (reader.ReadInt32_Ex ());
 
-					for (int i = 0; i < PairsMessage.Count; i++)
+					for (int i = 0; i < RegexKeyValuePairs.Count; i++)
 					{
 						using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
 						{
@@ -137,7 +137,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 							string key = tempReader.ReadString_Ex ();
 							string content = tempReader.ReadString_Ex ();
 
-							this.PairsMessage.Add (key, content);
+							this.RegexKeyValuePairs.Add (key, content);
 						}
 					}
 				}
@@ -196,7 +196,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		{
 			if (!this.IsRegexMessage)
 			{
-				return this.OriginalMessage;
+				return this.Text;
 			}
 			return string.Empty;
 		}
@@ -211,7 +211,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			QQMessage msg = obj as QQMessage;
 			if (msg != null)
 			{
-				return string.Compare (this.OriginalMessage, msg.OriginalMessage) == 0;
+				return string.Compare (this.Text, msg.Text) == 0;
 			}
 			return base.Equals (obj);
 		}
@@ -222,7 +222,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns> 32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return this.OriginalMessage.GetHashCode () & base.GetHashCode ();
+			return this.Text.GetHashCode () & base.GetHashCode ();
 		}
 
 		/// <summary>
@@ -236,12 +236,12 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			builder.AppendLine (string.Format ("正则消息: {0}", this.IsRegexMessage));
 			if (!this.IsRegexMessage)
 			{
-				builder.AppendFormat ("消息内容: {0}", this.OriginalMessage);
+				builder.AppendFormat ("消息内容: {0}", this.Text);
 			}
 			else
 			{
 				builder.Append ("解析结果: ");
-				foreach (KeyValuePair<string, string> keyValue in this.PairsMessage)
+				foreach (KeyValuePair<string, string> keyValue in this.RegexKeyValuePairs)
 				{
 					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
 				}
@@ -264,7 +264,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			{
 				return false;
 			}
-			return string.Compare (msg.OriginalMessage, str) == 0;
+			return string.Compare (msg.Text, str) == 0;
 		}
 		#endregion
 
