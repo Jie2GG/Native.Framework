@@ -822,7 +822,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 				// 使用 Container 对象解析Cookies
 				CookieContainer container = new CookieContainer ();
-				container.SetCookies (uri, this.GetCookies (domain));
+				container.SetCookies (uri, this.GetCookies (domain).Replace (';', ','));	// 替换分隔符以解析
 
 				// 返回实例
 				return container.GetCookies (uri);
