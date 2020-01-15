@@ -85,9 +85,10 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <param name="qqId">QQ号</param>
+		/// <param name="isAddSpeac">是否添加空格, 默认: true</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
-		public static CQCode CQCode_At (long qqId)
+		public static CQCode CQCode_At (long qqId, bool isAddSpeac = true)
 		{
 			if (qqId < QQ.MinValue)
 			{
@@ -95,23 +96,24 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			return new CQCode (
 				CQFunction.At,
-				new KeyValuePair<string, string> ("qq", Convert.ToString (qqId)));
+				new KeyValuePair<string, string> ("qq", string.Format ("{0}{1}", Convert.ToString (qqId), isAddSpeac ? " " : string.Empty)));
 		}
 
 		/// <summary>
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <param name="qq">QQ对象</param>
+		/// <param name="isAddSpeac">是否添加空格, 默认: true</param>
 		/// <exception cref="ArgumentNullException">参数: qq 为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
-		public static CQCode CQCode_At (QQ qq)
+		public static CQCode CQCode_At (QQ qq, bool isAddSpeac = true)
 		{
 			if (qq == null)
 			{
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQCode_At (qq.Id);
+			return CQCode_At (qq.Id, isAddSpeac);
 		}
 
 		/// <summary>
@@ -822,7 +824,7 @@ namespace Native.Csharp.Sdk.Cqp
 
 				// 使用 Container 对象解析Cookies
 				CookieContainer container = new CookieContainer ();
-				container.SetCookies (uri, this.GetCookies (domain));
+				container.SetCookies (uri, this.GetCookies (domain).Replace (';', ','));    // 替换分隔符以解析
 
 				// 返回实例
 				return container.GetCookies (uri);
