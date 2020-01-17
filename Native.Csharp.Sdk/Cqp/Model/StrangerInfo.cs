@@ -53,7 +53,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
 			{
 				this.QQ = new QQ (api, reader.ReadInt64_Ex ());
-				this.Nick = reader.ReadString_Ex ();
+				this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
 				this.Sex = (QQSex)reader.ReadInt32_Ex ();
 				this.Age = reader.ReadInt32_Ex ();
 			}
