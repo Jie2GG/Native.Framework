@@ -1973,7 +1973,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="response">反馈类型</param>
 		/// <param name="appendMsg">备注</param>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
+		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg = null)
 		{
 			if (appendMsg == null)
 			{

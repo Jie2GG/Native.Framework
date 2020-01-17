@@ -1,4 +1,8 @@
 # Native.SDK 更新日志
+> 2020年01月17日 版本: V4.0.6.0117
+
+	1. 优化 CQApi.SetGroupAddRequest 接口参数: appendMsg 默认可 null
+
 > 2020年01月16日 版本: V4.0.5.0116
 
 	1. 修复 CQApi.GetFinderList 接口读取数据出错
