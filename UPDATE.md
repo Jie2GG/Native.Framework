@@ -1,4 +1,8 @@
 # Native.SDK 更新日志
+> 2020年01月17日 版本: V4.0.7.0117
+
+	1. 修复 StrangerInfo 获取 Nick 乱码
+
 > 2020年01月17日 版本: V4.0.6.0117
 
 	1. 优化 CQApi.SetGroupAddRequest 接口参数: appendMsg 默认可 null
