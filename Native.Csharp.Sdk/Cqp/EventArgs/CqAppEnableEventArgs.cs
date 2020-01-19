@@ -11,7 +11,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 1003
 	/// </summary>
-	public class CQAppEnableEventArgs : CQEventEventArgs
+	public sealed class CQAppEnableEventArgs : CQEventEventArgs
 	{
 		#region --构造函数--
 		/// <summary>

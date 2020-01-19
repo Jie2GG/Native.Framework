@@ -12,6 +12,10 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	/// </summary>
 	public class GroupInfo
 	{
+		#region --字段--
+		private readonly bool _isOldApi = false;
+		#endregion
+
 		#region --属性--
 		/// <summary>
 		/// 获取一个值, 指示当前QQ群 <see cref="Model.Group"/> 对象
@@ -50,6 +54,8 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				throw new ArgumentNullException ("cipherBytes");
 			}
 
+			this._isOldApi = oldApi;
+
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
 			{
 				if (reader.Length () < 10)
@@ -59,7 +65,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 
 				this.Group = new Group (api, reader.ReadInt64_Ex ());
 				this.Name = reader.ReadString_Ex (CQApi.DefaultEncoding);
-				if (oldApi == false)
+				if (!oldApi)
 				{
 					this.CurrentMemberCount = reader.ReadInt32_Ex ();
 					this.MaxMemberCount = reader.ReadInt32_Ex ();
@@ -100,9 +106,12 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("群号: {0}", this.Group));
-			builder.AppendLine (string.Format ("群名称: {0}", this.Name));
-			builder.AppendFormat ("当前人数: {0}/{1}", this.CurrentMemberCount, this.MaxMemberCount);
+			builder.AppendLine (string.Format ("群号: {0}", this.Group != null ? this.Group.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("群名称: {0}", this.Name != null ? this.Name : string.Empty));
+			if (!this._isOldApi)
+			{
+				builder.AppendFormat ("当前人数: {0}/{1}", this.CurrentMemberCount, this.MaxMemberCount);
+			}
 			return builder.ToString ();
 		}
 		#endregion

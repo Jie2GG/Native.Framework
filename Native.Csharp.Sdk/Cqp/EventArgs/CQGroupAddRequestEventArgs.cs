@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 302
 	/// </summary>
-	public class CQGroupAddRequestEventArgs : CQEventEventArgs
+	public sealed class CQGroupAddRequestEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -92,9 +92,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
-			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
-			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
-			builder.AppendFormat ("附加消息: {0}", this.AppendMessage);
+			builder.AppendLine (string.Format ("群号: {0}", this.FromGroup != null ? this.FromGroup.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("账号: {0}", this.FromQQ != null ? this.FromQQ.Id.ToString () : string.Empty));
+			builder.AppendFormat ("附加消息: {0}", this.AppendMessage != null ? this.AppendMessage : string.Empty);
 			return builder.ToString ();
 		}
 		#endregion

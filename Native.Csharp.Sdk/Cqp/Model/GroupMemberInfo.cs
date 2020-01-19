@@ -163,18 +163,18 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("群号: {0}", this.Group));
-			builder.AppendLine (string.Format ("帐号: {0}", this.QQ));
-			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
-			builder.AppendLine (string.Format ("群名片: {0}", this.Card));
+			builder.AppendLine (string.Format ("群号: {0}", this.Group != null ? this.Group.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("帐号: {0}", this.QQ != null ? this.QQ.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("昵称: {0}", this.Nick != null ? this.Nick : string.Empty));
+			builder.AppendLine (string.Format ("群名片: {0}", this.Card != null ? this.Card : string.Empty));
 			builder.AppendLine (string.Format ("性别: {0}", this.Sex));
 			builder.AppendLine (string.Format ("年龄: {0}", this.Age));
-			builder.AppendLine (string.Format ("所在地区: {0}", this.Area));
+			builder.AppendLine (string.Format ("所在地区: {0}", this.Area != null ? this.Area : string.Empty));
 			builder.AppendLine (string.Format ("加群时间: {0}", this.JoinGroupDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
 			builder.AppendLine (string.Format ("最后发言时间: {0}", this.LastSpeakDateTime.ToString ("yyyy-MM-dd HH:mm:ss")));
-			builder.AppendLine (string.Format ("等级: {0}", this.Level));
+			builder.AppendLine (string.Format ("等级: {0}", this.Level != null ? this.Level : string.Empty));
 			builder.AppendLine (string.Format ("成员类型: {0}", this.MemberType.GetDescription ()));
-			builder.AppendLine (string.Format ("专属头衔: {0}", this.ExclusiveTitle));
+			builder.AppendLine (string.Format ("专属头衔: {0}", this.ExclusiveTitle != null ? this.ExclusiveTitle : string.Empty));
 			builder.AppendLine (string.Format ("专属头衔过期时间: {0}", this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss")));
 			builder.AppendLine (string.Format ("是否为不良记录成员: {0}", this.IsBadRecord ? "是" : "否"));
 			builder.AppendFormat ("是否允许修改名片: {0}", this.IsAllowEditorCard ? "是" : "否");

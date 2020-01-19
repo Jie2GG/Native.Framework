@@ -13,7 +13,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 2
 	/// </summary>
-	public class CQGroupMessageEventArgs : CQEventEventArgs
+	public sealed class CQGroupMessageEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -98,28 +98,15 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("函数: {0}", this.Function));
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
-			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
-			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
-			builder.AppendLine (string.Format ("是否匿名: {0}", this.IsFromAnonymous));
+			builder.AppendLine (string.Format ("群号: {0}", this.FromGroup != null ? this.FromGroup.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("账号: {0}", this.FromQQ != null ? this.FromQQ.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("匿名: {0}", this.IsFromAnonymous));
 			if (this.IsFromAnonymous)
 			{
-				builder.AppendLine (string.Format ("匿名信息: ({0}){1}", this.FromAnonymous.Id, this.FromAnonymous.Name));
+				builder.AppendLine (string.Format ("匿名ID: {0}", this.FromAnonymous.Id));
+				builder.AppendLine (string.Format ("匿名代号: {0}", this.FromAnonymous.Name));
 			}
-			builder.AppendLine (string.Format ("消息ID: {0}", this.Message.Id));
-			builder.AppendLine (string.Format ("是否正则消息: {0}", this.Message.IsRegexMessage));
-			if (this.Message.IsRegexMessage)
-			{
-				builder.Append ("解析结果: ");
-				foreach (KeyValuePair<string, string> keyValue in this.Message.RegexKeyValuePairs)
-				{
-					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
-				}
-				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
-			}
-			else
-			{
-				builder.AppendFormat ("消息内容: {0}", this.Message.Text);
-			}
+			builder.Append (this.Message != null ? this.Message.ToString () : "消息: ");
 			return builder.ToString ();
 		}
 		#endregion

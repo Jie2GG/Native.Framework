@@ -115,11 +115,25 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			if (isRegex)
 			{
 				// 进行正则事件消息解析
-				using (BinaryReader reader = new BinaryReader (new MemoryStream (Convert.FromBase64String (msg))))
+				byte[] data = Convert.FromBase64String (msg);
+				if (data == null)
+				{
+#if DEBUG
+					throw new InvalidDataException ("获取的数据为 null");
+#else
+					return;
+#endif
+				}
+
+				using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
 				{
 					if (reader.Length () < 4)
 					{
+#if DEBUG
 						throw new InvalidDataException ("读取失败, 原始数据格式错误");
+#else
+						return;
+#endif
 					}
 
 					this.RegexKeyValuePairs = new Dictionary<string, string> (reader.ReadInt32_Ex ());
@@ -130,12 +144,17 @@ namespace Native.Csharp.Sdk.Cqp.Model
 						{
 							if (tempReader.Length () < 4)
 							{
+#if DEBUG
 								throw new InvalidDataException ("读取失败, 原始数据格式错误");
+#else
+								this.RegexKeyValuePairs = null;
+								return;
+#endif
 							}
 
 							// 读取结果
-							string key = tempReader.ReadString_Ex ();
-							string content = tempReader.ReadString_Ex ();
+							string key = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
+							string content = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
 
 							this.RegexKeyValuePairs.Add (key, content);
 						}
@@ -163,13 +182,19 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>返回语音文件位于本地服务器的绝对路径</returns>
 		public string ReceiveRecord (CQAudioFormat format)
 		{
-			if (this.IsRegexMessage)
+			if (!this.IsRegexMessage)
 			{
-				return null;
+				CQCode record = (from code in this.CQCodes where code.Function == CQFunction.Record select code).First ();
+				return this.CQApi.ReceiveRecord (record.Items["file"], format);
 			}
-
-			CQCode record = (from code in this.CQCodes where code.Function == CQFunction.Record select code).First ();
-			return this.CQApi.ReceiveRecord (record.Items["file"], format);
+			else
+			{
+#if DEBUG
+				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
+#else
+				return null;
+#endif
+			}
 		}
 
 		/// <summary>
@@ -179,13 +204,19 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
 		public string ReceiveImage (int index)
 		{
-			if (this.IsRegexMessage)
+			if (!this.IsRegexMessage)
 			{
-				return null;
+				CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).Skip (index).First ();
+				return this.CQApi.ReceiveImage (image.Items["file"]);
 			}
-
-			CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).Skip (index).First ();
-			return this.CQApi.ReceiveImage (image.Items["file"]);
+			else
+			{
+#if DEBUG
+				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
+#else
+				return null;
+#endif
+			}
 		}
 
 		/// <summary>
@@ -198,7 +229,11 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			{
 				return this.Text;
 			}
+#if DEBUG
+			throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
+#else
 			return string.Empty;
+#endif
 		}
 
 		/// <summary>
@@ -234,19 +269,20 @@ namespace Native.Csharp.Sdk.Cqp.Model
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendLine (string.Format ("ID: {0}", this.Id));
 			builder.AppendLine (string.Format ("正则消息: {0}", this.IsRegexMessage));
-			if (!this.IsRegexMessage)
+			builder.AppendLine ("消息: ");
+
+			if (this.IsRegexMessage)
 			{
-				builder.AppendFormat ("消息内容: {0}", this.Text);
+				foreach (KeyValuePair<string, string> keyValue in this.RegexKeyValuePairs)
+				{
+					builder.AppendFormat ("    {0}-{1}, ", keyValue.Key, keyValue.Value);
+				}
 			}
 			else
 			{
-				builder.Append ("解析结果: ");
-				foreach (KeyValuePair<string, string> keyValue in this.RegexKeyValuePairs)
-				{
-					builder.AppendFormat ("{0}-{1}, ", keyValue.Key, keyValue.Value);
-				}
-				builder.Remove (builder.Length - 2, 2); // 删除最后的符号和空格
+				builder.AppendFormat ("    {0}", this.Text);
 			}
+
 			return builder.ToString ();
 		}
 		#endregion

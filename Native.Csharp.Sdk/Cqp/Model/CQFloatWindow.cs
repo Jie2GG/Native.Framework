@@ -123,9 +123,11 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("数据: {0}", this.Value));
-			builder.AppendLine (string.Format ("单位: {0}", this.Unit));
-			builder.AppendFormat ("颜色: {0}", this.TextColor.GetDescription ());
+			builder.AppendLine (string.Format ("数据: {0}", this.Value != null ? this.Value : string.Empty));
+			builder.AppendLine (string.Format ("单位: {0}", this.Unit != null ? this.Value : string.Empty));
+
+			string temp = this.TextColor.GetDescription ();
+			builder.AppendFormat ("颜色: {0}", temp != null ? this.Value : string.Empty);
 			return builder.ToString ();
 		}
 		#endregion

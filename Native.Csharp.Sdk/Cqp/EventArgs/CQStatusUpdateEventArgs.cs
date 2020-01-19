@@ -9,7 +9,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <summary>
 	/// 提供用于描述酷Q悬浮窗状态更新事件参数的类
 	/// </summary>
-	public class CQStatusUpdateEventArgs : CQStatusEventArgs
+	public sealed class CQStatusUpdateEventArgs : CQStatusEventArgs
 	{
 		#region --构造函数--
 		/// <summary>

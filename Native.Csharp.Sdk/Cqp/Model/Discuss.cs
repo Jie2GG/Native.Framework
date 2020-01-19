@@ -85,10 +85,13 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
 		public override bool Equals (object obj)
 		{
-			Discuss discuss = obj as Discuss;
-			if (discuss != null)
+			if (obj is Discuss)
 			{
-				return this.Id == discuss.Id;
+				return this.Id == ((Discuss)obj).Id;
+			}
+			else if (obj is long)
+			{
+				return this.Id == (long)obj;
 			}
 			return base.Equals (obj);
 		}
