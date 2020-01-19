@@ -85,10 +85,9 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <param name="qqId">QQ号</param>
-		/// <param name="isAddSpeac">是否添加空格, 默认: true</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
-		public static CQCode CQCode_At (long qqId, bool isAddSpeac = true)
+		public static CQCode CQCode_At (long qqId)
 		{
 			if (qqId < QQ.MinValue)
 			{
@@ -96,7 +95,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			return new CQCode (
 				CQFunction.At,
-				new KeyValuePair<string, string> ("qq", string.Format ("{0}{1}", Convert.ToString (qqId), isAddSpeac ? " " : string.Empty)));
+				new KeyValuePair<string, string> ("qq", Convert.ToString (qqId)));
 		}
 
 		/// <summary>
@@ -106,14 +105,14 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="isAddSpeac">是否添加空格, 默认: true</param>
 		/// <exception cref="ArgumentNullException">参数: qq 为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
-		public static CQCode CQCode_At (QQ qq, bool isAddSpeac = true)
+		public static CQCode CQCode_At (QQ qq)
 		{
 			if (qq == null)
 			{
 				throw new ArgumentNullException ("qq");
 			}
 
-			return CQCode_At (qq.Id, isAddSpeac);
+			return CQCode_At (qq.Id);
 		}
 
 		/// <summary>
@@ -1973,7 +1972,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="response">反馈类型</param>
 		/// <param name="appendMsg">备注</param>
 		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg)
+		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg = null)
 		{
 			if (appendMsg == null)
 			{

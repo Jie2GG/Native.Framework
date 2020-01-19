@@ -65,8 +65,14 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			this.SubType = (CQGroupMemberIncreaseType)subType;
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromGroup = new Group (api, fromGroup);
-			this.FromQQ = new QQ (api, fromQQ);
-			this.BeingOperateQQ = new QQ (api, beingOperateQQ);
+			if (fromQQ >= QQ.MinValue)
+			{
+				this.FromQQ = new QQ (api, fromQQ);
+			}
+			if (beingOperateQQ >= QQ.MinValue)
+			{
+				this.BeingOperateQQ = new QQ (api, beingOperateQQ);
+			}
 		}
 		#endregion
 

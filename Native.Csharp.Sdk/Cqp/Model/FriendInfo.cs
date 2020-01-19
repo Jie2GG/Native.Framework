@@ -51,7 +51,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 					throw new InvalidDataException ("读取失败, 原始数据格式错误");
 				}
 
-				this.QQ = new QQ (api, reader.ReadInt32_Ex ());
+				this.QQ = new QQ (api, reader.ReadInt64_Ex ());
 				this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
 				this.Postscript = reader.ReadString_Ex (CQApi.DefaultEncoding);
 			}

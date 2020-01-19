@@ -1,4 +1,24 @@
 # Native.SDK 更新日志
+> 2020年01月18日 版本: V4.0.8.0118
+
+	1. 修复 CQApi.CQCode_At 接口的问题, 还原代码
+
+> 2020年01月17日 版本: V4.0.7.0117
+
+	1. 修复 StrangerInfo 获取 Nick 乱码
+
+> 2020年01月17日 版本: V4.0.6.0117
+
+	1. 优化 CQApi.SetGroupAddRequest 接口参数: appendMsg 默认可 null
+
+> 2020年01月16日 版本: V4.0.5.0116
+
+	1. 修复 CQApi.GetFinderList 接口读取数据出错
+
+> 2020年01月15日 版本: V4.0.4.0115
+
+	1. 暂时解决入群事件崩溃的bug (已反馈官方, P2级别)
+
 > 2020年01月14日 版本: V4.0.3.0114
 
 	1. 修复 CQApi.GetCookiesCollection 接口解析 Cookies 不全的问题
