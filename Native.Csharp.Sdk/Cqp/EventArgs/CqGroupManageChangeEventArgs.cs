@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 101
 	/// </summary>
-	public class CQGroupManageChangeEventArgs : CQEventEventArgs
+	public sealed class CQGroupManageChangeEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -78,8 +78,8 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
-			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
-			builder.AppendFormat ("被操作QQ: {0}", this.BeingOperateQQ.Id);
+			builder.AppendLine (string.Format ("群号: {0}", this.FromGroup != null ? this.FromGroup.Id.ToString () : string.Empty));
+			builder.AppendFormat ("被操作账号: {0}", this.BeingOperateQQ != null ? this.BeingOperateQQ.Id.ToString () : string.Empty);
 			return builder.ToString ();
 		}
 		#endregion

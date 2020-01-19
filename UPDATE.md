@@ -1,4 +1,13 @@
 # Native.SDK 更新日志
+> 2020年01月19日 版本: V4.0.9.0119
+
+	1. 修复 CQApi.GetMemberList 方法栈溢出
+	2. 优化 Model 中所有模型的 ToString 方法
+	3. 优化 EventArgs 中的所有实现模型的 ToString 方法
+	4. 优化 EventArgs 中的所有实现禁止继续继承
+	5. 优化 CQApi 的异常弹出逻辑, 指名在 Debug 模式下才会弹出异常, 其余情况返回 null
+	6. 新增 QQ 中针对 CQCode 的两个引用
+
 > 2020年01月18日 版本: V4.0.8.0118
 
 	1. 修复 CQApi.CQCode_At 接口的问题, 还原代码

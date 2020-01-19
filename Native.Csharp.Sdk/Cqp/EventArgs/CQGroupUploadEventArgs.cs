@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 11
 	/// </summary>
-	public class CQGroupUploadEventArgs : CQEventEventArgs
+	public sealed class CQGroupUploadEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -85,9 +85,9 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
-			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
-			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
-			builder.AppendFormat ("文件信息: {0}, {1}", this.FileInfo.FileName, this.FileInfo.FileSize);
+			builder.AppendLine (string.Format ("群号: {0}", this.FromGroup != null ? this.FromGroup.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("账号: {0}", this.FromQQ != null ? this.FromQQ.Id.ToString () : string.Empty));
+			builder.Append (this.FileInfo != null ? this.FileInfo.ToString () : "文件信息: ");
 			return builder.ToString ();
 		}
 		#endregion

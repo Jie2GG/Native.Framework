@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 201
 	/// </summary>
-	public class CQFriendAddEventArgs : CQEventEventArgs
+	public sealed class CQFriendAddEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -71,7 +71,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
-			builder.AppendFormat ("来源QQ: {0}", this.FromQQ.Id);
+			builder.AppendFormat ("账号: {0}", this.FromQQ != null ? this.FromQQ.Id.ToString () : string.Empty);
 			return builder.ToString ();
 		}
 		#endregion

@@ -16,6 +16,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 	{
 		#region --字段--
 		private static readonly Lazy<Regex[]> _regices = new Lazy<Regex[]> (InitializeRegex);
+
 		private string _originalString;
 		private CQFunction _type;
 		private Dictionary<string, string> _items;

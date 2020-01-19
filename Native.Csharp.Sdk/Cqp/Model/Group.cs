@@ -346,25 +346,19 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
-		/// 返回用于发送的字符串
-		/// </summary>
-		/// <returns>用于发送的字符串</returns>
-		public string ToSendString ()
-		{
-			return this.Id.ToString ();
-		}
-
-		/// <summary>
 		/// 确定指定的对象是否等于当前对象
 		/// </summary>
 		/// <param name="obj">要与当前对象进行比较的对象</param>
 		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
 		public override bool Equals (object obj)
 		{
-			Group group = obj as Group;
-			if (group != null)
+			if (obj is Group)
 			{
-				return this.Id == group.Id;
+				return this.Id == ((Group)obj).Id;
+			}
+			else if (obj is long)
+			{
+				return this.Id == (long)obj;
 			}
 			return base.Equals (obj);
 		}
@@ -384,7 +378,16 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
-			return string.Format ("QQ群号: {0}", this.Id);
+			return string.Format ("群号: {0}", this.Id);
+		}
+
+		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			return this.Id.ToString ();
 		}
 		#endregion
 
