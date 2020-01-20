@@ -102,7 +102,6 @@ namespace Native.Csharp.Sdk.Cqp
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <param name="qq">QQ对象</param>
-		/// <param name="isAddSpeac">是否添加空格, 默认: true</param>
 		/// <exception cref="ArgumentNullException">参数: qq 为 null</exception>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public static CQCode CQCode_At (QQ qq)
@@ -770,7 +769,12 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <returns>当前酷Q框架登录的帐号对象</returns>
 		public QQ GetLoginQQ ()
 		{
-			return new QQ (this, this.GetLoginQQId ());
+			long qq = this.GetLoginQQId ();
+			if (qq < QQ.MinValue)
+			{
+				return null;
+			}
+			return new QQ (this, qq);
 		}
 
 		/// <summary>
@@ -812,10 +816,14 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
 		/// <exception cref="ArgumentNullException">参数: domain 是 null</exception>
 		/// <exception cref="ArgumentException">参数: domain 不是正确的 Uri</exception>
-		/// <exception cref="CookieException">解析 Cookie 时发生错误</exception>
 		/// <returns>返回 Cookies 的 <see cref="CookieCollection"/></returns>
 		public CookieCollection GetCookieCollection (string domain)
 		{
+			if (domain == null)
+			{
+				throw new ArgumentNullException ("domain");
+			}
+
 			try
 			{
 				// 初始化域名对象
@@ -834,11 +842,7 @@ namespace Native.Csharp.Sdk.Cqp
 			}
 			catch (CookieException)
 			{
-				throw;
-			}
-			catch (ArgumentNullException)
-			{
-				throw;
+				return null;
 			}
 		}
 
@@ -858,7 +862,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <exception cref="InvalidDataException">获取信息时得到的数据流错误</exception>
-		/// <returns>获取成功返回 <see cref="StrangerInfo"/></returns>
+		/// <returns>获取成功返回 <see cref="StrangerInfo"/>, 失败返回 <code>null</code></returns>
 		public StrangerInfo GetStrangerInfo (long qqId, bool notCache = false)
 		{
 			if (qqId < QQ.MinValue)
@@ -871,10 +875,17 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				return new StrangerInfo (this, data);
 			}
+#if DEBUG
 			catch (ArgumentNullException ex)
 			{
 				throw new InvalidDataException ("数据流格式错误", ex);
 			}
+#else
+			catch (ArgumentNullException)
+			{
+				return null;
+			}
+#endif
 		}
 
 		/// <summary>
@@ -884,7 +895,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
 		/// <exception cref="ArgumentNullException">参数: qq 是 null</exception>
 		/// <exception cref="InvalidDataException">获取信息时得到的数据流错误</exception>
-		/// <returns>获取成功返回 <see cref="StrangerInfo"/></returns>
+		/// <returns>获取成功返回 <see cref="StrangerInfo"/>, 失败返回 <code>null</code></returns>
 		public StrangerInfo GetStrangerInfo (QQ qq, bool notCache = false)
 		{
 			if (qq == null)
@@ -907,13 +918,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已经读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/></returns>
+		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/>, 失败返回 <code>null</code></returns>
 		public List<FriendInfo> GetFriendList ()
 		{
 			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (AuthCode, false).ToString (_defaultEncoding));
 			if (data == null)
 			{
+#if DEBUG
 				throw new InvalidDataException ("获取的数据为 null");
+#else
+				return null;
+#endif
 			}
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
 			{
@@ -922,13 +937,18 @@ namespace Native.Csharp.Sdk.Cqp
 				{
 					if (reader.Length () <= 0)
 					{
+#if DEBUG
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾");
+#else
+						return null;
+#endif
 					}
 
 					try
 					{
 						tempFriends.Add (new FriendInfo (this, reader.ReadToken_Ex ()));
 					}
+#if DEBUG
 					catch (ArgumentNullException ex)
 					{
 						throw new InvalidDataException ("数据流格式错误", ex);
@@ -937,6 +957,16 @@ namespace Native.Csharp.Sdk.Cqp
 					{
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
 					}
+#else
+					catch (ArgumentNullException)
+					{
+						return null;
+					}
+					catch (InvalidDataException)
+					{
+						return null;
+					}
+#endif
 				}
 				return tempFriends;
 			}
@@ -951,7 +981,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误 或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
+		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/>, 失败返回 <code>null</code></returns>
 		public GroupMemberInfo GetGroupMemberInfo (long groupId, long qqId, bool notCache = false)
 		{
 			if (groupId < Group.MinValue)
@@ -969,6 +999,7 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				return new GroupMemberInfo (this, data);
 			}
+#if DEBUG
 			catch (ArgumentNullException ex)
 			{
 				throw new InvalidDataException ("数据流格式错误或数据流为 null", ex);
@@ -977,6 +1008,16 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
 			}
+#else
+			catch (ArgumentNullException)
+			{
+				return null;
+			}
+			catch (InvalidDataException)
+			{
+				return null;
+			}
+#endif
 		}
 
 		/// <summary>
@@ -988,7 +1029,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentNullException">参数: group 为 null 或 qq 为 null</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
+		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/>, 失败返回 <code>null</code></returns>
 		public GroupMemberInfo GetGroupMemberInfo (Group group, QQ qq, bool notCache = false)
 		{
 			if (group == null)
@@ -1022,7 +1063,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/></returns>
+		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/>, 失败返回 <code>null</code></returns>
 		public List<GroupMemberInfo> GetGroupMemberList (long groupId)
 		{
 			if (groupId < Group.MinValue)
@@ -1033,7 +1074,11 @@ namespace Native.Csharp.Sdk.Cqp
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (this.AuthCode, groupId).ToString (CQApi.DefaultEncoding));
 			if (data == null)
 			{
+#if DEBUG
 				throw new InvalidDataException ("获取的数据为 null");
+#else
+				return null;
+#endif
 			}
 
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
@@ -1043,13 +1088,18 @@ namespace Native.Csharp.Sdk.Cqp
 				{
 					if (reader.Length () <= 0)
 					{
+#if DEBUG
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾");
+#else
+						return null;
+#endif
 					}
 
 					try
 					{
 						members.Add (new GroupMemberInfo (this, reader.ReadToken_Ex ()));
 					}
+#if DEBUG
 					catch (ArgumentNullException ex)
 					{
 						throw new InvalidDataException ("数据流格式错误", ex);
@@ -1058,10 +1108,21 @@ namespace Native.Csharp.Sdk.Cqp
 					{
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
 					}
+#else
+					catch (ArgumentNullException)
+					{
+						return null;
+					}
+					catch (InvalidDataException)
+					{
+						return null;
+					}
+#endif
 				}
+
+				return members;
 			}
 
-			return this.GetGroupMemberList (new Group (this, groupId));
 		}
 
 		/// <summary>
@@ -1071,7 +1132,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/></returns>
+		/// <returns>获取成功返回 <see cref="List{GroupMemberInfo}"/>, 失败返回 <code>null</code></returns>
 		public List<GroupMemberInfo> GetGroupMemberList (Group group)
 		{
 			if (group == null)
@@ -1101,7 +1162,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象</returns>
+		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象, 失败返回 <code>null</code></returns>
 		public GroupInfo GetGroupInfo (long groupId, bool notCache = false)
 		{
 			if (groupId < Group.MinValue)
@@ -1115,6 +1176,7 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				return new GroupInfo (this, data);
 			}
+#if DEBUG
 			catch (ArgumentNullException ex)
 			{
 				throw new InvalidDataException ("数据流格式错误或为 null", ex);
@@ -1123,6 +1185,16 @@ namespace Native.Csharp.Sdk.Cqp
 			{
 				throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
 			}
+#else
+			catch (ArgumentNullException)
+			{
+				return null;
+			}
+			catch (InvalidDataException)
+			{
+				return null;
+			}
+#endif
 		}
 
 		/// <summary>
@@ -1133,7 +1205,7 @@ namespace Native.Csharp.Sdk.Cqp
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象</returns>
+		/// <returns>获取成功返回 <see cref="GroupInfo"/> 对象, 失败返回 <code>null</code></returns>
 		public GroupInfo GetGroupInfo (Group group, bool notCache = false)
 		{
 			if (group == null)
@@ -1160,13 +1232,17 @@ namespace Native.Csharp.Sdk.Cqp
 		/// </summary>
 		/// <exception cref="InvalidDataException">数据流格式错误或为 null</exception>
 		/// <exception cref="EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
-		/// <returns>获取成功返回 <see cref="List{GroupInfo}"/> 对象</returns>
+		/// <returns>获取成功返回 <see cref="List{GroupInfo}"/> 对象, 失败返回 <code>null</code></returns>
 		public List<GroupInfo> GetGroupList ()
 		{
 			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupList (AuthCode).ToString (Encoding.ASCII));
 			if (data == null)
 			{
+#if DEBUG
 				throw new InvalidDataException ("获取的数据为 null");
+#else
+				return null;
+#endif
 			}
 
 			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
@@ -1176,13 +1252,18 @@ namespace Native.Csharp.Sdk.Cqp
 				{
 					if (reader.Length () <= 0)
 					{
+#if DEBUG
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾");
+#else
+						return null;
+#endif
 					}
 
 					try
 					{
 						tempGroups.Add (new GroupInfo (this, reader.ReadToken_Ex (), true));
 					}
+#if DEBUG
 					catch (ArgumentNullException ex)
 					{
 						throw new InvalidDataException ("数据流格式错误", ex);
@@ -1191,6 +1272,16 @@ namespace Native.Csharp.Sdk.Cqp
 					{
 						throw new EndOfStreamException ("无法读取数据, 因为已读取到数据流末尾", ex);
 					}
+#else
+					catch (ArgumentNullException)
+					{
+						return null;
+					}
+					catch (InvalidDataException)
+					{
+						return null;
+					}
+#endif
 				}
 				return tempGroups;
 			}

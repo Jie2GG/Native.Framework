@@ -14,7 +14,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 	/// <para/>
 	/// Type: 104
 	/// </summary>
-	public class CQGroupBanSpeakEventArgs : CQEventEventArgs
+	public sealed class CQGroupBanSpeakEventArgs : CQEventEventArgs
 	{
 		#region --属性--
 		/// <summary>
@@ -83,7 +83,7 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 				this.BeingOperateQQ = new QQ (api, beingOperateQQ);
 			}
 
-			if (subType == 2)	// 当子类型为 2 时才有
+			if (subType == 2)   // 当子类型为 2 时才有
 			{
 				this.BanSpeakTimeSpan = TimeSpan.FromSeconds (duration);
 			}
@@ -105,14 +105,17 @@ namespace Native.Csharp.Sdk.Cqp.EventArgs
 			builder.AppendLine (string.Format ("优先级: {0}", this.Priority));
 			builder.AppendLine (string.Format ("子类型: {0}({1})", this.SubType, (int)this.SubType));
 			builder.AppendLine (string.Format ("发送时间: {0}", this.SendTime));
-			builder.AppendLine (string.Format ("来源群: {0}", this.FromGroup.Id));
-			builder.AppendLine (string.Format ("来源QQ: {0}", this.FromQQ.Id));
-			builder.AppendFormat ("全体禁言: {0}", this.IsAllBanSpeak);
+			builder.AppendLine (string.Format ("群号: {0}", this.FromGroup != null ? this.FromGroup.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("操作者账号: {0}", this.FromQQ != null ? this.FromQQ.Id.ToString () : string.Empty));
+			builder.AppendFormat ("操作全体: {0}", this.IsAllBanSpeak);
 			if (!this.IsAllBanSpeak)
 			{
 				builder.AppendLine ();
-				builder.AppendLine (string.Format ("被操作QQ: {0}", this.BeingOperateQQ.Id));
-				builder.AppendFormat ("禁言时常: {0}", this.BanSpeakTimeSpan);
+				builder.AppendLine (string.Format ("被操作账号: {0}", this.BeingOperateQQ != null ? this.BeingOperateQQ.Id.ToString () : string.Empty));
+				if (SubType == CQGroupBanSpeakType.SetBanSpeak)
+				{
+					builder.AppendFormat ("时常: {0}", this.BanSpeakTimeSpan);
+				}
 			}
 			return builder.ToString ();
 		}

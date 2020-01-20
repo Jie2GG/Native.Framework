@@ -94,10 +94,11 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("BusId: {0}", this.Id));
-			builder.AppendLine (string.Format ("文件名: {0}", this.FileName));
-			builder.AppendLine (string.Format ("文件ID: {0}", this.FileId));
-			builder.AppendFormat ("文件大小: {0}", this.FileSize);
+			builder.AppendLine ("文件信息: ");
+			builder.AppendLine (string.Format ("    BusId: {0}", this.Id));
+			builder.AppendLine (string.Format ("    ID: {0}", this.FileId != null ? this.FileId : string.Empty));
+			builder.AppendLine (string.Format ("    名称: {0}", this.FileName != null ? this.FileName : string.Empty));
+			builder.AppendFormat ("    大小: {0}", this.FileSize);
 			return builder.ToString ();
 		}
 		#endregion
