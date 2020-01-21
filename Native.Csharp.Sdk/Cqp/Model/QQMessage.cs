@@ -136,9 +136,14 @@ namespace Native.Csharp.Sdk.Cqp.Model
 #endif
 					}
 
-					this.RegexKeyValuePairs = new Dictionary<string, string> (reader.ReadInt32_Ex ());
+					int length = reader.ReadInt32_Ex ();    // 获取长度
+					if (length <= 0)
+					{
+						return;
+					}
+					this.RegexKeyValuePairs = new Dictionary<string, string> (length);
 
-					for (int i = 0; i < RegexKeyValuePairs.Count; i++)
+					for (int i = 0; i < length; i++)
 					{
 						using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
 						{
