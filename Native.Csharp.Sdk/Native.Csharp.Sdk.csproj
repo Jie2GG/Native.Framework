@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jie2GG</Authors>
+    <Description>酷Q机器人Native Csharp SDK</Description>
+    <Company>Jie2GG</Company>
+    <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
+    <Version>2.7.11.0121</Version>
+    <Copyright>MIT</Copyright>
+    <PackageIcon>Logo.jpg</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>CoolQ;Native</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\Logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,94 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Jie2GG</Authors>
+    <Description>酷Q机器人Native Csharp Core</Description>
+    <Company>Jie2GG</Company>
+    <RepositoryUrl>https://github.com/Jie2GG/Native.Csharp.Frame</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Jie2GG/Native.Csharp.Frame</PackageProjectUrl>
+    <Version>4.0.10.0121</Version>
+    <Copyright>MIT</Copyright>
+    <PackageIcon>Logo.jpg</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>CoolQ;Native</PackageTags>
+    <PackageId>Native.Csharp</PackageId>
+    <Product>Native.Csharp</Product>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DllExportIdent>9B5D4785-6506-4C98-B52F-1F38C4C77444</DllExportIdent>
+    <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
+    <DllExportNamespace>Native.Csharp</DllExportNamespace>
+    <DllExportDDNSCecil>true</DllExportDDNSCecil>
+    <PlatformTarget>x86</PlatformTarget>
+    <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
+    <DllExportGenExpLib>false</DllExportGenExpLib>
+    <DllExportOurILAsm>true</DllExportOurILAsm>
+    <DllExportSysObjRebase>false</DllExportSysObjRebase>
+    <DllExportLeaveIntermediateFiles>false</DllExportLeaveIntermediateFiles>
+    <DllExportTimeout>30000</DllExportTimeout>
+    <DllExportPeCheck>2</DllExportPeCheck>
+    <DllExportPatches>0</DllExportPatches>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\Logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0">
+        <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19003-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ModuleInit.Fody" Version="2.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Native.Csharp.Sdk" Version="2.7.0.105" />
+    <PackageReference Include="Unity" Version="5.8.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App\Export\CQExport.log">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CQExport.tt</DependentUpon>
+    </None>
+    <None Update="App\Export\CQExport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CQExport.log</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DllExport, PublicKeyToken=8337224c9ad9e356">
+      <HintPath>$(SolutionDir)packages\DllExport.1.7.0-beta3\gcache\$(DllExportMetaXBase)\$(DllExportNamespace)\$(DllExportMetaLibName)</HintPath>
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <Target Name="DllExportInit" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('$(ProjectDir)..\DllExport.bat') And !Exists('$(ProjectDir)Lib\DllExport.bat')" Text="DllExport.bat is not found." />
+    <Exec Condition="!Exists('$(ProjectDir)..\DllExport.bat')" Command="XCOPY /YCies &quot;$(ProjectDir)Lib\packages\DllExport.1.7.0-beta3&quot; &quot;$(ProjectDir)..\packages\DllExport.1.7.0-beta3\&quot; &gt; nul &amp; copy /Y &quot;$(ProjectDir)Lib\DllExport.bat&quot; &quot;$(ProjectDir)..\DllExport.bat&quot;" />
+  </Target>
+  <ImportGroup Label=".NET DllExport">
+    <Import Project="$(ProjectDir)..\packages\DllExport.1.7.0-beta3\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(ProjectDir)..\packages\DllExport.1.7.0-beta3\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />
+  </ImportGroup>
+  <Target Name="DllExportRestorePkg" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('$(ProjectDir)..\DllExport.bat')" Text="DllExport.bat is not found. Path: '$(ProjectDir)..\' - https://github.com/3F/DllExport" />
+    <Exec Condition="('$(DllExportModImported)' != 'true' Or !Exists('$(ProjectDir)..\packages\DllExport.1.7.0-beta3\tools\net.r_eg.DllExport.targets')) And Exists('$(ProjectDir)..\DllExport.bat')" Command="DllExport.bat  -action Restore" WorkingDirectory="$(ProjectDir)..\" />
+  </Target>
+  <Target Name="DllExportRPkgDynamicImport" BeforeTargets="PostBuildEvent" DependsOnTargets="GetFrameworkPaths" Condition="'$(DllExportModImported)' != 'true' And '$(DllExportRPkgDyn)' != 'false'">
+    <MSBuild BuildInParallel="true" UseResultsCache="true" Projects="$(MSBuildProjectFullPath)" Properties="DllExportRPkgDyn=true" Targets="Build" />
+  </Target>
+</Project>

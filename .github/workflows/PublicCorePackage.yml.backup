@@ -1,0 +1,39 @@
+name: Build and public Core
+on:
+  push:
+    branches:
+      - nupkg
+  pull_request:
+    branches:
+      - nupkg
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.100
+      - name: Install NuGet
+        run: |
+          $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+          $targetNugetExe = "nuget.exe"
+          Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+      - name: Restore Projects
+        run: |
+          .\nuget restore "$Env:GITHUB_WORKSPACE"
+      - name: Build Core
+        run: |
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+          .\MSBuild.exe /t:rebuild "$Env:GITHUB_WORKSPACE\Native.Csharp" /p:Configuration=Release
+      - name: Add private GitHub registry to NuGet
+        run: |
+          .\nuget sources add -name github -Source https://nuget.pkg.github.com/Jie2GG/index.json -Username Jie2GG -Password ${{ secrets.Nuget }}
+      - name: Push generated package to GitHub registry
+        run: |
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp\bin\Release\*.nupkg" -Source github -SkipDuplicate
+      - name: Push generated package to NuGet registry
+        run: |
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp\bin\Release\*.nupkg" -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Nuget_Api }} -NoSymbols 

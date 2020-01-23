@@ -1,0 +1,166 @@
+// 酷Q 的Json文件支持以 // 开头的注释。
+// 开发模式下，应用的 app.dll 及 app.json 文件须放在 dev/[appid]/ 目录下，应用 AppInfo 函数返回的内容须改为 appid
+// 如 appid=com.example.demo, 则dll及json文件需分别放在 dev/com.example.demo/app.dll、dev/com.example.demo/app.json
+// [重要] appid 规则见 https://cqp.im/v9/appid
+{
+	"ret": 1,
+	"apiver": 9,
+	"name": "酷Q样例应用 for C#",
+	"version": "1.0.0",
+	"version_id": 1,
+	"author": "JieGG",
+	"description": "酷Q样例应用(V9应用机制)",
+	"event": [
+		{
+			"id": 1,
+			"type": 21,
+			"name": "私聊消息处理",
+			"function": "_eventPrivateMsg",
+			"priority": 30000
+		},
+		{
+			"id": 2,
+			"type": 2,
+			"name": "群消息处理",
+			"function": "_eventGroupMsg",
+			"priority": 30000
+		},
+		{
+			"id": 3,
+			"type": 4,
+			"name": "讨论组消息处理",
+			"function": "_eventDiscussMsg",
+			"priority": 30000
+		},
+		{
+			"id": 4,
+			"type": 11,
+			"name": "群文件上传事件处理",
+			"function": "_eventGroupUpload",
+			"priority": 30000
+		},
+		{
+			"id": 5,
+			"type": 101,
+			"name": "群管理变动事件处理",
+			"function": "_eventSystem_GroupAdmin",
+			"priority": 30000
+		},
+		{
+			"id": 6,
+			"type": 102,
+			"name": "群成员减少事件处理",
+			"function": "_eventSystem_GroupMemberDecrease",
+			"priority": 30000
+		},
+		{
+			"id": 7,
+			"type": 103,
+			"name": "群成员增加事件处理",
+			"function": "_eventSystem_GroupMemberIncrease",
+			"priority": 30000
+		},
+		{
+			"id": 8,
+			"type": 104,
+			"name": "群禁言事件处理",
+			"function": "_eventSystem_GroupBan",
+			"priority": 30000
+		},
+		{
+			"id": 10,
+			"type": 201,
+			"name": "好友已添加事件处理",
+			"function": "_eventFriend_Add",
+			"priority": 30000
+		},
+		{
+			"id": 11,
+			"type": 301,
+			"name": "好友添加请求处理",
+			"function": "_eventRequest_AddFriend",
+			"priority": 30000
+		},
+		{
+			"id": 12,
+			"type": 302,
+			"name": "群添加请求处理",
+			"function": "_eventRequest_AddGroup",
+			"priority": 30000
+		},
+		{
+			"id": 1001,
+			"type": 1001,
+			"name": "酷Q启动事件",
+			"priority": 30000,
+			"function": "_eventStartup"
+		},
+		{
+			"id": 1002,
+			"type": 1002,
+			"name": "酷Q关闭事件",
+			"priority": 30000,
+			"function": "_eventExit"
+		},
+		{
+			"id": 1003,
+			"type": 1003,
+			"name": "应用已被启用",
+			"priority": 30000,
+			"function": "_eventEnable"
+		},
+		{
+			"id": 1004,
+			"type": 1004,
+			"name": "应用将被停用",
+			"priority": 30000,
+			"function": "_eventDisable"
+		}
+	],
+	"menu": [ // 设置菜单（发布前请删除无用菜单，如果无需设置菜单请全部删除）
+		{
+			"name": "设置A", //菜单名称
+			"function": "_menuA" //菜单对应函数
+		},
+		{
+			"name": "设置B",
+			"function": "_menuB"
+		}
+	],
+	"status": [ // 悬浮窗状态（见 com.example.status 样例）
+		{
+			"id": 1, // 悬浮窗ID
+			"name": "运行时间", // 名称
+			"title": "UPTIME", // 英文名称
+			"function": "_statusUptime", // 数据更新对应函数
+			"period": "1000" // 更新间隔（单位ms（毫秒），目前仅支持1000ms（1秒））
+		}
+	],
+	"auth": [ // 应用权限（发布前请删除无用权限）
+		//20,  //[敏感]取Cookies    getCookies / getCsrfToken
+		//30,  //接收语音           getRecord
+		101, //发送群消息         sendGroupMsg
+		103, //发送讨论组消息     sendDiscussMsg
+		106, //发送私聊消息       sendPrivateMsg
+		//110, //[敏感]发送赞       sendLike
+		120, //置群员移除         setGroupKick
+		121, //置群员禁言         setGroupBan
+		122, //置群管理员         setGroupAdmin
+		123, //置全群禁言         setGroupWholeBan
+		124, //置匿名群员禁言     setGroupAnonymousBan
+		125, //置群匿名设置       setGroupAnonymous
+		126, //置群成员名片       setGroupCard
+		//127, //[敏感]置群退出     setGroupLeave
+		128, //置群成员专属头衔   setGroupSpecialTitle
+		130, //取群成员信息       getGroupMemberInfo
+		131, //取陌生人信息       getStrangerInfo
+		132, //取群信息           getGroupInfo
+		140, //置讨论组退出       setDiscussLeave
+		150, //置好友添加请求     setFriendAddRequest
+		151, //置群添加请求       setGroupAddRequest
+		160, //取群成员列表       getGroupMemberList
+		161, //取群列表           getGroupList
+		162, //取好友列表         getFriendList
+		180 //撤回消息           deleteMsg
+	]
+}

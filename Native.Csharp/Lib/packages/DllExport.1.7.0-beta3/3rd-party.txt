@@ -1,0 +1,43 @@
+DllExport  [ github.com/3F/DllExport ]
+- - - - - - - - - - - - - - - - - - - 
+
+# Third-party software components
+
+    ## DllExport project includes:
+
+        ### CoreCLR ILAsm & ILDasm
+
+            * https://github.com/3F/coreclr
+            
+        ### Mono.Cecil
+
+            * https://github.com/jbevain/cecil
+
+        ### MvSln 
+
+            * https://github.com/3F/MvsSln
+            
+        ### Conari
+        
+            * https://github.com/3F/Conari
+
+        ### GetNuTool core & hMSBuild logic 
+
+              As an main core for new manager.
+              
+            * https://github.com/3F/GetNuTool
+            * https://github.com/3F/hMSBuild
+        
+    ## Dev Dependencies includes the following tools for src:
+        
+        * vsSolutionBuildEvent
+            https://github.com/3F/vsSolutionBuildEvent
+            
+        * MSTest Framework
+            https://github.com/microsoft/testfx
+            
+        * hMSBuild
+            https://github.com/3F/hMSBuild
+            
+        * GetNuTool
+            https://github.com/3F/GetNuTool

@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.0",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.0": {
+      "Unity.ServiceLocation/2.1.2": {
+        "dependencies": {
+          "CommonServiceLocator": "2.0.3",
+          "Unity.Abstractions": "3.3.0"
+        },
+        "runtime": {
+          "Unity.ServiceLocation.dll": {}
+        }
+      },
+      "CommonServiceLocator/2.0.3": {
+        "runtime": {
+          "CommonServiceLocator.dll": {}
+        }
+      },
+      "Unity.Abstractions/3.3.0": {
+        "runtime": {
+          "Unity.Abstractions.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Unity.ServiceLocation/2.1.2": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CommonServiceLocator/2.0.3": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.Abstractions/3.3.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
