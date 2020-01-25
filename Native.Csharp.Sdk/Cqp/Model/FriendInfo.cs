@@ -90,9 +90,9 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("账号: {0}", this.QQ));
-			builder.AppendLine (string.Format ("昵称: {0}", this.Nick));
-			builder.AppendFormat ("备注: {0}", this.Postscript);
+			builder.AppendLine (string.Format ("账号: {0}", this.QQ != null ? this.QQ.Id.ToString () : string.Empty));
+			builder.AppendLine (string.Format ("昵称: {0}", this.Nick != null ? this.Nick : string.Empty));
+			builder.AppendFormat ("备注: {0}", this.Postscript != null ? this.Postscript : string.Empty);
 			return builder.ToString ();
 		}
 		#endregion

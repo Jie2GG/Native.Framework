@@ -288,12 +288,21 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		}
 
 		/// <summary>
-		/// 返回用于发送的字符串
+		/// 获取酷Q "At某人" 代码
 		/// </summary>
-		/// <returns>用于发送的字符串</returns>
-		public string ToSendString ()
+		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
+		public CQCode CQCode_At ()
 		{
-			return this.Id.ToString ();
+			return CQApi.CQCode_At (this);
+		}
+
+		/// <summary>
+		/// 获取酷Q "好友名片分享" 代码
+		/// </summary>
+		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
+		public CQCode CQCode_ShareFriendCard ()
+		{
+			return CQApi.CQCode_ShareFriendCard (this);
 		}
 
 		/// <summary>
@@ -303,11 +312,15 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
 		public override bool Equals (object obj)
 		{
-			QQ qq = obj as QQ;
-			if (qq != null)
+			if (obj is QQ)
 			{
-				return this.Id == qq.Id;
+				return this.Id == ((QQ)obj).Id;
 			}
+			else if (obj is long)
+			{
+				return this.Id == (long)obj;
+			}
+
 			return base.Equals (obj);
 		}
 
@@ -326,7 +339,16 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
-			return string.Format ("QQ号: {0}", this.Id);
+			return string.Format ("账号: {0}", this.Id);
+		}
+
+		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public string ToSendString ()
+		{
+			return this.Id.ToString ();
 		}
 		#endregion
 
