@@ -369,7 +369,7 @@ namespace Native.Csharp.App.Export
 		{	
 			if (Event_eventGroupUploadHandler != null)	
 			{	
-				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (api, log, 4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromQQ, fromQQ, file);	
+				CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (api, log, 4, 11, "群文件上传事件处理", "_eventGroupUpload", 30000, subType, sendTime, fromGroup, fromQQ, file);	
 				Event_eventGroupUploadHandler (typeof (CQEventExport), args);	
 			}	
 			return 0;	

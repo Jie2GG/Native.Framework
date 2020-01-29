@@ -388,7 +388,7 @@
 						TemplateBuilder.WriteLine (1, "{");
 						TemplateBuilder.WriteFormatLine (2, "if (Event{0}Handler != null)", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "{");
-						TemplateBuilder.WriteFormatLine (3, "CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (api, log, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromQQ, fromQQ, file);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
+						TemplateBuilder.WriteFormatLine (3, "CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (api, log, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, file);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
