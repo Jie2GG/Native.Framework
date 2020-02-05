@@ -125,7 +125,15 @@ namespace Native.Csharp.Sdk.Cqp.Model
 				this.MemberType = (QQGroupMemberType)reader.ReadInt32_Ex ();
 				this.IsBadRecord = reader.ReadInt32_Ex () == 1;
 				this.ExclusiveTitle = reader.ReadString_Ex (CQApi.DefaultEncoding);
-				this.LastSpeakDateTime = reader.ReadInt32_Ex ().ToDateTime ();
+				int expirationTime = reader.ReadInt32_Ex ();
+				if (expirationTime == -1)
+				{
+					this.ExclusiveTitleExpirationTime = null;
+				}
+				else
+				{
+					this.ExclusiveTitleExpirationTime = expirationTime.ToDateTime ();
+				}
 				this.IsAllowEditorCard = reader.ReadInt32_Ex () == 1;
 			}
 		}
