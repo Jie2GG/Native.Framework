@@ -165,7 +165,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 设置群全体禁言
 		/// </summary>
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupBanSpeak (Group group)
+		public bool SetGroupBanSpeak ()
 		{
 			return this.CQApi.SetGroupBanSpeak (this);
 		}
@@ -174,7 +174,7 @@ namespace Native.Csharp.Sdk.Cqp.Model
 		/// 解除群全体禁言
 		/// </summary>
 		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool RemoveGroupBanSpeak (Group group)
+		public bool RemoveGroupBanSpeak ()
 		{
 			return this.CQApi.RemoveGroupBanSpeak (this);
 		}
