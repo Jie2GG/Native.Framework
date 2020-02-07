@@ -1,0 +1,144 @@
+<!--
+ *
+ * System.Data.SQLite.Files.targets -
+ *
+ * Written by Joe Mistachkin.
+ * Released to the public domain, use at your own risk!
+ *
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+  ******************************************************************************
+  **                    Project Source Code Files (Common)                    **
+  ******************************************************************************
+  -->
+
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssemblySourceIdAttribute.cs" />
+    <Compile Include="AssemblySourceTimeStampAttribute.cs" />
+    <Compile Include="SQLite3.cs" />
+    <Compile Include="SQLite3_UTF16.cs" />
+    <Compile Include="SQLiteBackup.cs" />
+    <Compile Include="SQLiteBase.cs" />
+    <Compile Include="SQLiteBlob.cs" />
+    <Compile Include="SQLiteCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLiteCommandBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLiteConnection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLiteConnectionPool.cs" />
+    <Compile Include="SQLiteConnectionStringBuilder.cs" />
+    <Compile Include="SQLiteConvert.cs" />
+    <Compile Include="SQLiteDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLiteDataReader.cs" />
+    <Compile Include="SQLiteDefineConstants.cs" />
+    <Compile Include="SQLiteException.cs" />
+    <Compile Include="SQLiteFactory.cs" />
+    <Compile Include="SQLiteFunction.cs" />
+    <Compile Include="SQLiteFunctionAttribute.cs" />
+    <Compile Include="SQLiteKeyReader.cs" />
+    <Compile Include="SQLiteLog.cs" />
+    <Compile Include="SQLiteMetaDataCollectionNames.cs" />
+    <Compile Include="SQLiteParameter.cs" />
+    <Compile Include="SQLiteParameterCollection.cs" />
+    <Compile Include="SQLitePatchLevel.cs" />
+    <Compile Include="SQLiteStatement.cs" />
+    <Compile Include="SQLiteTransaction.cs" />
+    <Compile Include="SQLiteTransaction2.cs" />
+    <Compile Include="SQLiteTransactionBase.cs" />
+    <Compile Include="UnsafeNativeMethods.cs" />
+    <Compile Include="Resources\SR.Designer.cs">
+      <DependentUpon>SR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Configurations\System.Data.SQLite.dll.config" />
+  </ItemGroup>
+
+  <!--
+  ******************************************************************************
+  **                     Project Embedded Resource Files                      **
+  ******************************************************************************
+  -->
+
+  <ItemGroup Condition="'$(IsDotNetStandard)' == 'false'">
+    <EmbeddedResource Include="Resources\SR.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SR.Designer.cs</LastGenOutput>
+      <LogicalName>System.Data.SQLite.SR.resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!--
+  ******************************************************************************
+  **                Project Source Code Files (Full Framework)                **
+  ******************************************************************************
+  -->
+
+  <ItemGroup Condition="'$(IsCompactFramework)' == 'false'">
+    <Compile Include="SQLiteEnlistment.cs" />
+    <Compile Condition="'$(NetFx35)' != 'false' Or
+                        '$(NetFx40)' != 'false' Or
+                        '$(NetFx45)' != 'false' Or
+                        '$(NetFx451)' != 'false' Or
+                        '$(NetFx452)' != 'false' Or
+                        '$(NetFx46)' != 'false' Or
+                        '$(NetFx461)' != 'false' Or
+                        '$(NetFx462)' != 'false' Or
+                        '$(NetFx47)' != 'false' Or
+                        '$(NetFx471)' != 'false' Or
+                        '$(NetFx472)' != 'false'"
+             Include="LINQ\SQLiteConnection_Linq.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Condition="'$(NetFx35)' != 'false' Or
+                        '$(NetFx40)' != 'false' Or
+                        '$(NetFx45)' != 'false' Or
+                        '$(NetFx451)' != 'false' Or
+                        '$(NetFx452)' != 'false' Or
+                        '$(NetFx46)' != 'false' Or
+                        '$(NetFx461)' != 'false' Or
+                        '$(NetFx462)' != 'false' Or
+                        '$(NetFx47)' != 'false' Or
+                        '$(NetFx471)' != 'false' Or
+                        '$(NetFx472)' != 'false'"
+             Include="LINQ\SQLiteFactory_Linq.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Resources\SQLiteCommand.bmp" />
+    <EmbeddedResource Include="Resources\SQLiteConnection.bmp" />
+    <EmbeddedResource Include="Resources\SQLiteDataAdapter.bmp" />
+  </ItemGroup>
+
+  <!--
+  ******************************************************************************
+  **                     Virtual Table Source Code Files                      **
+  ******************************************************************************
+  -->
+
+  <ItemGroup Condition="'$(InteropVirtualTable)' != 'false'">
+    <Compile Include="ISQLiteNativeModule.cs" />
+    <Compile Include="SQLiteModule.cs" />
+    <Compile Include="SQLiteModuleCommon.cs" />
+    <Compile Include="SQLiteModuleEnumerable.cs" />
+    <Compile Include="SQLiteModuleNoop.cs" />
+  </ItemGroup>
+
+  <!--
+  ******************************************************************************
+  **                   Session Extension Source Code Files                    **
+  ******************************************************************************
+  -->
+
+  <ItemGroup Condition="'$(InteropSessionExtension)' != 'false'">
+    <Compile Include="SQLiteSession.cs" />
+  </ItemGroup>
+</Project>

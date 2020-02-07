@@ -1,0 +1,448 @@
+<!--
+ *
+ * System.Data.SQLite.Properties.targets -
+ *
+ * Written by Joe Mistachkin.
+ * Released to the public domain, use at your own risk!
+ *
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+  ******************************************************************************
+  **                             Define Constants                             **
+  ******************************************************************************
+  -->
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 2.0?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2005 and/or the .NET
+            Framework 2.0 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx20)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_20</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 3.5?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2008 and/or the .NET
+            Framework 3.5 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx35)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_35</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.0?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2010 and/or the .NET
+            Framework 4.0 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx40)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_40</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.5?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2012 and/or the .NET
+            Framework 4.5 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx45)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_45</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.5.1?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2013 and/or the .NET
+            Framework 4.5.1 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx451)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_451</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.5.2?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2013 and/or the .NET
+            Framework 4.5.2 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx452)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_452</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.6?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2015 and/or the .NET
+            Framework 4.6 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx46)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_46</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.6.1?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2015 and/or the .NET
+            Framework 4.6.1 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx461)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_461</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.6.2?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2015 and/or the .NET
+            Framework 4.6.2 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx462)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_462</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.7?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2017 and/or the .NET
+            Framework 4.7 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx47)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_47</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.7.1?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2017 and/or the .NET
+            Framework 4.7.1 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx471)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_471</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Framework 4.7.2?  By
+            default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2017 and/or the .NET
+            Framework 4.7.2 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(NetFx472)' != 'false'">
+    <DefineConstants>$(DefineConstants);NET_472</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in the .NET Compact Framework 2.0?
+            By default, this is disabled.  This must be enabled to successfully
+            build the project using Visual Studio 2005 and/or the .NET Compact
+            Framework 2.0 (if necessary, it will typically be enabled from
+            within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(IsCompactFramework)' != 'false' And
+                            '$(TargetFrameworkVersion)' == 'v2.0'">
+    <DefineConstants>$(DefineConstants);NET_COMPACT_20</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in .NET Standard 2.0?  By default,
+            this is disabled.  This must be enabled to successfully build the
+            project using .NET Core 2.0 SDK (if necessary, it will typically
+            be enabled from within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(IsDotNetStandard)' != 'false' And
+                            ('$(TargetFramework)' == 'netstandard2.0' Or
+                             '$(TargetFramework)' == 'netcoreapp2.0' Or
+                             '$(TargetFramework)' == 'netcoreapp2.1' Or
+                             '$(TargetFramework)' == 'netcoreapp2.2')">
+    <DefineConstants>$(DefineConstants);NET_STANDARD_20</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Only use functionality available in .NET Standard 2.1?  By default,
+            this is disabled.  This must be enabled to successfully build the
+            project using .NET Core 3.0 SDK (if necessary, it will typically
+            be enabled from within the project file itself).
+  -->
+  <PropertyGroup Condition="'$(IsDotNetStandard)' != 'false' And
+                            ('$(TargetFramework)' == 'netstandard2.1' Or
+                             '$(TargetFramework)' == 'netcoreapp3.0')">
+    <DefineConstants>$(DefineConstants);NET_STANDARD_21</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable extra internal state checking?
+  -->
+  <PropertyGroup Condition="'$(CheckState)' != 'false'">
+    <DefineConstants>$(DefineConstants);CHECK_STATE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable counting of the CriticalHandle derived object instances?
+  -->
+  <PropertyGroup Condition="'$(CountHandle)' != 'false'">
+    <DefineConstants>$(DefineConstants);COUNT_HANDLE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable tracking of bytes allocated by the SQLiteMemory class?
+  -->
+  <PropertyGroup Condition="'$(TrackMemoryBytes)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACK_MEMORY_BYTES</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: For interaction with the native SQLite implementation, use the
+            custom built interop DLL (i.e. "SQLite.Interop.DLL")?
+  -->
+  <PropertyGroup Condition="'$(UseInteropDll)' != 'false'">
+    <DefineConstants>$(DefineConstants);USE_INTEROP_DLL</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: For interaction with the native SQLite implementation, use the
+            sqlite3_prepare_v2() function when preparing queries?
+  -->
+  <PropertyGroup Condition="'$(UsePrepareV2)' != 'false'">
+    <DefineConstants>$(DefineConstants);USE_PREPARE_V2</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: For interaction with the native SQLite implementation, use the
+            standard DLL (i.e. "sqlite3.dll")?
+  -->
+  <PropertyGroup Condition="'$(UseSqliteStandard)' != 'false'">
+    <DefineConstants>$(DefineConstants);SQLITE_STANDARD</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Is the project being built to support the .NET Compact Framework?
+  -->
+  <PropertyGroup Condition="'$(IsCompactFramework)' != 'false'">
+    <DefineConstants>$(DefineConstants);PLATFORM_COMPACTFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Emit an AssemblyFlags attribute that includes the Retargetable
+            flag from the AssemblyNameFlags enumeration?
+  -->
+  <PropertyGroup Condition="'$(IsRetargetable)' != 'false'">
+    <DefineConstants>$(DefineConstants);RETARGETABLE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Throw an exception when somebody tries to access a disposed object?
+  -->
+  <PropertyGroup Condition="'$(ThrowOnDisposed)' != 'false'">
+    <DefineConstants>$(DefineConstants);THROW_ON_DISPOSED</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Attempt to pre-load the native SQLite library?
+  -->
+  <PropertyGroup Condition="'$(PreLoadNativeLibrary)' != 'false'">
+    <DefineConstants>$(DefineConstants);PRELOAD_NATIVE_LIBRARY</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for encrypted databases
+            using the CryptoAPI based codec?
+  -->
+  <PropertyGroup Condition="'$(InteropCodec)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_CODEC</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for encrypted databases
+            using SEE?
+  -->
+  <PropertyGroup Condition="'$(InteropIncludeSee)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_INCLUDE_SEE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for compressed and
+            encrypted databases using CEROD?
+  -->
+  <PropertyGroup Condition="'$(InteropIncludeCerod)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_INCLUDE_CEROD</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for compressed databases
+            (read/write) using ZipVFS?
+  -->
+  <PropertyGroup Condition="'$(InteropIncludeZipVfs)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_INCLUDE_ZIPVFS</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for whatever "extra"
+            code (e.g. "extensions") may be included by the custom built
+            interop DLL (i.e. "SQLite.Interop.DLL")?
+  -->
+  <PropertyGroup Condition="'$(InteropIncludeExtra)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_INCLUDE_EXTRA</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable extra diagnostics from the custom built interop DLL (see the
+            "SQLite.NET.Settings.targets" file for more information)?
+  -->
+  <PropertyGroup Condition="'$(InteropDebug)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the custom extension
+            functions?
+  -->
+  <PropertyGroup Condition="'$(InteropExtensionFunctions)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_EXTENSION_FUNCTIONS</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the FTS5 extension?
+  -->
+  <PropertyGroup Condition="'$(InteropFts5Extension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_FTS5_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the JSON extension?
+  -->
+  <PropertyGroup Condition="'$(InteropJson1Extension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_JSON1_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Disable all use of the sqlite3_close_v2() native API and use the
+            legacy System.Data.SQLite connection closing algorithm instead.
+  -->
+  <PropertyGroup Condition="'$(InteropLegacyClose)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_LEGACY_CLOSE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable the logging callback in the custom built interop DLL (see
+            the "SQLite.NET.Settings.targets" file for more information)?
+  -->
+  <PropertyGroup Condition="'$(InteropLog)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_LOG</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the percentile
+            extension?
+  -->
+  <PropertyGroup Condition="'$(InteropPercentileExtension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_PERCENTILE_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the regular
+            expression extension?
+  -->
+  <PropertyGroup Condition="'$(InteropRegExpExtension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_REGEXP_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the SHA1 extension?
+  -->
+  <PropertyGroup Condition="'$(InteropSha1Extension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_SHA1_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the test extension?
+  -->
+  <PropertyGroup Condition="'$(InteropTestExtension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_TEST_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable support (in the managed assemblies) for the numeric type
+            checking extension?
+  -->
+  <PropertyGroup Condition="'$(InteropToTypeExtension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_TOTYPE_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable including the "vtshim" module as a statically available
+            extension?  This will allow virtual tables to be implemented in
+            managed code.
+  -->
+  <PropertyGroup Condition="'$(InteropVirtualTable)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_VIRTUAL_TABLE</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable including the "session" module as a statically available
+            extension?
+  -->
+  <PropertyGroup Condition="'$(InteropSessionExtension)' != 'false'">
+    <DefineConstants>$(DefineConstants);INTEROP_SESSION_EXTENSION</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable various Trace.WriteLine statements included in the code,
+            based on several criteria (see the "SQLite.NET.Settings.targets"
+            file for more information)?
+  -->
+  <PropertyGroup Condition="'$(TraceConnection)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_CONNECTION</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TraceDetection)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_DETECTION</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TraceHandle)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_HANDLE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TracePreLoad)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_PRELOAD</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TraceShared)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_SHARED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TraceStatement)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_STATEMENT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TraceWarning)' != 'false'">
+    <DefineConstants>$(DefineConstants);TRACE_WARNING</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable the use of native Windows APIs, when available?
+  -->
+  <PropertyGroup Condition="'$(UseWindows)' != 'false'">
+    <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+  </PropertyGroup>
+
+  <!--
+      NOTE: Enable the use of Entity Framework 6 or higher?
+  -->
+  <PropertyGroup Condition="'$(UseEntityFramework6)' != 'false'">
+    <DefineConstants>$(DefineConstants);USE_ENTITY_FRAMEWORK_6</DefineConstants>
+  </PropertyGroup>
+</Project>
