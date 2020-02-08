@@ -7,11 +7,11 @@ using Unity;
 
 namespace Native.Core
 {
-	class CQMain
+	public class CQMain
 	{
-		internal static void Register (IUnityContainer unityContainer)
+		public static void Register (IUnityContainer unityContainer)
 		{
-			throw new NotImplementedException ();
+			
 		}
 	}
 }

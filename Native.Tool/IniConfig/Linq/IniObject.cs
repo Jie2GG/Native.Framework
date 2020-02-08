@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Native.Tool.IniConfig.Exception;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Native.Tool.IniConfig.Linq
 	/// 用于描述 Ini 配置项的类
 	/// </summary>
 	[Serializable]
-	public class IniObject : Dictionary<string, IniSection>
+	public class IniObject : List<IniSection>
 	{
 		#region --字段--
 		private string _filePath = string.Empty;
@@ -27,43 +28,42 @@ namespace Native.Tool.IniConfig.Linq
 
 		#region --属性--
 		/// <summary>
-		/// 根据索引查找读取或设置与指定键关联的值
+		/// 通过名字获取或设置指定索引处的元素
 		/// </summary>
-		/// <param name="index">键索引</param>
-		/// <exception cref="ArgumentOutOfRangeException">index 小于 0 或大于或等于的中的元素数 source。</exception>
-		/// <returns></returns>
-		public IniSection this[int index]
+		/// <param name="name">节名称</param>
+		/// <exception cref="SectionNotFoundException">无法通过名字定位 <see cref="IniSection"/> 的位置</exception>
+		/// <returns>指定索引处的元素</returns>
+		public IniSection this[string name]
 		{
 			get
 			{
-				return this[this.Keys.ElementAt (index)];
-			}
-			set
-			{
-				this[this.Keys.ElementAt (index)] = value;
-			}
-		}
-
-		/// <summary>
-		/// 根据指定的 "节" 名称读取或设置与指定键关联的值 (此索引器允许直接对不存在的键进行设置)
-		/// </summary>
-		/// <param name="name">要获取或设置的值的 "节" 名称</param>
-		/// <returns></returns>
-		public new IniSection this[string name]
-		{
-			get
-			{
-				return base[name];
-			}
-			set
-			{
-				if (this.ContainsKey (name))
+				try
 				{
-					base[name] = value;
+					return this.Where (temp => temp.Name.CompareTo (name) == 0).First ();
 				}
-				else
+				catch (ArgumentNullException ex)
 				{
-					this.Add (value);
+					throw new SectionNotFoundException (string.Format ("无法通过指定的名称 {0} 找到对应的 IniSection", name), ex);
+				}
+				catch (InvalidOperationException ex)
+				{
+					throw new SectionNotFoundException (string.Format ("无法通过指定的名称 {0} 找到对应的 IniSection", name), ex);
+				}
+			}
+			set
+			{
+				try
+				{
+					IniSection section = this.Where (temp => temp.Name.CompareTo (name) == 0).First ();
+					this[this.IndexOf (section)] = value;
+				}
+				catch (ArgumentNullException ex)
+				{
+					throw new SectionNotFoundException (string.Format ("无法通过指定的名称 {0} 找到对应的 IniSection", name), ex);
+				}
+				catch (InvalidOperationException ex)
+				{
+					throw new SectionNotFoundException (string.Format ("无法通过指定的名称 {0} 找到对应的 IniSection", name), ex);
 				}
 			}
 		}
@@ -86,56 +86,31 @@ namespace Native.Tool.IniConfig.Linq
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例为空, 具有默认的初始容量并为键类型使用默认的相等比较器
+		/// 初始化 <see cref="IniObject"/> 类的新实例，该实例为空并且具有默认初始容量
 		/// </summary>
 		public IniObject ()
-			: base ()
 		{ }
+
 		/// <summary>
-		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例为空, 具有指定的初始容量并未键类型提供默认的相等比较器
+		/// 初始化 <see cref="IniObject"/> 类的新实例，该实例为空并且具有指定的初始容量
 		/// </summary>
-		/// <param name="capacity"></param>
+		/// <param name="capacity">新列表最初可以存储的元素数</param>
+		/// <exception cref="ArgumentOutOfRangeException">capacity 小于 0</exception>
 		public IniObject (int capacity)
 			: base (capacity)
 		{ }
-		/// <summary>
-		/// 初始化 <see cref="IniObject"/> 类的新实例, 该实例从包含指定的 <see cref="IDictionary{String, IniSection}"/> 赋值的元素并为键类型使用默认的相等比较器
-		/// </summary>
-		/// <param name="dictionary"><see cref="IDictionary{String, IniSection}"/>, 它的元素被复制到新 <see cref="IniObject"/> </param>
-		public IniObject (IDictionary<string, IniSection> dictionary)
-			: base (dictionary)
-		{ }
-		/// <summary>
-		/// 用序列化数据初始化 <see cref="IniObject"/> 类的新实例
-		/// </summary>
-		/// <param name="serializationInfo">一个 <see cref="SerializationInfo"/> 包含 <see cref="IniObject"/> 所需的信息。</param>
-		/// <param name="streamingContext">一个 <see cref="StreamingContext"/> 结构包含与 <see cref="IniObject"/> 关联的序列化流的源和目标。</param>
-		protected IniObject (System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext)
-			: base (serializationInfo, streamingContext)
-		{
 
-		}
+		/// <summary>
+		/// 初始化 <see cref="IniObject"/> 类的新实例，该实例包含从指定集合复制的元素并且具有足够的容量来容纳所复制的元素
+		/// </summary>
+		/// <param name="collection">一个集合，其元素被复制到新列表中</param>
+		/// <exception cref="ArgumentNullException">collection 为 null</exception>
+		public IniObject (IEnumerable<IniSection> collection)
+			: base (collection)
+		{ }
 		#endregion
 
 		#region --公开方法--
-		/// <summary>
-		/// 将指定的 <see cref="IniSection"/> 添加到当前 <see cref="IniObject"/> 实例, 并以 <see cref="IniSection.Name"/> 作为键
-		/// </summary>
-		/// <param name="section">要添加到结尾的 <see cref="IniSection"/> 实例</param>
-		public void Add (IniSection section)
-		{
-			base.Add (section.Name, section);
-		}
-
-		/// <summary>
-		/// 创建一个数组, 从 <see cref="IniObject"/>
-		/// </summary>
-		/// <returns>返回当前实例内所有 <see cref="IniSection"/> 的集合</returns>
-		public IniSection[] ToArray ()
-		{
-			return this.Values.ToArray ();
-		}
-
 		/// <summary>
 		/// 将 Ini 配置项保存到指定的文件。如果存在指定文件，则此方法会覆盖它
 		/// </summary>
@@ -172,7 +147,7 @@ namespace Native.Tool.IniConfig.Linq
 
 			using (TextWriter textWriter = new StreamWriter (fileUri.GetComponents (UriComponents.Path, UriFormat.Unescaped), false, this.Encoding))
 			{
-				foreach (IniSection section in this.Values)
+				foreach (IniSection section in this)
 				{
 					textWriter.WriteLine ("[{0}]", section.Name);
 					foreach (KeyValuePair<string, IniValue> pair in section)
@@ -287,7 +262,7 @@ namespace Native.Tool.IniConfig.Linq
 		private static IniObject ParseIni (TextReader textReader)
 		{
 			IniObject iniObj = new IniObject ();
-			string section = null;
+			IniSection iniSect = null;
 			while (textReader.Peek () != -1)
 			{
 				string line = textReader.ReadLine ();
@@ -296,31 +271,19 @@ namespace Native.Tool.IniConfig.Linq
 					Match match = Regices[0].Match (line);
 					if (match.Success)
 					{
-						section = match.Groups[1].Value;
-						iniObj.Add (new IniSection (section));
+						iniSect = new IniSection (match.Groups[1].Value);
+						iniObj.Add (iniSect);
 						continue;
 					}
 
 					match = Regices[1].Match (line);
 					if (match.Success)
 					{
-						iniObj[section].Add (match.Groups[1].Value.Trim (), match.Groups[2].Value);
+						iniSect.Add (match.Groups[1].Value.Trim (), match.Groups[2].Value);
 					}
 				}
 			}
 			return iniObj;
-		}
-		#endregion
-
-		#region --重载方法--
-		/// <summary>
-		/// 将指定的键和值添加到 <see cref="IniObject"/> 的结尾处
-		/// </summary>
-		/// <param name="key">此变量无需使用</param>
-		/// <param name="value"></param>
-		public new void Add (string key, IniSection value)
-		{
-			base.Add (value.Name, value);
 		}
 		#endregion
 
@@ -334,7 +297,7 @@ namespace Native.Tool.IniConfig.Linq
 			StringBuilder iniString = new StringBuilder ();
 			using (TextWriter textWriter = new StringWriter (iniString))
 			{
-				foreach (IniSection section in this.Values)
+				foreach (IniSection section in this)
 				{
 					textWriter.WriteLine ("[{0}]", section.Name.Trim ());
 					foreach (KeyValuePair<string, IniValue> pair in section)

@@ -50,10 +50,14 @@
     <Compile Include="Http\HttpWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="IniConfig\Attribute\IniConfigKeyAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniConfigSectionAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniNonSerializeAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniSerializeAttribute.cs" />
+    <Compile Include="IniConfig\Exception\IniConfigException.cs" />
+    <Compile Include="IniConfig\Exception\PropertyNotFoundException.cs" />
+    <Compile Include="IniConfig\Exception\SectionNotFoundException.cs" />
     <Compile Include="IniConfig\IniConvert.cs" />
-    <Compile Include="IniConfig\IniKeyAttribute.cs" />
-    <Compile Include="IniConfig\IniSectionAttribute.cs" />
-    <Compile Include="IniConfig\IniNonSerializeAttribute.cs" />
     <Compile Include="IniConfig\Linq\IniObject.cs" />
     <Compile Include="IniConfig\Linq\IniSection.cs" />
     <Compile Include="IniConfig\Linq\IniValue.cs" />
@@ -140,5 +144,6 @@
     <Content Include="SQLite\Resources\SQLiteConnection.bmp" />
     <Content Include="SQLite\Resources\SQLiteDataAdapter.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
