@@ -31,6 +31,8 @@ namespace Native.App.Export
 			// 初始化 Costura.Fody	
 			CosturaUtility.Initialize ();	
 			
+			Type appDataType = typeof (AppData);	
+			appDataType.GetRuntimeProperty ("UnityContainer").GetSetMethod (true).Invoke (null, new object[] { new UnityContainer () });	
 			// 调用方法进行注册	
 			CQMain.Register (AppData.UnityContainer);	
 			
@@ -47,7 +49,7 @@ namespace Native.App.Export
 		[DllExport (ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]	
 		private static string AppInfo ()	
 		{	
-			return "9,com.jiegg.demo";	
+			return "9,Native.Core";	
 		}	
 		
 		/// <summary>	
@@ -62,10 +64,10 @@ namespace Native.App.Export
 			Type appDataType = typeof (AppData);	
 			// 注册一个 CQApi 实例	
 			appDataType.GetRuntimeProperty ("CQApi").GetSetMethod (true).Invoke (null, new object[] { new CQApi (authCode) });	
-			AppData.UnityContainer.RegisterInstance<CQApi> ("com.jiegg.demo", AppData.CQApi);	
+			AppData.UnityContainer.RegisterInstance<CQApi> ("Native.Core", AppData.CQApi);	
 			// 向容器注册一个 CQLog 实例	
 			appDataType.GetRuntimeProperty ("CQLog").GetSetMethod (true).Invoke (null, new object[] { new CQLog (authCode) });	
-			AppData.UnityContainer.RegisterInstance<CQLog> ("com.jiegg.demo", AppData.CQLog);	
+			AppData.UnityContainer.RegisterInstance<CQLog> ("Native.Core", AppData.CQLog);	
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
