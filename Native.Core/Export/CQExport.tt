@@ -40,6 +40,7 @@
 		TemplateBuilder.UsingItems.Add ("Native.Core");
 		TemplateBuilder.UsingItems.Add ("Native.Core.Domain");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp");
+		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Enum");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Expand");
@@ -337,6 +338,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), {5});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -350,6 +352,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupMessageEventArgs args = new CQGroupMessageEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg.ToString(CQApi.DefaultEncoding), {5});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -363,6 +366,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQDiscussMessageEventArgs args = new CQDiscussMessageEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, msgId, fromNative, fromQQ, msg.ToString(CQApi.DefaultEncoding), {5});", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> (), isRegex.ToString ().ToLower ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -376,6 +380,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupUploadEventArgs args = new CQGroupUploadEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, file);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -389,6 +394,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupManageChangeEventArgs args = new CQGroupManageChangeEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, beingOperateQQ);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -402,6 +408,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupMemberDecreaseEventArgs args = new CQGroupMemberDecreaseEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -415,6 +422,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupMemberIncreaseEventArgs args = new CQGroupMemberIncreaseEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, beingOperateQQ);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -428,6 +436,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupBanSpeakEventArgs args = new CQGroupBanSpeakEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -441,6 +450,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQFriendAddEventArgs args = new CQFriendAddEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromQQ);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -454,6 +464,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQFriendAddRequestEventArgs args = new CQFriendAddRequestEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");
@@ -467,6 +478,7 @@
 						TemplateBuilder.WriteLine (2, "{");
 						TemplateBuilder.WriteFormatLine (3, "CQGroupAddRequestEventArgs args = new CQGroupAddRequestEventArgs (AppData.CQApi, AppData.CQLog, {0}, {1}, \"{2}\", \"{3}\", {4}, subType, sendTime, fromGroup, fromQQ, msg.ToString (CQApi.DefaultEncoding), responseFlag);", token["id"].Value<int> (), token["type"].Value<int> (), token["name"].Value<string> (), token["function"].Value<string> (), token["priority"].Value<uint> ());
 						TemplateBuilder.WriteFormatLine (3, "Event{0}Handler (typeof (CQEventExport), args);", token["function"].Value<string> ());
+						TemplateBuilder.WriteFormatLine (3, "return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);");
 						TemplateBuilder.WriteLine (2, "}");
 						TemplateBuilder.WriteLine (2, "return 0;");
 						TemplateBuilder.WriteLine (1, "}");

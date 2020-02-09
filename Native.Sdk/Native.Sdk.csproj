@@ -61,6 +61,7 @@
     <Compile Include="Cqp\Enum\CQGroupMessageType.cs" />
     <Compile Include="Cqp\Enum\CQLogLevel.cs" />
     <Compile Include="Cqp\Enum\CQMessageEventType.cs" />
+    <Compile Include="Cqp\Enum\CQMessageHandler.cs" />
     <Compile Include="Cqp\Enum\CQMusicStyle.cs" />
     <Compile Include="Cqp\Enum\CQMusicType.cs" />
     <Compile Include="Cqp\Enum\CQPrviateMessageType.cs" />
