@@ -25,4 +25,4 @@ Native.SDK  是为了方便 .Net 平台开发者高效开发 酷Q应用 的开�
 
 您的支持就是我更新的动力!
 
-<img src="https://s2.ax1x.com/2020/02/09/1fvDgI.png" alt="支付宝二维码" width="260" height="350"><img src="https://s2.ax1x.com/2020/02/09/1fvB8A.png" alt="微信二维码" width="260" height="350">
+<img src="https://jie2gg.github.io/Image/AliPlay.png" alt="支付宝二维码" width="260" height="350"><img src="https://jie2gg.github.io/Image/WeChat.png" alt="微信二维码" width="260" height="350">
