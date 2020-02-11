@@ -45,7 +45,7 @@ namespace Native.Sdk.Cqp.EventArgs
 		/// <summary>
 		/// 获取当前事件用于处理请求的反馈标识
 		/// </summary>
-		public string ResponseFlag { get; private set; }
+		public QQRequest Request { get; private set; }
 		#endregion
 
 		#region --构造函数--
@@ -73,7 +73,7 @@ namespace Native.Sdk.Cqp.EventArgs
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
 			this.AppendMessage = msg;
-			this.ResponseFlag = responseFlag;
+			this.Request = new QQRequest (api, responseFlag);
 		}
 		#endregion
 

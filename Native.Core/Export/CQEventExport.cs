@@ -12,6 +12,7 @@ using Native.Sdk.Cqp.Enum;
 using Native.Sdk.Cqp.EventArgs;
 using Native.Sdk.Cqp.Interface;
 using Native.Sdk.Cqp.Expand;
+using Native.Sdk.Cqp.Model;
 using Unity;
 using Unity.Injection;
 
@@ -63,7 +64,8 @@ namespace Native.App.Export
 			// 反射获取 AppData 实例	
 			Type appDataType = typeof (AppData);	
 			// 注册一个 CQApi 实例	
-			appDataType.GetRuntimeProperty ("CQApi").GetSetMethod (true).Invoke (null, new object[] { new CQApi (authCode) });	
+			AppInfo appInfo = new AppInfo ("Native.Core", 1, 9, "酷Q样例应用 for C#", "1.0.0", 1, "JieGG", "酷Q样例应用(V9应用机制)", authCode);	
+			appDataType.GetRuntimeProperty ("CQApi").GetSetMethod (true).Invoke (null, new object[] { new CQApi (appInfo) });	
 			AppData.UnityContainer.RegisterInstance<CQApi> ("Native.Core", AppData.CQApi);	
 			// 向容器注册一个 CQLog 实例	
 			appDataType.GetRuntimeProperty ("CQLog").GetSetMethod (true).Invoke (null, new object[] { new CQLog (authCode) });	

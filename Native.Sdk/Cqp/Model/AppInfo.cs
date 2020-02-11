@@ -11,44 +11,78 @@ namespace Native.Sdk.Cqp.Model
 	/// </summary>
 	public class AppInfo
 	{
+		#region --属性--
 		/// <summary>
 		/// 获取当前应用的 AppID
 		/// </summary>
-		public static string Id { get; private set; }
+		public string Id { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的返回码
 		/// </summary>
-		public static int ResultCode { get; private set; }
+		public int ResultCode { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的 Api 版本
 		/// </summary>
-		public static int ApiVersion { get; private set; }
+		public int ApiVersion { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的名称
 		/// </summary>
-		public static string Name { get; private set; }
+		public string Name { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的版本号
 		/// </summary>
-		public static Version Version { get; private set; }
+		public Version Version { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的顺序版本
 		/// </summary>
-		public static int VersionId { get; private set; }
+		public int VersionId { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的作者名
 		/// </summary>
-		public static string Author { get; private set; }
+		public string Author { get; private set; }
 
 		/// <summary>
 		/// 获取当前应用的说明文本
 		/// </summary>
-		public static string Description { get; private set; }
+		public string Description { get; private set; }
+
+		/// <summary>
+		/// 获取当前应用的验证码
+		/// </summary>
+		public int AuthCode { get; private set; }
+		#endregion
+
+		#region --构造函数--
+		/// <summary>
+		/// 初始化 <see cref="AppInfo"/> 类的新实例
+		/// </summary>
+		/// <param name="id">当前应用appid</param>
+		/// <param name="resCode">返回码</param>
+		/// <param name="apiVer">api版本</param>
+		/// <param name="name">应用名称</param>
+		/// <param name="version">版本号</param>
+		/// <param name="versionId">版本id</param>
+		/// <param name="author">应用作者</param>
+		/// <param name="description">应用说明</param>
+		/// <param name="authCode">应用授权码</param>
+		public AppInfo (string id, int resCode, int apiVer, string name, string version, int versionId, string author, string description, int authCode)
+		{
+			this.Id = id;
+			this.ResultCode = resCode;
+			this.ApiVersion = apiVer;
+			this.Name = name;
+			this.Version = new Version (version);
+			this.VersionId = versionId;
+			this.Author = author;
+			this.Description = description;
+			this.AuthCode = authCode;
+		}
+		#endregion
 	}
 }

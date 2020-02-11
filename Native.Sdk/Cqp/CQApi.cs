@@ -19,7 +19,7 @@ namespace Native.Sdk.Cqp
 	public class CQApi
 	{
 		#region --字段--
-		private readonly int _authCode = 0;
+		private readonly AppInfo _appInfo = null;
 		private static readonly Encoding _defaultEncoding = null;
 		private string _appDirectoryCache = null;
 		#endregion
@@ -31,11 +31,6 @@ namespace Native.Sdk.Cqp
 		public static Encoding DefaultEncoding { get { return _defaultEncoding; } }
 
 		/// <summary>
-		/// 获取当前实例的验证码
-		/// </summary>
-		public int AuthCode { get { return _authCode; } }
-
-		/// <summary>
 		/// 获取酷Q分配给本应用的数据路径 (所用应用数据应存放于此路径下)
 		/// </summary>
 		public string AppDirectory
@@ -44,21 +39,26 @@ namespace Native.Sdk.Cqp
 			{
 				if (string.IsNullOrEmpty (this._appDirectoryCache))
 				{
-					this._appDirectoryCache = CQP.CQ_getAppDirectory (AuthCode).ToString (DefaultEncoding);
+					this._appDirectoryCache = CQP.CQ_getAppDirectory (this.AppInfo.AuthCode).ToString (DefaultEncoding);
 				}
 				return this._appDirectoryCache;
 			}
 		}
 
 		/// <summary>
+		/// 获取当前实例的应用信息
+		/// </summary>
+		public AppInfo AppInfo { get { return this._appInfo; } }
+
+		/// <summary>
 		/// 获取一个值, 指示正在运行的酷Q版本是否支持发送语音
 		/// </summary>
-		public bool IsAllowSendRecord { get { return CQP.CQ_canSendRecord (AuthCode) > 0; } }
+		public bool IsAllowSendRecord { get { return CQP.CQ_canSendRecord (this.AppInfo.AuthCode) > 0; } }
 
 		/// <summary>
 		/// 获取一个值, 指示正在运行的酷Q版本是否支持发送图片
 		/// </summary>
-		public bool IsAllowSendImage { get { return CQP.CQ_canSendImage (AuthCode) > 0; } }
+		public bool IsAllowSendImage { get { return CQP.CQ_canSendImage (this.AppInfo.AuthCode) > 0; } }
 		#endregion
 
 		#region --构造函数--
@@ -73,10 +73,10 @@ namespace Native.Sdk.Cqp
 		/// <summary>
 		/// 初始化 <see cref="CQApi"/> 类的新实例, 该实例由 <code>Initialize</code> 函数进行授权
 		/// </summary>
-		/// <param name="authCode">授权码</param>
-		public CQApi (int authCode)
+		/// <param name="appInfo">授权码</param>
+		public CQApi (AppInfo appInfo)
 		{
-			this._authCode = authCode;
+			this._appInfo = appInfo;
 		}
 		#endregion
 
@@ -466,7 +466,7 @@ namespace Native.Sdk.Cqp
 			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_sendGroupMsg (this.AuthCode, groupId, messageHandle.AddrOfPinnedObject ());
+				return CQP.CQ_sendGroupMsg (this.AppInfo.AuthCode, groupId, messageHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{
@@ -511,7 +511,7 @@ namespace Native.Sdk.Cqp
 			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_sendPrivateMsg (this.AuthCode, qqId, messageHandle.AddrOfPinnedObject ());
+				return CQP.CQ_sendPrivateMsg (this.AppInfo.AuthCode, qqId, messageHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{
@@ -556,7 +556,7 @@ namespace Native.Sdk.Cqp
 			GCHandle messageHandle = message.ToSendString ().GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_sendDiscussMsg (this.AuthCode, discussId, messageHandle.AddrOfPinnedObject ());
+				return CQP.CQ_sendDiscussMsg (this.AppInfo.AuthCode, discussId, messageHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{
@@ -589,7 +589,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 或 count 超出范围</exception>
-		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SendPraise (long qqId, int count = 1)
 		{
 			if (qqId < QQ.MinValue)
@@ -602,7 +602,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("count", count, "点赞次数超出可处理范围, 其次数最少为 1, 最多为 10");
 			}
 
-			return CQP.CQ_sendLikeV2 (this.AuthCode, qqId, count) == 0;
+			return CQP.CQ_sendLikeV2 (this.AppInfo.AuthCode, qqId, count) == 0;
 		}
 
 		/// <summary>
@@ -612,7 +612,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
 		/// <exception cref="ArgumentNullException">参数: qq 为 null</exception>
 		/// <exception cref="ArgumentOutOfRangeException">参数: count 超出范围</exception>
-		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SendPraise (QQ qq, int count = 1)
 		{
 			if (qq == null)
@@ -628,7 +628,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="msgId">消息Id</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: msgId 超出范围</exception>
-		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveMessage (int msgId)
 		{
 			if (msgId < 0)
@@ -636,7 +636,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("msgId");
 			}
 
-			return CQP.CQ_deleteMsg (this.AuthCode, msgId) == 0;
+			return CQP.CQ_deleteMsg (this.AppInfo.AuthCode, msgId) == 0;
 		}
 
 		/// <summary>
@@ -644,7 +644,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="message">消息</param>
 		/// <exception cref="ArgumentNullException">参数: message 为 null</exception>
-		/// <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveMessage (QQMessage message)
 		{
 			if (message == null)
@@ -674,7 +674,7 @@ namespace Native.Sdk.Cqp
 
 			try
 			{
-				return CQP.CQ_getRecordV2 (AuthCode, fileNameHandler.AddrOfPinnedObject (), formatHandler.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
+				return CQP.CQ_getRecordV2 (this.AppInfo.AuthCode, fileNameHandler.AddrOfPinnedObject (), formatHandler.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
 			}
 			finally
 			{
@@ -722,7 +722,7 @@ namespace Native.Sdk.Cqp
 			GCHandle handle = fileName.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_getImage (AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
+				return CQP.CQ_getImage (this.AppInfo.AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
 			}
 			finally
 			{
@@ -760,7 +760,7 @@ namespace Native.Sdk.Cqp
 		/// <returns>返回当前酷Q框架登录的帐号</returns>
 		public long GetLoginQQId ()
 		{
-			return CQP.CQ_getLoginQQ (this.AuthCode);
+			return CQP.CQ_getLoginQQ (this.AppInfo.AuthCode);
 		}
 
 		/// <summary>
@@ -783,7 +783,7 @@ namespace Native.Sdk.Cqp
 		/// <returns>返回当前登录帐号的昵称字符串</returns>
 		public string GetLoginNick ()
 		{
-			return CQP.CQ_getLoginNick (this.AuthCode).ToString (CQApi.DefaultEncoding);
+			return CQP.CQ_getLoginNick (this.AppInfo.AuthCode).ToString (CQApi.DefaultEncoding);
 		}
 
 		/// <summary>
@@ -802,7 +802,7 @@ namespace Native.Sdk.Cqp
 			GCHandle handle = domain.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_getCookiesV2 (AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
+				return CQP.CQ_getCookiesV2 (this.AppInfo.AuthCode, handle.AddrOfPinnedObject ()).ToString (CQApi.DefaultEncoding);
 			}
 			finally
 			{
@@ -852,7 +852,7 @@ namespace Native.Sdk.Cqp
 		/// <returns>返回 bkn/g_tk 值</returns>
 		public int GetCsrfToken ()
 		{
-			return CQP.CQ_getCsrfToken (this.AuthCode);
+			return CQP.CQ_getCsrfToken (this.AppInfo.AuthCode);
 		}
 
 		/// <summary>
@@ -870,7 +870,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getStrangerInfo (this.AuthCode, qqId, notCache).ToString (CQApi.DefaultEncoding));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getStrangerInfo (this.AppInfo.AuthCode, qqId, notCache).ToString (CQApi.DefaultEncoding));
 			try
 			{
 				return new StrangerInfo (this, data);
@@ -921,7 +921,7 @@ namespace Native.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="List{FriendInfo}"/>, 失败返回 <code>null</code></returns>
 		public List<FriendInfo> GetFriendList ()
 		{
-			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (AuthCode, false).ToString (_defaultEncoding));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getFriendList (this.AppInfo.AuthCode, false).ToString (_defaultEncoding));
 			if (data == null)
 			{
 #if DEBUG
@@ -994,7 +994,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberInfoV2 (this.AuthCode, groupId, qqId, notCache).ToString (CQApi.DefaultEncoding));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberInfoV2 (this.AppInfo.AuthCode, groupId, qqId, notCache).ToString (CQApi.DefaultEncoding));
 			try
 			{
 				return new GroupMemberInfo (this, data);
@@ -1071,7 +1071,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (this.AuthCode, groupId).ToString (CQApi.DefaultEncoding));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupMemberList (this.AppInfo.AuthCode, groupId).ToString (CQApi.DefaultEncoding));
 			if (data == null)
 			{
 #if DEBUG
@@ -1170,7 +1170,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (this.AuthCode, groupId, notCache).ToString (CQApi.DefaultEncoding));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupInfo (this.AppInfo.AuthCode, groupId, notCache).ToString (CQApi.DefaultEncoding));
 
 			try
 			{
@@ -1235,7 +1235,7 @@ namespace Native.Sdk.Cqp
 		/// <returns>获取成功返回 <see cref="List{GroupInfo}"/> 对象, 失败返回 <code>null</code></returns>
 		public List<GroupInfo> GetGroupList ()
 		{
-			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupList (AuthCode).ToString (Encoding.ASCII));
+			byte[] data = Convert.FromBase64String (CQP.CQ_getGroupList (this.AppInfo.AuthCode).ToString (Encoding.ASCII));
 			if (data == null)
 			{
 #if DEBUG
@@ -1297,7 +1297,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 time 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: anonymous 是 null</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAnonymousMemberBanSpeak (long groupId, GroupMemberAnonymousInfo anonymous, TimeSpan time)
 		{
 			if (groupId < Group.MinValue)
@@ -1318,7 +1318,7 @@ namespace Native.Sdk.Cqp
 			GCHandle anonymousHandle = anonymous.OriginalString.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupAnonymousBan (this.AuthCode, groupId, anonymousHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+				return CQP.CQ_setGroupAnonymousBan (this.AppInfo.AuthCode, groupId, anonymousHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
 			}
 			finally
 			{
@@ -1334,7 +1334,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
 		/// <exception cref="ArgumentNullException">参数: group 或 anonymous 是 null</exception>
 		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupAnonymousMemberBanSpeak (Group group, GroupMemberAnonymousInfo anonymous, TimeSpan time)
 		{
 			if (group == null)
@@ -1363,7 +1363,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 、qqId 或 time 超出范围</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupMemberBanSpeak (long groupId, long qqId, TimeSpan time)
 		{
 			if (groupId < Group.MinValue)
@@ -1381,7 +1381,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("time");
 			}
 
-			return CQP.CQ_setGroupBan (this.AuthCode, groupId, qqId, (long)time.TotalSeconds) == 0;
+			return CQP.CQ_setGroupBan (this.AppInfo.AuthCode, groupId, qqId, (long)time.TotalSeconds) == 0;
 		}
 
 		/// <summary>
@@ -1392,7 +1392,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
 		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
 		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool SetGroupMemberBanSpeak (Group group, QQ qq, TimeSpan time)
 		{
 			if (group == null)
@@ -1421,7 +1421,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="groupId">目标群号</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool RemoveGroupMemberBanSpeak (long groupId, long qqId)
 		{
 			if (groupId < Group.MinValue)
@@ -1434,7 +1434,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			return CQP.CQ_setGroupBan (this.AuthCode, groupId, qqId, 0) == 0;
+			return CQP.CQ_setGroupBan (this.AppInfo.AuthCode, groupId, qqId, 0) == 0;
 		}
 
 		/// <summary>
@@ -1443,7 +1443,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="group">目标群号</param>
 		/// <param name="qq">目标QQ</param>
 		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
 		public bool RemoveGroupMemberBanSpeak (Group group, QQ qq)
 		{
 			if (group == null)
@@ -1472,7 +1472,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			return CQP.CQ_setGroupWholeBan (this.AuthCode, groupId, true) == 0;
+			return CQP.CQ_setGroupWholeBan (this.AppInfo.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1504,7 +1504,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			return CQP.CQ_setGroupWholeBan (this.AuthCode, groupId, false) == 0;
+			return CQP.CQ_setGroupWholeBan (this.AppInfo.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1531,7 +1531,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="newName">新名称</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: newName 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberVisitingCard (long groupId, long qqId, string newName)
 		{
 			if (groupId < Group.MinValue)
@@ -1552,7 +1552,7 @@ namespace Native.Sdk.Cqp
 			GCHandle newNameHandle = newName.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupCard (this.AuthCode, groupId, qqId, newNameHandle.AddrOfPinnedObject ()) == 0;
+				return CQP.CQ_setGroupCard (this.AppInfo.AuthCode, groupId, qqId, newNameHandle.AddrOfPinnedObject ()) == 0;
 			}
 			finally
 			{
@@ -1567,7 +1567,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qq">目标QQ</param>
 		/// <param name="newName">新名称</param>
 		/// <exception cref="ArgumentNullException">参数: group、qq 或 newName 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberVisitingCard (Group group, QQ qq, string newName)
 		{
 			if (group == null)
@@ -1599,7 +1599,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="time">过期时间</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId、qqId 或 time 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: newTtitle 是 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberExclusiveTitle (long groupId, long qqId, string newTitle, TimeSpan time)
 		{
 			if (groupId < Group.MinValue)
@@ -1625,7 +1625,7 @@ namespace Native.Sdk.Cqp
 			GCHandle newTitleHandle = newTitle.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
+				return CQP.CQ_setGroupSpecialTitle (this.AppInfo.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), (long)time.TotalSeconds) == 0;
 			}
 			finally
 			{
@@ -1642,7 +1642,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="time">过期时间 (范围: 1秒 ~ 30天)</param>
 		/// <exception cref="ArgumentNullException">参数: group、qq 或 newTitle 为 null</exception>
 		/// <exception cref="ArgumentOutOfRangeException">参数: time 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberExclusiveTitle (Group group, QQ qq, string newTitle, TimeSpan time)
 		{
 			if (group == null)
@@ -1677,7 +1677,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="newTitle">新头衔</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: newTitle 是 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberForeverExclusiveTitle (long groupId, long qqId, string newTitle)
 		{
 			if (groupId < Group.MinValue)
@@ -1698,7 +1698,7 @@ namespace Native.Sdk.Cqp
 			GCHandle newTitleHandle = newTitle.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupSpecialTitle (this.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), -1) == 0;
+				return CQP.CQ_setGroupSpecialTitle (this.AppInfo.AuthCode, groupId, qqId, newTitleHandle.AddrOfPinnedObject (), -1) == 0;
 			}
 			finally
 			{
@@ -1713,7 +1713,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qq">目标QQ</param>
 		/// <param name="newTitle">新头衔</param>
 		/// <exception cref="ArgumentNullException">参数: group、qq 或 newTitle 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupMemberForeverExclusiveTitle (Group group, QQ qq, string newTitle)
 		{
 			if (group == null)
@@ -1742,7 +1742,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupManage (long groupId, long qqId)
 		{
 			if (groupId < Group.MinValue)
@@ -1755,7 +1755,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			return CQP.CQ_setGroupAdmin (this.AuthCode, groupId, qqId, true) == 0;
+			return CQP.CQ_setGroupAdmin (this.AppInfo.AuthCode, groupId, qqId, true) == 0;
 		}
 
 		/// <summary>
@@ -1764,7 +1764,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
 		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool SetGroupManage (Group group, QQ qq)
 		{
 			if (group == null)
@@ -1786,7 +1786,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="groupId">目标群</param>
 		/// <param name="qqId">目标QQ</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupManage (long groupId, long qqId)
 		{
 			if (groupId < Group.MinValue)
@@ -1799,7 +1799,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			return CQP.CQ_setGroupAdmin (this.AuthCode, groupId, qqId, false) == 0;
+			return CQP.CQ_setGroupAdmin (this.AppInfo.AuthCode, groupId, qqId, false) == 0;
 		}
 
 		/// <summary>
@@ -1808,7 +1808,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="group">目标群</param>
 		/// <param name="qq">目标QQ</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: group 或 qq 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupManage (Group group, QQ qq)
 		{
 			if (group == null)
@@ -1829,14 +1829,14 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool OpenGroupAnonymous (long groupId)
 		{
 			if (groupId < Group.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
-			return CQP.CQ_setGroupAnonymous (this.AuthCode, groupId, true) == 0;
+			return CQP.CQ_setGroupAnonymous (this.AppInfo.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1844,7 +1844,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool OpenGroupAnonymous (Group group)
 		{
 			if (group == null)
@@ -1860,14 +1860,14 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool StopGroupAnonymous (long groupId)
 		{
 			if (groupId < Group.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
-			return CQP.CQ_setGroupAnonymous (this.AuthCode, groupId, false) == 0;
+			return CQP.CQ_setGroupAnonymous (this.AppInfo.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1875,7 +1875,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool StopGroupAnonymous (Group group)
 		{
 			if (group == null)
@@ -1891,14 +1891,14 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitGroup (long groupId)
 		{
 			if (groupId < Group.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
-			return CQP.CQ_setGroupLeave (this.AuthCode, groupId, false) == 0;
+			return CQP.CQ_setGroupLeave (this.AppInfo.AuthCode, groupId, false) == 0;
 		}
 
 		/// <summary>
@@ -1906,7 +1906,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitGroup (Group group)
 		{
 			if (group == null)
@@ -1922,7 +1922,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="groupId">目标群</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool DissolutionGroup (long groupId)
 		{
 			if (groupId < Group.MinValue)
@@ -1930,7 +1930,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("groupId");
 			}
 
-			return CQP.CQ_setGroupLeave (this.AuthCode, groupId, true) == 0;
+			return CQP.CQ_setGroupLeave (this.AppInfo.AuthCode, groupId, true) == 0;
 		}
 
 		/// <summary>
@@ -1938,7 +1938,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="group">目标群</param>
 		/// <exception cref="ArgumentNullException">参数: group 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool DissolutionGroup (Group group)
 		{
 			if (group == null)
@@ -1954,7 +1954,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="discussId">目标讨论组</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: discussId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitDiscuss (long discussId)
 		{
 			if (discussId < Discuss.MinValue)
@@ -1962,7 +1962,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("discussId");
 			}
 
-			return CQP.CQ_setDiscussLeave (this.AuthCode, discussId) == 0;
+			return CQP.CQ_setDiscussLeave (this.AppInfo.AuthCode, discussId) == 0;
 		}
 
 		/// <summary>
@@ -1970,7 +1970,7 @@ namespace Native.Sdk.Cqp
 		/// </summary>
 		/// <param name="discuss">目标讨论组</param>
 		/// <exception cref="ArgumentNullException">参数: discuss 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool ExitDiscuss (Discuss discuss)
 		{
 			if (discuss == null)
@@ -1988,7 +1988,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qqId">目标QQ</param>
 		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupMember (long groupId, long qqId, bool notRequest = false)
 		{
 			if (groupId < Group.MinValue)
@@ -2001,7 +2001,7 @@ namespace Native.Sdk.Cqp
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			return CQP.CQ_setGroupKick (this.AuthCode, groupId, qqId, notRequest) == 0;
+			return CQP.CQ_setGroupKick (this.AppInfo.AuthCode, groupId, qqId, notRequest) == 0;
 		}
 
 		/// <summary>
@@ -2011,7 +2011,7 @@ namespace Native.Sdk.Cqp
 		/// <param name="qq">目标QQ</param>
 		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
 		/// <exception cref="ArgumentNullException">参数: group 或 qq 为 null</exception>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
 		public bool RemoveGroupMember (Group group, QQ qq, bool notRequest = false)
 		{
 			if (group == null)
@@ -2032,21 +2032,21 @@ namespace Native.Sdk.Cqp
 		/// <summary>
 		/// 置好友添加请求
 		/// </summary>
-		/// <param name="tag">请求反馈标识</param>
+		/// <param name="responseFlag">请求反馈标识</param>
 		/// <param name="response">反馈类型</param>
-		/// <param name="notes">备注</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetFriendAddRequest (string tag, CQResponseType response, string notes = null)
+		/// <param name="appendMsg">备注</param>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		public bool SetFriendAddRequest (string responseFlag, CQResponseType response, string appendMsg = null)
 		{
-			if (notes == null)
+			if (appendMsg == null)
 			{
-				notes = string.Empty;
+				appendMsg = string.Empty;
 			}
-			GCHandle notesHandle = notes.GetStringGCHandle (CQApi.DefaultEncoding);
-			GCHandle tagHandler = tag.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle notesHandle = appendMsg.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle tagHandler = responseFlag.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setFriendAddRequest (this.AuthCode, tagHandler.AddrOfPinnedObject (), (int)response, notesHandle.AddrOfPinnedObject ()) == 0;
+				return CQP.CQ_setFriendAddRequest (this.AppInfo.AuthCode, tagHandler.AddrOfPinnedObject (), (int)response, notesHandle.AddrOfPinnedObject ()) == 0;
 			}
 			finally
 			{
@@ -2056,30 +2056,55 @@ namespace Native.Sdk.Cqp
 		}
 
 		/// <summary>
+		/// 置好友添加请求
+		/// </summary>
+		/// <param name="responseFlag">请求反馈对象</param>
+		/// <param name="response">反馈类型</param>
+		/// <param name="appendMsg">备注</param>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		public bool SetFriendAddRequest (QQRequest responseFlag, CQResponseType response, string appendMsg = null)
+		{
+			return this.SetFriendAddRequest (responseFlag.ResponseFlag, response, appendMsg);
+		}
+
+		/// <summary>
 		/// 置群添加请求
 		/// </summary>
-		/// <param name="tag">请求反馈标识</param>
+		/// <param name="responseFlag">请求反馈标识</param>
 		/// <param name="request">请求类型</param>
 		/// <param name="response">反馈类型</param>
 		/// <param name="appendMsg">备注</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetGroupAddRequest (string tag, CQGroupAddRequestType request, CQResponseType response, string appendMsg = null)
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		public bool SetGroupAddRequest (string responseFlag, CQGroupAddRequestType request, CQResponseType response, string appendMsg = null)
 		{
 			if (appendMsg == null)
 			{
 				appendMsg = string.Empty;
 			}
 			GCHandle appendMsgHandle = appendMsg.GetStringGCHandle (CQApi.DefaultEncoding);
-			GCHandle tagHandle = tag.GetStringGCHandle (CQApi.DefaultEncoding);
+			GCHandle tagHandle = responseFlag.GetStringGCHandle (CQApi.DefaultEncoding);
 			try
 			{
-				return CQP.CQ_setGroupAddRequestV2 (this.AuthCode, tagHandle.AddrOfPinnedObject (), (int)request, (int)response, appendMsgHandle.AddrOfPinnedObject ()) == 0;
+				return CQP.CQ_setGroupAddRequestV2 (this.AppInfo.AuthCode, tagHandle.AddrOfPinnedObject (), (int)request, (int)response, appendMsgHandle.AddrOfPinnedObject ()) == 0;
 			}
 			finally
 			{
 				appendMsgHandle.Free ();
 				tagHandle.Free ();
 			}
+		}
+
+		/// <summary>
+		/// 置群添加请求
+		/// </summary>
+		/// <param name="responseFlag">请求反馈对象</param>
+		/// <param name="request">请求类型</param>
+		/// <param name="response">反馈类型</param>
+		/// <param name="appendMsg">备注</param>
+		/// <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+		public bool SetGroupAddRequest (QQRequest responseFlag, CQGroupAddRequestType request, CQResponseType response, string appendMsg = null)
+		{
+			return this.SetGroupAddRequest (responseFlag.ResponseFlag, request, response, appendMsg);
 		}
 		#endregion
 	}

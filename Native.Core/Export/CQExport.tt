@@ -44,6 +44,7 @@
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.EventArgs");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Interface");
 		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Expand");
+		TemplateBuilder.UsingItems.Add ("Native.Sdk.Cqp.Model");
 		TemplateBuilder.UsingItems.Add ("Unity");
 		TemplateBuilder.UsingItems.Add ("Unity.Injection");
 
@@ -101,7 +102,18 @@
 		TemplateBuilder.WriteLine (2, "// 反射获取 AppData 实例");
 		TemplateBuilder.WriteLine (2, "Type appDataType = typeof (AppData);");
 		TemplateBuilder.WriteLine (2, "// 注册一个 CQApi 实例");
-		TemplateBuilder.WriteLine (2, "appDataType.GetRuntimeProperty (\"CQApi\").GetSetMethod (true).Invoke (null, new object[] { new CQApi (authCode) });");
+		TemplateBuilder.WriteFormatLine (2, 
+			"AppInfo appInfo = new AppInfo (\"{0}\", {1}, {2}, \"{3}\", \"{4}\", {5}, \"{6}\", \"{7}\", authCode);", 
+			this.Host.ResolveAssemblyReference ("$(TargetName)"),
+			CQJsonReader.GetResultCode (),
+			CQJsonReader.GetApiVer (),
+			CQJsonReader.GetName (),
+			CQJsonReader.GetVersion (),
+			CQJsonReader.GetVersionId (),
+			CQJsonReader.GetAuthor (),
+			CQJsonReader.GetDescription ()
+			);
+		TemplateBuilder.WriteLine (2, "appDataType.GetRuntimeProperty (\"CQApi\").GetSetMethod (true).Invoke (null, new object[] { new CQApi (appInfo) });");
 		TemplateBuilder.WriteFormatLine (2, "AppData.UnityContainer.RegisterInstance<CQApi> (\"{0}\", AppData.CQApi);", this.Host.ResolveAssemblyReference ("$(TargetName)"));
 		TemplateBuilder.WriteLine (2, "// 向容器注册一个 CQLog 实例");
 		TemplateBuilder.WriteLine (2, "appDataType.GetRuntimeProperty (\"CQLog\").GetSetMethod (true).Invoke (null, new object[] { new CQLog (authCode) });");

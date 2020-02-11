@@ -40,11 +40,17 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="discussId">用于初始化实例的QQ号</param>
 		public Discuss (CQApi api, long discussId)
 		{
-			this.CQApi = api;
+			if (api == null)
+			{
+				throw new ArgumentNullException ("api");
+			}
+
 			if (discussId < MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("discussId");
 			}
+
+			this.CQApi = api;
 			this.Id = discussId;
 		}
 		#endregion
