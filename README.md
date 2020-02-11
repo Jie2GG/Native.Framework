@@ -14,7 +14,7 @@ Native.SDK  是为了方便 .Net 平台开发者高效开发 酷Q应用 的开�
 
 # 维基
 
-[Native 维基](wiki) <br/>
+<a href="/Jie2GG/Native.Framework/wiki">Native 维基百科</a><br/>
 同时包括了 Native.SDK 的安装方法、编程规范、编译部署及常见错误和解决方案
 
 # 更新日志
