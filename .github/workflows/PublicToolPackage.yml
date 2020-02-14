@@ -27,13 +27,13 @@ jobs:
       - name: Build Tool
         run: |
           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-          .\MSBuild.exe /t:rebuild "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool" /p:Configuration=Release
+          .\MSBuild.exe /t:rebuild "$Env:GITHUB_WORKSPACE\Native.Tool" /p:Configuration=Release
       - name: Add private GitHub registry to NuGet
         run: |
           .\nuget sources add -name github -Source https://nuget.pkg.github.com/Jie2GG/index.json -Username Jie2GG -Password ${{ secrets.Nuget }}
       - name: Push generated package to GitHub registry
         run: |
-          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\release\*.nupkg" -Source github -SkipDuplicate
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Tool\bin\release\*.nupkg" -Source github -SkipDuplicate
       - name: Push generated package to NuGet registry
         run: |
-          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Csharp.Tool\bin\release\*.nupkg" -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Nuget_Api }} -NoSymbols 
+          .\nuget push "$Env:GITHUB_WORKSPACE\Native.Tool\bin\release\*.nupkg" -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.Nuget_Api }} -NoSymbols 
