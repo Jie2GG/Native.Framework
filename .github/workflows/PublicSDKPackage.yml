@@ -23,7 +23,7 @@ jobs:
           Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
       - name: Restore Projects
         run: |
-          .\nuget restore "$Env:GITHUB_WORKSPACE"\Native.sln
+          .\nuget restore "$Env:GITHUB_WORKSPACE\Native.sln"
       - name: Build SDK
         run: |
           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
