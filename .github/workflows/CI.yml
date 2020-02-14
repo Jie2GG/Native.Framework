@@ -1,0 +1,180 @@
+
+name: Test Automation
+on:
+  push:
+    branches:
+      - Example_
+  pull_request:
+    branches:
+      - Example
+jobs:
+  buildAutomationTool:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: cqbef/CoolQAutomation
+          ref: test
+      - name: Setup Nuget.exe
+        uses: warrenbuckley/Setup-Nuget@v1
+      - name: Restore Projects
+        run: |
+          nuget restore "$Env:GITHUB_WORKSPACE"
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+      - name: MSBuild
+        working-directory: CoolQAutomation
+        run: |
+         msbuild . /t:Build /p:Configuration=Release
+      - name: Tree
+        shell: cmd
+        run:  tree /F /A
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: Tool
+          path: ${{github.workspace}}\CoolQAutomation\bin\Release
+          retention-days: 1
+  buildExample:
+    needs: [buildAutomationTool]
+    runs-on: windows-latest
+    steps:
+      - name: Download DllExport
+        shell: powershell
+        run: |
+          $target = "DllExport.zip";
+          Invoke-WebRequest -Uri (Invoke-WebRequest 'https://api.github.com/repos/3F/DllExport/releases' | ConvertFrom-Json |  %{$_.psobject.properties.Value } |  select assets  | %{$_.psobject.properties.Value } | Select -ExpandProperty "browser_download_url" | where { $_.EndsWith(".zip") } | select -First 1) -OutFile $target;
+          Expand-Archive $target -DestinationPath "C:\DllExport";
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nuget.exe
+        uses: warrenbuckley/Setup-Nuget@v1
+      - name: Restore Projects
+        run: |
+          nuget restore "$Env:GITHUB_WORKSPACE"
+      - name: Build SDK
+        run: |
+          C:\DllExport\packages\DllExport\hMSBuild.bat $Env:GITHUB_WORKSPACE /t:Build /p:Configuration=Release /p:Platform=x86
+      - name: Tree
+        run: |
+          tree /F /A $Env:GITHUB_WORKSPACE
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: ReleaseExample
+          path: ${{github.workspace}}\Core\bin\x86\Release
+          retention-days: 1
+  coolq_win:
+    needs: [buildExample]
+    if: success()
+    runs-on: windows-latest
+    steps:
+      - name: Set Language
+        shell: powershell
+        run: |
+          Set-WinSystemLocale -SystemLocale zh-CN;
+          Set-WinUILanguageOverride -Language zh-CN;
+          DISM /online /Get-Intl;
+      - name: Download ffmpeg
+        run: |
+          Invoke-WebRequest https://ffmpeg.zeranoe.com/builds/win64/shared/ffmpeg-4.2.2-win64-shared.zip -outFile ffmpeg.zip
+          Expand-Archive -Path ffmpeg.zip -Force -DestinationPath C:\ffmpeg
+      - name: Download LocalEmulator
+        run: |
+          Invoke-WebRequest https://github.com/xupefei/Locale-Emulator/releases/download/v2.4.1.0/Locale.Emulator.2.4.1.0.zip -outFile LE.zip
+          Expand-Archive -Path LE.zip -Force -DestinationPath C:\LocalEmulator
+      - name: Download CoolQ
+        run: |
+          @("https://dlsec.cqp.me/cqa-xiaoi","https://dlsec.cqp.me/cqp-full") | 
+          foreach { Invoke-WebRequest $_ -outFile tmp.zip;Expand-Archive -Path tmp.zip -Force -DestinationPath C:\CoolQ };
+          Remove-Item tmp.zip;
+          Get-ChildItem C:\CoolQ -Directory -Name | 
+          foreach { Rename-Item -Path C:\CoolQ\$_ -NewName $_.Replace($_[0].ToString(),"#").Replace("##","Cool").Replace(" ","_")};
+          tree /F /A C:\CoolQ
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: ReleaseExample
+      - name: Startup
+        run: |
+          @("dev","app","conf") | foreach { New-Item -Path C:\CoolQ\$_ -ItemType Directory}
+          @("dev","app","conf") | foreach { Get-ChildItem C:\CoolQ\CoolQ_Air\$_ -Recurse | Remove-Item -Force}
+          @("dev","app","conf") | foreach { Get-ChildItem C:\CoolQ\CoolQ_Pro\$_ -Recurse | Remove-Item -Force}
+          @("dev","app","conf") | foreach { New-Item -Path C:\CoolQ\CoolQ_Air\$_ -Value C:\CoolQ\$_ -ItemType Junction}
+          @("dev","app","conf") | foreach { New-Item -Path C:\CoolQ\CoolQ_Pro\$_ -Value C:\CoolQ\$_ -ItemType Junction}
+          Copy-Item -Path "$Env:GITHUB_WORKSPACE\ReleaseExample\*" -Destination "C:\CoolQ\dev\" -Recurse -Force
+          "[Main]`r`ntos=100`r`nStatusUp=gjWwkZu3xktd6b3H3gcocw==`r`nStatusIgnore=gzSxkJq2x0pc6LzG3wYpcg==" | Add-Content -Path C:\CoolQ\conf\CQP.cfg
+          Write-Output("[App]`r`n{0}.status=1" -f (Get-ChildItem $Env:GITHUB_WORKSPACE\ReleaseExample -Directory -Name | Select-Object -First 1)) | Add-Content -Path C:\CoolQ\conf\CQP.cfg
+          "[Network]`r`nNetType=0" | Add-Content -Path C:\CoolQ\conf\CQP.cfg
+          "[Dev]`r`nPlatform=2`r`nEnable=1`r`nAppStandaloneProcess=0`r`nEventThread=50" | Add-Content -Path C:\CoolQ\conf\CQP.cfg
+          "[Version]`r`nType=1" | Add-Content -Path C:\CoolQ\conf\Version.cfg
+          Get-Content C:\CoolQ\conf\CQP.cfg
+          "<?xml version='1.0' encoding='utf-8'?><LEConfig><Profiles><Profile Name='CQP.exe.le.config' Guid='631afe69-ab96-4496-8c85-1234567890ab' MainMenu='false'><Parameter></Parameter><Location>zh-CN</Location><Timezone>China Standard Time</Timezone><RunAsAdmin>true</RunAsAdmin><RedirectRegistry>true</RedirectRegistry><IsAdvancedRedirection>false</IsAdvancedRedirection><RunWithSuspend>false</RunWithSuspend></Profile></Profiles></LEConfig>" |
+          Add-Content -Path C:\CoolQ\CoolQ_Air\CQA.exe.le.config
+          "<?xml version='1.0' encoding='utf-8'?><LEConfig><Profiles><Profile Name='CQP.exe.le.config' Guid='631afe69-ab96-4496-8c85-1234567890ab' MainMenu='false'><Parameter></Parameter><Location>zh-CN</Location><Timezone>China Standard Time</Timezone><RunAsAdmin>true</RunAsAdmin><RedirectRegistry>true</RedirectRegistry><IsAdvancedRedirection>false</IsAdvancedRedirection><RunWithSuspend>false</RunWithSuspend></Profile></Profiles></LEConfig>" |
+          Add-Content -Path C:\CoolQ\CoolQ_Pro\CQP.exe.le.config
+      - name: Download AutomationTool
+        uses: actions/download-artifact@v1
+        with:
+          name: Tool
+      - name: Testing
+        timeout-minutes: 10
+        run: |
+          Start-Process C:\ffmpeg\ffmpeg-4.2.2-win64-shared\bin\ffmpeg.exe -ArgumentList "-f gdigrab","-i desktop","-framerate 25","C:\coolq\screen.mkv";
+          Start-Process "$Env:GITHUB_WORKSPACE\Tool\CoolQAutomation.exe"  -ArgumentList "${{secrets.TENCENT_QQID}}","${{secrets.TENCENT_QQPASSWORD}}"
+          Start-Process C:\LocalEmulator\Locale.Emulator.2.4.1.0\LEInstaller.exe
+          [System.Threading.SpinWait]::SpinUntil([Func[boolean]]{ (Get-Process | Where-Object { $_.ProcessName -eq "LEInstaller" } | Select -ExpandProperty "ProcessName") -eq "LEInstaller" }, 5000)
+          Start-Sleep -Seconds 2
+          Get-Process -Name "LEInstaller" | Stop-Process
+          C:\LocalEmulator\Locale.Emulator.2.4.1.0\LEProc.exe -run C:\CoolQ\CoolQ_Air\CQA.exe
+          [System.Threading.SpinWait]::SpinUntil([Func[boolean]]{ (Get-Process | Where-Object { $_.ProcessName -eq "CoolQAutomation" } | Select -ExpandProperty "ProcessName") -eq "CoolQAutomation" -eq $False }, 90000)
+          Start-Sleep -Seconds 5
+          Get-Process | Where-Object { $_.ProcessName -eq "ffmpeg" } | Stop-Process
+      - name: Move CPK
+        continue-on-error: true
+        run: Get-ChildItem "C:\CoolQ\CoolQ_Air\dev" -Recurse | WHERE {$_.Extension -eq ".cpk"} | Select -ExpandProperty "FullName" | Copy-Item -Destination "C:\CoolQ"
+      - name: Upload CoolQ
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: CoolQ
+          path: C:\CoolQ
+      - name: Upload CPK
+        uses: actions/upload-artifact@v1
+        if: always()
+        continue-on-error: true
+        with:
+          name: CPK
+          path: C:\CoolQ\*.cpk
+      - name: Upload screenRecord-mkv
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: Screen
+          path: C:\coolq\screen.mkv
+  pull:
+    needs: [buildExample , coolq_win]
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Create commit comment 
+        uses: peter-evans/commit-comment@v1
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ## 狀況匯報
+            
+            SHA:${{github.sha}}
+            本次${{github.workflow}}已經跑完囉~
+            [查看運行日誌][1]
+            
+            ## 最新版本資料
+            
+            [所有相關文件壓縮包][2]
+            [登入及打包的錄影影片][3]
+            固定是讀取最新結果的文件喔!
+            
+            [1]: https://github.com/Jie2GG/Native.Framework/actions/runs/${{github.run_id}}
+            [2]: https://r_coolq.kotone.workers.dev
+            [3]: https://r_screen.kotone.workers.dev

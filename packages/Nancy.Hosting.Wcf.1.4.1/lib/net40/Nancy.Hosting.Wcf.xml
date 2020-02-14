@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nancy.Hosting.Wcf</name>
+    </assembly>
+    <members>
+        <member name="T:Nancy.Hosting.Wcf.NancyWcfGenericService">
+            <summary>
+            Host for running Nancy ontop of WCF.
+            </summary>
+        </member>
+        <member name="M:Nancy.Hosting.Wcf.NancyWcfGenericService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Hosting.Wcf.NancyWcfGenericService"/> class with a default bootstrapper.
+            </summary>
+        </member>
+        <member name="M:Nancy.Hosting.Wcf.NancyWcfGenericService.#ctor(Nancy.Bootstrapper.INancyBootstrapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Hosting.Wcf.NancyWcfGenericService"/> class, with the provided <paramref name="bootstrapper"/>.
+            </summary>
+            <param name="bootstrapper">An <see cref="T:Nancy.Bootstrapper.INancyBootstrapper"/> instance, that should be used to handle the requests.</param>
+        </member>
+        <member name="M:Nancy.Hosting.Wcf.NancyWcfGenericService.HandleRequests(System.IO.Stream)">
+            <summary>
+            Handels an incoming request with Nancy.
+            </summary>
+            <param name="requestBody">The body of the incoming request.</param>
+            <returns>A <see cref="T:System.ServiceModel.Channels.Message"/> instance.</returns>
+        </member>
+    </members>
+</doc>

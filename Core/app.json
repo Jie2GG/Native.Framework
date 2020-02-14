@@ -1,0 +1,191 @@
+{
+	"ret": 1,
+	"apiver": 9,
+	"name": "Example",
+	"version": "2.0.0",
+	"version_id": 2,
+	"author": "成音",
+	"description": "Example",
+	"event": [
+		{
+			"id": 1,
+			"type": 21,
+			"name": "私聊消息处理",
+			"function": "_eventPrivateMsg",
+			"priority": 30000
+		},
+		{
+			"id": 2,
+			"type": 2,
+			"name": "群消息处理",
+			"function": "_eventGroupMsg",
+			"priority": 30000
+		},
+		{
+			"id": 3,
+			"type": 4,
+			"name": "讨论组消息处理",
+			"function": "_eventDiscussMsg",
+			"priority": 30000
+		},
+		{
+			"id": 4,
+			"type": 11,
+			"name": "群文件上传事件处理",
+			"function": "_eventGroupUpload",
+			"priority": 30000
+		},
+		{
+			"id": 5,
+			"type": 101,
+			"name": "群管理变动事件处理",
+			"function": "_eventSystem_GroupAdmin",
+			"priority": 30000
+		},
+		{
+			"id": 6,
+			"type": 102,
+			"name": "群成员减少事件处理",
+			"function": "_eventSystem_GroupMemberDecrease",
+			"priority": 30000
+		},
+		{
+			"id": 7,
+			"type": 103,
+			"name": "群成员增加事件处理",
+			"function": "_eventSystem_GroupMemberIncrease",
+			"priority": 30000
+		},
+		{
+			"id": 8,
+			"type": 104,
+			"name": "群禁言事件处理",
+			"function": "_eventSystem_GroupBan",
+			"priority": 30000
+		},
+		{
+			"id": 10,
+			"type": 201,
+			"name": "好友已添加事件处理",
+			"function": "_eventFriend_Add",
+			"priority": 30000
+		},
+		{
+			"id": 11,
+			"type": 301,
+			"name": "好友添加请求处理",
+			"function": "_eventRequest_AddFriend",
+			"priority": 30000
+		},
+		{
+			"id": 12,
+			"type": 302,
+			"name": "群添加请求处理",
+			"function": "_eventRequest_AddGroup",
+			"priority": 30000
+		},
+		{
+			"id": 1001,
+			"type": 1001,
+			"name": "酷Q启动事件",
+			"priority": 30000,
+			"function": "_eventStartup"
+		},
+		{
+			"id": 1002,
+			"type": 1002,
+			"name": "酷Q关闭事件",
+			"priority": 30000,
+			"function": "_eventExit"
+		},
+		{
+			"id": 1003,
+			"type": 1003,
+			"name": "应用已被启用",
+			"priority": 30000,
+			"function": "_eventEnable"
+		},
+		{
+			"id": 1004,
+			"type": 1004,
+			"name": "应用将被停用",
+			"priority": 30000,
+			"function": "_eventDisable"
+		},
+		{
+			"id": 100020,
+			"type": 2,
+			"name": "[群消息]正则检测冒号乎叫命令菜单",
+			"function": "_eventGroupMsg_menu",
+			"enable" : false,
+			"regex": {
+				"key": [ "cmd", "id" ],
+				"expression": [
+					"^[ 　]*[!！](?<cmd>((?!\\d).){1,50})(?<id>\\d+)",
+					"^[ 　]*[!！](?<id>\\d{1,50})"
+				]
+			},
+			"priority": 20000
+		},
+		{
+			"id": 100030,
+			"type": 2,
+			"name": "[群消息]独立命令:我很可爱请给我钱",
+			"function": "_eventGroupMsg_master",
+			"regex": {
+				"key": [ "msg", "at", "money", "type", "call" ],
+				"expression": [
+					"^(?<call>\\[CQ:at,qq=\\d{6,20}\\]){0,1}[ 　\\s]*(?<msg>(可爱如我|我可爱打钱|我！可爱！打钱|我!可爱!打钱|我,可爱,打钱|我，可爱，打钱|我很可爱,请给我钱|我很可爱，请给我钱|我很可爱请给我钱))[ 　]*(?<at>\\[CQ:at,qq=\\d{6,20}\\])[ 　]*(?<money>\\d*)[ 　]*(?<type>((?!\\d).)*)",
+					"^(?<call>\\[CQ:at,qq=\\d{6,20}\\]){0,1}[ 　\\s]*(?<msg>可爱如我|我可爱打钱|我！可爱！打钱|我!可爱!打钱|我,可爱,打钱|我，可爱，打钱|我很可爱,请给我钱|我很可爱，请给我钱|我很可爱请给我钱)[ 　]*(?<money>\\d*)(?<type>((?!\\d).)*)"
+				]
+			},
+			"priority": 20000
+		}
+	],
+	"menu": [
+		{
+			"name": "醋Q聊天窗",
+			"function": "_menuA"
+		},
+		{
+			"name": "WinForm",
+			"function": "_menuB"
+		}
+	],
+	"status": [
+		{
+			"id": 1,
+			"name": "新加好友累计",
+			"title": "UPTIME",
+			"function": "_statusUptime",
+			"period": "1000"
+		}
+	],
+	"auth": [ // 应用权限（发布前请删除无用权限）
+		20,  //[敏感]取Cookies    getCookies / getCsrfToken
+		30,  //接收语音           getRecord
+		101, //发送群消息         sendGroupMsg
+		//103, //发送讨论组消息     sendDiscussMsg
+		106, //发送私聊消息       sendPrivateMsg
+		//110, //[敏感]发送赞       sendLike
+		//120, //置群员移除         setGroupKick
+		121, //置群员禁言         setGroupBan
+		//122, //置群管理员         setGroupAdmin
+		//123, //置全群禁言         setGroupWholeBan
+		124, //置匿名群员禁言     setGroupAnonymousBan
+		//125, //置群匿名设置       setGroupAnonymous
+		126, //置群成员名片       setGroupCard
+		//127, //[敏感]置群退出     setGroupLeave
+		128, //置群成员专属头衔   setGroupSpecialTitle
+		130, //取群成员信息       getGroupMemberInfo
+		131, //取陌生人信息       getStrangerInfo
+		132, //取群信息           getGroupInfo
+		//140, //置讨论组退出       setDiscussLeave
+		150, //置好友添加请求     setFriendAddRequest
+		151, //置群添加请求       setGroupAddRequest
+		160, //取群成员列表       getGroupMemberList
+		161, //取群列表           getGroupList
+		162, //取好友列表         getFriendList
+		180 //撤回消息           deleteMsg
+	]
+}
