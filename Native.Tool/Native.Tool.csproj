@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CA93EB9-4E25-46C6-94D2-0F97137A1606}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Native.Tool</RootNamespace>
+    <AssemblyName>Native.Tool</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_45;SQLITE_STANDARD;USE_PREPARE_V2;THROW_ON_DISPOSED;PRELOAD_NATIVE_LIBRARY;INTEROP_CODEC;INTEROP_DEBUG;INTEROP_EXTENSION_FUNCTIONS;INTEROP_FTS5_EXTENSION;INTEROP_JSON1_EXTENSION;INTEROP_LOG;INTEROP_PERCENTILE_EXTENSION;INTEROP_REGEXP_EXTENSION;INTEROP_SHA1_EXTENSION;INTEROP_TEST_EXTENSION;INTEROP_TOTYPE_EXTENSION;INTEROP_VIRTUAL_TABLE;INTEROP_SESSION_EXTENSION;TRACE_PRELOAD;TRACE_SHARED;TRACE_WARNING;WINDOWS</DefineConstants>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>618,1591;3001;IDE1006</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Http\HttpTool.cs" />
+    <Compile Include="Http\HttpWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IniConfig\Attribute\IniConfigKeyAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniConfigSectionAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniNonSerializeAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniSerializeAttribute.cs" />
+    <Compile Include="IniConfig\Exception\IniConfigException.cs" />
+    <Compile Include="IniConfig\Exception\PropertyNotFoundException.cs" />
+    <Compile Include="IniConfig\Exception\SectionNotFoundException.cs" />
+    <Compile Include="IniConfig\IniConvert.cs" />
+    <Compile Include="IniConfig\Linq\IniObject.cs" />
+    <Compile Include="IniConfig\Linq\IniSection.cs" />
+    <Compile Include="IniConfig\Linq\IniValue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLite\AssemblySourceIdAttribute.cs" />
+    <Compile Include="SQLite\AssemblySourceTimeStampAttribute.cs" />
+    <Compile Include="SQLite\ISQLiteNativeModule.cs" />
+    <Compile Include="SQLite\LINQ\SQLiteConnection_Linq.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\LINQ\SQLiteFactory_Linq.cs" />
+    <Compile Include="SQLite\Resources\SR.Designer.cs" />
+    <Compile Include="SQLite\SQLite3.cs" />
+    <Compile Include="SQLite\SQLite3_UTF16.cs" />
+    <Compile Include="SQLite\SQLiteBackup.cs" />
+    <Compile Include="SQLite\SQLiteBase.cs" />
+    <Compile Include="SQLite\SQLiteBlob.cs" />
+    <Compile Include="SQLite\SQLiteCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteCommandBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteConnection.cs" />
+    <Compile Include="SQLite\SQLiteConnectionPool.cs" />
+    <Compile Include="SQLite\SQLiteConnectionStringBuilder.cs" />
+    <Compile Include="SQLite\SQLiteConvert.cs" />
+    <Compile Include="SQLite\SQLiteDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLite\SQLiteDataReader.cs" />
+    <Compile Include="SQLite\SQLiteDefineConstants.cs" />
+    <Compile Include="SQLite\SQLiteEnlistment.cs" />
+    <Compile Include="SQLite\SQLiteException.cs" />
+    <Compile Include="SQLite\SQLiteFactory.cs" />
+    <Compile Include="SQLite\SQLiteFunction.cs" />
+    <Compile Include="SQLite\SQLiteFunctionAttribute.cs" />
+    <Compile Include="SQLite\SQLiteKeyReader.cs" />
+    <Compile Include="SQLite\SQLiteLog.cs" />
+    <Compile Include="SQLite\SQLiteMetaDataCollectionNames.cs" />
+    <Compile Include="SQLite\SQLiteModule.cs" />
+    <Compile Include="SQLite\SQLiteModuleCommon.cs" />
+    <Compile Include="SQLite\SQLiteModuleEnumerable.cs" />
+    <Compile Include="SQLite\SQLiteModuleNoop.cs" />
+    <Compile Include="SQLite\SQLiteParameter.cs" />
+    <Compile Include="SQLite\SQLiteParameterCollection.cs" />
+    <Compile Include="SQLite\SQLitePatchLevel.cs" />
+    <Compile Include="SQLite\SQLiteSession.cs" />
+    <Compile Include="SQLite\SQLiteStatement.cs" />
+    <Compile Include="SQLite\SQLiteTransaction.cs" />
+    <Compile Include="SQLite\SQLiteTransaction2.cs" />
+    <Compile Include="SQLite\SQLiteTransactionBase.cs" />
+    <Compile Include="SQLite\UnsafeNativeMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IniConfig\README.md" />
+    <None Include="SQLite\Configurations\System.Data.SQLite.dll.config" />
+    <None Include="SQLite\obj\Debug\netstandard2.0\System.Data.SQLite.NetStandard20.assets.cache" />
+    <None Include="SQLite\obj\Debug\netstandard2.0\System.Data.SQLite.NetStandard20.csproj.CoreCompileInputs.cache" />
+    <None Include="SQLite\obj\Debug\netstandard2.0\System.Data.SQLite.NetStandard20.csprojAssemblyReference.cache" />
+    <None Include="SQLite\obj\Debug\netstandard2.1\System.Data.SQLite.NetStandard21.assets.cache" />
+    <None Include="SQLite\obj\Debug\netstandard2.1\System.Data.SQLite.NetStandard21.csproj.CoreCompileInputs.cache" />
+    <None Include="SQLite\obj\project.assets.json" />
+    <None Include="SQLite\obj\Release\netstandard2.1\System.Data.SQLite.NetStandard21.assets.cache" />
+    <None Include="SQLite\obj\Release\netstandard2.1\System.Data.SQLite.NetStandard21.csproj.CoreCompileInputs.cache" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard20.csproj.nuget.cache" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard20.csproj.nuget.g.props" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard20.csproj.nuget.g.targets" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard21.csproj.nuget.cache" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard21.csproj.nuget.g.props" />
+    <None Include="SQLite\obj\System.Data.SQLite.NetStandard21.csproj.nuget.g.targets" />
+    <None Include="SQLite\Targets\System.Data.SQLite.Files.targets" />
+    <None Include="SQLite\Targets\System.Data.SQLite.Properties.targets" />
+    <None Include="SQLite\Targets\System.Data.SQLite.References.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQLite\Generated\SR.resources" />
+    <EmbeddedResource Include="SQLite\Resources\SR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQLite\Resources\DataTypes.xml" />
+    <Content Include="SQLite\Resources\MetaDataCollections.xml" />
+    <Content Include="SQLite\Resources\SQLiteCommand.bmp" />
+    <Content Include="SQLite\Resources\SQLiteConnection.bmp" />
+    <Content Include="SQLite\Resources\SQLiteDataAdapter.bmp" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

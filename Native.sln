@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.156
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp", "Native.Csharp\Native.Csharp.csproj", "{8BC2C861-D30C-425B-98A7-812792D2017D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Tool", "Native.Tool\Native.Tool.csproj", "{0CA93EB9-4E25-46C6-94D2-0F97137A1606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.Sdk", "Native.Csharp.Sdk\Native.Csharp.Sdk.csproj", "{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Sdk", "Native.Sdk\Native.Sdk.csproj", "{D7A958B3-79D9-49F8-8BB4-9619BAB6ECBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Csharp.Tool", "Native.Csharp.Tool\Native.Csharp.Tool.csproj", "{9DB94CBF-6843-4EA3-9241-769124416FE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Native.Core", "Native.Core\Native.Core.csproj", "{C03C5BB7-91D0-4894-AAF9-127090DFAD91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8BC2C861-D30C-425B-98A7-812792D2017D}.Debug|x86.ActiveCfg = Debug|x86
-		{8BC2C861-D30C-425B-98A7-812792D2017D}.Debug|x86.Build.0 = Debug|x86
-		{8BC2C861-D30C-425B-98A7-812792D2017D}.Release|x86.ActiveCfg = Release|x86
-		{8BC2C861-D30C-425B-98A7-812792D2017D}.Release|x86.Build.0 = Release|x86
-		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Debug|x86.ActiveCfg = Debug|x86
-		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Debug|x86.Build.0 = Debug|x86
-		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Release|x86.ActiveCfg = Release|x86
-		{797EAEBC-4D5B-4EEF-87F4-A508FDA2CB6A}.Release|x86.Build.0 = Release|x86
-		{9DB94CBF-6843-4EA3-9241-769124416FE9}.Debug|x86.ActiveCfg = Debug|x86
-		{9DB94CBF-6843-4EA3-9241-769124416FE9}.Debug|x86.Build.0 = Debug|x86
-		{9DB94CBF-6843-4EA3-9241-769124416FE9}.Release|x86.ActiveCfg = Release|x86
-		{9DB94CBF-6843-4EA3-9241-769124416FE9}.Release|x86.Build.0 = Release|x86
+		{0CA93EB9-4E25-46C6-94D2-0F97137A1606}.Debug|x86.ActiveCfg = Debug|x86
+		{0CA93EB9-4E25-46C6-94D2-0F97137A1606}.Debug|x86.Build.0 = Debug|x86
+		{0CA93EB9-4E25-46C6-94D2-0F97137A1606}.Release|x86.ActiveCfg = Release|x86
+		{0CA93EB9-4E25-46C6-94D2-0F97137A1606}.Release|x86.Build.0 = Release|x86
+		{D7A958B3-79D9-49F8-8BB4-9619BAB6ECBA}.Debug|x86.ActiveCfg = Debug|x86
+		{D7A958B3-79D9-49F8-8BB4-9619BAB6ECBA}.Debug|x86.Build.0 = Debug|x86
+		{D7A958B3-79D9-49F8-8BB4-9619BAB6ECBA}.Release|x86.ActiveCfg = Release|x86
+		{D7A958B3-79D9-49F8-8BB4-9619BAB6ECBA}.Release|x86.Build.0 = Release|x86
+		{C03C5BB7-91D0-4894-AAF9-127090DFAD91}.Debug|x86.ActiveCfg = Debug|x86
+		{C03C5BB7-91D0-4894-AAF9-127090DFAD91}.Debug|x86.Build.0 = Debug|x86
+		{C03C5BB7-91D0-4894-AAF9-127090DFAD91}.Release|x86.ActiveCfg = Release|x86
+		{C03C5BB7-91D0-4894-AAF9-127090DFAD91}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

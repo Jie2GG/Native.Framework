@@ -1,4 +1,22 @@
 # Native.SDK 更新日志
+> 2020年02月11日 版本: V4.1.0.0211
+
+	1. 将 Native.Csharp 项目更名为 Native.Core
+	2. 将 Native.Csharp.Sdk 项目更名为 Native.Sdk
+	3. 将 Native.Csharp.Tool 项目更名为 Native.Tool
+	4. 新增 AppInfo 模型, 替代 AuthCode 支持获取应用基础信息
+	5. 新增 IniConfig 序列化与反序列化
+	6. 优化 Native.Core 的项目结构
+	7. 优化 生成事件, 不需要再重命名 json 文件
+
+> 2020年02月06日 版本: V4.0.13.0206
+
+	1. 删除 Group 中某些方法不必要的参数
+
+> 2020年02月05日 版本: V4.0.12.0205
+	
+	1. 修复 GroupMemberInfo 接口群成员过期时间的错误
+
 > 2020年01月25日 版本: V4.0.11.0125
 
 	1. 修复 群文件上传 事件参数 FromGroup 为 FromQQ 的问题
