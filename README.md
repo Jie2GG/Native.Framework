@@ -19,7 +19,7 @@ Native.SDK  是为了方便 .Net 平台开发者高效开发 酷Q应用 的开�
 
 # 更新日志
 
-[Native 更新日志](README.md)
+[Native 更新日志](UPDATE.md)
 
 # 关于打赏
 
