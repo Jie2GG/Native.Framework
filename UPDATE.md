@@ -1,4 +1,9 @@
 # Native.SDK 更新日志
+> 2020年02月16日 版本: V4.1.1.0216
+
+	1. 修复 Native.Tool 项目在 Release 项目下的编译问题
+	2. 优化 Native.Sdk 和 Native.Tool 项目首选平台为 x86
+
 > 2020年02月11日 版本: V4.1.0.0211
 
 	1. 将 Native.Csharp 项目更名为 Native.Core
