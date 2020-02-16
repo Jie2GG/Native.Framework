@@ -23,6 +23,7 @@
     <NoWarn>618,1591;3001;IDE1006</NoWarn>
     <WarningsAsErrors>
     </WarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
