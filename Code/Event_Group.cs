@@ -25,13 +25,13 @@ namespace Code
             ///QQ等级达1个太阳
             if (Common.VipInfo.GetVipInfo(e.FromQQ.Id).QqLevel >= 16)
             {
-                e.CQApi.SetGroupAddRequest(e.Request, Native.Sdk.Cqp.Enum.CQGroupAddRequestType.ApplyAddGroup, Native.Sdk.Cqp.Enum.CQResponseType.PASS, "");
+                e.Request.SetGroupAddRequest(Native.Sdk.Cqp.Enum.CQGroupAddRequestType.ApplyAddGroup, Native.Sdk.Cqp.Enum.CQResponseType.PASS);
             }
 
             //是会员
             if (Common.VipInfo.GetVipInfo(e.FromQQ.Id).VipLevel != "普通用户")
             {
-                e.CQApi.SetGroupAddRequest(e.Request, Native.Sdk.Cqp.Enum.CQGroupAddRequestType.ApplyAddGroup, Native.Sdk.Cqp.Enum.CQResponseType.PASS, "$$$");
+                e.Request.SetGroupAddRequest(Native.Sdk.Cqp.Enum.CQGroupAddRequestType.ApplyAddGroup, Native.Sdk.Cqp.Enum.CQResponseType.PASS,"$$$");
             }
 
         }

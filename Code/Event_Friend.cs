@@ -18,7 +18,8 @@ namespace Code
         public void FriendAddRequest(object sender, CQFriendAddRequestEventArgs e)
         {
             if (Common.IsRunning == false) { return; }
-            e.CQApi.SetFriendAddRequest(e.Request, Native.Sdk.Cqp.Enum.CQResponseType.PASS);
+
+            e.Request.SetFriendAddRequest(Native.Sdk.Cqp.Enum.CQResponseType.PASS);
         }
     }
 }
