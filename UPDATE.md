@@ -1,5 +1,9 @@
 ## Native.SDK 更新日志
 
+#### 2020年02月25日 版本: V4.1.2.0225
+
+	1. 为 IniConfig 添加丢失的 ContainsKey 方法
+
 #### 2020年02月16日 版本: V4.1.1.0216
 
 	1. 修复 Native.Tool 项目在 Release 项目下的编译问题

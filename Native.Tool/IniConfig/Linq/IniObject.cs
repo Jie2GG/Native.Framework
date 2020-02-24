@@ -112,6 +112,16 @@ namespace Native.Tool.IniConfig.Linq
 
 		#region --公开方法--
 		/// <summary>
+		/// 确定是否 <see cref="IniObject"/> 包含指定键
+		/// </summary>
+		/// <param name="key">要在 <see cref="IniObject"/> 中定位的键</param>
+		/// <returns>如果 true 包含具有指定键的元素，则为 <see cref="IniObject"/> 否则为 false</returns>
+		public bool ContainKey (string key)
+		{
+			return this.Where<IniSection> (section => section.Name.CompareTo (key) == 0).Count () == 1;
+		}
+
+		/// <summary>
 		/// 将 Ini 配置项保存到指定的文件。如果存在指定文件，则此方法会覆盖它
 		/// </summary>
 		public void Save ()
