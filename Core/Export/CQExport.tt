@@ -28,7 +28,7 @@
 	}
 #>
 <#+
-	public void ParseJsonEventNode ()
+	public void ParseJsonEventNode () 
 	{
 		TemplateBuilder.Initialize (this.Host, "CQEventExport.cs");
 

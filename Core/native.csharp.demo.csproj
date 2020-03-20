@@ -51,11 +51,11 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.17.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Native.Sdk, Version=2.8.0.211, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Native.Sdk.2.8.0.211\lib\net45\Native.Sdk.dll</HintPath>
+    <Reference Include="Native.Sdk, Version=2.8.1.216, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Native.Sdk.2.8.1.216\lib\net45\Native.Sdk.dll</HintPath>
     </Reference>
-    <Reference Include="Native.Tool, Version=3.1.0.211, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\Native.Tool.3.1.0.211\lib\net45\Native.Tool.dll</HintPath>
+    <Reference Include="Native.Tool, Version=3.1.1.216, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Native.Tool.3.1.1.216\lib\net45\Native.Tool.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -111,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="app.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Export\CQExport1.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

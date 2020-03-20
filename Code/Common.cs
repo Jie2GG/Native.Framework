@@ -5,6 +5,7 @@ using Native.Sdk.Cqp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Subjects;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,6 +124,10 @@ namespace Code
         /// </summary>
         public static TraceMoe TraceMoe { get; set; }
 
+        /// <summary>
+        /// 定时事件订阅
+        /// </summary>
+        public static IConnectableObservable<System.Reactive.Timestamped<long>> Pub { get; set; }
     }
 
 }

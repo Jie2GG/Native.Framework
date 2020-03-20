@@ -12,6 +12,8 @@ using Code.Service;
 using Nancy.Hosting.Wcf;
 using System.ServiceModel.Web;
 using Code.Helper;
+using System.Reactive.Subjects;
+using System.Reactive.Linq;
 
 namespace Code
 {
@@ -20,7 +22,7 @@ namespace Code
         public void AppDisable(object sender, CQAppDisableEventArgs e)
         {
             Common.IsRunning = false;
-            if(Common.WebServiceHost.State == System.ServiceModel.CommunicationState.Opening || Common.WebServiceHost.State == System.ServiceModel.CommunicationState.Opened)
+            if (Common.WebServiceHost.State == System.ServiceModel.CommunicationState.Opening || Common.WebServiceHost.State == System.ServiceModel.CommunicationState.Opened)
             {
                 Common.WebServiceHost.Close();
             }
@@ -28,7 +30,7 @@ namespace Code
 
         public void AppEnable(object sender, CQAppEnableEventArgs e)
         {
-            if (Common.IsLoaded == false) 
+            if (Common.IsLoaded == false)
             {
                 Common.CoolQDatabase = new CoolQDataBase(e.CQApi.GetLoginQQ().Id);
 
@@ -68,7 +70,7 @@ namespace Code
         {
             Common.Api = e.CQApi;
             Common.Log = e.CQLog;
-            Common.Friends = new Request.FriendRequest(e.CQApi,e.CQLog);
+            Common.Friends = new Request.FriendRequest(e.CQApi, e.CQLog);
             Common.VipInfo = new Request.VipInfo(e.CQApi, e.CQLog);
             Common.Icon = new Request.Icon(e.CQApi, e.CQLog);
             Common.Group = new Request.GroupRequest(e.CQApi, e.CQLog);
@@ -76,6 +78,45 @@ namespace Code
             ViewModel.MainInstance.Api = e.CQApi;
             ViewModel.MainInstance.Log = e.CQLog;
             ViewModel.MainInstance.UISettingPath = Path.Combine(e.CQApi.AppDirectory, "UISetting.ini");
+
+
+            //提供每秒一次事件通知
+            Common.Pub = Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1)).Timestamp().Publish();
+
+            //订阅初始化
+            Common.Pub.Connect();
+
+            var runtime = DateTime.Now;
+
+            //订阅事件
+            Common.Pub.Subscribe(sub =>
+            {
+                if (sub.Value == 1)
+                {
+                    e.CQLog.Debug("订阅事件執行", sub.Value);
+                }
+
+                if (sub.Value % 60 == 0)//每分钟一次
+                {
+                    e.CQLog.Debug("每分钟一次", sub.Value);
+                }
+
+                if (DateTime.Now == runtime.AddMinutes(1))//在运行后一分钟
+                {
+                    e.CQLog.Debug("应用运行执行了一分钟", sub.Value);
+
+                    //停用订阅
+                    Common.Pub.Connect().Dispose();
+
+                    Task.Delay(TimeSpan.FromSeconds(10)).Wait();
+
+                    //再次订阅
+                    Common.Pub.Connect();
+
+                    Task.Delay(TimeSpan.FromSeconds(10)).Wait();
+                }
+            });
+
         }
     }
 }

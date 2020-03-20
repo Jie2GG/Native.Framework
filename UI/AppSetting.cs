@@ -1,5 +1,6 @@
 ﻿using Native.Tool.IniConfig.Linq;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -47,38 +48,32 @@ namespace UI
         }
         public static void Save()
         {
-            IniObject iObject = new IniObject();
-            if (File.Exists(ViewModel.MainInstance.UISettingPath))
-            {
-                try
-                {
-                    iObject = IniObject.Load(ViewModel.MainInstance.UISettingPath);
-                }
-                catch (Exception ex) { Debug.WriteLine(ex.Message); }
-            }
+            IniObject iObject = IniObject.Load(ViewModel.MainInstance.UISettingPath);
+
             IniSection LastPreSendSection = new IniSection("LastPreSend");
             IniValue MessageValue = new IniValue(ViewModel.MainInstance.ReadyToSend);
-            IniValue GroupIdValue = new IniValue(ViewModel.MainInstance.SelectedGroup.GroupId.ToString());
+            IniValue GroupIdValue = new IniValue(ViewModel.MainInstance.SelectedGroup.GroupId);
             LastPreSendSection.Add("Message", MessageValue);
             LastPreSendSection.Add("GroupId", GroupIdValue);
 
-            if (iObject.Any(a => a.ContainsKey("LastPreSend")))
+            if (iObject.Any(a=>a.Keys.Contains("LastPreSend")))
             {
                 if (iObject["LastPreSend"].ContainsKey("Message"))
                 {
-                    iObject["LastPreSend"]["Message"].Value = LastPreSendSection["Message"].Value;
+                    iObject["LastPreSend"]["Message"] = LastPreSendSection["Message"];
                 }
                 else
                 {
-                    iObject["LastPreSend"].Add("Message", LastPreSendSection["Message"].Value);
+                    iObject["LastPreSend"].Add("Message", LastPreSendSection["Message"]);
                 }
+
                 if (iObject["LastPreSend"].ContainsKey("GroupId"))
                 {
-                    iObject["LastPreSend"]["GroupId"].Value = LastPreSendSection["GroupId"].Value;
+                    iObject["LastPreSend"]["GroupId"] = LastPreSendSection["GroupId"];
                 }
                 else
                 {
-                    iObject["LastPreSend"].Add("GroupId", LastPreSendSection["GroupId"].Value);
+                    iObject["LastPreSend"].Add("GroupId", LastPreSendSection["GroupId"]);
                 }
             }
             else
