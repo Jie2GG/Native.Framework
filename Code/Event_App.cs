@@ -26,6 +26,9 @@ namespace Code
             {
                 Common.WebServiceHost.Close();
             }
+            
+            //停用订阅
+            Common.Pub.Connect().Dispose();
         }
 
         public void AppEnable(object sender, CQAppEnableEventArgs e)
@@ -59,30 +62,8 @@ namespace Code
             {
                 e.CQLog.Warning("WCF服务失效", "需要以管理员权限运行酷Q方可启用WCF服务");
             }
-        }
-
-        public void CQExit(object sender, CQExitEventArgs e)
-        {
-            Common.WebServiceHost.Abort();
-        }
-
-        public void CQStartup(object sender, CQStartupEventArgs e)
-        {
-            Common.Api = e.CQApi;
-            Common.Log = e.CQLog;
-            Common.Friends = new Request.FriendRequest(e.CQApi, e.CQLog);
-            Common.VipInfo = new Request.VipInfo(e.CQApi, e.CQLog);
-            Common.Icon = new Request.Icon(e.CQApi, e.CQLog);
-            Common.Group = new Request.GroupRequest(e.CQApi, e.CQLog);
-
-            ViewModel.MainInstance.Api = e.CQApi;
-            ViewModel.MainInstance.Log = e.CQLog;
-            ViewModel.MainInstance.UISettingPath = Path.Combine(e.CQApi.AppDirectory, "UISetting.ini");
-
-
-            //提供每秒一次事件通知
-            Common.Pub = Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1)).Timestamp().Publish();
-
+            
+            
             //订阅初始化
             Common.Pub.Connect();
 
@@ -116,6 +97,29 @@ namespace Code
                     Task.Delay(TimeSpan.FromSeconds(10)).Wait();
                 }
             });
+        }
+
+        public void CQExit(object sender, CQExitEventArgs e)
+        {
+            Common.WebServiceHost.Abort();
+        }
+
+        public void CQStartup(object sender, CQStartupEventArgs e)
+        {
+            Common.Api = e.CQApi;
+            Common.Log = e.CQLog;
+            Common.Friends = new Request.FriendRequest(e.CQApi, e.CQLog);
+            Common.VipInfo = new Request.VipInfo(e.CQApi, e.CQLog);
+            Common.Icon = new Request.Icon(e.CQApi, e.CQLog);
+            Common.Group = new Request.GroupRequest(e.CQApi, e.CQLog);
+
+            ViewModel.MainInstance.Api = e.CQApi;
+            ViewModel.MainInstance.Log = e.CQLog;
+            ViewModel.MainInstance.UISettingPath = Path.Combine(e.CQApi.AppDirectory, "UISetting.ini");
+
+
+            //提供每秒一次事件通知
+            Common.Pub = Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1)).Timestamp().Publish();
 
         }
     }
