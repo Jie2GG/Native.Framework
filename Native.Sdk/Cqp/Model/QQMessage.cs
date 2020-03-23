@@ -49,7 +49,13 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取当前实例解析出的正则消息键值对
 		/// </summary>
-		public Dictionary<string, string> RegexKeyValuePairs { get; private set; }
+		[Obsolete ("该属性已过时, 请使用 RegexResult")]
+		public Dictionary<string, string> RegexKeyValuePairs { get { return this.RegexResult; } }
+
+		/// <summary>
+		/// 获取当前实例解析出的正则消息结果
+		/// </summary>
+		public Dictionary<string, string> RegexResult { get; private set; }
 
 		/// <summary>
 		/// 获取当前消息的所有 [CQ:...] 的对象集合
@@ -71,6 +77,16 @@ namespace Native.Sdk.Cqp.Model
 				return this._cqCodes;
 			}
 		}
+
+		/// <summary>
+		/// 获取一个值, 指示该实例是否属于纯图片消息
+		/// </summary>
+		public bool IsImageMessage { get { return this.CQCodes.All (CQCode.EqualIsImageCQCode); } }
+
+		/// <summary>
+		/// 获取一个值, 指示该实例是否属于语音消息
+		/// </summary>
+		public bool IsRecordMessage { get { return this.CQCodes.All (CQCode.EqualIsRecordCQCode); } }
 		#endregion
 
 		#region --构造函数--
@@ -109,62 +125,13 @@ namespace Native.Sdk.Cqp.Model
 			this.Id = id;
 			this.Text = msg;
 			this.IsRegexMessage = isRegex;
-			this.RegexKeyValuePairs = null;
+			this.RegexResult = null;
 
 			#region --正则事件解析--
 			if (isRegex)
 			{
 				// 进行正则事件消息解析
-				byte[] data = Convert.FromBase64String (msg);
-				if (data == null)
-				{
-#if DEBUG
-					throw new InvalidDataException ("获取的数据为 null");
-#else
-					return;
-#endif
-				}
-
-				using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
-				{
-					if (reader.Length () < 4)
-					{
-#if DEBUG
-						throw new InvalidDataException ("读取失败, 原始数据格式错误");
-#else
-						return;
-#endif
-					}
-
-					int length = reader.ReadInt32_Ex ();    // 获取长度
-					if (length <= 0)
-					{
-						return;
-					}
-					this.RegexKeyValuePairs = new Dictionary<string, string> (length);
-
-					for (int i = 0; i < length; i++)
-					{
-						using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
-						{
-							if (tempReader.Length () < 4)
-							{
-#if DEBUG
-								throw new InvalidDataException ("读取失败, 原始数据格式错误");
-#else
-								this.RegexKeyValuePairs = null;
-								return;
-#endif
-							}
-
-							// 读取结果
-							string key = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
-							string content = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
-
-							this.RegexKeyValuePairs.Add (key, content);
-						}
-					}
-				}
+				this.RegexResult = ParseRegexMessage (msg);
 			}
 			#endregion
 		}
@@ -203,16 +170,30 @@ namespace Native.Sdk.Cqp.Model
 		}
 
 		/// <summary>
-		/// 接收消息中的图片 (消息含有CQ码 "image" 的消息)
+		/// 接收消息中指定的图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
 		/// <param name="index">要接收的图片索引, 该索引从 0 开始</param>
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
 		public string ReceiveImage (int index)
 		{
+			return this.ReceiveAllImage ()[index];
+		}
+
+		/// <summary>
+		/// 接收消息中的所有图片 (消息含有CQ码 "image" 的消息)
+		/// </summary>
+		/// <returns>返回图片文件位于本地服务器的绝对路径数组</returns>
+		public string[] ReceiveAllImage ()
+		{
 			if (!this.IsRegexMessage)
 			{
-				CQCode image = (from code in this.CQCodes where code.Function == CQFunction.Image select code).Skip (index).First ();
-				return this.CQApi.ReceiveImage (image.Items["file"]);
+				IEnumerable<CQCode> codes = from code in this.CQCodes where code.Function == CQFunction.Image select code;
+				List<string> list = new List<string> (codes.Count ());
+				foreach (CQCode code in codes)
+				{
+					list.Add (code.Items["file"]);
+				}
+				return list.ToArray ();
 			}
 			else
 			{
@@ -278,7 +259,7 @@ namespace Native.Sdk.Cqp.Model
 
 			if (this.IsRegexMessage)
 			{
-				foreach (KeyValuePair<string, string> keyValue in this.RegexKeyValuePairs)
+				foreach (KeyValuePair<string, string> keyValue in this.RegexResult)
 				{
 					builder.AppendFormat ("    {0}-{1}, ", keyValue.Key, keyValue.Value);
 				}
@@ -306,6 +287,64 @@ namespace Native.Sdk.Cqp.Model
 				return false;
 			}
 			return string.Compare (msg.Text, str) == 0;
+		}
+
+		/// <summary>
+		/// 解析正则消息
+		/// </summary>
+		/// <param name="message">需要解析的消息</param>
+		/// <returns>解析成功返回 <see cref="Dictionary{TKey, TValue}"/>, 解析失败返回 <see langword="null"/></returns>
+		private static Dictionary<string, string> ParseRegexMessage (string message)
+		{
+			byte[] data = Convert.FromBase64String (message);
+			if (data == null)
+			{
+#if DEBUG
+				throw new InvalidDataException ("获取的数据为 null");
+#else
+				return null;
+#endif
+			}
+
+			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
+			{
+				if (reader.Length () < 4)
+				{
+#if DEBUG
+					throw new InvalidDataException ("读取失败, 原始数据格式错误");
+#else
+					return null;
+#endif
+				}
+
+				int length = reader.ReadInt32_Ex ();    // 获取长度
+				if (length > 0)
+				{
+					Dictionary<string, string> pairs = new Dictionary<string, string> (length);
+
+					for (int i = 0; i < length; i++)
+					{
+						using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+						{
+							if (tempReader.Length () < 4)
+							{
+#if DEBUG
+								throw new InvalidDataException ("读取失败, 原始数据格式错误");
+#else
+								return null;
+#endif
+							}
+
+							// 读取结果
+							string key = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
+							string content = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
+
+							pairs.Add (key, content);
+						}
+					}
+				}
+			}
+			return null;
 		}
 		#endregion
 
