@@ -81,12 +81,32 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 获取一个值, 指示该实例是否属于纯图片消息
 		/// </summary>
-		public bool IsImageMessage { get { return this.CQCodes.All (CQCode.EqualIsImageCQCode); } }
+		public bool IsImageMessage
+		{
+			get
+			{
+				if (this.CQCodes.Count == 0)
+				{
+					return false;
+				}
+				return this.CQCodes.All (CQCode.EqualIsImageCQCode);
+			}
+		}
 
 		/// <summary>
 		/// 获取一个值, 指示该实例是否属于语音消息
 		/// </summary>
-		public bool IsRecordMessage { get { return this.CQCodes.All (CQCode.EqualIsRecordCQCode); } }
+		public bool IsRecordMessage
+		{
+			get
+			{
+				if (this.CQCodes.Count == 0)
+				{
+					return false;
+				}
+				return this.CQCodes.All (CQCode.EqualIsRecordCQCode);
+			}
+		}
 		#endregion
 
 		#region --构造函数--
