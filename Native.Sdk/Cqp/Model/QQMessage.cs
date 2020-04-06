@@ -193,10 +193,22 @@ namespace Native.Sdk.Cqp.Model
 		/// 接收消息中指定的图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
 		/// <param name="index">要接收的图片索引, 该索引从 0 开始</param>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="QQMessage.CQCodes.Count"/></exception>
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
 		public string ReceiveImage (int index)
 		{
-			return this.ReceiveAllImage ()[index];
+			if (!this.IsRegexMessage)
+			{
+				return this.CQApi.ReceiveImage (this.CQCodes[index]);
+			}
+			else
+			{
+#if DEBUG
+				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
+#else
+				return null;
+#endif
+			}
 		}
 
 		/// <summary>
@@ -211,7 +223,7 @@ namespace Native.Sdk.Cqp.Model
 				List<string> list = new List<string> (codes.Count ());
 				foreach (CQCode code in codes)
 				{
-					list.Add (code.Items["file"]);
+					list.Add (this.CQApi.ReceiveImage (code.Items["file"]));
 				}
 				return list.ToArray ();
 			}
