@@ -1,5 +1,12 @@
 ## Native.SDK 更新日志
 
+#### 2020年04月20日 版本: V4.1.5.0420
+
+	1. 优化 Native.Sdk.Cqp.Model 下原有类的构造方式, 为所有类增加了抽象
+	2. 优化 QQ、Group、Discuss、QQMessage 和 QQRequest 类的转换方式 (现在支持转换为对应的封装数据类型, 例如: QQMessage 能直接赋值给 string 类型)
+	3. 移除 CQApi 传入封装数据类型的接口 (由于支持隐式转换, 所以精简该类)
+	4. 移除 QQ 类中包含群操作的接口
+
 #### 2020年04月06日 版本: V4.1.4.0406
 
 	1. 修复 QQMessage 类, 在接收图片时的 bug
