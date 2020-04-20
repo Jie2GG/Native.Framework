@@ -6,6 +6,9 @@
 	2. 优化 QQ、Group、Discuss、QQMessage 和 QQRequest 类的转换方式 (现在支持转换为对应的封装数据类型, 例如: QQMessage 能直接赋值给 string 类型)
 	3. 移除 CQApi 传入封装数据类型的接口 (由于支持隐式转换, 所以精简该类)
 	4. 移除 QQ 类中包含群操作的接口
+	5. 新增 FriendInfoCollection 类, 表示只读的好友列表信息
+	6. 新增 GroupInfoCollection 类, 表示只读的群列表信息
+	7. 新增 GroupMemberInfoCollection 类, 表示只读的群成员列表信息
 
 #### 2020年04月06日 版本: V4.1.4.0406
 
