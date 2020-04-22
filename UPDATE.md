@@ -9,6 +9,7 @@
 	5. 新增 FriendInfoCollection 类, 表示只读的好友列表信息
 	6. 新增 GroupInfoCollection 类, 表示只读的群列表信息
 	7. 新增 GroupMemberInfoCollection 类, 表示只读的群成员列表信息
+	8. 修复 GroupMemberInfo 类, ToString 时抛出异常.
 
 #### 2020年04月06日 版本: V4.1.4.0406
 

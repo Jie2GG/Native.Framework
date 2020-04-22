@@ -148,7 +148,7 @@ namespace Native.Sdk.Cqp.Model
 			builder.AppendFormat ("成员等级: {0}{1}", this.Level, Environment.NewLine);
 			builder.AppendFormat ("成员类型: {0}{1}", this.MemberType.GetDescription (), Environment.NewLine);
 			builder.AppendFormat ("专属头衔: {0}{1}", this.ExclusiveTitle, Environment.NewLine);
-			builder.AppendFormat ("专属头衔过期时间: {0}{1}", this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss"), Environment.NewLine);
+			builder.AppendFormat ("专属头衔过期时间: {0}{1}", this.ExclusiveTitleExpirationTime != null ? this.ExclusiveTitleExpirationTime.Value.ToString ("yyyy-MM-dd HH:mm:ss") : "永久", Environment.NewLine);
 			builder.AppendFormat ("不良记录成员: {0}{1}", this.IsBadRecord ? "是" : "否", Environment.NewLine);
 			builder.AppendFormat ("允许修改名片: {0}{1}", this.IsAllowEditorCard ? "是" : "否", Environment.NewLine);
 			return builder.ToString ();
