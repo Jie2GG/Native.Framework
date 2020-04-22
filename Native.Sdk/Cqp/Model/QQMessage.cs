@@ -129,7 +129,7 @@ namespace Native.Sdk.Cqp.Model
 		/// 接收消息中指定的图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
 		/// <param name="index">要接收的图片索引, 该索引从 0 开始</param>
-		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="QQMessage.CQCodes.Count"/></exception>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="QQMessage.CQCodes"/> 包含 <see cref="CQFunction.Image"/> 的数量</exception>
 		/// <exception cref="ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
 		public string ReceiveImage (int index)
@@ -194,7 +194,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{
@@ -244,31 +244,34 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="reader">解析模型的数据源</param>
 		protected override void Initialize (BinaryReader reader)
 		{
-			if (reader.Length () < 4)
+			if (this.IsRegexMessage)
 			{
-				throw new InvalidDataException ("读取失败, 获取的原始数据长度小于 4");
-			}
-
-			int count = reader.ReadInt32_Ex ();	// 获取解析到的正则结果个数
-			if (count > 0)
-			{
-				if (this.IsRegexMessage)
+				if (reader.Length () < 4)
 				{
-					this.RegexResult = new Dictionary<string, string> (count);
+					throw new InvalidDataException ("读取失败, 获取的原始数据长度小于 4");
 				}
 
-				for (int i = 0; i < count; i++)
+				int count = reader.ReadInt32_Ex (); // 获取解析到的正则结果个数
+				if (count > 0)
 				{
-					using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+					if (this.IsRegexMessage)
 					{
-						if (reader.Length () < 4)
-						{
-							throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
-						}
+						this.RegexResult = new Dictionary<string, string> (count);
+					}
 
-						string key = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
-						string value = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
-						this.RegexResult.Add (key, value);
+					for (int i = 0; i < count; i++)
+					{
+						using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+						{
+							if (reader.Length () < 4)
+							{
+								throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
+							}
+
+							string key = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+							string value = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+							this.RegexResult.Add (key, value);
+						}
 					}
 				}
 			}
@@ -280,7 +283,7 @@ namespace Native.Sdk.Cqp.Model
 		/// 定义将 <see cref="QQ"/> 对象转换为 <see cref="string"/>
 		/// </summary>
 		/// <param name="value">转换的 <see cref="QQ"/> 对象</param>
-		/// <exception cref="ArithmeticException">当 <see cref="IsRegexMessage"/> 为 <see langword="true"/> 时会发生异常 (仅 Debug 模式)</exception>/// <summary>
+		/// <exception cref="ArithmeticException">当 <see cref="IsRegexMessage"/> 为 <see langword="true"/> 时会发生异常 (仅 Debug 模式)</exception>
 		public static implicit operator string (QQMessage value)
 		{
 			if (value.IsRegexMessage)

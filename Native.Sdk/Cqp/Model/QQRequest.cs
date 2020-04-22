@@ -77,7 +77,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{
@@ -110,6 +110,10 @@ namespace Native.Sdk.Cqp.Model
 		#endregion
 
 		#region --转换方法--
+		/// <summary>
+		/// 定义将 <see cref="QQRequest"/> 对象转换为 <see cref="string"/>
+		/// </summary>
+		/// <param name="value">转换的 <see cref="QQRequest"/> 对象</param>
 		public static implicit operator string (QQRequest value)
 		{
 			return value.ResponseFlag;

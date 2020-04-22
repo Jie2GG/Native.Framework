@@ -38,7 +38,7 @@ namespace Native.Sdk.Cqp.Model
 		/// 使用指定的密文初始化 <see cref="StrangerInfo"/> 类的新实例
 		/// </summary>
 		/// <param name="api">模型使用的 <see cref="Cqp.CQApi"/></param>
-		/// <param name="cipherBytes">模型使用的解密密文字符串</param>
+		/// <param name="cipherText">模型使用的解密密文字符串</param>
 		public StrangerInfo (CQApi api, string cipherText)
 			: base (api, cipherText)
 		{
@@ -63,7 +63,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{

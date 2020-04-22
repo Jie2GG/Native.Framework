@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Native.Sdk.Cqp.Model
 {
+	/// <summary>
+	/// 描述 QQ群信息集合 的类
+	/// </summary>
 	public class GroupInfoCollection : BasisStreamModel, IReadOnlyCollection<GroupInfo>, IEquatable<GroupInfoCollection>
 	{
 		#region --字段--
@@ -72,7 +75,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{

@@ -411,7 +411,7 @@ namespace Native.Sdk.Cqp
 		/// <summary>
 		/// 发送私聊消息
 		/// </summary>
-		/// <param name="groupId">目标QQ号码</param>
+		/// <param name="qqId">目标QQ号码</param>
 		/// <param name="message">用于发送消息对象数组. (获取字符串将优先调用 <see cref="IToSendString.ToSendString"/> 接口, 若不存在该接口则调用 <see cref="Object.ToString"/>)</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: message 中有 null 元素</exception>
@@ -438,7 +438,7 @@ namespace Native.Sdk.Cqp
 		/// <summary>
 		/// 发送讨论组消息
 		/// </summary>
-		/// <param name="groupId">目标讨论组号码</param>
+		/// <param name="discussId">目标讨论组号码</param>
 		/// <param name="message">用于发送消息对象数组. (获取字符串将优先调用 <see cref="IToSendString.ToSendString"/> 接口, 若不存在该接口则调用 <see cref="Object.ToString"/>)</param>
 		/// <exception cref="ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
 		/// <exception cref="ArgumentNullException">参数: message 中有 null 元素</exception>
