@@ -30,7 +30,14 @@ namespace Native.Tool.IniConfig.Linq
 		/// <returns>与指定的键相关联的值。 如果找不到指定的键，则 get 操作会引发一个 <see cref="KeyNotFoundException"/>，而 set 操作会创建一个使用指定键的新元素</returns>
 		public ISection this[string key]
 		{
-			get { return this._sortedList[key]; }
+			get
+			{
+				if (!this._sortedList.ContainsKey (key))
+				{
+					this._sortedList.Add (key, new ISection (key));
+				}
+				return this._sortedList[key];
+			}
 			set { this._sortedList[key] = value; }
 		}
 		/// <summary>
