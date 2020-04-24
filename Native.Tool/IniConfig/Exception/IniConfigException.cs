@@ -10,6 +10,7 @@ namespace Native.Tool.IniConfig.Exception
 	/// <summary>
 	/// 表示 IniConfig 运行期间发生的错误
 	/// </summary>
+	[Obsolete ("该类型跟随 IniConvert 类型过期")]
 	public class IniConfigException : System.Exception
 	{
 		/// <summary>

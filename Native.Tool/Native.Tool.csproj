@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -54,15 +55,26 @@
     </Compile>
     <Compile Include="IniConfig\Attribute\IniConfigKeyAttribute.cs" />
     <Compile Include="IniConfig\Attribute\IniConfigSectionAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniKeyAttribute.cs" />
     <Compile Include="IniConfig\Attribute\IniNonSerializeAttribute.cs" />
+    <Compile Include="IniConfig\Attribute\IniSectionAttribute.cs" />
     <Compile Include="IniConfig\Attribute\IniSerializeAttribute.cs" />
     <Compile Include="IniConfig\Exception\IniConfigException.cs" />
     <Compile Include="IniConfig\Exception\PropertyNotFoundException.cs" />
     <Compile Include="IniConfig\Exception\SectionNotFoundException.cs" />
+    <Compile Include="IniConfig\IniConfig.cs" />
     <Compile Include="IniConfig\IniConvert.cs" />
+    <Compile Include="IniConfig\Linq\IContainer.cs" />
     <Compile Include="IniConfig\Linq\IniObject.cs" />
     <Compile Include="IniConfig\Linq\IniSection.cs" />
     <Compile Include="IniConfig\Linq\IniValue.cs" />
+    <Compile Include="IniConfig\Linq\IObject.cs" />
+    <Compile Include="IniConfig\Linq\ISection.cs" />
+    <Compile Include="IniConfig\Linq\IValue.cs" />
+    <Compile Include="IniConfig\Linq\IValueType.cs" />
+    <Compile Include="IniConfig\Utilities\ConvertUtils.cs" />
+    <Compile Include="IniConfig\Utilities\MathUtils.cs" />
+    <Compile Include="IniConfig\Utilities\MiscellaneousUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite\AssemblySourceIdAttribute.cs" />
     <Compile Include="SQLite\AssemblySourceTimeStampAttribute.cs" />

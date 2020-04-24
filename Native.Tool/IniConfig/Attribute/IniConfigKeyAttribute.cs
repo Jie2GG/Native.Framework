@@ -9,6 +9,7 @@ namespace Native.Tool.IniConfig.Attribute
 	/// <summary>
 	/// 表示 IniConfig 在序列化时将表示为键的特性
 	/// </summary>
+	[Obsolete("该类型跟随 IniConvert 类型过期")]
 	[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 	public sealed class IniConfigKeyAttribute : System.Attribute
 	{

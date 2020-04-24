@@ -14,6 +14,7 @@ namespace Native.Tool.IniConfig
 	/// <summary>
 	/// 提供了普通对象针对 IniConfig 快速转换的类
 	/// </summary>
+	[Obsolete ("请改用 IniConfig 类型做转换")]
 	public static class IniConvert
 	{
 		/// <summary>
