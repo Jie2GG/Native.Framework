@@ -15,7 +15,7 @@ namespace Native.Sdk.Cqp.Model
 	public class GroupInfoCollection : BasisStreamModel, IReadOnlyCollection<GroupInfo>, IEquatable<GroupInfoCollection>
 	{
 		#region --字段--
-		private readonly List<GroupInfo> _list;
+		private List<GroupInfo> _list;
 		#endregion
 
 		#region --属性--
@@ -37,7 +37,6 @@ namespace Native.Sdk.Cqp.Model
 		public GroupInfoCollection (CQApi api, string cipherText)
 			: base (api, cipherText)
 		{
-			this._list = new List<GroupInfo> ();
 		}
 		#endregion
 
@@ -120,6 +119,11 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="reader">解析模型的数据源</param>
 		protected override void Initialize (BinaryReader reader)
 		{
+			if (this._list == null)
+			{
+				this._list = new List<GroupInfo> ();
+			}
+
 			int count = reader.ReadInt32_Ex ();
 			for (int i = 0; i < count; i++)
 			{

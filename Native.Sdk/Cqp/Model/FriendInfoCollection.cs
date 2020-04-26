@@ -15,7 +15,7 @@ namespace Native.Sdk.Cqp.Model
 	public class FriendInfoCollection : BasisStreamModel, IReadOnlyCollection<FriendInfo>, IEquatable<FriendInfoCollection>
 	{
 		#region --字段--
-		private readonly List<FriendInfo> _list;
+		private List<FriendInfo> _list;
 		#endregion
 
 		#region --属性--
@@ -36,9 +36,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="cipherText">模型使用的解密密文字符串</param>
 		public FriendInfoCollection (CQApi api, string cipherText)
 			: base (api, cipherText)
-		{
-			this._list = new List<FriendInfo> ();
-		}
+		{ }
 		#endregion
 
 		#region --公开方法--
@@ -122,6 +120,11 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="reader">解析模型的数据源</param>
 		protected override void Initialize (BinaryReader reader)
 		{
+			if (this._list == null)
+			{
+				this._list = new List<FriendInfo> ();
+			}
+
 			int count = reader.ReadInt32_Ex ();
 			for (int i = 0; i < count; i++)
 			{
