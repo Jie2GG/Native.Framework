@@ -88,10 +88,10 @@
 <h2 id="在-cvbnet-中实现菜单事件打开窗体">在 C#/VB.NET 中实现菜单事件打开窗体</h2>
 <ul>
 <li><p>在解决方案中, 新建一个 <strong>WPF</strong> 项目(VB.NET项目类似), 项目名称以 <strong>AppID.UI</strong> 命名</p>
-<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_CreateUIProject.png" alt="添加项目"></p>
+<p><img src="/images/guide/Native.Framework/Native_CreateUIProject.png" alt="添加项目"></p>
 </li>
 <li><p>为 <strong>AppID.UI</strong> 项目添加 &quot;Native.Sdk&quot; 的引用, 同时在 &quot;Native.Core&quot; 中添加 <strong>AppID.UI</strong> 的引用</p>
-<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_AddUsingforUI.png" alt="添加引用"></p>
+<p><img src="/images/guide/Native.Framework/Native_AddUsingforUI.png" alt="添加引用"></p>
 </li>
 <li><p>在 <strong>AppID.UI</strong> 项目中新建一个 &quot;公开&quot; 的类: &quot;Menu_OpenWindow&quot;, 该类继承 &quot;IMenuCall&quot; 接口, 添加代码实现弹出窗体</p>
 <ul>
@@ -193,7 +193,7 @@ public class CQMain
 </ul>
 <h2 id="编译测试">编译测试</h2>
 <p>根据 <a href="/Jie2GG/Native.Framework/wiki/04.-%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2">编译部署</a> 中的步骤, 将SDK编译, 重新部署到 &quot;dev&quot; 目录, 然后使用酷Q进行测试窗体的加载</p>
-<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_ShowWindow.png" alt="效果展示"></p>
+<p><img src="/images/guide/Native.Framework/Native_ShowWindow.png" alt="效果展示"></p>
 </article>
           </div>
           

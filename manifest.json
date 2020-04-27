@@ -2721,7 +2721,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/01.html",
-          "hash": "Upo/+eX2wsB+GfX6e7UX0w=="
+          "hash": "W/tMm4zAp9L/OLr+zCHbeg=="
         }
       },
       "is_incremental": true,
@@ -2745,7 +2745,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/03.html",
-          "hash": "E3bZ+Gq3SAky9c8GTB1N1w=="
+          "hash": "weuga3bllTxoOsfln94NCw=="
         }
       },
       "is_incremental": true,
@@ -2757,7 +2757,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/04.html",
-          "hash": "45SFoXYumvEQq7jMGiNEcw=="
+          "hash": "GeipK6bofWIbkpptOufNLQ=="
         }
       },
       "is_incremental": true,
@@ -2769,7 +2769,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/05.html",
-          "hash": "MJvmS8pQ/rfuecuj1mhwFQ=="
+          "hash": "ZLDcLWmEns64X/x4aXQAbw=="
         }
       },
       "is_incremental": true,
@@ -2781,7 +2781,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/06.html",
-          "hash": "fZqxtO39Va/+bINTv4HL3A=="
+          "hash": "v1vX/7ZnLgWIy5y3jTp45A=="
         }
       },
       "is_incremental": true,
@@ -2793,7 +2793,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/07.html",
-          "hash": "0zbka45ACI1y7fr5vY8imQ=="
+          "hash": "pSDxen4gRJHiOp7i+CnjWA=="
         }
       },
       "is_incremental": true,
@@ -2805,7 +2805,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/08.html",
-          "hash": "YydLERCmJBwobx7X8oR9Zw=="
+          "hash": "+sqdCSDfXHor/HdH0EhACw=="
         }
       },
       "is_incremental": true,
@@ -2884,12 +2884,287 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/AliPlay.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AliPlay.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/WeChat.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/WeChat.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_AddProjectAndUsing.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_AddProjectAndUsing.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_AddUsing.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_AddUsing.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_AddUsingforUI.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_AddUsingforUI.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_Compile.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_Compile.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_CopyProjectToNewSDK.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_CopyProjectToNewSDK.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_CopyToDev.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_CopyToDev.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_CreateEventProject.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_CreateEventProject.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_CreateUIProject.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_CreateUIProject.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_CreateX86Platform.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_CreateX86Platform.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugAdditionalCQ.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugAdditionalCQ.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugCopy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugCopy.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugReloading.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugReloading.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugSelectMenu.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugSelectMenu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugSuccess.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugSuccess.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_DebugSwitch.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_DebugSwitch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_EnableDev.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_EnableDev.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_PluginList.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_PluginList.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_RunTool.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_RunTool.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_SelectCompile.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_SelectCompile.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_SelectConfigManager.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_SelectConfigManager.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_SetAppID.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_SetAppID.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_ShowFloatWindow.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_ShowFloatWindow.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/guide/Native.Framework/Native_ShowWindow.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/guide/Native.Framework/Native_ShowWindow.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "7ESxiNxn3AXENZH8vZBL3A=="
+          "hash": "etByI/9GUvEt5IQMtcxAEA=="
         }
       },
       "is_incremental": true,
@@ -2928,6 +3203,13 @@
           "incrementalPhase": "build",
           "total_file_count": 224,
           "skipped_file_count": 224
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
