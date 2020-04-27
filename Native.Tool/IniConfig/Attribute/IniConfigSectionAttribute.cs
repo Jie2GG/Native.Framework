@@ -9,6 +9,7 @@ namespace Native.Tool.IniConfig.Attribute
 	/// <summary>
 	/// 表示 IniConfig 在序列化时将表示为节的特性
 	/// </summary>
+	[Obsolete ("该类型跟随 IniConvert 类型过期")]
 	[AttributeUsage (AttributeTargets.Class | AttributeTargets.Struct)]
 	public sealed class IniConfigSectionAttribute : System.Attribute
 	{

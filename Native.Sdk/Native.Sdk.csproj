@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\x86\Debug\Native.Sdk.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -114,13 +115,18 @@
     <Compile Include="Cqp\Model\AppInfo.cs" />
     <Compile Include="Cqp\Model\CQCode.cs" />
     <Compile Include="Cqp\Model\CQFloatWindow.cs" />
+    <Compile Include="Cqp\Model\BasisModel.cs" />
+    <Compile Include="Cqp\Model\BasisStreamModel.cs" />
     <Compile Include="Cqp\Model\Discuss.cs" />
     <Compile Include="Cqp\Model\FriendInfo.cs" />
+    <Compile Include="Cqp\Model\FriendInfoCollection.cs" />
     <Compile Include="Cqp\Model\Group.cs" />
     <Compile Include="Cqp\Model\GroupFileInfo.cs" />
     <Compile Include="Cqp\Model\GroupInfo.cs" />
+    <Compile Include="Cqp\Model\GroupInfoCollection.cs" />
     <Compile Include="Cqp\Model\GroupMemberAnonymousInfo.cs" />
     <Compile Include="Cqp\Model\GroupMemberInfo.cs" />
+    <Compile Include="Cqp\Model\GroupMemberInfoCollection.cs" />
     <Compile Include="Cqp\Model\QQ.cs" />
     <Compile Include="Cqp\Model\QQMessage.cs" />
     <Compile Include="Cqp\Model\QQRequest.cs" />

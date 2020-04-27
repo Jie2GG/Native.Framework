@@ -112,7 +112,6 @@ namespace Native.Sdk.Cqp.Model
 			}
 			return codes;
 		}
-
 		/// <summary>
 		/// 判断是否是图片 <see cref="CQCode"/>
 		/// </summary>
@@ -122,7 +121,6 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return code.Function == CQFunction.Image;
 		}
-
 		/// <summary>
 		/// 判断是否是语音 <see cref="CQCode"/>
 		/// </summary>
@@ -132,7 +130,6 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return code.Function == CQFunction.Record;
 		}
-
 		/// <summary>
 		/// 确定指定的对象是否等于当前对象
 		/// </summary>
@@ -147,7 +144,6 @@ namespace Native.Sdk.Cqp.Model
 			}
 			return base.Equals (obj);
 		}
-
 		/// <summary>
 		/// 返回该字符串的哈希代码
 		/// </summary>
@@ -156,7 +152,6 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return base.GetHashCode () & this._originalString.GetHashCode ();
 		}
-
 		/// <summary>
 		/// 返回此实例等效的CQ码形式
 		/// </summary>
@@ -186,7 +181,6 @@ namespace Native.Sdk.Cqp.Model
 			}
 			return this._originalString;
 		}
-
 		/// <summary>
 		/// 处理返回用于发送的字符串
 		/// </summary>

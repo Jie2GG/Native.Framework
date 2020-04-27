@@ -13,19 +13,17 @@ namespace Native.Sdk.Cqp.Model
 	/// <summary>
 	/// 表示 酷Q悬浮窗 的类
 	/// </summary>
-	public class CQFloatWindow : IToSendString
+	public class CQFloatWindow : IToSendString, IEquatable<CQFloatWindow>
 	{
 		#region --属性--
 		/// <summary>
 		/// 获取或设置当前悬浮窗的值
 		/// </summary>
 		public object Value { get; set; }
-
 		/// <summary>
 		/// 获取或设置当前悬浮窗使用的单位
 		/// </summary>
 		public string Unit { get; set; }
-
 		/// <summary>
 		/// 获取或设置当前悬浮窗的文本颜色
 		/// </summary>
@@ -78,9 +76,52 @@ namespace Native.Sdk.Cqp.Model
 
 		#region --公开方法--
 		/// <summary>
-		/// 获取当前对象所描述的悬浮窗数据
+		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <returns>当前对象所描述的悬浮窗数据</returns>
+		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public bool Equals (CQFloatWindow other)
+		{
+			if (other == null)
+			{
+				return false;
+			}
+
+			return this.Value.Equals (other.Value) && this.Unit.Equals (other.Unit) && this.TextColor == other.TextColor;
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public override bool Equals (object obj)
+		{
+			return this.Equals (obj as CQFloatWindow);
+		}
+		/// <summary>
+		/// 返回此实例的哈希代码
+		/// </summary>
+		/// <returns>32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return Value.GetHashCode () & this.Unit.GetHashCode () & this.TextColor.GetHashCode ();
+		}
+		/// <summary>
+		/// 返回表示当前对象的字符串
+		/// </summary>
+		/// <returns>表示当前对象的字符串</returns>
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder ();
+			builder.AppendLine (string.Format ("数据: {0}", this.Value != null ? this.Value : string.Empty));
+			builder.AppendLine (string.Format ("单位: {0}", this.Unit != null ? this.Value : string.Empty));
+			builder.AppendFormat ("颜色: {0}", this.TextColor.GetDescription ());
+			return builder.ToString ();
+		}
+		/// <summary>
+		/// 返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
 		public string ToSendString ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
@@ -90,45 +131,6 @@ namespace Native.Sdk.Cqp.Model
 				writer.Write_Ex ((int)this.TextColor);
 				return Convert.ToBase64String (writer.ToArray ());
 			}
-		}
-
-		/// <summary>
-		/// 确定指定的对象是否等于当前对象
-		/// </summary>
-		/// <param name="obj">要与当前对象进行比较的对象</param>
-		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
-		public override bool Equals (object obj)
-		{
-			CQFloatWindow floatWindow = obj as CQFloatWindow;
-			if (floatWindow != null)
-			{
-				return this.Value == floatWindow.Value && string.Equals (this.Unit, floatWindow.Unit) && this.TextColor == floatWindow.TextColor;
-			}
-			return base.Equals (obj);
-		}
-
-		/// <summary>
-		/// 返回该字符串的哈希代码
-		/// </summary>
-		/// <returns> 32 位有符号整数哈希代码</returns>
-		public override int GetHashCode ()
-		{
-			return base.GetHashCode () & this.Value.GetHashCode () & this.Unit.GetHashCode () & this.TextColor.GetHashCode ();
-		}
-
-		/// <summary>
-		/// 返回当前对象的字符串
-		/// </summary>
-		/// <returns>当前对象的字符串</returns>
-		public override string ToString ()
-		{
-			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("数据: {0}", this.Value != null ? this.Value : string.Empty));
-			builder.AppendLine (string.Format ("单位: {0}", this.Unit != null ? this.Value : string.Empty));
-
-			string temp = this.TextColor.GetDescription ();
-			builder.AppendFormat ("颜色: {0}", temp != null ? this.Value : string.Empty);
-			return builder.ToString ();
 		}
 		#endregion
 	}
