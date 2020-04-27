@@ -2868,7 +2868,7 @@
           "hash": "2//OWVpElTxi5nZ/B1rwHw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -2921,7 +2921,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 14,
-          "skipped_file_count": 13
+          "skipped_file_count": 14
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
