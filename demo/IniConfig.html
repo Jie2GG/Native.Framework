@@ -70,182 +70,192 @@
 <h2 id="简介">简介</h2>
 
 <p><strong>IniCofnig</strong> 是基于 <strong>正则表达式</strong> 应用于  .Net 平台的 Ini配置文件工具类, 在不依赖于 WindowsApi 的同时能快速生成与解析配置文件的 &quot;节&quot;、&quot;键&quot;、&quot;值&quot; 和 &quot;注释&quot;, 转换为对象模型, 轻松实现针对 ini 的增删改查.</p>
-<h2 id="主要类">主要类</h2>
+<h2 id="示例">示例</h2>
 <ul>
-<li>IniConfig.Linq.IObject  - 描述配置项 (Ini) 文件的类</li>
-<li>IniConfig.Linq.ISection - 描述配置项 (Ini) 文件的节</li>
-<li>IniConfig.Linq.IValue   - 描述配置项 (Ini) 文件的值</li>
-<li>IniConfig.IniConfig     - 提供快速 <strong>读取</strong>、<strong>写入</strong>、<strong>序列化</strong> 和 <strong>反序列化</strong> 的类</li>
-</ul>
-<h2 id="类列表">类列表</h2>
-<ul>
-<li><code>IniConfig.Linq</code><details open=""><summary>{...}</summary>
-<ul>
-<li><a href="#doc_IObject"><code>IObject</code></a></li>
-<li><a href="#doc_ISection"><code>ISection</code></a></li>
-<li><a href="#doc_IValue"><code>IValue</code></a></li>
-</ul>
+<li><p>基础操作示例 <details><summary>C#</summary><p>
+<pre><code class="lang-C#">// 创建 Ini 文件托管实例
+IniConfig ini = new IniConfig (&quot;config.ini&quot;);
+
+// 1. 加载文件
+ini.Load ();
+
+// 2. 增加一个节点
+ini.Object.Add (new ISection (&quot;新节点1&quot;));
+ini.Object[&quot;新节点2&quot;] = new ISection (&quot;新节点2&quot;);     // 这里 ISection 的参数必须和前面的 Key 一致
+
+// 3. 删除一个节点
+ini.Object.Remove (&quot;新节点1&quot;);
+ISection removeSection = ini.Object[&quot;新节点2&quot;];
+ini.Object.Remove (removeSection);
+
+// 4. 为节点新增配置
+ini.Object[&quot;新节点1&quot;][&quot;StringValue&quot;] = &quot;Value1&quot;;       // 若 &quot;新节点1&quot; 不存在会自动创建, StringValue 不存在也会自动创建
+ini.Object[&quot;新节点1&quot;].Add (&quot;Int32Value&quot;, 50);
+ini.Object[&quot;新节点1&quot;].Add (new KeyValuePair&lt;string, IValue&gt; (&quot;GUIDValue&quot;, Guid.NewGuid ()));
+
+// 5. 从节点删除配置
+ini.Object[&quot;新节点1&quot;].Remove (&quot;StringValue&quot;);
+
+// 6. 修改节点的配置
+ini.Object[&quot;新节点1&quot;][&quot;Int32Value&quot;] = Int32.MaxValue;
+ini.Object[&quot;新节点1&quot;][&quot;Int32Value&quot;] = new IValue (1000000);
+
+// 7. 获取节点的内容
+Guid iniGuid = ini.Object[&quot;新节点1&quot;][&quot;GUIDValue&quot;]; // 允许自动转换为 GUID
+string iniStr = ini.Object[&quot;新节点1&quot;][&quot;GUIDValue&quot;];// 允许自动转换为 String
+bool result = ini.Object[&quot;新节点1&quot;].TryGetValue (&quot;StringValue&quot;, out IValue v);
+
+// 8. 保存文件
+ini.Save ();
+</code></pre>
+  </details><details><summary>VB</summary>
+<pre><code class="lang-VB">' 创建 Ini 文件托管实例
+Dim ini As IniConfig.IniConfig = New IniConfig.IniConfig(&quot;config.ini&quot;)
+
+' 1. 加载文件
+ini.Load()
+
+' 2. 增加一个节点
+ini.Object.Add(New ISection(&quot;新节点1&quot;))
+ini.Object(&quot;新节点2&quot;) = New ISection(&quot;新节点2&quot;)
+
+' 3. 删除一个节点
+ini.Object.Remove(&quot;新节点1&quot;)
+Dim removeSection As ISection = ini.Object(&quot;新节点2&quot;)
+ini.Object.Remove(removeSection)
+
+' 4. 为节点新增配置
+ini.Object(&quot;新节点1&quot;)(&quot;StringValue&quot;) = &quot;Value1&quot;        ' 若 &quot;新节点1&quot; 不存在会自动创建, StringValue 不存在也会自动创建
+ini.Object(&quot;新节点1&quot;).Add(&quot;Int32Value&quot;, 50)
+ini.Object(&quot;新节点1&quot;).Add(New KeyValuePair(Of String, IValue)(&quot;GUIDValue&quot;, Guid.NewGuid()))
+
+' 5. 从节点删除配置
+ini.Object(&quot;新节点1&quot;).Remove(&quot;StringValue&quot;)
+
+' 6. 修改节点的配置
+ini.Object(&quot;新节点1&quot;)(&quot;Int32Value&quot;) = Int32.MaxValue
+ini.Object(&quot;新节点1&quot;)(&quot;Int32Value&quot;) = New IValue(1000000)
+
+' 7. 获取节点的内容
+Dim iniGuid As Guid = ini.Object(&quot;新节点1&quot;)(&quot;GUIDValue&quot;)  ' 允许自动转换为 GUID
+Dim iniStr As String = ini.Object(&quot;新节点&quot;)(&quot;GUIDValue&quot;)  ' 允许自动转换为 String
+Dim v As IValue = Nothing
+Dim result As Boolean = ini.Object(&quot;新节点&quot;).TryGetValue(&quot;StringValue&quot;, v)
+
+' 8. 保存文件
+ini.Save()
+</code></pre>
+  </details>
+</li>
+<li><p>高级操作示例 <details><summary>C#</summary><p>
+<ol>
+<li>定义模型
+<pre><code class="lang-C#">/// &lt;summary&gt;
+/// 描述配置文件中 IP地址 和 端口 的模型类
+/// &lt;/summary&gt;
+//[IniSection (SectionName = &quot;IPConfig&quot;)]	// 设置 IniSection 的标记可以设置默认节名称, 未设置则默认使用类名
+public class IPAddressModel
+{
+    public string Host { get; set; }
+    public int Port { get; set; }
+
+    [IniKey(KeyName = &quot;PackageSize&quot;)]	// 通过设置 IniKey 的标记改变读取或写入时的键
+     public long PacketSize { get; set; }
+}
+</code></pre>
+</li>
+<li>将模型序列化并写入文件
+<pre><code class="lang-C#">IniConfig ini = new IniConfig (&quot;config.ini&quot;);
+ini.Load ();
+
+// 1. 创建模型数据
+IPAddressModel ip = new IPAddressModel
+{
+    Host = &quot;10.0.0.0&quot;,
+    Port = 8080,
+    PacketSize = 4096
+};
+
+// 2. 设置模型到配置文件中, 若存在则修改, 若不存在则创建
+// ini.SetObject (ip);  // 设置时会寻找类名或者是类的 IniSection 标记
+ini.SetObject (&quot;IPConfig&quot;, ip);
+
+// 3. 从文件获取一个节点数据并转化为模型
+// ip = ini.GetObject&lt;IPAddressModel&gt; ();	// 读取时会寻找类名或者是类的 IniSection 标记
+ip = ini.GetObject&lt;IPAddressModel&gt; (&quot;IPConfig&quot;);
+
+ini.Save ();
+</code></pre>
+</li>
+</ol>
+  </details>
+  <details><summary>VB</summary>
+<ol>
+<li>定义模型
+<pre><code class="lang-VB">''' &lt;summary&gt;
+''' 描述配置文件中 IP地址 和 端口 的模型类
+''' &lt;/summary&gt;
+' &lt;IniSection(SectionName:=&quot;IPConfig&quot;)&gt;   ' 设置 IniSection 的标记可以设置默认节名称, 未设置则默认使用类名
+Class IPAddressModel
+    Private _host As String
+    Public Property Host() As String
+        Get
+            Return _host
+        End Get
+        Set(ByVal value As String)
+            _host = value
+        End Set
+    End Property
+
+    Private _port As Integer
+    Public Property Port() As Integer
+        Get
+            Return _port
+        End Get
+        Set(value As Integer)
+            _port = value
+        End Set
+    End Property
+
+    Private _packetSize As Long
+    &lt;IniKey(KeyName:=&quot;PackageSize&quot;)&gt;    ' 通过设置 IniKey 的标记改变读取或写入时的键
+    Public Property PacketSize As Long
+        Get
+            Return _packetSize
+        End Get
+        Set(value As Long)
+            _packetSize = value
+        End Set
+    End Property
+End Class
+</code></pre>
+</li>
+<li>将模型序列化并写入文件
+<pre><code class="lang-VB">Dim ini As IniConfig.IniConfig = New IniConfig.IniConfig(&quot;config.ini&quot;)
+ ini.Load()
+
+ ' 1. 创建模型数据
+ Dim ip As IPAddressModel = New IPAddressModel With {
+ 	.Host = &quot;10.0.0.0&quot;,
+ 	.Port = 8080,
+    .PacketSize = 4096
+ }
+
+ ' 2. 设置模型到配置文件中, 若存在则修改, 若不存在则创建
+' ini.SetObject (ip);  ' 设置时会寻找类名或者是类的 IniSection 标记
+ini.SetObject (&quot;IPConfig&quot;, ip);
+
+' 3. 从文件获取一个节点数据并转化为模型
+' ip = ini.GetObject&lt;IPAddressModel&gt; ();	' 读取时会寻找类名或者是类的 IniSection 标记
+ip = ini.GetObject&lt;IPAddressModel&gt; (&quot;IPConfig&quot;);
+
+ ini.Save()
+</code></pre>
+</li>
+</ol>
   </details>
 </li>
 </ul>
-<hr>
-<h1 id="doc_IObject">IObject 类</h1>
-<pre><code class="lang-C#">/// &lt;summary&gt;
-/// 描述配置项 (Ini) 文件的类
-/// &lt;/summary&gt;
-public sealed class IObject : ICollection&lt;ISection&gt;, IEquatable&lt;IObject&gt;
-</code></pre>
-<details><summary>类定义</summary>
-<table>
-<thead>
-<tr>
-<th>构造函数</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IObject (string fileName)</td>
-<td>初始化 <a href="doc_IObject">IObject</a> 类的新实例，该实例为空并且具有默认初始容量默认初始容量</td>
-</tr>
-<tr>
-<td>IObject (string fileName, int capacity)</td>
-<td>初始化 <a href="doc_IObject">IObject</a> 类的新实例，该实例为空并且具有指定的初始容量</td>
-</tr>
-<tr>
-<td>IObject (string fileName, IEnumerable&lt;ISection&gt; collection)</td>
-<td>初始化 <a href="doc_IObject">IObject</a> 类的新实例，该实例包含从指定集合复制的元素并且具有足够的容量来容纳所复制的元素</td>
-</tr>
-</tbody>
-</table>
-<br>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Item[Int32]</td>
-<td>获取或设置与指定的键关联的值</td>
-</tr>
-<tr>
-<td>FileName</td>
-<td>获取当前实例的文件名</td>
-</tr>
-<tr>
-<td>Count</td>
-<td>获取包含在 <a href="doc_IObject">IObject</a> 中的 <a href="doc_ISection">ISection</a> 的数目</td>
-</tr>
-<tr>
-<td>IsReadOnly</td>
-<td>获取一个值，该值指示 <a href="doc_IObject">IObject</a> 是否为只读</td>
-</tr>
-</tbody>
-</table>
-<br>
-<table>
-<thead>
-<tr>
-<th>实例方法</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ContainsKey(string)</td>
-<td>确定 <a href="doc_IObject">IObject</a> 是否包含特定名称的 <a href="doc_ISection">ISection</a></td>
-</tr>
-<tr>
-<td>Remove(string)</td>
-<td>从 <a href="doc_IObject">IObject</a> 中移除指定名称的 <a href="doc_ISection">ISection</a></td>
-</tr>
-<tr>
-<td>TrimExcess()</td>
-<td>如果元素数小于当前容量的 90%，将容量设置为 <a href="doc_IObject">IObject</a> 中的实际元素数</td>
-</tr>
-<tr>
-<td>TryGetValue(string, ISection)</td>
-<td>获取与指定键关联的值</td>
-</tr>
-<tr>
-<td>Equals(object)</td>
-<td>确定此实例是否与指定的对象（也必须是 <a href="doc_IObject">IObject</a> 对象）具有相同的值</td>
-</tr>
-<tr>
-<td>GetHashCode()</td>
-<td>返回该实例的哈希代码</td>
-</tr>
-<tr>
-<td>ToString()</td>
-<td>返回表示当前对象的字符串</td>
-</tr>
-</tbody>
-</table>
-<br>
-<table>
-<thead>
-<tr>
-<th>显示实现接口</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Add(ISection)</td>
-<td>将某项添加到 <a href="doc_IObject">IObject</a> 中</td>
-</tr>
-<tr>
-<td>Clear()</td>
-<td>从 <a href="doc_IObject">IObject</a> 中移除所有项</td>
-</tr>
-<tr>
-<td>Contains(ISection)</td>
-<td>确定 <a href="doc_IObject">IObject</a> 是否包含特定值</td>
-</tr>
-<tr>
-<td>CopyTo(ISection[], Int32)</td>
-<td>从特定的 <a href="doc_IObject">IObject</a> 索引处开始，将 <a href="doc_IObject">IObject</a> 的元素复制到一个 <a href="#">Array</a> 中</td>
-</tr>
-<tr>
-<td>Remove(ISection)</td>
-<td>从 <a href="doc_IObject">IObject</a> 中移除指定的元素</td>
-</tr>
-<tr>
-<td>GetEnumerator()</td>
-<td>返回循环访问 <a href="doc_IObject">IObject</a> 的枚举数</td>
-</tr>
-<tr>
-<td>Equals(IObject)</td>
-<td>确定此实例是否与另一个指定的 <a href="doc_IObject">IObject</a> 对象具有相同的值</td>
-</tr>
-</tbody>
-</table>
-</details>
-<details open=""><summary>构造函数</summary>
-<pre><code class="lang-C#">/// &lt;summary&gt;
-/// 初始化 IObject 类的新实例，该实例为空并且具有默认初始容量
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;fileName&quot;&gt;IObject 使用的文件名&lt;/param&gt;
-public IObject (string fileName);
-
-/// &lt;summary&gt;
-/// 初始化 IObject 类的新实例，该实例为空并且具有指定的初始容量
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;fileName&quot;&gt;IObject 使用的文件名&lt;/param&gt;
-/// &lt;param name=&quot;capacity&quot;&gt;新列表最初可以存储的元素数&lt;/param&gt;
-public IObject (string fileName, int capacity);
-
-/// &lt;summary&gt;
-/// 初始化 IObject 类的新实例，该实例包含从指定集合复制的元素并且具有足够的容量来容纳所复制的元素
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;fileName&quot;&gt;IObject 使用的文件名&lt;/param&gt;
-/// &lt;param name=&quot;collection&quot;&gt;一个集合，其元素被复制到新列表中&lt;/param&gt;
-public IObject (string fileName, IEnumerable&lt;ISection&gt; collection);
-</code></pre>
-</details>
 </article>
           </div>
           

@@ -1317,7 +1317,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Native.Tool.IniConfig.Linq.IObject.html",
-          "hash": "DeBNPFyA6l9G9qkuM/uLBg=="
+          "hash": "tfp99XNVgyxRLQAYptPq7g=="
         }
       },
       "is_incremental": true,
@@ -2697,7 +2697,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "YW9XJO+ttgopSDx6VVzFPA=="
+          "hash": "slccFJfOS3O99Sag4Kzj1w=="
         }
       },
       "is_incremental": true,
@@ -2848,15 +2848,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "demo/IniConfig.md",
       "output": {
         ".html": {
           "relative_path": "demo/IniConfig.html",
-          "hash": "Cn6nZnPipH6kL8S1Fwgoxg=="
+          "hash": "krq405A+Wy5URyAbWcAnxA=="
         }
       },
       "is_incremental": true,
@@ -2868,10 +2865,10 @@
       "output": {
         ".html": {
           "relative_path": "demo/index.html",
-          "hash": "x+P/3oEgGsHpH9m7zMAK6g=="
+          "hash": "2//OWVpElTxi5nZ/B1rwHw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -2892,10 +2889,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "zyf8iK9o99Tp6/MvoYl53A=="
+          "hash": "7ESxiNxn3AXENZH8vZBL3A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -2904,7 +2901,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "hG9mAtaAqYSMPyQ9Rd6wTA=="
+          "hash": "6pXHbX0nUJgS+lF8Hlt3Iw=="
         }
       },
       "is_incremental": false,
@@ -2924,7 +2921,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 14,
-          "skipped_file_count": 14
+          "skipped_file_count": 13
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
