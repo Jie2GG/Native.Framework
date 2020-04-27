@@ -153,7 +153,7 @@ namespace Native.Tool.IniConfig
 		/// <param name="index">节的位置</param>
 		/// <param name="type">对象的类型</param>
 		/// <exception cref="ArgumentNullException">参数: obj 或 type 是 null</exception>
-		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="IniObject.Count"/></exception>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="IniObject"/></exception>
 		/// <returns>反序列化成功返回指定类型的对象</returns>
 		public static object DeserializeObject (IniObject obj, int index, Type type)
 		{
@@ -212,7 +212,7 @@ namespace Native.Tool.IniConfig
 		/// <param name="obj"><see cref="IniObject"/>, 用来查找 "节"</param>
 		/// <param name="index">节的位置</param>
 		/// <exception cref="ArgumentNullException">参数: obj 是 null</exception>
-		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="IniObject.Count"/></exception>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="IniObject"/></exception>
 		/// <returns>反序列化成功返回指定类型的对象</returns>
 		public static T DeserializeObject<T> (IniObject obj, int index)
 		{

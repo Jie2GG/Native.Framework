@@ -25,6 +25,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// 获取或设置与指定的键关联的值
 		/// </summary>
 		/// <param name="key">要获取或设置其值的键</param>
+		/// <exception cref="ArgumentException">key 与传入的 <see cref="ISection.SectionName"/> 不同</exception>
 		/// <exception cref="ArgumentNullException">key 为 null</exception>
 		/// <exception cref="KeyNotFoundException">已检索该属性且集合中不存在 key</exception>
 		/// <returns>与指定的键相关联的值。 如果找不到指定的键，则 get 操作会引发一个 <see cref="KeyNotFoundException"/>，而 set 操作会创建一个使用指定键的新元素</returns>
@@ -38,7 +39,14 @@ namespace Native.Tool.IniConfig.Linq
 				}
 				return this._sortedList[key];
 			}
-			set { this._sortedList[key] = value; }
+			set
+			{
+				if (!key.Equals(value.SectionName))
+				{
+					throw new ArgumentException (string.Format("传入的节点对象 SectionName: {0} 与当前索引器的 Key: {1} 不符", value.SectionName, key));
+				}
+				this._sortedList[key] = value;
+			}
 		}
 		/// <summary>
 		/// 获取当前实例的文件名

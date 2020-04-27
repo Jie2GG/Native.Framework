@@ -24,6 +24,7 @@
     <WarningsAsErrors>
     </WarningsAsErrors>
     <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\x86\Debug\Native.Tool.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
