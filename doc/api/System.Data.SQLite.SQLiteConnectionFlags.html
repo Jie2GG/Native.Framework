@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteConnectionFlags 枚举
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteConnectionFlags 枚举
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteConnectionFlags">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteConnectionFlags" data-uid="System.Data.SQLite.SQLiteConnectionFlags" class="text-break">SQLiteConnectionFlags 枚举
+  </h1>
+  <div class="markdown level0 summary"><p>The extra behavioral flags that can be applied to a connection.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteConnectionFlags_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Flags]
+public enum SQLiteConnectionFlags : long</code></pre>
+  </div>
+  <h3 id="fields">&#23383;&#27573;
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_AllowNestedTransactions">AllowNestedTransactions</td>
+        <td><p>Allow transactions to be nested.  The outermost transaction still
+controls whether or not any changes are ultimately committed or
+rolled back.  All non-outermost transactions are implemented using
+the SAVEPOINT construct.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindAllAsText">BindAllAsText</td>
+        <td><p>When binding parameter values, always bind them as though they were
+plain text (i.e. no numeric, date/time, or other conversions should
+be attempted).</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindAndGetAllAsInvariantText">BindAndGetAllAsInvariantText</td>
+        <td><p>When binding parameter values or returning column values, always
+treat them as though they were plain text (i.e. no numeric,
+date/time, or other conversions should be attempted) and always
+use the invariant culture when converting their values to strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindAndGetAllAsText">BindAndGetAllAsText</td>
+        <td><p>When binding parameter values or returning column values, always
+treat them as though they were plain text (i.e. no numeric,
+date/time, or other conversions should be attempted).</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindDateTimeWithKind">BindDateTimeWithKind</td>
+        <td><p>When binding parameter values with the <span class="xref">System.DateTime</span>
+type, take their <span class="xref">System.DateTimeKind</span> into account as
+well as that of the associated <a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindDecimalAsText">BindDecimalAsText</td>
+        <td><p>When binding parameter values, always bind <span class="xref">System.Decimal</span>
+values as though they were plain text (i.e. not <span class="xref">System.Decimal</span>,
+which is the legacy behavior).</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindInvariantDecimal">BindInvariantDecimal</td>
+        <td><p>When binding <span class="xref">System.Decimal</span> parameter values, always use
+the invariant culture when converting their values to strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindInvariantText">BindInvariantText</td>
+        <td><p>When binding parameter values, always use the invariant culture when
+converting their values to strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_BindUInt32AsInt64">BindUInt32AsInt64</td>
+        <td><p>When binding parameter values with the <span class="xref">System.UInt32</span>
+type, use the interop method that accepts an <span class="xref">System.Int64</span>
+value.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_ConvertAndBindAndGetAllAsInvariantText">ConvertAndBindAndGetAllAsInvariantText</td>
+        <td><p>When binding parameter values or returning column values, always
+treat them as though they were plain text (i.e. no numeric,
+date/time, or other conversions should be attempted) and always
+use the invariant culture when converting their values to strings
+or from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_ConvertAndBindInvariantText">ConvertAndBindInvariantText</td>
+        <td><p>When binding parameter values, always use the invariant culture when
+converting their values to strings or from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_ConvertInvariantText">ConvertInvariantText</td>
+        <td><p>When binding parameter values, always use the invariant culture when
+converting their values from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_Default">Default</td>
+        <td><p>The default extra flags for new connections.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_DefaultAndLogAll">DefaultAndLogAll</td>
+        <td><p>The default extra flags for new connections with all logging enabled.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_DenyOnException">DenyOnException</td>
+        <td><p>If an exception is caught when raising the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_Authorize">Authorize</a> event, the action should
+should be denied.  If this is not specified, the action will be
+allowed instead.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_DetectStringType">DetectStringType</td>
+        <td><p>When returning column values, attempt to detect the type of
+string values by checking if they fully conform to those of
+the <a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Null">Null</a>,
+<a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Int64">Int64</a>,
+<a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Double">Double</a>,
+or <a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_DateTime">DateTime</a> types.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_DetectTextAffinity">DetectTextAffinity</td>
+        <td><p>When returning column values, attempt to detect the affinity of
+textual values by checking if they fully conform to those of the
+<a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Null">Null</a>,
+<a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Int64">Int64</a>,
+<a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_Double">Double</a>,
+or <a class="xref" href="System.Data.SQLite.TypeAffinity.html#System_Data_SQLite_TypeAffinity_DateTime">DateTime</a> types.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_GetAllAsText">GetAllAsText</td>
+        <td><p>When returning column values, always return them as though they were
+plain text (i.e. no numeric, date/time, or other conversions should
+be attempted).</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_GetDecimalAsText">GetDecimalAsText</td>
+        <td><p>When returning column values, always return <span class="xref">System.Decimal</span>
+values as though they were plain text (i.e. not <span class="xref">System.Double</span>,
+which is the legacy behavior).</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_GetInvariantDecimal">GetInvariantDecimal</td>
+        <td><p>When returning <span class="xref">System.Decimal</span> column values, always use
+the invariant culture when converting their values from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_GetInvariantDouble">GetInvariantDouble</td>
+        <td><p>When returning <span class="xref">System.Double</span> column values, always use
+the invariant culture when converting their values from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_GetInvariantInt64">GetInvariantInt64</td>
+        <td><p>When returning <span class="xref">System.Int64</span> column values, always use
+the invariant culture when converting their values from strings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_HidePassword">HidePassword</td>
+        <td><p><strong>EXPERIMENTAL</strong> --
+When opening a connection, attempt to hide the password from the
+connection string, etc.  Given the memory architecture of the CLR,
+(and P/Invoke) this is not 100% reliable and should not be relied
+upon for security critical uses or applications.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_InterruptOnException">InterruptOnException</td>
+        <td><p>If an exception is caught when raising the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_Progress">Progress</a> event, the operation
+should be interrupted.  If this is not specified, the operation
+will simply continue.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogAll">LogAll</td>
+        <td><p>Enable all logging.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogBackup">LogBackup</td>
+        <td><p>Enable logging of backup API errors.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogBind">LogBind</td>
+        <td><p>Enable logging of all bound parameter strongly typed values.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogCallbackException">LogCallbackException</td>
+        <td><p>Enable logging of all exceptions caught from user-provided
+managed code called from native code via delegates.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogDefault">LogDefault</td>
+        <td><p>The default logging related flags for new connections.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogPreBind">LogPreBind</td>
+        <td><p>Enable logging of all bound parameter types and raw values.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_LogPrepare">LogPrepare</td>
+        <td><p>Enable logging of all SQL statements to be prepared.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_MapIsolationLevels">MapIsolationLevels</td>
+        <td><p>Enable mapping of unsupported transaction isolation levels to the
+closest supported transaction isolation level.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoBindFunctions">NoBindFunctions</td>
+        <td><p>Skip binding any functions provided by other managed assemblies when
+opening the connection.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoConnectionPool">NoConnectionPool</td>
+        <td><p>Disable using the connection pool by default.  If the &quot;Pooling&quot;
+connection string property is specified, its value will override
+this flag.  The precise outcome of combining this flag with the
+<a class="xref" href="System.Data.SQLite.SQLiteConnectionFlags.html#System_Data_SQLite_SQLiteConnectionFlags_UseConnectionPool">UseConnectionPool</a> flag is unspecified; however,
+one of the flags will be in effect.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoConvertSettings">NoConvertSettings</td>
+        <td><p>Skip querying runtime configuration settings for use by the
+<a class="xref" href="System.Data.SQLite.SQLiteConvert.html">SQLiteConvert</a> class, including the default
+<span class="xref">System.Data.DbType</span> value and default database type name.
+<strong>NOTE: If the <a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_DefaultDbType">DefaultDbType</a>
+and/or <a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_DefaultTypeName">DefaultTypeName</a>
+properties are not set explicitly nor set via their connection
+string properties and repeated calls to determine these runtime
+configuration settings are seen to be a problem, this flag
+should be set.</strong></p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoExtensionFunctions">NoExtensionFunctions</td>
+        <td><p>Skip adding the extension functions provided by the native
+interop assembly.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoGlobalTypes">NoGlobalTypes</td>
+        <td><p>Disable using global mappings between type names and
+<span class="xref">System.Data.DbType</span> values.  This may be useful in some very narrow
+cases; however, if there are no per-connection type mappings, the
+fallback defaults will be used for both type names and their
+associated <span class="xref">System.Data.DbType</span> values.  Therefore, use of this flag
+is not recommended.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoLoadExtension">NoLoadExtension</td>
+        <td><p>Prevent this <a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a> object instance from
+loading extensions.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_None">None</td>
+        <td><p>No extra flags.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoVerifyTextAffinity">NoVerifyTextAffinity</td>
+        <td><p>When returning column values as a <span class="xref">System.String</span>, skip
+verifying their affinity.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_NoVerifyTypeAffinity">NoVerifyTypeAffinity</td>
+        <td><p>When returning column values, skip verifying their affinity.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_RollbackOnException">RollbackOnException</td>
+        <td><p>If an exception is caught when raising the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_Commit">Commit</a> event, the transaction
+should be rolled back.  If this is not specified, the transaction
+will continue the commit process instead.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_StickyHasRows">StickyHasRows</td>
+        <td><p>When the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_HasRows">HasRows</a> property is used, it
+should return non-zero if there were ever any rows in the associated
+result sets.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_StrictConformance">StrictConformance</td>
+        <td><p><strong>EXPERIMENTAL</strong> --
+Enable strict conformance to the ADO.NET standard, e.g. use of
+thrown exceptions to indicate common error conditions.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_StrictEnlistment">StrictEnlistment</td>
+        <td><p>Enable &quot;strict&quot; transaction enlistment semantics.  Setting this flag
+will cause an exception to be thrown if an attempt is made to enlist
+in a transaction with an unavailable or unsupported isolation level.
+In the future, more extensive checks may be enabled by this flag as
+well.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_TraceWarning">TraceWarning</td>
+        <td><p>Enable tracing of potentially important [non-fatal] error conditions
+that cannot be easily reported through other means.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UnbindFunctionsOnClose">UnbindFunctionsOnClose</td>
+        <td><p>Attempt to unbind all functions provided by other managed assemblies
+when closing the connection.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseConnectionAllValueCallbacks">UseConnectionAllValueCallbacks</td>
+        <td><p>Enables use of all per-connection value handling callbacks.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseConnectionBindValueCallbacks">UseConnectionBindValueCallbacks</td>
+        <td><p>Enable using per-connection mappings between type names and
+<a class="xref" href="System.Data.SQLite.SQLiteBindValueCallback.html">SQLiteBindValueCallback</a> values.  Also see the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_ClearTypeCallbacks">ClearTypeCallbacks()</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_TryGetTypeCallbacks_System_String_System_Data_SQLite_SQLiteTypeCallbacks__">TryGetTypeCallbacks(String, out SQLiteTypeCallbacks)</a>, and
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_SetTypeCallbacks_System_String_System_Data_SQLite_SQLiteTypeCallbacks_">SetTypeCallbacks(String, SQLiteTypeCallbacks)</a> methods.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseConnectionPool">UseConnectionPool</td>
+        <td><p>Enable using the connection pool by default.  If the &quot;Pooling&quot;
+connection string property is specified, its value will override
+this flag.  The precise outcome of combining this flag with the
+<a class="xref" href="System.Data.SQLite.SQLiteConnectionFlags.html#System_Data_SQLite_SQLiteConnectionFlags_NoConnectionPool">NoConnectionPool</a> flag is unspecified; however,
+one of the flags will be in effect.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseConnectionReadValueCallbacks">UseConnectionReadValueCallbacks</td>
+        <td><p>Enable using per-connection mappings between type names and
+<a class="xref" href="System.Data.SQLite.SQLiteReadValueCallback.html">SQLiteReadValueCallback</a> values.  Also see the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_ClearTypeCallbacks">ClearTypeCallbacks()</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_TryGetTypeCallbacks_System_String_System_Data_SQLite_SQLiteTypeCallbacks__">TryGetTypeCallbacks(String, out SQLiteTypeCallbacks)</a>, and
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_SetTypeCallbacks_System_String_System_Data_SQLite_SQLiteTypeCallbacks_">SetTypeCallbacks(String, SQLiteTypeCallbacks)</a> methods.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseConnectionTypes">UseConnectionTypes</td>
+        <td><p>Enable using per-connection mappings between type names and
+<span class="xref">System.Data.DbType</span> values.  Also see the
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_ClearTypeMappings">ClearTypeMappings()</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_GetTypeMappings">GetTypeMappings()</a>, and
+<a class="xref" href="System.Data.SQLite.SQLiteConnection.html#System_Data_SQLite_SQLiteConnection_AddTypeMapping_System_String_System_Data_DbType_System_Boolean_">AddTypeMapping(String, DbType, Boolean)</a> methods.  These
+per-connection mappings, when present, override the corresponding
+global mappings.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseParameterAnythingForTypeName">UseParameterAnythingForTypeName</td>
+        <td><p>Enables use of all applicable <a class="xref" href="System.Data.SQLite.SQLiteParameter.html">SQLiteParameter</a>
+properties as fallbacks for the database type name.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseParameterDbTypeForTypeName">UseParameterDbTypeForTypeName</td>
+        <td><p>If the database type name has not been explicitly set for the
+parameter specified, fallback to using the database type name
+associated with the <span class="xref">System.Data.DbType</span> value.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_UseParameterNameForTypeName">UseParameterNameForTypeName</td>
+        <td><p>If the database type name has not been explicitly set for the
+parameter specified, fallback to using the parameter name.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteConnectionFlags_WaitForEnlistmentReset">WaitForEnlistmentReset</td>
+        <td><p><strong>EXPERIMENTAL</strong> --
+Enable waiting for the enlistment to be reset prior to attempting
+to create a new enlistment.  This may be necessary due to the
+semantics used by distributed transactions, which complete
+asynchronously.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+  <h3 id="extensionmethods">&#25193;&#23637;&#26041;&#27861;</h3>
+  <div>
+      <a class="xref" href="Native.Sdk.Cqp.Expand.SystemExpand.html#Native_Sdk_Cqp_Expand_SystemExpand_GetDescription_System_Enum_">SystemExpand.GetDescription()</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteConnectionFlags.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteConnectionFlags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteBase.cs/#L991" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

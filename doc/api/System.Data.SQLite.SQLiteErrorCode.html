@@ -1,0 +1,638 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteErrorCode 枚举
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteErrorCode 枚举
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteErrorCode">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteErrorCode" data-uid="System.Data.SQLite.SQLiteErrorCode" class="text-break">SQLiteErrorCode 枚举
+  </h1>
+  <div class="markdown level0 summary"><p>SQLite error codes.  Actually, this enumeration represents a return code,
+which may also indicate success in one of several ways (e.g. SQLITE_OK,
+SQLITE_ROW, and SQLITE_DONE).  Therefore, the name of this enumeration is
+something of a misnomer.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteErrorCode_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum SQLiteErrorCode</code></pre>
+  </div>
+  <h3 id="fields">&#23383;&#27573;
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Abort">Abort</td>
+        <td><p>Callback routine requested an abort</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Abort_Rollback">Abort_Rollback</td>
+        <td><p>An operation is being aborted due to rollback processing.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Auth">Auth</td>
+        <td><p>Authorization denied</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Auth_User">Auth_User</td>
+        <td><p>User authentication failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Busy">Busy</td>
+        <td><p>The database file is locked</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Busy_Recovery">Busy_Recovery</td>
+        <td><p>A database file is locked due to a recovery operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Busy_Snapshot">Busy_Snapshot</td>
+        <td><p>A database file is locked due to snapshot semantics.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_CantOpen">CantOpen</td>
+        <td><p>Unable to open the database file</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_CantOpen_ConvPath">CantOpen_ConvPath</td>
+        <td><p>A database file cannot be opened because a path string conversion operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_CantOpen_FullPath">CantOpen_FullPath</td>
+        <td><p>A database file cannot be opened because its full path could not be obtained.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_CantOpen_IsDir">CantOpen_IsDir</td>
+        <td><p>A database file cannot be opened because its path represents a directory.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_CantOpen_NoTempDir">CantOpen_NoTempDir</td>
+        <td><p>A database file cannot be opened because no temporary directory is available.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint">Constraint</td>
+        <td><p>Abort due to constraint violation</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_Check">Constraint_Check</td>
+        <td><p>A CHECK constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_CommitHook">Constraint_CommitHook</td>
+        <td><p>A commit hook produced a unsuccessful return code.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_ForeignKey">Constraint_ForeignKey</td>
+        <td><p>A FOREIGN KEY constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_Function">Constraint_Function</td>
+        <td><p>Not currently used.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_NotNull">Constraint_NotNull</td>
+        <td><p>A NOT NULL constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_PrimaryKey">Constraint_PrimaryKey</td>
+        <td><p>A PRIMARY KEY constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_RowId">Constraint_RowId</td>
+        <td><p>A ROWID constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_Trigger">Constraint_Trigger</td>
+        <td><p>The RAISE function was used by a trigger-program.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_Unique">Constraint_Unique</td>
+        <td><p>A UNIQUE constraint failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Constraint_Vtab">Constraint_Vtab</td>
+        <td><p>Not currently used.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Corrupt">Corrupt</td>
+        <td><p>The database disk image is malformed</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Corrupt_Sequence">Corrupt_Sequence</td>
+        <td><p>A required sequence table is missing or corrupt.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Corrupt_Vtab">Corrupt_Vtab</td>
+        <td><p>A virtual table is malformed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Done">Done</td>
+        <td><p>sqlite3_step() has finished executing</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Empty">Empty</td>
+        <td><p>Database is empty</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Error">Error</td>
+        <td><p>SQL error or missing database</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Error_Missing_CollSeq">Error_Missing_CollSeq</td>
+        <td><p>A collation sequence was referenced by a schema and it cannot be
+found.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Error_Retry">Error_Retry</td>
+        <td><p>An internal operation failed and it may succeed if retried.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Format">Format</td>
+        <td><p>Auxiliary database format error</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Full">Full</td>
+        <td><p>Insertion failed because database is full</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Internal">Internal</td>
+        <td><p>Internal logic error in SQLite</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Interrupt">Interrupt</td>
+        <td><p>Operation terminated by sqlite3_interrupt()</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr">IoErr</td>
+        <td><p>Some kind of disk I/O error occurred</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Access">IoErr_Access</td>
+        <td><p>A file existence/status operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Auth">IoErr_Auth</td>
+        <td><p>An attempt to authenticate failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Begin_Atomic">IoErr_Begin_Atomic</td>
+        <td><p>An attempt to begin a file system transaction failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Blocked">IoErr_Blocked</td>
+        <td><p>Not currently used.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_CheckReservedLock">IoErr_CheckReservedLock</td>
+        <td><p>A check for a reserved lock failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Close">IoErr_Close</td>
+        <td><p>A file close operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Commit_Atomic">IoErr_Commit_Atomic</td>
+        <td><p>An attempt to commit a file system transaction failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_ConvPath">IoErr_ConvPath</td>
+        <td><p>A path string conversion operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Delete">IoErr_Delete</td>
+        <td><p>A file delete operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Delete_NoEnt">IoErr_Delete_NoEnt</td>
+        <td><p>A file delete operation failed because it does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Dir_Close">IoErr_Dir_Close</td>
+        <td><p>A directory close operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Dir_Fsync">IoErr_Dir_Fsync</td>
+        <td><p>A directory synchronization operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Fstat">IoErr_Fstat</td>
+        <td><p>A file metadata operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Fsync">IoErr_Fsync</td>
+        <td><p>A file synchronization operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_GetTempPath">IoErr_GetTempPath</td>
+        <td><p>The temporary directory path could not be obtained.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Lock">IoErr_Lock</td>
+        <td><p>A file lock operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Mmap">IoErr_Mmap</td>
+        <td><p>A file memory mapping operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_NoMem">IoErr_NoMem</td>
+        <td><p>Out-of-memory during a file operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_RdLock">IoErr_RdLock</td>
+        <td><p>A file lock operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Read">IoErr_Read</td>
+        <td><p>A file read operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Rollback_Atomic">IoErr_Rollback_Atomic</td>
+        <td><p>An attempt to rollback a file system transaction failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Seek">IoErr_Seek</td>
+        <td><p>A file seek operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_ShmLock">IoErr_ShmLock</td>
+        <td><p>A shared memory lock operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_ShmMap">IoErr_ShmMap</td>
+        <td><p>A shared memory map operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_ShmOpen">IoErr_ShmOpen</td>
+        <td><p>A shared memory open operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_ShmSize">IoErr_ShmSize</td>
+        <td><p>A shared memory size operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Short_Read">IoErr_Short_Read</td>
+        <td><p>A file read operation returned less data than requested.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Truncate">IoErr_Truncate</td>
+        <td><p>A file truncate operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Unlock">IoErr_Unlock</td>
+        <td><p>A file unlock operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_VNode">IoErr_VNode</td>
+        <td><p>Reserved.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_IoErr_Write">IoErr_Write</td>
+        <td><p>A file write operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Locked">Locked</td>
+        <td><p>A table in the database is locked</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Locked_SharedCache">Locked_SharedCache</td>
+        <td><p>A database table is locked in shared-cache mode.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Locked_Vtab">Locked_Vtab</td>
+        <td><p>A virtual table in the database is locked.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Mismatch">Mismatch</td>
+        <td><p>Data type mismatch</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Misuse">Misuse</td>
+        <td><p>Library used incorrectly</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_NoLfs">NoLfs</td>
+        <td><p>Uses OS features not supported on host</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_NoMem">NoMem</td>
+        <td><p>A malloc() failed</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_NonExtendedMask">NonExtendedMask</td>
+        <td><p>Used to mask off extended result codes</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_NotADb">NotADb</td>
+        <td><p>File opened that is not a database file</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_NotFound">NotFound</td>
+        <td><p>Unknown opcode in sqlite3_file_control()</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Notice">Notice</td>
+        <td><p>Notifications from sqlite3_log()</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Notice_Recover_Rollback">Notice_Recover_Rollback</td>
+        <td><p>Pages were recovered from the journal file.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Notice_Recover_Wal">Notice_Recover_Wal</td>
+        <td><p>Frames were recovered from the WAL log file.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Ok">Ok</td>
+        <td><p>Successful result</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Ok_Load_Permanently">Ok_Load_Permanently</td>
+        <td><p>Success.  Prevents the extension from unloading until the process
+terminates.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Perm">Perm</td>
+        <td><p>Access permission denied</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Protocol">Protocol</td>
+        <td><p>Database lock protocol error</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Range">Range</td>
+        <td><p>2nd parameter to sqlite3_bind out of range</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly">ReadOnly</td>
+        <td><p>Attempt to write a readonly database</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_CantInit">ReadOnly_CantInit</td>
+        <td><p>The shared-memory file is read-only and it should be read-write.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_CantLock">ReadOnly_CantLock</td>
+        <td><p>A database file is read-only because a lock could not be obtained.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_DbMoved">ReadOnly_DbMoved</td>
+        <td><p>A database file is read-only because it was moved while open.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_Directory">ReadOnly_Directory</td>
+        <td><p>Unable to create journal file because the directory is read-only.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_Recovery">ReadOnly_Recovery</td>
+        <td><p>A database file is read-only due to a recovery operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_ReadOnly_Rollback">ReadOnly_Rollback</td>
+        <td><p>A database file is read-only because it needs rollback processing.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Row">Row</td>
+        <td><p>sqlite3_step() has another row ready</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Schema">Schema</td>
+        <td><p>The database schema changed</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_TooBig">TooBig</td>
+        <td><p>String or BLOB exceeds size limit</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Unknown">Unknown</td>
+        <td><p>The error code is unknown.  This error code
+is only used by the managed wrapper itself.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Warning">Warning</td>
+        <td><p>Warnings from sqlite3_log()</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteErrorCode_Warning_AutoIndex">Warning_AutoIndex</td>
+        <td><p>An automatic index was created to process a query.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+  <h3 id="extensionmethods">&#25193;&#23637;&#26041;&#27861;</h3>
+  <div>
+      <a class="xref" href="Native.Sdk.Cqp.Expand.SystemExpand.html#Native_Sdk_Cqp_Expand_SystemExpand_GetDescription_System_Enum_">SystemExpand.GetDescription()</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteErrorCode.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteErrorCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteException.cs/#L450" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

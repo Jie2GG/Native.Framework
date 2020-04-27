@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>QQMessage 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="QQMessage 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Native.Sdk.Cqp.Model.QQMessage">
+  
+  
+  <h1 id="Native_Sdk_Cqp_Model_QQMessage" data-uid="Native.Sdk.Cqp.Model.QQMessage" class="text-break">QQMessage 类
+  </h1>
+  <div class="markdown level0 summary"><p>描述 QQ消息 的类</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Native.Sdk.Cqp.Model.BasisModel.html">BasisModel</a></div>
+    <div class="level2"><a class="xref" href="Native.Sdk.Cqp.Model.BasisStreamModel.html">BasisStreamModel</a></div>
+    <div class="level3"><span class="xref">QQMessage</span></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><a class="xref" href="Native.Sdk.Cqp.Interface.IToSendString.html">IToSendString</a></div>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html">QQMessage</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <a class="xref" href="Native.Sdk.Cqp.Model.BasisModel.html#Native_Sdk_Cqp_Model_BasisModel_CQApi">BasisModel.CQApi</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="Native.Sdk.Cqp.Model.html">Native.Sdk.Cqp.Model</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Sdk.dll</h6>
+  <h5 id="Native_Sdk_Cqp_Model_QQMessage_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class QQMessage : BasisStreamModel, IToSendString, IEquatable&lt;QQMessage&gt;</code></pre>
+  </div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage__ctor_Native_Sdk_Cqp_CQApi_System_Int32_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.%23ctor(Native.Sdk.Cqp.CQApi%2CSystem.Int32%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L83">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage__ctor_" data-uid="Native.Sdk.Cqp.Model.QQMessage.#ctor*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage__ctor_Native_Sdk_Cqp_CQApi_System_Int32_System_String_System_Boolean_" data-uid="Native.Sdk.Cqp.Model.QQMessage.#ctor(Native.Sdk.Cqp.CQApi,System.Int32,System.String,System.Boolean)">QQMessage(CQApi, Int32, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>使用 <a class="xref" href="Native.Sdk.Cqp.CQApi.html">CQApi</a> 和相关消息来初始化 <a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html">QQMessage</a> 类的新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QQMessage(CQApi api, int msgId, string msg, bool isRegexMsg = false)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Native.Sdk.Cqp.CQApi.html">CQApi</a></td>
+        <td><span class="parametername">api</span></td>
+        <td><p>模型使用的 <a class="xref" href="Native.Sdk.Cqp.CQApi.html">CQApi</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">msgId</span></td>
+        <td><p>模型使用的消息Id</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">msg</span></td>
+        <td><p>模型使用的消息原文</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isRegexMsg</span></td>
+        <td><p>指示当前实例是否是正则消息</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_CQCodes.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.CQCodes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L43">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_CQCodes_" data-uid="Native.Sdk.Cqp.Model.QQMessage.CQCodes*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_CQCodes" data-uid="Native.Sdk.Cqp.Model.QQMessage.CQCodes">CQCodes</h4>
+  <div class="markdown level1 summary"><p>获取当前消息中所有 [CQ:...] 的对象集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;CQCode&gt; CQCodes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="Native.Sdk.Cqp.Model.CQCode.html">CQCode</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_Id.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L23">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_Id_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Id*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_Id" data-uid="Native.Sdk.Cqp.Model.QQMessage.Id">Id</h4>
+  <div class="markdown level1 summary"><p>获取当前消息的全局唯一标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Id { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_IsImageMessage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.IsImageMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L47">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_IsImageMessage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsImageMessage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_IsImageMessage" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsImageMessage">IsImageMessage</h4>
+  <div class="markdown level1 summary"><p>获取一个值, 指示当前消息是否属于纯图片消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsImageMessage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_IsRecordMessage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.IsRecordMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L61">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_IsRecordMessage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsRecordMessage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_IsRecordMessage" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsRecordMessage">IsRecordMessage</h4>
+  <div class="markdown level1 summary"><p>获取一个值, 指示当前消息是否属于纯语音消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRecordMessage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_IsRegexMessage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.IsRegexMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L35">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_IsRegexMessage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsRegexMessage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_IsRegexMessage" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsRegexMessage">IsRegexMessage</h4>
+  <div class="markdown level1 summary"><p>获取一个值, 指示当前消息是否为正则消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRegexMessage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_IsSuccess.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.IsSuccess%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L27">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_IsSuccess_" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsSuccess*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_IsSuccess" data-uid="Native.Sdk.Cqp.Model.QQMessage.IsSuccess">IsSuccess</h4>
+  <div class="markdown level1 summary"><p>获取一个值, 指示当前消息是否发送成功</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSuccess { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_RegexResult.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.RegexResult%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L39">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_RegexResult_" data-uid="Native.Sdk.Cqp.Model.QQMessage.RegexResult*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_RegexResult" data-uid="Native.Sdk.Cqp.Model.QQMessage.RegexResult">RegexResult</h4>
+  <div class="markdown level1 summary"><p>获取当前实例正则消息的解析结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; RegexResult { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_Text.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.Text%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L31">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_Text_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Text*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_Text" data-uid="Native.Sdk.Cqp.Model.QQMessage.Text">Text</h4>
+  <div class="markdown level1 summary"><p>获取当前消息的原文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Text { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_Equals_Native_Sdk_Cqp_Model_QQMessage_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.Equals(Native.Sdk.Cqp.Model.QQMessage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L185">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_Equals_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Equals*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_Equals_Native_Sdk_Cqp_Model_QQMessage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Equals(Native.Sdk.Cqp.Model.QQMessage)">Equals(QQMessage)</h4>
+  <div class="markdown level1 summary"><p>指示当前对象是否等于同一类型的另一个对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(QQMessage other)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html">QQMessage</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>一个与此对象进行比较的对象</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>如果当前对象等于 other 参数，则为 <span class="xref">true</span>；否则为 <span class="xref">false</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L199">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_Equals_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Equals*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_Equals_System_Object_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>指示当前对象是否等于同一类型的另一个对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>一个与此对象进行比较的对象</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>如果当前对象等于 other 参数，则为 <span class="xref">true</span>；否则为 <span class="xref">false</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Object.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_GetHashCode.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L207">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_GetHashCode_" data-uid="Native.Sdk.Cqp.Model.QQMessage.GetHashCode*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_GetHashCode" data-uid="Native.Sdk.Cqp.Model.QQMessage.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>返回此实例的哈希代码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>32 位有符号整数哈希代码</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Object.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_Initialize_System_IO_BinaryReader_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.Initialize(System.IO.BinaryReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L245">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_Initialize_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Initialize*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_Initialize_System_IO_BinaryReader_" data-uid="Native.Sdk.Cqp.Model.QQMessage.Initialize(System.IO.BinaryReader)">Initialize(BinaryReader)</h4>
+  <div class="markdown level1 summary"><p>进行当前模型初始化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Initialize(BinaryReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.BinaryReader</span></td>
+        <td><span class="parametername">reader</span></td>
+        <td><p>解析模型的数据源</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><a class="xref" href="Native.Sdk.Cqp.Model.BasisStreamModel.html#Native_Sdk_Cqp_Model_BasisStreamModel_Initialize_System_IO_BinaryReader_">BasisStreamModel.Initialize(BinaryReader)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_ReceiveAllImage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.ReceiveAllImage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L159">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_ReceiveAllImage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveAllImage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_ReceiveAllImage" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveAllImage">ReceiveAllImage()</h4>
+  <div class="markdown level1 summary"><p>接收消息中的所有图片 (消息含有CQ码 &quot;image&quot; 的消息)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] ReceiveAllImage()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><p>返回图片文件位于本地服务器的绝对路径数组</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">&#24322;&#24120;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#26465;&#20214;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArithmeticException</span></td>
+        <td><p>当前实例属于正则消息时 (仅 Debug 生效)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_ReceiveImage_System_Int32_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.ReceiveImage(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L135">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_ReceiveImage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveImage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_ReceiveImage_System_Int32_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveImage(System.Int32)">ReceiveImage(Int32)</h4>
+  <div class="markdown level1 summary"><p>接收消息中指定的图片 (消息含有CQ码 &quot;image&quot; 的消息)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReceiveImage(int index)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>要接收的图片索引, 该索引从 0 开始</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>返回图片文件位于本地服务器的绝对路径</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">&#24322;&#24120;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#26465;&#20214;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>index 小于 0。 - 或 - index 等于或大于 <a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_CQCodes">CQCodes</a> 包含 <a class="xref" href="Native.Sdk.Cqp.Enum.CQFunction.html#Native_Sdk_Cqp_Enum_CQFunction_Image">Image</a> 的数量</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArithmeticException</span></td>
+        <td><p>当前实例属于正则消息时 (仅 Debug 生效)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_ReceiveRecord_Native_Sdk_Cqp_Enum_CQAudioFormat_.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.ReceiveRecord(Native.Sdk.Cqp.Enum.CQAudioFormat)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L112">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_ReceiveRecord_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveRecord*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_ReceiveRecord_Native_Sdk_Cqp_Enum_CQAudioFormat_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ReceiveRecord(Native.Sdk.Cqp.Enum.CQAudioFormat)">ReceiveRecord(CQAudioFormat)</h4>
+  <div class="markdown level1 summary"><p>接收消息中的语音 (消息含有CQ码 &quot;record&quot; 的消息)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReceiveRecord(CQAudioFormat format)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Native.Sdk.Cqp.Enum.CQAudioFormat.html">CQAudioFormat</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>所需的目标语音的音频格式</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>返回语音文件位于本地服务器的绝对路径</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">&#24322;&#24120;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#26465;&#20214;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArithmeticException</span></td>
+        <td><p>当前实例属于正则消息时 (仅 Debug 生效)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_RemoveMessage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.RemoveMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L102">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_RemoveMessage_" data-uid="Native.Sdk.Cqp.Model.QQMessage.RemoveMessage*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_RemoveMessage" data-uid="Native.Sdk.Cqp.Model.QQMessage.RemoveMessage">RemoveMessage()</h4>
+  <div class="markdown level1 summary"><p>撤回消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveMessage()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>撤回成功返回 <span class="xref">true</span>, 失败返回 <span class="xref">false</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_ToSendString.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.ToSendString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L234">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_ToSendString_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ToSendString*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_ToSendString" data-uid="Native.Sdk.Cqp.Model.QQMessage.ToSendString">ToSendString()</h4>
+  <div class="markdown level1 summary"><p>当在派生类中重写时, 处理返回用于发送的字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToSendString()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>用于发送的字符串</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><a class="xref" href="Native.Sdk.Cqp.Model.BasisModel.html#Native_Sdk_Cqp_Model_BasisModel_ToSendString">BasisModel.ToSendString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_ToString.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L215">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_ToString_" data-uid="Native.Sdk.Cqp.Model.QQMessage.ToString*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_ToString" data-uid="Native.Sdk.Cqp.Model.QQMessage.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>返回表示当前对象的字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>表示当前对象的字符串</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  <h3 id="operators">&#36816;&#31639;&#31526;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage_op_Implicit_Native_Sdk_Cqp_Model_QQMessage__System_String.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage.op_Implicit(Native.Sdk.Cqp.Model.QQMessage)~System.String%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L287">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Sdk_Cqp_Model_QQMessage_op_Implicit_" data-uid="Native.Sdk.Cqp.Model.QQMessage.op_Implicit*"></a>
+  <h4 id="Native_Sdk_Cqp_Model_QQMessage_op_Implicit_Native_Sdk_Cqp_Model_QQMessage__System_String" data-uid="Native.Sdk.Cqp.Model.QQMessage.op_Implicit(Native.Sdk.Cqp.Model.QQMessage)~System.String">Implicit(QQMessage to String)</h4>
+  <div class="markdown level1 summary"><p>定义将 <a class="xref" href="Native.Sdk.Cqp.Model.QQ.html">QQ</a> 对象转换为 <span class="xref">System.String</span></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator string (QQMessage value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html">QQMessage</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>转换的 <a class="xref" href="Native.Sdk.Cqp.Model.QQ.html">QQ</a> 对象</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">&#24322;&#24120;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#26465;&#20214;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArithmeticException</span></td>
+        <td><p>当 <a class="xref" href="Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_IsRegexMessage">IsRegexMessage</a> 为 <span class="xref">true</span> 时会发生异常 (仅 Debug 模式)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <a class="xref" href="Native.Sdk.Cqp.Interface.IToSendString.html">IToSendString</a>
+  </div>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Sdk_Cqp_Model_QQMessage.md&amp;value=---%0Auid%3A%20Native.Sdk.Cqp.Model.QQMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Sdk/Cqp/Model/QQMessage.cs/#L17" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

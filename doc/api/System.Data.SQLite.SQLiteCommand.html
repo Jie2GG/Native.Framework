@@ -1,0 +1,1471 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteCommand 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteCommand 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteCommand">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteCommand" data-uid="System.Data.SQLite.SQLiteCommand" class="text-break">SQLiteCommand 类
+  </h1>
+  <div class="markdown level0 summary"><p>SQLite implementation of DbCommand.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.MarshalByRefObject</span></div>
+    <div class="level2"><span class="xref">System.ComponentModel.Component</span></div>
+    <div class="level3"><span class="xref">System.Data.Common.DbCommand</span></div>
+    <div class="level4"><span class="xref">SQLiteCommand</span></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><span class="xref">System.ComponentModel.IComponent</span></div>
+    <div><span class="xref">System.Data.IDbCommand</span></div>
+    <div><span class="xref">System.IDisposable</span></div>
+    <div><span class="xref">System.ICloneable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.CreateParameter()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteNonQueryAsync()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteReaderAsync()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteReaderAsync(System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteReaderAsync(System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteReaderAsync(System.Data.CommandBehavior, System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior, System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteScalarAsync()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.ExecuteScalarAsync(System.Threading.CancellationToken)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.Connection</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.Parameters</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbCommand.System.Data.IDbCommand.Transaction</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Dispose()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.GetService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.CanRaiseEvents</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Events</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Site</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Container</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.DesignMode</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Disposed</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.MemberwiseClone(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.GetLifetimeService()</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.InitializeLifetimeService()</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.CreateObjRef(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteCommand_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SQLiteCommand : DbCommand, IComponent, IDbCommand, IDisposable, ICloneable</code></pre>
+  </div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand__ctor.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L85">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand__ctor_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand__ctor" data-uid="System.Data.SQLite.SQLiteCommand.#ctor">SQLiteCommand()</h4>
+  <div class="markdown level1 summary"><p>Default constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand__ctor_System_Data_SQLite_SQLiteConnection_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.%23ctor(System.Data.SQLite.SQLiteConnection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L113">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand__ctor_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand__ctor_System_Data_SQLite_SQLiteConnection_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor(System.Data.SQLite.SQLiteConnection)">SQLiteCommand(SQLiteConnection)</h4>
+  <div class="markdown level1 summary"><p>Initializes the command and associates it with the specified connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand(SQLiteConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection to associate with the command</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand__ctor_System_String_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L93">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand__ctor_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand__ctor_System_String_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor(System.String)">SQLiteCommand(String)</h4>
+  <div class="markdown level1 summary"><p>Initializes the command with the given command text</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand(string commandText)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The SQL command text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand__ctor_System_String_System_Data_SQLite_SQLiteConnection_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.%23ctor(System.String%2CSystem.Data.SQLite.SQLiteConnection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L104">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand__ctor_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand__ctor_System_String_System_Data_SQLite_SQLiteConnection_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor(System.String,System.Data.SQLite.SQLiteConnection)">SQLiteCommand(String, SQLiteConnection)</h4>
+  <div class="markdown level1 summary"><p>Initializes the command with the given SQL command text and attach the command to the specified
+connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand(string commandText, SQLiteConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The SQL command text</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection to associate with the command</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand__ctor_System_String_System_Data_SQLite_SQLiteConnection_System_Data_SQLite_SQLiteTransaction_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.%23ctor(System.String%2CSystem.Data.SQLite.SQLiteConnection%2CSystem.Data.SQLite.SQLiteTransaction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L136">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand__ctor_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand__ctor_System_String_System_Data_SQLite_SQLiteConnection_System_Data_SQLite_SQLiteTransaction_" data-uid="System.Data.SQLite.SQLiteCommand.#ctor(System.String,System.Data.SQLite.SQLiteConnection,System.Data.SQLite.SQLiteTransaction)">SQLiteCommand(String, SQLiteConnection, SQLiteTransaction)</h4>
+  <div class="markdown level1 summary"><p>Initializes a command with the given SQL, connection and transaction</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand(string commandText, SQLiteConnection connection, SQLiteTransaction transaction)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The SQL command text</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection to associate with the command</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteTransaction.html">SQLiteTransaction</a></td>
+        <td><span class="parametername">transaction</span></td>
+        <td><p>The transaction the command should be associated with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_CommandText.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.CommandText%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L429">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_CommandText_" data-uid="System.Data.SQLite.SQLiteCommand.CommandText*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_CommandText" data-uid="System.Data.SQLite.SQLiteCommand.CommandText">CommandText</h4>
+  <div class="markdown level1 summary"><p>The SQL command text associated with the command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CommandText { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.CommandText</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_CommandTimeout.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.CommandTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L461">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_CommandTimeout_" data-uid="System.Data.SQLite.SQLiteCommand.CommandTimeout*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_CommandTimeout" data-uid="System.Data.SQLite.SQLiteCommand.CommandTimeout">CommandTimeout</h4>
+  <div class="markdown level1 summary"><p>The amount of time to wait for the connection to become available before erroring out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int CommandTimeout { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.CommandTimeout</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_CommandType.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.CommandType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L481">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_CommandType_" data-uid="System.Data.SQLite.SQLiteCommand.CommandType*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_CommandType" data-uid="System.Data.SQLite.SQLiteCommand.CommandType">CommandType</h4>
+  <div class="markdown level1 summary"><p>The type of the command.  SQLite only supports CommandType.Text</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override CommandType CommandType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.CommandType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.CommandType</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Connection.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Connection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L524">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Connection_" data-uid="System.Data.SQLite.SQLiteCommand.Connection*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Connection" data-uid="System.Data.SQLite.SQLiteCommand.Connection">Connection</h4>
+  <div class="markdown level1 summary"><p>The connection associated with this command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteConnection Connection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_DbConnection.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.DbConnection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L554">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_DbConnection_" data-uid="System.Data.SQLite.SQLiteCommand.DbConnection*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_DbConnection" data-uid="System.Data.SQLite.SQLiteCommand.DbConnection">DbConnection</h4>
+  <div class="markdown level1 summary"><p>Forwards to the local Connection property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override DbConnection DbConnection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbConnection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.DbConnection</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_DbParameterCollection.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.DbParameterCollection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L580">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_DbParameterCollection_" data-uid="System.Data.SQLite.SQLiteCommand.DbParameterCollection*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_DbParameterCollection" data-uid="System.Data.SQLite.SQLiteCommand.DbParameterCollection">DbParameterCollection</h4>
+  <div class="markdown level1 summary"><p>Forwards to the local Parameters property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override DbParameterCollection DbParameterCollection { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.DbParameterCollection</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_DbTransaction.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.DbTransaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L625">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_DbTransaction_" data-uid="System.Data.SQLite.SQLiteCommand.DbTransaction*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_DbTransaction" data-uid="System.Data.SQLite.SQLiteCommand.DbTransaction">DbTransaction</h4>
+  <div class="markdown level1 summary"><p>Forwards to the local Transaction property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override DbTransaction DbTransaction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.DbTransaction</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Parameters.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Parameters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L570">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Parameters_" data-uid="System.Data.SQLite.SQLiteCommand.Parameters*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Parameters" data-uid="System.Data.SQLite.SQLiteCommand.Parameters">Parameters</h4>
+  <div class="markdown level1 summary"><p>Returns the SQLiteParameterCollection for the given command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteParameterCollection Parameters { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteParameterCollection.html">SQLiteParameterCollection</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Transaction.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Transaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L593">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Transaction_" data-uid="System.Data.SQLite.SQLiteCommand.Transaction*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Transaction" data-uid="System.Data.SQLite.SQLiteCommand.Transaction">Transaction</h4>
+  <div class="markdown level1 summary"><p>The transaction associated with this command.  SQLite only supports one transaction per connection, so this property forwards to the
+command's underlying connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+public SQLiteTransaction Transaction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteTransaction.html">SQLiteTransaction</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_UpdatedRowSource.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.UpdatedRowSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1111">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_UpdatedRowSource_" data-uid="System.Data.SQLite.SQLiteCommand.UpdatedRowSource*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_UpdatedRowSource" data-uid="System.Data.SQLite.SQLiteCommand.UpdatedRowSource">UpdatedRowSource</h4>
+  <div class="markdown level1 summary"><p>Sets the method the SQLiteCommandBuilder uses to determine how to update inserted or updated rows in a DataTable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override UpdateRowSource UpdatedRowSource { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.UpdateRowSource</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.UpdatedRowSource</span></div>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Cancel.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Cancel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L413">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Cancel_" data-uid="System.Data.SQLite.SQLiteCommand.Cancel*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Cancel" data-uid="System.Data.SQLite.SQLiteCommand.Cancel">Cancel()</h4>
+  <div class="markdown level1 summary"><p>Not implemented</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Cancel()</code></pre>
+  </div>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.Cancel()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Clone.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Clone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1154">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Clone_" data-uid="System.Data.SQLite.SQLiteCommand.Clone*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Clone" data-uid="System.Data.SQLite.SQLiteCommand.Clone">Clone()</h4>
+  <div class="markdown level1 summary"><p>Clones a command, including all its parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>A new SQLiteCommand with the same commandtext, connection and parameters</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_CreateDbParameter.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.CreateDbParameter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L505">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_CreateDbParameter_" data-uid="System.Data.SQLite.SQLiteCommand.CreateDbParameter*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_CreateDbParameter" data-uid="System.Data.SQLite.SQLiteCommand.CreateDbParameter">CreateDbParameter()</h4>
+  <div class="markdown level1 summary"><p>Forwards to the local CreateParameter() function</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override DbParameter CreateDbParameter()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.CreateDbParameter()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_CreateParameter.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.CreateParameter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L514">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_CreateParameter_" data-uid="System.Data.SQLite.SQLiteCommand.CreateParameter*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_CreateParameter" data-uid="System.Data.SQLite.SQLiteCommand.CreateParameter">CreateParameter()</h4>
+  <div class="markdown level1 summary"><p>Create a new parameter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteParameter CreateParameter()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteParameter.html">SQLiteParameter</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L190">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Dispose_" data-uid="System.Data.SQLite.SQLiteCommand.Dispose*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Dispose_System_Boolean_" data-uid="System.Data.SQLite.SQLiteCommand.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Disposes of the command and clears all member variables</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Whether or not the class is being explicitly or implicitly disposed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.ComponentModel.Component.Dispose(System.Boolean)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Execute_System_String_System_Data_SQLite_SQLiteExecuteType_System_Data_CommandBehavior_System_String_System_Object___.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Execute(System.String%2CSystem.Data.SQLite.SQLiteExecuteType%2CSystem.Data.CommandBehavior%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L814">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Execute_" data-uid="System.Data.SQLite.SQLiteCommand.Execute*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Execute_System_String_System_Data_SQLite_SQLiteExecuteType_System_Data_CommandBehavior_System_String_System_Object___" data-uid="System.Data.SQLite.SQLiteCommand.Execute(System.String,System.Data.SQLite.SQLiteExecuteType,System.Data.CommandBehavior,System.String,System.Object[])">Execute(String, SQLiteExecuteType, CommandBehavior, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>This method creates a new connection, executes the query using the given
+execution type and command behavior, closes the connection unless a data
+reader is created, and returns the results.  If the connection string is
+null, a temporary in-memory database connection will be used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object Execute(string commandText, SQLiteExecuteType executeType, CommandBehavior commandBehavior, string connectionString, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The text of the command to be executed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteExecuteType.html">SQLiteExecuteType</a></td>
+        <td><span class="parametername">executeType</span></td>
+        <td><p>The execution type for the command.  This is used to determine which method
+of the command object to call, which then determines the type of results
+returned, if any.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.CommandBehavior</span></td>
+        <td><span class="parametername">commandBehavior</span></td>
+        <td><p>The command behavior flags for the command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
+        <td><p>The connection string to the database to be opened, used, and closed.  If
+this parameter is null, a temporary in-memory databse will be used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The SQL parameter values to be used when building the command object to be
+executed, if any.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The results of the query -OR- null if no results were produced from the
+given execution type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Execute_System_String_System_Data_SQLite_SQLiteExecuteType_System_String_System_Object___.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Execute(System.String%2CSystem.Data.SQLite.SQLiteExecuteType%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L773">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Execute_" data-uid="System.Data.SQLite.SQLiteCommand.Execute*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Execute_System_String_System_Data_SQLite_SQLiteExecuteType_System_String_System_Object___" data-uid="System.Data.SQLite.SQLiteCommand.Execute(System.String,System.Data.SQLite.SQLiteExecuteType,System.String,System.Object[])">Execute(String, SQLiteExecuteType, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>This method creates a new connection, executes the query using the given
+execution type, closes the connection, and returns the results.  If the
+connection string is null, a temporary in-memory database connection will
+be used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object Execute(string commandText, SQLiteExecuteType executeType, string connectionString, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The text of the command to be executed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteExecuteType.html">SQLiteExecuteType</a></td>
+        <td><span class="parametername">executeType</span></td>
+        <td><p>The execution type for the command.  This is used to determine which method
+of the command object to call, which then determines the type of results
+returned, if any.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
+        <td><p>The connection string to the database to be opened, used, and closed.  If
+this parameter is null, a temporary in-memory databse will be used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The SQL parameter values to be used when building the command object to be
+executed, if any.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The results of the query -OR- null if no results were produced from the
+given execution type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteDbDataReader_System_Data_CommandBehavior_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(System.Data.CommandBehavior)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L742">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteDbDataReader_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteDbDataReader_System_Data_CommandBehavior_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(System.Data.CommandBehavior)">ExecuteDbDataReader(CommandBehavior)</h4>
+  <div class="markdown level1 summary"><p>Creates a new SQLiteDataReader to execute/iterate the array of SQLite prepared statements</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override DbDataReader ExecuteDbDataReader(CommandBehavior behavior)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.CommandBehavior</span></td>
+        <td><span class="parametername">behavior</span></td>
+        <td><p>The behavior the data reader should adopt</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbDataReader</span></td>
+        <td><p>Returns a SQLiteDataReader object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.ExecuteDbDataReader(System.Data.CommandBehavior)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteNonQuery.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteNonQuery%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L971">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteNonQuery_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteNonQuery*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteNonQuery" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteNonQuery">ExecuteNonQuery()</h4>
+  <div class="markdown level1 summary"><p>Execute the command and return the number of rows inserted/updated affected by it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int ExecuteNonQuery()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The number of rows inserted/updated affected by it.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.ExecuteNonQuery()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteNonQuery_System_Data_CommandBehavior_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(System.Data.CommandBehavior)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L983">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteNonQuery_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteNonQuery*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteNonQuery_System_Data_CommandBehavior_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(System.Data.CommandBehavior)">ExecuteNonQuery(CommandBehavior)</h4>
+  <div class="markdown level1 summary"><p>Execute the command and return the number of rows inserted/updated affected by it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ExecuteNonQuery(CommandBehavior behavior)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.CommandBehavior</span></td>
+        <td><span class="parametername">behavior</span></td>
+        <td><p>The flags to be associated with the reader.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The number of rows inserted/updated affected by it.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteReader.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteReader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L952">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteReader_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteReader*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteReader" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteReader">ExecuteReader()</h4>
+  <div class="markdown level1 summary"><p>Overrides the default behavior of DbDataReader to return a specialized SQLiteDataReader class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataReader ExecuteReader()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a></td>
+        <td><p>A SQLiteDataReader</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteReader_System_Data_CommandBehavior_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteReader(System.Data.CommandBehavior)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L936">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteReader_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteReader*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteReader_System_Data_CommandBehavior_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteReader(System.Data.CommandBehavior)">ExecuteReader(CommandBehavior)</h4>
+  <div class="markdown level1 summary"><p>Overrides the default behavior to return a SQLiteDataReader specialization class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataReader ExecuteReader(CommandBehavior behavior)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.CommandBehavior</span></td>
+        <td><span class="parametername">behavior</span></td>
+        <td><p>The flags to be associated with the reader.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a></td>
+        <td><p>A SQLiteDataReader</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteScalar.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteScalar%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1003">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteScalar_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteScalar*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteScalar" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteScalar">ExecuteScalar()</h4>
+  <div class="markdown level1 summary"><p>Execute the command and return the first column of the first row of the resultset
+(if present), or null if no resultset was returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object ExecuteScalar()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The first column of the first row of the first resultset from the query.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.ExecuteScalar()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_ExecuteScalar_System_Data_CommandBehavior_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.ExecuteScalar(System.Data.CommandBehavior)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1016">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_ExecuteScalar_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteScalar*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_ExecuteScalar_System_Data_CommandBehavior_" data-uid="System.Data.SQLite.SQLiteCommand.ExecuteScalar(System.Data.CommandBehavior)">ExecuteScalar(CommandBehavior)</h4>
+  <div class="markdown level1 summary"><p>Execute the command and return the first column of the first row of the resultset
+(if present), or null if no resultset was returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object ExecuteScalar(CommandBehavior behavior)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.CommandBehavior</span></td>
+        <td><span class="parametername">behavior</span></td>
+        <td><p>The flags to be associated with the reader.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The first column of the first row of the first resultset from the query.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Prepare.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Prepare%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1102">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Prepare_" data-uid="System.Data.SQLite.SQLiteCommand.Prepare*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Prepare" data-uid="System.Data.SQLite.SQLiteCommand.Prepare">Prepare()</h4>
+  <div class="markdown level1 summary"><p>Does nothing.  Commands are prepared as they are executed the first time, and kept in prepared state afterwards.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Prepare()</code></pre>
+  </div>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbCommand.Prepare()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Reset.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Reset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1036">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Reset_" data-uid="System.Data.SQLite.SQLiteCommand.Reset*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Reset" data-uid="System.Data.SQLite.SQLiteCommand.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>This method resets all the prepared statements held by this instance
+back to their initial states, ready to be re-executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_Reset_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.Reset(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L1057">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_Reset_" data-uid="System.Data.SQLite.SQLiteCommand.Reset*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_Reset_System_Boolean_System_Boolean_" data-uid="System.Data.SQLite.SQLiteCommand.Reset(System.Boolean,System.Boolean)">Reset(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"><p>This method resets all the prepared statements held by this instance
+back to their initial states, ready to be re-executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset(bool clearBindings, bool ignoreErrors)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">clearBindings</span></td>
+        <td><p>Non-zero if the parameter bindings should be cleared as well.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreErrors</span></td>
+        <td><p>If this is zero, a <a class="xref" href="System.Data.SQLite.SQLiteException.html">SQLiteException</a> may be thrown for
+any unsuccessful return codes from the native library; otherwise, a
+<a class="xref" href="System.Data.SQLite.SQLiteException.html">SQLiteException</a> will only be thrown if the connection
+or its state is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand_VerifyOnly.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand.VerifyOnly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L642">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteCommand_VerifyOnly_" data-uid="System.Data.SQLite.SQLiteCommand.VerifyOnly*"></a>
+  <h4 id="System_Data_SQLite_SQLiteCommand_VerifyOnly" data-uid="System.Data.SQLite.SQLiteCommand.VerifyOnly">VerifyOnly()</h4>
+  <div class="markdown level1 summary"><p>Verifies that all SQL queries associated with the current command text
+can be successfully compiled.  A <a class="xref" href="System.Data.SQLite.SQLiteException.html">SQLiteException</a> will be
+raised if any errors occur.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void VerifyOnly()</code></pre>
+  </div>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <span class="xref">System.ComponentModel.IComponent</span>
+  </div>
+  <div>
+      <span class="xref">System.Data.IDbCommand</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">System.ICloneable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteCommand.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteCommand.cs/#L21" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

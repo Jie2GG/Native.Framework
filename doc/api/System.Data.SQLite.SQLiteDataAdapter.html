@@ -1,0 +1,869 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteDataAdapter 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteDataAdapter 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteDataAdapter">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteDataAdapter" data-uid="System.Data.SQLite.SQLiteDataAdapter" class="text-break">SQLiteDataAdapter 类
+  </h1>
+  <div class="markdown level0 summary"><p>SQLite implementation of DbDataAdapter.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.MarshalByRefObject</span></div>
+    <div class="level2"><span class="xref">System.ComponentModel.Component</span></div>
+    <div class="level3"><span class="xref">System.Data.Common.DataAdapter</span></div>
+    <div class="level4"><span class="xref">System.Data.Common.DbDataAdapter</span></div>
+    <div class="level5"><span class="xref">SQLiteDataAdapter</span></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><span class="xref">System.ComponentModel.IComponent</span></div>
+    <div><span class="xref">System.IDisposable</span></div>
+    <div><span class="xref">System.Data.IDbDataAdapter</span></div>
+    <div><span class="xref">System.Data.IDataAdapter</span></div>
+    <div><span class="xref">System.ICloneable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.DefaultSourceTableName</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.AddToBatch(System.Data.IDbCommand)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.ClearBatch()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.System.ICloneable.Clone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.CreateRowUpdatedEvent(System.Data.DataRow, System.Data.IDbCommand, System.Data.StatementType, System.Data.Common.DataTableMapping)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.CreateRowUpdatingEvent(System.Data.DataRow, System.Data.IDbCommand, System.Data.StatementType, System.Data.Common.DataTableMapping)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.ExecuteBatch()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillSchema(System.Data.DataTable, System.Data.SchemaType)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillSchema(System.Data.DataSet, System.Data.SchemaType)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillSchema(System.Data.DataSet, System.Data.SchemaType, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillSchema(System.Data.DataSet, System.Data.SchemaType, System.Data.IDbCommand, System.String, System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillSchema(System.Data.DataTable, System.Data.SchemaType, System.Data.IDbCommand, System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataSet)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataSet, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataSet, System.Int32, System.Int32, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataSet, System.Int32, System.Int32, System.String, System.Data.IDbCommand, System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataTable)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Int32, System.Int32, System.Data.DataTable[])</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataTable, System.Data.IDbCommand, System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Fill(System.Data.DataTable[], System.Int32, System.Int32, System.Data.IDbCommand, System.Data.CommandBehavior)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.GetBatchedParameter(System.Int32, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.GetBatchedRecordsAffected(System.Int32, System.Int32, System.Exception)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.GetFillParameters()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.InitializeBatching()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.TerminateBatching()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Update(System.Data.DataSet)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Update(System.Data.DataRow[])</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Update(System.Data.DataTable)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Update(System.Data.DataSet, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.Update(System.Data.DataRow[], System.Data.Common.DataTableMapping)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.System.Data.IDbDataAdapter.DeleteCommand</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.FillCommandBehavior</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.System.Data.IDbDataAdapter.InsertCommand</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.System.Data.IDbDataAdapter.SelectCommand</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.UpdateBatchSize</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DbDataAdapter.System.Data.IDbDataAdapter.UpdateCommand</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.ShouldSerializeTableMappings()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.HasTableMappings()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.CloneInternals()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.CreateTableMappings()</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.FillSchema(System.Data.DataSet, System.Data.SchemaType, System.String, System.Data.IDataReader)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.FillSchema(System.Data.DataTable, System.Data.SchemaType, System.Data.IDataReader)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.Fill(System.Data.DataSet, System.String, System.Data.IDataReader, System.Int32, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.Fill(System.Data.DataTable, System.Data.IDataReader)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.Fill(System.Data.DataTable[], System.Data.IDataReader, System.Int32, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.OnFillError(System.Data.FillErrorEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.AcceptChangesDuringFill</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.AcceptChangesDuringUpdate</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.ContinueUpdateOnError</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.FillLoadOption</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.MissingMappingAction</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.MissingSchemaAction</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.ReturnProviderSpecificTypes</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.TableMappings</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.System.Data.IDataAdapter.TableMappings</span>
+    </div>
+    <div>
+      <span class="xref">System.Data.Common.DataAdapter.FillError</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Dispose()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.GetService(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.CanRaiseEvents</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Events</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Site</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Container</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.DesignMode</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.Component.Disposed</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.MemberwiseClone(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.GetLifetimeService()</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.InitializeLifetimeService()</span>
+    </div>
+    <div>
+      <span class="xref">System.MarshalByRefObject.CreateObjRef(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteDataAdapter_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SQLiteDataAdapter : DbDataAdapter, IComponent, IDisposable, IDbDataAdapter, IDataAdapter, ICloneable</code></pre>
+  </div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter__ctor.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L41">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter__ctor_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter__ctor" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor">SQLiteDataAdapter()</h4>
+  <div class="markdown level1 summary"><p>Default constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataAdapter()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter__ctor_System_Data_SQLite_SQLiteCommand_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.%23ctor(System.Data.SQLite.SQLiteCommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L53">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter__ctor_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter__ctor_System_Data_SQLite_SQLiteCommand_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor(System.Data.SQLite.SQLiteCommand)">SQLiteDataAdapter(SQLiteCommand)</h4>
+  <div class="markdown level1 summary"><p>Constructs a data adapter using the specified select command.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataAdapter(SQLiteCommand cmd)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteCommand.html">SQLiteCommand</a></td>
+        <td><span class="parametername">cmd</span></td>
+        <td><p>The select command to associate with the adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_Data_SQLite_SQLiteConnection_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.%23ctor(System.String%2CSystem.Data.SQLite.SQLiteConnection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L71">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter__ctor_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_Data_SQLite_SQLiteConnection_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor(System.String,System.Data.SQLite.SQLiteConnection)">SQLiteDataAdapter(String, SQLiteConnection)</h4>
+  <div class="markdown level1 summary"><p>Constructs a data adapter with the supplied select command text and
+associated with the specified connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataAdapter(string commandText, SQLiteConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The select command text to associate with the data adapter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection to associate with the select command.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L89">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter__ctor_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_String_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor(System.String,System.String)">SQLiteDataAdapter(String, String)</h4>
+  <div class="markdown level1 summary"><p>Constructs a data adapter with the specified select command text,
+and using the specified database connection string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataAdapter(string commandText, string connectionString)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The select command text to use to construct a select command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
+        <td><p>A connection string suitable for passing to a new SQLiteConnection,
+which is associated with the select command.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.%23ctor(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L115">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter__ctor_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter__ctor_System_String_System_String_System_Boolean_" data-uid="System.Data.SQLite.SQLiteDataAdapter.#ctor(System.String,System.String,System.Boolean)">SQLiteDataAdapter(String, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructs a data adapter with the specified select command text,
+and using the specified database connection string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataAdapter(string commandText, string connectionString, bool parseViaFramework)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">commandText</span></td>
+        <td><p>The select command text to use to construct a select command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
+        <td><p>A connection string suitable for passing to a new SQLiteConnection,
+which is associated with the select command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">parseViaFramework</span></td>
+        <td><p>Non-zero to parse the connection string using the built-in (i.e.
+framework provided) parser when opening the connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_DeleteCommand.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.DeleteCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L320">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_DeleteCommand_" data-uid="System.Data.SQLite.SQLiteDataAdapter.DeleteCommand*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_DeleteCommand" data-uid="System.Data.SQLite.SQLiteDataAdapter.DeleteCommand">DeleteCommand</h4>
+  <div class="markdown level1 summary"><p>Gets/sets the delete command for this DataAdapter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand DeleteCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteCommand.html">SQLiteCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_InsertCommand.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.InsertCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L296">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_InsertCommand_" data-uid="System.Data.SQLite.SQLiteDataAdapter.InsertCommand*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_InsertCommand" data-uid="System.Data.SQLite.SQLiteDataAdapter.InsertCommand">InsertCommand</h4>
+  <div class="markdown level1 summary"><p>Gets/sets the insert command for this DataAdapter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand InsertCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteCommand.html">SQLiteCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_SelectCommand.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.SelectCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L284">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_SelectCommand_" data-uid="System.Data.SQLite.SQLiteDataAdapter.SelectCommand*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_SelectCommand" data-uid="System.Data.SQLite.SQLiteDataAdapter.SelectCommand">SelectCommand</h4>
+  <div class="markdown level1 summary"><p>Gets/sets the select command for this DataAdapter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand SelectCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteCommand.html">SQLiteCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_UpdateCommand.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.UpdateCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L308">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_UpdateCommand_" data-uid="System.Data.SQLite.SQLiteDataAdapter.UpdateCommand*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_UpdateCommand" data-uid="System.Data.SQLite.SQLiteDataAdapter.UpdateCommand">UpdateCommand</h4>
+  <div class="markdown level1 summary"><p>Gets/sets the update command for this DataAdapter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteCommand UpdateCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteCommand.html">SQLiteCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L148">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_Dispose_" data-uid="System.Data.SQLite.SQLiteDataAdapter.Dispose*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_Dispose_System_Boolean_" data-uid="System.Data.SQLite.SQLiteDataAdapter.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Cleans up resources (native and managed) associated with the current instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Zero when being disposed via garbage collection; otherwise, non-zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbDataAdapter.Dispose(System.Boolean)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_OnRowUpdated_System_Data_Common_RowUpdatedEventArgs_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.OnRowUpdated(System.Data.Common.RowUpdatedEventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L272">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_OnRowUpdated_" data-uid="System.Data.SQLite.SQLiteDataAdapter.OnRowUpdated*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_OnRowUpdated_System_Data_Common_RowUpdatedEventArgs_" data-uid="System.Data.SQLite.SQLiteDataAdapter.OnRowUpdated(System.Data.Common.RowUpdatedEventArgs)">OnRowUpdated(RowUpdatedEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Raised by DbDataAdapter after a row is updated</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnRowUpdated(RowUpdatedEventArgs value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.RowUpdatedEventArgs</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The event's specifics</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbDataAdapter.OnRowUpdated(System.Data.Common.RowUpdatedEventArgs)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_OnRowUpdating_System_Data_Common_RowUpdatingEventArgs_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.OnRowUpdating(System.Data.Common.RowUpdatingEventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L260">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteDataAdapter_OnRowUpdating_" data-uid="System.Data.SQLite.SQLiteDataAdapter.OnRowUpdating*"></a>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_OnRowUpdating_System_Data_Common_RowUpdatingEventArgs_" data-uid="System.Data.SQLite.SQLiteDataAdapter.OnRowUpdating(System.Data.Common.RowUpdatingEventArgs)">OnRowUpdating(RowUpdatingEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Raised by the underlying DbDataAdapter when a row is being updated</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnRowUpdating(RowUpdatingEventArgs value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.RowUpdatingEventArgs</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The event's specifics</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Data.Common.DbDataAdapter.OnRowUpdating(System.Data.Common.RowUpdatingEventArgs)</span></div>
+  <h3 id="events">&#20107;&#20214;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_RowUpdated.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.RowUpdated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L250">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_RowUpdated" data-uid="System.Data.SQLite.SQLiteDataAdapter.RowUpdated">RowUpdated</h4>
+  <div class="markdown level1 summary"><p>Row updated event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RowUpdatedEventArgs&gt; RowUpdated</code></pre>
+  </div>
+  <h5 class="eventType">&#20107;&#20214;&#31867;&#22411;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<span class="xref">System.Data.Common.RowUpdatedEventArgs</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter_RowUpdating.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter.RowUpdating%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L207">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataAdapter_RowUpdating" data-uid="System.Data.SQLite.SQLiteDataAdapter.RowUpdating">RowUpdating</h4>
+  <div class="markdown level1 summary"><p>Row updating event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RowUpdatingEventArgs&gt; RowUpdating</code></pre>
+  </div>
+  <h5 class="eventType">&#20107;&#20214;&#31867;&#22411;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<span class="xref">System.Data.Common.RowUpdatingEventArgs</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <span class="xref">System.ComponentModel.IComponent</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">System.Data.IDbDataAdapter</span>
+  </div>
+  <div>
+      <span class="xref">System.Data.IDataAdapter</span>
+  </div>
+  <div>
+      <span class="xref">System.ICloneable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataAdapter.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataAdapter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteDataAdapter.cs/#L18" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

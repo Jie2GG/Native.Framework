@@ -1,0 +1,685 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteFunction 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteFunction 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteFunction">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteFunction" data-uid="System.Data.SQLite.SQLiteFunction" class="text-break">SQLiteFunction 类
+  </h1>
+  <div class="markdown level0 summary"><p>This abstract class is designed to handle user-defined functions easily.  An instance of the derived class is made for each
+connection to the database.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">SQLiteFunction</span></div>
+      <div class="level2"><a class="xref" href="System.Data.SQLite.SQLiteDelegateFunction.html">SQLiteDelegateFunction</a></div>
+      <div class="level2"><a class="xref" href="System.Data.SQLite.SQLiteFunctionEx.html">SQLiteFunctionEx</a></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteFunction_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class SQLiteFunction : IDisposable</code></pre>
+  </div>
+  <h5 id="System_Data_SQLite_SQLiteFunction_remarks"><strong>&#22791;&#27880;</strong></h5>
+  <div class="markdown level0 remarks"><p>Although there is one instance of a class derived from SQLiteFunction per database connection, the derived class has no access
+to the underlying connection.  This is necessary to deter implementers from thinking it would be a good idea to make database
+calls during processing.</p>
+<p>It is important to distinguish between a per-connection instance, and a per-SQL statement context.  One instance of this class
+services all SQL statements being stepped through on that connection, and there can be many.  One should never store per-statement
+information in member variables of user-defined function classes.</p>
+<p>For aggregate functions, always create and store your per-statement data in the contextData object on the 1st step.  This data will
+be automatically freed for you (and Dispose() called if the item supports IDisposable) when the statement completes.</p>
+</div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction__ctor.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L91">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction__ctor_" data-uid="System.Data.SQLite.SQLiteFunction.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction__ctor" data-uid="System.Data.SQLite.SQLiteFunction.#ctor">SQLiteFunction()</h4>
+  <div class="markdown level1 summary"><p>Internal constructor, initializes the function's internal variables.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SQLiteFunction()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction__ctor_System_Data_SQLite_SQLiteDateFormats_System_DateTimeKind_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.%23ctor(System.Data.SQLite.SQLiteDateFormats%2CSystem.DateTimeKind%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L116">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction__ctor_" data-uid="System.Data.SQLite.SQLiteFunction.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction__ctor_System_Data_SQLite_SQLiteDateFormats_System_DateTimeKind_System_String_System_Boolean_" data-uid="System.Data.SQLite.SQLiteFunction.#ctor(System.Data.SQLite.SQLiteDateFormats,System.DateTimeKind,System.String,System.Boolean)">SQLiteFunction(SQLiteDateFormats, DateTimeKind, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructs an instance of this class using the specified data-type
+conversion parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SQLiteFunction(SQLiteDateFormats format, DateTimeKind kind, string formatString, bool utf16)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteDateFormats.html">SQLiteDateFormats</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>The DateTime format to be used when converting string values to a
+DateTime and binding DateTime parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTimeKind</span></td>
+        <td><span class="parametername">kind</span></td>
+        <td><p>The <span class="xref">System.DateTimeKind</span> to be used when creating DateTime
+values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">formatString</span></td>
+        <td><p>The format string to be used when parsing and formatting DateTime
+values.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">utf16</span></td>
+        <td><p>Non-zero to create a UTF-16 data-type conversion context; otherwise,
+a UTF-8 data-type conversion context will be created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_SQLiteConvert.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.SQLiteConvert%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L219">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_SQLiteConvert_" data-uid="System.Data.SQLite.SQLiteFunction.SQLiteConvert*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_SQLiteConvert" data-uid="System.Data.SQLite.SQLiteFunction.SQLiteConvert">SQLiteConvert</h4>
+  <div class="markdown level1 summary"><p>Returns a reference to the underlying connection's SQLiteConvert class, which can be used to convert
+strings and DateTime's into the current connection's encoding schema.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteConvert SQLiteConvert { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConvert.html">SQLiteConvert</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Compare_System_String_System_String_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Compare(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L288">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Compare_" data-uid="System.Data.SQLite.SQLiteFunction.Compare*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Compare_System_String_System_String_" data-uid="System.Data.SQLite.SQLiteFunction.Compare(System.String,System.String)">Compare(String, String)</h4>
+  <div class="markdown level1 summary"><p>User-defined collating sequences override this method to provide a custom string sorting algorithm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int Compare(string param1, string param2)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">param1</span></td>
+        <td><p>The first string to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">param2</span></td>
+        <td><p>The second strnig to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>1 if param1 is greater than param2, 0 if they are equal, or -1 if param1 is less than param2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Dispose.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L137">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Dispose_" data-uid="System.Data.SQLite.SQLiteFunction.Dispose*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Dispose" data-uid="System.Data.SQLite.SQLiteFunction.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes of any active contextData variables that were not automatically cleaned up.  Sometimes this can happen if
+someone closes the connection while a DataReader is open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L162">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Dispose_" data-uid="System.Data.SQLite.SQLiteFunction.Dispose*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Dispose_System_Boolean_" data-uid="System.Data.SQLite.SQLiteFunction.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Placeholder for a user-defined disposal routine</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>True if the object is being disposed explicitly</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Final_System_Object_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Final(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L276">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Final_" data-uid="System.Data.SQLite.SQLiteFunction.Final*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Final_System_Object_" data-uid="System.Data.SQLite.SQLiteFunction.Final(System.Object)">Final(Object)</h4>
+  <div class="markdown level1 summary"><p>Aggregate functions override this method to finish their aggregate processing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual object Final(object contextData)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">contextData</span></td>
+        <td><p>Your own assigned contextData, provided for you so you can return your final results.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>You may return most simple types as a return value, null or DBNull.Value to return null, DateTime, or
+you may return an Exception-derived class if you wish to return an error to SQLite.  Do not actually throw the error,
+just return it!</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="System_Data_SQLite_SQLiteFunction_Final_System_Object__remarks">&#22791;&#27880;</h5>
+  <div class="markdown level1 remarks"><p>If you implemented your aggregate function properly,
+you've been recording and keeping track of your data in the contextData object provided, and now at this stage you should have
+all the information you need in there to figure out what to return.
+NOTE:  It is possible to arrive here without receiving a previous call to Step(), in which case the contextData will
+be null.  This can happen when no rows were returned.  You can either return null, or 0 or some other custom return value
+if that is the case.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Finalize.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L207">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Finalize_" data-uid="System.Data.SQLite.SQLiteFunction.Finalize*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Finalize" data-uid="System.Data.SQLite.SQLiteFunction.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Cleans up resources associated with the current instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Invoke_System_Object___.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Invoke(System.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L240">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Invoke_" data-uid="System.Data.SQLite.SQLiteFunction.Invoke*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Invoke_System_Object___" data-uid="System.Data.SQLite.SQLiteFunction.Invoke(System.Object[])">Invoke(Object[])</h4>
+  <div class="markdown level1 summary"><p>Scalar functions override this method to do their magic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual object Invoke(object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments for the command to process</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>You may return most simple types as a return value, null or DBNull.Value to return null, DateTime, or
+you may return an Exception-derived class if you wish to return an error to SQLite.  Do not actually throw the error,
+just return it!</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="System_Data_SQLite_SQLiteFunction_Invoke_System_Object____remarks">&#22791;&#27880;</h5>
+  <div class="markdown level1 remarks"><p>Parameters passed to functions have only an affinity for a certain data type, there is no underlying schema available
+to force them into a certain type.  Therefore the only types you will ever see as parameters are
+DBNull.Value, Int64, Double, String or byte[] array.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_RegisterFunction_System_String_System_Int32_System_Data_SQLite_FunctionType_System_Type_System_Delegate_System_Delegate_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.RegisterFunction(System.String%2CSystem.Int32%2CSystem.Data.SQLite.FunctionType%2CSystem.Type%2CSystem.Delegate%2CSystem.Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L776">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_RegisterFunction_" data-uid="System.Data.SQLite.SQLiteFunction.RegisterFunction*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_RegisterFunction_System_String_System_Int32_System_Data_SQLite_FunctionType_System_Type_System_Delegate_System_Delegate_" data-uid="System.Data.SQLite.SQLiteFunction.RegisterFunction(System.String,System.Int32,System.Data.SQLite.FunctionType,System.Type,System.Delegate,System.Delegate)">RegisterFunction(String, Int32, FunctionType, Type, Delegate, Delegate)</h4>
+  <div class="markdown level1 summary"><p>Alternative method of registering a function.  This method
+does not require the specified type to be annotated with
+<a class="xref" href="System.Data.SQLite.SQLiteFunctionAttribute.html">SQLiteFunctionAttribute</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterFunction(string name, int argumentCount, FunctionType functionType, Type instanceType, Delegate callback1, Delegate callback2)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the function to register.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">argumentCount</span></td>
+        <td><p>The number of arguments accepted by the function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.FunctionType.html">FunctionType</a></td>
+        <td><span class="parametername">functionType</span></td>
+        <td><p>The type of SQLite function being resitered (e.g. scalar,
+aggregate, or collating sequence).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">instanceType</span></td>
+        <td><p>The <span class="xref">System.Type</span> that actually implements the function.
+This will only be used if the <code data-dev-comment-type="paramref" class="paramref">callback1</code>
+and <code data-dev-comment-type="paramref" class="paramref">callback2</code> parameters are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Delegate</span></td>
+        <td><span class="parametername">callback1</span></td>
+        <td><p>The <span class="xref">System.Delegate</span> to be used for all calls into the
+<a class="xref" href="System.Data.SQLite.SQLiteFunction.html#System_Data_SQLite_SQLiteFunction_Invoke_System_Object___">Invoke(Object[])</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteFunction.html#System_Data_SQLite_SQLiteFunction_Step_System_Object___System_Int32_System_Object__">Step(Object[], Int32, ref Object)</a>,
+and <a class="xref" href="System.Data.SQLite.SQLiteFunction.html#System_Data_SQLite_SQLiteFunction_Compare_System_String_System_String_">Compare(String, String)</a> virtual methods.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Delegate</span></td>
+        <td><span class="parametername">callback2</span></td>
+        <td><p>The <span class="xref">System.Delegate</span> to be used for all calls into the
+<a class="xref" href="System.Data.SQLite.SQLiteFunction.html#System_Data_SQLite_SQLiteFunction_Final_System_Object_">Final(Object)</a> virtual method.  This
+parameter is only necessary for aggregate functions.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_RegisterFunction_System_Type_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.RegisterFunction(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L727">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_RegisterFunction_" data-uid="System.Data.SQLite.SQLiteFunction.RegisterFunction*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_RegisterFunction_System_Type_" data-uid="System.Data.SQLite.SQLiteFunction.RegisterFunction(System.Type)">RegisterFunction(Type)</h4>
+  <div class="markdown level1 summary"><p>Manual method of registering a function.  The type must still have the SQLiteFunctionAttributes in order to work
+properly, but this is a workaround for the Compact Framework where enumerating assemblies is not currently supported.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterFunction(Type typ)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">typ</span></td>
+        <td><p>The type of the function to register</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction_Step_System_Object___System_Int32_System_Object__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction.Step(System.Object%5B%5D%2CSystem.Int32%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L255">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteFunction_Step_" data-uid="System.Data.SQLite.SQLiteFunction.Step*"></a>
+  <h4 id="System_Data_SQLite_SQLiteFunction_Step_System_Object___System_Int32_System_Object__" data-uid="System.Data.SQLite.SQLiteFunction.Step(System.Object[],System.Int32,System.Object@)">Step(Object[], Int32, ref Object)</h4>
+  <div class="markdown level1 summary"><p>Aggregate functions override this method to do their magic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Step(object[] args, int stepNumber, ref object contextData)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>The arguments for the command to process</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">stepNumber</span></td>
+        <td><p>The 1-based step number.  This is incrememted each time the step method is called.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">contextData</span></td>
+        <td><p>A placeholder for implementers to store contextual data pertaining to the current context.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="System_Data_SQLite_SQLiteFunction_Step_System_Object___System_Int32_System_Object___remarks">&#22791;&#27880;</h5>
+  <div class="markdown level1 remarks"><p>Typically you'll be updating whatever you've placed in the contextData field and returning as quickly as possible.</p>
+</div>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteFunction.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteFunction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteFunction.cs/#L31" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

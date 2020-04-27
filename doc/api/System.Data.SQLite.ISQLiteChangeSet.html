@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ISQLiteChangeSet 接口
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ISQLiteChangeSet 接口
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.ISQLiteChangeSet">
+  
+  
+  <h1 id="System_Data_SQLite_ISQLiteChangeSet" data-uid="System.Data.SQLite.ISQLiteChangeSet" class="text-break">ISQLiteChangeSet 接口
+  </h1>
+  <div class="markdown level0 summary"><p>This interface contains methods used to manipulate a set of changes for
+a database.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;System.Data.SQLite.ISQLiteChangeSetMetadataItem&gt;.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.IDisposable.Dispose()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_ISQLiteChangeSet_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ISQLiteChangeSet : IEnumerable&lt;ISQLiteChangeSetMetadataItem&gt;, IEnumerable, IDisposable</code></pre>
+  </div>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteChangeSet_Apply_System_Data_SQLite_SessionConflictCallback_System_Data_SQLite_SessionTableFilterCallback_System_Object_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteChangeSet.Apply(System.Data.SQLite.SessionConflictCallback%2CSystem.Data.SQLite.SessionTableFilterCallback%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L297">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteChangeSet_Apply_" data-uid="System.Data.SQLite.ISQLiteChangeSet.Apply*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteChangeSet_Apply_System_Data_SQLite_SessionConflictCallback_System_Data_SQLite_SessionTableFilterCallback_System_Object_" data-uid="System.Data.SQLite.ISQLiteChangeSet.Apply(System.Data.SQLite.SessionConflictCallback,System.Data.SQLite.SessionTableFilterCallback,System.Object)">Apply(SessionConflictCallback, SessionTableFilterCallback, Object)</h4>
+  <div class="markdown level1 summary"><p>Attempts to apply the set of changes in this instance to the
+associated database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Apply(SessionConflictCallback conflictCallback, SessionTableFilterCallback tableFilterCallback, object clientData)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SessionConflictCallback.html">SessionConflictCallback</a></td>
+        <td><span class="parametername">conflictCallback</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SessionConflictCallback.html">SessionConflictCallback</a> delegate that will need
+to handle any conflicting changes that may arise.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SessionTableFilterCallback.html">SessionTableFilterCallback</a></td>
+        <td><span class="parametername">tableFilterCallback</span></td>
+        <td><p>The optional <a class="xref" href="System.Data.SQLite.SessionTableFilterCallback.html">SessionTableFilterCallback</a> delegate
+that can be used to filter the list of tables impacted by the set
+of changes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">clientData</span></td>
+        <td><p>The optional application-defined context data.  This value may be
+null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteChangeSet_Apply_System_Data_SQLite_SessionConflictCallback_System_Object_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteChangeSet.Apply(System.Data.SQLite.SessionConflictCallback%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L275">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteChangeSet_Apply_" data-uid="System.Data.SQLite.ISQLiteChangeSet.Apply*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteChangeSet_Apply_System_Data_SQLite_SessionConflictCallback_System_Object_" data-uid="System.Data.SQLite.ISQLiteChangeSet.Apply(System.Data.SQLite.SessionConflictCallback,System.Object)">Apply(SessionConflictCallback, Object)</h4>
+  <div class="markdown level1 summary"><p>Attempts to apply the set of changes in this instance to the
+associated database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Apply(SessionConflictCallback conflictCallback, object clientData)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SessionConflictCallback.html">SessionConflictCallback</a></td>
+        <td><span class="parametername">conflictCallback</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SessionConflictCallback.html">SessionConflictCallback</a> delegate that will need
+to handle any conflicting changes that may arise.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">clientData</span></td>
+        <td><p>The optional application-defined context data.  This value may be
+null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteChangeSet_CombineWith_System_Data_SQLite_ISQLiteChangeSet_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteChangeSet.CombineWith(System.Data.SQLite.ISQLiteChangeSet)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L261">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteChangeSet_CombineWith_" data-uid="System.Data.SQLite.ISQLiteChangeSet.CombineWith*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteChangeSet_CombineWith_System_Data_SQLite_ISQLiteChangeSet_" data-uid="System.Data.SQLite.ISQLiteChangeSet.CombineWith(System.Data.SQLite.ISQLiteChangeSet)">CombineWith(ISQLiteChangeSet)</h4>
+  <div class="markdown level1 summary"><p>This method combines the specified set of changes with the ones
+contained in this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ISQLiteChangeSet CombineWith(ISQLiteChangeSet changeSet)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.ISQLiteChangeSet.html">ISQLiteChangeSet</a></td>
+        <td><span class="parametername">changeSet</span></td>
+        <td><p>The changes to be combined with those in this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.ISQLiteChangeSet.html">ISQLiteChangeSet</a></td>
+        <td><p>The new <a class="xref" href="System.Data.SQLite.ISQLiteChangeSet.html">ISQLiteChangeSet</a> instance that represents
+the resulting set of changes -OR- null if it is not available.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteChangeSet_Invert.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteChangeSet.Invert%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L248">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteChangeSet_Invert_" data-uid="System.Data.SQLite.ISQLiteChangeSet.Invert*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteChangeSet_Invert" data-uid="System.Data.SQLite.ISQLiteChangeSet.Invert">Invert()</h4>
+  <div class="markdown level1 summary"><p>This method &quot;inverts&quot; the set of changes within this instance.
+Applying an inverted set of changes to a database reverses the
+effects of applying the uninverted changes.  Specifically:
+&lt;ul&gt;&lt;li&gt;
+Each DELETE change is changed to an INSERT, and
+&lt;/li&gt;&lt;li&gt;
+Each INSERT change is changed to a DELETE, and
+&lt;/li&gt;&lt;li&gt;
+For each UPDATE change, the old.* and new.* values are exchanged.
+&lt;/li&gt;&lt;/ul&gt;
+This method does not change the order in which changes appear
+within the set of changes. It merely reverses the sense of each
+individual change.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ISQLiteChangeSet Invert()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.ISQLiteChangeSet.html">ISQLiteChangeSet</a></td>
+        <td><p>The new <a class="xref" href="System.Data.SQLite.ISQLiteChangeSet.html">ISQLiteChangeSet</a> instance that represents
+the resulting set of changes -OR- null if it is not available.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteChangeSet.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteChangeSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L226" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

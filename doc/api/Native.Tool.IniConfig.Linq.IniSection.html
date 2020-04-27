@@ -1,0 +1,1367 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IniSection 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="IniSection 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Native.Tool.IniConfig.Linq.IniSection">
+  
+  
+  <h1 id="Native_Tool_IniConfig_Linq_IniSection" data-uid="Native.Tool.IniConfig.Linq.IniSection" class="text-break">IniSection 类
+  </h1>
+  <div class="markdown level0 summary"><p>用于描述 Ini 配置项节的类</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;</div>
+    <div class="level2"><span class="xref">IniSection</span></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;</div>
+    <div><span class="xref">System.Collections.Generic.ICollection</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;&gt;</div>
+    <div><span class="xref">System.Collections.IDictionary</span></div>
+    <div><span class="xref">System.Collections.ICollection</span></div>
+    <div><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;</div>
+    <div><span class="xref">System.Collections.Generic.IReadOnlyCollection</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;&gt;</div>
+    <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
+    <div><span class="xref">System.Runtime.Serialization.IDeserializationCallback</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Add(System.String, Native.Tool.IniConfig.Linq.IniValue)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.Add(System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.Contains(System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.Remove(System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Clear()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.ContainsKey(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.ContainsValue(Native.Tool.IniConfig.Linq.IniValue)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.OnDeserialization(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Remove(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.TryGetValue(System.String, Native.Tool.IniConfig.Linq.IniValue)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.CopyTo(System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;[], System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.ICollection.CopyTo(System.Array, System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IEnumerable.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.get_Item(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.set_Item(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Add(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Contains(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.GetEnumerator()</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Remove(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Comparer</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Count</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Keys</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.IDictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Keys</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.IReadOnlyDictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Keys</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.IDictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.IReadOnlyDictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.Item[System.String]</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.Generic.ICollection&lt;System.Collections.Generic.KeyValuePair&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;&gt;.IsReadOnly</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.ICollection.IsSynchronized</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.ICollection.SyncRoot</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.IsFixedSize</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.IsReadOnly</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Keys</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Values</span>
+    </div>
+    <div>
+      <span class="xref">System.Collections.Generic.Dictionary&lt;System.String, Native.Tool.IniConfig.Linq.IniValue&gt;.System.Collections.IDictionary.Item[System.Object]</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="Native.Tool.IniConfig.Linq.html">Native.Tool.IniConfig.Linq</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="Native_Tool_IniConfig_Linq_IniSection_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[Obsolete(&quot;&#35831;&#25913;&#29992; ISection &#31867;&#22411;&quot;)]
+public class IniSection : Dictionary&lt;string, IniValue&gt;, IDictionary&lt;string, IniValue&gt;, ICollection&lt;KeyValuePair&lt;string, IniValue&gt;&gt;, IDictionary, ICollection, IReadOnlyDictionary&lt;string, IniValue&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;string, IniValue&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, IniValue&gt;&gt;, IEnumerable, ISerializable, IDeserializationCallback</code></pre>
+  </div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L133">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">IniSection(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"><p>用序列化数据初始化 <a class="xref" href="Native.Tool.IniConfig.Linq.IniSection.html">IniSection</a> 类的新实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IniSection(SerializationInfo serializationInfo, StreamingContext streamingContext)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">serializationInfo</span></td>
+        <td><p>一个 <span class="xref">System.Runtime.Serialization.SerializationInfo</span> 包含 <a class="xref" href="Native.Tool.IniConfig.Linq.IniSection.html">IniSection</a> 所需的信息。</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">streamingContext</span></td>
+        <td><p>一个 <span class="xref">System.Runtime.Serialization.StreamingContext</span> 结构包含与 <a class="xref" href="Native.Tool.IniConfig.Linq.IniSection.html">IniSection</a> 关联的序列化流的源和目标。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L67">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String)">IniSection(String)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例为空，具有默认的初始容量并为键类型使用默认的相等比较器。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IDictionary_System_String_Native_Tool_IniConfig_Linq_IniValue__.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Collections.Generic.IDictionary%7BSystem.String%2CNative.Tool.IniConfig.Linq.IniValue%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L94">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IDictionary_System_String_Native_Tool_IniConfig_Linq_IniValue__" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,Native.Tool.IniConfig.Linq.IniValue})">IniSection(String, IDictionary&lt;String, IniValue&gt;)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例包含从指定的 IniSection 复制的元素并为键类型使用默认的相等比较器。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name, IDictionary&lt;string, IniValue&gt; dictionary)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;</td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>IDictionary&lt;string, IniValue&gt;，它的元素被复制到新 IniSection。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IDictionary_System_String_Native_Tool_IniConfig_Linq_IniValue__System_Collections_Generic_IEqualityComparer_System_String__.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Collections.Generic.IDictionary%7BSystem.String%2CNative.Tool.IniConfig.Linq.IniValue%7D%2CSystem.Collections.Generic.IEqualityComparer%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L114">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IDictionary_System_String_Native_Tool_IniConfig_Linq_IniValue__System_Collections_Generic_IEqualityComparer_System_String__" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,Native.Tool.IniConfig.Linq.IniValue},System.Collections.Generic.IEqualityComparer{System.String})">IniSection(String, IDictionary&lt;String, IniValue&gt;, IEqualityComparer&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例包含从指定的 IDictionary&lt;string, IniValue&gt; 中复制的元素并使用指定的 IEqualityComparer&lt;in string&gt;。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name, IDictionary&lt;string, IniValue&gt; dictionary, IEqualityComparer&lt;string&gt; comparer)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a>&gt;</td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>IDictionary&lt;string, IniValue&gt;，它的元素被复制到新 IniSection。</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">comparer</span></td>
+        <td><p>比较键时要使用的 IEqualityComparer&lt;in string&gt;实现，或者为 null，以便为键类型使用默认的 EqualityComparer。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IEqualityComparer_System_String__.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Collections.Generic.IEqualityComparer%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L85">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Collections_Generic_IEqualityComparer_System_String__" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Collections.Generic.IEqualityComparer{System.String})">IniSection(String, IEqualityComparer&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例为空，具有默认的初始容量并使用指定的 IEqualityComparer&lt;in string&gt;。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name, IEqualityComparer&lt;string&gt; comparer)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">comparer</span></td>
+        <td><p>比较键时要使用的 IEqualityComparer 实现，或者为 null，以便为键类型使用默认的 IEqualityComparer。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L76">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Int32_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Int32)">IniSection(String, Int32)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例为空，具有指定的初始容量并为键类型使用默认的相等比较器。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name, int capacity)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">capacity</span></td>
+        <td><p>IniSection 可包含的初始元素数。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Int32_System_Collections_Generic_IEqualityComparer_System_String__.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Int32%2CSystem.Collections.Generic.IEqualityComparer%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L104">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Int32_System_Collections_Generic_IEqualityComparer_System_String__" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Int32,System.Collections.Generic.IEqualityComparer{System.String})">IniSection(String, Int32, IEqualityComparer&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>初始化 IniSection 类的新实例，该实例为空，具有指定的初始容量并使用指定的 IEqualityComparer。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniSection(string name, int capacity, IEqualityComparer&lt;string&gt; comparer)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">capacity</span></td>
+        <td><p>IniSection 可包含的初始元素数。</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEqualityComparer</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">comparer</span></td>
+        <td><p>比较键时要使用的 IEqualityComparer&lt;in string&gt;实现，或者为 null，以便为键类型使用默认的 EqualityComparer。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.%23ctor(System.String%2CSystem.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L124">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection__ctor_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection__ctor_System_String_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Native.Tool.IniConfig.Linq.IniSection.#ctor(System.String,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">IniSection(String, SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"><p>用序列化数据初始化 IniSection 类的新实例。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IniSection(string name, SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>IniSection 关联的名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td><p>一个 System.Runtime.Serialization.SerializationInfo 对象包含序列化 IniSection 所需的信息。</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>一个 System.Runtime.Serialization.StreamingContext 结构包含与 IniSection 关联的序列化流的源和目标。</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Item_System_String_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Item(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L31">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Item_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Item*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Item_System_String_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Item(System.String)">Item[String]</h4>
+  <div class="markdown level1 summary"><p>获取或设置与指定键关联的值 (此索引器允许直接对不存在的键进行设置)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IniValue this[string name] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>要获取或设置的值的键</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Native.Tool.IniConfig.Linq.IniValue.html">IniValue</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Name.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L59">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Name_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Name*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Name" data-uid="Native.Tool.IniConfig.Linq.IniSection.Name">Name</h4>
+  <div class="markdown level1 summary"><p>获取或设置当前节名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L145">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Boolean_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Boolean)">Add(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, bool value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Byte_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L155">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Byte_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Byte)">Add(String, Byte)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, byte value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Char_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L165">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Char_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Char)">Add(String, Char)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, char value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_DateTime_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.DateTime)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L175">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_DateTime_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.DateTime)">Add(String, DateTime)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, DateTime value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Decimal_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Decimal)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L185">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Decimal_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Decimal)">Add(String, Decimal)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, decimal value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Double_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L195">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Double_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Double)">Add(String, Double)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, double value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int16_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Int16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L205">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int16_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Int16)">Add(String, Int16)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, short value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L215">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int32_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Int32)">Add(String, Int32)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, int value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int64_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L225">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Int64_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Int64)">Add(String, Int64)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, long value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_SByte_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.SByte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L235">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_SByte_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.SByte)">Add(String, SByte)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, sbyte value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.SByte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Single_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L245">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_Single_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.Single)">Add(String, Single)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, float value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_String_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L255">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_String_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.String)">Add(String, String)</h4>
+  <div class="markdown level1 summary"><p>将建和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, string value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value, 若此参数为 null, 将用 IniSection.Empty 代替</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt16_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L265">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt16_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.UInt16)">Add(String, UInt16)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, ushort value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt32_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L275">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt32_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.UInt32)">Add(String, UInt32)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, uint value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt64_.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.Add(System.String%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L285">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_Add_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_Add_System_String_System_UInt64_" data-uid="Native.Tool.IniConfig.Linq.IniSection.Add(System.String,System.UInt64)">Add(String, UInt64)</h4>
+  <div class="markdown level1 summary"><p>将键和值添加到 IniSection 的结尾处</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, ulong value)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Key. 此参数不可为 null 或者 string.Empty</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>要添加到 IniSection 结尾处的对象的 Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection_ToString.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L296">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="Native_Tool_IniConfig_Linq_IniSection_ToString_" data-uid="Native.Tool.IniConfig.Linq.IniSection.ToString*"></a>
+  <h4 id="Native_Tool_IniConfig_Linq_IniSection_ToString" data-uid="Native.Tool.IniConfig.Linq.IniSection.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>将当前实例转换为其等效的字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IDictionary</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.ICollection</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyDictionary&lt;TKey, TValue&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IReadOnlyCollection&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.IDeserializationCallback</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=Native_Tool_IniConfig_Linq_IniSection.md&amp;value=---%0Auid%3A%20Native.Tool.IniConfig.Linq.IniSection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/IniConfig/Linq/IniSection.cs/#L17" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
