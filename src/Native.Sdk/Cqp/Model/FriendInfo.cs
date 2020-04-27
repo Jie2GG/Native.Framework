@@ -118,7 +118,7 @@ namespace Native.Sdk.Cqp.Model
 
 			this.QQ = new QQ (this.CQApi, reader.ReadInt64_Ex ());
 			this.Nick = reader.ReadString_Ex (CQApi.DefaultEncoding);
-			this.Postscript = reader.ReadString_Ex (CQApi.DefaultEncoding);
+			this.Postscript = reader.ReadString_Ex ();
 		}
 		#endregion
 	}
