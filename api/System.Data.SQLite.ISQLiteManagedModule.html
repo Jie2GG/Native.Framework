@@ -1,0 +1,1531 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ISQLiteManagedModule 接口
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ISQLiteManagedModule 接口
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.ISQLiteManagedModule">
+  
+  
+  <h1 id="System_Data_SQLite_ISQLiteManagedModule" data-uid="System.Data.SQLite.ISQLiteManagedModule" class="text-break">ISQLiteManagedModule 接口
+  </h1>
+  <div class="markdown level0 summary"><p>This interface represents a virtual table implementation written in
+managed code.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_ISQLiteManagedModule_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ISQLiteManagedModule</code></pre>
+  </div>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Declared.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Declared%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2725">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Declared_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Declared*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Declared" data-uid="System.Data.SQLite.ISQLiteManagedModule.Declared">Declared</h4>
+  <div class="markdown level1 summary"><p>Returns non-zero if the schema for the virtual table has been
+declared.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Declared { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Name.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2733">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Name_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Name*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Name" data-uid="System.Data.SQLite.ISQLiteManagedModule.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Returns the name of the module as it was registered with the SQLite
+core library.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Begin_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Begin(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3067">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Begin_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Begin*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Begin_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Begin(System.Data.SQLite.SQLiteVirtualTable)">Begin(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xBegin_System_IntPtr_">xBegin(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Begin(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_BestIndex_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteIndex_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.BestIndex(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Data.SQLite.SQLiteIndex)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2830">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_BestIndex_" data-uid="System.Data.SQLite.ISQLiteManagedModule.BestIndex*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_BestIndex_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteIndex_" data-uid="System.Data.SQLite.ISQLiteManagedModule.BestIndex(System.Data.SQLite.SQLiteVirtualTable,System.Data.SQLite.SQLiteIndex)">BestIndex(SQLiteVirtualTable, SQLiteIndex)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xBestIndex_System_IntPtr_System_IntPtr_">xBestIndex(IntPtr, IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode BestIndex(SQLiteVirtualTable table, SQLiteIndex index)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteIndex.html">SQLiteIndex</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteIndex.html">SQLiteIndex</a> object instance containing all the
+data for the inputs and outputs relating to index selection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Close_System_Data_SQLite_SQLiteVirtualTableCursor_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Close(System.Data.SQLite.SQLiteVirtualTableCursor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2906">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Close_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Close*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Close_System_Data_SQLite_SQLiteVirtualTableCursor_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Close(System.Data.SQLite.SQLiteVirtualTableCursor)">Close(SQLiteVirtualTableCursor)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xClose_System_IntPtr_">xClose(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Close(SQLiteVirtualTableCursor cursor)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Column_System_Data_SQLite_SQLiteVirtualTableCursor_System_Data_SQLite_SQLiteContext_System_Int32_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Column(System.Data.SQLite.SQLiteVirtualTableCursor%2CSystem.Data.SQLite.SQLiteContext%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2998">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Column_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Column*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Column_System_Data_SQLite_SQLiteVirtualTableCursor_System_Data_SQLite_SQLiteContext_System_Int32_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Column(System.Data.SQLite.SQLiteVirtualTableCursor,System.Data.SQLite.SQLiteContext,System.Int32)">Column(SQLiteVirtualTableCursor, SQLiteContext, Int32)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xColumn_System_IntPtr_System_IntPtr_System_Int32_">xColumn(IntPtr, IntPtr, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Column(SQLiteVirtualTableCursor cursor, SQLiteContext context, int index)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteContext.html">SQLiteContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteContext.html">SQLiteContext</a> object instance to be used for
+returning the specified column value to the SQLite core library.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The zero-based index corresponding to the column containing the
+value to be returned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Commit_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Commit(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3101">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Commit_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Commit*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Commit_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Commit(System.Data.SQLite.SQLiteVirtualTable)">Commit(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xCommit_System_IntPtr_">xCommit(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Commit(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Connect_System_Data_SQLite_SQLiteConnection_System_IntPtr_System_String___System_Data_SQLite_SQLiteVirtualTable__System_String__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Connect(System.Data.SQLite.SQLiteConnection%2CSystem.IntPtr%2CSystem.String%5B%5D%2CSystem.Data.SQLite.SQLiteVirtualTable%40%2CSystem.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2805">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Connect_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Connect*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Connect_System_Data_SQLite_SQLiteConnection_System_IntPtr_System_String___System_Data_SQLite_SQLiteVirtualTable__System_String__" data-uid="System.Data.SQLite.ISQLiteManagedModule.Connect(System.Data.SQLite.SQLiteConnection,System.IntPtr,System.String[],System.Data.SQLite.SQLiteVirtualTable@,System.String@)">Connect(SQLiteConnection, IntPtr, String[], ref SQLiteVirtualTable, ref String)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xConnect_System_IntPtr_System_IntPtr_System_Int32_System_IntPtr_System_IntPtr__System_IntPtr__">xConnect(IntPtr, IntPtr, Int32, IntPtr, ref IntPtr, ref IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Connect(SQLiteConnection connection, IntPtr pClientData, string[] arguments, ref SQLiteVirtualTable table, ref string error)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a> object instance associated with
+the virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">pClientData</span></td>
+        <td><p>The native user-data pointer associated with this module, as it was
+provided to the SQLite core library when the native module instance
+was created.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">arguments</span></td>
+        <td><p>The module name, database name, virtual table name, and all other
+arguments passed to the CREATE VIRTUAL TABLE statement.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the
+<a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated with
+the virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">error</span></td>
+        <td><p>Upon failure, this parameter must be modified to contain an error
+message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Create_System_Data_SQLite_SQLiteConnection_System_IntPtr_System_String___System_Data_SQLite_SQLiteVirtualTable__System_String__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Create(System.Data.SQLite.SQLiteConnection%2CSystem.IntPtr%2CSystem.String%5B%5D%2CSystem.Data.SQLite.SQLiteVirtualTable%40%2CSystem.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2766">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Create_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Create*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Create_System_Data_SQLite_SQLiteConnection_System_IntPtr_System_String___System_Data_SQLite_SQLiteVirtualTable__System_String__" data-uid="System.Data.SQLite.ISQLiteManagedModule.Create(System.Data.SQLite.SQLiteConnection,System.IntPtr,System.String[],System.Data.SQLite.SQLiteVirtualTable@,System.String@)">Create(SQLiteConnection, IntPtr, String[], ref SQLiteVirtualTable, ref String)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xCreate_System_IntPtr_System_IntPtr_System_Int32_System_IntPtr_System_IntPtr__System_IntPtr__">xCreate(IntPtr, IntPtr, Int32, IntPtr, ref IntPtr, ref IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Create(SQLiteConnection connection, IntPtr pClientData, string[] arguments, ref SQLiteVirtualTable table, ref string error)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteConnection.html">SQLiteConnection</a> object instance associated with
+the virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">pClientData</span></td>
+        <td><p>The native user-data pointer associated with this module, as it was
+provided to the SQLite core library when the native module instance
+was created.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">arguments</span></td>
+        <td><p>The module name, database name, virtual table name, and all other
+arguments passed to the CREATE VIRTUAL TABLE statement.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the
+<a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated with
+the virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">error</span></td>
+        <td><p>Upon failure, this parameter must be modified to contain an error
+message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Destroy_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Destroy(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2865">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Destroy_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Destroy*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Destroy_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Destroy(System.Data.SQLite.SQLiteVirtualTable)">Destroy(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xDestroy_System_IntPtr_">xDestroy(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Destroy(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Disconnect_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Disconnect(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2848">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Disconnect_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Disconnect*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Disconnect_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Disconnect(System.Data.SQLite.SQLiteVirtualTable)">Disconnect(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xDisconnect_System_IntPtr_">xDisconnect(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Disconnect(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Eof_System_Data_SQLite_SQLiteVirtualTableCursor_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Eof(System.Data.SQLite.SQLiteVirtualTableCursor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2972">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Eof_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Eof*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Eof_System_Data_SQLite_SQLiteVirtualTableCursor_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Eof(System.Data.SQLite.SQLiteVirtualTableCursor)">Eof(SQLiteVirtualTableCursor)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xEof_System_IntPtr_">xEof(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Eof(SQLiteVirtualTableCursor cursor)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Non-zero if no more rows are available; zero otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Filter_System_Data_SQLite_SQLiteVirtualTableCursor_System_Int32_System_String_System_Data_SQLite_SQLiteValue___.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Filter(System.Data.SQLite.SQLiteVirtualTableCursor%2CSystem.Int32%2CSystem.String%2CSystem.Data.SQLite.SQLiteValue%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2933">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Filter_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Filter*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Filter_System_Data_SQLite_SQLiteVirtualTableCursor_System_Int32_System_String_System_Data_SQLite_SQLiteValue___" data-uid="System.Data.SQLite.ISQLiteManagedModule.Filter(System.Data.SQLite.SQLiteVirtualTableCursor,System.Int32,System.String,System.Data.SQLite.SQLiteValue[])">Filter(SQLiteVirtualTableCursor, Int32, String, SQLiteValue[])</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xFilter_System_IntPtr_System_Int32_System_IntPtr_System_Int32_System_IntPtr_">xFilter(IntPtr, Int32, IntPtr, Int32, IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Filter(SQLiteVirtualTableCursor cursor, int indexNumber, string indexString, SQLiteValue[] values)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">indexNumber</span></td>
+        <td><p>Number used to help identify the selected index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">indexString</span></td>
+        <td><p>String used to help identify the selected index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteValue.html">SQLiteValue</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>The values corresponding to each column in the selected index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_FindFunction_System_Data_SQLite_SQLiteVirtualTable_System_Int32_System_String_System_Data_SQLite_SQLiteFunction__System_IntPtr__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.FindFunction(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Int32%2CSystem.String%2CSystem.Data.SQLite.SQLiteFunction%40%2CSystem.IntPtr%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3151">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_FindFunction_" data-uid="System.Data.SQLite.ISQLiteManagedModule.FindFunction*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_FindFunction_System_Data_SQLite_SQLiteVirtualTable_System_Int32_System_String_System_Data_SQLite_SQLiteFunction__System_IntPtr__" data-uid="System.Data.SQLite.ISQLiteManagedModule.FindFunction(System.Data.SQLite.SQLiteVirtualTable,System.Int32,System.String,System.Data.SQLite.SQLiteFunction@,System.IntPtr@)">FindFunction(SQLiteVirtualTable, Int32, String, ref SQLiteFunction, ref IntPtr)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xFindFunction_System_IntPtr_System_Int32_System_IntPtr_System_Data_SQLite_SQLiteCallback__System_IntPtr__">xFindFunction(IntPtr, Int32, IntPtr, ref SQLiteCallback, ref IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool FindFunction(SQLiteVirtualTable table, int argumentCount, string name, ref SQLiteFunction function, ref IntPtr pClientData)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">argumentCount</span></td>
+        <td><p>The number of arguments to the function being sought.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the function being sought.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteFunction.html">SQLiteFunction</a></td>
+        <td><span class="parametername">function</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the
+<a class="xref" href="System.Data.SQLite.SQLiteFunction.html">SQLiteFunction</a> object instance responsible for
+implementing the specified function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">pClientData</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the
+native user-data pointer associated with
+<code data-dev-comment-type="paramref" class="paramref">function</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Non-zero if the specified function was found; zero otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Next_System_Data_SQLite_SQLiteVirtualTableCursor_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Next(System.Data.SQLite.SQLiteVirtualTableCursor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2954">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Next_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Next*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Next_System_Data_SQLite_SQLiteVirtualTableCursor_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Next(System.Data.SQLite.SQLiteVirtualTableCursor)">Next(SQLiteVirtualTableCursor)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xNext_System_IntPtr_">xNext(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Next(SQLiteVirtualTableCursor cursor)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Open_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteVirtualTableCursor__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Open(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Data.SQLite.SQLiteVirtualTableCursor%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2887">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Open_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Open*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Open_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteVirtualTableCursor__" data-uid="System.Data.SQLite.ISQLiteManagedModule.Open(System.Data.SQLite.SQLiteVirtualTable,System.Data.SQLite.SQLiteVirtualTableCursor@)">Open(SQLiteVirtualTable, ref SQLiteVirtualTableCursor)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xOpen_System_IntPtr_System_IntPtr__">xOpen(IntPtr, ref IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Open(SQLiteVirtualTable table, ref SQLiteVirtualTableCursor cursor)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the
+<a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance associated
+with the newly opened virtual table cursor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Release_System_Data_SQLite_SQLiteVirtualTable_System_Int32_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Release(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3220">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Release_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Release*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Release_System_Data_SQLite_SQLiteVirtualTable_System_Int32_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Release(System.Data.SQLite.SQLiteVirtualTable,System.Int32)">Release(SQLiteVirtualTable, Int32)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xRelease_System_IntPtr_System_Int32_">xRelease(IntPtr, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Release(SQLiteVirtualTable table, int savepoint)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">savepoint</span></td>
+        <td><p>This is an integer used to indicate that any saved states with an
+identifier greater than or equal to this should be deleted by the
+virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Rename_System_Data_SQLite_SQLiteVirtualTable_System_String_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Rename(System.Data.SQLite.SQLiteVirtualTable%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3175">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Rename_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Rename*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Rename_System_Data_SQLite_SQLiteVirtualTable_System_String_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Rename(System.Data.SQLite.SQLiteVirtualTable,System.String)">Rename(SQLiteVirtualTable, String)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xRename_System_IntPtr_System_IntPtr_">xRename(IntPtr, IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Rename(SQLiteVirtualTable table, string newName)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">newName</span></td>
+        <td><p>The new name for the virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Rollback_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Rollback(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3118">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Rollback_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Rollback*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Rollback_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Rollback(System.Data.SQLite.SQLiteVirtualTable)">Rollback(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xRollback_System_IntPtr_">xRollback(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Rollback(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_RollbackTo_System_Data_SQLite_SQLiteVirtualTable_System_Int32_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.RollbackTo(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3244">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_RollbackTo_" data-uid="System.Data.SQLite.ISQLiteManagedModule.RollbackTo*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_RollbackTo_System_Data_SQLite_SQLiteVirtualTable_System_Int32_" data-uid="System.Data.SQLite.ISQLiteManagedModule.RollbackTo(System.Data.SQLite.SQLiteVirtualTable,System.Int32)">RollbackTo(SQLiteVirtualTable, Int32)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xRollbackTo_System_IntPtr_System_Int32_">xRollbackTo(IntPtr, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode RollbackTo(SQLiteVirtualTable table, int savepoint)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">savepoint</span></td>
+        <td><p>This is an integer identifier used to specify a specific saved
+state for the virtual table for it to restore itself back to, which
+should also have the effect of deleting all saved states with an
+integer identifier greater than this one.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_RowId_System_Data_SQLite_SQLiteVirtualTableCursor_System_Int64__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.RowId(System.Data.SQLite.SQLiteVirtualTableCursor%2CSystem.Int64%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3022">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_RowId_" data-uid="System.Data.SQLite.ISQLiteManagedModule.RowId*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_RowId_System_Data_SQLite_SQLiteVirtualTableCursor_System_Int64__" data-uid="System.Data.SQLite.ISQLiteManagedModule.RowId(System.Data.SQLite.SQLiteVirtualTableCursor,System.Int64@)">RowId(SQLiteVirtualTableCursor, ref Int64)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xRowId_System_IntPtr_System_Int64__">xRowId(IntPtr, ref Int64)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode RowId(SQLiteVirtualTableCursor cursor, ref long rowId)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></td>
+        <td><span class="parametername">cursor</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a> object instance
+associated with the previously opened virtual table cursor to be
+used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">rowId</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the unique
+integer row identifier for the current row for the specified cursor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Savepoint_System_Data_SQLite_SQLiteVirtualTable_System_Int32_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Savepoint(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3197">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Savepoint_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Savepoint*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Savepoint_System_Data_SQLite_SQLiteVirtualTable_System_Int32_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Savepoint(System.Data.SQLite.SQLiteVirtualTable,System.Int32)">Savepoint(SQLiteVirtualTable, Int32)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xSavepoint_System_IntPtr_System_Int32_">xSavepoint(IntPtr, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Savepoint(SQLiteVirtualTable table, int savepoint)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">savepoint</span></td>
+        <td><p>This is an integer identifier under which the the current state of
+the virtual table should be saved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Sync_System_Data_SQLite_SQLiteVirtualTable_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Sync(System.Data.SQLite.SQLiteVirtualTable)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3084">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Sync_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Sync*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Sync_System_Data_SQLite_SQLiteVirtualTable_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Sync(System.Data.SQLite.SQLiteVirtualTable)">Sync(SQLiteVirtualTable)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xSync_System_IntPtr_">xSync(IntPtr)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Sync(SQLiteVirtualTable table)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule_Update_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteValue___System_Int64__.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule.Update(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Data.SQLite.SQLiteValue%5B%5D%2CSystem.Int64%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L3048">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_ISQLiteManagedModule_Update_" data-uid="System.Data.SQLite.ISQLiteManagedModule.Update*"></a>
+  <h4 id="System_Data_SQLite_ISQLiteManagedModule_Update_System_Data_SQLite_SQLiteVirtualTable_System_Data_SQLite_SQLiteValue___System_Int64__" data-uid="System.Data.SQLite.ISQLiteManagedModule.Update(System.Data.SQLite.SQLiteVirtualTable,System.Data.SQLite.SQLiteValue[],System.Int64@)">Update(SQLiteVirtualTable, SQLiteValue[], ref Int64)</h4>
+  <div class="markdown level1 summary"><p>This method is called in response to the
+<a class="xref" href="System.Data.SQLite.ISQLiteNativeModule.html#System_Data_SQLite_ISQLiteNativeModule_xUpdate_System_IntPtr_System_Int32_System_IntPtr_System_Int64__">xUpdate(IntPtr, Int32, IntPtr, ref Int64)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SQLiteErrorCode Update(SQLiteVirtualTable table, SQLiteValue[] values, ref long rowId)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this virtual table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteValue.html">SQLiteValue</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>The array of <a class="xref" href="System.Data.SQLite.SQLiteValue.html">SQLiteValue</a> object instances containing
+the new or modified column values, if any.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">rowId</span></td>
+        <td><p>Upon success, this parameter must be modified to contain the unique
+integer row identifier for the row that was inserted, if any.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteErrorCode.html">SQLiteErrorCode</a></td>
+        <td><p>A standard SQLite return code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_ISQLiteManagedModule.md&amp;value=---%0Auid%3A%20System.Data.SQLite.ISQLiteManagedModule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModule.cs/#L2719" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

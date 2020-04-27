@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteChangeSetConflictType 枚举
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteChangeSetConflictType 枚举
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteChangeSetConflictType">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteChangeSetConflictType" data-uid="System.Data.SQLite.SQLiteChangeSetConflictType" class="text-break">SQLiteChangeSetConflictType 枚举
+  </h1>
+  <div class="markdown level0 summary"><p>This enumerated type represents a type of conflict seen when apply
+changes from a change set or patch set.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteChangeSetConflictType_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum SQLiteChangeSetConflictType</code></pre>
+  </div>
+  <h3 id="fields">&#23383;&#27573;
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteChangeSetConflictType_Conflict">Conflict</td>
+        <td><p>This value is seen when processing an INSERT change if the
+operation would result in duplicate primary key values.
+The conflicting row in this case is the database row with the
+matching primary key.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteChangeSetConflictType_Constraint">Constraint</td>
+        <td><p>If a non-foreign key constraint violation occurs while applying a
+change (i.e. a UNIQUE, CHECK or NOT NULL constraint), the conflict
+callback will see this value.</p>
+<p>There is no conflicting row in this case. The results of invoking
+the <a class="xref" href="System.Data.SQLite.ISQLiteChangeSetMetadataItem.html#System_Data_SQLite_ISQLiteChangeSetMetadataItem_GetConflictValue_System_Int32_">GetConflictValue(Int32)</a>
+method are undefined.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteChangeSetConflictType_Data">Data</td>
+        <td><p>This value is seen when processing a DELETE or UPDATE change if a
+row with the required PRIMARY KEY fields is present in the
+database, but one or more other (non primary-key) fields modified
+by the update do not contain the expected &quot;before&quot; values.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteChangeSetConflictType_ForeignKey">ForeignKey</td>
+        <td><p>If foreign key handling is enabled, and applying a changes leaves
+the database in a state containing foreign key violations, this
+value will be seen exactly once before the changes are committed.
+If the conflict handler
+<a class="xref" href="System.Data.SQLite.SQLiteChangeSetConflictResult.html#System_Data_SQLite_SQLiteChangeSetConflictResult_Omit">Omit</a>, the changes,
+including those that caused the foreign key constraint violation,
+are committed. Or, if it returns
+<a class="xref" href="System.Data.SQLite.SQLiteChangeSetConflictResult.html#System_Data_SQLite_SQLiteChangeSetConflictResult_Abort">Abort</a>, the changes are
+rolled back.</p>
+<p>No current or conflicting row information is provided. The only
+method it is possible to call on the supplied
+<a class="xref" href="System.Data.SQLite.ISQLiteChangeSetMetadataItem.html">ISQLiteChangeSetMetadataItem</a> object is
+<a class="xref" href="System.Data.SQLite.ISQLiteChangeSetMetadataItem.html#System_Data_SQLite_ISQLiteChangeSetMetadataItem_NumberOfForeignKeyConflicts">NumberOfForeignKeyConflicts</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="System_Data_SQLite_SQLiteChangeSetConflictType_NotFound">NotFound</td>
+        <td><p>This value is seen when processing a DELETE or UPDATE change if a
+row with the required PRIMARY KEY fields is not present in the
+database.  There is no conflicting row in this case.</p>
+<p>The results of invoking the
+<a class="xref" href="System.Data.SQLite.ISQLiteChangeSetMetadataItem.html#System_Data_SQLite_ISQLiteChangeSetMetadataItem_GetConflictValue_System_Int32_">GetConflictValue(Int32)</a>
+method are undefined.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+  <h3 id="extensionmethods">&#25193;&#23637;&#26041;&#27861;</h3>
+  <div>
+      <a class="xref" href="Native.Sdk.Cqp.Expand.SystemExpand.html#Native_Sdk_Cqp_Expand_SystemExpand_GetDescription_System_Enum_">SystemExpand.GetDescription()</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteChangeSetConflictType.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteChangeSetConflictType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteSession.cs/#L26" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteReadValueEventArgs 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteReadValueEventArgs 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteReadValueEventArgs" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs" class="text-break">SQLiteReadValueEventArgs 类
+  </h1>
+  <div class="markdown level0 summary"><p>This class represents the parameters and return values for the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBlob_System_Int32_System_Boolean_">GetBlob(Int32, Boolean)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBoolean_System_Int32_">GetBoolean(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetByte_System_Int32_">GetByte(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBytes_System_Int32_System_Int64_System_Byte___System_Int32_System_Int32_">GetBytes(Int32, Int64, Byte[], Int32, Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChar_System_Int32_">GetChar(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChars_System_Int32_System_Int64_System_Char___System_Int32_System_Int32_">GetChars(Int32, Int64, Char[], Int32, Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDateTime_System_Int32_">GetDateTime(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDecimal_System_Int32_">GetDecimal(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDouble_System_Int32_">GetDouble(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetFloat_System_Int32_">GetFloat(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetGuid_System_Int32_">GetGuid(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt16_System_Int32_">GetInt16(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt32_System_Int32_">GetInt32(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt64_System_Int32_">GetInt64(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetString_System_Int32_">GetString(Int32)</a>, and
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetValue_System_Int32_">GetValue(Int32)</a> methods.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.EventArgs</span></div>
+    <div class="level2"><a class="xref" href="System.Data.SQLite.SQLiteReadEventArgs.html">SQLiteReadEventArgs</a></div>
+    <div class="level3"><span class="xref">SQLiteReadValueEventArgs</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.EventArgs.Empty</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteReadValueEventArgs_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SQLiteReadValueEventArgs : SQLiteReadEventArgs</code></pre>
+  </div>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteReadValueEventArgs_ExtraEventArgs.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteReadValueEventArgs.ExtraEventArgs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L517">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteReadValueEventArgs_ExtraEventArgs_" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.ExtraEventArgs*"></a>
+  <h4 id="System_Data_SQLite_SQLiteReadValueEventArgs_ExtraEventArgs" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.ExtraEventArgs">ExtraEventArgs</h4>
+  <div class="markdown level1 summary"><p>If the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBytes_System_Int32_System_Int64_System_Byte___System_Int32_System_Int32_">GetBytes(Int32, Int64, Byte[], Int32, Int32)</a> or
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChars_System_Int32_System_Int64_System_Char___System_Int32_System_Int32_">GetChars(Int32, Int64, Char[], Int32, Int32)</a> method is being called,
+this object will contain the array related parameters for that
+method.  If the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBlob_System_Int32_System_Boolean_">GetBlob(Int32, Boolean)</a> method is
+being called, this object will contain the blob related parameters
+for that method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteReadEventArgs ExtraEventArgs { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteReadEventArgs.html">SQLiteReadEventArgs</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteReadValueEventArgs_MethodName.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteReadValueEventArgs.MethodName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L502">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteReadValueEventArgs_MethodName_" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.MethodName*"></a>
+  <h4 id="System_Data_SQLite_SQLiteReadValueEventArgs_MethodName" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.MethodName">MethodName</h4>
+  <div class="markdown level1 summary"><p>The name of the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a> method that was
+responsible for invoking this callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MethodName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteReadValueEventArgs_Value.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteReadValueEventArgs.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L528">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteReadValueEventArgs_Value_" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.Value*"></a>
+  <h4 id="System_Data_SQLite_SQLiteReadValueEventArgs_Value" data-uid="System.Data.SQLite.SQLiteReadValueEventArgs.Value">Value</h4>
+  <div class="markdown level1 summary"><p>This may be used by the callback to set the return value for the
+called <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDataReaderValue Value { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteDataReaderValue.html">SQLiteDataReaderValue</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteReadValueEventArgs.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteReadValueEventArgs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L437" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

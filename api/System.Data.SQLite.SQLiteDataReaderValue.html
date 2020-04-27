@@ -1,0 +1,688 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteDataReaderValue 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteDataReaderValue 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteDataReaderValue">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteDataReaderValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue" class="text-break">SQLiteDataReaderValue 类
+  </h1>
+  <div class="markdown level0 summary"><p>This class represents a single value to be returned
+from the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a> class via
+its <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBlob_System_Int32_System_Boolean_">GetBlob(Int32, Boolean)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBoolean_System_Int32_">GetBoolean(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetByte_System_Int32_">GetByte(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBytes_System_Int32_System_Int64_System_Byte___System_Int32_System_Int32_">GetBytes(Int32, Int64, Byte[], Int32, Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChar_System_Int32_">GetChar(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChars_System_Int32_System_Int64_System_Char___System_Int32_System_Int32_">GetChars(Int32, Int64, Char[], Int32, Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDateTime_System_Int32_">GetDateTime(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDecimal_System_Int32_">GetDecimal(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDouble_System_Int32_">GetDouble(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetFloat_System_Int32_">GetFloat(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetGuid_System_Int32_">GetGuid(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt16_System_Int32_">GetInt16(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt32_System_Int32_">GetInt32(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt64_System_Int32_">GetInt64(Int32)</a>,
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetString_System_Int32_">GetString(Int32)</a>, or
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetValue_System_Int32_">GetValue(Int32)</a> method.  If the value of the
+associated public field of this class is null upon returning from the
+callback, the null value will only be used if the return type for the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a> method called is not a value type.
+If the value to be returned from the <a class="xref" href="System.Data.SQLite.SQLiteDataReader.html">SQLiteDataReader</a>
+method is unsuitable (e.g. null with a value type), an exception will
+be thrown.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">SQLiteDataReaderValue</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteDataReaderValue_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SQLiteDataReaderValue</code></pre>
+  </div>
+  <h3 id="fields">&#23383;&#27573;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_BlobValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.BlobValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L58">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_BlobValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.BlobValue">BlobValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBlob_System_Int32_System_Boolean_">GetBlob(Int32, Boolean)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteBlob BlobValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteBlob.html">SQLiteBlob</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_BooleanValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.BooleanValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L65">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_BooleanValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.BooleanValue">BooleanValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBoolean_System_Int32_">GetBoolean(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? BooleanValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_BytesValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.BytesValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L78">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_BytesValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.BytesValue">BytesValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetBytes_System_Int32_System_Int64_System_Byte___System_Int32_System_Int32_">GetBytes(Int32, Int64, Byte[], Int32, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] BytesValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_ByteValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.ByteValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L72">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_ByteValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.ByteValue">ByteValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetByte_System_Int32_">GetByte(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte? ByteValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_CharsValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.CharsValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L91">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_CharsValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.CharsValue">CharsValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChars_System_Int32_System_Int64_System_Char___System_Int32_System_Int32_">GetChars(Int32, Int64, Char[], Int32, Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public char[] CharsValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_CharValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.CharValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L85">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_CharValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.CharValue">CharValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetChar_System_Int32_">GetChar(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public char? CharValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_DateTimeValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.DateTimeValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L98">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_DateTimeValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.DateTimeValue">DateTimeValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDateTime_System_Int32_">GetDateTime(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? DateTimeValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.DateTime</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_DecimalValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.DecimalValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L105">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_DecimalValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.DecimalValue">DecimalValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDecimal_System_Int32_">GetDecimal(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public decimal? DecimalValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Decimal</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_DoubleValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.DoubleValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L112">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_DoubleValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.DoubleValue">DoubleValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetDouble_System_Int32_">GetDouble(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double? DoubleValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_FloatValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.FloatValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L119">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_FloatValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.FloatValue">FloatValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetFloat_System_Int32_">GetFloat(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? FloatValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Single</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_GuidValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.GuidValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L126">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_GuidValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.GuidValue">GuidValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetGuid_System_Int32_">GetGuid(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid? GuidValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Guid</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_Int16Value.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.Int16Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L133">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_Int16Value" data-uid="System.Data.SQLite.SQLiteDataReaderValue.Int16Value">Int16Value</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt16_System_Int32_">GetInt16(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short? Int16Value</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int16</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_Int32Value.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.Int32Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L140">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_Int32Value" data-uid="System.Data.SQLite.SQLiteDataReaderValue.Int32Value">Int32Value</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt32_System_Int32_">GetInt32(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Int32Value</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_Int64Value.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.Int64Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L147">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_Int64Value" data-uid="System.Data.SQLite.SQLiteDataReaderValue.Int64Value">Int64Value</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetInt64_System_Int32_">GetInt64(Int32)</a> method -OR- null to
+indicate an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long? Int64Value</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_StringValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.StringValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L153">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_StringValue" data-uid="System.Data.SQLite.SQLiteDataReaderValue.StringValue">StringValue</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetString_System_Int32_">GetString(Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string StringValue</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue_Value.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L159">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <h4 id="System_Data_SQLite_SQLiteDataReaderValue_Value" data-uid="System.Data.SQLite.SQLiteDataReaderValue.Value">Value</h4>
+  <div class="markdown level1 summary"><p>The value to be returned from the
+<a class="xref" href="System.Data.SQLite.SQLiteDataReader.html#System_Data_SQLite_SQLiteDataReader_GetValue_System_Int32_">GetValue(Int32)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Value</code></pre>
+  </div>
+  <h5 class="fieldValue">&#23383;&#27573;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteDataReaderValue.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteDataReaderValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteConnection.cs/#L51" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

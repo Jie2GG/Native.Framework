@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#31616;&#20171; </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#31616;&#20171; ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="简介">简介</h2>
+
+<p>通过简单的代码编写, 我们已经完成了对 <strong>复读机</strong> 应用的开发, 现在我们需要将 SDK 编译后部署到酷Q中, 使其运行起来</p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>编译前, 必须保证所有第三方动态库都有在 <strong>Native.Core</strong> 中引用</li>
+<li>编译 SDK 必须从 <strong>Native.Core</strong> 项目开始生成</li>
+<li>所有的新建项目必须配置 x86 模式</li>
+<li>在正式发布 SDK 时, 必须转换为 <strong>Release</strong> 模式, 以去除 SDK 对酷Q数据的校验产生的异常</li>
+</ul>
+<h2 id="配置管理器">配置管理器</h2>
+<ul>
+<li><p>打开菜单 &quot;生成&quot;, 选择最后一项 &quot;配置管理器&quot;</p>
+</li>
+<li><p>为所有 <strong>AnyCPU</strong> 的项目新建 x86 生成方式</p>
+</li>
+<li><p>确保所有项目的 <strong>生成</strong> 都处于勾选状态</p>
+<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_SelectConfigManager.png" alt="配置管理器">
+<img src="https://jie2gg.github.io/Image/Native.Framework/Native_CreateX86Platform.png" alt="设置x86"></p>
+</li>
+</ul>
+<h2 id="编译项目">编译项目</h2>
+<ul>
+<li><p>选择 <strong>Native.Core</strong> 项目, 右键选择 &quot;重新生成&quot;, 以如下生成结果为生成成功</p>
+<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_SelectCompile.png" alt="选择重新生成">
+<img src="https://jie2gg.github.io/Image/Native.Framework/Native_Compile.png" alt="编译成功"></p>
+</li>
+</ul>
+<h2 id="部署到酷q">部署到酷Q</h2>
+<ul>
+<li>将生成结果 com.jiegg.demo 文件夹 与 com.jiegg.demo.pdb 赋值到 <strong>酷Q</strong> 的 dev 目录下</li>
+<li>打开酷Q主程序, 登录后日志显示 com.jiegg.demo 已加载, 并且应用管理下也出现了 &quot;复读机应用 for C#&quot; 应用表示成功</li>
+</ul>
+<p>将插件启用之后就可以在日志窗口和群内观察到效果</p>
+<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_CopyToDev.png" alt="复制到dev">
+<img src="https://jie2gg.github.io/Image/Native.Framework/Native_PluginList.png" alt="加载成功"></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

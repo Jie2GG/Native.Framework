@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SQLiteVirtualTableCursorEnumerator 类
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="SQLiteVirtualTableCursorEnumerator 类
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator">
+  
+  
+  <h1 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator" class="text-break">SQLiteVirtualTableCursorEnumerator 类
+  </h1>
+  <div class="markdown level0 summary"><p>This class represents a virtual table cursor to be used with the
+<a class="xref" href="System.Data.SQLite.SQLiteModuleEnumerable.html">SQLiteModuleEnumerable</a> class.  It is not sealed and may
+be used as the base class for any user-defined virtual table cursor
+class that wraps an <span class="xref">System.Collections.IEnumerator</span> object instance.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>&#32487;&#25215;</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html">SQLiteVirtualTableCursor</a></div>
+    <div class="level2"><span class="xref">SQLiteVirtualTableCursorEnumerator</span></div>
+      <div class="level3"><a class="xref" href="System.Data.SQLite.Generic.SQLiteVirtualTableCursorEnumerator-1.html">SQLiteVirtualTableCursorEnumerator&lt;T&gt;</a></div>
+  </div>
+  <div classs="implements">
+    <h5>&#23454;&#29616;</h5>
+    <div><a class="xref" href="System.Data.SQLite.ISQLiteNativeHandle.html">ISQLiteNativeHandle</a></div>
+    <div><span class="xref">System.IDisposable</span></div>
+    <div><span class="xref">System.Collections.IEnumerator</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>&#32487;&#25215;&#25104;&#21592;</h5>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_InvalidRowIndex">SQLiteVirtualTableCursor.InvalidRowIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_Table">SQLiteVirtualTableCursor.Table</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_IndexNumber">SQLiteVirtualTableCursor.IndexNumber</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_IndexString">SQLiteVirtualTableCursor.IndexString</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_Values">SQLiteVirtualTableCursor.Values</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_TryPersistValues_System_Data_SQLite_SQLiteValue___">SQLiteVirtualTableCursor.TryPersistValues(SQLiteValue[])</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_Filter_System_Int32_System_String_System_Data_SQLite_SQLiteValue___">SQLiteVirtualTableCursor.Filter(Int32, String, SQLiteValue[])</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_GetRowIndex">SQLiteVirtualTableCursor.GetRowIndex()</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_NextRowIndex">SQLiteVirtualTableCursor.NextRowIndex()</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_NativeHandle">SQLiteVirtualTableCursor.NativeHandle</a>
+    </div>
+    <div>
+      <a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_Dispose">SQLiteVirtualTableCursor.Dispose()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>&#21629;&#21517;&#31354;&#38388;</strong>: <a class="xref" href="System.Data.SQLite.html">System.Data.SQLite</a></h6>
+  <h6><strong>&#31243;&#24207;&#38598;</strong>: Native.Tool.dll</h6>
+  <h5 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_syntax">&#35821;&#27861;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SQLiteVirtualTableCursorEnumerator : SQLiteVirtualTableCursor, ISQLiteNativeHandle, IDisposable, IEnumerator</code></pre>
+  </div>
+  <h3 id="constructors">&#26500;&#36896;&#20989;&#25968;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator__ctor_System_Data_SQLite_SQLiteVirtualTable_System_Collections_IEnumerator_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.%23ctor(System.Data.SQLite.SQLiteVirtualTable%2CSystem.Collections.IEnumerator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L55">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator__ctor_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.#ctor*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator__ctor_System_Data_SQLite_SQLiteVirtualTable_System_Collections_IEnumerator_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.#ctor(System.Data.SQLite.SQLiteVirtualTable,System.Collections.IEnumerator)">SQLiteVirtualTableCursorEnumerator(SQLiteVirtualTable, IEnumerator)</h4>
+  <div class="markdown level1 summary"><p>Constructs an instance of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteVirtualTableCursorEnumerator(SQLiteVirtualTable table, IEnumerator enumerator)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>The <a class="xref" href="System.Data.SQLite.SQLiteVirtualTable.html">SQLiteVirtualTable</a> object instance associated
+with this object instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><span class="parametername">enumerator</span></td>
+        <td><p>The <span class="xref">System.Collections.IEnumerator</span> instance to expose as a virtual
+table cursor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">&#23646;&#24615;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Current.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Current%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L101">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Current_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Current*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Current" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Current">Current</h4>
+  <div class="markdown level1 summary"><p>Returns the value for the current row of the virtual table cursor
+using the <span class="xref">System.Collections.IEnumerator.Current</span> property of the
+<span class="xref">System.Collections.IEnumerator</span> object instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual object Current { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_EndOfEnumerator.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.EndOfEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L139">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_EndOfEnumerator_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.EndOfEnumerator*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_EndOfEnumerator" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.EndOfEnumerator">EndOfEnumerator</h4>
+  <div class="markdown level1 summary"><p>Returns non-zero if the end of the virtual table cursor has been
+seen (i.e. no more rows are available, including the current one).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool EndOfEnumerator { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_IsOpen.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.IsOpen%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L149">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_IsOpen_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.IsOpen*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_IsOpen" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.IsOpen">IsOpen</h4>
+  <div class="markdown level1 summary"><p>Returns non-zero if the virtual table cursor is open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsOpen { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">&#23646;&#24615;&#20540;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">&#26041;&#27861;
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_CheckClosed.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckClosed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L175">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_CheckClosed_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckClosed*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_CheckClosed" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckClosed">CheckClosed()</h4>
+  <div class="markdown level1 summary"><p>Throws an <span class="xref">System.InvalidOperationException</span> if the virtual
+table cursor has been closed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void CheckClosed()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Close.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Close%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L160">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Close_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Close*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Close" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Close">Close()</h4>
+  <div class="markdown level1 summary"><p>Closes the virtual table cursor.  This method must not throw any
+exceptions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Close()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L216">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Dispose_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Dispose*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Dispose_System_Boolean_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Disposes of this object instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">&#21442;&#25968;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#21517;&#31216;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Non-zero if this method is being called from the
+<span class="xref">System.IDisposable.Dispose()</span> method.  Zero if this method is
+being called from the finalizer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">&#37325;&#20889;</h5>
+  <div><a class="xref" href="System.Data.SQLite.SQLiteVirtualTableCursor.html#System_Data_SQLite_SQLiteVirtualTableCursor_Dispose_System_Boolean_">SQLiteVirtualTableCursor.Dispose(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_MoveNext.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.MoveNext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L78">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_MoveNext_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.MoveNext*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_MoveNext" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.MoveNext">MoveNext()</h4>
+  <div class="markdown level1 summary"><p>Advances to the next row of the virtual table cursor using the
+<span class="xref">System.Collections.IEnumerator.MoveNext()</span> method of the
+<span class="xref">System.Collections.IEnumerator</span> object instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool MoveNext()</code></pre>
+  </div>
+  <h5 class="returns">&#36820;&#22238;</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>&#31867;&#22411;</th>
+        <th>&#25551;&#36848;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Non-zero if the current row is valid; zero otherwise.  If zero is
+returned, no further rows are available.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Reset.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Reset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L122">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+  </span>
+  <a id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Reset_" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Reset*"></a>
+  <h4 id="System_Data_SQLite_SQLiteVirtualTableCursorEnumerator_Reset" data-uid="System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Resets the virtual table cursor position, also invalidating the
+current row, using the <span class="xref">System.Collections.IEnumerator.Reset()</span> method of
+the <span class="xref">System.Collections.IEnumerator</span> object instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">&#22768;&#26126;</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Reset()</code></pre>
+  </div>
+  <h3 id="implements">&#23454;&#29616;</h3>
+  <div>
+      <a class="xref" href="System.Data.SQLite.ISQLiteNativeHandle.html">ISQLiteNativeHandle</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerator</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/new/Test/apiSpec/new?filename=System_Data_SQLite_SQLiteVirtualTableCursorEnumerator.md&amp;value=---%0Auid%3A%20System.Data.SQLite.SQLiteVirtualTableCursorEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">&#25913;&#21892;&#27492;&#25991;&#26723;</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Jie2GG/Native.Framework/blob/Test/Native.Tool/SQLite/SQLiteModuleEnumerable.cs/#L22" class="contribution-link">&#26597;&#30475;&#28304;&#20195;&#30721;</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

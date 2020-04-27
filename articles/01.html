@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#31616;&#20171; </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#31616;&#20171; ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="简介">简介</h2>
+
+<p>使用 Native.SDK 参与酷Q应用开发, 需要将 <strong>酷Q</strong> 设置到开发模式, 同时正确配置 SDK 的信息. 本章节将以 <strong>酷Q Air</strong> 和 <strong>Native.SDK (4.1版)</strong> 为例, 请按照以下步骤操作</p>
+<h2 id="环境准备">环境准备</h2>
+<blockquote>
+<p>系统环境</p>
+</blockquote>
+<ul>
+<li>Microsoft Windows 7 或更高版本</li>
+</ul>
+<blockquote>
+<p>软件环境</p>
+</blockquote>
+<ul>
+<li>Visual Studio 2012 或更高版本</li>
+<li>.Net Framework 4.5</li>
+<li>酷Q Air/Pro</li>
+</ul>
+<h2 id="获取-nativesdk">获取 <strong>Native.SDK</strong></h2>
+<p>您可以在我的 Github 主页获取 Native.SDK 的软件开发工具包</p>
+<ul>
+<li>主页地址: <a href="https://github.com/Jie2GG/Native.Framework">https://github.com/Jie2GG/Native.Framework</a></li>
+<li>克隆地址: <a href="https://github.com/Jie2GG/Native.Framework.git">https://github.com/Jie2GG/Native.Framework.git</a></li>
+</ul>
+<h2 id="注意事项">注意事项</h2>
+<p><code>在使用 &quot;Native.SDK&quot; 时, 请务必不要改动附随 Nuget 扩展库的版本, 以免带来一系列的麻烦 !!!</code><br>
+<code>在使用 &quot;Native.SDK&quot; 时, 请务必不要改动附随 Nuget 扩展库的版本, 以免带来一系列的麻烦 !!!</code><br>
+<code>在使用 &quot;Native.SDK&quot; 时, 请务必不要改动附随 Nuget 扩展库的版本, 以免带来一系列的麻烦 !!!</code><br></p>
+<h2 id="开发前准备">开发前准备</h2>
+<blockquote>
+<p>启用 <strong>酷Q开发者模式</strong></p>
+</blockquote>
+<ul>
+<li>右击 <strong>酷Q悬浮窗</strong></li>
+<li>选择 <strong>应用</strong> -&gt; <strong>应用管理</strong>, 稍后将会弹出一个新窗体</li>
+<li><strong>5</strong> 次点击窗体右下角的 &quot;版本号&quot;, 之后将会弹出高级设置</li>
+<li>勾选 <strong>开发模式</strong>、<strong>应用模块隔离</strong>, 点击 <strong>重启酷Q</strong> 按钮</li>
+</ul>
+<p>开启开发者模式后, 酷Q将新增以下功能:</p>
+<ul>
+<li>错误信息将详细显示</li>
+<li>支持载入未打包的应用 (开发中的应用)</li>
+</ul>
+<h4 id="注意-net-应用开发必须启用-应用模块隔离-以提升兼容性"><strong><code>注意: .Net 应用开发必须启用 **应用模块隔离** 以提升兼容性.</code></strong></h4>
+<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_EnableDev.png" alt="启用酷Q开发者模式"></p>
+<blockquote>
+<p>下载 <strong>Native.SDK</strong></p>
+</blockquote>
+<ul>
+<li><p><code>[推荐]</code>方法一:</p>
+<ol>
+<li>打开 <strong>Git CMD.exe</strong></li>
+<li>定位到非C盘的路径, (如 D:\CoolQProject)</li>
+<li>输入命令 &quot;git clone <a href="https://github.com/Jie2GG/Native.Framework.git%22">https://github.com/Jie2GG/Native.Framework.git&quot;</a></li>
+</ol>
+</li>
+<li><p>方法二:</p>
+<ol>
+<li>在 Github 主页点击 <strong>&quot;Clone or Download&quot;</strong> 按钮</li>
+<li>点击 <strong>&quot;Download ZIP&quot;</strong> 按钮</li>
+<li>待下载完成后, 解压到非C盘路径(如 D:\CoolQProject)</li>
+</ol>
+</li>
+</ul>
+<h2 id="设置-appid">设置 <strong>AppID</strong></h2>
+<p><strong>AppID</strong> 是应用的唯一标识符. 同一个应用的 <strong>AppID</strong> 长期不变, 不同的 <strong>AppID</strong> 不同, 具体规则参见 <strong><a href="https://docs.cqp.im/dev/v9/appid/">AppID规则</a></strong>
+<br>
+确定了该应用的 <strong>AppID</strong> 后, 请按照以下步骤设置 <strong>Native.SDK</strong></p>
+<ul>
+<li>打开 <strong>Native.sln</strong> 工程文件</li>
+<li>在 <strong>解决方案管理器</strong> 中打开 <strong>Native.Core</strong> 项目的属性</li>
+<li>修改项目的 <strong>程序集名称</strong> 为 <strong>AppID</strong>, 例如: com.jiegg.demo</li>
+<li>选择 &quot;Native.Core&quot; -&gt; &quot;Export&quot; -&gt; &quot;CQExport.tt&quot; 文件, 右键选择 <strong>运行自定义工具</strong></li>
+</ul>
+<blockquote>
+<p>若在运行过程中, 没有发生任何错误与警告. 则表示 tt 文件编译正常. 至此 <strong>AppID</strong> 设置完成</p>
+</blockquote>
+<p><img src="https://jie2gg.github.io/Image/Native.Framework/Native_SetAppID.png" alt="设置AppID">
+<img src="https://jie2gg.github.io/Image/Native.Framework/Native_RunTool.png" alt="运行自定义工具"></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
