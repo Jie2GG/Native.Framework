@@ -15,6 +15,7 @@ namespace Native.Tool.IniConfig.Linq
 	/// 用于描述 Ini 配置项节的类
 	/// </summary>
 	[Serializable]
+	[Obsolete ("请改用 ISection 类型")]
 	public class IniSection : Dictionary<string, IniValue>
 	{
 		#region --字段--

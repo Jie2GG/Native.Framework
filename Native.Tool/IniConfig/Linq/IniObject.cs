@@ -13,6 +13,7 @@ namespace Native.Tool.IniConfig.Linq
 	/// 用于描述 Ini 配置项的类
 	/// </summary>
 	[Serializable]
+	[Obsolete ("请改用 IObject 类型")]
 	public class IniObject : List<IniSection>
 	{
 		#region --字段--

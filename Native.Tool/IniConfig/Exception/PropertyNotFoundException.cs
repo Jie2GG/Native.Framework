@@ -10,6 +10,7 @@ namespace Native.Tool.IniConfig.Exception
 	/// <summary>
 	/// 表示属性找不到的异常
 	/// </summary>
+	[Obsolete ("该类型跟随 IniConfigException 类型过期")]
 	public sealed class PropertyNotFoundException : IniConfigException
 	{
 		/// <summary>
