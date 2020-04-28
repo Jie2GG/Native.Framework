@@ -12,10 +12,9 @@ Native.SDK  是为了方便 .Net 平台开发者高效开发 酷Q应用 的开�
 * 使用 UTF-8 编码，并且在托管和非托管之间启用了 GB18030 编码的转换
 * 可以在 <a href="https://cqp.cc/t/42164">酷Q on Docker</a> 中运行。(目前仅支持 .Net Framework 4.5)
 
-## 维基
+## 在线文档
 
-<a href="https://github.com/Jie2GG/Native.Framework/wiki">Native 维基百科</a><br/>
-同时包括了 Native.SDK 的安装方法、编程规范、编译部署及常见错误和解决方案
+[Native 在线文档](https://native.run/)
 
 ## 更新日志
 

@@ -11,7 +11,7 @@ namespace Native.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ 的类
 	/// </summary>
-	public class QQ : IToSendString
+	public sealed class QQ : BasisModel, IEquatable<QQ>
 	{
 		#region --常量--
 		/// <summary>
@@ -22,42 +22,34 @@ namespace Native.Sdk.Cqp.Model
 
 		#region --属性--
 		/// <summary>
-		/// 获取当前实例用于获取信息的 <see cref="Native.Sdk.Cqp.CQApi"/> 实例对象
-		/// </summary>
-		public CQApi CQApi { get; private set; }
-
-		/// <summary>
 		/// 获取当前实例的唯一ID (QQ号)
 		/// </summary>
 		public long Id { get; private set; }
-
 		/// <summary>
 		/// 判断是否是登录QQ (机器人QQ)
 		/// </summary>
-		public bool IsLoginQQ { get { return this.CQApi.GetLoginQQId () == this.Id; } }
+		public bool IsLoginQQ
+		{
+			get { return this.CQApi.GetLoginQQ () == this.Id; }
+		}
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="QQ"/> 类的新实例
 		/// </summary>
-		/// <param name="api">用于获取信息的实例</param>
-		/// <param name="qqId">用于初始化实例的QQ号</param>
+		/// <param name="api">模型使用的 <see cref="Cqp.CQApi"/></param>
+		/// <param name="qqId">模型所托管QQ号的基础值</param>
 		/// <exception cref="ArgumentNullException">参数: api 是 null</exception>
 		/// <exception cref="ArgumentOutOfRangeException">QQ号超出范围</exception>
 		public QQ (CQApi api, long qqId)
+			: base (api)
 		{
-			if (api == null)
-			{
-				throw new ArgumentNullException ("api");
-			}
-
-			if (qqId < MinValue)
+			if (qqId < QQ.MinValue)
 			{
 				throw new ArgumentOutOfRangeException ("qqId");
 			}
 
-			this.CQApi = api;
 			this.Id = qqId;
 		}
 		#endregion
@@ -72,7 +64,6 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return this.CQApi.SendPrivateMessage (this, message);
 		}
-
 		/// <summary>
 		/// 发送赞
 		/// </summary>
@@ -82,7 +73,6 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return this.CQApi.SendPraise (this, count);
 		}
-
 		/// <summary>
 		/// 获取陌生人信息
 		/// </summary>
@@ -92,330 +82,87 @@ namespace Native.Sdk.Cqp.Model
 		{
 			return this.CQApi.GetStrangerInfo (this, notCache);
 		}
-
-		/// <summary>
-		/// 获取群成员信息
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
-		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
-		public GroupMemberInfo GetGroupMemberInfo (long groupId, bool notCache = false)
-		{
-			return this.CQApi.GetGroupMemberInfo (groupId, this.Id, notCache);
-		}
-
-		/// <summary>
-		/// 获取群成员信息
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
-		/// <returns>获取成功返回 <see cref="GroupMemberInfo"/></returns>
-		public GroupMemberInfo GetGroupMemberInfo (Group group, bool notCache = false)
-		{
-			return this.CQApi.GetGroupMemberInfo (group, this, notCache);
-		}
-
-		/// <summary>
-		/// 设置群成员禁言
-		/// </summary>
-		/// <param name="groupId">目标群号</param>
-		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetGroupMemberBanSpeak (long groupId, TimeSpan time)
-		{
-			return this.CQApi.SetGroupMemberBanSpeak (groupId, this.Id, time);
-		}
-
-		/// <summary>
-		/// 设置群成员禁言
-		/// </summary>
-		/// <param name="group">目标群号</param>
-		/// <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool SetGroupMemberBanSpeak (Group group, TimeSpan time)
-		{
-			return this.CQApi.SetGroupMemberBanSpeak (group, this, time);
-		}
-
-		/// <summary>
-		/// 解除群成员禁言
-		/// </summary>
-		/// <param name="groupId">目标群号</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool RemoveGroupMemberBanSpeak (long groupId)
-		{
-			return this.CQApi.RemoveGroupMemberBanSpeak (groupId, this.Id);
-		}
-
-		/// <summary>
-		/// 解除群成员禁言
-		/// </summary>
-		/// <param name="group">目标群号</param>
-		/// <returns>禁言成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
-		public bool RemoveGroupMemberBanSpeak (Group group)
-		{
-			return this.CQApi.RemoveGroupMemberBanSpeak (group, this);
-		}
-
-		/// <summary>
-		/// 设置群成员名片
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <param name="newName">新名称</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberVisitingCard (long groupId, string newName)
-		{
-			return this.CQApi.SetGroupMemberVisitingCard (groupId, this.Id, newName);
-		}
-
-		/// <summary>
-		/// 设置群成员名片
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <param name="newName">新名称</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberVisitingCard (Group group, string newName)
-		{
-			return this.CQApi.SetGroupMemberVisitingCard (group, this, newName);
-		}
-
-		/// <summary>
-		/// 设置群成员专属头衔, 并指定其过期的时间
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <param name="newTitle">新头衔</param>
-		/// <param name="time">过期时间</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberExclusiveTitle (long groupId, string newTitle, TimeSpan time)
-		{
-			return this.SetGroupMemberExclusiveTitle (groupId, newTitle, time);
-		}
-
-		/// <summary>
-		/// 设置群成员专属头衔, 并指定其过期的时间
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <param name="newTitle">新头衔</param>
-		/// <param name="time">过期时间 (范围: 1秒 ~ 30天)</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberExclusiveTitle (Group group, string newTitle, TimeSpan time)
-		{
-			return this.CQApi.SetGroupMemberExclusiveTitle (group, this, newTitle, time);
-		}
-
-		/// <summary>
-		/// 设置群成员永久专属头衔
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <param name="newTitle">新头衔</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberForeverExclusiveTitle (long groupId, string newTitle)
-		{
-			return this.CQApi.SetGroupMemberForeverExclusiveTitle (groupId, this.Id, newTitle);
-		}
-
-		/// <summary>
-		/// 设置群成员永久专属头衔
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <param name="newTitle">新头衔</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupMemberForeverExclusiveTitle (Group group, string newTitle)
-		{
-			return this.CQApi.SetGroupMemberForeverExclusiveTitle (group, this, newTitle);
-		}
-
-		/// <summary>
-		/// 设置群管理员
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupManage (long groupId)
-		{
-			return this.CQApi.SetGroupManage (groupId, this.Id);
-		}
-
-		/// <summary>
-		/// 设置群管理员
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool SetGroupManage (Group group)
-		{
-			return this.CQApi.SetGroupManage (group, this);
-		}
-
-		/// <summary>
-		/// 解除群管理员
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool RemoveGroupManage (long groupId)
-		{
-			return this.CQApi.RemoveGroupManage (groupId, this.Id);
-		}
-
-		/// <summary>
-		/// 解除群管理员
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool RemoveGroupManage (Group group)
-		{
-			return this.CQApi.RemoveGroupManage (group, this);
-		}
-
-		/// <summary>
-		/// 移除群成员
-		/// </summary>
-		/// <param name="groupId">目标群</param>
-		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool RemoveGroupMember (long groupId, bool notRequest = false)
-		{
-			return this.CQApi.RemoveGroupMember (groupId, this.Id, notRequest);
-		}
-
-		/// <summary>
-		/// 移除群成员
-		/// </summary>
-		/// <param name="group">目标群</param>
-		/// <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
-		/// <returns>修改成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
-		public bool RemoveGroupMember (Group group, bool notRequest = false)
-		{
-			return this.CQApi.RemoveGroupMember (group, this, notRequest);
-		}
-
 		/// <summary>
 		/// 获取酷Q "At某人" 代码
 		/// </summary>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public CQCode CQCode_At ()
 		{
-			return CQApi.CQCode_At (this);
+			return CQApi.CQCode_At ((long)this);
 		}
-
 		/// <summary>
 		/// 获取酷Q "好友名片分享" 代码
 		/// </summary>
 		/// <returns>返回 <see cref="CQCode"/> 对象</returns>
 		public CQCode CQCode_ShareFriendCard ()
 		{
-			return CQApi.CQCode_ShareFriendCard (this);
+			return CQApi.CQCode_ShareFriendCard ((long)this);
 		}
-
 		/// <summary>
-		/// 确定指定的对象是否等于当前对象
+		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="obj">要与当前对象进行比较的对象</param>
-		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public bool Equals (QQ other)
+		{
+			if (other == null)
+			{
+				return false;
+			}
+
+			return this.Id == other.Id;
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{
-			if (obj is QQ)
-			{
-				return this.Id == ((QQ)obj).Id;
-			}
-			else if (obj is long)
-			{
-				return this.Id == (long)obj;
-			}
-
-			return base.Equals (obj);
+			return this.Equals (obj as QQ);
 		}
-
 		/// <summary>
 		/// 返回此实例的哈希代码
 		/// </summary>
 		/// <returns>32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return base.GetHashCode () & this.Id.GetHashCode ();
+			return this.Id.GetHashCode ();
 		}
-
 		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
 		/// <returns>表示当前对象的字符串</returns>
 		public override string ToString ()
 		{
-			return string.Format ("账号: {0}", this.Id);
+			return this.Id.ToString ();
 		}
-
 		/// <summary>
 		/// 返回用于发送的字符串
 		/// </summary>
 		/// <returns>用于发送的字符串</returns>
-		public string ToSendString ()
+		public override string ToSendString ()
 		{
-			return this.Id.ToString ();
+			return this.ToString ();
 		}
 		#endregion
 
-		#region --私有方法--
+		#region --转换方法--
 		/// <summary>
-		/// 比较 <see cref="QQMessage"/> 中的内容和 string 是否相等
+		/// 定义将 <see cref="QQ"/> 对象转换为 <see cref="long"/>
 		/// </summary>
-		/// <param name="qq">相比较的 <see cref="QQ"/> 对象</param>
-		/// <param name="qqId">相比较的QQ号</param>
-		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
-		private static bool Equals (QQ qq, long qqId)
+		/// <param name="value">转换的 <see cref="QQ"/> 对象</param>
+		public static implicit operator long (QQ value)
 		{
-			if (object.ReferenceEquals (qq, null) || qqId < 10000)
-			{
-				return false;
-			}
-			return qq.Id == qqId;
+			return value.Id;
 		}
-		#endregion
-
-		#region --运算符方法--
 		/// <summary>
-		/// 确定<see cref="QQ"/> 中是否是指定的QQ号
+		/// 定义将 <see cref="QQ"/> 对象转换为 <see cref="string"/>
 		/// </summary>
-		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <param name="qqId">要比较的QQ号</param>
-		/// <returns>如果 qq 中的值与 qqId 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator == (QQ qq, long qqId)
+		/// <param name="value">转换的 <see cref="QQ"/> 对象</param>
+		public static implicit operator string (QQ value)
 		{
-			return Equals (qq, qqId);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQ"/> 中是否是指定的QQ号
-		/// </summary>
-		/// <param name="qqId">要比较的QQ号</param>
-		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <returns>如果 qqId 与 qq 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator == (long qqId, QQ qq)
-		{
-			return Equals (qq, qqId);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQ"/> 中是否不是指定的QQ号
-		/// </summary>
-		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <param name="qqId">要比较的QQ号</param>
-		/// <returns>如果 qq 中的值与 qqId 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator != (QQ qq, long qqId)
-		{
-			return !Equals (qq, qqId);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQ"/> 中是否不是指定的QQ号
-		/// </summary>
-		/// <param name="qqId">要比较的QQ号</param>
-		/// <param name="qq">要比较的<see cref="QQ"/>对象，或 null</param>
-		/// <returns>如果 qqId 与 qq 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator != (long qqId, QQ qq)
-		{
-			return !Equals (qq, qqId);
+			return value.ToString ();
 		}
 		#endregion
 	}

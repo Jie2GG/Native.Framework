@@ -75,7 +75,7 @@ namespace Native.Sdk.Cqp.EventArgs
 			this.IsFromAnonymous = fromQQ == 80000000 && !string.IsNullOrEmpty (fromAnonymous);
 			if (this.IsFromAnonymous)
 			{
-				this.FromAnonymous = new GroupMemberAnonymousInfo (fromAnonymous);
+				this.FromAnonymous = new GroupMemberAnonymousInfo (api, fromAnonymous);
 			}
 			else
 			{

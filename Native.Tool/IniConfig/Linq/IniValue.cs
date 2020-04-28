@@ -8,6 +8,7 @@ namespace Native.Tool.IniConfig.Linq
 	/// <summary>
 	/// 描述 Ini 配置项值的类
 	/// </summary>
+	[Obsolete("请改用 IValue 类型")]
 	public class IniValue : IEquatable<IniValue>, IComparable, IComparable<IniValue>, IConvertible
 	{
 		#region --字段--

@@ -9,6 +9,7 @@ namespace Native.Tool.IniConfig.Exception
 	/// <summary>
 	/// 表示 "节" 找不到的异常
 	/// </summary>
+	[Obsolete ("该类型跟随 IniConfigException 类型过期")]
 	public class SectionNotFoundException : IniConfigException
 	{
 		/// <summary>
