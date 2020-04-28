@@ -9,7 +9,7 @@
 
 <h2 id="overview">範例說明</h2>
 
-這個<kbd>SDK 4</kbd>範例大全是由社區用戶提出的需求整合而成，當中包括許多<kbd>SDK 4</kbd>附帶的特性;比如正則事件。
+這個<kbd>SDK 4.1</kbd>範例大全是由社區用戶提出的需求整合而成，當中包括許多<kbd>SDK 4</kbd>附帶的特性;比如正則事件。
 
 從3版本至4.1(Current)版本的變化相當的大，如果你是正在使用 <kbd>SDK 3</kbd> 甚至 <kbd>SDK 2</kbd> 的用戶可能會比較迷惘和困惑，希望以下的變化概要能對你有幫助。
 
@@ -29,7 +29,13 @@
 
 - <kbd>SDK 4.0</kbd> 好友/群添加請求的識別flag再修改！ 從 ``e.ResponseFlag`` 更名至 ``e.Request`` 了:star:
 
-- <kbd>SDK 4.0</kbd> ``Native.Tool`` IniConfig 新増序列化和反序列化特性 (adv)
+- <kbd>SDK 4.0</kbd> ``Native.Tool`` IniConfig 新増序列化和反序列化特性
+
+- <kbd>SDK 4.2</kbd> ``Native.Tool`` IniConfig 更完善處理入參及內部微調
+
+- <kbd>SDK 4.2</kbd> ``CQApi`` 精簡及優化並新增多個功能,抽象結構
+
+- <kbd>SDK 4.2</kbd> 增加只讀好友/群列表信息合集
 
 - <kbd>SDK 1</kbd><kbd>SDK 2</kbd><kbd>SDK 3</kbd> 與舊版本不相容，若在酷Q下運行甚至放置(即不啟用)一些舊版本與<kbd>SDK 4</kbd>，酷Q會沒有回應並在``20``秒後跳出錯誤提示。**必須**把所有應用之SDK版本升級才可解決。(這個問題正在向酷Q爭取優化中！):neutral_face:
 
@@ -134,6 +140,9 @@
 
 - <kbd>SDK 4</kbd> GroupMemberInfo 接口群成員過期時間有誤:persevere:
 
+- <kbd>SDK 4.1</kbd> QQMessage 類判斷可能有誤
+
+- <kbd>SDK 4.1</kbd> GroupMemberInfo 類, ToString 時發生錯誤 :boom:
 
 <h2 id="structure">項目結構</h3>
 
