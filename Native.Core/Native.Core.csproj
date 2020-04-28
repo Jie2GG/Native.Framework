@@ -91,10 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\AppData.cs" />
+    <Compile Include="CQMain.cs" />
     <Compile Include="Export\CQEventExport.cs">
       <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="CQMain.cs" />
     <Compile Include="Export\CQMenuExport.cs">
       <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
@@ -105,9 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Export\CQExport.log">
-      <DependentUpon>CQExport.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CQExport.tt</DependentUpon>
     </None>
     <None Include="FodyWeavers.xml" />
     <None Include="app.json">
