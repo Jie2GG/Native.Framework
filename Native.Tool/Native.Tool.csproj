@@ -76,6 +76,7 @@
     <Compile Include="IniConfig\Utilities\ConvertUtils.cs" />
     <Compile Include="IniConfig\Utilities\MathUtils.cs" />
     <Compile Include="IniConfig\Utilities\MiscellaneousUtils.cs" />
+    <Compile Include="IniConfig\Utilities\ReflectionUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite\AssemblySourceIdAttribute.cs" />
     <Compile Include="SQLite\AssemblySourceTimeStampAttribute.cs" />
