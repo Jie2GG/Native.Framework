@@ -8,21 +8,67 @@ using System.Threading.Tasks;
 
 namespace Native.Tool.IniConfig.Utilities
 {
-	public static class ConvertUtils
+	internal static class ConvertUtils
 	{
-		/// <summary>
-		/// 将字符串转换为 <see cref="TimeSpan"/>
-		/// </summary>
-		/// <param name="input">转换的字符串</param>
-		/// <returns>转换成功返回 <see cref="TimeSpan"/></returns>
 		internal static TimeSpan StringToTimeSpan (string input)
 		{
 			return TimeSpan.Parse (input, CultureInfo.InvariantCulture);
 		}
 
-		internal static long ToBigInteger (object objB)
+		internal static BigInteger ToBigInteger (object value)
 		{
-			throw new NotImplementedException ();
+			if (value is BigInteger)
+			{
+				return (BigInteger)value;
+			}
+
+			string value2 = value as string;
+			if (value2 != null)
+			{
+				return BigInteger.Parse (value2, CultureInfo.InvariantCulture);
+			}
+			if (value is float)
+			{
+				float value3 = (float)value;
+				return new BigInteger (value3);
+			}
+			if (value is double)
+			{
+				double value4 = (double)value;
+				return new BigInteger (value4);
+			}
+			if (value is decimal)
+			{
+				decimal value5 = (decimal)value;
+				return new BigInteger (value5);
+			}
+			if (value is int)
+			{
+				int value6 = (int)value;
+				return new BigInteger (value6);
+			}
+			if (value is long)
+			{
+				long value7 = (long)value;
+				return new BigInteger (value7);
+			}
+			if (value is uint)
+			{
+				uint value8 = (uint)value;
+				return new BigInteger (value8);
+			}
+			if (value is ulong)
+			{
+				ulong value9 = (ulong)value;
+				return new BigInteger (value9);
+			}
+			byte[] value10;
+			if ((value10 = (value as byte[])) != null)
+			{
+				return new BigInteger (value10);
+			}
+
+			throw new InvalidCastException (string.Format ("无法将 {0} 转换为 BigInteger.", value.GetType ().Name));
 		}
 	}
 }
