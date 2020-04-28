@@ -40,6 +40,7 @@ namespace Native.Sdk.Cqp.Expand
 			{
 				encoding = Encoding.Default;
 			}
+			
 			byte[] buffer = encoding.GetBytes (source);
 			return GCHandle.Alloc (buffer, GCHandleType.Pinned);
 		}
@@ -80,7 +81,7 @@ namespace Native.Sdk.Cqp.Expand
 			{
 				if (objects[i] == null)
 				{
-					throw new ArgumentNullException ("objects", string.Format ("传入的参数 message 的第 {0} 个成员为 null", i));
+					throw new ArgumentNullException ("objects", string.Format ("第 {0} 个成员为 null", i));
 				}
 
 				IToSendString sendString = objects[i] as IToSendString;

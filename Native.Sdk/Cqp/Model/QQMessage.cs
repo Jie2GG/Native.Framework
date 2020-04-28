@@ -14,72 +14,35 @@ namespace Native.Sdk.Cqp.Model
 	/// <summary>
 	/// 描述 QQ消息 的类
 	/// </summary>
-	public class QQMessage : IToSendString
+	public class QQMessage : BasisStreamModel, IEquatable<QQMessage>
 	{
-		#region --字段--
-		private List<CQCode> _cqCodes = null;
-		#endregion
-
 		#region --属性--
 		/// <summary>
-		/// 获取当前实例用于获取信息的 <see cref="Native.Sdk.Cqp.CQApi"/> 实例对象
-		/// </summary>
-		public CQApi CQApi { get; private set; }
-
-		/// <summary>
-		/// 获取当前实例的消息ID
+		/// 获取当前消息的全局唯一标识
 		/// </summary>
 		public int Id { get; private set; }
-
 		/// <summary>
-		/// 获取一个值, 指示当前消息是否发送成功.
+		/// 获取一个值, 指示当前消息是否发送成功
 		/// </summary>
 		public bool IsSuccess { get { return this.Id >= 0; } }
-
 		/// <summary>
-		/// 获取当前实例的原始消息
+		/// 获取当前消息的原文
 		/// </summary>
 		public string Text { get; private set; }
-
 		/// <summary>
 		/// 获取一个值, 指示当前消息是否为正则消息
 		/// </summary>
 		public bool IsRegexMessage { get; private set; }
-
 		/// <summary>
-		/// 获取当前实例解析出的正则消息键值对
-		/// </summary>
-		[Obsolete ("该属性已过时, 请使用 RegexResult")]
-		public Dictionary<string, string> RegexKeyValuePairs { get { return this.RegexResult; } }
-
-		/// <summary>
-		/// 获取当前实例解析出的正则消息结果
+		/// 获取当前实例正则消息的解析结果
 		/// </summary>
 		public Dictionary<string, string> RegexResult { get; private set; }
-
 		/// <summary>
-		/// 获取当前消息的所有 [CQ:...] 的对象集合
+		/// 获取当前消息中所有 [CQ:...] 的对象集合
 		/// </summary>
-		public List<CQCode> CQCodes
-		{
-			get
-			{
-				if (this.IsRegexMessage)
-				{
-					return null;
-				}
-
-				if (this._cqCodes == null)
-				{
-					_cqCodes = CQCode.Parse (this.Text);
-				}
-
-				return this._cqCodes;
-			}
-		}
-
+		public List<CQCode> CQCodes { get; private set; }
 		/// <summary>
-		/// 获取一个值, 指示该实例是否属于纯图片消息
+		/// 获取一个值, 指示当前消息是否属于纯图片消息
 		/// </summary>
 		public bool IsImageMessage
 		{
@@ -92,9 +55,8 @@ namespace Native.Sdk.Cqp.Model
 				return this.CQCodes.All (CQCode.EqualIsImageCQCode);
 			}
 		}
-
 		/// <summary>
-		/// 获取一个值, 指示该实例是否属于语音消息
+		/// 获取一个值, 指示当前消息是否属于纯语音消息
 		/// </summary>
 		public bool IsRecordMessage
 		{
@@ -104,6 +66,7 @@ namespace Native.Sdk.Cqp.Model
 				{
 					return false;
 				}
+
 				return this.CQCodes.All (CQCode.EqualIsRecordCQCode);
 			}
 		}
@@ -111,49 +74,23 @@ namespace Native.Sdk.Cqp.Model
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="QQMessage"/> 类的新实例
+		/// 使用 <see cref="CQApi"/> 和相关消息来初始化 <see cref="QQMessage"/> 类的新实例
 		/// </summary>
-		/// <param name="api">用于获取信息的实例</param>
-		/// <param name="id">消息ID</param>
-		/// <param name="msg">消息内容</param>
-		public QQMessage (CQApi api, int id, string msg)
-			: this (api, id, msg, false)
+		/// <param name="api">模型使用的 <see cref="Cqp.CQApi"/></param>
+		/// <param name="msgId">模型使用的消息Id</param>
+		/// <param name="msg">模型使用的消息原文</param>
+		/// <param name="isRegexMsg">指示当前实例是否是正则消息</param>
+		public QQMessage (CQApi api, int msgId, string msg, bool isRegexMsg = false)
+			: base (api, (isRegexMsg == true) ? msg : string.Empty)
 		{
-
-		}
-
-		/// <summary>
-		/// 初始化 <see cref="QQMessage"/> 类的新实例
-		/// </summary>
-		/// <param name="api">用于获取信息的实例</param>
-		/// <param name="id">消息ID</param>
-		/// <param name="msg">消息内容</param>
-		/// <param name="isRegex">是否正则</param>
-		public QQMessage (CQApi api, int id, string msg, bool isRegex)
-		{
-			if (api == null)
-			{
-				throw new ArgumentNullException ("api");
-			}
-
 			if (msg == null)
 			{
 				throw new ArgumentNullException ("msg");
 			}
 
-			this.CQApi = api;
-			this.Id = id;
+			this.Id = msgId;
 			this.Text = msg;
-			this.IsRegexMessage = isRegex;
-			this.RegexResult = null;
-
-			#region --正则事件解析--
-			if (isRegex)
-			{
-				// 进行正则事件消息解析
-				this.RegexResult = ParseRegexMessage (msg);
-			}
-			#endregion
+			this.IsRegexMessage = isRegexMsg;
 		}
 		#endregion
 
@@ -161,123 +98,116 @@ namespace Native.Sdk.Cqp.Model
 		/// <summary>
 		/// 撤回消息
 		/// </summary>
-		/// <returns>撤回成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+		/// <returns>撤回成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
 		public bool RemoveMessage ()
 		{
 			return this.CQApi.RemoveMessage (this.Id);
 		}
-
 		/// <summary>
 		/// 接收消息中的语音 (消息含有CQ码 "record" 的消息)
 		/// </summary>
 		/// <param name="format">所需的目标语音的音频格式</param>
+		/// <exception cref="ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
 		/// <returns>返回语音文件位于本地服务器的绝对路径</returns>
 		public string ReceiveRecord (CQAudioFormat format)
 		{
-			if (!this.IsRegexMessage)
-			{
-				CQCode record = (from code in this.CQCodes where code.Function == CQFunction.Record select code).First ();
-				return this.CQApi.ReceiveRecord (record.Items["file"], format);
-			}
-			else
+			if (this.IsRegexMessage)
 			{
 #if DEBUG
-				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
-#else
-				return null;
+				throw new ArithmeticException ("无法解析原始消息. 原因: 当前消息属于正则消息");
 #endif
 			}
-		}
 
+			if (this.IsRecordMessage)
+			{
+				return this.CQApi.ReceiveRecord (this.CQCodes[0].Items["file"], format);
+			}
+
+			return null;
+		}
 		/// <summary>
 		/// 接收消息中指定的图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
 		/// <param name="index">要接收的图片索引, 该索引从 0 开始</param>
-		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="QQMessage.CQCodes.Count"/></exception>
+		/// <exception cref="ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="QQMessage.CQCodes"/> 包含 <see cref="CQFunction.Image"/> 的数量</exception>
+		/// <exception cref="ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
 		/// <returns>返回图片文件位于本地服务器的绝对路径</returns>
 		public string ReceiveImage (int index)
 		{
-			if (!this.IsRegexMessage)
-			{
-				return this.CQApi.ReceiveImage (this.CQCodes[index]);
-			}
-			else
+			if (this.IsRegexMessage)
 			{
 #if DEBUG
-				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
-#else
-				return null;
+				throw new ArithmeticException ("无法解析原始消息. 原因: 当前消息属于正则消息");
 #endif
 			}
-		}
 
+			IEnumerable<CQCode> codes = from code in this.CQCodes where code.Function == CQFunction.Image select code;
+			if (codes != null)
+			{
+				if (codes.Count () > 0)
+				{
+					return this.CQApi.ReceiveImage (codes.ElementAt (index).Items["file"]);
+				}
+			}
+			return null;
+		}
 		/// <summary>
 		/// 接收消息中的所有图片 (消息含有CQ码 "image" 的消息)
 		/// </summary>
+		/// <exception cref="ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
 		/// <returns>返回图片文件位于本地服务器的绝对路径数组</returns>
 		public string[] ReceiveAllImage ()
 		{
-			if (!this.IsRegexMessage)
+			if (this.IsRegexMessage)
 			{
-				IEnumerable<CQCode> codes = from code in this.CQCodes where code.Function == CQFunction.Image select code;
-				List<string> list = new List<string> (codes.Count ());
-				foreach (CQCode code in codes)
+#if DEBUG
+				throw new ArithmeticException ("无法解析原始消息. 原因: 当前消息属于正则消息");
+#endif
+			}
+
+			IEnumerable<CQCode> codes = from code in this.CQCodes where code.Function == CQFunction.Image select code;
+			if (codes != null)
+			{
+				string[] result = new string[codes.Count ()];
+				for (int i = 0; i < result.Length; i++)
 				{
-					list.Add (this.CQApi.ReceiveImage (code.Items["file"]));
+					result[i] = this.CQApi.ReceiveImage (codes.ElementAt (i).Items["file"]);
 				}
-				return list.ToArray ();
+				return result;
 			}
-			else
-			{
-#if DEBUG
-				throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
-#else
-				return null;
-#endif
-			}
+			return null;
 		}
-
 		/// <summary>
-		/// 返回用于发送的字符串
+		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <returns>用于发送的字符串</returns>
-		public string ToSendString ()
+		/// <param name="other">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public bool Equals (QQMessage other)
 		{
-			if (!this.IsRegexMessage)
+			if (other == null)
 			{
-				return this.Text;
+				return false;
 			}
-#if DEBUG
-			throw new MethodAccessException ("无法在正则事件中调用 ToSendString, 因为正则事件获取的消息无法用于发送");
-#else
-			return string.Empty;
-#endif
-		}
 
+			return this.Id == other.Id && this.Text.Equals (other.Text);
+		}
 		/// <summary>
-		/// 确定指定的对象是否等于当前对象
+		/// 指示当前对象是否等于同一类型的另一个对象
 		/// </summary>
-		/// <param name="obj">要与当前对象进行比较的对象</param>
-		/// <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public override bool Equals (object obj)
 		{
-			QQMessage msg = obj as QQMessage;
-			if (msg != null)
-			{
-				return string.Compare (this.Text, msg.Text) == 0;
-			}
-			return base.Equals (obj);
+			return this.Equals (obj as QQMessage);
 		}
-
 		/// <summary>
-		/// 返回该字符串的哈希代码
+		/// 返回此实例的哈希代码
 		/// </summary>
-		/// <returns> 32 位有符号整数哈希代码</returns>
+		/// <returns>32 位有符号整数哈希代码</returns>
 		public override int GetHashCode ()
 		{
-			return this.Text.GetHashCode () & base.GetHashCode ();
+			return this.Id.GetHashCode () & Text.GetHashCode ();
 		}
-
 		/// <summary>
 		/// 返回表示当前对象的字符串
 		/// </summary>
@@ -285,148 +215,86 @@ namespace Native.Sdk.Cqp.Model
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine (string.Format ("ID: {0}", this.Id));
-			builder.AppendLine (string.Format ("正则消息: {0}", this.IsRegexMessage));
-			builder.AppendLine ("消息: ");
-
-			if (this.IsRegexMessage)
+			builder.AppendFormat ("标识: {0}{1}", this.Id, Environment.NewLine);
+			builder.AppendFormat ("内容: {0}{1}", this.Text, Environment.NewLine);
+			builder.AppendFormat ("是否正则: {0}{1}", this.IsRegexMessage, Environment.NewLine);
+			builder.AppendLine ("解析结果:");
+			foreach (KeyValuePair<string, string> item in this.RegexResult)
 			{
-				foreach (KeyValuePair<string, string> keyValue in this.RegexResult)
-				{
-					builder.AppendFormat ("    {0}-{1}, ", keyValue.Key, keyValue.Value);
-				}
+				builder.Append ("\t");
+				builder.AppendFormat ("{0}: {1}", item.Key, item.Value);
+				builder.AppendLine ();
 			}
-			else
-			{
-				builder.AppendFormat ("    {0}", this.Text);
-			}
-
 			return builder.ToString ();
+		}
+		/// <summary>
+		/// 当在派生类中重写时, 处理返回用于发送的字符串
+		/// </summary>
+		/// <returns>用于发送的字符串</returns>
+		public override string ToSendString ()
+		{
+			return this;
 		}
 		#endregion
 
 		#region --私有方法--
 		/// <summary>
-		/// 比较 <see cref="QQMessage"/> 中的内容和 string 是否相等
+		/// 进行当前模型初始化
 		/// </summary>
-		/// <param name="msg">相比较的 <see cref="QQMessage"/> 对象</param>
-		/// <param name="str">相比较的字符串</param>
-		/// <returns>如果相同返回 <code>true</code>, 不同返回 <code>false</code></returns>
-		private static bool Equals (QQMessage msg, string str)
+		/// <param name="reader">解析模型的数据源</param>
+		protected override void Initialize (BinaryReader reader)
 		{
-			if (object.ReferenceEquals (msg, null) || object.ReferenceEquals (str, null))
-			{
-				return false;
-			}
-			return string.Compare (msg.Text, str) == 0;
-		}
-
-		/// <summary>
-		/// 解析正则消息
-		/// </summary>
-		/// <param name="message">需要解析的消息</param>
-		/// <returns>解析成功返回 <see cref="Dictionary{TKey, TValue}"/>, 解析失败返回 <see langword="null"/></returns>
-		private static Dictionary<string, string> ParseRegexMessage (string message)
-		{
-			byte[] data = Convert.FromBase64String (message);
-			if (data == null)
-			{
-#if DEBUG
-				throw new InvalidDataException ("获取的数据为 null");
-#else
-				return null;
-#endif
-			}
-
-			using (BinaryReader reader = new BinaryReader (new MemoryStream (data)))
+			if (this.IsRegexMessage)
 			{
 				if (reader.Length () < 4)
 				{
-#if DEBUG
-					throw new InvalidDataException ("读取失败, 原始数据格式错误");
-#else
-					return null;
-#endif
+					throw new InvalidDataException ("读取失败, 获取的原始数据长度小于 4");
 				}
 
-				int length = reader.ReadInt32_Ex ();    // 获取长度
-				if (length > 0)
+				int count = reader.ReadInt32_Ex (); // 获取解析到的正则结果个数
+				if (count > 0)
 				{
-					Dictionary<string, string> pairs = new Dictionary<string, string> (length);
-
-					for (int i = 0; i < length; i++)
+					if (this.IsRegexMessage)
 					{
-						using (BinaryReader tempReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+						this.RegexResult = new Dictionary<string, string> (count);
+					}
+
+					for (int i = 0; i < count; i++)
+					{
+						using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
 						{
-							if (tempReader.Length () < 4)
+							if (reader.Length () < 4)
 							{
-#if DEBUG
-								throw new InvalidDataException ("读取失败, 原始数据格式错误");
-#else
-								return null;
-#endif
+								throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
 							}
 
-							// 读取结果
-							string key = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
-							string content = tempReader.ReadString_Ex (CQApi.DefaultEncoding);
-
-							pairs.Add (key, content);
+							string key = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+							string value = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+							this.RegexResult.Add (key, value);
 						}
 					}
 				}
 			}
-			return null;
 		}
 		#endregion
 
-		#region --运算符方法--
+		#region --转换方法--
 		/// <summary>
-		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
+		/// 定义将 <see cref="QQ"/> 对象转换为 <see cref="string"/>
 		/// </summary>
-		/// <param name="msg">要比较的第一个<see cref="QQMessage"/>对象，或 null</param>
-		/// <param name="str">要比较的第二个字符串，或 null</param>
-		/// <returns>如果 msg 中的值与 str 相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator == (QQMessage msg, string str)
+		/// <param name="value">转换的 <see cref="QQ"/> 对象</param>
+		/// <exception cref="ArithmeticException">当 <see cref="IsRegexMessage"/> 为 <see langword="true"/> 时会发生异常 (仅 Debug 模式)</exception>
+		public static implicit operator string (QQMessage value)
 		{
-			return Equals (msg, str);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
-		/// </summary>
-		/// <param name="str">要比较的第一个字符串，或 null</param>
-		/// <param name="msg">要比较的第二个<see cref="QQMessage"/>对象，或 null</param>
-		/// <returns>如果 str与 msg 中的值相同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator == (string str, QQMessage msg)
-		{
-			return Equals (msg, str);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
-		/// </summary>
-		/// <param name="msg">要比较的第一个<see cref="QQMessage"/>对象，或 null</param>
-		/// <param name="str">要比较的第二个字符串，或 null</param>
-		/// <returns>如果 msg 中的值与 str 不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator != (QQMessage msg, string str)
-		{
-			return !Equals (msg, str);
-		}
-
-		/// <summary>
-		/// 确定<see cref="QQMessage"/> 和字符串是否具有相同的值
-		/// </summary>
-		/// <param name="str">要比较的第一个字符串，或 null</param>
-		/// <param name="msg">要比较的第二个<see cref="QQMessage"/>对象，或 null</param>
-		/// <returns>如果 str与 msg 中的值不同, 则为 <code>true</code>, 否则为 <code>false</code></returns>
-		[TargetedPatchingOptOut ("性能至关重要的内联跨NGen图像边界")]
-		public static bool operator != (string str, QQMessage msg)
-		{
-			return !Equals (msg, str);
+			if (value.IsRegexMessage)
+			{
+#if DEBUG
+				throw new ArithmeticException ("无法将 QQMessage 隐式转换为 String 类型, 因为当前实例的 IsRegexMessage 为 True");
+#else
+				return string.Empty;
+#endif
+			}
+			return value.Text;
 		}
 		#endregion
 	}

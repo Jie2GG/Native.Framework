@@ -66,7 +66,7 @@ namespace Native.Sdk.Cqp.EventArgs
 			this.SendTime = sendTime.ToDateTime ();
 			this.FromGroup = new Group (api, fromGroup);
 			this.FromQQ = new QQ (api, fromQQ);
-			this.FileInfo = new GroupFileInfo (file);
+			this.FileInfo = new GroupFileInfo (api, file);
 		}
 		#endregion
 
