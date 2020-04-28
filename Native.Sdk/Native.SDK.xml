@@ -1,0 +1,4070 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Native.Sdk</name>
+    </assembly>
+    <members>
+        <member name="T:Native.Sdk.Cqp.CQApi">
+            <summary>
+            表示 酷Q接口 的封装类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQApi.DefaultEncoding">
+            <summary>
+            获取接口默认编码
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQApi.AppDirectory">
+            <summary>
+            获取酷Q分配给本应用的数据路径 (所用应用数据应存放于此路径下)
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQApi.AppInfo">
+            <summary>
+            获取当前实例的应用信息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQApi.IsAllowSendRecord">
+            <summary>
+            获取一个值, 指示正在运行的酷Q版本是否支持发送语音
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQApi.IsAllowSendImage">
+            <summary>
+            获取一个值, 指示正在运行的酷Q版本是否支持发送图片
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.#cctor">
+            <summary>
+            静态初始化 <see cref="T:Native.Sdk.Cqp.CQApi"/> 类的静态实例, 该实例只会构造一次, 初始化一些公共资源
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.#ctor(Native.Sdk.Cqp.Model.AppInfo)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.CQApi"/> 类的新实例, 该实例由 <code>Initialize</code> 函数进行授权
+            </summary>
+            <param name="appInfo">授权码</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_At(System.Int64)">
+            <summary>
+            获取酷Q "At某人" 代码
+            </summary>
+            <param name="qqId">QQ号</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_AtAll">
+            <summary>
+            获取酷Q "At全体成员" 代码
+            </summary>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Emoji(System.Int32)">
+            <summary>
+            获取酷Q "Emoji" 代码
+            </summary>
+            <param name="id">Emoji的Id</param>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Face(Native.Sdk.Cqp.Enum.CQFace)">
+            <summary>
+            获取酷Q "表情" 代码
+            </summary>
+            <param name="face">表情枚举</param>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Shake">
+            <summary>
+            获取酷Q "戳一戳" 代码
+            </summary>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQEnCode(System.String,System.Boolean)">
+            <summary>
+            获取字符串副本的转义形式
+            </summary>
+            <param name="source">欲转义的原始字符串</param>
+            <param name="enCodeComma">是否转义逗号, 默认 <code>false</code></param>
+            <exception cref="T:System.ArgumentNullException">参数: source 为 null</exception>
+            <returns>返回转义后的字符串副本</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQDeCode(System.String)">
+            <summary>
+            获取字符串副本的非转义形式
+            </summary>
+            <param name="source">欲反转义的原始字符串</param>
+            <exception cref="T:System.ArgumentNullException">参数: source 为 null</exception>
+            <returns>返回反转义的字符串副本</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_ShareLink(System.String,System.String,System.String,System.String)">
+            <summary>
+            获取酷Q "链接分享" 代码
+            </summary>
+            <param name="url">分享的链接</param>
+            <param name="title">显示的标题, 建议12字以内</param>
+            <param name="content">简介信息, 建议30字以内</param>
+            <param name="imageUrl">分享的图片链接, 留空则为默认图片</param>
+            <exception cref="T:System.ArgumentException">参数: url 是空字符串或为 null</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_ShareFriendCard(System.Int64)">
+            <summary>
+            获取酷Q "好友名片分享" 代码
+            </summary>
+            <param name="qqId">QQ号码</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_ShareGroupCard(System.Int64)">
+            <summary>
+            获取酷Q "群名片分享" 代码
+            </summary>
+            <param name="groupId">群组</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_ShareGPS(System.String,System.String,System.Double,System.Double,System.Int32)">
+            <summary>
+            获取酷Q "位置分享" 代码
+            </summary>
+            <param name="site">地点, 建议12字以内</param>
+            <param name="detail">详细地址, 建议20字以内</param>
+            <param name="lat">维度</param>
+            <param name="lon">经度</param>
+            <param name="zoom">放大倍数, 默认: 15倍</param>
+            <exception cref="T:System.ArgumentException">参数: site 或 detail 是空字符串或为 null</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Anonymous(System.Boolean)">
+            <summary>
+            获取酷Q "匿名" 代码
+            </summary>
+            <param name="forced">强制发送, 若本参数为 <code>true</code> 发送失败时将转换为普通消息</param>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Music(System.Int64,Native.Sdk.Cqp.Enum.CQMusicType,Native.Sdk.Cqp.Enum.CQMusicStyle)">
+            <summary>
+            获取酷Q "音乐" 代码
+            </summary>
+            <param name="id"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_DIYMusic(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            获取酷Q "音乐自定义" 代码
+            </summary>
+            <param name="url">分享链接, 点击后进入的页面 (歌曲介绍)</param>
+            <param name="musicUrl">歌曲链接, 音频链接 (mp3链接)</param>
+            <param name="title">标题, 建议12字以内</param>
+            <param name="content">简介, 建议30字以内</param>
+            <param name="imageUrl">封面图片链接, 留空为默认</param>
+            <exception cref="T:System.ArgumentException">参数: url 或 musicUrl 是空字符串或为 null</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Image(System.String)">
+            <summary>
+            获取酷Q "图片" 代码
+            </summary>
+            <param name="path">图片的路径, 将图片放在 酷Q\data\image 下, 并填写相对路径. 如 酷Q\data\image\1.jpg 则填写 1.jpg</param>
+            <exception cref="T:System.ArgumentException">参数: path 是空字符串或为 null</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.CQCode_Record(System.String)">
+            <summary>
+            获取酷Q "语音" 代码
+            </summary>
+            <param name="path">语音的路径, 将音频放在 酷Q\data\record 下, 并填写相对路径. 如 酷Q\data\record\1.amr 则填写 1.amr</param>
+            <exception cref="T:System.ArgumentException">参数: path 是空字符串或为 null</exception>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SendGroupMessage(System.Int64,System.Object[])">
+            <summary>
+            发送群消息
+            </summary>
+            <param name="groupId">目标群号码</param>
+            <param name="message">用于发送消息对象数组. (获取字符串将优先调用 <see cref="M:Native.Sdk.Cqp.Interface.IToSendString.ToSendString"/> 接口, 若不存在该接口则调用 <see cref="M:System.Object.ToString"/>)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: message 中有 null 元素</exception>
+            <returns>描述已发送消息的 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SendPrivateMessage(System.Int64,System.Object[])">
+            <summary>
+            发送私聊消息
+            </summary>
+            <param name="qqId">目标QQ号码</param>
+            <param name="message">用于发送消息对象数组. (获取字符串将优先调用 <see cref="M:Native.Sdk.Cqp.Interface.IToSendString.ToSendString"/> 接口, 若不存在该接口则调用 <see cref="M:System.Object.ToString"/>)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: message 中有 null 元素</exception>
+            <returns>描述已发送消息的 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SendDiscussMessage(System.Int64,System.Object[])">
+            <summary>
+            发送讨论组消息
+            </summary>
+            <param name="discussId">目标讨论组号码</param>
+            <param name="message">用于发送消息对象数组. (获取字符串将优先调用 <see cref="M:Native.Sdk.Cqp.Interface.IToSendString.ToSendString"/> 接口, 若不存在该接口则调用 <see cref="M:System.Object.ToString"/>)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: message 中有 null 元素</exception>
+            <returns>描述已发送消息的 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SendPraise(System.Int64,System.Int32)">
+            <summary>
+            发送赞
+            </summary>
+            <param name="qqId">目标QQ号码</param>
+            <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 或 count 超出范围</exception>
+            <returns>操作成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveMessage(System.Int32)">
+            <summary>
+            撤回消息
+            </summary>
+            <param name="msgId">消息Id</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: msgId 超出范围</exception>
+            <returns>操作成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveMessage(Native.Sdk.Cqp.Model.QQMessage)">
+            <summary>
+            撤回消息
+            </summary>
+            <param name="message">消息</param>
+            <exception cref="T:System.ArgumentNullException">参数: message 为 null</exception>
+            <returns>操作成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ReceiveRecord(System.String,Native.Sdk.Cqp.Enum.CQAudioFormat)">
+            <summary>
+            接收消息中的语音 (消息含有CQ码 "record" 的消息)
+            </summary>
+            <param name="fileName">文件名, [CQ:record...] 中的文件名部分</param>
+            <param name="format">所需的目标语音的音频格式</param>
+            <exception cref="T:System.ArgumentException">参数: fileName 是空字符串或为 null</exception>
+            <returns>返回语音文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ReceiveRecord(Native.Sdk.Cqp.Model.CQCode,Native.Sdk.Cqp.Enum.CQAudioFormat)">
+            <summary>
+            接收消息中的语音 (消息含有CQ码 "record" 的消息)
+            </summary>
+            <param name="recordCode">CQ码对象 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>, 必须是 <see cref="F:Native.Sdk.Cqp.Enum.CQFunction.Record"/> 类型</param>
+            <param name="format">所需的目标语音的音频格式</param>
+            <exception cref="T:System.ArgumentNullException">参数: recordCode 是 null</exception>
+            <exception cref="T:System.ArgumentException">参数: recordCode 不是 Record 类型</exception>
+            <returns>返回语音文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ReceiveImage(System.String)">
+            <summary>
+            接收消息中的图片 (消息含有CQ码 "image" 的消息)
+            </summary>
+            <param name="fileName">文件名, [CQ:image...] 中的文件名部分</param>
+            <exception cref="T:System.ArgumentException">文件名为空时发生</exception>
+            <returns>返回图片文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ReceiveImage(Native.Sdk.Cqp.Model.CQCode)">
+            <summary>
+            接收消息中的图片 (消息含有CQ码 "image" 的消息)
+            </summary>
+            <param name="imageCode">CQ码对象 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>, 必须是 <see cref="F:Native.Sdk.Cqp.Enum.CQFunction.Image"/> 类型</param>
+            <exception cref="T:System.ArgumentNullException">参数: imageCode 是 null</exception>
+            <exception cref="T:System.ArgumentException">参数: imageCode 不是 Image 类型</exception>
+            <returns>返回图片文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetLoginQQId">
+            <summary>
+            获取登录帐号
+            </summary>
+            <returns>返回当前酷Q框架登录的帐号</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetLoginQQ">
+            <summary>
+            获取当前登录账号的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 实例
+            </summary>
+            <returns>当前登录账号的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 实例</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetLoginNick">
+            <summary>
+            获取登录帐号的昵称
+            </summary>
+            <returns>返回当前登录帐号的昵称字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetCookies(System.String)">
+            <summary>
+            获取 Cookies. 慎用, 此接口需要严格授权
+            </summary>
+            <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
+            <exception cref="T:System.ArgumentNullException">参数: domain 是 null</exception>
+            <returns>返回 Cookies 字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetCookieCollection(System.String)">
+            <summary>
+            获取 Cookies. 慎用, 此接口需要严格授权
+            </summary>
+            <param name="domain">要获取的目标域名的 Cookies, 如 api.example.com</param>
+            <exception cref="T:System.ArgumentNullException">参数: domain 是 null</exception>
+            <exception cref="T:System.ArgumentException">参数: domain 不是正确的 Uri</exception>
+            <returns>返回 Cookies 的 <see cref="T:System.Net.CookieCollection"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetCsrfToken">
+            <summary>
+            获取登录QQ网页需要用到的 bkn/g_tk 等. 慎用, 此接口需要严格收取
+            </summary>
+            <returns>返回 bkn/g_tk 值</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetStrangerInfo(System.Int64,System.Boolean)">
+            <summary>
+            获取陌生人信息
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: qqId 超出范围</exception>
+            <exception cref="T:System.IO.InvalidDataException">获取信息时得到的数据流错误</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.StrangerInfo"/>, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetFriendList">
+            <summary>
+            获取好友列表
+            </summary>
+            <exception cref="T:System.IO.InvalidDataException">数据流格式错误或为 null</exception>
+            <exception cref="T:System.IO.EndOfStreamException">无法读取数据, 因为已经读取到数据流末尾</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.FriendInfoCollection"/>, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetGroupMemberInfo(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            获取群成员信息
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标帐号</param>
+            <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <exception cref="T:System.IO.InvalidDataException">数据流格式错误 或为 null</exception>
+            <exception cref="T:System.IO.EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfo"/>, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetGroupMemberList(System.Int64)">
+            <summary>
+            获取群成员列表
+            </summary>
+            <param name="groupId">目标群号</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <exception cref="T:System.IO.InvalidDataException">数据流格式错误或为 null</exception>
+            <exception cref="T:System.IO.EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfoCollection"/>, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetGroupInfo(System.Int64,System.Boolean)">
+            <summary>
+            获取群信息
+            </summary>
+            <param name="groupId">目标群号</param>
+            <param name="notCache">不使用缓存, 通常为 <code>false</code>, 仅在必要时使用</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <exception cref="T:System.IO.InvalidDataException">数据流格式错误或为 null</exception>
+            <exception cref="T:System.IO.EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupInfo"/> 对象, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.GetGroupList">
+            <summary>
+            获取群列表
+            </summary>
+            <exception cref="T:System.IO.InvalidDataException">数据流格式错误或为 null</exception>
+            <exception cref="T:System.IO.EndOfStreamException">无法读取数据, 因为已读取到数据流末尾</exception>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupInfoCollection"/> 对象, 失败返回 <see langword="null"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupAnonymousMemberBanSpeak(System.Int64,Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo,System.TimeSpan)">
+            <summary>
+            设置群匿名成员禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="anonymous">目标群成员匿名信息</param>
+            <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 time 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: anonymous 是 null</exception>
+            <returns>操作成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupMemberBanSpeak(System.Int64,System.Int64,System.TimeSpan)">
+            <summary>
+            设置群成员禁言
+            </summary>
+            <param name="groupId">目标群号</param>
+            <param name="qqId">目标QQ</param>
+            <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 、qqId 或 time 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveGroupMemberBanSpeak(System.Int64,System.Int64)">
+            <summary>
+            解除群成员禁言
+            </summary>
+            <param name="groupId">目标群号</param>
+            <param name="qqId">目标QQ</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupBanSpeak(System.Int64)">
+            <summary>
+            设置群全体禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveGroupBanSpeak(System.Int64)">
+            <summary>
+            解除群全体禁言
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupMemberVisitingCard(System.Int64,System.Int64,System.String)">
+            <summary>
+            设置群成员名片
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="newName">新名称</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: newName 为 null</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupMemberExclusiveTitle(System.Int64,System.Int64,System.String,System.TimeSpan)">
+            <summary>
+            设置群成员专属头衔, 并指定其过期的时间
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="newTitle">新头衔</param>
+            <param name="time">过期时间</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId、qqId 或 time 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: newTtitle 是 null</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupMemberForeverExclusiveTitle(System.Int64,System.Int64,System.String)">
+            <summary>
+            设置群成员永久专属头衔
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="newTitle">新头衔</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <exception cref="T:System.ArgumentNullException">参数: newTitle 是 null</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupManage(System.Int64,System.Int64)">
+            <summary>
+            设置群管理员
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveGroupManage(System.Int64,System.Int64)">
+            <summary>
+            解除群管理员
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.OpenGroupAnonymous(System.Int64)">
+            <summary>
+            开启群匿名
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.StopGroupAnonymous(System.Int64)">
+            <summary>
+            关闭群匿名
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ExitGroup(System.Int64)">
+            <summary>
+            退出群. 慎用, 此接口需要严格授权
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.DissolutionGroup(System.Int64)">
+            <summary>
+            解散群. 慎用, 此接口需要严格授权
+            </summary>
+            <param name="groupId">目标群</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.ExitDiscuss(System.Int64)">
+            <summary>
+            退出讨论组.
+            </summary>
+            <param name="discussId">目标讨论组</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: discussId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.RemoveGroupMember(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            移除群成员
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="qqId">目标QQ</param>
+            <param name="notRequest">不再接收加群申请. 请慎用, 默认: False</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">参数: groupId 或 qqId 超出范围</exception>
+            <returns>操作成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetFriendAddRequest(System.String,Native.Sdk.Cqp.Enum.CQResponseType,System.String)">
+            <summary>
+            置好友添加请求
+            </summary>
+            <param name="responseFlag">请求反馈标识</param>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQApi.SetGroupAddRequest(System.String,Native.Sdk.Cqp.Enum.CQGroupAddRequestType,Native.Sdk.Cqp.Enum.CQResponseType,System.String)">
+            <summary>
+            置群添加请求
+            </summary>
+            <param name="responseFlag">请求反馈标识</param>
+            <param name="request">请求类型</param>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.CQLog">
+            <summary>
+            表示 酷Q日志 的封装类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.CQLog.AuthCode">
+            <summary>
+            获取当前实例的验证码
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.#ctor(System.Int32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.CQLog"/> 类的新实例, 该实例由 <code>Initialize</code> 函数进行授权
+            </summary>
+            <param name="authCode">授权码</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.WriteLine(Native.Sdk.Cqp.Enum.CQLogLevel,System.String,System.Object[])">
+            <summary>
+            向酷Q跟踪器发送一条日志, 并且拥有优先级和类型
+            </summary>
+            <param name="level">日志的优先级</param>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.Debug(System.String,System.Object[])">
+            <summary>
+            向酷Q跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Debug"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.Info(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Info"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.InfoSuccess(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoSuccess"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.InfoReceive(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoReceive"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.InfoSend(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoSend"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.Warning(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Warning"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.Error(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Error"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.Fatal(System.String,System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Fatal"/> 级别的日志, 并拥有自己的类型
+            </summary>
+            <param name="type">显示在窗体中的类型</param>
+            <param name="contents">日志详细信息</param>
+            <returns>返回当前实例 <see cref="T:Native.Sdk.Cqp.CQLog"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.CQLog.SetFatalMessage(System.Object[])">
+            <summary>
+            向酷Q日志跟踪器发送一条 <see cref="F:Native.Sdk.Cqp.Enum.CQLogLevel.Fatal"/> 级别的日志, 并弹窗提示错误
+            </summary>
+            <param name="contents">日志详细信息</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQAudioFormat">
+            <summary>
+            指示酷Q接收语音时的转换格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.MPEG_Layer3">
+            <summary>
+            mp3音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.AMR_NB">
+            <summary>
+            arm音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.Windows_Media_Audio">
+            <summary>
+            wma音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.MPEG4">
+            <summary>
+            m4a音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.Speex">
+            <summary>
+            spx音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.OggVorbis">
+            <summary>
+            ogg音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.WAVE">
+            <summary>
+            wav音频格式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQAudioFormat.FLAC">
+            <summary>
+            flac音频格式
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQDiscussMessageType">
+            <summary>
+            指示酷Q讨论组消息的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQDiscussMessageType.Discuss">
+            <summary>
+            讨论组
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQFace">
+            <summary>
+            指示酷Q表情代码
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQFloatWindowColors">
+            <summary>
+            指示 酷Q悬浮窗颜色 的枚举
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Green">
+            <summary>
+            绿色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Orange">
+            <summary>
+            橙色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Red">
+            <summary>
+            红色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Crimson">
+            <summary>
+            深红
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Black">
+            <summary>
+            黑色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFloatWindowColors.Gray">
+            <summary>
+            灰色
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQFriendAddRequestType">
+            <summary>
+            指示酷Q 好友添加请求 的事件子类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFriendAddRequestType.FriendAdd">
+            <summary>
+            好友添加请求
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQFriendAddType">
+            <summary>
+            指示酷Q 好友事件 的事件类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFriendAddType.FriendAdd">
+            <summary>
+            好友已添加
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQFunction">
+            <summary>
+            表示酷Q消息中内含 [CQ:...] 中的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Unknown">
+            <summary>
+            未知类型, 同时也是默认值
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Face">
+            <summary>
+            QQ表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Emoji">
+            <summary>
+            Emoji表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Bface">
+            <summary>
+            原创表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Sface">
+            <summary>
+            小表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Image">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Record">
+            <summary>
+            语音
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.At">
+            <summary>
+            At默认
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Rps">
+            <summary>
+            猜拳魔法表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Dice">
+            <summary>
+            掷骰子魔法表情
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Shake">
+            <summary>
+            戳一戳
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Music">
+            <summary>
+            音乐
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Share">
+            <summary>
+            链接分享
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Rich">
+            <summary>
+            卡片消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Sign">
+            <summary>
+            签到
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Hb">
+            <summary>
+            红包
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Contact">
+            <summary>
+            推荐
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Show">
+            <summary>
+            厘米秀
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Location">
+            <summary>
+            位置分享
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQFunction.Anonymous">
+            <summary>
+            匿名消息
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupAddRequestType">
+            <summary>
+            指示酷Q 群添加请求 的事件类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupAddRequestType.ApplyAddGroup">
+            <summary>
+            申请入群
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupAddRequestType.RobotBeInviteAddGroup">
+            <summary>
+            机器人被邀请
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupBanSpeakType">
+            <summary>
+            指示酷Q 群禁言 事件的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupBanSpeakType.RemoveBanSpeak">
+            <summary>
+            解除禁言
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupBanSpeakType.SetBanSpeak">
+            <summary>
+            设置禁言
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupFileUploadType">
+            <summary>
+            指示酷Q 群文件上传 的事件类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupFileUploadType.FileUpload">
+            <summary>
+            文件上传
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupManageChangeType">
+            <summary>
+            指示酷Q 群管理改变 的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupManageChangeType.RemoveManage">
+            <summary>
+            被取消管理
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupManageChangeType.SetManage">
+            <summary>
+            被设置管理
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupMemberDecreaseType">
+            <summary>
+            指示酷Q 群成员减少 的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupMemberDecreaseType.ExitGroup">
+            <summary>
+            退出群
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupMemberDecreaseType.RemoveGroup">
+            <summary>
+            移除群
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupMemberIncreaseType">
+            <summary>
+            指示酷Q 群成员增加 的类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupMemberIncreaseType.Pass">
+            <summary>
+            同意入群
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupMemberIncreaseType.Invite">
+            <summary>
+            邀请入群
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQGroupMessageType">
+            <summary>
+            指示酷Q群聊消息类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQGroupMessageType.Group">
+            <summary>
+            群聊
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQLogLevel">
+            <summary>
+            表示酷Q日志中的类型等级
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.Debug">
+            <summary>
+            调试.		颜色: 灰色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.Info">
+            <summary>
+            信息.		颜色: 黑色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoSuccess">
+            <summary>
+            信息 (成功)	颜色: 紫色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoReceive">
+            <summary>
+            信息 (接收)	颜色: 蓝色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.InfoSend">
+            <summary>
+            信息 (发送)	颜色: 绿色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.Warning">
+            <summary>
+            警告			颜色: 橙色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.Error">
+            <summary>
+            错误			颜色: 红色
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQLogLevel.Fatal">
+            <summary>
+            致命错误		颜色: 深红色
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQMessageEventType">
+            <summary>
+            指示酷Q消息类事件的事件类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.PrivateMessage">
+            <summary>
+            私聊消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupMessage">
+            <summary>
+            群消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.DiscussMessage">
+            <summary>
+            讨论组消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupFileUpload">
+            <summary>
+            群文件上传
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupManageChange">
+            <summary>
+            群管理变动
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupMemberDecrease">
+            <summary>
+            群成员减少
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupMemberIncrease">
+            <summary>
+            群成员增加
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupMemberBanSpeak">
+            <summary>
+            群成员禁言
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.FriendAdd">
+            <summary>
+            好友添加
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.FriendAddRequest">
+            <summary>
+            好友添加请求
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.GroupAddRequest">
+            <summary>
+            群添加请求
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.CQStartup">
+            <summary>
+            酷Q启动
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.CQExit">
+            <summary>
+            酷Q退出
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.CQAppEnable">
+            <summary>
+            酷Q应用被启用
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageEventType.CQAppDisable">
+            <summary>
+            酷Q应用被禁用
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQMessageHandler">
+            <summary>
+            指示酷Q处理消息的方式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageHandler.Ignore">
+            <summary>
+            忽略消息, 允许后续应用继续处理此消息
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMessageHandler.Intercept">
+            <summary>
+            拦截消息, 以阻止后续应用继续处理此消息
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQMusicStyle">
+            <summary>
+            指示分享音乐时使用的分享卡片样式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicStyle.Old">
+            <summary>
+            旧版样式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicStyle.BigCard">
+            <summary>
+            大卡片样式
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicStyle.New">
+            <summary>
+            最新样式
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQMusicType">
+            <summary>
+            指示点歌时使用的音乐来源
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicType.Tencent">
+            <summary>
+            QQ 音乐
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicType.Netease">
+            <summary>
+            网易云音乐
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQMusicType.XiaMi">
+            <summary>
+            虾米音乐
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQPrviateMessageType">
+            <summary>
+            指示酷Q私聊消息类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQPrviateMessageType.Friend">
+            <summary>
+            好友
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQPrviateMessageType.OnlineStatus">
+            <summary>
+            在线状态
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQPrviateMessageType.Group">
+            <summary>
+            群
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQPrviateMessageType.Discuss">
+            <summary>
+            讨论组
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.CQResponseType">
+            <summary>
+            指示酷Q请求响应类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQResponseType.PASS">
+            <summary>
+            通过
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.CQResponseType.FAIL">
+            <summary>
+            不通过
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.QQGroupMemberType">
+            <summary>
+            表示群成员对于所在群的群成员类型
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQGroupMemberType.Member">
+            <summary>
+            成员
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQGroupMemberType.Manage">
+            <summary>
+            管理
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQGroupMemberType.Creator">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Enum.QQSex">
+            <summary>
+            表示QQ性别的枚举
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQSex.Man">
+            <summary>
+            男性
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQSex.Woman">
+            <summary>
+            女性 
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Enum.QQSex.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQAppDisableEventArgs">
+            <summary>
+            提供用于描述应用停用事件参数的类
+            <para/>
+            Type: 1004
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQAppDisableEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQAppDisableEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件id</param>
+            <param name="type">类型</param>
+            <param name="name">名称</param>
+            <param name="function">函数名</param>
+            <param name="priority">默认优先级</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQAppDisableEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQAppEnableEventArgs">
+            <summary>
+            提供用于描述应用启用事件参数的类
+            <para/>
+            Type: 1003
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQAppEnableEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQAppEnableEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件id</param>
+            <param name="type">类型</param>
+            <param name="name">名称</param>
+            <param name="function">函数名</param>
+            <param name="priority">默认优先级</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQAppEnableEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs">
+            <summary>
+            提供用于描述酷Q讨论组事件参数的类
+            <para/>
+            Type: 4 
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.SubType">
+            <summary>
+            获取当前事件的消息子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.FromDiscuss">
+            <summary>
+            获取当前事件的来源讨论组
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.Message">
+            <summary>
+            获取当前事件的消息内容
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.String,System.Boolean)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="msgId">消息Id</param>
+            <param name="fromDiscuss">来源讨论组</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+            <param name="isRegex">是否为正则消息</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQEventArgs">
+            <summary>
+            提供用于描述酷Q事件参数的基础类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventArgs.CQApi">
+            <summary>
+            获取当前事件的 <see cref="T:Native.Sdk.Cqp.CQApi"/> 实例.
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventArgs.CQLog">
+            <summary>
+            获取当前事件的 <see cref="T:Native.Sdk.Cqp.CQLog"/> 实例.
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventArgs.Function">
+            <summary>
+            获取当前事件的回调函数名称. 是 function 字段
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="function">触发此事件的函数名称</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQEventEventArgs">
+            <summary>
+            提供用于描述酷Q事件类事件参数的基础类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.Id">
+            <summary>
+            获取来源事件的事件ID. 是 id 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.Type">
+            <summary>
+            获取来源事件的事件类型. 是 type 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.Name">
+            <summary>
+            获取来源事件的事件名称. 是 name 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.Priority">
+            <summary>
+            获取来源事件的默认优先级. 是 priority 字段, 该值不会随着酷Q的调整而变动
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.Handler">
+            <summary>
+            获取或设置一个值, 指示该事件是否已经处理
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQEventEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQEventEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件id</param>
+            <param name="type">类型</param>
+            <param name="name">名称</param>
+            <param name="function">函数名</param>
+            <param name="priority">默认优先级</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQExitEventArgs">
+            <summary>
+            提供用于描述酷Q停止事件参数的类
+            <para/>
+            Type: 1002
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQExitEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQExitEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件ID</param>
+            <param name="type">类型</param>
+            <param name="name">名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQExitEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs">
+            <summary>
+            提供用于描述酷Q好友事件参数的类
+            <para/>
+            Type: 201
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromQQ">来源QQ</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs">
+            <summary>
+            提供用于描述酷Q好友添加请求事件参数的类
+            <para/>
+            Type: 301
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.AppendMessage">
+            <summary>
+            获取当前事件的附加消息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.Request">
+            <summary>
+            获取当前事件用于处理请求所使用的响应标识
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">附言</param>
+            <param name="responseFlag">反馈标识</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs">
+            <summary>
+            提供用于描述酷Q加群申请事件参数的类
+            <para/>
+            Type: 302
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.AppendMessage">
+            <summary>
+            获取当前事件的附加消息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.Request">
+            <summary>
+            获取当前事件用于处理请求的反馈标识
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">附加消息</param>
+            <param name="responseFlag">反馈标识</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs">
+            <summary>
+            提供用于描述酷Q群禁言事件参数的类
+            <para/>
+            Type: 104
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.IsAllBanSpeak">
+            <summary>
+            获取一个值, 指示当前事件是否为全体禁言
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.BeingOperateQQ">
+            <summary>
+            获取当前事件的被操作QQ, 若 <see cref="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.IsAllBanSpeak"/> 是 <code>false</code> 则为 null
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.BanSpeakTimeSpan">
+            <summary>
+            获取当前事件的禁言时长, 此值仅在  <see cref="P:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.SubType"/> 是 <see cref="F:Native.Sdk.Cqp.Enum.CQGroupBanSpeakType.SetBanSpeak"/> 时可用
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="beingOperateQQ">被操作QQ</param>
+            <param name="duration">禁言时长, 单位: 秒</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs">
+            <summary>
+            提供用于描述酷Q群管理变化事件参数的类
+            <para/>
+            Type: 101
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.BeingOperateQQ">
+            <summary>
+            被操作的QQ
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="beingOperateQQ">被操作QQ</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs">
+            <summary>
+            提供用于描述酷Q群成员减少事件参数的类
+            <para/>
+            Type: 102
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.BeingOperateQQ">
+            <summary>
+            获取当前事件被操作的QQ
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件ID</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="beingOperateQQ">被操作QQ</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs">
+            <summary>
+            提供用于描述酷Q群成员增加事件参数的类
+            <para/>
+            Type: 103
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.SubType">
+            <summary>
+            获取当前事件的子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.BeingOperateQQ">
+            <summary>
+            获取当前事件的被操作QQ
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="beingOperateQQ">被操作QQ</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs">
+            <summary>
+            提供用于描述酷Q群聊消息事件参数的类
+            <para/>
+            Type: 2
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.SubType">
+            <summary>
+            获取当前事件的消息子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.IsFromAnonymous">
+            <summary>
+            获取当前事件是否来源于匿名群成员
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.FromAnonymous">
+            <summary>
+            获取当前事件的匿名对象
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.Message">
+            <summary>
+            获取当前事件的消息内容
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.String,System.String,System.Boolean)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="msgId">消息Id</param>
+            <param name="fromGroup">来源群号</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="fromAnonymous">来源匿名</param>
+            <param name="msg">消息内容</param>
+            <param name="isRegex">是否正则消息</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs">
+            <summary>
+            提供用于描述酷Q群文件上传事件参数的类
+            <para/>
+            Type: 11
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.SubType">
+            <summary>
+            获取当前事件的消息子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.SendTime">
+            <summary>
+            获取当前事件的发送时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.FromGroup">
+            <summary>
+            获取当前事件的来源群
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.FileInfo">
+            <summary>
+            获取当前事件的文件信息
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.Int64,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+            <param name="subType">子类型</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="file">文件信息</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQMenuCallEventArgs">
+            <summary>
+            提供用于描述酷Q菜单调用事件参数的类
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQMenuCallEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQMenuCallEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="name">菜单名称</param>
+            <param name="function">菜单函数</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQMenuCallEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQMenuEventArgs">
+            <summary>
+            提供用于描述酷Q菜单类事件参数的基础类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQMenuEventArgs.Name">
+            <summary>
+            获取来源事件的事件名称. 是 name 字段
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQMenuEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQMenuEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="name">菜单名称</param>
+            <param name="function">函数名</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs">
+            <summary>
+            提供用于描述酷Q私聊消息事件参数的类
+            <para/>
+            Type: 21
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs.SubType">
+            <summary>
+            获取当前事件的消息子类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs.FromQQ">
+            <summary>
+            获取当前事件的来源QQ
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs.Message">
+            <summary>
+            获取当前事件的消息内容
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32,System.Int32,System.Int32,System.Int64,System.String,System.Boolean)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件id</param>
+            <param name="type">事件类型</param>
+            <param name="name">事件名称</param>
+            <param name="function">事件函数名</param>
+            <param name="priority">事件优先级</param>
+            <param name="subType">消息子类型</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+            <param name="isRegex">是否为正则消息</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQStartupEventArgs">
+            <summary>
+            提供用于描述酷Q启动事件参数的类
+            <para/>
+            Type: 1001
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQStartupEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.Int32,System.String,System.String,System.UInt32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQStartupEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件ID</param>
+            <param name="type">类型</param>
+            <param name="name">名称</param>
+            <param name="function">函数名称</param>
+            <param name="priority">默认优先级</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQStartupEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs">
+            <summary>
+            提供用于描述酷Q悬浮窗状态事件参数的类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs.Id">
+            <summary>
+            获取来源事件的ID. 是 id 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs.Name">
+            <summary>
+            获取来源事件的名称. 是 name 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs.Title">
+            <summary>
+            获取来源事件的显示标题. 是 title 字段
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs.Period">
+            <summary>
+            获取来源事件的刷新间隔. 是 period 字段, 目前仅支持 1000ms (1秒)
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.String,System.String,System.String,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQStatusEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">事件Id</param>
+            <param name="name">名称</param>
+            <param name="title">标题</param>
+            <param name="function">函数名</param>
+            <param name="period">刷新间隔</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.EventArgs.CQStatusUpdateEventArgs">
+            <summary>
+            提供用于描述酷Q悬浮窗状态更新事件参数的类
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQStatusUpdateEventArgs.#ctor(Native.Sdk.Cqp.CQApi,Native.Sdk.Cqp.CQLog,System.Int32,System.String,System.String,System.String,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.EventArgs.CQStatusUpdateEventArgs"/> 类的新实例
+            </summary>
+            <param name="api">酷Q的接口实例</param>
+            <param name="log">酷Q的日志实例</param>
+            <param name="id">悬浮窗id</param>
+            <param name="name">名称</param>
+            <param name="title">英文名称</param>
+            <param name="function">函数名称</param>
+            <param name="period">更新间隔</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.EventArgs.CQStatusUpdateEventArgs.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Expand.BinaryReaderExpand">
+            <summary>
+            <see cref="T:System.IO.BinaryReader"/> 类的扩展方法集
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.Length(System.IO.BinaryReader)">
+            <summary>
+            获取基础流的剩余长度
+            </summary>
+            <param name="binary"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadAll_Ex(System.IO.BinaryReader)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取所有字节。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <returns>读入 buffer 的字节数。 如果可用的字节没有请求的那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadBin_Ex(System.IO.BinaryReader,System.Int64)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取指定字节长度。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="len">要读取的字节数。</param>
+            <returns>读入 buffer 的字节数。 如果可用的字节没有请求的那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">len 为负数。</exception>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadInt16_Ex(System.IO.BinaryReader)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取 2 字节长度并反序为 <see cref="T:System.Int32"/> 值。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <returns>读入 2 字节的结果值，如果可用的字节没有那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadInt32_Ex(System.IO.BinaryReader)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取 4 字节长度并反序为 <see cref="T:System.Int32"/> 值。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <returns>读入 4 字节的结果值，如果可用的字节没有那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadInt64_Ex(System.IO.BinaryReader)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取 8 字节长度并反序为 <see cref="T:System.Int64"/> 值。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <returns>读入 8 字节的结果值，如果可用的字节没有那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadToken_Ex(System.IO.BinaryReader)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取指定字节长度。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <returns>读入 buffer 的字节数。 如果可用的字节没有请求的那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">len 为负数。</exception>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryReaderExpand.ReadString_Ex(System.IO.BinaryReader,System.Text.Encoding)">
+            <summary>
+            从字节数组中的指定点开始，从流中读取指定编码的字符串。
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="encoding"></param>
+            <returns>读入 buffer 的字节数。 如果可用的字节没有请求的那么多，此数可能小于所请求的字节数；如果到达了流的末尾，此数可能为零。</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">len 为负数。</exception>
+            <exception cref="T:System.ArgumentException">已解码要读取的字符数超过了边界。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Expand.BinaryWriterExpand">
+            <summary>
+            <see cref="T:System.IO.BinaryReader"/> 类的扩展方法集
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryWriterExpand.Write_Ex(System.IO.BinaryWriter,System.Int16)">
+            <summary>
+            将写入基础流的 <see cref="T:System.Int16"/> 数值
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="value">要写入的值</param>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.ArgumentNullException">buffer 为 null。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryWriterExpand.Write_Ex(System.IO.BinaryWriter,System.Int32)">
+            <summary>
+            将写入基础流的 <see cref="T:System.Int32"/> 数值
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="value">要写入的值</param>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.ArgumentNullException">buffer 为 null。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryWriterExpand.Write_Ex(System.IO.BinaryWriter,System.Int64)">
+            <summary>
+            将写入基础流的 <see cref="T:System.Int64"/> 数值
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="value">要写入的值</param>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.ArgumentNullException">buffer 为 null。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryWriterExpand.Write_Ex(System.IO.BinaryWriter,System.String)">
+            <summary>
+            将写入基础流的 <see cref="T:System.String"/> 数值
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+            <param name="value">要写入的值</param>
+            <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+            <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+            <exception cref="T:System.ArgumentNullException">buffer 为 null。</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.BinaryWriterExpand.ToArray(System.IO.BinaryWriter)">
+            <summary>
+            将基础流转换为相同的字节数组
+            </summary>
+            <param name="binary">基础 <see cref="T:System.IO.BinaryWriter"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Expand.SystemExpand">
+            <summary>
+            其它类扩展方法集
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.SystemExpand.ToDateTime(System.Int32)">
+            <summary>
+            获取 Unix 时间戳的 <see cref="T:System.DateTime"/> 表示形式
+            </summary>
+            <param name="unixTime">unix 时间戳</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.SystemExpand.GetStringGCHandle(System.String,System.Text.Encoding)">
+            <summary>
+            获取当前对象的 <see cref="T:System.Runtime.InteropServices.GCHandle"/> 实例, 该实例为 <see cref="F:System.Runtime.InteropServices.GCHandleType.Pinned"/> 类型
+            </summary>
+            <param name="source">将转换的对象</param>
+            <param name="encoding">转换的编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.SystemExpand.ToString(System.IntPtr,System.Text.Encoding)">
+            <summary>
+            读取指针内所有的字节数组并编码为指定字符串
+            </summary>
+            <param name="strPtr">字符串的 <see cref="T:System.IntPtr"/> 对象</param>
+            <param name="encoding">目标编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.SystemExpand.ToSendString(System.Object[])">
+            <summary>
+            将对象转换为可发送的字符串, 如果待转换的对象继承自 <see cref="T:Native.Sdk.Cqp.Interface.IToSendString"/> 将使用该接口的方法获取字符串
+            </summary>
+            <param name="objects">消息参数</param>
+            <exception cref="T:System.ArgumentNullException">发现有 null 参数</exception>
+            <returns>可发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Expand.SystemExpand.GetDescription(System.Enum)">
+            <summary>
+            读取 <see cref="T:System.Enum"/> 标记 <see cref="T:System.ComponentModel.DescriptionAttribute"/> 的值
+            </summary>
+            <param name="value">原始 <see cref="T:System.Enum"/> 值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IAppDisable">
+            <summary>
+            酷Q应用禁用接口
+            <para/>
+            Type: 1004
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IAppDisable.AppDisable(System.Object,Native.Sdk.Cqp.EventArgs.CQAppDisableEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q应用禁用 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IAppEnable">
+            <summary>
+            酷Q应用启用接口
+            <para/>
+            Type: 1003
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IAppEnable.AppEnable(System.Object,Native.Sdk.Cqp.EventArgs.CQAppEnableEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q应用启用 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.ICQExit">
+            <summary>
+            酷Q退出事件接口
+            <para/>
+            Type: 1002
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.ICQExit.CQExit(System.Object,Native.Sdk.Cqp.EventArgs.CQExitEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q退出事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.ICQStartup">
+            <summary>
+            酷Q启动事件接口
+            <para/>
+            Type: 1001
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.ICQStartup.CQStartup(System.Object,Native.Sdk.Cqp.EventArgs.CQStartupEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q启动事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IDiscussMessage">
+            <summary>
+            酷Q讨论组消息接口
+            <para/>
+            Type: 4
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IDiscussMessage.DiscussMessage(System.Object,Native.Sdk.Cqp.EventArgs.CQDiscussMessageEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q讨论组消息 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IFriendAdd">
+            <summary>
+            酷Q好友添加事件接口
+            <para/>
+            Type: 201
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IFriendAdd.FriendAdd(System.Object,Native.Sdk.Cqp.EventArgs.CQFriendAddEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q好友添加事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IFriendAddRequest">
+            <summary>
+            酷Q好友添加请求事件接口
+            <para/>
+            Type: 301
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IFriendAddRequest.FriendAddRequest(System.Object,Native.Sdk.Cqp.EventArgs.CQFriendAddRequestEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q好友添加请求事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupAddRequest">
+            <summary>
+            酷Q群添加请求事件接口
+            <para/>
+            Type: 302
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupAddRequest.GroupAddRequest(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupAddRequestEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群添加请求事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupBanSpeak">
+            <summary>
+            酷Q群禁言事件接口
+            <para/>
+            Type: 104
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupBanSpeak.GroupBanSpeak(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupBanSpeakEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群禁言事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupManageChange">
+            <summary>
+            酷Q群管理变动事件接口
+            <para/>
+            Type: 101
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupManageChange.GroupManageChange(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupManageChangeEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群管理变动事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupMemberDecrease">
+            <summary>
+            酷Q群成员减少事件接口
+            <para/>
+            Type: 102
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupMemberDecrease.GroupMemberDecrease(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupMemberDecreaseEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群成员减少事件接口 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupMemberIncrease">
+            <summary>
+            酷Q群成员增加事件接口
+            <para/>
+            Type: 103
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupMemberIncrease.GroupMemberIncrease(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupMemberIncreaseEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群成员增加事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupMessage">
+            <summary>
+            酷Q群聊消息接口
+            <para/>
+            Type: 2
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupMessage.GroupMessage(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupMessageEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群聊消息 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IGroupUpload">
+            <summary>
+            酷Q群上传事件接口
+            <para/>
+            Type: 11
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IGroupUpload.GroupUpload(System.Object,Native.Sdk.Cqp.EventArgs.CQGroupUploadEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q群上传事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IMenuCall">
+            <summary>
+            酷Q调用菜单事件接口
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IMenuCall.MenuCall(System.Object,Native.Sdk.Cqp.EventArgs.CQMenuCallEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q调用菜单事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IPrivateMessage">
+            <summary>
+            酷Q私聊消息事件接口
+            <para/>
+            Type: 21
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IPrivateMessage.PrivateMessage(System.Object,Native.Sdk.Cqp.EventArgs.CQPrivateMessageEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q私聊消息事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IStatusUpdate">
+            <summary>
+            酷Q更新状态事件接口
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IStatusUpdate.StatusUpdate(System.Object,Native.Sdk.Cqp.EventArgs.CQStatusUpdateEventArgs)">
+            <summary>
+            当在派生类中重写时, 处理 酷Q更新状态事件 回调
+            </summary>
+            <param name="sender">事件来源对象</param>
+            <param name="e">附加的事件参数</param>
+            <returns>返回用于展示的 <see cref="T:Native.Sdk.Cqp.Model.CQFloatWindow"/> 对象</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Interface.IToSendString">
+            <summary>
+            转换发送字符串的接口
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Interface.IToSendString.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.AppInfo">
+            <summary>
+            表示当前插件的一些基本信息的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.Id">
+            <summary>
+            获取当前应用的 AppID
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.ResultCode">
+            <summary>
+            获取当前应用的返回码
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.ApiVersion">
+            <summary>
+            获取当前应用的 Api 版本
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.Name">
+            <summary>
+            获取当前应用的名称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.Version">
+            <summary>
+            获取当前应用的版本号
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.VersionId">
+            <summary>
+            获取当前应用的顺序版本
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.Author">
+            <summary>
+            获取当前应用的作者名
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.Description">
+            <summary>
+            获取当前应用的说明文本
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.AppInfo.AuthCode">
+            <summary>
+            获取当前应用的验证码
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.AppInfo.#ctor(System.String,System.Int32,System.Int32,System.String,System.String,System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.AppInfo"/> 类的新实例
+            </summary>
+            <param name="id">当前应用appid</param>
+            <param name="resCode">返回码</param>
+            <param name="apiVer">api版本</param>
+            <param name="name">应用名称</param>
+            <param name="version">版本号</param>
+            <param name="versionId">版本id</param>
+            <param name="author">应用作者</param>
+            <param name="description">应用说明</param>
+            <param name="authCode">应用授权码</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.BasisModel">
+            <summary>
+            描述酷Q数据模型的基础类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.BasisModel.CQApi">
+            <summary>
+            获取当前模型持有用于扩展自身的 <see cref="T:Native.Sdk.Cqp.CQApi"/> 对象
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.BasisModel.#ctor(Native.Sdk.Cqp.CQApi)">
+            <summary>
+            使用指定的 <see cref="T:Native.Sdk.Cqp.CQApi"/> 初始化当前类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <exception cref="T:System.ArgumentNullException">参数: api 为 null</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.BasisModel.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.BasisStreamModel">
+            <summary>
+            描述酷Q需要解析数据流模型的基础类, 该类是抽象的
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.BasisStreamModel.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.BasisStreamModel"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 或 cipherText 为 null</exception>
+            <exception cref="T:System.FormatException">cipherText 的长度（忽略空格）不是 0 或 4 的倍数。 或 cipherText 的格式无效。 cipherText 包含非 base 64 字符、两个以上的填充字符或者在填充字符中包含非空格字符</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.BasisStreamModel.#ctor(Native.Sdk.Cqp.CQApi,System.Byte[])">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.BasisStreamModel"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherBytes">模型使用的解密密文字节数组</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 或 cipherBytes 为 null</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.BasisStreamModel.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.CQCode">
+            <summary>
+            表示 CQ码 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQCode.Function">
+            <summary>
+            获取一个值, 指示当前实例的功能
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQCode.Items">
+            <summary>
+            获取当前实例所包含的所有项目
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQCode.IsImageCQCode">
+            <summary>
+            获取一个值, 指示当前实例是否属于图片 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQCode.IsRecordCQCode">
+            <summary>
+            获取一个值, 指示当前实例是否属于语音 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.#ctor(System.String)">
+            <summary>
+            使用 CQ码 字符串初始化 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 类的新实例
+            </summary>
+            <param name="str">CQ码字符串 或 包含CQ码的字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.#ctor(Native.Sdk.Cqp.Enum.CQFunction,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 类的新实例
+            </summary>
+            <param name="type">CQ码类型</param>
+            <param name="keyValues">包含的键值对</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.Parse(System.String)">
+            <summary>
+            从字符串中解析出所有的 CQ码, 转换为 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 集合
+            </summary>
+            <param name="source">原始字符串</param>
+            <returns>返回等效的 <see cref="T:System.Collections.Generic.List`1"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.EqualIsImageCQCode(Native.Sdk.Cqp.Model.CQCode)">
+            <summary>
+            判断是否是图片 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>
+            </summary>
+            <param name="code">要判断的 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 实例</param>
+            <returns>如果是图片 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.EqualIsRecordCQCode(Native.Sdk.Cqp.Model.CQCode)">
+            <summary>
+            判断是否是语音 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/>
+            </summary>
+            <param name="code">要判断的 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 实例</param>
+            <returns>如果是语音 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.Equals(System.Object)">
+            <summary>
+            确定指定的对象是否等于当前对象
+            </summary>
+            <param name="obj">要与当前对象进行比较的对象</param>
+            <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.GetHashCode">
+            <summary>
+            返回该字符串的哈希代码
+            </summary>
+            <returns> 32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.ToString">
+            <summary>
+            返回此实例等效的CQ码形式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.ToSendString">
+            <summary>
+            处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQCode.InitializeRegex">
+            <summary>
+            延时初始化正则表达式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.CQFloatWindow">
+            <summary>
+            表示 酷Q悬浮窗 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQFloatWindow.Value">
+            <summary>
+            获取或设置当前悬浮窗的值
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQFloatWindow.Unit">
+            <summary>
+            获取或设置当前悬浮窗使用的单位
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.CQFloatWindow.TextColor">
+            <summary>
+            获取或设置当前悬浮窗的文本颜色
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.#ctor">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.CQFloatWindow"/> 类的新实例
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.#ctor(System.Object)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.CQFloatWindow"/> 类的新实例
+            </summary>
+            <param name="value">用于展示的数据值</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.#ctor(System.Object,System.String)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.CQFloatWindow"/> 类的新实例
+            </summary>
+            <param name="value">用于展示的数据值</param>
+            <param name="unit">数据值的单位</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.#ctor(System.Object,System.String,Native.Sdk.Cqp.Enum.CQFloatWindowColors)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.CQFloatWindow"/> 类的新实例
+            </summary>
+            <param name="value">用于展示的数据值</param>
+            <param name="unit">数据值的单位</param>
+            <param name="textColor">文本颜色</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.Equals(Native.Sdk.Cqp.Model.CQFloatWindow)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.CQFloatWindow.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.Discuss">
+            <summary>
+            描述 讨论组 的类
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Model.Discuss.MinValue">
+            <summary>
+            表示 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 的最小值, 此字段为常数.
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.Discuss.Id">
+            <summary>
+            获取当前实例的唯一ID (讨论组号)
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.#ctor(Native.Sdk.Cqp.CQApi,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="discussId">模型所托管讨论组号的基础值</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 是 null</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">讨论组号超出范围</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.SendDiscussMessage(System.Object[])">
+            <summary>
+            发送讨论组消息
+            </summary>
+            <param name="message">消息内容, 获取内容时将调用<see cref="M:System.Object.ToString"/>进行消息转换</param>
+            <returns>发送成功将返回消息 Id, 发送失败将返回负值</returns>
+            <returns>发送成功将返回 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.ExitDiscuss">
+            <summary>
+            退出讨论组.
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.Equals(Native.Sdk.Cqp.Model.Discuss)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.op_Implicit(Native.Sdk.Cqp.Model.Discuss)~System.Int64">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 对象转换为 <see cref="T:System.Int64"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 对象</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Discuss.op_Implicit(Native.Sdk.Cqp.Model.Discuss)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.Discuss"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.FriendInfo">
+            <summary>
+            描述 QQ好友信息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FriendInfo.QQ">
+            <summary>
+            获取一个值, 指示当前账号的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 实例
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FriendInfo.Nick">
+            <summary>
+            获取一个值, 指示当前的QQ昵称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FriendInfo.Postscript">
+            <summary>
+            获取一个值, 指示当前的备注信息
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.FriendInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.#ctor(Native.Sdk.Cqp.CQApi,System.Byte[])">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.FriendInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherBytes">模型使用的解密密文字节数组</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.Equals(Native.Sdk.Cqp.Model.FriendInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.FriendInfoCollection">
+            <summary>
+            描述 QQ好友信息列表 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.FriendInfoCollection.Count">
+            <summary>
+            获取 <see cref="T:Native.Sdk.Cqp.Model.FriendInfoCollection"/> 中包含的元素数
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.FriendInfoCollection"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.Equals(Native.Sdk.Cqp.Model.FriendInfoCollection)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.FriendInfoCollection.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.Group">
+            <summary>
+            描述 QQ群 的类
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Model.Group.MinValue">
+            <summary>
+            表示 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 的最小值, 此字段为常数.
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.Group.Id">
+            <summary>
+            获取当前实例的唯一ID (QQ群号)
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.#ctor(Native.Sdk.Cqp.CQApi,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="groupId">模型所托管QQ群号的基础值</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 是 null</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">QQ群号超出范围</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SendGroupMessage(System.Object[])">
+            <summary>
+            发送群消息
+            </summary>
+            <param name="message">消息内容, 获取内容时将调用<see cref="M:System.Object.ToString"/>进行消息转换</param>
+            <returns>发送成功将返回 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.GetGroupInfo(System.Boolean)">
+            <summary>
+            获取群信息
+            </summary>
+            <param name="notCache">不使用缓存, 通常为 <code>false</code>, 仅在必要时使用</param>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupInfo"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.GetGroupMemberList">
+            <summary>
+            获取群成员列表
+            </summary>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfo"/> 数组</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.GetGroupMemberInfo(System.Int64,System.Boolean)">
+            <summary>
+            获取群成员信息
+            </summary>
+            <param name="qqId">目标帐号</param>
+            <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfo"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupAnonymousMemberBanSpeak(Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo,System.TimeSpan)">
+            <summary>
+            设置群匿名成员禁言
+            </summary>
+            <param name="anonymous">目标群成员匿名信息</param>
+            <param name="time">禁言的时长 (范围: 1秒 ~ 30天)</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupMemberBanSpeak(System.Int64,System.TimeSpan)">
+            <summary>
+            设置群成员禁言
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="time">禁言时长 (范围: 1秒 ~ 30天)</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.RemoveGroupMemberBanSpeak(System.Int64)">
+            <summary>
+            解除群成员禁言
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupBanSpeak">
+            <summary>
+            设置群全体禁言
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.RemoveGroupBanSpeak">
+            <summary>
+            解除群全体禁言
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupMemberVisitingCard(System.Int64,System.String)">
+            <summary>
+            设置群成员名片
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="newName">新名称</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupMemberExclusiveTitle(System.Int64,System.String,System.TimeSpan)">
+            <summary>
+            设置群成员专属头衔, 并指定其过期的时间
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="newTitle">新头衔</param>
+            <param name="time">过期时间</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupMemberForeverExclusiveTitle(System.Int64,System.String)">
+            <summary>
+            设置群成员永久专属头衔
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="newTitle">新头衔</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.SetGroupManage(System.Int64)">
+            <summary>
+            设置群管理员
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.RemoveGroupManage(System.Int64)">
+            <summary>
+            解除群管理员
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.OpenGroupAnonymous">
+            <summary>
+            开启群匿名
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.StopGroupAnonymous">
+            <summary>
+            关闭群匿名
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.ExitGroup">
+            <summary>
+            退出群. 慎用, 此接口需要严格授权
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.DissolutionGroup">
+            <summary>
+            解散群. 慎用, 此接口需要严格授权
+            </summary>
+            <returns>操作成功返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.Equals(Native.Sdk.Cqp.Model.Group)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.op_Implicit(Native.Sdk.Cqp.Model.Group)~System.Int64">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 对象转换为 <see cref="T:System.Int64"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 对象</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.Group.op_Implicit(Native.Sdk.Cqp.Model.Group)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupFileInfo">
+            <summary>
+            表示描述 群文件信息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFileInfo.Id">
+            <summary>
+            获取一个值, 指示当前文件的 Busid (唯一标识符)
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFileInfo.FileName">
+            <summary>
+            获取一个值, 指示当前文件的名称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFileInfo.FileId">
+            <summary>
+            获取一个值, 指示当前文件的Id
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupFileInfo.FileSize">
+            <summary>
+            获取一个值, 指示当前文件的大小
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.BasisStreamModel"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.Equals(Native.Sdk.Cqp.Model.GroupFileInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupFileInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupInfo">
+            <summary>
+            表示描述 QQ群信息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupInfo.Group">
+            <summary>
+            获取一个值, 指示当前QQ群 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 对象
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupInfo.Name">
+            <summary>
+            获取当前QQ群的名称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupInfo.CurrentMemberCount">
+            <summary>
+            获取一个值, 指示QQ群的当前人数; 当前属性仅在 <see cref="M:Native.Sdk.Cqp.CQApi.GetGroupInfo(System.Int64,System.Boolean)"/> 中可用
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupInfo.MaxMemberCount">
+            <summary>
+            获取一个值, 指示当前QQ群最大可容纳的人数; 当前属性仅在 <see cref="M:Native.Sdk.Cqp.CQApi.GetGroupInfo(System.Int64,System.Boolean)"/> 中可用
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String,System.Boolean)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.BasisStreamModel"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+            <param name="isGroup">是否解析群列表</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.#ctor(Native.Sdk.Cqp.CQApi,System.Byte[],System.Boolean)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherBytes">模型使用的解密密文字符串</param>
+            <param name="isGroup">是否解析群列表</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.Equals(Native.Sdk.Cqp.Model.GroupInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupInfoCollection">
+            <summary>
+            描述 QQ群信息集合 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupInfoCollection.Count">
+            <summary>
+            获取 <see cref="T:Native.Sdk.Cqp.Model.GroupInfoCollection"/> 中包含的元素数
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupInfoCollection"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.Equals(Native.Sdk.Cqp.Model.GroupInfoCollection)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupInfoCollection.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo">
+            <summary>
+            表示描述 QQ群成员匿名信息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Id">
+            <summary>
+            获取一个值, 指示该成员的群匿名标识
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Name">
+            <summary>
+            获取一个值, 作为该成员在群中的匿名称号
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Token">
+            <summary>
+            获取当前匿名成员的执行令牌, 用于对该成员做出一些操作. 如: 禁言
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.OriginalString">
+            <summary>
+            获取当前匿名成员的原始字符串, 这个字符串是构造函数中传入的
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Equals(Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo.op_Implicit(Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberAnonymousInfo"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupMemberInfo">
+            <summary>
+            表示描述 QQ群成员 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Group">
+            <summary>
+            获取一个值, 指示成员所在群的 <see cref="T:Native.Sdk.Cqp.Model.Group"/> 实例
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.QQ">
+            <summary>
+            获取一个值, 指示当前成员的QQ号的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 实例
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Nick">
+            <summary>
+            获取一个值, 指示当前成员的QQ昵称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Card">
+            <summary>
+            获取一个值, 指示当前成员在此群的群名片
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Sex">
+            <summary>
+            获取一个值, 指示当前群成员的性别
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Age">
+            <summary>
+            获取一个值, 指示当前群成员年龄
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Area">
+            <summary>
+            获取一个值, 指示当前成员所在地区
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.JoinGroupDateTime">
+            <summary>
+            获取一个值, 指示当前成员加入群的日期和时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.LastSpeakDateTime">
+            <summary>
+            获取一个值, 指示当前群成员最后一次发言的日期和时间
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.Level">
+            <summary>
+            获取一个值, 指示当前群成员的等级
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.MemberType">
+            <summary>
+            获取一个值, 指示当前的群成员类型
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.ExclusiveTitle">
+            <summary>
+            获取一个值, 指示当前群成员在此群获得的专属头衔
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.ExclusiveTitleExpirationTime">
+            <summary>
+            获取一个值, 指示当前群成员在此群的专属头衔过期时间, 若本属性为 null 则表示无期限
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.IsBadRecord">
+            <summary>
+            获取一个值, 指示当前群成员是否为不良记录群成员
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfo.IsAllowEditorCard">
+            <summary>
+            获取一个值, 指示当前群成员是否允许修改群名片
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.#ctor(Native.Sdk.Cqp.CQApi,System.Byte[])">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherBytes">模型使用的解密密文字节数组</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.Equals(Native.Sdk.Cqp.Model.GroupMemberInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.GroupMemberInfoCollection">
+            <summary>
+            描述 群成员信息列表 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.Count">
+            <summary>
+            获取 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfoCollection"/> 中包含的元素数
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.GroupMemberInfoCollection"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            返回一个循环访问集合的枚举器
+            </summary>
+            <returns>用于循环访问集合的枚举数</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.Equals(Native.Sdk.Cqp.Model.GroupMemberInfoCollection)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.GroupMemberInfoCollection.Initialize(System.IO.BinaryReader)">
+            <summary>
+            当在派生类中重写时, 进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.QQ">
+            <summary>
+            描述 QQ 的类
+            </summary>
+        </member>
+        <member name="F:Native.Sdk.Cqp.Model.QQ.MinValue">
+            <summary>
+            表示 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 的最小值, 此字段为常数
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.Id">
+            <summary>
+            获取当前实例的唯一ID (QQ号)
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQ.IsLoginQQ">
+            <summary>
+            判断是否是登录QQ (机器人QQ)
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.#ctor(Native.Sdk.Cqp.CQApi,System.Int64)">
+            <summary>
+            初始化 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="qqId">模型所托管QQ号的基础值</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 是 null</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">QQ号超出范围</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.SendPrivateMessage(System.Object[])">
+            <summary>
+            发送私聊消息
+            </summary>
+            <param name="message">消息内容, 获取内容时将调用<see cref="M:System.Object.ToString"/>进行消息转换</param>
+            <returns>发送成功将返回 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.SendPraise(System.Int32)">
+            <summary>
+            发送赞
+            </summary>
+            <param name="count">发送赞的次数, 范围: 1~10 (留空为1次)</param>
+            <returns>执行成功返回 <code>true</code>, 失败返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.GetStrangerInfo(System.Boolean)">
+            <summary>
+            获取陌生人信息
+            </summary>
+            <param name="notCache">不使用缓存, 默认为 <code>false</code>, 通常忽略本参数, 仅在必要时使用</param>
+            <returns>获取成功返回 <see cref="T:Native.Sdk.Cqp.Model.StrangerInfo"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.CQCode_At">
+            <summary>
+            获取酷Q "At某人" 代码
+            </summary>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.CQCode_ShareFriendCard">
+            <summary>
+            获取酷Q "好友名片分享" 代码
+            </summary>
+            <returns>返回 <see cref="T:Native.Sdk.Cqp.Model.CQCode"/> 对象</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.Equals(Native.Sdk.Cqp.Model.QQ)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.ToSendString">
+            <summary>
+            返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.op_Implicit(Native.Sdk.Cqp.Model.QQ)~System.Int64">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象转换为 <see cref="T:System.Int64"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQ.op_Implicit(Native.Sdk.Cqp.Model.QQ)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.QQMessage">
+            <summary>
+            描述 QQ消息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.Id">
+            <summary>
+            获取当前消息的全局唯一标识
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.IsSuccess">
+            <summary>
+            获取一个值, 指示当前消息是否发送成功
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.Text">
+            <summary>
+            获取当前消息的原文
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.IsRegexMessage">
+            <summary>
+            获取一个值, 指示当前消息是否为正则消息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.RegexResult">
+            <summary>
+            获取当前实例正则消息的解析结果
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.CQCodes">
+            <summary>
+            获取当前消息中所有 [CQ:...] 的对象集合
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.IsImageMessage">
+            <summary>
+            获取一个值, 指示当前消息是否属于纯图片消息
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQMessage.IsRecordMessage">
+            <summary>
+            获取一个值, 指示当前消息是否属于纯语音消息
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.#ctor(Native.Sdk.Cqp.CQApi,System.Int32,System.String,System.Boolean)">
+            <summary>
+            使用 <see cref="T:Native.Sdk.Cqp.CQApi"/> 和相关消息来初始化 <see cref="T:Native.Sdk.Cqp.Model.QQMessage"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="msgId">模型使用的消息Id</param>
+            <param name="msg">模型使用的消息原文</param>
+            <param name="isRegexMsg">指示当前实例是否是正则消息</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.RemoveMessage">
+            <summary>
+            撤回消息
+            </summary>
+            <returns>撤回成功返回 <see langword="true"/>, 失败返回 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.ReceiveRecord(Native.Sdk.Cqp.Enum.CQAudioFormat)">
+            <summary>
+            接收消息中的语音 (消息含有CQ码 "record" 的消息)
+            </summary>
+            <param name="format">所需的目标语音的音频格式</param>
+            <exception cref="T:System.ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
+            <returns>返回语音文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.ReceiveImage(System.Int32)">
+            <summary>
+            接收消息中指定的图片 (消息含有CQ码 "image" 的消息)
+            </summary>
+            <param name="index">要接收的图片索引, 该索引从 0 开始</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">index 小于 0。 - 或 - index 等于或大于 <see cref="P:Native.Sdk.Cqp.Model.QQMessage.CQCodes"/> 包含 <see cref="F:Native.Sdk.Cqp.Enum.CQFunction.Image"/> 的数量</exception>
+            <exception cref="T:System.ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
+            <returns>返回图片文件位于本地服务器的绝对路径</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.ReceiveAllImage">
+            <summary>
+            接收消息中的所有图片 (消息含有CQ码 "image" 的消息)
+            </summary>
+            <exception cref="T:System.ArithmeticException">当前实例属于正则消息时 (仅 Debug 生效)</exception>
+            <returns>返回图片文件位于本地服务器的绝对路径数组</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.Equals(Native.Sdk.Cqp.Model.QQMessage)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.Initialize(System.IO.BinaryReader)">
+            <summary>
+            进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQMessage.op_Implicit(Native.Sdk.Cqp.Model.QQMessage)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 对象</param>
+            <exception cref="T:System.ArithmeticException">当 <see cref="P:Native.Sdk.Cqp.Model.QQMessage.IsRegexMessage"/> 为 <see langword="true"/> 时会发生异常 (仅 Debug 模式)</exception>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.QQRequest">
+            <summary>
+            描述 QQ请求 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.QQRequest.ResponseFlag">
+            <summary>
+            获取当前实例的请求反馈标识
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的 <see cref="T:Native.Sdk.Cqp.CQApi"/> 和响应标识初始化 <see cref="T:Native.Sdk.Cqp.Model.QQRequest"/> 类的新实例
+            </summary>
+            <param name="api">用于获取信息的实例</param>
+            <param name="responseFlag">请求反馈标识</param>
+            <exception cref="T:System.ArgumentNullException">参数: api 为 null</exception>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.SetFriendAddRequest(Native.Sdk.Cqp.Enum.CQResponseType,System.String)">
+            <summary>
+            置好友添加请求
+            </summary>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.SetGroupAddRequest(Native.Sdk.Cqp.Enum.CQGroupAddRequestType,Native.Sdk.Cqp.Enum.CQResponseType,System.String)">
+            <summary>
+            置群添加请求
+            </summary>
+            <param name="request">请求类型</param>
+            <param name="response">反馈类型</param>
+            <param name="appendMsg">备注</param>
+            <returns>操作成功返回 <code>true</code>, 否则返回 <code>false</code></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.Equals(Native.Sdk.Cqp.Model.QQRequest)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.QQRequest.op_Implicit(Native.Sdk.Cqp.Model.QQRequest)~System.String">
+            <summary>
+            定义将 <see cref="T:Native.Sdk.Cqp.Model.QQRequest"/> 对象转换为 <see cref="T:System.String"/>
+            </summary>
+            <param name="value">转换的 <see cref="T:Native.Sdk.Cqp.Model.QQRequest"/> 对象</param>
+        </member>
+        <member name="T:Native.Sdk.Cqp.Model.StrangerInfo">
+            <summary>
+            描述 QQ陌生人信息 的类
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.StrangerInfo.QQ">
+            <summary>
+            获取一个值, 指示当前的账号的 <see cref="T:Native.Sdk.Cqp.Model.QQ"/> 实例
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.StrangerInfo.Nick">
+            <summary>
+            获取一个值, 指示当前的QQ昵称
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.StrangerInfo.Sex">
+            <summary>
+            获取一个值, 指示当前QQ的性别
+            </summary>
+        </member>
+        <member name="P:Native.Sdk.Cqp.Model.StrangerInfo.Age">
+            <summary>
+            获取一个值, 指示当前的年龄
+            </summary>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.#ctor(Native.Sdk.Cqp.CQApi,System.String)">
+            <summary>
+            使用指定的密文初始化 <see cref="T:Native.Sdk.Cqp.Model.StrangerInfo"/> 类的新实例
+            </summary>
+            <param name="api">模型使用的 <see cref="T:Native.Sdk.Cqp.CQApi"/></param>
+            <param name="cipherText">模型使用的解密密文字符串</param>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.Equals(Native.Sdk.Cqp.Model.StrangerInfo)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="other">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.Equals(System.Object)">
+            <summary>
+            指示当前对象是否等于同一类型的另一个对象
+            </summary>
+            <param name="obj">一个与此对象进行比较的对象</param>
+            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.GetHashCode">
+            <summary>
+            返回此实例的哈希代码
+            </summary>
+            <returns>32 位有符号整数哈希代码</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.ToString">
+            <summary>
+            返回表示当前对象的字符串
+            </summary>
+            <returns>表示当前对象的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.ToSendString">
+            <summary>
+            当在派生类中重写时, 处理返回用于发送的字符串
+            </summary>
+            <returns>用于发送的字符串</returns>
+        </member>
+        <member name="M:Native.Sdk.Cqp.Model.StrangerInfo.Initialize(System.IO.BinaryReader)">
+            <summary>
+            进行当前模型初始化
+            </summary>
+            <param name="reader">解析模型的数据源</param>
+        </member>
+    </members>
+</doc>
