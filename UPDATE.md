@@ -1,6 +1,11 @@
 ## Native.SDK 更新日志
 
-#### 2020年04月20日 版本: V4.2.0.0424
+#### 2020年04月29日 版本: V4.2.1.0429
+
+	1. 修复 QQMessage 类 CQCode 解析问题
+	2. 新增 IValue 类 GetValueOrDefault<T>()、GetValue<T>() 方法
+
+#### 2020年04月24日 版本: V4.2.0.0424
 
 	1. 优化 Native.Sdk.Cqp.Model 下原有类的构造方式, 为所有类增加了抽象
 	2. 优化 QQ、Group、Discuss、QQMessage 和 QQRequest 类的转换方式 (现在支持转换为对应的封装数据类型, 例如: QQMessage 能直接赋值给 string 类型)
