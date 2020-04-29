@@ -154,9 +154,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// <param name="value">一个 <see cref="ushort"/> 值</param>
 		public IValue (ushort value)
 			: this (value, IValueType.Integer)
-		{
-
-		}
+		{ }
 		/// <summary>
 		/// 使用 <see cref="int"/> 值来初始化 <see cref="IValue"/> 类的新实例
 		/// </summary>
