@@ -266,7 +266,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// 使用指定的值和类型来初始化 <see cref="IValue"/> 类的新实例
 		/// </summary>
 		/// <param name="value">初始化的值</param>
-		/// <param name="type">值的Ini类型</param>
+		/// <param name="valueType">值的Ini类型</param>
 		internal IValue (object value, IValueType valueType)
 		{
 			this._value = value;
@@ -278,9 +278,9 @@ namespace Native.Tool.IniConfig.Linq
 		/// <summary>
 		/// 确定两个指定的 <see cref="IValue"/> 对象是否具有相同的值
 		/// </summary>
-		/// <param name="objA">要比较的第一个 <see cref="IValue"/>，或 <see langword="null"/></param>
-		/// <param name="objB">要比较的第二个 <see cref="IValue"/>，或 <see langword="null"/></param>
-		/// <returns>如果 <see langword="true"/> 的值与 <see cref="objA"/> 的值相同，则为 <see cref="objB"/>；否则为 <see langword="false"/>。 如果 <see cref="objA"/> 和 <see cref="objB"/> 均为 <see langword="null"/>，此方法将返回 <see langword="true"/></returns>
+		/// <param name="v1">要比较的第一个 <see cref="IValue"/>，或 <see langword="null"/></param>
+		/// <param name="v2">要比较的第二个 <see cref="IValue"/>，或 <see langword="null"/></param>
+		/// <returns>如果 <see langword="true"/> 的值与 v1 的值相同，则为 v2；否则为 <see langword="false"/>。 如果 v1 和 v2 均为 <see langword="null"/>，此方法将返回 <see langword="true"/></returns>
 		public static bool Equals (IValue v1, IValue v2)
 		{
 			if (v1 == v2)
@@ -289,6 +289,55 @@ namespace Native.Tool.IniConfig.Linq
 			}
 
 			return v1 != null && v2 != null && v1._valueType == v2._valueType && IValue.Compare (v1, v2) == 0;
+		}
+		/// <summary>
+		/// 获取当前实例的值, 转换为指定的类型. 若键不存在将返回 T 的默认值
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValue<T> ()
+		{
+			return GetValueOrDefault<T> (default (T));
+		}
+		/// <summary>
+		/// 获取当前实例的值, 转换为指定的类型. 若键不存在将返回 defaultValue
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <param name="defaultValue">当键不存在时返回的默认值</param>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValueOrDefault<T> (T defaultValue)
+		{
+			if (this.Value == null)
+			{
+				return defaultValue;
+			}
+
+			object objValue = this.Value;
+			if (objValue is T)
+			{
+				return (T)objValue;
+			}
+
+			Type type = typeof (T);
+			if (ReflectionUtils.IsNullableType (type))
+			{
+				if (objValue == null)
+				{
+					return defaultValue;
+				}
+				type = Nullable.GetUnderlyingType (type);
+			}
+			return (T)Convert.ChangeType (objValue, type, CultureInfo.InvariantCulture);
 		}
 		/// <summary>
 		/// 创建作为当前实例副本的新对象
@@ -642,7 +691,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// 将此实例与的值转换 <see cref="object"/> 指定 <see cref="System.Type"/>，具有等效值，使用指定的区域性特定格式设置信息
 		/// </summary>
 		/// <param name="conversionType"><see cref="System.Type"/> 此实例的值转换为</param>
-		/// <returns><see cref="object"/> 类型的实例 <see cref="conversionType"/> 其值等效于此实例的值</returns>
+		/// <returns><see cref="object"/> 类型的实例 conversionType 其值等效于此实例的值</returns>
 		public object ToType (Type conversionType)
 		{
 			return Convert.ChangeType (this._value, conversionType, CultureInfo.InvariantCulture);
@@ -652,7 +701,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// </summary>
 		/// <param name="conversionType"><see cref="System.Type"/> 此实例的值转换为</param>
 		/// <param name="provider"><see cref="IFormatProvider"/> 接口实现，提供区域性特定格式设置信息</param>
-		/// <returns><see cref="object"/> 类型的实例 <see cref="conversionType"/> 其值等效于此实例的值</returns>
+		/// <returns><see cref="object"/> 类型的实例 conversionType 其值等效于此实例的值</returns>
 		public object ToType (Type conversionType, IFormatProvider provider)
 		{
 			return Convert.ChangeType (this._value, conversionType, provider);
@@ -734,9 +783,8 @@ namespace Native.Tool.IniConfig.Linq
 		/// <summary>
 		/// 比较两个指定的 <see cref="IValue"/> 对象，并返回一个指示二者在排序顺序中的相对位置的整数
 		/// </summary>
-		/// <param name="valueType"><see cref="objA"/> 对象指定类型的 <see cref="IValueType"/></param>
-		/// <param name="objA">要比较的第一个对象</param>
-		/// <param name="objB">要比较的第二个对象</param>
+		/// <param name="valueA">要比较的第一个对象</param>
+		/// <param name="valueB">要比较的第二个对象</param>
 		/// <returns>一个 32 位带符号整数，指示两个比较数之间的关系。</returns>
 		private static int Compare (IValue valueA, IValue valueB)
 		{
@@ -892,7 +940,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// <summary>
 		/// 比较 <see cref="BigInteger"/> 和 <see cref="object"/>, 并返回一个指示二者在排序顺序中的相对位置的整数
 		/// </summary>
-		/// <param name="objA">要比较的 <see cref="BigInteger"/></param>
+		/// <param name="intA">要比较的 <see cref="BigInteger"/></param>
 		/// <param name="objB">要比较的 <see cref="object"/></param>
 		/// <returns>一个 32 位带符号整数，指示两个比较数之间的关系。</returns>
 		private static int CompareBigInteger (BigInteger intA, object objB)
@@ -917,8 +965,8 @@ namespace Native.Tool.IniConfig.Linq
 		/// <summary>
 		/// 比较两个指定的 Float, 并返回一个指示二者在排序顺序中的相对位置的整数
 		/// </summary>
-		/// <param name="objA">要比较的第一个浮点数</param>
-		/// <param name="objB">要比较的第二个浮点数</param>
+		/// <param name="v1">要比较的第一个浮点数</param>
+		/// <param name="v2">要比较的第二个浮点数</param>
 		/// <returns>一个 32 位带符号整数，指示两个比较数之间的关系。</returns>
 		private static int CompareFloat (object v1, object v2)
 		{

@@ -129,7 +129,6 @@
     <Compile Include="SQLite\UnsafeNativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IniConfig\README.md" />
     <None Include="SQLite\Configurations\System.Data.SQLite.dll.config" />
     <None Include="SQLite\obj\Debug\netstandard2.0\System.Data.SQLite.NetStandard20.assets.cache" />
     <None Include="SQLite\obj\Debug\netstandard2.0\System.Data.SQLite.NetStandard20.csproj.CoreCompileInputs.cache" />
