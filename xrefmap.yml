@@ -10648,6 +10648,38 @@ references:
   isSpec: "True"
   fullName: Native.Tool.IniConfig.Linq.IValue.GetTypeCode
   nameWithType: IValue.GetTypeCode
+- uid: Native.Tool.IniConfig.Linq.IValue.GetValue*
+  name: GetValue
+  href: api/Native.Tool.IniConfig.Linq.IValue.html#Native_Tool_IniConfig_Linq_IValue_GetValue_
+  commentId: Overload:Native.Tool.IniConfig.Linq.IValue.GetValue
+  isSpec: "True"
+  fullName: Native.Tool.IniConfig.Linq.IValue.GetValue
+  nameWithType: IValue.GetValue
+- uid: Native.Tool.IniConfig.Linq.IValue.GetValue``1
+  name: GetValue<T>()
+  href: api/Native.Tool.IniConfig.Linq.IValue.html#Native_Tool_IniConfig_Linq_IValue_GetValue__1
+  commentId: M:Native.Tool.IniConfig.Linq.IValue.GetValue``1
+  name.vb: GetValue(Of T)()
+  fullName: Native.Tool.IniConfig.Linq.IValue.GetValue<T>()
+  fullName.vb: Native.Tool.IniConfig.Linq.IValue.GetValue(Of T)()
+  nameWithType: IValue.GetValue<T>()
+  nameWithType.vb: IValue.GetValue(Of T)()
+- uid: Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault*
+  name: GetValueOrDefault
+  href: api/Native.Tool.IniConfig.Linq.IValue.html#Native_Tool_IniConfig_Linq_IValue_GetValueOrDefault_
+  commentId: Overload:Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault
+  isSpec: "True"
+  fullName: Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault
+  nameWithType: IValue.GetValueOrDefault
+- uid: Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault``1(``0)
+  name: GetValueOrDefault<T>(T)
+  href: api/Native.Tool.IniConfig.Linq.IValue.html#Native_Tool_IniConfig_Linq_IValue_GetValueOrDefault__1___0_
+  commentId: M:Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault``1(``0)
+  name.vb: GetValueOrDefault(Of T)(T)
+  fullName: Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault<T>(T)
+  fullName.vb: Native.Tool.IniConfig.Linq.IValue.GetValueOrDefault(Of T)(T)
+  nameWithType: IValue.GetValueOrDefault<T>(T)
+  nameWithType.vb: IValue.GetValueOrDefault(Of T)(T)
 - uid: Native.Tool.IniConfig.Linq.IValue.op_Implicit(Native.Tool.IniConfig.Linq.IValue)~System.Boolean
   name: Implicit(IValue to Boolean)
   href: api/Native.Tool.IniConfig.Linq.IValue.html#Native_Tool_IniConfig_Linq_IValue_op_Implicit_Native_Tool_IniConfig_Linq_IValue__System_Boolean
@@ -11720,18 +11752,6 @@ references:
   commentId: F:Native.Tool.IniConfig.Linq.IValueType.Uri
   fullName: Native.Tool.IniConfig.Linq.IValueType.Uri
   nameWithType: IValueType.Uri
-- uid: Native.Tool.IniConfig.Utilities
-  name: Native.Tool.IniConfig.Utilities
-  href: api/Native.Tool.IniConfig.Utilities.html
-  commentId: N:Native.Tool.IniConfig.Utilities
-  fullName: Native.Tool.IniConfig.Utilities
-  nameWithType: Native.Tool.IniConfig.Utilities
-- uid: Native.Tool.IniConfig.Utilities.ConvertUtils
-  name: ConvertUtils
-  href: api/Native.Tool.IniConfig.Utilities.ConvertUtils.html
-  commentId: T:Native.Tool.IniConfig.Utilities.ConvertUtils
-  fullName: Native.Tool.IniConfig.Utilities.ConvertUtils
-  nameWithType: ConvertUtils
 - uid: System.Data.SQLite
   name: System.Data.SQLite
   href: api/System.Data.SQLite.html
