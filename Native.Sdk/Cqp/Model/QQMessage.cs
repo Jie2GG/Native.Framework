@@ -91,6 +91,10 @@ namespace Native.Sdk.Cqp.Model
 			this.Id = msgId;
 			this.Text = msg;
 			this.IsRegexMessage = isRegexMsg;
+			if (!this.IsRegexMessage)
+			{
+				this.CQCodes = CQCode.Parse (this.Text);
+			}
 		}
 		#endregion
 
