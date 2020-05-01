@@ -357,12 +357,8 @@ namespace Native.Tool.IniConfig
 					IniKeyAttribute keyAttribute = properties[i].GetCustomAttribute<IniKeyAttribute> ();
 					if ((keyAttribute != null && keyAttribute.KeyName.Equals (item.Key)) || properties[i].Name.Equals (item.Key))
 					{
-						MethodInfo method = properties[i].GetSetMethod (true);
-						if (method.GetParameters ().Count () == 0)
-						{
-							method.Invoke (instance, new object[] { item.Value });
-						}
-
+						object value = Convert.ChangeType (item.Value, properties[i].PropertyType);
+						properties[i].GetSetMethod (true).Invoke (instance, new object[] { value });
 						properties.RemoveAt (i);
 						break;
 					}

@@ -702,6 +702,31 @@ namespace Native.Tool.IniConfig.Linq
 		/// <returns><see cref="object"/> 类型的实例 conversionType 其值等效于此实例的值</returns>
 		public object ToType (Type conversionType, IFormatProvider provider)
 		{
+			if (conversionType.Equals (typeof (byte[])))
+			{
+				return (byte[])this;
+			}
+
+			if (conversionType.Equals (typeof (DateTimeOffset)))
+			{
+				return (DateTimeOffset)this;
+			}
+
+			if (conversionType.Equals (typeof (Guid)))
+			{
+				return (Guid)this;
+			}
+
+			if (conversionType.Equals (typeof (Uri)))
+			{
+				return (Uri)this;
+			}
+
+			if (conversionType.Equals (typeof (TimeSpan)))
+			{
+				return (TimeSpan)this;
+			}
+
 			return Convert.ChangeType (this._value, conversionType, provider);
 		}
 		#endregion
@@ -1342,7 +1367,7 @@ namespace Native.Tool.IniConfig.Linq
 		public static implicit operator char (IValue value)
 		{
 			object ivalue = value._value;
-			if (ivalue != null || !IValue.IsConvert (value._valueType, IValue.ConvertCharTypes, false))
+			if (ivalue == null || !IValue.IsConvert (value._valueType, IValue.ConvertCharTypes, false))
 			{
 				throw new ArgumentException (string.Format ("无法将 {0} 转换为 Char", value._value.GetType ().Name));
 			}
@@ -1718,7 +1743,7 @@ namespace Native.Tool.IniConfig.Linq
 			Uri result = ivalue as Uri;
 			if (result == null)
 			{
-				return new Uri (Convert.ToString (ivalue, CultureInfo.InvariantCulture));
+				return new Uri (Convert.ToString (ivalue, CultureInfo.InvariantCulture), UriKind.RelativeOrAbsolute);
 			}
 			return result;
 		}
