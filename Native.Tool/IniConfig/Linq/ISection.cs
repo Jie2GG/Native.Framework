@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Native.Tool.IniConfig.Utilities;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,6 +89,67 @@ namespace Native.Tool.IniConfig.Linq
 		#endregion
 
 		#region --公开方法--
+		/// <summary>
+		/// 获取与指定的键关联的值, 转换为指定的类型. 若键不存在将返回 T 的默认值
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <param name="key">要获取其值的键</param>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValue<T>(string key)
+		{
+			return GetValueOrDefault<T> (key, default (T));
+		}
+		/// <summary>
+		/// 获取与指定的键关联的值, 转换为指定的类型. 若键不存在将返回 defaultValue
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <param name="key">要获取其值的键</param>
+		/// <param name="defaultValue">当键不存在时返回的默认值</param>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValueOrDefault<T> (string key, T defaultValue)
+		{
+			if (!this.ContainsKey (key))
+			{
+				return defaultValue;
+			}
+
+			IValue iValue = this[key];
+			if (iValue is T)
+			{
+				T result = (T)(iValue.Value);
+				if (typeof(T) != typeof(IComparable) && typeof(T) != typeof(IFormattable))
+				{
+					return result;
+				}
+			}
+
+			object objValue = iValue.Value;
+			if (objValue is T)
+			{
+				return (T)objValue;
+			}
+
+			Type type = typeof (T);
+			if (ReflectionUtils.IsNullableType(type))
+			{
+				if (objValue == null)
+				{
+					return defaultValue;
+				}
+				type = Nullable.GetUnderlyingType (type);
+			}
+			return (T)Convert.ChangeType (objValue, type, CultureInfo.InvariantCulture);
+		}
 		/// <summary>
 		/// 确定此实例是否与另一个指定的 <see cref="ISection"/> 对象具有相同的值
 		/// </summary>

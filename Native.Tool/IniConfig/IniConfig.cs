@@ -246,7 +246,7 @@ namespace Native.Tool.IniConfig
 		/// <exception cref="TargetInvocationException">正在被调用的构造函数引发了一个异常</exception>
 		/// <exception cref="MethodAccessException">调用方没有权限调用此构造函数</exception>
 		/// <exception cref="MemberAccessException">无法创建抽象类的实例，或者此成员是使用晚期绑定机制调用的</exception>
-		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID(string)"/> 或 Overload:<see cref="Type.GetTypeFromCLSID(Guid)"/> 获取 COM 类型</exception>
+		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID"/> 或 Overload:<see cref="Type.GetTypeFromCLSID"/> 获取 COM 类型</exception>
 		/// <exception cref="COMException">t 是一个 COM 对象，但用于获取类型的类标识符无效，或标识的类未注册</exception>
 		/// <exception cref="TypeLoadException">t 不是有效类型</exception>
 		/// <exception cref="TargetException">尝试调用一个不存在的属性</exception>
@@ -266,7 +266,7 @@ namespace Native.Tool.IniConfig
 		/// <exception cref="TargetInvocationException">正在被调用的构造函数引发了一个异常</exception>
 		/// <exception cref="MethodAccessException">调用方没有权限调用此构造函数</exception>
 		/// <exception cref="MemberAccessException">无法创建抽象类的实例，或者此成员是使用晚期绑定机制调用的</exception>
-		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID(string)"/> 或 Overload:<see cref="Type.GetTypeFromCLSID(Guid)"/> 获取 COM 类型</exception>
+		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID"/> 或 Overload:<see cref="Type.GetTypeFromCLSID"/> 获取 COM 类型</exception>
 		/// <exception cref="COMException">t 是一个 COM 对象，但用于获取类型的类标识符无效，或标识的类未注册</exception>
 		/// <exception cref="TypeLoadException">t 不是有效类型</exception>
 		/// <exception cref="TargetException">尝试调用一个不存在的属性</exception>
@@ -285,7 +285,7 @@ namespace Native.Tool.IniConfig
 		/// <exception cref="TargetInvocationException">正在被调用的构造函数引发了一个异常</exception>
 		/// <exception cref="MethodAccessException">调用方没有权限调用此构造函数</exception>
 		/// <exception cref="MemberAccessException">无法创建抽象类的实例，或者此成员是使用晚期绑定机制调用的</exception>
-		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID(string)"/> 或 Overload:<see cref="Type.GetTypeFromCLSID(Guid)"/> 获取 COM 类型</exception>
+		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID"/> 或 Overload:<see cref="Type.GetTypeFromCLSID"/> 获取 COM 类型</exception>
 		/// <exception cref="COMException">t 是一个 COM 对象，但用于获取类型的类标识符无效，或标识的类未注册</exception>
 		/// <exception cref="TypeLoadException">t 不是有效类型</exception>
 		/// <exception cref="TargetException">尝试调用一个不存在的属性</exception>
@@ -321,7 +321,7 @@ namespace Native.Tool.IniConfig
 		/// <exception cref="TargetInvocationException">正在被调用的构造函数引发了一个异常</exception>
 		/// <exception cref="MethodAccessException">调用方没有权限调用此构造函数</exception>
 		/// <exception cref="MemberAccessException">无法创建抽象类的实例，或者此成员是使用晚期绑定机制调用的</exception>
-		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID(string)"/> 或 Overload:<see cref="Type.GetTypeFromCLSID(Guid)"/> 获取 COM 类型</exception>
+		/// <exception cref="InvalidComObjectException">未通过 Overload:<see cref="Type.GetTypeFromProgID"/> 或 Overload:<see cref="Type.GetTypeFromCLSID"/> 获取 COM 类型</exception>
 		/// <exception cref="COMException">t 是一个 COM 对象，但用于获取类型的类标识符无效，或标识的类未注册</exception>
 		/// <exception cref="TypeLoadException">t 不是有效类型</exception>
 		/// <exception cref="TargetException">尝试调用一个不存在的属性</exception>
@@ -357,12 +357,8 @@ namespace Native.Tool.IniConfig
 					IniKeyAttribute keyAttribute = properties[i].GetCustomAttribute<IniKeyAttribute> ();
 					if ((keyAttribute != null && keyAttribute.KeyName.Equals (item.Key)) || properties[i].Name.Equals (item.Key))
 					{
-						MethodInfo method = properties[i].GetSetMethod (true);
-						if (method.GetParameters ().Count () == 0)
-						{
-							method.Invoke (instance, new object[] { item.Value });
-						}
-
+						object value = Convert.ChangeType (item.Value, properties[i].PropertyType);
+						properties[i].GetSetMethod (true).Invoke (instance, new object[] { value });
 						properties.RemoveAt (i);
 						break;
 					}
