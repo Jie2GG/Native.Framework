@@ -21,3 +21,4 @@ jobs:
         with:
           PROJECT_FILE_PATH: Native.Tool/Native.Tool.csproj
           NUGET_KEY: ${{secrets.Nuget_Api}}
+          INCLUDE_SYMBOLS: false
