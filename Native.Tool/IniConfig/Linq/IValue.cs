@@ -154,9 +154,7 @@ namespace Native.Tool.IniConfig.Linq
 		/// <param name="value">一个 <see cref="ushort"/> 值</param>
 		public IValue (ushort value)
 			: this (value, IValueType.Integer)
-		{
-
-		}
+		{ }
 		/// <summary>
 		/// 使用 <see cref="int"/> 值来初始化 <see cref="IValue"/> 类的新实例
 		/// </summary>
@@ -289,6 +287,55 @@ namespace Native.Tool.IniConfig.Linq
 			}
 
 			return v1 != null && v2 != null && v1._valueType == v2._valueType && IValue.Compare (v1, v2) == 0;
+		}
+		/// <summary>
+		/// 获取当前实例的值, 转换为指定的类型. 若键不存在将返回 T 的默认值
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValue<T> ()
+		{
+			return GetValueOrDefault<T> (default (T));
+		}
+		/// <summary>
+		/// 获取当前实例的值, 转换为指定的类型. 若键不存在将返回 defaultValue
+		/// </summary>
+		/// <typeparam name="T">转换目标值的类型</typeparam>
+		/// <param name="defaultValue">当键不存在时返回的默认值</param>
+		/// <exception cref="InvalidOperationException">当前类型不是泛型类型。 也就是说，<see cref="Type.IsGenericType"/> 返回 <see langword="false"/></exception>
+		/// <exception cref="NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现</exception>
+		/// <exception cref="InvalidCastException">不支持此转换</exception>
+		/// <exception cref="FormatException">转换的目标格式不是 provider 可识别的 T 的格式</exception>
+		/// <exception cref="OverflowException">原始值表示不在 T 的范围内的数字</exception>
+		/// <returns>获取关联的值并转换为目标类型</returns>
+		public T GetValueOrDefault<T> (T defaultValue)
+		{
+			if (this.Value == null)
+			{
+				return defaultValue;
+			}
+
+			object objValue = this.Value;
+			if (objValue is T)
+			{
+				return (T)objValue;
+			}
+
+			Type type = typeof (T);
+			if (ReflectionUtils.IsNullableType (type))
+			{
+				if (objValue == null)
+				{
+					return defaultValue;
+				}
+				type = Nullable.GetUnderlyingType (type);
+			}
+			return (T)Convert.ChangeType (objValue, type, CultureInfo.InvariantCulture);
 		}
 		/// <summary>
 		/// 创建作为当前实例副本的新对象
@@ -655,6 +702,31 @@ namespace Native.Tool.IniConfig.Linq
 		/// <returns><see cref="object"/> 类型的实例 conversionType 其值等效于此实例的值</returns>
 		public object ToType (Type conversionType, IFormatProvider provider)
 		{
+			if (conversionType.Equals (typeof (byte[])))
+			{
+				return (byte[])this;
+			}
+
+			if (conversionType.Equals (typeof (DateTimeOffset)))
+			{
+				return (DateTimeOffset)this;
+			}
+
+			if (conversionType.Equals (typeof (Guid)))
+			{
+				return (Guid)this;
+			}
+
+			if (conversionType.Equals (typeof (Uri)))
+			{
+				return (Uri)this;
+			}
+
+			if (conversionType.Equals (typeof (TimeSpan)))
+			{
+				return (TimeSpan)this;
+			}
+
 			return Convert.ChangeType (this._value, conversionType, provider);
 		}
 		#endregion
@@ -1295,7 +1367,7 @@ namespace Native.Tool.IniConfig.Linq
 		public static implicit operator char (IValue value)
 		{
 			object ivalue = value._value;
-			if (ivalue != null || !IValue.IsConvert (value._valueType, IValue.ConvertCharTypes, false))
+			if (ivalue == null || !IValue.IsConvert (value._valueType, IValue.ConvertCharTypes, false))
 			{
 				throw new ArgumentException (string.Format ("无法将 {0} 转换为 Char", value._value.GetType ().Name));
 			}
@@ -1671,7 +1743,7 @@ namespace Native.Tool.IniConfig.Linq
 			Uri result = ivalue as Uri;
 			if (result == null)
 			{
-				return new Uri (Convert.ToString (ivalue, CultureInfo.InvariantCulture));
+				return new Uri (Convert.ToString (ivalue, CultureInfo.InvariantCulture), UriKind.RelativeOrAbsolute);
 			}
 			return result;
 		}
