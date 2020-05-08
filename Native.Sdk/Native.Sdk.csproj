@@ -9,7 +9,7 @@
     <Company>Jie2GG</Company>
     <RepositoryUrl>https://github.com/Jie2GG/Native.Framework</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Jie2GG/Native.Framework</PackageProjectUrl>
-    <Version>2.8.6.05011</Version>
+    <Version>2.8.6.0508</Version>
     <Copyright>MIT</Copyright>
     <PackageIcon>Logo.jpg</PackageIcon>
     <PackageIconUrl />
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Native.Tool.xml</DocumentationFile>
+    <DocumentationFile>Native.Sdk.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
