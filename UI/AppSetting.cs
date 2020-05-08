@@ -1,4 +1,5 @@
-﻿using Native.Tool.IniConfig.Linq;
+﻿using Native.Tool.IniConfig;
+using Native.Tool.IniConfig.Linq;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -20,21 +21,17 @@ namespace UI
             {
                 try
                 {
-                    IniObject iObject = IniObject.Load(ViewModel.MainInstance.UISettingPath);
-                    IniSection LastPreSendSection;
-                    IniValue MessageValue;
-                    IniValue GroupIdValue;
-
-                    if (iObject.Any(a => a.ContainsKey("LastPreSend")))
+                    IniConfig ini = new IniConfig(ViewModel.MainInstance.UISettingPath);
+                    ini.Load();
+                    if (ini.Object.Any(a => a.ContainsKey("LastPreSend")))
                     {
-                        LastPreSendSection = iObject["LastPreSend"];
-                        if (LastPreSendSection.TryGetValue("Message", out MessageValue))
+                        if (ini.Object["LastPreSend"].TryGetValue("Message", out IValue MessageValue))
                         {
-                            ViewModel.MainInstance.ReadyToSend = MessageValue.Value;
+                            ViewModel.MainInstance.ReadyToSend = MessageValue.GetValue<string>();
 
-                            if (LastPreSendSection.TryGetValue("GroupId", out GroupIdValue))
+                            if (ini.Object["LastPreSend"].TryGetValue("GroupId", out IValue GroupIdValue))
                             {
-                                Group LastSelectedGroup = ViewModel.MainInstance.Groups.FirstOrDefault(w => w.GroupId == GroupIdValue.ToInt64());
+                                Group LastSelectedGroup = ViewModel.MainInstance.Groups?.FirstOrDefault(w => w.GroupId == GroupIdValue.ToInt64());
                                 if (LastSelectedGroup != null)
                                 {
                                     ViewModel.MainInstance.SelectedGroup = LastSelectedGroup;
@@ -48,39 +45,15 @@ namespace UI
         }
         public static void Save()
         {
-            IniObject iObject = IniObject.Load(ViewModel.MainInstance.UISettingPath);
+            IniConfig ini = new IniConfig(ViewModel.MainInstance.UISettingPath);
 
-            IniSection LastPreSendSection = new IniSection("LastPreSend");
-            IniValue MessageValue = new IniValue(ViewModel.MainInstance.ReadyToSend);
-            IniValue GroupIdValue = new IniValue(ViewModel.MainInstance.SelectedGroup.GroupId);
-            LastPreSendSection.Add("Message", MessageValue);
-            LastPreSendSection.Add("GroupId", GroupIdValue);
-
-            if (iObject.Any(a=>a.Keys.Contains("LastPreSend")))
+            ini.Object["LastPreSend"] = new ISection("LastPreSend") 
             {
-                if (iObject["LastPreSend"].ContainsKey("Message"))
-                {
-                    iObject["LastPreSend"]["Message"] = LastPreSendSection["Message"];
-                }
-                else
-                {
-                    iObject["LastPreSend"].Add("Message", LastPreSendSection["Message"]);
-                }
+                {   "Message",ViewModel.MainInstance.ReadyToSend },
+                {   "GroupId", ViewModel.MainInstance.SelectedGroup.GroupId }
+            };
 
-                if (iObject["LastPreSend"].ContainsKey("GroupId"))
-                {
-                    iObject["LastPreSend"]["GroupId"] = LastPreSendSection["GroupId"];
-                }
-                else
-                {
-                    iObject["LastPreSend"].Add("GroupId", LastPreSendSection["GroupId"]);
-                }
-            }
-            else
-            {
-                iObject.Add(LastPreSendSection);
-            }
-            iObject.Save(ViewModel.MainInstance.UISettingPath);
+            ini.Save();
         }
     }
 }

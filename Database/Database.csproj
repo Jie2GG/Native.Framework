@@ -31,11 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Native.Sdk, Version=2.8.1.216, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\Native.Sdk.2.8.1.216\lib\net45\Native.Sdk.dll</HintPath>
+    <Reference Include="Native.Sdk, Version=2.8.6.508, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Native.Sdk.2.8.6.508\lib\net45\Native.Sdk.dll</HintPath>
     </Reference>
-    <Reference Include="Native.Tool, Version=3.1.1.216, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\Native.Tool.3.1.1.216\lib\net45\Native.Tool.dll</HintPath>
+    <Reference Include="Native.Tool, Version=3.3.2.5011, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Native.Tool.3.3.2.5011\lib\net45\Native.Tool.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

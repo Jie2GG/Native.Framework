@@ -32,13 +32,13 @@ namespace UI
             BindingOperations.EnableCollectionSynchronization(ViewModel.MainInstance.GroupMessages, ViewModel.MainInstance.SyncLock);
             BindingOperations.EnableCollectionSynchronization(ViewModel.MainInstance.Groups, ViewModel.MainInstance.SyncLock);
 
-            ViewModel.MainInstance.Api.GetGroupList().ForEach(g =>
+            foreach (var g in ViewModel.MainInstance.Api.GetGroupList())
             {
                 if (ViewModel.MainInstance.Groups.Any(a => a.GroupId == g.Group.Id) == false)
                 {
                     ViewModel.MainInstance.Groups.Add(new Group { GroupId = g.Group.Id, GroupName = g.Name });
                 }
-            });
+            }
 
             this.Loaded += (s, e) =>
             {

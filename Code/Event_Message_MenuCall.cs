@@ -21,8 +21,8 @@ namespace Code
                 string cmd = "";
                 string sid = "";
                 long id = 0;
-                e.Message.RegexKeyValuePairs.TryGetValue("cmd", out cmd);
-                e.Message.RegexKeyValuePairs.TryGetValue("id", out sid);
+                e.Message.RegexResult.TryGetValue("cmd", out cmd);
+                e.Message.RegexResult.TryGetValue("id", out sid);
 
                 long.TryParse(sid, out id);
 

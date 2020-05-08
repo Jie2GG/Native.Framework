@@ -83,26 +83,28 @@ namespace Code
                 e.CQLog.Debug("自主进群", $"{e.FromQQ?.Id ?? -1}加入了群");
             }
 
-            List<string> msg = new List<string>();
+            StringBuilder sb = new StringBuilder();
 
-            msg.Add("欢迎");
-            msg.Add(CQApi.CQCode_At(e.FromQQ.Id).ToSendString());
+            sb.AppendLine("欢迎");
+            sb.AppendLine(CQApi.CQCode_At(e.FromQQ.Id).ToSendString());
 
             if (e.CQApi.IsAllowSendImage)
             {
                 string iconFilePath = Common.Icon.SaveQqIcon(e.FromQQ.Id);
                 if (String.IsNullOrEmpty(iconFilePath) == false)
                 {
-                    msg.Add(CQApi.CQCode_Image(iconFilePath).ToSendString());
+                    sb.AppendLine(CQApi.CQCode_Image(iconFilePath).ToSendString());
                 }
             }
 
-            msg.Add(Environment.NewLine);
-            msg.Add($"最新版SDK：http://t.cn/AiC4CDmL");
-            msg.Add(Environment.NewLine);
-            msg.Add($"开发文档：http://t.cn/Exaf1nL");
-            msg.Add(Environment.NewLine);
-            msg.Add($"部署教程：http://t.cn/AiKIrDme");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine($"最新版SDK：http://t.cn/AiC4CDmL");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine($"开发文档：http://t.cn/Exaf1nL");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine($"部署教程：http://t.cn/AiKIrDme");
+
+            e.FromGroup.SendGroupMessage(sb.ToString());
         }
 
         public void GroupUpload(object sender, CQGroupUploadEventArgs e)

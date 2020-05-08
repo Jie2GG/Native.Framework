@@ -54,10 +54,10 @@ namespace Code
                 string type = string.Empty;
                 int _money = 0;
 
-                e.Message.RegexKeyValuePairs.TryGetValue("msg", out msg);
-                e.Message.RegexKeyValuePairs.TryGetValue("at", out at);
-                e.Message.RegexKeyValuePairs.TryGetValue("money", out money);
-                e.Message.RegexKeyValuePairs.TryGetValue("type", out type);
+                e.Message.RegexResult.TryGetValue("msg", out msg);
+                e.Message.RegexResult.TryGetValue("at", out at);
+                e.Message.RegexResult.TryGetValue("money", out money);
+                e.Message.RegexResult.TryGetValue("type", out type);
                 int.TryParse(money, out _money);
                 _money = Math.Max(_money, 0);
 
@@ -83,7 +83,7 @@ namespace Code
                 else
                 {
                     //主控查询
-                    if (at.Trim() == CQApi.CQCode_At(e.CQApi.GetLoginQQId()).ToSendString())
+                    if (at.Trim() == CQApi.CQCode_At(e.CQApi.GetLoginQQ().Id).ToSendString())
                     {
                         if (type.Contains("$"))
                         {

@@ -14,17 +14,17 @@ namespace Native.Sdk.Extension
     {
         public static bool SendMessage(this CQGroupMessageEventArgs e, object[] message)
         {
-            return e.CQApi.SendGroupMessage(e.FromGroup.Id, message) == 0;
+            return e.CQApi.SendGroupMessage(e.FromGroup.Id, message).Id == 0;
         }
 
         public static bool SendMessage(this CQGroupMessageEventArgs e, string message)
         {
-            return e.CQApi.SendGroupMessage(e.FromGroup.Id, message) == 0;
+            return e.CQApi.SendGroupMessage(e.FromGroup.Id, message).Id == 0;
         }
 
         public static bool SendMessageWithAt(this CQGroupMessageEventArgs e, string message)
         {
-            return e.CQApi.SendGroupMessage(e.FromGroup.Id,new object[]{CQApi.CQCode_At(e.FromQQ.Id),message,}) == 0;
+            return e.CQApi.SendGroupMessage(e.FromGroup.Id,new object[]{CQApi.CQCode_At(e.FromQQ.Id),message,}).Id == 0;
         }
     }
 }

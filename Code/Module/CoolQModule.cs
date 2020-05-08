@@ -16,7 +16,7 @@ namespace Code.Module
             {
                 var para = this.Bind<ApiSendMessage>();
 
-                int flag = Common.Api.SendGroupMessage(para.Id, para.Message);
+                int flag = Common.Api.SendGroupMessage(para.Id, para.Message).Id;
                 return this.Response.AsJson(flag, flag > 0 ? HttpStatusCode.OK : HttpStatusCode.NotFound);
             };
 
@@ -24,7 +24,7 @@ namespace Code.Module
             {
                 var para = this.Bind<ApiSendMessage>();
 
-                int flag = Common.Api.SendPrivateMessage(para.Id, para.Message);
+                int flag = Common.Api.SendPrivateMessage(para.Id, para.Message).Id;
                 return this.Response.AsJson(flag, flag > 0 ? HttpStatusCode.OK : HttpStatusCode.NotFound);
             };
 
@@ -32,7 +32,7 @@ namespace Code.Module
             {
                 var para = this.Bind<ApiSendMessage>();
 
-                int flag = Common.Api.SendDiscussMessage(para.Id, para.Message);
+                int flag = Common.Api.SendDiscussMessage(para.Id, para.Message).Id;
                 return this.Response.AsJson(flag, flag > 0 ? HttpStatusCode.OK : HttpStatusCode.NotFound);
             };
 
@@ -58,7 +58,7 @@ namespace Code.Module
             };
             Get["/GetLoginQQId"] = x =>
             {
-                return this.Response.AsJson(Common.Api.GetLoginQQId());
+                return this.Response.AsJson(Common.Api.GetLoginQQ().Id);
             };
             Get["/GetLoginNick"] = x =>
             {

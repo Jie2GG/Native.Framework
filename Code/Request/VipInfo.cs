@@ -23,7 +23,7 @@ namespace Code.Request
         {
             Log = log;
             Gtk = api.GetCsrfToken();
-            Login_Qq = api.GetLoginQQId();
+            Login_Qq = api.GetLoginQQ().Id;
             var CookieContainer = new System.Net.CookieContainer();
 
             CookieContainer.SetCookies(restClientMobile.BaseUrl, api.GetCookies(restClientMobile.BaseUrl.AbsoluteUri).Replace(";", ","));
