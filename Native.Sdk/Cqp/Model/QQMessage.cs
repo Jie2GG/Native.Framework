@@ -248,34 +248,27 @@ namespace Native.Sdk.Cqp.Model
 		/// <param name="reader">解析模型的数据源</param>
 		protected override void Initialize (BinaryReader reader)
 		{
-			if (this.IsRegexMessage)
+			if (reader.Length () < 4)
 			{
-				if (reader.Length () < 4)
-				{
-					throw new InvalidDataException ("读取失败, 获取的原始数据长度小于 4");
-				}
+				throw new InvalidDataException ("读取失败, 获取的原始数据长度小于 4");
+			}
 
-				int count = reader.ReadInt32_Ex (); // 获取解析到的正则结果个数
-				if (count > 0)
+			int count = reader.ReadInt32_Ex (); // 获取解析到的正则结果个数
+			this.RegexResult = new Dictionary<string, string> (count);  // 初始化正则结果数组
+			if (count > 0)
+			{
+				for (int i = 0; i < count; i++)
 				{
-					if (this.IsRegexMessage)
+					using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
 					{
-						this.RegexResult = new Dictionary<string, string> (count);
-					}
-
-					for (int i = 0; i < count; i++)
-					{
-						using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
+						if (reader.Length () < 4)
 						{
-							if (reader.Length () < 4)
-							{
-								throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
-							}
-
-							string key = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
-							string value = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
-							this.RegexResult.Add (key, value);
+							throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
 						}
+
+						string key = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+						string value = temeReader.ReadString_Ex (CQApi.DefaultEncoding);
+						this.RegexResult.Add (key, value);
 					}
 				}
 			}

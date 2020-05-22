@@ -291,7 +291,7 @@ namespace Native.App.Export
 		/// <para>Name: 私聊消息处理</para>	
 		/// <para>Function: _eventPrivateMsg</para>	
 		/// <para>Priority: 30000</para>	
-		/// <para>IsRegex: False</para>	
+		/// <para>IsRegex: True</para>	
 		/// </summary>	
 		public static event EventHandler<CQPrivateMessageEventArgs> Event_eventPrivateMsgHandler;	
 		[DllExport (ExportName = "_eventPrivateMsg", CallingConvention = CallingConvention.StdCall)]	
@@ -299,7 +299,7 @@ namespace Native.App.Export
 		{	
 			if (Event_eventPrivateMsgHandler != null)	
 			{	
-				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (AppData.CQApi, AppData.CQLog, 1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), false);	
+				CQPrivateMessageEventArgs args = new CQPrivateMessageEventArgs (AppData.CQApi, AppData.CQLog, 1, 21, "私聊消息处理", "_eventPrivateMsg", 30000, subType, msgId, fromQQ, msg.ToString(CQApi.DefaultEncoding), true);	
 				Event_eventPrivateMsgHandler (typeof (CQEventExport), args);	
 				return (int)(args.Handler ? CQMessageHandler.Intercept : CQMessageHandler.Ignore);	
 			}	
