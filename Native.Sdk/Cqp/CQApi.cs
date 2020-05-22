@@ -719,8 +719,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				// 获取的数据流格式无效
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw new InvalidDataException("获取的数据流格式无效");
 #else
 				return null;
 #endif
@@ -734,6 +734,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
@@ -764,6 +765,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
@@ -795,8 +797,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				// 获取的数据流格式无效
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw new InvalidDataException("获取的数据流格式无效");
 #else
 				return null;
 #endif
@@ -810,6 +812,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
@@ -834,8 +837,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				// 获取的数据流格式无效
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw new InvalidDataException("获取的数据流格式无效");
 #else
 				return null;
 #endif
@@ -849,6 +852,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
@@ -874,8 +878,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				// 获取的数据流格式无效
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw new InvalidDataException("获取的数据流格式无效");
 #else
 				return null;
 #endif
@@ -889,6 +893,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
@@ -906,8 +911,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				// 获取的数据流格式无效
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw new InvalidDataException("获取的数据流格式无效");
 #else
 				return null;
 #endif
@@ -921,6 +926,7 @@ namespace Native.Sdk.Cqp
 			{
 #if DEBUG
 				if (Debugger.Launch()) { Debugger.Break(); }
+				throw exception;
 #else
 				return null;
 #endif
