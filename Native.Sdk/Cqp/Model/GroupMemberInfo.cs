@@ -197,6 +197,7 @@ namespace Native.Sdk.Cqp.Model
 			{
 				this.ExclusiveTitleExpirationTime = expTime.ToDateTime ();
 			}
+			this.IsAllowEditorCard = reader.ReadInt32_Ex () == 1;
 		}
 		#endregion
 	}

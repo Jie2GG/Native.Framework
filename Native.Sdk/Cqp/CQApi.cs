@@ -719,7 +719,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				throw new InvalidDataException ("获取的数据流格式无效");
+				// 获取的数据流格式无效
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -729,10 +730,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new StrangerInfo (this, data);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -759,10 +760,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new FriendInfoCollection (this, data);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -794,7 +795,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				throw new InvalidDataException ("获取的数据流格式无效");
+				// 获取的数据流格式无效
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -804,10 +806,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new GroupMemberInfo (this, data);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -832,7 +834,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				throw new InvalidDataException ("获取的数据流格式无效");
+				// 获取的数据流格式无效
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -842,10 +845,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new GroupMemberInfoCollection (this, data);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -871,7 +874,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				throw new InvalidDataException ("获取的数据流格式无效");
+				// 获取的数据流格式无效
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -881,10 +885,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new GroupInfo (this, data, false);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -902,7 +906,8 @@ namespace Native.Sdk.Cqp
 			if (string.IsNullOrEmpty (data))
 			{
 #if DEBUG
-				throw new InvalidDataException ("获取的数据流格式无效");
+				// 获取的数据流格式无效
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif
@@ -912,10 +917,10 @@ namespace Native.Sdk.Cqp
 			{
 				return new GroupInfoCollection (this, data);
 			}
-			catch
+			catch(Exception exception)
 			{
 #if DEBUG
-				throw;
+				if (Debugger.Launch()) { Debugger.Break(); }
 #else
 				return null;
 #endif

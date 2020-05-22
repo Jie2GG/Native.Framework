@@ -73,12 +73,12 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public bool Equals (Discuss other)
 		{
-			if (other == null)
+			if (object.ReferenceEquals (other, null))
 			{
 				return false;
 			}
 
-			return this.Id == other.Id;
+			return this.Id.Equals (other.Id);
 		}
 		/// <summary>
 		/// 指示当前对象是否等于同一类型的另一个对象
@@ -131,6 +131,106 @@ namespace Native.Sdk.Cqp.Model
 		public static implicit operator string (Discuss value)
 		{
 			return value.ToString ();
+		}
+		/// <summary>
+		/// 确定两个指定的 <see cref="Discuss"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的第一个对象</param>
+		/// <param name="b">要比较的第二个对象</param>
+		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (Discuss a, Discuss b)
+		{
+			return a.Equals (b);
+		}
+		/// <summary>
+		/// 确定两个指定的 <see cref="Discuss"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的第一个对象</param>
+		/// <param name="b">要比较的第二个对象</param>
+		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (Discuss a, Discuss b)
+		{
+			return !a.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="long"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (Discuss a, long b)
+		{
+			return a.Id.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="long"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (Discuss a, long b)
+		{
+			return a.Id.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="long"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (long a, Discuss b)
+		{
+			return a.Equals (b.Id);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="long"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (long a, Discuss b)
+		{
+			return a.Equals (b.Id);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="string"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (Discuss a, string b)
+		{
+			return ((string)a).Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="string"/> 对象</param>
+		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (Discuss a, string b)
+		{
+			return !((string)a).Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="string"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (string a, Discuss b)
+		{
+			return a.Equals ((string)b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="Discuss"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="string"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="Discuss"/> 对象</param>
+		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (string a, Discuss b)
+		{
+			return !a.Equals ((string)b);
 		}
 		#endregion
 	}
