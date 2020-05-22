@@ -29,7 +29,7 @@ namespace Native.Sdk.Cqp.Model
 		public QQRequest (CQApi api, string responseFlag)
 			: base (api)
 		{
-			if (responseFlag == null)
+			if (object.ReferenceEquals (responseFlag, null))
 			{
 				throw new ArgumentNullException ("responseFlag");
 			}
@@ -67,7 +67,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public bool Equals (QQRequest other)
 		{
-			if (other == null)
+			if (object.ReferenceEquals (other, null))
 			{
 				return false;
 			}
@@ -117,6 +117,66 @@ namespace Native.Sdk.Cqp.Model
 		public static implicit operator string (QQRequest value)
 		{
 			return value.ResponseFlag;
+		}
+		/// <summary>
+		/// 确定两个指定的 <see cref="QQRequest"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的第一个对象</param>
+		/// <param name="b">要比较的第二个对象</param>
+		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (QQRequest a, QQRequest b)
+		{
+			return a.Equals (b);
+		}
+		/// <summary>
+		/// 确定两个指定的 <see cref="QQRequest"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的第一个对象</param>
+		/// <param name="b">要比较的第二个对象</param>
+		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (QQRequest a, QQRequest b)
+		{
+			return !a.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="QQRequest"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="QQRequest"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="string"/> 对象</param>
+		/// <returns>如果 a.ResponseFlag 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (QQRequest a, string b)
+		{
+			return a.ResponseFlag.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="QQRequest"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="QQRequest"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="string"/> 对象</param>
+		/// <returns>如果 a.ResponseFlag 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (QQRequest a, string b)
+		{
+			return !a.ResponseFlag.Equals (b);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="QQRequest"/> 和 <see cref="string"/> 实例是否具有相同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="string"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="QQRequest"/> 对象</param>
+		/// <returns>如果 a 是与 b.ResponseFlag 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public static bool operator == (string a, QQRequest b)
+		{
+			return a.Equals (b.ResponseFlag);
+		}
+		/// <summary>
+		/// 确定指定的 <see cref="QQRequest"/> 和 <see cref="string"/> 实例是否具有不同的值
+		/// </summary>
+		/// <param name="a">要比较的 <see cref="string"/> 对象</param>
+		/// <param name="b">要比较的 <see cref="QQRequest"/> 对象</param>
+		/// <returns>如果 a 是与 b.ResponseFlag 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
+		public static bool operator != (string a, QQRequest b)
+		{
+			return !a.Equals (b.ResponseFlag);
 		}
 		#endregion
 	}
