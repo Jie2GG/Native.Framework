@@ -35,9 +35,12 @@ namespace Native.Sdk.Cqp.Model
 		public BasisStreamModel (CQApi api, byte[] cipherBytes)
 			: base (api)
 		{
-			using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
+			if (cipherBytes.Length > 0)
 			{
-				this.Initialize (reader);
+				using (BinaryReader reader = new BinaryReader (new MemoryStream (cipherBytes)))
+				{
+					this.Initialize (reader);
+				}
 			}
 		}
 		#endregion

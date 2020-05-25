@@ -1,5 +1,15 @@
 ## Native.SDK 更新日志
 
+#### 2020年05月22日 版本: V4.2.4.0522
+
+	1. 修复 DEBUG條件下部分Api缺失返回值问题
+
+#### 2020年05月22日 版本: V4.2.3.0522
+
+	1. 优化 QQ、QQMessage、QQRequset、Group 和 Discuss 类, 重载与某些基础数据类型比较的运算符
+	2. 优化 BasisStreamModel 在解码字节数组时若长度是 0 则不解析
+	3. 修复 QQMessage 类解析正则事件后永远为 null
+
 #### 2020年05月01日 版本: V4.2.2.0501
 
 	1. 修复 IniConfig 反序列化时设置值失败
