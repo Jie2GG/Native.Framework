@@ -261,7 +261,7 @@ namespace Native.Sdk.Cqp.Model
 				{
 					using (BinaryReader temeReader = new BinaryReader (new MemoryStream (reader.ReadToken_Ex ())))
 					{
-						if (reader.Length () < 4)
+						if (temeReader.Length () < 4)
 						{
 							throw new InvalidDataException (string.Format ("读取失败, 获取的原始数据出现异常. Index: {0} 的数据长度小于 4", i + 1));
 						}
