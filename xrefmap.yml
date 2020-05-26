@@ -5211,6 +5211,43 @@ references:
   commentId: F:Native.Sdk.Cqp.Model.Discuss.MinValue
   fullName: Native.Sdk.Cqp.Model.Discuss.MinValue
   nameWithType: Discuss.MinValue
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,Native.Sdk.Cqp.Model.Discuss)
+  name: Equality(Discuss, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_Native_Sdk_Cqp_Model_Discuss_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality(Native.Sdk.Cqp.Model.Discuss, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Equality(Discuss, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,System.Int64)
+  name: Equality(Discuss, Int64)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_Native_Sdk_Cqp_Model_Discuss_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality(Native.Sdk.Cqp.Model.Discuss, System.Int64)
+  nameWithType: Discuss.Equality(Discuss, Int64)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,System.String)
+  name: Equality(Discuss, String)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_Native_Sdk_Cqp_Model_Discuss_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Equality(Native.Sdk.Cqp.Model.Discuss,System.String)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality(Native.Sdk.Cqp.Model.Discuss, System.String)
+  nameWithType: Discuss.Equality(Discuss, String)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality(System.Int64,Native.Sdk.Cqp.Model.Discuss)
+  name: Equality(Int64, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_System_Int64_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Equality(System.Int64,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality(System.Int64, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Equality(Int64, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality(System.String,Native.Sdk.Cqp.Model.Discuss)
+  name: Equality(String, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_System_String_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Equality(System.String,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality(System.String, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Equality(String, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Equality*
+  name: Equality
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Equality_
+  commentId: Overload:Native.Sdk.Cqp.Model.Discuss.op_Equality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.Discuss.Equality
+  nameWithType: Discuss.Equality
 - uid: Native.Sdk.Cqp.Model.Discuss.op_Implicit(Native.Sdk.Cqp.Model.Discuss)~System.Int64
   name: Implicit(Discuss to Int64)
   href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Implicit_Native_Sdk_Cqp_Model_Discuss__System_Int64
@@ -5239,6 +5276,43 @@ references:
   fullName.vb: Native.Sdk.Cqp.Model.Discuss.Widening
   nameWithType: Discuss.Implicit
   nameWithType.vb: Discuss.Widening
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,Native.Sdk.Cqp.Model.Discuss)
+  name: Inequality(Discuss, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_Native_Sdk_Cqp_Model_Discuss_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality(Native.Sdk.Cqp.Model.Discuss, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Inequality(Discuss, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,System.Int64)
+  name: Inequality(Discuss, Int64)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_Native_Sdk_Cqp_Model_Discuss_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality(Native.Sdk.Cqp.Model.Discuss, System.Int64)
+  nameWithType: Discuss.Inequality(Discuss, Int64)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,System.String)
+  name: Inequality(Discuss, String)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_Native_Sdk_Cqp_Model_Discuss_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Inequality(Native.Sdk.Cqp.Model.Discuss,System.String)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality(Native.Sdk.Cqp.Model.Discuss, System.String)
+  nameWithType: Discuss.Inequality(Discuss, String)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.Discuss)
+  name: Inequality(Int64, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_System_Int64_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality(System.Int64, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Inequality(Int64, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality(System.String,Native.Sdk.Cqp.Model.Discuss)
+  name: Inequality(String, Discuss)
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_System_String_Native_Sdk_Cqp_Model_Discuss_
+  commentId: M:Native.Sdk.Cqp.Model.Discuss.op_Inequality(System.String,Native.Sdk.Cqp.Model.Discuss)
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality(System.String, Native.Sdk.Cqp.Model.Discuss)
+  nameWithType: Discuss.Inequality(String, Discuss)
+- uid: Native.Sdk.Cqp.Model.Discuss.op_Inequality*
+  name: Inequality
+  href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_op_Inequality_
+  commentId: Overload:Native.Sdk.Cqp.Model.Discuss.op_Inequality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.Discuss.Inequality
+  nameWithType: Discuss.Inequality
 - uid: Native.Sdk.Cqp.Model.Discuss.SendDiscussMessage(System.Object[])
   name: SendDiscussMessage(Object[])
   href: api/Native.Sdk.Cqp.Model.Discuss.html#Native_Sdk_Cqp_Model_Discuss_SendDiscussMessage_System_Object___
@@ -5687,6 +5761,43 @@ references:
   commentId: F:Native.Sdk.Cqp.Model.Group.MinValue
   fullName: Native.Sdk.Cqp.Model.Group.MinValue
   nameWithType: Group.MinValue
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,Native.Sdk.Cqp.Model.Group)
+  name: Equality(Group, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_Native_Sdk_Cqp_Model_Group_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Equality(Native.Sdk.Cqp.Model.Group, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Equality(Group, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,System.Int64)
+  name: Equality(Group, Int64)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_Native_Sdk_Cqp_Model_Group_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.Group.Equality(Native.Sdk.Cqp.Model.Group, System.Int64)
+  nameWithType: Group.Equality(Group, Int64)
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,System.String)
+  name: Equality(Group, String)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_Native_Sdk_Cqp_Model_Group_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Equality(Native.Sdk.Cqp.Model.Group,System.String)
+  fullName: Native.Sdk.Cqp.Model.Group.Equality(Native.Sdk.Cqp.Model.Group, System.String)
+  nameWithType: Group.Equality(Group, String)
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality(System.Int64,Native.Sdk.Cqp.Model.Group)
+  name: Equality(Int64, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_System_Int64_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Equality(System.Int64,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Equality(System.Int64, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Equality(Int64, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality(System.String,Native.Sdk.Cqp.Model.Group)
+  name: Equality(String, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_System_String_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Equality(System.String,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Equality(System.String, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Equality(String, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Equality*
+  name: Equality
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Equality_
+  commentId: Overload:Native.Sdk.Cqp.Model.Group.op_Equality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.Group.Equality
+  nameWithType: Group.Equality
 - uid: Native.Sdk.Cqp.Model.Group.op_Implicit(Native.Sdk.Cqp.Model.Group)~System.Int64
   name: Implicit(Group to Int64)
   href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Implicit_Native_Sdk_Cqp_Model_Group__System_Int64
@@ -5715,6 +5826,43 @@ references:
   fullName.vb: Native.Sdk.Cqp.Model.Group.Widening
   nameWithType: Group.Implicit
   nameWithType.vb: Group.Widening
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,Native.Sdk.Cqp.Model.Group)
+  name: Inequality(Group, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_Native_Sdk_Cqp_Model_Group_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality(Native.Sdk.Cqp.Model.Group, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Inequality(Group, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,System.Int64)
+  name: Inequality(Group, Int64)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_Native_Sdk_Cqp_Model_Group_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality(Native.Sdk.Cqp.Model.Group, System.Int64)
+  nameWithType: Group.Inequality(Group, Int64)
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,System.String)
+  name: Inequality(Group, String)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_Native_Sdk_Cqp_Model_Group_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Inequality(Native.Sdk.Cqp.Model.Group,System.String)
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality(Native.Sdk.Cqp.Model.Group, System.String)
+  nameWithType: Group.Inequality(Group, String)
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.Group)
+  name: Inequality(Int64, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_System_Int64_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality(System.Int64, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Inequality(Int64, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality(System.String,Native.Sdk.Cqp.Model.Group)
+  name: Inequality(String, Group)
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_System_String_Native_Sdk_Cqp_Model_Group_
+  commentId: M:Native.Sdk.Cqp.Model.Group.op_Inequality(System.String,Native.Sdk.Cqp.Model.Group)
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality(System.String, Native.Sdk.Cqp.Model.Group)
+  nameWithType: Group.Inequality(String, Group)
+- uid: Native.Sdk.Cqp.Model.Group.op_Inequality*
+  name: Inequality
+  href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_op_Inequality_
+  commentId: Overload:Native.Sdk.Cqp.Model.Group.op_Inequality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.Group.Inequality
+  nameWithType: Group.Inequality
 - uid: Native.Sdk.Cqp.Model.Group.OpenGroupAnonymous
   name: OpenGroupAnonymous()
   href: api/Native.Sdk.Cqp.Model.Group.html#Native_Sdk_Cqp_Model_Group_OpenGroupAnonymous
@@ -7049,6 +7197,43 @@ references:
   commentId: F:Native.Sdk.Cqp.Model.QQ.MinValue
   fullName: Native.Sdk.Cqp.Model.QQ.MinValue
   nameWithType: QQ.MinValue
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,Native.Sdk.Cqp.Model.QQ)
+  name: Equality(QQ, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_Native_Sdk_Cqp_Model_QQ_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality(Native.Sdk.Cqp.Model.QQ, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Equality(QQ, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,System.Int64)
+  name: Equality(QQ, Int64)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_Native_Sdk_Cqp_Model_QQ_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality(Native.Sdk.Cqp.Model.QQ, System.Int64)
+  nameWithType: QQ.Equality(QQ, Int64)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,System.String)
+  name: Equality(QQ, String)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_Native_Sdk_Cqp_Model_QQ_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Equality(Native.Sdk.Cqp.Model.QQ,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality(Native.Sdk.Cqp.Model.QQ, System.String)
+  nameWithType: QQ.Equality(QQ, String)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality(System.Int64,Native.Sdk.Cqp.Model.QQ)
+  name: Equality(Int64, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_System_Int64_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Equality(System.Int64,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality(System.Int64, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Equality(Int64, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality(System.String,Native.Sdk.Cqp.Model.QQ)
+  name: Equality(String, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_System_String_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Equality(System.String,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality(System.String, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Equality(String, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Equality*
+  name: Equality
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Equality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQ.op_Equality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQ.Equality
+  nameWithType: QQ.Equality
 - uid: Native.Sdk.Cqp.Model.QQ.op_Implicit(Native.Sdk.Cqp.Model.QQ)~System.Int64
   name: Implicit(QQ to Int64)
   href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Implicit_Native_Sdk_Cqp_Model_QQ__System_Int64
@@ -7077,6 +7262,43 @@ references:
   fullName.vb: Native.Sdk.Cqp.Model.QQ.Widening
   nameWithType: QQ.Implicit
   nameWithType.vb: QQ.Widening
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,Native.Sdk.Cqp.Model.QQ)
+  name: Inequality(QQ, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_Native_Sdk_Cqp_Model_QQ_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality(Native.Sdk.Cqp.Model.QQ, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Inequality(QQ, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,System.Int64)
+  name: Inequality(QQ, Int64)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_Native_Sdk_Cqp_Model_QQ_System_Int64_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,System.Int64)
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality(Native.Sdk.Cqp.Model.QQ, System.Int64)
+  nameWithType: QQ.Inequality(QQ, Int64)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,System.String)
+  name: Inequality(QQ, String)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_Native_Sdk_Cqp_Model_QQ_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Inequality(Native.Sdk.Cqp.Model.QQ,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality(Native.Sdk.Cqp.Model.QQ, System.String)
+  nameWithType: QQ.Inequality(QQ, String)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.QQ)
+  name: Inequality(Int64, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_System_Int64_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Inequality(System.Int64,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality(System.Int64, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Inequality(Int64, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQ)
+  name: Inequality(String, QQ)
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_System_String_Native_Sdk_Cqp_Model_QQ_
+  commentId: M:Native.Sdk.Cqp.Model.QQ.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQ)
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality(System.String, Native.Sdk.Cqp.Model.QQ)
+  nameWithType: QQ.Inequality(String, QQ)
+- uid: Native.Sdk.Cqp.Model.QQ.op_Inequality*
+  name: Inequality
+  href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_op_Inequality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQ.op_Inequality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQ.Inequality
+  nameWithType: QQ.Inequality
 - uid: Native.Sdk.Cqp.Model.QQ.SendPraise(System.Int32)
   name: SendPraise(Int32)
   href: api/Native.Sdk.Cqp.Model.QQ.html#Native_Sdk_Cqp_Model_QQ_SendPraise_System_Int32_
@@ -7274,6 +7496,31 @@ references:
   isSpec: "True"
   fullName: Native.Sdk.Cqp.Model.QQMessage.IsSuccess
   nameWithType: QQMessage.IsSuccess
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Equality(Native.Sdk.Cqp.Model.QQMessage,Native.Sdk.Cqp.Model.QQMessage)
+  name: Equality(QQMessage, QQMessage)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Equality_Native_Sdk_Cqp_Model_QQMessage_Native_Sdk_Cqp_Model_QQMessage_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Equality(Native.Sdk.Cqp.Model.QQMessage,Native.Sdk.Cqp.Model.QQMessage)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Equality(Native.Sdk.Cqp.Model.QQMessage, Native.Sdk.Cqp.Model.QQMessage)
+  nameWithType: QQMessage.Equality(QQMessage, QQMessage)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Equality(Native.Sdk.Cqp.Model.QQMessage,System.String)
+  name: Equality(QQMessage, String)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Equality_Native_Sdk_Cqp_Model_QQMessage_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Equality(Native.Sdk.Cqp.Model.QQMessage,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Equality(Native.Sdk.Cqp.Model.QQMessage, System.String)
+  nameWithType: QQMessage.Equality(QQMessage, String)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Equality(System.String,Native.Sdk.Cqp.Model.QQMessage)
+  name: Equality(String, QQMessage)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Equality_System_String_Native_Sdk_Cqp_Model_QQMessage_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Equality(System.String,Native.Sdk.Cqp.Model.QQMessage)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Equality(System.String, Native.Sdk.Cqp.Model.QQMessage)
+  nameWithType: QQMessage.Equality(String, QQMessage)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Equality*
+  name: Equality
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Equality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQMessage.op_Equality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Equality
+  nameWithType: QQMessage.Equality
 - uid: Native.Sdk.Cqp.Model.QQMessage.op_Implicit(Native.Sdk.Cqp.Model.QQMessage)~System.String
   name: Implicit(QQMessage to String)
   href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Implicit_Native_Sdk_Cqp_Model_QQMessage__System_String
@@ -7293,6 +7540,31 @@ references:
   fullName.vb: Native.Sdk.Cqp.Model.QQMessage.Widening
   nameWithType: QQMessage.Implicit
   nameWithType.vb: QQMessage.Widening
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Inequality(Native.Sdk.Cqp.Model.QQMessage,Native.Sdk.Cqp.Model.QQMessage)
+  name: Inequality(QQMessage, QQMessage)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Inequality_Native_Sdk_Cqp_Model_QQMessage_Native_Sdk_Cqp_Model_QQMessage_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Inequality(Native.Sdk.Cqp.Model.QQMessage,Native.Sdk.Cqp.Model.QQMessage)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Inequality(Native.Sdk.Cqp.Model.QQMessage, Native.Sdk.Cqp.Model.QQMessage)
+  nameWithType: QQMessage.Inequality(QQMessage, QQMessage)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Inequality(Native.Sdk.Cqp.Model.QQMessage,System.String)
+  name: Inequality(QQMessage, String)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Inequality_Native_Sdk_Cqp_Model_QQMessage_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Inequality(Native.Sdk.Cqp.Model.QQMessage,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Inequality(Native.Sdk.Cqp.Model.QQMessage, System.String)
+  nameWithType: QQMessage.Inequality(QQMessage, String)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQMessage)
+  name: Inequality(String, QQMessage)
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Inequality_System_String_Native_Sdk_Cqp_Model_QQMessage_
+  commentId: M:Native.Sdk.Cqp.Model.QQMessage.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQMessage)
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Inequality(System.String, Native.Sdk.Cqp.Model.QQMessage)
+  nameWithType: QQMessage.Inequality(String, QQMessage)
+- uid: Native.Sdk.Cqp.Model.QQMessage.op_Inequality*
+  name: Inequality
+  href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_op_Inequality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQMessage.op_Inequality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQMessage.Inequality
+  nameWithType: QQMessage.Inequality
 - uid: Native.Sdk.Cqp.Model.QQMessage.ReceiveAllImage
   name: ReceiveAllImage()
   href: api/Native.Sdk.Cqp.Model.QQMessage.html#Native_Sdk_Cqp_Model_QQMessage_ReceiveAllImage
@@ -7448,6 +7720,31 @@ references:
   isSpec: "True"
   fullName: Native.Sdk.Cqp.Model.QQRequest.GetHashCode
   nameWithType: QQRequest.GetHashCode
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Equality(Native.Sdk.Cqp.Model.QQRequest,Native.Sdk.Cqp.Model.QQRequest)
+  name: Equality(QQRequest, QQRequest)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Equality_Native_Sdk_Cqp_Model_QQRequest_Native_Sdk_Cqp_Model_QQRequest_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Equality(Native.Sdk.Cqp.Model.QQRequest,Native.Sdk.Cqp.Model.QQRequest)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Equality(Native.Sdk.Cqp.Model.QQRequest, Native.Sdk.Cqp.Model.QQRequest)
+  nameWithType: QQRequest.Equality(QQRequest, QQRequest)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Equality(Native.Sdk.Cqp.Model.QQRequest,System.String)
+  name: Equality(QQRequest, String)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Equality_Native_Sdk_Cqp_Model_QQRequest_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Equality(Native.Sdk.Cqp.Model.QQRequest,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Equality(Native.Sdk.Cqp.Model.QQRequest, System.String)
+  nameWithType: QQRequest.Equality(QQRequest, String)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Equality(System.String,Native.Sdk.Cqp.Model.QQRequest)
+  name: Equality(String, QQRequest)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Equality_System_String_Native_Sdk_Cqp_Model_QQRequest_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Equality(System.String,Native.Sdk.Cqp.Model.QQRequest)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Equality(System.String, Native.Sdk.Cqp.Model.QQRequest)
+  nameWithType: QQRequest.Equality(String, QQRequest)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Equality*
+  name: Equality
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Equality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQRequest.op_Equality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Equality
+  nameWithType: QQRequest.Equality
 - uid: Native.Sdk.Cqp.Model.QQRequest.op_Implicit(Native.Sdk.Cqp.Model.QQRequest)~System.String
   name: Implicit(QQRequest to String)
   href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Implicit_Native_Sdk_Cqp_Model_QQRequest__System_String
@@ -7467,6 +7764,31 @@ references:
   fullName.vb: Native.Sdk.Cqp.Model.QQRequest.Widening
   nameWithType: QQRequest.Implicit
   nameWithType.vb: QQRequest.Widening
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Inequality(Native.Sdk.Cqp.Model.QQRequest,Native.Sdk.Cqp.Model.QQRequest)
+  name: Inequality(QQRequest, QQRequest)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Inequality_Native_Sdk_Cqp_Model_QQRequest_Native_Sdk_Cqp_Model_QQRequest_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Inequality(Native.Sdk.Cqp.Model.QQRequest,Native.Sdk.Cqp.Model.QQRequest)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Inequality(Native.Sdk.Cqp.Model.QQRequest, Native.Sdk.Cqp.Model.QQRequest)
+  nameWithType: QQRequest.Inequality(QQRequest, QQRequest)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Inequality(Native.Sdk.Cqp.Model.QQRequest,System.String)
+  name: Inequality(QQRequest, String)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Inequality_Native_Sdk_Cqp_Model_QQRequest_System_String_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Inequality(Native.Sdk.Cqp.Model.QQRequest,System.String)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Inequality(Native.Sdk.Cqp.Model.QQRequest, System.String)
+  nameWithType: QQRequest.Inequality(QQRequest, String)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQRequest)
+  name: Inequality(String, QQRequest)
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Inequality_System_String_Native_Sdk_Cqp_Model_QQRequest_
+  commentId: M:Native.Sdk.Cqp.Model.QQRequest.op_Inequality(System.String,Native.Sdk.Cqp.Model.QQRequest)
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Inequality(System.String, Native.Sdk.Cqp.Model.QQRequest)
+  nameWithType: QQRequest.Inequality(String, QQRequest)
+- uid: Native.Sdk.Cqp.Model.QQRequest.op_Inequality*
+  name: Inequality
+  href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_op_Inequality_
+  commentId: Overload:Native.Sdk.Cqp.Model.QQRequest.op_Inequality
+  isSpec: "True"
+  fullName: Native.Sdk.Cqp.Model.QQRequest.Inequality
+  nameWithType: QQRequest.Inequality
 - uid: Native.Sdk.Cqp.Model.QQRequest.ResponseFlag
   name: ResponseFlag
   href: api/Native.Sdk.Cqp.Model.QQRequest.html#Native_Sdk_Cqp_Model_QQRequest_ResponseFlag
@@ -10391,6 +10713,38 @@ references:
   isSpec: "True"
   fullName: Native.Tool.IniConfig.Linq.ISection.GetHashCode
   nameWithType: ISection.GetHashCode
+- uid: Native.Tool.IniConfig.Linq.ISection.GetValue*
+  name: GetValue
+  href: api/Native.Tool.IniConfig.Linq.ISection.html#Native_Tool_IniConfig_Linq_ISection_GetValue_
+  commentId: Overload:Native.Tool.IniConfig.Linq.ISection.GetValue
+  isSpec: "True"
+  fullName: Native.Tool.IniConfig.Linq.ISection.GetValue
+  nameWithType: ISection.GetValue
+- uid: Native.Tool.IniConfig.Linq.ISection.GetValue``1(System.String)
+  name: GetValue<T>(String)
+  href: api/Native.Tool.IniConfig.Linq.ISection.html#Native_Tool_IniConfig_Linq_ISection_GetValue__1_System_String_
+  commentId: M:Native.Tool.IniConfig.Linq.ISection.GetValue``1(System.String)
+  name.vb: GetValue(Of T)(String)
+  fullName: Native.Tool.IniConfig.Linq.ISection.GetValue<T>(System.String)
+  fullName.vb: Native.Tool.IniConfig.Linq.ISection.GetValue(Of T)(System.String)
+  nameWithType: ISection.GetValue<T>(String)
+  nameWithType.vb: ISection.GetValue(Of T)(String)
+- uid: Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault*
+  name: GetValueOrDefault
+  href: api/Native.Tool.IniConfig.Linq.ISection.html#Native_Tool_IniConfig_Linq_ISection_GetValueOrDefault_
+  commentId: Overload:Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault
+  isSpec: "True"
+  fullName: Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault
+  nameWithType: ISection.GetValueOrDefault
+- uid: Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault``1(System.String,``0)
+  name: GetValueOrDefault<T>(String, T)
+  href: api/Native.Tool.IniConfig.Linq.ISection.html#Native_Tool_IniConfig_Linq_ISection_GetValueOrDefault__1_System_String___0_
+  commentId: M:Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault``1(System.String,``0)
+  name.vb: GetValueOrDefault(Of T)(String, T)
+  fullName: Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault<T>(System.String, T)
+  fullName.vb: Native.Tool.IniConfig.Linq.ISection.GetValueOrDefault(Of T)(System.String, T)
+  nameWithType: ISection.GetValueOrDefault<T>(String, T)
+  nameWithType.vb: ISection.GetValueOrDefault(Of T)(String, T)
 - uid: Native.Tool.IniConfig.Linq.ISection.SectionName
   name: SectionName
   href: api/Native.Tool.IniConfig.Linq.ISection.html#Native_Tool_IniConfig_Linq_ISection_SectionName
