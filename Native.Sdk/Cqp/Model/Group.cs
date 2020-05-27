@@ -288,6 +288,10 @@ namespace Native.Sdk.Cqp.Model
 			{
 				return true;
 			}
+			if(object.ReferenceEquals (a, null))
+            {
+				return false;
+            }
 			return a.Equals (b);
 		}
 		/// <summary>
@@ -356,6 +360,10 @@ namespace Native.Sdk.Cqp.Model
 			{
 				return true;
 			}
+			if(object.ReferenceEquals (a, null))
+            {
+				return false;
+            }
 			return ((string)a).Equals (b);
 		}
 		/// <summary>
