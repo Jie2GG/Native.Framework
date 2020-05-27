@@ -284,6 +284,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (Group a, Group b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals (b);
 		}
 		/// <summary>
@@ -294,6 +298,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (Group a, Group b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals (b);
 		}
 		/// <summary>
@@ -304,6 +312,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (Group a, long b)
 		{
+			if (a == null)
+            {
+				return false;
+            }
 			return a.Id.Equals (b);
 		}
 		/// <summary>
@@ -314,6 +326,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (Group a, long b)
 		{
+			if (a == null)
+            {
+				return false;
+            }
 			return a.Id.Equals (b);
 		}
 		/// <summary>
@@ -324,6 +340,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (long a, Group b)
 		{
+			if ( b == null)
+            {
+				return false;
+            }
 			return a.Equals (b.Id);
 		}
 		/// <summary>
@@ -334,6 +354,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (long a, Group b)
 		{
+			if (b == null)
+            {
+				return true;
+            }
 			return a.Equals (b.Id);
 		}
 		/// <summary>
@@ -344,6 +368,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (Group a, string b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return ((string)a).Equals (b);
 		}
 		/// <summary>
@@ -354,6 +382,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (Group a, string b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !((string)a).Equals (b);
 		}
 		/// <summary>
@@ -364,6 +396,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (string a, Group b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals ((string)b);
 		}
 		/// <summary>
@@ -374,6 +410,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (string a, Group b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals ((string)b);
 		}
 		#endregion
