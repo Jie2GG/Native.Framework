@@ -172,10 +172,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQ a, QQ b)
 		{
-			if (a == null && b == null)
-            {
+			if (object.ReferenceEquals (a, null) && object.ReferenceEquals (b, null))
+			{
 				return true;
-            }
+			}
 			return a.Equals (b);
 		}
 		/// <summary>
@@ -186,11 +186,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQ a, QQ b)
 		{
-			if (a == null && b == null)
-            {
-				return false;
-            }
-			return !a.Equals (b);
+			return !(a == b);
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有相同的值
@@ -200,10 +196,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQ a, long b)
 		{
-			if (a == null)
-            {
+			if (object.ReferenceEquals (a, null))
+			{
 				return false;
-            }
+			}
 			return a.Id.Equals (b);
 		}
 		/// <summary>
@@ -214,11 +210,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQ a, long b)
 		{
-			if (a == null && b == null)
-            {
-				return false;
-            }
-			return a.Id.Equals (b);
+			return !(a == b);
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有相同的值
@@ -228,11 +220,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (long a, QQ b)
 		{
-			if (b == null)
-            {
-				return false;
-            }
-			return a.Equals (b.Id);
+			return b == a;
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有不同的值
@@ -242,11 +230,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (long a, QQ b)
 		{
-			if (b == null)
-            {
-				return true;
-            }
-			return a.Equals (b.Id);
+			return b != a;
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有相同的值
@@ -256,10 +240,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQ a, string b)
 		{
-			if (a == null && b == null)
-            {
+			if (object.ReferenceEquals (a, null) && object.ReferenceEquals (b, null))
+			{
 				return true;
-            }
+			}
 			return ((string)a).Equals (b);
 		}
 		/// <summary>
@@ -270,11 +254,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQ a, string b)
 		{
-			if (a == null && b == null)
-            {
-				return false;
-            }
-			return !((string)a).Equals (b);
+			return !(a == b);
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有相同的值
@@ -284,11 +264,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (string a, QQ b)
 		{
-			if (a == null && b == null)
-            {
-				return true;
-            }
-			return a.Equals ((string)b);
+			return b == a;
 		}
 		/// <summary>
 		/// 确定指定的 <see cref="QQ"/> 和 <see cref="string"/> 实例是否具有不同的值
@@ -298,11 +274,7 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (string a, QQ b)
 		{
-			if (a == null && b == null)
-            {
-				return false;
-            }
-			return !a.Equals ((string)b);
+			return b != a;
 		}
 		#endregion
 	}
