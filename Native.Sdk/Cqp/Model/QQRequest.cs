@@ -126,6 +126,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQRequest a, QQRequest b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals (b);
 		}
 		/// <summary>
@@ -136,6 +140,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQRequest a, QQRequest b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals (b);
 		}
 		/// <summary>
@@ -146,6 +154,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.ResponseFlag 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQRequest a, string b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.ResponseFlag.Equals (b);
 		}
 		/// <summary>
@@ -156,6 +168,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.ResponseFlag 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQRequest a, string b)
 		{
+            if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.ResponseFlag.Equals (b);
 		}
 		/// <summary>
@@ -166,6 +182,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.ResponseFlag 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (string a, QQRequest b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals (b.ResponseFlag);
 		}
 		/// <summary>
@@ -176,6 +196,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.ResponseFlag 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (string a, QQRequest b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals (b.ResponseFlag);
 		}
 		#endregion

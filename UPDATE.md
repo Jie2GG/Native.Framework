@@ -1,5 +1,10 @@
 ## Native.SDK 更新日志
 
+#### 2020年05月27日 版本: V4.2.6.0527
+
+	1. 修复 QQMessage 类 ToString 方法报错
+	2. 修复 Discuss、Group、QQ、QQMessage 和 QQRequest 类运算符方法 == 和 != NPE 问题 (@traceless0929)
+
 #### 2020年05月26日 版本: V4.2.5.0526
 
 	1. 修复 QQMessage 类解析正则消息的问题
