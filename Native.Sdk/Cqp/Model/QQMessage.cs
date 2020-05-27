@@ -221,13 +221,16 @@ namespace Native.Sdk.Cqp.Model
 			StringBuilder builder = new StringBuilder ();
 			builder.AppendFormat ("标识: {0}{1}", this.Id, Environment.NewLine);
 			builder.AppendFormat ("内容: {0}{1}", this.Text, Environment.NewLine);
-			builder.AppendFormat ("是否正则: {0}{1}", this.IsRegexMessage, Environment.NewLine);
-			builder.AppendLine ("解析结果:");
-			foreach (KeyValuePair<string, string> item in this.RegexResult)
+			builder.AppendFormat ("正则消息: {0}{1}", this.IsRegexMessage, Environment.NewLine);
+			if (this.IsRegexMessage)
 			{
-				builder.Append ("\t");
-				builder.AppendFormat ("{0}: {1}", item.Key, item.Value);
-				builder.AppendLine ();
+				builder.AppendLine ("解析结果:");
+				foreach (KeyValuePair<string, string> item in this.RegexResult)
+				{
+					builder.Append ("\t");
+					builder.AppendFormat ("{0}: {1}", item.Key, item.Value);
+					builder.AppendLine ();
+				}
 			}
 			return builder.ToString ();
 		}
