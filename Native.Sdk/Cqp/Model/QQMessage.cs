@@ -301,6 +301,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQMessage a, QQMessage b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals (b);
 		}
 		/// <summary>
@@ -311,6 +315,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQMessage a, QQMessage b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals (b);
 		}
 		/// <summary>
@@ -321,6 +329,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Text 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (QQMessage a, string b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Text.Equals (b);
 		}
 		/// <summary>
@@ -331,6 +343,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a.Text 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (QQMessage a, string b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Text.Equals (b);
 		}
 		/// <summary>
@@ -341,6 +357,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Text 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
 		public static bool operator == (string a, QQMessage b)
 		{
+			if (a == null && b == null)
+            {
+				return true;
+            }
 			return a.Equals (b.Text);
 		}
 		/// <summary>
@@ -351,6 +371,10 @@ namespace Native.Sdk.Cqp.Model
 		/// <returns>如果 a 是与 b.Text 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
 		public static bool operator != (string a, QQMessage b)
 		{
+			if (a == null && b == null)
+            {
+				return false;
+            }
 			return !a.Equals (b.Text);
 		}
 		#endregion
