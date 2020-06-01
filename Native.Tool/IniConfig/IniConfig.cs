@@ -389,9 +389,11 @@ namespace Native.Tool.IniConfig
 			}
 
 			// 处理文件
-			if (!File.Exists (filePath))
+			FileInfo file = new FileInfo (filePath);
+			if (!file.Exists)
 			{
-				File.Create (filePath).Close ();
+				file.Directory.Create ();
+				file.Create ().Close ();
 			}
 
 			// 创建对象
