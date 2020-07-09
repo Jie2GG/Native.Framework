@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Native.Core</RootNamespace>
     <AssemblyName>Native.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <DllExportIdent>D63C3FB7-18B9-4CDE-A8F4-F2ACE3FC382F</DllExportIdent>
@@ -95,6 +96,11 @@
     <Compile Include="Export\CQEventExport.cs">
       <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
+    <Compile Include="Export\CQExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQExport.tt</DependentUpon>
+    </Compile>
     <Compile Include="Export\CQMenuExport.cs">
       <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
@@ -104,11 +110,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Export\CQExport.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CQExport.tt</DependentUpon>
-    </None>
     <None Include="FodyWeavers.xml" />
     <None Include="app.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -120,7 +121,7 @@
   <ItemGroup>
     <Content Include="Export\CQExport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CQExport.log</LastGenOutput>
+      <LastGenOutput>CQExport.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
